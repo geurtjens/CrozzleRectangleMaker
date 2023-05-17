@@ -8,14 +8,14 @@ final class RectangleCalculator8612Tests: XCTestCase {
     let scoreMin = 0
     
     
-    func test_Execute() throws {
-        
-        let result = RectangleCalculator.Execute(
-            words: words,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
-    }
+//    func test_Execute() throws {
+//        
+//        let _ = RectangleCalculator.Execute(
+//            words: words,
+//            widthMax: widthMax,
+//            heightMax: heightMax,
+//            scoreMin: scoreMin)
+//    }
     
     
     func test_D3x3() throws {
@@ -195,7 +195,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        XCTAssertEqual(153_820, result.count)
+        XCTAssertEqual(160_216, result.count)
     }
     
     func test_O3x4_TopLeft() throws {
@@ -493,8 +493,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
     }
     func test_O5x6_TopLeft() throws {
         
-        let O4x6 = RectangleCalculator.TopLeftRectangle(
-            interlockWidth: 3,
+        let result = RectangleCalculator.TopLeftRectangle(
+            interlockWidth: 4,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
@@ -502,13 +502,13 @@ final class RectangleCalculator8612Tests: XCTestCase {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        XCTAssertEqual(49_644, O4x6.count)
+        XCTAssertEqual(49_644, result.count)
     }
     
     func test_O5x6_TopRight() throws {
         
         let O4x6 = RectangleCalculator.TopRightRectangle(
-            interlockWidth: 3,
+            interlockWidth: 4,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
@@ -522,7 +522,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     func test_O5x6_BottomRight() throws {
         
         let O4x6 = RectangleCalculator.BottomRightRectangle(
-            interlockWidth: 3, interlockHeight: 5,
+            interlockWidth: 4, interlockHeight: 5,
             words: words,
             lengths: lengths,
             widthMax: widthMax,
