@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "40D2D25A-F8F6-47ED-A4D0-3CA11F067B04",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "CrozzleRectangleMakerTests",
+        "name" : "CrozzleRectangleMakerTests"
+      }
+    }
+  ],
+  "version" : 1
+}
