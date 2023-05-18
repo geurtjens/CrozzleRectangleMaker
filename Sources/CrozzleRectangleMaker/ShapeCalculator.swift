@@ -54,39 +54,89 @@ public struct ShapeCalculator {
     }
     
     
-    
-    
-    public static func ConvertToShape(topRight: TopLeftBottomRightModel) -> ShapeModel {
-        let width = topRight.width + 2
-        let height = topRight.height + 2
-        let score = topRight.score
+    public static func ConvertToShape(topLeft: TopLeftBottomRightModel) -> ShapeModel {
         
-        let maxLeft = max(topRight.topLetterPos, topRight.bottomLetterPos)
+        /*
+           .
+         .STAR.
+         Z O
+     .FAMILY.
+         O S
+         N .
+         .
+         */
+        let input = topLeft
+        let width = input.width + 2
+        let height = input.height + 2
+        let score = input.score
         
-        let maxUp = topRight.leftLetterPos + 1
+        let maxLeft = input.bottomLetterPos
+        
+        let maxUp = input.rightLetterPos + 1
         
         let topPlacement = PlacementModel(
-            i: topRight.top,
+            i: input.top,
             h: true,
-            x: maxLeft - topRight.topLetterPos,
+            x: maxLeft + 1,
             y: maxUp)
         
         let bottomPlacement = PlacementModel(
-            i: topRight.bottom,
+            i: input.bottom,
             h: true,
-            x: maxLeft - topRight.bottomLetterPos,
-            y: maxUp + topRight.interlockHeight)
+            x: maxLeft - input.bottomLetterPos,
+            y: maxUp + input.interlockHeight)
         
         let leftPlacement = PlacementModel(
-            i: topRight.left,
+            i: input.left,
+            h: false,
+            x: maxLeft + 1,
+            y: maxUp)
+        
+        let rightPlacement = PlacementModel(
+            i: input.right,
+            h: false,
+            x: maxLeft + input.interlockWidth + 1,
+            y: 0)
+        
+        let placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
+        
+        let shape = ShapeModel(score: score, width: width, height: height, placements: placements)
+        
+        return shape
+    }
+    
+    public static func ConvertToShape(topRight: TopLeftBottomRightModel) -> ShapeModel {
+        let input = topRight
+        let width = input.width + 2
+        let height = input.height + 2
+        let score = input.score
+        
+        let maxLeft = max(input.topLetterPos, input.bottomLetterPos)
+        
+        let maxUp = input.leftLetterPos + 1
+        
+        let topPlacement = PlacementModel(
+            i: input.top,
+            h: true,
+            x: maxLeft - input.topLetterPos,
+            y: maxUp)
+        
+        let bottomPlacement = PlacementModel(
+            i: input.bottom,
+            h: true,
+            x: maxLeft - input.bottomLetterPos,
+            y: maxUp + input.interlockHeight)
+        
+        let leftPlacement = PlacementModel(
+            i: input.left,
             h: false,
             x: maxLeft + 1,
             y: 0)
         
         let rightPlacement = PlacementModel(
-            i: topRight.right,
+            i: input.right,
             h: false,
-            x: maxLeft + topRight.interlockWidth + 1,
+            x: maxLeft + input.interlockWidth + 1,
             y: maxUp)
         
         let placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
@@ -130,6 +180,51 @@ public struct ShapeCalculator {
             i: input.right,
             h: false,
             x: maxLeft + input.interlockWidth,
+            y: maxUp - input.rightLetterPos)
+        
+        let placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
+        
+        let shape = ShapeModel(score: score, width: width, height: height, placements: placements)
+        
+        return shape
+    }
+    
+    
+    // This is just like rectangle actually so two birds with one stone
+    public static func ConvertToShape(rectangle: TopLeftBottomRightModel) -> ShapeModel {
+        
+        let input = rectangle
+        
+        let width = input.width + 2
+        let height = input.height + 2
+        let score = input.score
+        
+        let maxLeft = max(input.topLetterPos, input.bottomLetterPos)
+        
+        let maxUp = max(input.leftLetterPos, input.rightLetterPos)
+        
+        let topPlacement = PlacementModel(
+            i: input.top,
+            h: true,
+            x: maxLeft - input.topLetterPos,
+            y: maxUp + 1)
+        
+        let bottomPlacement = PlacementModel(
+            i: input.bottom,
+            h: true,
+            x: maxLeft - input.bottomLetterPos,
+            y: maxUp + 1 + input.interlockHeight)
+        
+        let leftPlacement = PlacementModel(
+            i: input.left,
+            h: false,
+            x: maxLeft + 1,
+            y: maxUp - input.leftLetterPos)
+        
+        let rightPlacement = PlacementModel(
+            i: input.right,
+            h: false,
+            x: maxLeft + 1 + input.interlockWidth,
             y: maxUp - input.rightLetterPos)
         
         let placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]

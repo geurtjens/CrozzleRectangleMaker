@@ -506,17 +506,12 @@ public struct RectangleCalculator {
                                                                             topLetterPos: _topLetterPos,
                                                                             bottomLetterPos: _bottomLetterPos)
                                                                         
-                                                                        //print("Top: \(words[_top]), Bottom: \(words[_bottom]), Left:\(words[_left]), right:\(words[_right])")
-                                                                        
-                                                                        
                                                                         let height = CalculateWidth(
                                                                             topLength: lengths[_left],
                                                                             bottomLength: lengths[_right],
                                                                             topLetterPos: _leftLetterPos,
                                                                             bottomLetterPos: _rightLetterPos)
-                                                                        
-                                                                        
-                                                                        
+
                                                                         if (width <= widthMax && height <= heightMax) ||
                                                                             (width <= heightMax && height <= widthMax) {
                                                                             
@@ -533,8 +528,16 @@ public struct RectangleCalculator {
                                                                                 right:_right,
                                                                                 rightLetterPos:_rightLetterPos,
                                                                                 interlockWidth: interlockWidth,
-                                                                                interlockHeight: interlockWidth)
+                                                                                interlockHeight: interlockWidth,
+                                                                                type: .rectangle
+                                                                            )
 
+//                                                                            let text = donut.ToText(words: words)
+//
+//                                                                            if text.contains("#") {
+//                                                                                print("BAD APPLE")
+//                                                                            }
+                                                                            
                                                                             result.append(donut)
                                                                         }
                                                                     }
@@ -636,8 +639,15 @@ public struct RectangleCalculator {
                                                                                 right:_right,
                                                                                 rightLetterPos:_rightLetterPos,
                                                                                 interlockWidth: interlockWidth,
-                                                                                interlockHeight: interlockHeight)
+                                                                                interlockHeight: interlockHeight,
+                                                                                type: .rectangle)
 
+//                                                                            let text = donut.ToText(words: words)
+//
+//                                                                            if text.contains("#") {
+//                                                                                print("BAD APPLE")
+//                                                                            }
+                                                                            
                                                                             result.append(donut)
                                                                         }
                                                                     }
@@ -745,8 +755,15 @@ public struct RectangleCalculator {
                                                                         right:_right,
                                                                         rightLetterPos:_rightLetterPos,
                                                                         interlockWidth: interlockWidth,
-                                                                        interlockHeight: interlockHeight)
+                                                                        interlockHeight: interlockHeight,
+                                                                        type: .topLeft)
 
+//                                                                    let text = donut.ToText(words: words)
+//
+//                                                                    if text.contains("#") {
+//                                                                        print("BAD APPLE")
+//                                                                    }
+                                                                    
                                                                     result.append(donut)
                                                                 }
                                                             }
@@ -827,9 +844,6 @@ public struct RectangleCalculator {
                                                             
                                                             if (score >= scoreMin)
                                                             {
-
-                                                                //print("Top: \(words[_top]), Bottom: \(words[_bottom]), Left:\(words[_left]), right:\(words[_right])")
-
 /*
                                                                    .STAR
                                                                    Z O
@@ -864,8 +878,14 @@ public struct RectangleCalculator {
                                                                         right:_right,
                                                                         rightLetterPos:_rightLetterPos,
                                                                         interlockWidth: interlockWidth,
-                                                                        interlockHeight: interlockHeight)
-
+                                                                        interlockHeight: interlockHeight,
+                                                                        type:.topLeft)
+                                                                    
+//                                                                    let text = donut.ToText(words: words)
+//                                                                    if text.contains("#") {
+//                                                                        print("BAD APPLE")
+//                                                                    }
+                                                                    
                                                                     result.append(donut)
                                                                 }
                                                             }
@@ -973,12 +993,14 @@ public struct RectangleCalculator {
                                                                         right:_right,
                                                                         rightLetterPos:_rightLetterPos,
                                                                         interlockWidth: interlockWidth,
-                                                                        interlockHeight: interlockHeight)
-                                                                    //print("Top: \(words[_top]), Bottom: \(words[_bottom]), Left:\(words[_left]), right:\(words[_right])")
-                                                                    //let shape = ShapeCalculator.ConvertToShape(topRight: donut)
-                                                                    
-                                                                    //let text = ShapeCalculator.ConvertToText(shape: shape, words: words)
-                                                                    //print(text)
+                                                                        interlockHeight: interlockHeight,
+                                                                        type:.topRight)
+                                                                   
+//                                                                    let text = donut.ToText(words: words)
+//
+//                                                                    if text.contains("#") {
+//                                                                        print("BAD APPLE")
+//                                                                    }
                                                                     result.append(donut)
                                                                 }
                                                             }
@@ -1094,25 +1116,14 @@ public struct RectangleCalculator {
                                                                         right:_right,
                                                                         rightLetterPos:_rightLetterPos,
                                                                         interlockWidth: interlockWidth,
-                                                                        interlockHeight: interlockWidth)
+                                                                        interlockHeight: interlockWidth,
+                                                                        type: .topRight)
 
-                                                                    let shape = ShapeCalculator.ConvertToShape(topRight: donut)
-                                                                    
-                                                                    let text = ShapeCalculator.ConvertToText(shape: shape, words: words)
-                                                                    
-                                                                    if text.contains("#") {
-                                                                        print("BAD APPLE")
-                                                                    }
-                                                                    //print(text)
-                                                                    result.append(donut)
-                                                                    
-                                                                    
-                                                                    
-                                                                    //print("Top: \(words[_top]), Bottom: \(words[_bottom]), Left:\(words[_left]), right:\(words[_right])")
-                                                                    //let shape = ShapeCalculator.ConvertToShape(topRight: donut)
-                                                                    
-                                                                    //let text = ShapeCalculator.ConvertToText(shape: shape, words: words)
-                                                                    //print(text)
+//                                                                    let text = donut.ToText(words: words)
+//
+//                                                                    if text.contains("#") {
+//                                                                        print("BAD APPLE")
+//                                                                    }
                                                                     
                                                                     result.append(donut)
                                                                 }
@@ -1192,8 +1203,6 @@ public struct RectangleCalculator {
 
                                                             if score >= scoreMin {
 
-                                                                //print("Top: \(words[_top]), Bottom: \(words[_bottom]), Left:\(words[_left]), right:\(words[_right])")
-                                                                
                                                                 let width = CalculateWidth(
                                                                     topLength: lengths[_top],
                                                                     bottomLength: lengths[_bottom],
@@ -1206,7 +1215,6 @@ public struct RectangleCalculator {
                                                                     topLetterPos: _leftLetterPos,
                                                                     bottomLetterPos: _rightLetterPos)
 
-                                                                
                                                                 if (width <= widthMax && height <= heightMax) ||
                                                                     (width <= heightMax && height <= widthMax) {
                                                                     
@@ -1223,8 +1231,15 @@ public struct RectangleCalculator {
                                                                         right:_right,
                                                                         rightLetterPos:_rightLetterPos,
                                                                         interlockWidth: interlockWidth,
-                                                                        interlockHeight: interlockHeight)
+                                                                        interlockHeight: interlockHeight,
+                                                                        type: .bottomRight)
 
+//                                                                    let text = donut.ToText(words: words)
+//
+//                                                                    if text.contains("#") {
+//                                                                        print("BAD APPLE")
+//                                                                    }
+                                                                    
                                                                     result.append(donut)
                                                                 }
                                                             }
@@ -1313,8 +1328,7 @@ public struct RectangleCalculator {
                                                                     bottomLength: lengths[_right],
                                                                     topLetterPos: _leftLetterPos,
                                                                     bottomLetterPos: _rightLetterPos)
-
-
+                                                                
                                                                 if (width <= widthMax && height <= heightMax) ||
                                                                     (width <= heightMax && height <= widthMax) {
                                                                     
@@ -1331,8 +1345,15 @@ public struct RectangleCalculator {
                                                                         right:_right,
                                                                         rightLetterPos:_rightLetterPos,
                                                                         interlockWidth: interlockWidth,
-                                                                        interlockHeight: interlockHeight)
-
+                                                                        interlockHeight: interlockHeight,
+                                                                        type: .bottomRight)
+                                                                    
+//                                                                    let text = donut.ToText(words: words)
+//
+//                                                                    if text.contains("#") {
+//                                                                        print("BAD APPLE")
+//                                                                    }
+                                                                    
                                                                     result.append(donut)
                                                                 }
                                                             }
@@ -1405,73 +1426,69 @@ public struct RectangleCalculator {
                                                 for _left in 0..<wordCount {
                                     
                                                     if lengths[_left] >= interlockHeight && _left != _top && _left != _right && _left != _bottom {
-                                        
-                                                        //print("Top: \(words[_top]), Bottom: \(words[_bottom]), Left:\(words[_left]), right:\(words[_right])")
                                                         
                                                         // it should not start at 0 rather where it is possible only
                                                         let _leftLetterPos = lengths[_left] - interlockHeight
                                         
-                                                            if words[_top][_topLetterPos] == words[_left][_leftLetterPos] {
+                                                        if words[_top][_topLetterPos] == words[_left][_leftLetterPos] {
                                                         
-                                                                let score = ScoreCalculator.openBottomRight(
-                                                                    topLeft: words[_top][_topLetterPos],
-                                                                    topRight: words[_top][_topLetterPos + interlockWidth],
-                                                                    bottomLeft: words[_bottom][_bottomLetterPos])
+                                                            let score = ScoreCalculator.openBottomRight(
+                                                                topLeft: words[_top][_topLetterPos],
+                                                                topRight: words[_top][_topLetterPos + interlockWidth],
+                                                                bottomLeft: words[_bottom][_bottomLetterPos])
 
-                                                                if score >= scoreMin {
+                                                            if score >= scoreMin {
+                                                                
+//
+//
+//                                                                if _left == _right ||
+//                                                                    _left == _top ||
+//                                                                    _left == _bottom ||
+//                                                                    _top == _right ||
+//                                                                    _top == _bottom ||
+//                                                                    _right == _bottom {
+//                                                                    print("ERROR")
+//                                                                }
+                                                                
+                                                                
+                                                                let width = CalculateWidthIndented(
+                                                                    letterPos: _topLetterPos,
+                                                                    wordLength: lengths[_top],
+                                                                    indentedWordLength: lengths[_bottom])
+                                                                
+                                                                let height = CalculateWidth(
+                                                                    topLength: lengths[_left],
+                                                                    bottomLength: lengths[_right],
+                                                                    topLetterPos: _leftLetterPos,
+                                                                    bottomLetterPos: _rightLetterPos)
+                                                                
+                                                                
+                                                                if (width <= widthMax && height <= heightMax) ||
+                                                                    (width <= heightMax && height <= widthMax) {
                                                                     
+                                                                    let donut = TopLeftBottomRightModel(
+                                                                        score:score,
+                                                                        width:width,
+                                                                        height:height,
+                                                                        top:_top,
+                                                                        topLetterPos:_topLetterPos,
+                                                                        bottom:_bottom,
+                                                                        bottomLetterPos:_bottomLetterPos,
+                                                                        left:_left,
+                                                                        leftLetterPos:_leftLetterPos,
+                                                                        right:_right,
+                                                                        rightLetterPos:_rightLetterPos,
+                                                                        interlockWidth: interlockWidth,
+                                                                        interlockHeight: interlockHeight,
+                                                                        type: .bottomLeft)
                                                                     
+                                                                    let text = donut.ToText(words: words)
                                                                     
-                                                                    if _left == _right ||
-                                                                        _left == _top ||
-                                                                        _left == _bottom ||
-                                                                        _top == _right ||
-                                                                        _top == _bottom ||
-                                                                        _right == _bottom {
-                                                                        print("ERROR")
+                                                                    if text.contains("#") {
+                                                                        print("BAD APPLE")
                                                                     }
                                                                     
-                                                                    
-                                                                    let width = CalculateWidthIndented(
-                                                                        letterPos: _topLetterPos,
-                                                                        wordLength: lengths[_top],
-                                                                        indentedWordLength: lengths[_bottom])
-                                                                    
-                                                                    let height = CalculateWidth(
-                                                                        topLength: lengths[_left],
-                                                                        bottomLength: lengths[_right],
-                                                                        topLetterPos: _leftLetterPos,
-                                                                        bottomLetterPos: _rightLetterPos)
-                                                                    
-                                                                    
-                                                                    if (width <= widthMax && height <= heightMax) ||
-                                                                        (width <= heightMax && height <= widthMax) {
-                                                                        
-                                                                        let donut = TopLeftBottomRightModel(
-                                                                            score:score,
-                                                                            width:width,
-                                                                            height:height,
-                                                                            top:_top,
-                                                                            topLetterPos:_topLetterPos,
-                                                                            bottom:_bottom,
-                                                                            bottomLetterPos:_bottomLetterPos,
-                                                                            left:_left,
-                                                                            leftLetterPos:_leftLetterPos,
-                                                                            right:_right,
-                                                                            rightLetterPos:_rightLetterPos,
-                                                                            interlockWidth: interlockWidth,
-                                                                            interlockHeight: interlockHeight)
-                                                                        
-                                                                        let shape = ShapeCalculator.ConvertToShape(bottomLeft: donut)
-                                                                        
-                                                                        let text = ShapeCalculator.ConvertToText(shape: shape, words: words)
-                                                                        
-                                                                        if text.contains("#") {
-                                                                            print("BAD APPLE")
-                                                                        }
-                                                                        //print(text)
-                                                                        result.append(donut)
-                                                                    }
+                                                                    result.append(donut)
                                                                 }
                                                             }
                                                         }
@@ -1486,12 +1503,10 @@ public struct RectangleCalculator {
                     }
                 }
             }
-       // }
+        }
 
         result.sort { $0.score > $1.score }
        
         return result;
     }
-    
-    
 }

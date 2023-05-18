@@ -662,9 +662,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             lengths: lengths,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: 68)
-            //scoreMin)
-        print(result[3000])
+            scoreMin: scoreMin)
+        //print(result[3000])
         
         XCTAssertEqual(28581, result.count)
     }

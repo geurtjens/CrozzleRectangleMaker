@@ -6,7 +6,7 @@
 //
 
 import Foundation
-public struct TopLeftBottomRightModel {
+public struct TopLeftBottomRightModel : ShapeProtocol {
     
     public let score: Int
     public let width: Int
@@ -26,5 +26,27 @@ public struct TopLeftBottomRightModel {
     
     public let interlockWidth: Int
     public let interlockHeight: Int
+    public let type: RectangleType
+    
+    public func ToText(words:[String]) -> String {
+        let shape = ToShape()
+        let text = ShapeCalculator.ConvertToText(shape: shape, words: words)
+        return text
+    }
+    
+    public func ToShape() -> ShapeModel {
+        switch type {
+        case .bottomLeft:
+            return ShapeCalculator.ConvertToShape(bottomLeft: self)
+        case .bottomRight:
+            return ShapeCalculator.ConvertToShape(rectangle: self)
+        case .rectangle:
+            return ShapeCalculator.ConvertToShape(rectangle: self)
+        case .topLeft:
+            return ShapeCalculator.ConvertToShape(topLeft: self)
+        case .topRight:
+            return ShapeCalculator.ConvertToShape(topRight: self)
+        }
+    }
 }
 
