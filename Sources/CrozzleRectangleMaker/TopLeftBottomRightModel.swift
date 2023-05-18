@@ -23,5 +23,8 @@ public struct TopLeftBottomRightModel {
     
     public let right: Int
     public let rightLetterPos: Int
+    
+    public let interlockWidth: Int
+    public let interlockHeight: Int
 }
 

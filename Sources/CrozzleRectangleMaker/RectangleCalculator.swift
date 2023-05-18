@@ -110,7 +110,6 @@ public struct RectangleCalculator {
           
         let o3x3_TopRight = RectangleCalculator.TopRightSquare(
             interlockWidth: 2,
-            interlockHeight: 2,
             words: words,
             lengths: lengths,
             widthMax: widthMax,
@@ -218,7 +217,6 @@ public struct RectangleCalculator {
         
         let o4x4_TopRight = RectangleCalculator.TopRightSquare(
             interlockWidth: 3,
-            interlockHeight: 3,
             words: words,
             lengths: lengths,
             widthMax: widthMax,
@@ -299,7 +297,6 @@ public struct RectangleCalculator {
         
         let o5x5_TopRight = RectangleCalculator.TopRightSquare(
             interlockWidth: 4,
-            interlockHeight: 4,
             words: words,
             lengths: lengths,
             widthMax: widthMax,
@@ -353,7 +350,6 @@ public struct RectangleCalculator {
         
         let o6x6_TopRight = RectangleCalculator.TopRightSquare(
             interlockWidth: 5,
-            interlockHeight: 5,
             words: words,
             lengths: lengths,
             widthMax: widthMax,
@@ -535,7 +531,9 @@ public struct RectangleCalculator {
                                                                                 left:_left,
                                                                                 leftLetterPos:_leftLetterPos,
                                                                                 right:_right,
-                                                                                rightLetterPos:_rightLetterPos)
+                                                                                rightLetterPos:_rightLetterPos,
+                                                                                interlockWidth: interlockWidth,
+                                                                                interlockHeight: interlockWidth)
 
                                                                             result.append(donut)
                                                                         }
@@ -636,7 +634,9 @@ public struct RectangleCalculator {
                                                                                 left:_left,
                                                                                 leftLetterPos:_leftLetterPos,
                                                                                 right:_right,
-                                                                                rightLetterPos:_rightLetterPos)
+                                                                                rightLetterPos:_rightLetterPos,
+                                                                                interlockWidth: interlockWidth,
+                                                                                interlockHeight: interlockHeight)
 
                                                                             result.append(donut)
                                                                         }
@@ -743,7 +743,9 @@ public struct RectangleCalculator {
                                                                         left:_left,
                                                                         leftLetterPos:_leftLetterPos,
                                                                         right:_right,
-                                                                        rightLetterPos:_rightLetterPos)
+                                                                        rightLetterPos:_rightLetterPos,
+                                                                        interlockWidth: interlockWidth,
+                                                                        interlockHeight: interlockHeight)
 
                                                                     result.append(donut)
                                                                 }
@@ -860,7 +862,9 @@ public struct RectangleCalculator {
                                                                         left:_left,
                                                                         leftLetterPos:_leftLetterPos,
                                                                         right:_right,
-                                                                        rightLetterPos:_rightLetterPos)
+                                                                        rightLetterPos:_rightLetterPos,
+                                                                        interlockWidth: interlockWidth,
+                                                                        interlockHeight: interlockHeight)
 
                                                                     result.append(donut)
                                                                 }
@@ -931,7 +935,7 @@ public struct RectangleCalculator {
                                                     
                                                     if lengths[_right] >= interlockHeight && _right != _bottom && _right != _left && _right != _top {
                                                     
-                                                        let _rightLetterPos = interlockHeight - 1;
+                                                        let _rightLetterPos = interlockHeight - 1
 
                                                         if (words[_bottom][_bottomLetterPos + interlockWidth] == words[_right][_rightLetterPos])
                                                         {
@@ -942,17 +946,16 @@ public struct RectangleCalculator {
 
                                                             if score >= scoreMin {
 
-                                                                var width = lengths[_bottom]
-                                                                if (_topLetterPos > _bottomLetterPos) {
-                                                                    width += _topLetterPos - _bottomLetterPos
-                                                                }
-
-                                                                var height = lengths[_left];
-                                                                let _leftBottom = lengths[_left] - (_leftLetterPos + interlockWidth) - 1
-                                                                let _rightBottom = lengths[_right] - _rightLetterPos - 1
-                                                                if (_rightBottom > _leftBottom) {
-                                                                    height += _rightBottom - _leftBottom
-                                                                }
+                                                                let width = CalculateWidth(
+                                                                    topLength: lengths[_top],
+                                                                    bottomLength: lengths[_bottom],
+                                                                    topLetterPos: _topLetterPos,
+                                                                    bottomLetterPos: _bottomLetterPos)
+                                                                
+                                                                let height = CalculateWidthIndented(
+                                                                    letterPos: _leftLetterPos,
+                                                                    wordLength: lengths[_left],
+                                                                    indentedWordLength: lengths[_right])
 
                                                                 if (width <= widthMax && height <= heightMax) ||
                                                                     (width <= heightMax && height <= widthMax) {
@@ -968,8 +971,14 @@ public struct RectangleCalculator {
                                                                         left:_left,
                                                                         leftLetterPos:_leftLetterPos,
                                                                         right:_right,
-                                                                        rightLetterPos:_rightLetterPos)
-
+                                                                        rightLetterPos:_rightLetterPos,
+                                                                        interlockWidth: interlockWidth,
+                                                                        interlockHeight: interlockHeight)
+                                                                    //print("Top: \(words[_top]), Bottom: \(words[_bottom]), Left:\(words[_left]), right:\(words[_right])")
+                                                                    //let shape = ShapeCalculator.ConvertToShape(topRight: donut)
+                                                                    
+                                                                    //let text = ShapeCalculator.ConvertToText(shape: shape, words: words)
+                                                                    //print(text)
                                                                     result.append(donut)
                                                                 }
                                                             }
@@ -993,7 +1002,7 @@ public struct RectangleCalculator {
         return result;
     }
     
-    public static func TopRightSquare(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
+    public static func TopRightSquare(interlockWidth: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
     
 
         /*
@@ -1006,25 +1015,23 @@ public struct RectangleCalculator {
              E
         */
         var result: [TopLeftBottomRightModel] = [];
-
-        if (interlockHeight != interlockWidth) {
-            return result;
-        }
         
         let wordCount = words.count
 
         for _top in 0..<wordCount {
         
-            // Top word includes a . and so can be 1 character shorter than the interlock width
-            if lengths[_top] >= interlockWidth{
+            
+            // I think the . one can be longer than the interlockWidth
+            
+            if lengths[_top] >= interlockWidth {
             
                 let _topLetterPos = lengths[_top] - interlockWidth
 
-                for _left in (_top+1)..<wordCount {
+                for _left in (_top + 1)..<wordCount {
                     
-                    if lengths[_left] >= interlockHeight && _left != _top {
+                    if lengths[_left] >= interlockWidth && _left != _top {
                     
-                        for _leftLetterPos in 0..<(lengths[_left] - interlockHeight) {
+                        for _leftLetterPos in 0..<(lengths[_left] - interlockWidth) {
                         
                             if words[_top][_topLetterPos] == words[_left][_leftLetterPos] {
                             
@@ -1034,13 +1041,13 @@ public struct RectangleCalculator {
                                     
                                         for _bottomLetterPos in 0..<(lengths[_bottom] - interlockWidth) {
                                         
-                                            if (words[_left][_leftLetterPos + interlockHeight] == words[_bottom][_bottomLetterPos])
+                                            if (words[_left][_leftLetterPos + interlockWidth] == words[_bottom][_bottomLetterPos])
                                             {
                                                 for _right in 0..<wordCount {
                                                     
-                                                    if lengths[_right] >= interlockHeight && _right != _bottom && _right != _left && _right != _top {
+                                                    if lengths[_right] >= interlockWidth && _right != _bottom && _right != _left && _right != _top {
                                                     
-                                                        let _rightLetterPos = interlockHeight - 1;
+                                                        let _rightLetterPos = interlockWidth - 1
 
                                                         if (words[_bottom][_bottomLetterPos + interlockWidth] == words[_right][_rightLetterPos])
                                                         {
@@ -1051,7 +1058,7 @@ public struct RectangleCalculator {
 
                                                             if score >= scoreMin {
 
-                                                                print("Top: \(words[_top]), Bottom: \(words[_bottom]), Left:\(words[_left]), right:\(words[_right])")
+                                                                //print("Top: \(words[_top]), Bottom: \(words[_bottom]), Left:\(words[_left]), right:\(words[_right])")
                                                                 /*
                                                                   T
                                                                 ZION.
@@ -1070,19 +1077,6 @@ public struct RectangleCalculator {
                                                                     letterPos: _leftLetterPos,
                                                                     wordLength: lengths[_left],
                                                                     indentedWordLength: lengths[_right])
-                                                                
-                                                                
-//                                                                var width = lengths[_bottom]
-//                                                                if (_topLetterPos > _bottomLetterPos) {
-//                                                                    width += _topLetterPos - _bottomLetterPos
-//                                                                }
-//
-//                                                                var height = lengths[_left];
-//                                                                let _leftBottom = lengths[_left] - (_leftLetterPos + interlockWidth) - 1
-//                                                                let _rightBottom = lengths[_right] - _rightLetterPos - 1
-//                                                                if (_rightBottom > _leftBottom) {
-//                                                                    height += _rightBottom - _leftBottom
-//                                                                }
 
                                                                 if (width <= widthMax && height <= heightMax) ||
                                                                     (width <= heightMax && height <= widthMax) {
@@ -1098,8 +1092,28 @@ public struct RectangleCalculator {
                                                                         left:_left,
                                                                         leftLetterPos:_leftLetterPos,
                                                                         right:_right,
-                                                                        rightLetterPos:_rightLetterPos)
+                                                                        rightLetterPos:_rightLetterPos,
+                                                                        interlockWidth: interlockWidth,
+                                                                        interlockHeight: interlockWidth)
 
+                                                                    let shape = ShapeCalculator.ConvertToShape(topRight: donut)
+                                                                    
+                                                                    let text = ShapeCalculator.ConvertToText(shape: shape, words: words)
+                                                                    
+                                                                    if text.contains("#") {
+                                                                        print("BAD APPLE")
+                                                                    }
+                                                                    //print(text)
+                                                                    result.append(donut)
+                                                                    
+                                                                    
+                                                                    
+                                                                    //print("Top: \(words[_top]), Bottom: \(words[_bottom]), Left:\(words[_left]), right:\(words[_right])")
+                                                                    //let shape = ShapeCalculator.ConvertToShape(topRight: donut)
+                                                                    
+                                                                    //let text = ShapeCalculator.ConvertToText(shape: shape, words: words)
+                                                                    //print(text)
+                                                                    
                                                                     result.append(donut)
                                                                 }
                                                             }
@@ -1207,7 +1221,9 @@ public struct RectangleCalculator {
                                                                         left:_left,
                                                                         leftLetterPos:_leftLetterPos,
                                                                         right:_right,
-                                                                        rightLetterPos:_rightLetterPos)
+                                                                        rightLetterPos:_rightLetterPos,
+                                                                        interlockWidth: interlockWidth,
+                                                                        interlockHeight: interlockHeight)
 
                                                                     result.append(donut)
                                                                 }
@@ -1313,7 +1329,9 @@ public struct RectangleCalculator {
                                                                         left:_left,
                                                                         leftLetterPos:_leftLetterPos,
                                                                         right:_right,
-                                                                        rightLetterPos:_rightLetterPos)
+                                                                        rightLetterPos:_rightLetterPos,
+                                                                        interlockWidth: interlockWidth,
+                                                                        interlockHeight: interlockHeight)
 
                                                                     result.append(donut)
                                                                 }
@@ -1336,5 +1354,144 @@ public struct RectangleCalculator {
        
         return result;
     }
+    
+    
+    
+    
+    public static func BottomLeftRectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
+
+        /*
+            .
+            H
+          . O
+       .HAZELNUT.
+          I I
+          O D
+          N A
+          .HYMN.
+    */
+
+        var result: [TopLeftBottomRightModel] = [];
+
+        if (interlockHeight <= interlockWidth) {
+            return result;
+        }
+        
+        let wordCount = words.count
+
+        
+        for _bottom in 0..<wordCount {
+            
+            if lengths[_bottom] >= interlockWidth {
+                
+                let _bottomLetterPos = interlockWidth - 1
+        
+                for _right in 0..<wordCount {
+            
+                    if lengths[_right] >= interlockHeight && _right != _bottom {
+            
+                        for _rightLetterPos in 0..<(lengths[_right] - interlockHeight) {
+                                    
+                            if words[_bottom][_bottomLetterPos] == words[_right][_rightLetterPos + interlockHeight] {
+                            
+                                for _top in 0..<wordCount {
+                
+                                    if lengths[_top] >= interlockWidth && _top != _right && _top != _bottom {
+                    
+                                        for _topLetterPos in 0..<(lengths[_top] - interlockWidth) {
+                        
+                                            if words[_top][_topLetterPos + interlockWidth] == words[_right][_rightLetterPos] {
+                            
+                                                for _left in 0..<wordCount {
+                                    
+                                                    if lengths[_left] >= interlockHeight && _left != _top && _left != _right && _left != _bottom {
+                                        
+                                                        //print("Top: \(words[_top]), Bottom: \(words[_bottom]), Left:\(words[_left]), right:\(words[_right])")
+                                                        
+                                                        // it should not start at 0 rather where it is possible only
+                                                        let _leftLetterPos = lengths[_left] - interlockHeight
+                                        
+                                                            if words[_top][_topLetterPos] == words[_left][_leftLetterPos] {
+                                                        
+                                                                let score = ScoreCalculator.openBottomRight(
+                                                                    topLeft: words[_top][_topLetterPos],
+                                                                    topRight: words[_top][_topLetterPos + interlockWidth],
+                                                                    bottomLeft: words[_bottom][_bottomLetterPos])
+
+                                                                if score >= scoreMin {
+                                                                    
+                                                                    
+                                                                    
+                                                                    if _left == _right ||
+                                                                        _left == _top ||
+                                                                        _left == _bottom ||
+                                                                        _top == _right ||
+                                                                        _top == _bottom ||
+                                                                        _right == _bottom {
+                                                                        print("ERROR")
+                                                                    }
+                                                                    
+                                                                    
+                                                                    let width = CalculateWidthIndented(
+                                                                        letterPos: _topLetterPos,
+                                                                        wordLength: lengths[_top],
+                                                                        indentedWordLength: lengths[_bottom])
+                                                                    
+                                                                    let height = CalculateWidth(
+                                                                        topLength: lengths[_left],
+                                                                        bottomLength: lengths[_right],
+                                                                        topLetterPos: _leftLetterPos,
+                                                                        bottomLetterPos: _rightLetterPos)
+                                                                    
+                                                                    
+                                                                    if (width <= widthMax && height <= heightMax) ||
+                                                                        (width <= heightMax && height <= widthMax) {
+                                                                        
+                                                                        let donut = TopLeftBottomRightModel(
+                                                                            score:score,
+                                                                            width:width,
+                                                                            height:height,
+                                                                            top:_top,
+                                                                            topLetterPos:_topLetterPos,
+                                                                            bottom:_bottom,
+                                                                            bottomLetterPos:_bottomLetterPos,
+                                                                            left:_left,
+                                                                            leftLetterPos:_leftLetterPos,
+                                                                            right:_right,
+                                                                            rightLetterPos:_rightLetterPos,
+                                                                            interlockWidth: interlockWidth,
+                                                                            interlockHeight: interlockHeight)
+                                                                        
+                                                                        let shape = ShapeCalculator.ConvertToShape(bottomLeft: donut)
+                                                                        
+                                                                        let text = ShapeCalculator.ConvertToText(shape: shape, words: words)
+                                                                        
+                                                                        if text.contains("#") {
+                                                                            print("BAD APPLE")
+                                                                        }
+                                                                        //print(text)
+                                                                        result.append(donut)
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+       // }
+
+        result.sort { $0.score > $1.score }
+       
+        return result;
+    }
+    
     
 }
