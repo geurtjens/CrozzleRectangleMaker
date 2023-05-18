@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  RectangleCalculator.swift
 //  
 //
 //  Created by Michael Geurtjens on 17/5/2023.
@@ -8,11 +8,45 @@
 import Foundation
 public struct RectangleCalculator {
     
-    public static func Execute(words: [String], widthMax: Int, heightMax: Int, scoreMin: Int) -> SquareResult {
+    public static func ExecuteCheckForDuplicates(words: [String], widthMax: Int, heightMax: Int, scoreMin: Int) async throws -> Bool {
+        
+        let shapes = try await Execute(words: words, widthMax: widthMax, heightMax: heightMax, scoreMin: scoreMin)
+        
+        var list:[String] = []
+        
+        for item in shapes {
+            list.append(item.ToText(words: words))
+            list.append(item.ToTextFlipped(words: words))
+        }
+        list.sort()
+        
+        for i in 1..<list.count {
+            if list[i] == list[i-1] {
+                return false
+            }
+        }
+        return true
+    }
+    
+    public static func ExecuteAndSortByScoreAndArea(words: [String], widthMax: Int, heightMax: Int, scoreMin: Int) async throws -> [TopLeftBottomRightModel]  {
+        
+        var shapes = try await Execute(words: words, widthMax: widthMax, heightMax: heightMax, scoreMin: scoreMin)
+        
+        shapes.sort {
+            if $0.score == $1.score {
+                return $0.width * $0.height > $1.width * $1.height
+            } else {
+                return $0.score > $1.score
+            }
+        }
+        return shapes
+    }
+    
+    public static func Execute(words: [String], widthMax: Int, heightMax: Int, scoreMin: Int) async throws -> [TopLeftBottomRightModel] {
             
         let lengths = RectangleCalculator.WordListToLengths(words: words)
             
-        let d3x3 = Square(
+        async let d3x3 = Square(
             interlockWidth: 2,
             words: words,
             lengths: lengths,
@@ -20,7 +54,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
             
-        let d3x4 = Rectangle(
+        async let d3x4 = Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -29,7 +63,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
             
-        let d3x5 = RectangleCalculator.Rectangle(
+        async let d3x5 = RectangleCalculator.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -38,7 +72,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
             
-        let d3x6 = RectangleCalculator.Rectangle(
+        async let d3x6 = RectangleCalculator.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -47,7 +81,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        let d4x4 = RectangleCalculator.Square(
+        async let d4x4 = RectangleCalculator.Square(
             interlockWidth: 3,
             words: words,
             lengths: lengths,
@@ -55,7 +89,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
             
-        let d4x5 = RectangleCalculator.Rectangle(
+        async let d4x5 = RectangleCalculator.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -64,7 +98,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
             
-        let d4x6 = RectangleCalculator.Rectangle(
+        async let d4x6 = RectangleCalculator.Rectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -73,7 +107,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        let d5x5 = RectangleCalculator.Square(
+        async let d5x5 = RectangleCalculator.Square(
             interlockWidth: 4,
             words: words,
             lengths: lengths,
@@ -81,7 +115,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
             
-        let d5x6 = RectangleCalculator.Rectangle(
+        async let d5x6 = RectangleCalculator.Rectangle(
             interlockWidth: 4,
             interlockHeight: 5,
             words: words,
@@ -90,7 +124,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        let d6x6 = RectangleCalculator.Square(
+        async let d6x6 = RectangleCalculator.Square(
             interlockWidth: 5,
             words: words,
             lengths: lengths,
@@ -98,7 +132,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
             
-        let o3x3_TopLeft = RectangleCalculator.TopLeftSquare(
+        async let o3x3_BottomRight = RectangleCalculator.BottomRightSquare(
             interlockWidth: 2,
             interlockHeight: 2,
             words: words,
@@ -106,9 +140,17 @@ public struct RectangleCalculator {
             widthMax: widthMax,
             heightMax: heightMax,
             scoreMin: scoreMin)
-            
-          
-        let o3x3_TopRight = RectangleCalculator.TopRightSquare(
+        
+        async let o3x3_TopLeft = RectangleCalculator.TopLeftSquare(
+            interlockWidth: 2,
+            interlockHeight: 2,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+              
+        async let o3x3_TopRight = RectangleCalculator.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: lengths,
@@ -116,16 +158,25 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
             
-        let o3x3_BottomRight = RectangleCalculator.BottomRightSquare(
+        async let o3x4_BottomLeft = RectangleCalculator.BottomLeftRectangle(
             interlockWidth: 2,
-            interlockHeight: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        async let o3x4_BottomRight = RectangleCalculator.BottomRightRectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
             words: words,
             lengths: lengths,
             widthMax: widthMax,
             heightMax: heightMax,
             scoreMin: scoreMin)
                      
-        let o3x4_TopLeft = RectangleCalculator.TopLeftRectangle(
+        async let o3x4_TopLeft = RectangleCalculator.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -134,7 +185,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
             
-        let o3x4_TopRight = RectangleCalculator.TopRightRectangle(
+        async let o3x4_TopRight = RectangleCalculator.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -143,16 +194,25 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
 
-        let o3x4_BottomRight = RectangleCalculator.BottomRightRectangle(
+        async let o3x5_BottomLeft = RectangleCalculator.BottomLeftRectangle(
             interlockWidth: 2,
-            interlockHeight: 3,
+            interlockHeight: 4,
             words: words,
             lengths: lengths,
             widthMax: widthMax,
             heightMax: heightMax,
             scoreMin: scoreMin)
             
-        let o3x5_TopLeft = RectangleCalculator.TopLeftRectangle(
+        async let o3x5_BottomRight = RectangleCalculator.BottomRightRectangle(
+            interlockWidth: 2,
+            interlockHeight: 4,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        async let o3x5_TopLeft = RectangleCalculator.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -161,7 +221,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
                        
-        let o3x5_TopRight = RectangleCalculator.TopRightRectangle(
+        async let o3x5_TopRight = RectangleCalculator.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -170,16 +230,25 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
 
-        let o3x5_BottomRight = RectangleCalculator.BottomRightRectangle(
+        async let o3x6_BottomLeft = RectangleCalculator.BottomLeftRectangle(
             interlockWidth: 2,
-            interlockHeight: 4,
+            interlockHeight: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        async let o3x6_BottomRight = RectangleCalculator.BottomRightRectangle(
+            interlockWidth: 2,
+            interlockHeight: 5,
             words: words,
             lengths: lengths,
             widthMax: widthMax,
             heightMax: heightMax,
             scoreMin: scoreMin)
 
-        let o3x6_TopLeft = RectangleCalculator.TopLeftRectangle(
+        async let o3x6_TopLeft = RectangleCalculator.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -188,7 +257,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
             
-        let o3x6_TopRight = RectangleCalculator.TopRightRectangle(
+        async let o3x6_TopRight = RectangleCalculator.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -197,16 +266,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        let o3x6_BottomRight = RectangleCalculator.BottomRightRectangle(
-            interlockWidth: 2,
-            interlockHeight: 5,
-            words: words,
-            lengths: lengths,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
-        
-        let o4x4_TopLeft = RectangleCalculator.TopLeftSquare(
+        async let o4x4_BottomRight = RectangleCalculator.BottomRightSquare(
             interlockWidth: 3,
             interlockHeight: 3,
             words: words,
@@ -215,15 +275,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        let o4x4_TopRight = RectangleCalculator.TopRightSquare(
-            interlockWidth: 3,
-            words: words,
-            lengths: lengths,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
-        
-        let o4x4_BottomRight = RectangleCalculator.BottomRightSquare(
+        async let o4x4_TopLeft = RectangleCalculator.TopLeftSquare(
             interlockWidth: 3,
             interlockHeight: 3,
             words: words,
@@ -232,7 +284,33 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        let o4x5_TopLeft = RectangleCalculator.TopLeftRectangle(
+        async let o4x4_TopRight = RectangleCalculator.TopRightSquare(
+            interlockWidth: 3,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        async let o4x5_BottomLeft = RectangleCalculator.BottomLeftRectangle(
+            interlockWidth: 3,
+            interlockHeight: 4,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        async let o4x5_BottomRight = RectangleCalculator.BottomRightRectangle(
+            interlockWidth: 3,
+            interlockHeight: 4,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        async let o4x5_TopLeft = RectangleCalculator.TopLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -241,7 +319,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
 
-        let o4x5_TopRight = RectangleCalculator.TopRightRectangle(
+        async let o4x5_TopRight = RectangleCalculator.TopRightRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -250,16 +328,25 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
 
-        let o4x5_BottomRight = RectangleCalculator.BottomRightRectangle(
+        async let o4x6_BottomLeft = RectangleCalculator.BottomLeftRectangle(
             interlockWidth: 3,
-            interlockHeight: 4,
+            interlockHeight: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        async let o4x6_BottomRight = RectangleCalculator.BottomRightRectangle(
+            interlockWidth: 3,
+            interlockHeight: 5,
             words: words,
             lengths: lengths,
             widthMax: widthMax,
             heightMax: heightMax,
             scoreMin: scoreMin)
 
-        let o4x6_TopLeft = RectangleCalculator.TopLeftRectangle(
+        async let o4x6_TopLeft = RectangleCalculator.TopLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -268,7 +355,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        let o4x6_TopRight = RectangleCalculator.TopRightRectangle(
+        async let o4x6_TopRight = RectangleCalculator.TopRightRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -277,16 +364,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        let o4x6_BottomRight = RectangleCalculator.BottomRightRectangle(
-            interlockWidth: 3,
-            interlockHeight: 5,
-            words: words,
-            lengths: lengths,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
-        
-        let o5x5_TopLeft = RectangleCalculator.TopLeftSquare(
+        async let o5x5_BottomRight = RectangleCalculator.BottomRightSquare(
             interlockWidth: 4,
             interlockHeight: 4,
             words: words,
@@ -295,15 +373,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        let o5x5_TopRight = RectangleCalculator.TopRightSquare(
-            interlockWidth: 4,
-            words: words,
-            lengths: lengths,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
-        
-        let o5x5_BottomRight = RectangleCalculator.BottomRightSquare(
+        async let o5x5_TopLeft = RectangleCalculator.TopLeftSquare(
             interlockWidth: 4,
             interlockHeight: 4,
             words: words,
@@ -312,7 +382,15 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        let o5x6_TopLeft = RectangleCalculator.TopLeftRectangle(
+        async let o5x5_TopRight = RectangleCalculator.TopRightSquare(
+            interlockWidth: 4,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        async let o5x6_BottomLeft = RectangleCalculator.BottomLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -321,7 +399,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        let o5x6_TopRight = RectangleCalculator.TopRightRectangle(
+        async let o5x6_BottomRight = RectangleCalculator.BottomRightRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -330,7 +408,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        let o5x6_BottomRight = RectangleCalculator.BottomRightRectangle(
+        async let o5x6_TopLeft = RectangleCalculator.TopLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -339,7 +417,16 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        let o6x6_TopLeft = RectangleCalculator.TopLeftSquare(
+        async let o5x6_TopRight = RectangleCalculator.TopRightRectangle(
+            interlockWidth: 3,
+            interlockHeight: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        async let o6x6_BottomRight = RectangleCalculator.BottomRightSquare(
             interlockWidth: 5,
             interlockHeight: 5,
             words: words,
@@ -348,15 +435,7 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        let o6x6_TopRight = RectangleCalculator.TopRightSquare(
-            interlockWidth: 5,
-            words: words,
-            lengths: lengths,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
-        
-        let o6x6_BottomRight = RectangleCalculator.BottomRightSquare(
+        async let o6x6_TopLeft = RectangleCalculator.TopLeftSquare(
             interlockWidth: 5,
             interlockHeight: 5,
             words: words,
@@ -365,49 +444,76 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        let result = SquareResult(
-            d3x3: d3x3,
-            d3x4: d3x4,
-            d3x5: d3x5,
-            d3x6: d3x6,
-            d4x4: d4x4,
-            d4x5: d4x5,
-            d4x6: d4x6,
-            d5x5: d5x5,
-            d5x6: d5x6,
-            d6x6: d6x6,
-            o3x3_TopLeft: o3x3_TopLeft,
-            o3x3_TopRight: o3x3_TopRight,
-            o3x3_BottomRight: o3x3_BottomRight,
-            o3x4_TopLeft: o3x4_TopLeft,
-            o3x4_TopRight: o3x4_TopRight,
-            o3x4_BottomRight: o3x4_BottomRight,
-            o3x5_TopLeft: o3x5_TopLeft,
-            o3x5_TopRight: o3x5_TopRight,
-            o3x5_BottomRight: o3x5_BottomRight,
-            o3x6_TopLeft: o3x6_TopLeft,
-            o3x6_TopRight: o3x6_TopRight,
-            o3x6_BottomRight: o3x6_BottomRight,
-            o4x4_TopLeft: o4x4_TopLeft,
-            o4x4_TopRight: o4x4_TopRight,
-            o4x4_BottomRight: o4x4_BottomRight,
-            o4x5_TopLeft: o4x5_TopLeft,
-            o4x5_TopRight: o4x5_TopRight,
-            o4x5_BottomRight: o4x5_BottomRight,
-            o4x6_TopLeft: o4x6_TopLeft,
-            o4x6_TopRight: o4x6_TopRight,
-            o4x6_BottomRight: o4x6_BottomRight,
-            o5x5_TopLeft: o5x5_TopLeft,
-            o5x5_TopRight: o5x5_TopRight,
-            o5x5_BottomRight: o5x5_BottomRight,
-            o5x6_TopLeft: o5x6_TopLeft,
-            o5x6_TopRight: o5x6_TopRight,
-            o5x6_BottomRight: o5x6_BottomRight,
-            o6x6_TopLeft: o6x6_TopLeft,
-            o6x6_TopRight: o6x6_TopRight,
-            o6x6_BottomRight: o6x6_BottomRight)
+        async let o6x6_TopRight = RectangleCalculator.TopRightSquare(
+            interlockWidth: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
         
-        return result
+        
+        
+        let result = await [
+            d3x3 +
+            d3x4 +
+            d3x5 +
+            d3x6 +
+            d4x4 +
+            d4x5 +
+            d4x6 +
+            d5x5 +
+            d5x6 +
+            d6x6 +
+            
+            o3x3_BottomRight +
+            o3x3_TopLeft +
+            o3x3_TopRight +
+            
+            o3x4_BottomLeft +
+            o3x4_BottomRight +
+            o3x4_TopLeft +
+            o3x4_TopRight +
+            
+            o3x5_BottomLeft +
+            o3x5_BottomRight +
+            o3x5_TopLeft +
+            o3x5_TopRight +
+            
+            o3x6_BottomLeft +
+            o3x6_BottomRight +
+            o3x6_TopLeft +
+            o3x6_TopRight +
+            
+            o4x4_BottomRight +
+            o4x4_TopLeft +
+            o4x4_TopRight +
+            
+            o4x5_BottomLeft +
+            o4x5_BottomRight +
+            o4x5_TopLeft +
+            o4x5_TopRight +
+            
+            o4x6_BottomLeft +
+            o4x6_BottomRight +
+            o4x6_TopLeft +
+            o4x6_TopRight +
+            
+            o5x5_BottomRight +
+            o5x5_TopLeft +
+            o5x5_TopRight +
+            
+            o5x6_BottomLeft +
+            o5x6_BottomRight +
+            o5x6_TopLeft +
+            o5x6_TopRight +
+            
+            o6x6_BottomRight +
+            o6x6_TopLeft +
+            o6x6_TopRight ]
+        
+        let flattened = result.flatMap { $0 }
+        return flattened
     }
     
     public static func CalculateWidth(topLength: Int, bottomLength: Int, topLetterPos: Int, bottomLetterPos: Int) -> Int {
@@ -431,20 +537,6 @@ public struct RectangleCalculator {
         return width
     }
     
-//    public static func CalculateWidthOrHeight(topLength: Int, bottomLength: Int, topLetterPos: Int, bottomLetterPos: Int, interlockWidth: Int) -> Int {
-//        var width = topLength;
-//        if (topLetterPos < bottomLetterPos) {
-//            width += bottomLetterPos - topLetterPos;
-//        }
-//
-//        let topEnd = topLength - (topLetterPos + interlockWidth);
-//        let bottomEnd = bottomLength - (bottomLetterPos + interlockWidth);
-//        if (topEnd < bottomEnd) {
-//            width += bottomEnd - topEnd;
-//        }
-//        return width
-//    }
-
     public static func WordListToLengths(words: [String]) -> [Int] {
         var result: [Int] = []
         for word in words {
@@ -452,6 +544,7 @@ public struct RectangleCalculator {
         }
         return result;
     }
+    
     public static func Square(interlockWidth: Int, words: [String], lengths: [Int],  widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
 
         var result: [TopLeftBottomRightModel] = [];
@@ -532,12 +625,19 @@ public struct RectangleCalculator {
                                                                                 type: .rectangle
                                                                             )
 
-//                                                                            let text = donut.ToText(words: words)
-//
-//                                                                            if text.contains("#") {
-//                                                                                print("BAD APPLE")
-//                                                                            }
+#if DEBUG
+                                                                            // Only run this code if we are in Debug but not release
+                                                                            if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
+                                                                                print("error occurred as words are matching")
+                                                                                return []
+                                                                            }
+                                                                            let text = donut.ToText(words: words)
                                                                             
+                                                                            if text.contains("#") {
+                                                                                print("error # detected in \n\(text)")
+                                                                                return []
+                                                                            }
+#endif
                                                                             result.append(donut)
                                                                         }
                                                                     }
@@ -556,10 +656,9 @@ public struct RectangleCalculator {
                 }
             }
         }
-        result.sort { $0.score > $1.score }
-        
         return result;
     }
+    
     public static func Rectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
 
         var result: [TopLeftBottomRightModel] = [];
@@ -601,8 +700,7 @@ public struct RectangleCalculator {
                                                                 if (words[_top][_topLetterPos + interlockWidth] == words[_right][_rightLetterPos] &&
                                                                     words[_bottom][_bottomLetterPos + interlockWidth] == words[_right][_rightLetterPos + interlockHeight])
                                                                 {
-                                                                   
-
+                                                                    
                                                                     let score = ScoreCalculator.square(
                                                                         topLeft: words[_top][_topLetterPos],
                                                                         topRight: words[_top][_topLetterPos + interlockWidth],
@@ -642,12 +740,19 @@ public struct RectangleCalculator {
                                                                                 interlockHeight: interlockHeight,
                                                                                 type: .rectangle)
 
-//                                                                            let text = donut.ToText(words: words)
-//
-//                                                                            if text.contains("#") {
-//                                                                                print("BAD APPLE")
-//                                                                            }
+#if DEBUG
+                                                                            // Only run this code if we are in Debug but not release
+                                                                            if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
+                                                                                print("error occurred as words are matching")
+                                                                                return []
+                                                                            }
+                                                                            let text = donut.ToText(words: words)
                                                                             
+                                                                            if text.contains("#") {
+                                                                                print("error # detected in \n\(text)")
+                                                                                return []
+                                                                            }
+#endif
                                                                             result.append(donut)
                                                                         }
                                                                     }
@@ -666,23 +771,17 @@ public struct RectangleCalculator {
                 }
             }
         }
-        result.sort { $0.score > $1.score }
-        
         return result;
     }
     
     public static func TopLeftRectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
-    
         /*
               .AZURE
               S I
         DECORATIONS
               A N
               R
-    */
-
-        
-
+        */
         var result: [TopLeftBottomRightModel] = [];
 
         if (interlockHeight <= interlockWidth) {
@@ -757,13 +856,19 @@ public struct RectangleCalculator {
                                                                         interlockWidth: interlockWidth,
                                                                         interlockHeight: interlockHeight,
                                                                         type: .topLeft)
-
-//                                                                    let text = donut.ToText(words: words)
-//
-//                                                                    if text.contains("#") {
-//                                                                        print("BAD APPLE")
-//                                                                    }
+#if DEBUG
+                                                                    // Only run this code if we are in Debug but not release
+                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
+                                                                        print("error occurred as words are matching")
+                                                                        return []
+                                                                    }
+                                                                    let text = donut.ToText(words: words)
                                                                     
+                                                                    if text.contains("#") {
+                                                                        print("error # detected in \n\(text)")
+                                                                        return []
+                                                                    }
+#endif
                                                                     result.append(donut)
                                                                 }
                                                             }
@@ -780,24 +885,17 @@ public struct RectangleCalculator {
                 }
             }
         }
-
-        result.sort { $0.score > $1.score }
-        
         return result;
     }
     
     public static func TopLeftSquare(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
-    
         /*
               .AZURE
               S I
         DECORATIONS
               A N
               R
-    */
-
-        
-
+        */
         var result: [TopLeftBottomRightModel] = [];
 
         if (interlockHeight != interlockWidth) {
@@ -881,11 +979,19 @@ public struct RectangleCalculator {
                                                                         interlockHeight: interlockHeight,
                                                                         type:.topLeft)
                                                                     
-//                                                                    let text = donut.ToText(words: words)
-//                                                                    if text.contains("#") {
-//                                                                        print("BAD APPLE")
-//                                                                    }
+#if DEBUG
+                                                                    // Only run this code if we are in Debug but not release
+                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
+                                                                        print("error occurred as words are matching")
+                                                                        return []
+                                                                    }
+                                                                    let text = donut.ToText(words: words)
                                                                     
+                                                                    if text.contains("#") {
+                                                                        print("error # detected in \n\(text)")
+                                                                        return []
+                                                                    }
+#endif
                                                                     result.append(donut)
                                                                 }
                                                             }
@@ -902,15 +1008,10 @@ public struct RectangleCalculator {
                 }
             }
         }
-
-        result.sort { $0.score > $1.score }
-        
         return result;
     }
     
     public static func TopRightRectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
-    
-
         /*
            H
          TOYS.
@@ -996,11 +1097,19 @@ public struct RectangleCalculator {
                                                                         interlockHeight: interlockHeight,
                                                                         type:.topRight)
                                                                    
-//                                                                    let text = donut.ToText(words: words)
-//
-//                                                                    if text.contains("#") {
-//                                                                        print("BAD APPLE")
-//                                                                    }
+#if DEBUG
+                                                                    // Only run this code if we are in Debug but not release
+                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
+                                                                        print("error occurred as words are matching")
+                                                                        return []
+                                                                    }
+                                                                    let text = donut.ToText(words: words)
+                                                                    
+                                                                    if text.contains("#") {
+                                                                        print("error # detected in \n\(text)")
+                                                                        return []
+                                                                    }
+#endif
                                                                     result.append(donut)
                                                                 }
                                                             }
@@ -1017,16 +1126,10 @@ public struct RectangleCalculator {
                 }
             }
         }
-
-        // sort by score
-        result.sort { $0.score > $1.score }
-        
         return result;
     }
     
     public static func TopRightSquare(interlockWidth: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
-    
-
         /*
            H
          TOYS.
@@ -1041,8 +1144,7 @@ public struct RectangleCalculator {
         let wordCount = words.count
 
         for _top in 0..<wordCount {
-        
-            
+
             // I think the . one can be longer than the interlockWidth
             
             if lengths[_top] >= interlockWidth {
@@ -1079,15 +1181,6 @@ public struct RectangleCalculator {
                                                                 bottomRight: words[_bottom][_bottomLetterPos + interlockWidth])
 
                                                             if score >= scoreMin {
-
-                                                                //print("Top: \(words[_top]), Bottom: \(words[_bottom]), Left:\(words[_left]), right:\(words[_right])")
-                                                                /*
-                                                                  T
-                                                                ZION.
-                                                                  Y J
-                                                                  SNOW
-                                                                    Y
-                                                                */
                                                                 
                                                                 let width = CalculateWidth(
                                                                     topLength: lengths[_top],
@@ -1119,12 +1212,19 @@ public struct RectangleCalculator {
                                                                         interlockHeight: interlockWidth,
                                                                         type: .topRight)
 
-//                                                                    let text = donut.ToText(words: words)
-//
-//                                                                    if text.contains("#") {
-//                                                                        print("BAD APPLE")
-//                                                                    }
+#if DEBUG
+                                                                    // Only run this code if we are in Debug but not release
+                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
+                                                                        print("error occurred as words are matching")
+                                                                        return []
+                                                                    }
+                                                                    let text = donut.ToText(words: words)
                                                                     
+                                                                    if text.contains("#") {
+                                                                        print("error # detected in \n\(text)")
+                                                                        return []
+                                                                    }
+#endif
                                                                     result.append(donut)
                                                                 }
                                                             }
@@ -1141,23 +1241,17 @@ public struct RectangleCalculator {
                 }
             }
         }
-
-        // sort by score
-        result.sort { $0.score > $1.score }
-        
         return result;
     }
     
     public static func BottomRightRectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
-
         /*
             T
           Z R
         WHITE
           O E
          INN.
-    */
-
+        */
         var result: [TopLeftBottomRightModel] = [];
 
         if (interlockHeight <= interlockWidth) {
@@ -1233,13 +1327,20 @@ public struct RectangleCalculator {
                                                                         interlockWidth: interlockWidth,
                                                                         interlockHeight: interlockHeight,
                                                                         type: .bottomRight)
-
-//                                                                    let text = donut.ToText(words: words)
-//
-//                                                                    if text.contains("#") {
-//                                                                        print("BAD APPLE")
-//                                                                    }
                                                                     
+#if DEBUG
+                                                                    // Only run this code if we are in Debug but not release
+                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
+                                                                        print("error occurred as words are matching")
+                                                                        return []
+                                                                    }
+                                                                    let text = donut.ToText(words: words)
+                                                                    
+                                                                    if text.contains("#") {
+                                                                        print("error # detected in \n\(text)")
+                                                                        return []
+                                                                    }
+#endif
                                                                     result.append(donut)
                                                                 }
                                                             }
@@ -1256,22 +1357,17 @@ public struct RectangleCalculator {
                 }
             }
         }
-
-        result.sort { $0.score > $1.score }
-       
         return result;
     }
     
     public static func BottomRightSquare(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
-
         /*
             T
           Z R
         WHITE
           O E
          INN.
-    */
-
+        */
         var result: [TopLeftBottomRightModel] = [];
 
         if (interlockHeight != interlockWidth) {
@@ -1348,12 +1444,19 @@ public struct RectangleCalculator {
                                                                         interlockHeight: interlockHeight,
                                                                         type: .bottomRight)
                                                                     
-//                                                                    let text = donut.ToText(words: words)
-//
-//                                                                    if text.contains("#") {
-//                                                                        print("BAD APPLE")
-//                                                                    }
+#if DEBUG
+                                                                    // Only run this code if we are in Debug but not release
+                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
+                                                                        print("error occurred as words are matching")
+                                                                        return []
+                                                                    }
+                                                                    let text = donut.ToText(words: words)
                                                                     
+                                                                    if text.contains("#") {
+                                                                        print("error # detected in \n\(text)")
+                                                                        return []
+                                                                    }
+#endif
                                                                     result.append(donut)
                                                                 }
                                                             }
@@ -1370,17 +1473,10 @@ public struct RectangleCalculator {
                 }
             }
         }
-
-        result.sort { $0.score > $1.score }
-       
         return result;
     }
     
-    
-    
-    
     public static func BottomLeftRectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
-
         /*
             .
             H
@@ -1390,8 +1486,8 @@ public struct RectangleCalculator {
           O D
           N A
           .HYMN.
-    */
-
+            .
+        */
         var result: [TopLeftBottomRightModel] = [];
 
         if (interlockHeight <= interlockWidth) {
@@ -1400,7 +1496,6 @@ public struct RectangleCalculator {
         
         let wordCount = words.count
 
-        
         for _bottom in 0..<wordCount {
             
             if lengths[_bottom] >= interlockWidth {
@@ -1439,18 +1534,6 @@ public struct RectangleCalculator {
 
                                                             if score >= scoreMin {
                                                                 
-//
-//
-//                                                                if _left == _right ||
-//                                                                    _left == _top ||
-//                                                                    _left == _bottom ||
-//                                                                    _top == _right ||
-//                                                                    _top == _bottom ||
-//                                                                    _right == _bottom {
-//                                                                    print("ERROR")
-//                                                                }
-                                                                
-                                                                
                                                                 let width = CalculateWidthIndented(
                                                                     letterPos: _topLetterPos,
                                                                     wordLength: lengths[_top],
@@ -1482,12 +1565,19 @@ public struct RectangleCalculator {
                                                                         interlockHeight: interlockHeight,
                                                                         type: .bottomLeft)
                                                                     
+#if DEBUG
+                                                                    // Only run this code if we are in Debug but not release
+                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
+                                                                        print("error occurred as words are matching")
+                                                                        return []
+                                                                    }
                                                                     let text = donut.ToText(words: words)
                                                                     
                                                                     if text.contains("#") {
-                                                                        print("BAD APPLE")
+                                                                        print("error # detected in \n\(text)")
+                                                                        return []
                                                                     }
-                                                                    
+#endif
                                                                     result.append(donut)
                                                                 }
                                                             }
@@ -1504,9 +1594,6 @@ public struct RectangleCalculator {
                 }
             }
         }
-
-        result.sort { $0.score > $1.score }
-       
         return result;
     }
 }

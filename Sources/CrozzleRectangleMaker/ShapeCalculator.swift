@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ShapeCalculator.swift
 //  
 //
 //  Created by Michael Geurtjens on 18/5/2023.
@@ -53,6 +53,49 @@ public struct ShapeCalculator {
         
     }
     
+    public static func ConvertToTextFlipped(shape: ShapeModel, words:[String]) -> String {
+        
+        let widthEOL = shape.width + 1
+        
+        let gridSize = widthEOL * shape.height
+        
+        var grid:[Character] = Array(repeating: " ", count: gridSize)
+        
+        // Place all end of line characters into the space
+        for i in 0..<shape.height {
+            //if i != 0 {
+                grid[i * widthEOL] = "\n"
+            //}
+        }
+        
+        for placement in shape.placements {
+            
+            let word = "." + words[placement.i] + "."
+            
+            // Just to create the variables that will be used in the loop
+            var gridPos = 0
+
+            
+            for i in 0..<word.count {
+                let letter = word[i]
+                
+                if placement.h == false {
+                    gridPos = placement.x + i + (placement.y * widthEOL + 1)
+                } else {
+                    gridPos = placement.x + 1 + ((placement.y + i) * widthEOL)
+                }
+                
+                if grid[gridPos] != " " && grid[gridPos] != letter {
+                    grid[gridPos] = "#"
+                } else {
+                    grid[gridPos] = letter
+                }
+            }
+            
+        }
+        return String(grid)
+        
+    }
     
     public static func ConvertToShape(topLeft: TopLeftBottomRightModel) -> ShapeModel {
         
@@ -70,32 +113,32 @@ public struct ShapeCalculator {
         let height = input.height + 2
         let score = input.score
         
-        let maxLeft = input.bottomLetterPos
+        let maxLeft = Int(input.bottomLetterPos)
         
-        let maxUp = input.rightLetterPos + 1
+        let maxUp = Int(input.rightLetterPos) + 1
         
         let topPlacement = PlacementModel(
-            i: input.top,
+            i: Int(input.top),
             h: true,
             x: maxLeft + 1,
             y: maxUp)
         
         let bottomPlacement = PlacementModel(
-            i: input.bottom,
+            i: Int(input.bottom),
             h: true,
-            x: maxLeft - input.bottomLetterPos,
-            y: maxUp + input.interlockHeight)
+            x: maxLeft - Int(input.bottomLetterPos),
+            y: maxUp + Int(input.interlockHeight))
         
         let leftPlacement = PlacementModel(
-            i: input.left,
+            i: Int(input.left),
             h: false,
             x: maxLeft + 1,
             y: maxUp)
         
         let rightPlacement = PlacementModel(
-            i: input.right,
+            i: Int(input.right),
             h: false,
-            x: maxLeft + input.interlockWidth + 1,
+            x: maxLeft + Int(input.interlockWidth) + 1,
             y: 0)
         
         let placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
@@ -111,32 +154,32 @@ public struct ShapeCalculator {
         let height = input.height + 2
         let score = input.score
         
-        let maxLeft = max(input.topLetterPos, input.bottomLetterPos)
+        let maxLeft = Int(max(input.topLetterPos, input.bottomLetterPos))
         
-        let maxUp = input.leftLetterPos + 1
+        let maxUp = Int(input.leftLetterPos) + 1
         
         let topPlacement = PlacementModel(
-            i: input.top,
+            i: Int(input.top),
             h: true,
-            x: maxLeft - input.topLetterPos,
+            x: maxLeft - Int(input.topLetterPos),
             y: maxUp)
         
         let bottomPlacement = PlacementModel(
-            i: input.bottom,
+            i: Int(input.bottom),
             h: true,
-            x: maxLeft - input.bottomLetterPos,
-            y: maxUp + input.interlockHeight)
+            x: maxLeft - Int(input.bottomLetterPos),
+            y: maxUp + Int(input.interlockHeight))
         
         let leftPlacement = PlacementModel(
-            i: input.left,
+            i: Int(input.left),
             h: false,
             x: maxLeft + 1,
             y: 0)
         
         let rightPlacement = PlacementModel(
-            i: input.right,
+            i: Int(input.right),
             h: false,
-            x: maxLeft + input.interlockWidth + 1,
+            x: maxLeft + Int(input.interlockWidth) + 1,
             y: maxUp)
         
         let placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
@@ -154,33 +197,33 @@ public struct ShapeCalculator {
         let height = input.height + 2
         let score = input.score
         
-        let maxLeft = input.topLetterPos + 1
+        let maxLeft = Int(input.topLetterPos) + 1
         
-        let maxUp = max(input.leftLetterPos, input.rightLetterPos)
+        let maxUp = Int(max(input.leftLetterPos, input.rightLetterPos))
         
         let topPlacement = PlacementModel(
-            i: input.top,
+            i: Int(input.top),
             h: true,
             x: 0, //maxLeft - input.topLetterPos,
             y: maxUp + 1)
         
         let bottomPlacement = PlacementModel(
-            i: input.bottom,
+            i: Int(input.bottom),
             h: true,
             x: maxLeft, // - input.bottomLetterPos,
-            y: maxUp + 1 + input.interlockHeight)
+            y: maxUp + 1 + Int(input.interlockHeight))
         
         let leftPlacement = PlacementModel(
-            i: input.left,
+            i: Int(input.left),
             h: false,
             x: maxLeft,
-            y: maxUp - input.leftLetterPos)
+            y: maxUp - Int(input.leftLetterPos))
         
         let rightPlacement = PlacementModel(
-            i: input.right,
+            i: Int(input.right),
             h: false,
-            x: maxLeft + input.interlockWidth,
-            y: maxUp - input.rightLetterPos)
+            x: maxLeft + Int(input.interlockWidth),
+            y: maxUp - Int(input.rightLetterPos))
         
         let placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
         
@@ -199,33 +242,33 @@ public struct ShapeCalculator {
         let height = input.height + 2
         let score = input.score
         
-        let maxLeft = max(input.topLetterPos, input.bottomLetterPos)
+        let maxLeft = Int(max(input.topLetterPos, input.bottomLetterPos))
         
-        let maxUp = max(input.leftLetterPos, input.rightLetterPos)
+        let maxUp = Int(max(input.leftLetterPos, input.rightLetterPos))
         
         let topPlacement = PlacementModel(
-            i: input.top,
+            i: Int(input.top),
             h: true,
-            x: maxLeft - input.topLetterPos,
+            x: maxLeft - Int(input.topLetterPos),
             y: maxUp + 1)
         
         let bottomPlacement = PlacementModel(
-            i: input.bottom,
+            i: Int(input.bottom),
             h: true,
-            x: maxLeft - input.bottomLetterPos,
-            y: maxUp + 1 + input.interlockHeight)
+            x: maxLeft - Int(input.bottomLetterPos),
+            y: maxUp + 1 + Int(input.interlockHeight))
         
         let leftPlacement = PlacementModel(
-            i: input.left,
+            i: Int(input.left),
             h: false,
             x: maxLeft + 1,
-            y: maxUp - input.leftLetterPos)
+            y: maxUp - Int(input.leftLetterPos))
         
         let rightPlacement = PlacementModel(
-            i: input.right,
+            i: Int(input.right),
             h: false,
-            x: maxLeft + 1 + input.interlockWidth,
-            y: maxUp - input.rightLetterPos)
+            x: maxLeft + 1 + Int(input.interlockWidth),
+            y: maxUp - Int(input.rightLetterPos))
         
         let placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
         

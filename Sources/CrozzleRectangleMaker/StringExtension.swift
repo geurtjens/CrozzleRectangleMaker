@@ -1,5 +1,5 @@
 //
-//  File 3.swift
+//  StringProtocolExtension.swift
 //  
 //
 //  Created by Michael Geurtjens on 17/5/2023.

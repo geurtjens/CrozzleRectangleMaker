@@ -7,16 +7,47 @@ final class RectangleCalculator8612Tests: XCTestCase {
     let heightMax = 10
     let scoreMin = 0
     
+    func test_Execute() async throws {
+        
+        let result = try await RectangleCalculator.Execute(
+            words: words,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        XCTAssertEqual(4314774, result.count)
+        // 463 MB and 57 seconds
+        // 160 MB and 55.9 seconds if we make the size smaller
+    }
     
-//    func test_Execute() throws {
-//        
-//        let _ = RectangleCalculator.Execute(
-//            words: words,
-//            widthMax: widthMax,
-//            heightMax: heightMax,
-//            scoreMin: scoreMin)
-//    }
-    
+    func test_ExecuteSortByScoreAndArea() async throws {
+        
+        let result = try await RectangleCalculator.ExecuteAndSortByScoreAndArea(
+            words: words,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        XCTAssertEqual(4314774, result.count)
+        
+        let item = result[0]
+        XCTAssertEqual(176, item.score)
+        // 463 MB and 57 seconds
+        // 160 MB and 55.9 seconds if we make the size smaller
+    }
+    // Checks if there are any duplicates by rendering the text and also flipped text sorting and seeing if the one before is same as the current one and guess what.  No duplicates at all.  Goes up to 2.2 GB just for the text to render the shapes.
+    func test_ExecuteCheckForDuplicates() async throws {
+        
+        let result = try await RectangleCalculator.ExecuteCheckForDuplicates(
+            words: words,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        XCTAssertFalse(result)
+        // 463 MB and 57 seconds
+        // 160 MB and 55.9 seconds if we make the size smaller
+    }
     
     func test_D3x3() throws {
         
