@@ -19,9 +19,7 @@ public struct ShapeCalculator {
         
         // Place all end of line characters into the space
         for i in 0..<shape.height {
-            //if i != 0 {
-                grid[i * widthEOL] = "\n"
-            //}
+            grid[i * widthEOL] = "\n"
         }
         
         for placement in shape.placements {
@@ -66,9 +64,7 @@ public struct ShapeCalculator {
         
         // Place all end of line characters into the space
         for i in 0..<shape.width {
-            //if i != 0 {
-                grid[i * widthEOL] = "\n"
-            //}
+            grid[i * widthEOL] = "\n"
         }
         
         for placement in shape.placements {
