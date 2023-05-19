@@ -49,20 +49,23 @@ public struct ShapeCalculator {
             }
             
         }
-        return String(grid)
-        
+        let gridString = String(grid)
+        // Remove the first character as it is a \n
+        let range = gridString.index(after: gridString.startIndex)..<gridString.endIndex
+        let result = String(gridString[range])
+        return result
     }
     
     public static func ConvertToTextFlipped(shape: ShapeModel, words:[String]) -> String {
         
-        let widthEOL = shape.width + 1
+        let widthEOL = shape.height + 1
         
-        let gridSize = widthEOL * shape.height
+        let gridSize = widthEOL * shape.width
         
         var grid:[Character] = Array(repeating: " ", count: gridSize)
         
         // Place all end of line characters into the space
-        for i in 0..<shape.height {
+        for i in 0..<shape.width {
             //if i != 0 {
                 grid[i * widthEOL] = "\n"
             //}
@@ -80,9 +83,9 @@ public struct ShapeCalculator {
                 let letter = word[i]
                 
                 if placement.h == false {
-                    gridPos = placement.x + i + (placement.y * widthEOL + 1)
+                    gridPos = placement.y + i + (placement.x * widthEOL + 1)
                 } else {
-                    gridPos = placement.x + 1 + ((placement.y + i) * widthEOL)
+                    gridPos = placement.y + 1 + ((placement.x + i) * widthEOL)
                 }
                 
                 if grid[gridPos] != " " && grid[gridPos] != letter {
@@ -91,10 +94,13 @@ public struct ShapeCalculator {
                     grid[gridPos] = letter
                 }
             }
-            
         }
-        return String(grid)
+        // Remove the first character as it is a \n
+        let gridString = String(grid)
         
+        let range = gridString.index(after: gridString.startIndex)..<gridString.endIndex
+        let result = String(gridString[range])
+        return result
     }
     
     public static func ConvertToShape(topLeft: TopLeftBottomRightModel) -> ShapeModel {

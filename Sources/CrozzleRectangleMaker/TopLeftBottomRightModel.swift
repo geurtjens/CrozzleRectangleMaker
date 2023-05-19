@@ -53,7 +53,7 @@ public struct TopLeftBottomRightModel : ShapeProtocol {
     
     public func ToTextFlipped(words:[String]) -> String {
         let shape = ToShape()
-        let text = ShapeCalculator.ConvertToText(shape: shape, words: words)
+        let text = ShapeCalculator.ConvertToTextFlipped(shape: shape, words: words)
         return text
     }
     
@@ -70,6 +70,45 @@ public struct TopLeftBottomRightModel : ShapeProtocol {
         case .topRight:
             return ShapeCalculator.ConvertToShape(topRight: self)
         }
+    }
+    
+    public func ToCsv() -> String {
+        var result = String(self.score) + "," + String(self.width) + "," + String(self.height) + ","
+        
+        let shape = self.ToShape()
+        
+        let placements = shape.placements.sorted { $0.i < $1.i }
+        
+        for placement in placements {
+            result += String(placement.i) + ","
+        }
+        for placement in placements {
+            if placement.h {
+                result += "1,"
+            } else {
+                result += "0,"
+            }
+        }
+        for placement in placements {
+            result += String(placement.x) + ","
+        }
+        for placement in placements {
+            result += String(placement.y) + ","
+        }
+        
+        switch self.type {
+        case .rectangle:
+            result += "0"
+        case .topLeft:
+            result += "1"
+        case .topRight:
+            result += "2"
+        case .bottomLeft:
+            result += "3"
+        case .bottomRight:
+            result += "4"
+        }
+        return result
     }
 }
 
