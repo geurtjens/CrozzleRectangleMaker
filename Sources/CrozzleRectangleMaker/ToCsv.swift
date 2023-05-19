@@ -18,7 +18,7 @@ public struct ToCsv {
         let fileManager = FileManager.default
         do {
             let path = try fileManager.url(for: .documentDirectory, in: .allDomainsMask, appropriateFor: nil, create: false)
-            let fileURL = path.appendingPathComponent("CSVRec.csv")
+            let fileURL = path.appendingPathComponent(filename)
             try csvContent.write(to: fileURL, atomically: true, encoding: .utf8)
         } catch {
             print("error creating file")
