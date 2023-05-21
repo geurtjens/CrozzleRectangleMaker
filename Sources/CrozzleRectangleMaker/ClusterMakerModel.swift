@@ -37,13 +37,6 @@ struct ClusterMakerModel {
             _lengthsVertical.append(UInt8(len[wordsVertical[i]]))
         }
                 
-        
-        
-        
-        
-        let interlockWidth = wordsVertical.count
-        let interlockHeight = wordsHorizontal.count
-        
         self.lengthsHorizontal = _lengthsHorizontal
         self.lengthsVertical = _lengthsVertical
         self.score = ClusterMakerModel.scoreCalculator(wordsHorizontal: wordsHorizontal,
@@ -52,10 +45,10 @@ struct ClusterMakerModel {
                                      end: end,
                                      horizontalWordCount: wordsHorizontal.count,
                                      verticalWordCount: wordsVertical.count)
-        self.width = ClusterMakerModel.widthCalculation(words: wordsHorizontal, patterns: patternHorizontal, wordCountOther: interlockWidth, len: _lengthsHorizontal)
         
-        self.height = ClusterMakerModel.widthCalculation(words: wordsVertical, patterns: patternVertical, wordCountOther: interlockHeight, len: _lengthsVertical)
+        self.width = ClusterMakerModel.widthCalculation(words: wordsHorizontal, patterns: patternHorizontal, wordCountOther: wordsVertical.count, len: _lengthsHorizontal)
         
+        self.height = ClusterMakerModel.widthCalculation(words: wordsVertical, patterns: patternVertical, wordCountOther: wordsHorizontal.count, len: _lengthsVertical)
     }
     
     
@@ -85,7 +78,7 @@ struct ClusterMakerModel {
                 maxUp = length
             }
         }
-        return maxUp
+        return maxUp + 1
     }
     
     static func widthCalculation(words: [Int], patterns: [ClusterPosition], wordCountOther: Int, len:[UInt8]) -> Int {
@@ -181,11 +174,11 @@ struct ClusterMakerModel {
         var placements: [PlacementModel] = []
         for i in 0..<wordsHorizontal.count {
             let pattern = patternHorizontal[i]
-            let length = Int(lengthsHorizontal[i])
-            let y = maxUp + i + 1
+            let length = Int(lengthsHorizontal[i]) - interlockWidth
+            let y = maxUp + i
             let wordId = wordsHorizontal[i]
             if pattern == .leading {
-                let placement = PlacementModel(i: wordId, h: true, x: length - maxLeft - interlockWidth, y: y)
+                let placement = PlacementModel(i: wordId, h: true, x: maxLeft - length, y: y)
                 placements.append(placement)
             } else {
                 let placement = PlacementModel(i: wordId, h: true, x: maxLeft, y: y)
@@ -201,7 +194,8 @@ struct ClusterMakerModel {
                 let placement = PlacementModel(i: wordId, h: false, x: x, y: length - maxUp - interlockWidth)
                 placements.append(placement)
             } else {
-                let placement = PlacementModel(i: wordId, h: false, x: x, y: maxUp)
+                // y is maxUp - 1 because it needs to add his .
+                let placement = PlacementModel(i: wordId, h: false, x: x, y: maxUp - 1)
                 placements.append(placement)
             }
         }
