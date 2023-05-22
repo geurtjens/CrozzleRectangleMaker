@@ -3,175 +3,6 @@ import XCTest
 
 final class RectangleCalculator8612Tests: XCTestCase {
     
-    let widthMax = 15
-    let heightMax = 10
-    let scoreMin = 0
-    
-    func test_Execute() async throws {
-        
-        let result = try await RectangleCalculator.Execute(
-            words: words,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
-        
-        XCTAssertEqual(4530742, result.count)
-        // 463 MB and 57 seconds
-        // 160 MB and 55.9 seconds if we make the size smaller
-    }
-    
-    func test_ExecuteSortByScoreAndArea() async throws {
-        
-        let result = try await RectangleCalculator.ExecuteAndSortByScoreAndArea(
-            words: words,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
-        
-        XCTAssertEqual(4530742, result.count)
-        //4314774
-        //4790949
-        let item = result[0]
-        XCTAssertEqual(176, item.score)
-        // 463 MB and 57 seconds
-        // 160 MB and 55.9 seconds if we make the size smaller
-    }
-    
-    
-    func test_ExecuteSortByScoreAndAreaAndSaveToCSV() async throws {
-        
-        let result = try await RectangleCalculator.ExecuteAndSortByScoreAndArea(
-            words: words,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
-        
-        let filename = "8612_Rectangles.csv"
-        
-        ToCsv.Save(filename: filename, rectangles: result)
-    }
-    
-    
-    // Checks if there are any duplicates by rendering the text and also flipped text sorting and seeing if the one before is same as the current one and guess what.  No duplicates at all.  Goes up to 2.2 GB just for the text to render the shapes.
-    func test_ExecuteCheckForDuplicates() async throws {
-        
-        let result = try await RectangleCalculator.ExecuteCheckForDuplicates(
-            words: words,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
-        // 520414 duplicates detected
-        XCTAssertEqual(0,result)
-    }
-    
-    func test_BottomRight3x5() throws {
-        
-        let o4x6_BottomLeft = RectangleCalculator.BottomLeftRectangle(
-            interlockWidth: 3,
-            interlockHeight: 5,
-            words: words,
-            lengths: lengths,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
-        
-        let o4x6_BottomRight = RectangleCalculator.BottomRightRectangle(
-            interlockWidth: 3,
-            interlockHeight: 5,
-            words: words,
-            lengths: lengths,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
-
-        let o4x6_TopLeft = RectangleCalculator.TopLeftRectangle(
-            interlockWidth: 3,
-            interlockHeight: 5,
-            words: words,
-            lengths: lengths,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
-        
-        let o4x6_TopRight = RectangleCalculator.TopRightRectangle(
-            interlockWidth: 3,
-            interlockHeight: 5,
-            words: words,
-            lengths: lengths,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
-        
-        
-        
-        
-        var result: [(TopLeftBottomRightModel, String)] = []
-        for item in o4x6_BottomLeft {
-            let text = item.ToText(words:words)
-            result.append((item,text))
-        }
-        
-        for item in o4x6_BottomRight {
-            let text = item.ToText(words:words)
-            result.append((item,text))
-        }
-        
-        for item in o4x6_TopLeft {
-            let text = item.ToText(words:words)
-            result.append((item,text))
-        }
-        
-        for item in o4x6_TopRight {
-            let text = item.ToText(words:words)
-            result.append((item,text))
-        }
-        
-        
-        result.sort {$0.1 > $1.1}
-        for i in 1..<result.count {
-            if result[i].1 == result[i - 1].1 {
-                print(result[i])
-            }
-        }
-        print(result.count)
-    }
-    
-    func test_ExecuteCheckForDuplicates2() async throws {
-        
-        let result = try await RectangleCalculator.ExecuteCheckForDuplicates2(
-            words: words,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
-        
-        XCTAssertEqual(0,result.count)
-        
-        for i in result {
-            print("\(i.0.type)\(i.0.interlockWidth)x\(i.0.interlockHeight):\(i.1.type)\(i.1.interlockWidth)x\(i.1.interlockHeight)")
-        }
-        print(result.count)
-    }
-    
-    func test_ToTextFlipped() throws {
-        let result = RectangleCalculator.Square(
-            interlockWidth: 2,
-            words: words,
-            lengths: lengths,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
-        
-        let first = result[0]
-        
-        let text = first.ToText(words: words)
-        let flipped = first.ToTextFlipped(words: words)
-        
-        let expectedText = "   .    \n   A .  \n  .ZION.\n   U P  \n.TURKEY.\n   E N  \n   . H  \n     O  \n     U  \n     S  \n     E  \n     .  "
-        let expectedFlipped = "    .       \n    T       \n  . U       \n.AZURE.     \n  I K       \n .OPENHOUSE.\n  N Y       \n  . .       "
-        
-        XCTAssertEqual(expectedText, text)
-        XCTAssertEqual(expectedFlipped, flipped)
-    }
     func test_D3x3() throws {
         
         let result = RectangleCalculator.Square(
@@ -183,6 +14,9 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(174_370, result.count)
+        
+        print("D3x3 = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_D3x4() {
@@ -197,6 +31,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(201_499, result.count);
+        print("D3x4 = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_D3x5() {
@@ -211,6 +47,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(112_679, result.count)
+        print("D3x5 = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_D3x6() {
@@ -225,6 +63,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(57_695, result.count);
+        print("D3x6 = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_D4x4() throws {
@@ -238,6 +78,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(60_620, result.count)
+        print("D4x4 = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_D4x5() {
@@ -252,6 +94,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(67_109, result.count)
+        print("D4x5 = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_D4x6() {
@@ -266,6 +110,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(33_802, result.count)
+        print("D4x6 = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     
@@ -280,11 +126,13 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(18_587, result.count)
+        print("D5x5 = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_D5x6() {
         
-        let d5x6 = RectangleCalculator.Rectangle(
+        let result = RectangleCalculator.Rectangle(
             interlockWidth: 4,
             interlockHeight: 5,
             words: words,
@@ -293,13 +141,15 @@ final class RectangleCalculator8612Tests: XCTestCase {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        XCTAssertEqual(19_577, d5x6.count);
+        XCTAssertEqual(19_577, result.count);
+        print("D5x6 = \(result.count)")
+        print(result[0].ToText(words:words))
 
     }
     
     func test_D6x6() throws {
         
-        let d6x6 = RectangleCalculator.Square(
+        let result = RectangleCalculator.Square(
             interlockWidth: 5,
             words: words,
             lengths: lengths,
@@ -307,7 +157,9 @@ final class RectangleCalculator8612Tests: XCTestCase {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        XCTAssertEqual(4_809, d6x6.count)
+        XCTAssertEqual(4_809, result.count)
+        print("D6x6 = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     
@@ -322,6 +174,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(160_216, result.count)
+        print("O3x3_BottomRight = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O3x3_TopLeft() throws {
@@ -335,6 +189,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(153_820, result.count)
+        print("O3x3_TopLeft = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O3x3_TopRight() throws {
@@ -348,6 +204,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(248_083, result.count)
+        print("D3x3_TopRight = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O3x4_BottomLeft() throws {
@@ -362,6 +220,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
 
         XCTAssertEqual(186_873, result.count)
+        print("D3x4_BottomLeft = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     func test_O3x4_BottomRight() throws {
         
@@ -375,6 +235,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(206_706, result.count)
+        print("D3x4_BottomRight = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O3x4_TopLeft() throws {
@@ -389,6 +251,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(220_148, result.count)
+        print("D3x4_TopLeft = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O3x4_TopRight() throws {
@@ -403,23 +267,12 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(203_487, result.count)
+        print("D3x4_TopRight = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     
     func test_O3x5_BottomLeft() throws {
-
-        
-        //let words = ["HYMN","HOLIDAY","HAZELNUT","ZION"]
-       // let lengths = RectangleCalculator.WordListToLengths(words: words)
-/*
-        H
-        O
-    HAZELNUT
-      I I
-      O D
-      N A
-      .HYMN
-*/
         
         let result = RectangleCalculator.BottomLeftRectangle(
             interlockWidth: 2,
@@ -431,6 +284,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
 
         XCTAssertEqual(129_100, result.count)
+        print("D3x5_BottomLeft = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O3x5_BottomRight() throws {
@@ -445,6 +300,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
 
         XCTAssertEqual(166_525, result.count)
+        print("D3x5_BottomRight = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O3x5_TopLeft() throws {
@@ -459,6 +316,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(163_938, result.count)
+        print("D3x5_TopLeft = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     
@@ -474,6 +333,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
 
         XCTAssertEqual(140_044, result.count)
+        print("D3x5_TopRight = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O3x6_BottomLeft() throws {
@@ -488,6 +349,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
 
         XCTAssertEqual(69_550, result.count)
+        print("D3x6_BottomLeft = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     func test_O3x6_BottomRight() throws {
         
@@ -501,6 +364,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(80_656, result.count)
+        print("D3x6_BottomRight = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O3x6_TopLeft() throws {
@@ -515,6 +380,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(92_581, result.count)
+        print("D3x6_TopLeft = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O3x6_TopRight() throws {
@@ -529,6 +396,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(86_795, result.count)
+        print("D3x6_TopRight = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O4x4_BottomRight() throws {
@@ -542,6 +411,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(67_844, result.count)
+        print("D4x4_BottomRight = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     func test_O4x4_TopLeft() throws {
         
@@ -554,6 +425,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(74_551, result.count)
+        print("D4x4_TopLeft = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O4x4_TopRight() throws {
@@ -567,6 +440,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(151_171, result.count)
+        print("D4x4_TopRight = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O4x5_BottomLeft() throws {
@@ -581,11 +456,13 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
 
         XCTAssertEqual(109_009, result.count)
+        print("D4x4_BottomLeft = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O4x5_BottomRight() throws {
         
-        let O4x5 = RectangleCalculator.BottomRightRectangle(
+        let result = RectangleCalculator.BottomRightRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -594,12 +471,14 @@ final class RectangleCalculator8612Tests: XCTestCase {
             heightMax: heightMax,
             scoreMin: scoreMin)
 
-        XCTAssertEqual(109_533, O4x5.count)
+        XCTAssertEqual(109_533, result.count)
+        print("D4x5_BottomRight = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O4x5_TopLeft() throws {
         
-        let O4x5 = RectangleCalculator.TopLeftRectangle(
+        let result = RectangleCalculator.TopLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -608,12 +487,14 @@ final class RectangleCalculator8612Tests: XCTestCase {
             heightMax: heightMax,
             scoreMin: scoreMin)
 
-        XCTAssertEqual(115_656, O4x5.count)
+        XCTAssertEqual(115_656, result.count)
+        print("D4x5_TopLeft = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O4x5_TopRight() throws {
         
-        let O4x5 = RectangleCalculator.TopRightRectangle(
+        let result = RectangleCalculator.TopRightRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -622,7 +503,9 @@ final class RectangleCalculator8612Tests: XCTestCase {
             heightMax: heightMax,
             scoreMin: scoreMin)
 
-        XCTAssertEqual(109_064, O4x5.count)
+        XCTAssertEqual(109_064, result.count)
+        print("D4x5_TopRight = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O4x6_BottomLeft() throws {
@@ -637,11 +520,13 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
 
         XCTAssertEqual(64_028, result.count)
+        print("D4x6_BottomLeft = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O4x6_BottomRight() throws {
         
-        let O4x6 = RectangleCalculator.BottomRightRectangle(
+        let result = RectangleCalculator.BottomRightRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -650,11 +535,13 @@ final class RectangleCalculator8612Tests: XCTestCase {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        XCTAssertEqual(56_689, O4x6.count)
+        XCTAssertEqual(56_689, result.count)
+        print("D4x6_BottomRight = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     func test_O4x6_TopLeft() throws {
         
-        let O4x6 = RectangleCalculator.TopLeftRectangle(
+        let result = RectangleCalculator.TopLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -663,12 +550,14 @@ final class RectangleCalculator8612Tests: XCTestCase {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        XCTAssertEqual(70_538, O4x6.count)
+        XCTAssertEqual(70_538, result.count)
+        print("D4x6_TopLeft = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O4x6_TopRight() throws {
         
-        let O4x6 = RectangleCalculator.TopRightRectangle(
+        let result = RectangleCalculator.TopRightRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -677,7 +566,9 @@ final class RectangleCalculator8612Tests: XCTestCase {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        XCTAssertEqual(68_952, O4x6.count)
+        XCTAssertEqual(68_952, result.count)
+        print("D4x6_TopRight = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O5x5_BottomRight() throws {
@@ -691,6 +582,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(42_044, result.count)
+        print("D5x5_BottomRight = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O5x5_TopLeft() throws {
@@ -704,6 +597,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(41_235, result.count)
+        print("D5x5_TopLeft = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O5x5_TopRight() throws {
@@ -717,6 +612,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(75_525, result.count)
+        print("D5x5_TopRight = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O5x6_BottomLeft() throws {
@@ -731,11 +628,13 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
 
         XCTAssertEqual(43_818, result.count)
+        print("D5x6_BottomLeft = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O5x6_BottomRight() throws {
         
-        let O4x6 = RectangleCalculator.BottomRightRectangle(
+        let result = RectangleCalculator.BottomRightRectangle(
             interlockWidth: 4, interlockHeight: 5,
             words: words,
             lengths: lengths,
@@ -743,7 +642,10 @@ final class RectangleCalculator8612Tests: XCTestCase {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        XCTAssertEqual(43_089, O4x6.count)
+        XCTAssertEqual(43_089, result.count)
+        print("D5x6_BottomRight = \(result.count)")
+        print(result[0].ToText(words:words))
+        
     }
     
     func test_O5x6_TopLeft() throws {
@@ -758,11 +660,13 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(49_644, result.count)
+        print("D5x6_TopLeft = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O5x6_TopRight() throws {
         
-        let O4x6 = RectangleCalculator.TopRightRectangle(
+        let result = RectangleCalculator.TopRightRectangle(
             interlockWidth: 4,
             interlockHeight: 5,
             words: words,
@@ -771,7 +675,9 @@ final class RectangleCalculator8612Tests: XCTestCase {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        XCTAssertEqual(49_940, O4x6.count)
+        XCTAssertEqual(49_940, result.count)
+        print("D5x6_TopRight = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O6x6_BottomRight() throws {
@@ -785,6 +691,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(11_878, result.count)
+        print("D6x6_BottomRight = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O6x6_TopLeft() throws {
@@ -798,6 +706,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(14_963, result.count)
+        print("D6x6_TopLeft = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     func test_O6x6_TopRight() throws {
@@ -811,6 +721,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
             scoreMin: scoreMin)
         
         XCTAssertEqual(28_586, result.count)
+        print("D6x6_TopRight = \(result.count)")
+        print(result[0].ToText(words:words))
     }
     
     
@@ -835,4 +747,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
         words = getWords_8612()
         lengths = RectangleCalculator.WordListToLengths(words: words)
     }
+    
+    let widthMax = 15
+    let heightMax = 10
+    let scoreMin = 0
 }

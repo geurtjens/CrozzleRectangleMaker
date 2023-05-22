@@ -78,7 +78,7 @@ struct ClusterMakerModel {
                 maxUp = length
             }
         }
-        return maxUp + 1
+        return maxUp
     }
     
     static func widthCalculation(words: [Int], patterns: [ClusterPosition], wordCountOther: Int, len:[UInt8]) -> Int {
@@ -139,8 +139,7 @@ struct ClusterMakerModel {
         let shape = ShapeModel(score: self.score, width: self.width, height: self.height, placements: placements)
         return shape
     }
-    
-    public func ToText(words:[String]) -> String {
+    public func csvWords(words:[String]) -> String {
         // lets have a look what we are doing first
         var csv = ""
         for i in wordsHorizontal {
@@ -150,8 +149,9 @@ struct ClusterMakerModel {
             csv += words[i] + ","
         }
         print(csv)
-        
-        
+        return csv
+    }
+    public func ToText(words:[String]) -> String {
         let shape = toShape()
         let text = ShapeCalculator.ConvertToText(shape: shape, words: words)
         return text
@@ -175,7 +175,7 @@ struct ClusterMakerModel {
         for i in 0..<wordsHorizontal.count {
             let pattern = patternHorizontal[i]
             let length = Int(lengthsHorizontal[i]) - interlockWidth
-            let y = maxUp + i
+            let y = maxUp + i + 1
             let wordId = wordsHorizontal[i]
             if pattern == .leading {
                 let placement = PlacementModel(i: wordId, h: true, x: maxLeft - length, y: y)
@@ -187,15 +187,15 @@ struct ClusterMakerModel {
         }
         for i in 0..<wordsVertical.count {
             let pattern = patternVertical[i]
-            let length = Int(lengthsVertical[i])
+            let length = Int(lengthsVertical[i]) - interlockHeight
             let x = maxLeft + i + 1
             let wordId = wordsVertical[i]
             if pattern == .leading {
-                let placement = PlacementModel(i: wordId, h: false, x: x, y: length - maxUp - interlockWidth)
+                let placement = PlacementModel(i: wordId, h: false, x: x, y: maxUp - length)
                 placements.append(placement)
             } else {
                 // y is maxUp - 1 because it needs to add his .
-                let placement = PlacementModel(i: wordId, h: false, x: x, y: maxUp - 1)
+                let placement = PlacementModel(i: wordId, h: false, x: x, y: maxUp)
                 placements.append(placement)
             }
         }

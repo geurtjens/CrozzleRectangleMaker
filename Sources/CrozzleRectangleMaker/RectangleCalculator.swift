@@ -46,10 +46,12 @@ public struct RectangleCalculator {
             if list[i].1 == list[i-1].1 {
                 let a = list[i-1].0
                 let b = list[i].0
-                //print(list[i-1].1)
-                //print(list[i].1)
-                
+                print(list[i-1].1)
+                print(list[i].1)
+                print (a)
+                print(b)
                 duplicates.append((a,b))
+                
                 print("\(i). \(a.type)\(a.interlockWidth)*\(a.interlockHeight) : \(b.type)\(b.interlockWidth)*\(b.interlockHeight)")
                 //print(a)
                 //print(b)
@@ -1328,18 +1330,18 @@ public struct RectangleCalculator {
                                                                         interlockWidth: interlockWidth,
                                                                         interlockHeight: interlockHeight,
                                                                         type: .bottomRight)
-#if DEBUG
-                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
-                                                                        print("error occurred as words are matching")
-                                                                        return []
-                                                                    }
-                                                                    let text = donut.ToText(words: words)
-                                                                    
-                                                                    if text.contains("#") {
-                                                                        print("error # detected in \n\(text)")
-                                                                        return []
-                                                                    }
-#endif
+//#if DEBUG
+//                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
+//                                                                        print("error occurred as words are matching")
+//                                                                        return []
+//                                                                    }
+//                                                                    let text = donut.ToText(words: words)
+//
+//                                                                    if text.contains("#") {
+//                                                                        print("error # detected in \n\(text)")
+//                                                                        return []
+//                                                                    }
+//#endif
                                                                     result.append(donut)
                                                                 }
                                                             }
