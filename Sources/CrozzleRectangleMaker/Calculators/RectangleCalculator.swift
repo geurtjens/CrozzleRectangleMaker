@@ -8,59 +8,6 @@
 import Foundation
 public struct RectangleCalculator {
     
-    public static func ExecuteCheckForDuplicates(words: [String], widthMax: Int, heightMax: Int, scoreMin: Int) async throws -> Int {
-        
-        let shapes = try await Execute(words: words, widthMax: widthMax, heightMax: heightMax, scoreMin: scoreMin)
-        
-        var list:[String] = []
-        
-        for item in shapes {
-            list.append(item.ToText(words: words))
-            list.append(item.ToTextFlipped(words: words))
-        }
-        list.sort()
-        
-        var result = 0
-        for i in 1..<list.count {
-            if list[i] == list[i-1] {
-                result += 1
-            }
-        }
-        return result
-    }
-    
-    public static func ExecuteCheckForDuplicates2(words: [String], widthMax: Int, heightMax: Int, scoreMin: Int) async throws -> [(TopLeftBottomRightModel,TopLeftBottomRightModel)] {
-        
-        let shapes = try await Execute(words: words, widthMax: widthMax, heightMax: heightMax, scoreMin: scoreMin)
-        
-        var list:[(TopLeftBottomRightModel,String)] = []
-        
-        for item in shapes {
-            list.append((item,item.ToText(words: words)))
-            //list.append((item,item.ToTextFlipped(words: words)))
-        }
-        list.sort{ $0.1 > $1.1 }
-        
-        var duplicates:[(TopLeftBottomRightModel,TopLeftBottomRightModel)] = []
-        for i in 1..<list.count {
-            if list[i].1 == list[i-1].1 {
-                let a = list[i-1].0
-                let b = list[i].0
-                print(list[i-1].1)
-                print(list[i].1)
-                print (a)
-                print(b)
-                duplicates.append((a,b))
-                
-                print("\(i). \(a.type)\(a.interlockWidth)*\(a.interlockHeight) : \(b.type)\(b.interlockWidth)*\(b.interlockHeight)")
-                //print(a)
-                //print(b)
-            }
-        }
-        
-        return duplicates
-    }
-    
     public static func ExecuteAndSortByScoreAndArea(words: [String], widthMax: Int, heightMax: Int, scoreMin: Int) async throws -> [TopLeftBottomRightModel]  {
         
         var shapes = try await Execute(words: words, widthMax: widthMax, heightMax: heightMax, scoreMin: scoreMin)
@@ -77,7 +24,7 @@ public struct RectangleCalculator {
     
     public static func Execute(words: [String], widthMax: Int, heightMax: Int, scoreMin: Int) async throws -> [TopLeftBottomRightModel] {
             
-        let lengths = RectangleCalculator.WordListToLengths(words: words)
+        let lengths = WordCalculator.lengths(words: words)
             
         async let d3x3 = Square(
             interlockWidth: 2,
@@ -477,69 +424,533 @@ public struct RectangleCalculator {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        
-        
-         let result = await
-            d3x3 +
-            d3x4 +
-            d3x5 +
-            d3x6 +
-            d4x4 +
-            d4x5 +
-            d4x6 +
-            d5x5 +
-            d5x6 +
-            d6x6 +
-            
-        
-            o3x3_BottomRight +
-            o3x4_BottomRight +
-            o3x5_BottomRight +
-            o3x6_BottomRight +
-            o4x4_BottomRight +
-            o4x5_BottomRight +
-            o4x6_BottomRight +
-            o5x5_BottomRight +
-            o5x6_BottomRight +
-            o6x6_BottomRight +
-        
-        
-            o3x4_BottomLeft +
-            o3x5_BottomLeft +
-            o3x6_BottomLeft +
-            o4x5_BottomLeft +
-            o4x6_BottomLeft +
-            o5x6_BottomLeft +
-        
-            o3x3_TopLeft +
-            o3x4_TopLeft +
-            o3x5_TopLeft +
-            o3x6_TopLeft +
-            o4x4_TopLeft +
-            o4x5_TopLeft +
-            o4x6_TopLeft +
-            o5x5_TopLeft +
-            o5x6_TopLeft +
-            o6x6_TopLeft +
-        
-            o3x3_TopRight +
-            o3x4_TopRight +
-            o3x5_TopRight +
-            o3x6_TopRight +
-            o4x4_TopRight +
-            o4x5_TopRight +
-            o4x6_TopRight +
-            o5x5_TopRight +
-            o5x6_TopRight +
-            o6x6_TopRight
-        
-
-        
-        
+        let result = await
+            d3x3 + o3x3_TopLeft + o3x3_TopRight + o3x3_BottomRight +
+            d3x4 + o3x4_TopLeft + o3x4_TopRight + o3x4_BottomRight + o3x4_BottomLeft +
+            d3x5 + o3x5_TopLeft + o3x5_TopRight + o3x5_BottomRight + o3x5_BottomLeft +
+            d3x6 + o3x6_TopLeft + o3x6_TopRight + o3x6_BottomRight + o3x6_BottomLeft +
+            d4x4 + o4x4_TopLeft + o4x4_TopRight + o4x4_BottomRight +
+            d4x5 + o4x5_TopLeft + o4x5_TopRight + o4x5_BottomRight + o4x5_BottomLeft +
+            d4x6 + o4x6_TopLeft + o4x6_TopRight + o4x6_BottomRight + o4x6_BottomLeft +
+            d5x5 + o5x5_TopLeft + o5x5_TopRight + o5x5_BottomRight +
+            d5x6 + o5x6_TopLeft + o5x6_TopRight + o5x6_BottomRight + o5x6_BottomLeft +
+            d6x6 + o6x6_TopLeft + o6x6_TopRight + o6x6_BottomRight
 
         return result
     }
     
+    
+    public static func ExecuteSerial(words: [String], widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
+            
+        let lengths = WordCalculator.lengths(words: words)
+            
+        let d3x3 = Square(
+            interlockWidth: 2,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("d3x3 \(d3x3.count)")
+            
+        let d3x4 = Rectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+            
+        print("d3x4 \(d3x4.count)")
+        
+        let d3x5 = Rectangle(
+            interlockWidth: 2,
+            interlockHeight: 4,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+            
+        print("d3x5 \(d3x5.count)")
+        
+        let d3x6 = Rectangle(
+            interlockWidth: 2,
+            interlockHeight: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("d3x6 \(d3x6.count)")
+        
+        let d4x4 = Square(
+            interlockWidth: 3,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+            
+        print("d4x4 \(d4x4.count)")
+        
+        let d4x5 = Rectangle(
+            interlockWidth: 3,
+            interlockHeight: 4,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+            
+        print("d4x5 \(d4x5.count)")
+        
+        let d4x6 = Rectangle(
+            interlockWidth: 3,
+            interlockHeight: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("d4x6 \(d4x6.count)")
+        
+        let d5x5 = Square(
+            interlockWidth: 4,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+            
+        print("d5x5 \(d5x5.count)")
+        
+        let d5x6 = Rectangle(
+            interlockWidth: 4,
+            interlockHeight: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("d5x6 \(d5x6.count)")
+        
+        let d6x6 = Square(
+            interlockWidth: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+            
+        print("d6x6 \(d6x6.count)")
+        
+        let o3x3_BottomRight = BottomRightSquare(
+            interlockWidth: 2,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o3x3_BottomRight \(o3x3_BottomRight.count)")
+        
+        let o3x3_TopLeft = TopLeftSquare(
+            interlockWidth: 2,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o3x3_TopLeft \(o3x3_TopLeft.count)")
+        
+        let o3x3_TopRight = TopRightSquare(
+            interlockWidth: 2,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+            
+        print("o3x3_TopRight \(o3x3_TopRight.count)")
+        
+        let o3x4_BottomLeft = BottomLeftRectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o3x4_BottomLeft \(o3x4_BottomLeft.count)")
+        
+        let o3x4_BottomRight = BottomRightRectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+                     
+        print("o3x4_BottomRight \(o3x4_BottomRight.count)")
+        
+        let o3x4_TopLeft = TopLeftRectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+            
+        print("o3x4_TopLeft \(o3x4_TopLeft.count)")
+        
+        let o3x4_TopRight = TopRightRectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+
+        print("o3x4_TopRight \(o3x4_TopRight.count)")
+        
+        let o3x5_BottomLeft = BottomLeftRectangle(
+            interlockWidth: 2,
+            interlockHeight: 4,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+            
+        print("o3x5_BottomLeft \(o3x5_BottomLeft.count)")
+        
+        let o3x5_BottomRight = BottomRightRectangle(
+            interlockWidth: 2,
+            interlockHeight: 4,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o3x5_BottomRight \(o3x5_BottomRight.count)")
+        
+        let o3x5_TopLeft = TopLeftRectangle(
+            interlockWidth: 2,
+            interlockHeight: 4,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+                       
+        print("o3x5_TopLeft \(o3x5_TopLeft.count)")
+        
+        let o3x5_TopRight = TopRightRectangle(
+            interlockWidth: 2,
+            interlockHeight: 4,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+
+        print("o3x5_TopRight \(o3x5_TopRight.count)")
+        
+        let o3x6_BottomLeft = BottomLeftRectangle(
+            interlockWidth: 2,
+            interlockHeight: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o3x6_BottomLeft \(o3x6_BottomLeft.count)")
+        
+        let o3x6_BottomRight = BottomRightRectangle(
+            interlockWidth: 2,
+            interlockHeight: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o3x6_BottomRight \(o3x6_BottomRight.count)")
+
+        let o3x6_TopLeft = TopLeftRectangle(
+            interlockWidth: 2,
+            interlockHeight: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+            
+        print("o3x6_TopLeft \(o3x6_TopLeft.count)")
+        
+        let o3x6_TopRight = TopRightRectangle(
+            interlockWidth: 2,
+            interlockHeight: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o3x6_TopRight \(o3x6_TopRight.count)")
+        
+        let o4x4_BottomRight = BottomRightSquare(
+            interlockWidth: 3,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o4x4_BottomRight \(o4x4_BottomRight.count)")
+        
+        let o4x4_TopLeft = TopLeftSquare(
+            interlockWidth: 3,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o4x4_TopLeft \(o4x4_TopLeft.count)")
+        
+        let o4x4_TopRight = TopRightSquare(
+            interlockWidth: 3,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o4x4_TopRight \(o4x4_TopRight.count)")
+        
+        let o4x5_BottomLeft = BottomLeftRectangle(
+            interlockWidth: 3,
+            interlockHeight: 4,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o4x5_BottomLeft \(o4x5_BottomLeft.count)")
+        
+        let o4x5_BottomRight = BottomRightRectangle(
+            interlockWidth: 3,
+            interlockHeight: 4,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o4x5_BottomRight \(o4x5_BottomRight.count)")
+        
+        let o4x5_TopLeft = TopLeftRectangle(
+            interlockWidth: 3,
+            interlockHeight: 4,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+
+        print("o4x5_TopLeft \(o4x5_TopLeft.count)")
+        
+        let o4x5_TopRight = TopRightRectangle(
+            interlockWidth: 3,
+            interlockHeight: 4,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+
+        print("o4x5_TopRight \(o4x5_TopRight.count)")
+        
+        let o4x6_BottomLeft = BottomLeftRectangle(
+            interlockWidth: 3,
+            interlockHeight: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o4x6_BottomLeft \(o4x6_BottomLeft.count)")
+        
+        let o4x6_BottomRight = BottomRightRectangle(
+            interlockWidth: 3,
+            interlockHeight: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+
+        print("o4x6_BottomRight \(o4x6_BottomRight.count)")
+        
+        let o4x6_TopLeft = TopLeftRectangle(
+            interlockWidth: 3,
+            interlockHeight: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o4x6_TopLeft \(o4x6_TopLeft.count)")
+        
+        let o4x6_TopRight = TopRightRectangle(
+            interlockWidth: 3,
+            interlockHeight: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o4x6_TopRight \(o4x6_TopRight.count)")
+        
+        let o5x5_BottomRight = BottomRightSquare(
+            interlockWidth: 4,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o5x5_BottomRight \(o5x5_BottomRight.count)")
+        
+        let o5x5_TopLeft = TopLeftSquare(
+            interlockWidth: 4,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o5x5_TopLeft \(o5x5_TopLeft.count)")
+        
+        let o5x5_TopRight = TopRightSquare(
+            interlockWidth: 4,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o5x5_TopRight \(o5x5_TopRight.count)")
+        
+        let o5x6_BottomLeft = BottomLeftRectangle(
+            interlockWidth: 3,
+            interlockHeight: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o5x6_BottomLeft \(o5x6_BottomLeft.count)")
+        
+        let o5x6_BottomRight = RectangleCalculator.BottomRightRectangle(
+            interlockWidth: 3,
+            interlockHeight: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o5x6_BottomRight \(o5x6_BottomRight.count)")
+        
+        let o5x6_TopLeft = RectangleCalculator.TopLeftRectangle(
+            interlockWidth: 3,
+            interlockHeight: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o5x6_TopLeft \(o5x6_TopLeft.count)")
+        
+        let o5x6_TopRight = RectangleCalculator.TopRightRectangle(
+            interlockWidth: 3,
+            interlockHeight: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o5x6_TopRight \(o5x6_TopRight.count)")
+        
+        let o6x6_BottomRight = RectangleCalculator.BottomRightSquare(
+            interlockWidth: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o6x6_BottomRight \(o6x6_BottomRight.count)")
+        
+        let o6x6_TopLeft = RectangleCalculator.TopLeftSquare(
+            interlockWidth: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o6x6_TopLeft \(o6x6_TopLeft.count)")
+        
+        let o6x6_TopRight = RectangleCalculator.TopRightSquare(
+            interlockWidth: 5,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        print("o6x6_TopRight \(o6x6_TopRight.count)")
+        
+        
+         let result =
+
+            d3x3 + o3x3_TopLeft + o3x3_TopRight + o3x3_BottomRight +
+            d3x4 + o3x4_TopLeft + o3x4_TopRight + o3x4_BottomRight + o3x4_BottomLeft +
+            d3x5 + o3x5_TopLeft + o3x5_TopRight + o3x5_BottomRight + o3x5_BottomLeft +
+            d3x6 + o3x6_TopLeft + o3x6_TopRight + o3x6_BottomRight + o3x6_BottomLeft +
+            d4x4 + o4x4_TopLeft + o4x4_TopRight + o4x4_BottomRight +
+            d4x5 + o4x5_TopLeft + o4x5_TopRight + o4x5_BottomRight + o4x5_BottomLeft +
+            d4x6 + o4x6_TopLeft + o4x6_TopRight + o4x6_BottomRight + o4x6_BottomLeft +
+            d5x5 + o5x5_TopLeft + o5x5_TopRight + o5x5_BottomRight +
+            d5x6 + o5x6_TopLeft + o5x6_TopRight + o5x6_BottomRight + o5x6_BottomLeft +
+            d6x6 + o6x6_TopLeft + o6x6_TopRight + o6x6_BottomRight
+        
+            
+        return result
+    }
     public static func CalculateWidth(topLength: Int, bottomLength: Int, topLetterPos: Int, bottomLetterPos: Int) -> Int {
         let before = max(topLetterPos,bottomLetterPos)
         
@@ -550,7 +961,7 @@ public struct RectangleCalculator {
         
         let width = before + after
         
-        return width
+        return width + 2 // We add +2 for the blocking characters
     }
     
     public static func CalculateWidthIndented(letterPos: Int, wordLength: Int, indentedWordLength: Int) -> Int {
@@ -558,16 +969,10 @@ public struct RectangleCalculator {
         let bottomRight = wordLength - letterPos
         let topRight = indentedWordLength + 1
         let width = bottomLeft + max(topRight, bottomRight)
-        return width
+        return width + 2
     }
     
-    public static func WordListToLengths(words: [String]) -> [Int] {
-        var result: [Int] = []
-        for word in words {
-            result.append(word.count)
-        }
-        return result;
-    }
+    
     
     public static func Square(interlockWidth: Int, words: [String], lengths: [Int],  widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
 

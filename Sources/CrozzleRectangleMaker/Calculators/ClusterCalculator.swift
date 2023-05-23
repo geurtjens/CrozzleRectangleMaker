@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ClusterCalculator.swift
 //  
 //
 //  Created by Michael Geurtjens on 21/5/2023.
@@ -8,24 +8,9 @@
 import Foundation
 struct ClusterCalculator {
     
-    static func reverseText(words: [String]) -> [String] {
-        var result:[String] = []
-        for word in words {
-            result.append(String(word.reversed()))
-        }
-        return result
-    }
-    public static func WordListToLengths(words: [String]) -> [Int] {
-        var result: [Int] = []
-        for word in words {
-            result.append(word.count)
-        }
-        return result;
-    }
-    static func Execute(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
-        let end = reverseText(words:words)
-        let len = WordListToLengths(words: words)
-        let start = words
+    static func Execute(words start: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+        let end = WordCalculator.reverse(words: start)
+        let len = WordCalculator.lengths(words: start)
         
         let c2x2 = C2x2(start:start,end:end,len:len,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
         let c2x3 = C2x3(start:start,end:end,len:len,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
@@ -297,7 +282,7 @@ struct ClusterCalculator {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        let result = C3x4_LRLR_UDU + C3x4_LRLR_UDU + C3x4_RLRL_DUD + C3x4_RLRL_UDU
+        let result = C3x4_LRLR_DUD + C3x4_LRLR_UDU + C3x4_RLRL_DUD + C3x4_RLRL_UDU
         
         return result
     }

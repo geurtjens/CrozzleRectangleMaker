@@ -7,6 +7,7 @@
 
 import Foundation
 public struct TopLeftBottomRightModel : ShapeProtocol {
+    
 //    public let score: Int
 //    public let width: Int
 //    public let height: Int
@@ -60,30 +61,30 @@ public struct TopLeftBottomRightModel : ShapeProtocol {
         self.type = type
     }
     
-    public func ToText(words:[String]) -> String {
-        let shape = ToShape()
-        let text = ShapeCalculator.ConvertToText(shape: shape, words: words)
-        return text
-    }
+//    public func ToText(words:[String]) -> String {
+//        let shape = ToShape()
+//        let text = ShapeCalculator.ConvertToText(shape: shape, words: words)
+//        return text
+//    }
+//
+//    public func ToTextFlipped(words:[String]) -> String {
+//        let shape = ToShape()
+//        let text = ShapeCalculator.ConvertToTextFlipped(shape: shape, words: words)
+//        return text
+//    }
     
-    public func ToTextFlipped(words:[String]) -> String {
-        let shape = ToShape()
-        let text = ShapeCalculator.ConvertToTextFlipped(shape: shape, words: words)
-        return text
-    }
-    
-    public func ToShape() -> ShapeModel {
+    public func ToPlacement() -> [PlacementModel] {
         switch type {
         case .bottomLeft:
-            return ShapeCalculator.ConvertToShape(bottomLeft: self)
+            return PlacementCalculator.ConvertToPlacements(bottomLeft: self)
         case .bottomRight:
-            return ShapeCalculator.ConvertToShape(rectangle: self)
+            return PlacementCalculator.ConvertToPlacements(rectangle: self)
         case .rectangle:
-            return ShapeCalculator.ConvertToShape(rectangle: self)
+            return PlacementCalculator.ConvertToPlacements(rectangle: self)
         case .topLeft:
-            return ShapeCalculator.ConvertToShape(topLeft: self)
+            return PlacementCalculator.ConvertToPlacements(topLeft: self)
         case .topRight:
-            return ShapeCalculator.ConvertToShape(topRight: self)
+            return PlacementCalculator.ConvertToPlacements(topRight: self)
         }
     }
     

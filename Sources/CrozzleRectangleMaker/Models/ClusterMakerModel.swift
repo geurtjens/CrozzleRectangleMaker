@@ -9,7 +9,8 @@ import Foundation
 
 // This will construct the shape and get its width height and score so we can work out if its valid
 
-struct ClusterMakerModel {
+struct ClusterMakerModel : ShapeProtocol {
+    
     let wordsHorizontal: [Int]
     let wordsVertical: [Int]
     let patternHorizontal: [ClusterPosition]
@@ -133,12 +134,6 @@ struct ClusterMakerModel {
         return score
     }
     
-    func toShape() -> ShapeModel {
-        
-        let placements = toPlacements()
-        let shape = ShapeModel(score: self.score, width: self.width, height: self.height, placements: placements)
-        return shape
-    }
     public func csvWords(words:[String]) -> String {
         // lets have a look what we are doing first
         var csv = ""
@@ -151,19 +146,9 @@ struct ClusterMakerModel {
         print(csv)
         return csv
     }
-    public func ToText(words:[String]) -> String {
-        let shape = toShape()
-        let text = ShapeCalculator.ConvertToText(shape: shape, words: words)
-        return text
-    }
-    
-    public func ToTextFlipped(words:[String]) -> String {
-        let shape = toShape()
-        let text = ShapeCalculator.ConvertToTextFlipped(shape: shape, words: words)
-        return text
-    }
+
         
-    func toPlacements() -> [PlacementModel] {
+    func ToPlacement() -> [PlacementModel] {
 
         let interlockWidth = wordsVertical.count
         let interlockHeight = wordsHorizontal.count

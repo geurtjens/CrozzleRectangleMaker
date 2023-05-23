@@ -735,20 +735,20 @@ final class RectangleCalculator8612Tests: XCTestCase {
         return wordList
     }
     
-    func getLengths() -> [Int] {
-        let words = getWords_8612()
-        let lengths = RectangleCalculator.WordListToLengths(words: words)
-        return lengths
-    }
+//    func getLengths() -> [Int] {
+//        let words = getWords_8612()
+//        let lengths = RectangleCalculator.WordListToLengths(words: words)
+//        return lengths
+//    }
     
     var words:[String] = []
     var lengths: [Int] = []
     override func setUpWithError() throws {
-        words = getWords_8612()
-        lengths = RectangleCalculator.WordListToLengths(words: words)
+        words = WordData.words_8612()
+        lengths = WordCalculator.lengths(words: words)
     }
     
-    let widthMax = 15
-    let heightMax = 10
+    let widthMax = 17
+    let heightMax = 12
     let scoreMin = 0
 }

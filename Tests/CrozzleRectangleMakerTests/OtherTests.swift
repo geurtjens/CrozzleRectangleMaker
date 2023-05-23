@@ -9,8 +9,7 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class OtherTests: XCTestCase {
 
-  
-    
+
     func test_Execute() async throws {
         
         let result = try await RectangleCalculator.Execute(
@@ -41,6 +40,20 @@ final class OtherTests: XCTestCase {
         // 160 MB and 55.9 seconds if we make the size smaller
     }
     
+    func test_ExecuteSerial() throws {
+        
+        let result = RectangleCalculator.ExecuteSerial(
+            words: words,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        XCTAssertEqual(4530742, result.count)
+        // 463 MB and 57 seconds
+        // 160 MB and 55.9 seconds if we make the size smaller
+    }
+    
+    
     
     func test_ExecuteSortByScoreAndAreaAndSaveToCSV() async throws {
         
@@ -55,18 +68,30 @@ final class OtherTests: XCTestCase {
         ToCsv.Save(filename: filename, rectangles: result)
     }
     
-    
-    // Checks if there are any duplicates by rendering the text and also flipped text sorting and seeing if the one before is same as the current one and guess what.  No duplicates at all.  Goes up to 2.2 GB just for the text to render the shapes.
-    func test_ExecuteCheckForDuplicates() async throws {
+    func test_BottomRight4x6_Repeats() throws {
         
-        let result = try await RectangleCalculator.ExecuteCheckForDuplicates(
-            words: words,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
-        // 520414 duplicates detected
-        XCTAssertEqual(0,result)
+        let result = RectangleCalculator.BottomRightRectangle(interlockWidth: 3, interlockHeight: 5, words: words, lengths: lengths, widthMax: widthMax, heightMax: heightMax, scoreMin: scoreMin)
+        
+        
+        
+        var text:[String] = []
+        for item in result {
+            text.append(item.ToText(words: words))
+        }
+        text.sort()
+        
+        var repeats = 0
+        for i in 1..<text.count {
+            if text[i] == text[i-1] {
+                repeats += 1
+            }
+        }
+        XCTAssertEqual(0,repeats)
+//        for textItem in text {
+//            print(textItem)
+//        }
     }
+
     
     func test_BottomRight3x5() throws {
         
@@ -140,21 +165,7 @@ final class OtherTests: XCTestCase {
         print(result.count)
     }
     
-    func test_ExecuteCheckForDuplicates2() async throws {
-        
-        let result = try await RectangleCalculator.ExecuteCheckForDuplicates2(
-            words: words,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
-        
-        XCTAssertEqual(0,result.count)
-        
-        for i in result {
-            print("\(i.0.type)\(i.0.interlockWidth)x\(i.0.interlockHeight):\(i.1.type)\(i.1.interlockWidth)x\(i.1.interlockHeight)")
-        }
-        print(result.count)
-    }
+   
     
     
     func test_ToTextFlipped() throws {
@@ -177,28 +188,22 @@ final class OtherTests: XCTestCase {
         XCTAssertEqual(expectedText, text)
         XCTAssertEqual(expectedFlipped, flipped)
     }
-    func getWords_8612() -> [String] {
-        let wordList = [
-            "ZION", "AZURE", "TOYS", "JOY", "HAZELNUT", "NUTS", "NAZARETH", "HYMN", "TURKEY", "SNOW", "MERRY", "TOAST", "STAR", "HOLLY", "JELLY", "FAMILY", "WHITE", "SING", "SAUCE", "PORK", "TREE", "EVE", "INN", "BELLS", "CAKE",
-            
-            "GLAZE", "PARTYHATS", "TWENTYFIFTH", "WALNUT", "PEANUTS", "PRESENTS", "FRUIT", "NUTMEG", "CUSTARD", "CHRISTMAS", "MISTLETOE", "GIFTS", "SANTACLAUS", "FESTIVE", "RAISINS", "LIGHTS", "WREATH", "HOLIDAY", "WISEMEN", "CRANBERRY", "OPENHOUSE", "SILENTNIGHT", "STOCKING", "PUNCH", "WINE", "SHOPPING", "PLUMPUDDING", "WRAPPING", "NEIGHBOURS", "GREETINGS", "DECORATIONS", "ALMONDS", "LANTERN", "KRISSKRINGLE", "SPICE", "GOODWILL", "BONBON", "CHURCH", "FRIENDS", "PARCELS", "CINNAMON", "NICHOLAS", "MINCEPIES", "CHERRIES", "SLEIGH", "ALMOND", "MANGER", "RIBBON", "CHOCOLATE", "MIXEDPEEL", "DRINK", "CANDLES", "FOOD", "GINGER", "BETHLEHEM", "CAROL", "REINDEER", "GOODCHEER", "CREAM", "CORDIAL", "CHILDREN", "ICECREAM", "CHICKEN", "CARD", "DECEMBER", "PEACE"]
-        return wordList
-    }
     
-    func getLengths() -> [Int] {
-        let words = getWords_8612()
-        let lengths = RectangleCalculator.WordListToLengths(words: words)
-        return lengths
-    }
+    
+//    func getLengths() -> [Int] {
+//        let words = getWords_8612()
+//        let lengths = RectangleCalculator.WordListToLengths(words: words)
+//        return lengths
+//    }
     
     var words:[String] = []
     var lengths: [Int] = []
     override func setUpWithError() throws {
-        words = getWords_8612()
-        lengths = RectangleCalculator.WordListToLengths(words: words)
+        words = WordData.words_8612()
+        lengths = WordCalculator.lengths(words: words)
     }
     
-    let widthMax = 15
-    let heightMax = 10
+    let widthMax = 17
+    let heightMax = 12
     let scoreMin = 0
 }
