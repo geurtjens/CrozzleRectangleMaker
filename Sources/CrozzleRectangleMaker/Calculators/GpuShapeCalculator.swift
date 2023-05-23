@@ -29,9 +29,9 @@ struct GpuShapeCalculator {
     public static func get_4_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) async -> GpuShapeModel {
         let rectangles = await RectangleCalculator.Execute(
             words: words,
+            scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
+            heightMax: heightMax)
         
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)

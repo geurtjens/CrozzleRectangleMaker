@@ -14,9 +14,9 @@ final class OtherTests: XCTestCase {
         
         let result = await RectangleCalculator.Execute(
             words: words,
+            scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
+            heightMax: heightMax)
         
         XCTAssertEqual(4530742, result.count)
         // 463 MB and 57 seconds
@@ -27,9 +27,9 @@ final class OtherTests: XCTestCase {
         
         let result = await RectangleCalculator.ExecuteAndSortByScoreAndArea(
             words: words,
+            scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
+            heightMax: heightMax)
         
         XCTAssertEqual(4530742, result.count)
         //4314774
@@ -44,9 +44,9 @@ final class OtherTests: XCTestCase {
         
         let result = RectangleCalculator.ExecuteSerial(
             words: words,
+            scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
+            heightMax: heightMax)
         
         XCTAssertEqual(4530742, result.count)
         // 463 MB and 57 seconds
@@ -59,9 +59,9 @@ final class OtherTests: XCTestCase {
         
         let result = await RectangleCalculator.ExecuteAndSortByScoreAndArea(
             words: words,
+            scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax,
-            scoreMin: scoreMin)
+            heightMax: heightMax)
         
         let filename = "8612_Rectangles.csv"
         

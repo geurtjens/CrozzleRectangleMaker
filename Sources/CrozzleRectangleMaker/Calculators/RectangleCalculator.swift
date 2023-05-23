@@ -8,9 +8,13 @@
 import Foundation
 public struct RectangleCalculator {
     
-    public static func ExecuteAndSortByScoreAndArea(words: [String], widthMax: Int, heightMax: Int, scoreMin: Int) async -> [RectangleModel]  {
+    public static func ExecuteAndSortByScoreAndArea(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) async -> [RectangleModel]  {
         
-        var shapes = await Execute(words: words, widthMax: widthMax, heightMax: heightMax, scoreMin: scoreMin)
+        var shapes = await Execute(
+            words: words,
+            scoreMin: scoreMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
         
         shapes.sort {
             if $0.score == $1.score {
@@ -22,7 +26,7 @@ public struct RectangleCalculator {
         return shapes
     }
     
-    public static func Execute(words: [String], widthMax: Int, heightMax: Int, scoreMin: Int) async -> [RectangleModel] {
+    public static func Execute(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) async -> [RectangleModel] {
             
         let lengths = WordCalculator.lengths(words: words)
             
@@ -440,7 +444,7 @@ public struct RectangleCalculator {
     }
     
     
-    public static func ExecuteSerial(words: [String], widthMax: Int, heightMax: Int, scoreMin: Int) -> [RectangleModel] {
+    public static func ExecuteSerial(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [RectangleModel] {
             
         let lengths = WordCalculator.lengths(words: words)
             

@@ -30,7 +30,7 @@ public class EdgeCalculator {
                         
                         if verticalWord[verticalLetter] == horizontalWord[horizontalLetter] {
                             
-                            let score = ScoreCalculator.score(forLetter:horizontalWord[horizontalLetter])
+                            let score = ScoreCalculator.score(forLetter:horizontalWord[horizontalLetter]) + 20
                             
                             if score >= scoreMin {
                                 
