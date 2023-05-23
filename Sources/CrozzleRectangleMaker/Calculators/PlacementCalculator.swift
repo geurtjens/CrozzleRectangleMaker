@@ -6,9 +6,11 @@
 //
 
 import Foundation
+
+// Placements will be sorted with lowest wordId first
 public struct PlacementCalculator {
     
-    public static func ConvertToPlacements(topLeft input: TopLeftBottomRightModel) -> [PlacementModel] {
+    public static func ConvertToPlacements(topLeft input: RectangleModel) -> [PlacementModel] {
         
         let maxLeft = Int(input.bottomLetterPos)
         
@@ -38,12 +40,14 @@ public struct PlacementCalculator {
             x: maxLeft + Int(input.interlockWidth) + 1,
             y: 0)
         
-        let placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
+        var placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
+        
+        placements.sort { $0.i < $1.i}
         
         return placements
     }
     
-    public static func ConvertToPlacements(topRight input: TopLeftBottomRightModel) -> [PlacementModel] {
+    public static func ConvertToPlacements(topRight input: RectangleModel) -> [PlacementModel] {
         
         let maxLeft = Int(max(input.topLetterPos, input.bottomLetterPos))
         
@@ -73,12 +77,14 @@ public struct PlacementCalculator {
             x: maxLeft + Int(input.interlockWidth) + 1,
             y: maxUp)
         
-        let placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
+        var placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
+        
+        placements.sort { $0.i < $1.i}
         
         return placements
     }
     
-    public static func ConvertToPlacements(bottomLeft input: TopLeftBottomRightModel) -> [PlacementModel] {
+    public static func ConvertToPlacements(bottomLeft input: RectangleModel) -> [PlacementModel] {
         
         let maxLeft = Int(input.topLetterPos) + 1
         
@@ -108,7 +114,9 @@ public struct PlacementCalculator {
             x: maxLeft + Int(input.interlockWidth),
             y: maxUp - Int(input.rightLetterPos))
         
-        let placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
+        var placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
+        
+        placements.sort { $0.i < $1.i}
         
         return placements
 
@@ -116,7 +124,7 @@ public struct PlacementCalculator {
     
     
     // This is just like rectangle actually so two birds with one stone
-    public static func ConvertToPlacements(rectangle input: TopLeftBottomRightModel) -> [PlacementModel] {
+    public static func ConvertToPlacements(rectangle input: RectangleModel) -> [PlacementModel] {
         
         let maxLeft = Int(max(input.topLetterPos, input.bottomLetterPos))
         
@@ -146,7 +154,9 @@ public struct PlacementCalculator {
             x: maxLeft + 1 + Int(input.interlockWidth),
             y: maxUp - Int(input.rightLetterPos))
         
-        let placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
+        var placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
+        
+        placements.sort { $0.i < $1.i}
         
         return placements
     }

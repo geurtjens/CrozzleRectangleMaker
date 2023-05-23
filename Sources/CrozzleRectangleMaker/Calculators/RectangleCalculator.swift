@@ -8,9 +8,9 @@
 import Foundation
 public struct RectangleCalculator {
     
-    public static func ExecuteAndSortByScoreAndArea(words: [String], widthMax: Int, heightMax: Int, scoreMin: Int) async throws -> [TopLeftBottomRightModel]  {
+    public static func ExecuteAndSortByScoreAndArea(words: [String], widthMax: Int, heightMax: Int, scoreMin: Int) async -> [RectangleModel]  {
         
-        var shapes = try await Execute(words: words, widthMax: widthMax, heightMax: heightMax, scoreMin: scoreMin)
+        var shapes = await Execute(words: words, widthMax: widthMax, heightMax: heightMax, scoreMin: scoreMin)
         
         shapes.sort {
             if $0.score == $1.score {
@@ -22,7 +22,7 @@ public struct RectangleCalculator {
         return shapes
     }
     
-    public static func Execute(words: [String], widthMax: Int, heightMax: Int, scoreMin: Int) async throws -> [TopLeftBottomRightModel] {
+    public static func Execute(words: [String], widthMax: Int, heightMax: Int, scoreMin: Int) async -> [RectangleModel] {
             
         let lengths = WordCalculator.lengths(words: words)
             
@@ -440,7 +440,7 @@ public struct RectangleCalculator {
     }
     
     
-    public static func ExecuteSerial(words: [String], widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
+    public static func ExecuteSerial(words: [String], widthMax: Int, heightMax: Int, scoreMin: Int) -> [RectangleModel] {
             
         let lengths = WordCalculator.lengths(words: words)
             
@@ -974,9 +974,9 @@ public struct RectangleCalculator {
     
     
     
-    public static func Square(interlockWidth: Int, words: [String], lengths: [Int],  widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
+    public static func Square(interlockWidth: Int, words: [String], lengths: [Int],  widthMax: Int, heightMax: Int, scoreMin: Int) -> [RectangleModel] {
 
-        var result: [TopLeftBottomRightModel] = [];
+        var result: [RectangleModel] = [];
 
         let wordCount = words.count;
 
@@ -1036,7 +1036,7 @@ public struct RectangleCalculator {
                                                                         if (width <= widthMax && height <= heightMax) ||
                                                                             (width <= heightMax && height <= widthMax) {
                                                                             
-                                                                            let donut = TopLeftBottomRightModel(
+                                                                            let donut = RectangleModel(
                                                                                 score:score,
                                                                                 width:width,
                                                                                 height:height,
@@ -1085,9 +1085,9 @@ public struct RectangleCalculator {
         return result;
     }
     
-    public static func Rectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
+    public static func Rectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [RectangleModel] {
 
-        var result: [TopLeftBottomRightModel] = [];
+        var result: [RectangleModel] = [];
 
         if (interlockHeight <= interlockWidth) {
             return result;
@@ -1150,7 +1150,7 @@ public struct RectangleCalculator {
                                                                         if (width <= widthMax && height <= heightMax) ||
                                                                             (width <= heightMax && height <= widthMax) {
                                                                             
-                                                                            let donut = TopLeftBottomRightModel(
+                                                                            let donut = RectangleModel(
                                                                                 score:score,
                                                                                 width:width,
                                                                                 height:height,
@@ -1198,7 +1198,7 @@ public struct RectangleCalculator {
         return result;
     }
     
-    public static func TopLeftRectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
+    public static func TopLeftRectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [RectangleModel] {
         /*
               .AZURE
               S I
@@ -1206,7 +1206,7 @@ public struct RectangleCalculator {
               A N
               R
         */
-        var result: [TopLeftBottomRightModel] = [];
+        var result: [RectangleModel] = [];
 
         if (interlockHeight <= interlockWidth) {
             return result;
@@ -1265,7 +1265,7 @@ public struct RectangleCalculator {
                                                                 if (width <= widthMax && height <= heightMax) ||
                                                                     (width <= heightMax && height <= widthMax) {
                                                                     
-                                                                    let donut = TopLeftBottomRightModel(
+                                                                    let donut = RectangleModel(
                                                                         score:score,
                                                                         width:width,
                                                                         height:height,
@@ -1311,7 +1311,7 @@ public struct RectangleCalculator {
         return result;
     }
     
-    public static func TopLeftSquare(interlockWidth: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
+    public static func TopLeftSquare(interlockWidth: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [RectangleModel] {
         /*
               .AZURE
               S I
@@ -1319,7 +1319,7 @@ public struct RectangleCalculator {
               A N
               R
         */
-        var result: [TopLeftBottomRightModel] = [];
+        var result: [RectangleModel] = [];
         
         let wordCount = words.count
         
@@ -1380,7 +1380,7 @@ public struct RectangleCalculator {
                                                                 if (width <= widthMax && height <= heightMax) ||
                                                                     (width <= heightMax && height <= widthMax) {
                                                                     
-                                                                    let donut = TopLeftBottomRightModel(
+                                                                    let donut = RectangleModel(
                                                                         score:score,
                                                                         width:width,
                                                                         height:height,
@@ -1426,7 +1426,7 @@ public struct RectangleCalculator {
         return result;
     }
     
-    public static func TopRightRectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
+    public static func TopRightRectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [RectangleModel] {
         /*
            H
          TOYS.
@@ -1436,7 +1436,7 @@ public struct RectangleCalculator {
              R
              E
         */
-        var result: [TopLeftBottomRightModel] = [];
+        var result: [RectangleModel] = [];
 
         if (interlockHeight <= interlockWidth) {
             return result;
@@ -1495,7 +1495,7 @@ public struct RectangleCalculator {
                                                                 if (width <= widthMax && height <= heightMax) ||
                                                                     (width <= heightMax && height <= widthMax) {
                                                                     
-                                                                    let donut = TopLeftBottomRightModel(
+                                                                    let donut = RectangleModel(
                                                                         score:score,
                                                                         width:width,
                                                                         height:height,
@@ -1541,7 +1541,7 @@ public struct RectangleCalculator {
         return result;
     }
     
-    public static func TopRightSquare(interlockWidth: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
+    public static func TopRightSquare(interlockWidth: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [RectangleModel] {
         /*
            H
          TOYS.
@@ -1551,7 +1551,7 @@ public struct RectangleCalculator {
              R
              E
         */
-        var result: [TopLeftBottomRightModel] = [];
+        var result: [RectangleModel] = [];
         
         let wordCount = words.count
 
@@ -1606,7 +1606,7 @@ public struct RectangleCalculator {
                                                                 if (width <= widthMax && height <= heightMax) ||
                                                                     (width <= heightMax && height <= widthMax) {
                                                                     
-                                                                    let donut = TopLeftBottomRightModel(
+                                                                    let donut = RectangleModel(
                                                                         score:score,
                                                                         width:width,
                                                                         height:height,
@@ -1652,7 +1652,7 @@ public struct RectangleCalculator {
         return result;
     }
     
-    public static func BottomRightRectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
+    public static func BottomRightRectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [RectangleModel] {
         /*
             T
           Z R
@@ -1660,7 +1660,7 @@ public struct RectangleCalculator {
           O E
          INN.
         */
-        var result: [TopLeftBottomRightModel] = [];
+        var result: [RectangleModel] = [];
 
         if (interlockHeight <= interlockWidth) {
             return result;
@@ -1720,7 +1720,7 @@ public struct RectangleCalculator {
                                                                 if (width <= widthMax && height <= heightMax) ||
                                                                     (width <= heightMax && height <= widthMax) {
                                                                     
-                                                                    let donut = TopLeftBottomRightModel(
+                                                                    let donut = RectangleModel(
                                                                         score:score,
                                                                         width:width,
                                                                         height:height,
@@ -1766,7 +1766,7 @@ public struct RectangleCalculator {
         return result;
     }
     
-    public static func BottomRightSquare(interlockWidth: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
+    public static func BottomRightSquare(interlockWidth: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [RectangleModel] {
         /*
             T
           Z R
@@ -1774,7 +1774,7 @@ public struct RectangleCalculator {
           O E
          INN.
         */
-        var result: [TopLeftBottomRightModel] = [];
+        var result: [RectangleModel] = [];
         
         let wordCount = words.count
 
@@ -1829,7 +1829,7 @@ public struct RectangleCalculator {
                                                                 
                                                                 if (width <= widthMax && height <= heightMax) || (width <= heightMax && height <= widthMax) {
                                                                     
-                                                                    let donut = TopLeftBottomRightModel(
+                                                                    let donut = RectangleModel(
                                                                         score:score,
                                                                         width:width,
                                                                         height:height,
@@ -1875,7 +1875,7 @@ public struct RectangleCalculator {
         return result;
     }
     
-    public static func BottomLeftRectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [TopLeftBottomRightModel] {
+    public static func BottomLeftRectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [RectangleModel] {
         /*
             .
             H
@@ -1887,7 +1887,7 @@ public struct RectangleCalculator {
           .HYMN.
             .
         */
-        var result: [TopLeftBottomRightModel] = [];
+        var result: [RectangleModel] = [];
 
         if (interlockHeight <= interlockWidth) {
             return result;
@@ -1946,7 +1946,7 @@ public struct RectangleCalculator {
                                                                 
                                                                 if (width <= widthMax && height <= heightMax) || (width <= heightMax && height <= widthMax) {
                                                                     
-                                                                    let donut = TopLeftBottomRightModel(
+                                                                    let donut = RectangleModel(
                                                                         score:score,
                                                                         width:width,
                                                                         height:height,

@@ -12,7 +12,7 @@ final class OtherTests: XCTestCase {
 
     func test_Execute() async throws {
         
-        let result = try await RectangleCalculator.Execute(
+        let result = await RectangleCalculator.Execute(
             words: words,
             widthMax: widthMax,
             heightMax: heightMax,
@@ -25,7 +25,7 @@ final class OtherTests: XCTestCase {
     
     func test_ExecuteSortByScoreAndArea() async throws {
         
-        let result = try await RectangleCalculator.ExecuteAndSortByScoreAndArea(
+        let result = await RectangleCalculator.ExecuteAndSortByScoreAndArea(
             words: words,
             widthMax: widthMax,
             heightMax: heightMax,
@@ -57,7 +57,7 @@ final class OtherTests: XCTestCase {
     
     func test_ExecuteSortByScoreAndAreaAndSaveToCSV() async throws {
         
-        let result = try await RectangleCalculator.ExecuteAndSortByScoreAndArea(
+        let result = await RectangleCalculator.ExecuteAndSortByScoreAndArea(
             words: words,
             widthMax: widthMax,
             heightMax: heightMax,
@@ -134,7 +134,7 @@ final class OtherTests: XCTestCase {
         
         
         
-        var result: [(TopLeftBottomRightModel, String)] = []
+        var result: [(RectangleModel, String)] = []
         for item in o4x6_BottomLeft {
             let text = item.ToText(words:words)
             result.append((item,text))

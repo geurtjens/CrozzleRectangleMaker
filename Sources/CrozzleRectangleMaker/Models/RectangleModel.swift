@@ -1,18 +1,13 @@
 //
-//  TopLeftBottomRightModel.swift
+//  RectangleModel.swift
 //  
 //
 //  Created by Michael Geurtjens on 17/5/2023.
 //
 
 import Foundation
-public struct TopLeftBottomRightModel : ShapeProtocol {
-    
-//    public let score: Int
-//    public let width: Int
-//    public let height: Int
-    
-    
+public struct RectangleModel : ShapeProtocol {
+        
     // 75 MB vs 161 MB
     // This trick allows me to store smaller sized variables and so do type conversion at source
     public var score: Int { get { return Int(_score) } }

@@ -184,6 +184,7 @@ struct ClusterMakerModel : ShapeProtocol {
                 placements.append(placement)
             }
         }
+        placements.sort { $0.i < $1.i}
         return placements
     }
     

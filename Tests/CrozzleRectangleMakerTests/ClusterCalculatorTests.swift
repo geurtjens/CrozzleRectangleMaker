@@ -96,25 +96,30 @@ final class ClusterCalculatorTests: XCTestCase {
         XCTAssertEqual(12, item.height)
         
         let shape = item.ToShape()
-        let left1 = shape.placements[0]
-        XCTAssertEqual(3, left1.y)
-        XCTAssertEqual(0, left1.x)
-        XCTAssertTrue(left1.h)
         
-        let right2 = shape.placements[1]
-        XCTAssertEqual(4, right2.y)
-        XCTAssertEqual(2, right2.x)
-        XCTAssertTrue(right2.h)
-        
-        let up1 = shape.placements[2]
+        // The order of placements is based on the sequence or order of the words are we are sorting by wordId
+        let up1 = shape.placements[0]
         XCTAssertEqual(0, up1.y)
         XCTAssertEqual(3, up1.x)
         XCTAssertFalse(up1.h)
         
-        let down2 = shape.placements[3]
+        let down2 = shape.placements[1]
         XCTAssertEqual(2, down2.y)
         XCTAssertEqual(4, down2.x)
         XCTAssertFalse(up1.h)
+        
+        
+        let left1 = shape.placements[2]
+        XCTAssertEqual(3, left1.y)
+        XCTAssertEqual(0, left1.x)
+        XCTAssertTrue(left1.h)
+        
+        let right2 = shape.placements[3]
+        XCTAssertEqual(4, right2.y)
+        XCTAssertEqual(2, right2.x)
+        XCTAssertTrue(right2.h)
+        
+        
         
         let text = item.ToText(words: words)
         let textExpected = "   .      \n   S      \n   N.     \n.ZION.    \n  .WALNUT.\n   .Z     \n    A     \n    R     \n    E     \n    T     \n    H     \n    .     "
