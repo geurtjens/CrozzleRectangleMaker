@@ -20,21 +20,30 @@ public struct RectangleModel : ShapeProtocol {
     
     public let top: UInt8
     public let topLetterPos: UInt8
+    public let topLength: UInt8
     
     public let bottom: UInt8
     public let bottomLetterPos: UInt8
+    public let bottomLength: UInt8
     
     public let left: UInt8
     public let leftLetterPos: UInt8
+    public let leftLength: UInt8
     
     public let right: UInt8
     public let rightLetterPos: UInt8
+    public let rightLength: UInt8
     
     public let interlockWidth: UInt8
     public let interlockHeight: UInt8
     public let type: RectangleType
     
-    public init(score: Int, width: Int, height: Int, top: Int, topLetterPos: Int, bottom: Int, bottomLetterPos: Int, left: Int, leftLetterPos: Int, right: Int, rightLetterPos: Int, interlockWidth: Int, interlockHeight: Int, type: RectangleType) {
+    public init(score: Int, width: Int, height: Int,
+                top: Int, topLetterPos: Int, topLength: Int,
+                bottom: Int, bottomLetterPos: Int, bottomLength: Int,
+                left: Int, leftLetterPos: Int, leftLength: Int,
+                right: Int, rightLetterPos: Int, rightLength: Int,
+                interlockWidth: Int, interlockHeight: Int, type: RectangleType) {
 //        self.score = score
 //        self.width = width
 //        self.height = height
@@ -45,12 +54,16 @@ public struct RectangleModel : ShapeProtocol {
         self._height = UInt8(height)
         self.top = UInt8(top)
         self.topLetterPos = UInt8(topLetterPos)
+        self.topLength = UInt8(topLength)
         self.bottom = UInt8(bottom)
         self.bottomLetterPos = UInt8(bottomLetterPos)
+        self.bottomLength = UInt8(bottomLength)
         self.left = UInt8(left)
         self.leftLetterPos = UInt8(leftLetterPos)
+        self.leftLength = UInt8(leftLength)
         self.right = UInt8(right)
         self.rightLetterPos = UInt8(rightLetterPos)
+        self.rightLength = UInt8(rightLength)
         self.interlockWidth = UInt8(interlockWidth)
         self.interlockHeight = UInt8(interlockHeight)
         self.type = type

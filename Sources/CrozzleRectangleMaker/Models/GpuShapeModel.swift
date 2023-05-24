@@ -28,6 +28,8 @@ struct GpuShapeModel {
     /// The y position for the placed word
     let y: [UInt8]
     
+    let length: [UInt8]
+    
     init(shapes: [ShapeModel], wordCount: Int) {
         
         let _shapeCount = shapes.count
@@ -42,6 +44,8 @@ struct GpuShapeModel {
         var _isHorizontals:[Bool] = Array(repeating: true, count: _size )
         var _xs: [UInt8] = Array(repeating: 0, count: _size)
         var _ys: [UInt8] = Array(repeating: 0, count: _size)
+        var _lengths: [UInt8] = Array(repeating: 0, count: _size)
+       
 
         for i in 0..<shapes.count {
             let shape = shapes[i]
@@ -62,6 +66,7 @@ struct GpuShapeModel {
                 _isHorizontals[k] = placement.h
                 _xs[k] = UInt8(placement.x)
                 _ys[k] = UInt8(placement.y)
+                _lengths[k] = UInt8(placement.l)
             }
         }
         
@@ -76,5 +81,6 @@ struct GpuShapeModel {
         self.isHorizontal = _isHorizontals
         self.x = _xs
         self.y = _ys
+        self.length = _lengths
     }
 }

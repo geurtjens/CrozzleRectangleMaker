@@ -26,13 +26,15 @@ public struct EdgeModel : ShapeProtocol {
             i:Int(horizontalWordId),
             h: true,
             x: 0,
-            y: Int(verticalPosition) + 1
+            y: Int(verticalPosition) + 1,
+            length: horizontalLength
         )
         let vertical = PlacementModel(
             i: Int(verticalWordId),
             h: false,
             x: Int(horizontalPosition) + 1,
-            y: 0
+            y: 0,
+            length: verticalLength
         )
         return [horizontal, vertical]
     }

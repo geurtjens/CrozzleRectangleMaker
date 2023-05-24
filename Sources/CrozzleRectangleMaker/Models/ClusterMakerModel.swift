@@ -163,10 +163,10 @@ struct ClusterMakerModel : ShapeProtocol {
             let y = maxUp + i + 1
             let wordId = wordsHorizontal[i]
             if pattern == .leading {
-                let placement = PlacementModel(i: wordId, h: true, x: maxLeft - length, y: y)
+                let placement = PlacementModel(i: wordId, h: true, x: maxLeft - length, y: y, length: lengthsHorizontal[i])
                 placements.append(placement)
             } else {
-                let placement = PlacementModel(i: wordId, h: true, x: maxLeft, y: y)
+                let placement = PlacementModel(i: wordId, h: true, x: maxLeft, y: y, length: lengthsHorizontal[i])
                 placements.append(placement)
             }
         }
@@ -176,11 +176,11 @@ struct ClusterMakerModel : ShapeProtocol {
             let x = maxLeft + i + 1
             let wordId = wordsVertical[i]
             if pattern == .leading {
-                let placement = PlacementModel(i: wordId, h: false, x: x, y: maxUp - length)
+                let placement = PlacementModel(i: wordId, h: false, x: x, y: maxUp - length, length: lengthsVertical[i])
                 placements.append(placement)
             } else {
                 // y is maxUp - 1 because it needs to add his .
-                let placement = PlacementModel(i: wordId, h: false, x: x, y: maxUp)
+                let placement = PlacementModel(i: wordId, h: false, x: x, y: maxUp, length: lengthsVertical[i])
                 placements.append(placement)
             }
         }
