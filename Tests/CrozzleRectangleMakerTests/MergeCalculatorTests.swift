@@ -40,7 +40,9 @@ final class MergeCalculatorTests: XCTestCase {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        let wordMatches = MergeCalculator.ExecuteSameShape(shapes:edgeShapes)
+        let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
+        
+        let wordMatches = MergeCalculator.ExecuteSameShape(shapes:edgeShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         
         let wordMatchesFirst = wordMatches[0]
         // Interesting that we can have different numbers depending on the arrangement of words
@@ -87,7 +89,10 @@ final class MergeCalculatorTests: XCTestCase {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        let wordMatches = MergeCalculator.ExecuteSameShape(shapes:edgeShapes)
+        let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
+        
+        let wordMatches = MergeCalculator.ExecuteSameShape(shapes:edgeShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        
         
         let wordMatchesFirst = wordMatches[0]
         // Interesting that we can have different numbers depending on the arrangement of words
@@ -137,7 +142,10 @@ final class MergeCalculatorTests: XCTestCase {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        let wordMatches = MergeCalculator.ExecuteSameShape(shapes:edgeShapes)
+        let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
+        
+        let wordMatches = MergeCalculator.ExecuteSameShape(shapes:edgeShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        
         
         let wordMatchesFirst = wordMatches[0]
         // Interesting that we can have different numbers depending on the arrangement of words
@@ -177,7 +185,10 @@ final class MergeCalculatorTests: XCTestCase {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        let wordMatches = MergeCalculator.ExecuteSameShape(shapes:edgeShapes)
+        let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
+        
+        let wordMatches = MergeCalculator.ExecuteSameShape(shapes:edgeShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        
         
         let wordMatchesFirst = wordMatches[0]
         
@@ -206,14 +217,16 @@ final class MergeCalculatorTests: XCTestCase {
             heightMax: heightMax)
         
         
-        let wordMatches = MergeCalculator.ExecuteSameShape(shapes: edgeShapes)
+        let scoresMin = [0, 10, 22, 62, 44, 55, 66, 77, 88, 99, 100]
+        
+        let wordMatches = MergeCalculator.ExecuteSameShape(shapes:edgeShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         
         var count = 0
         for i in 0..<wordMatches.count {
             
             count += wordMatches[i].count
         }
-        XCTAssertEqual(2837626, count) //2837626
+        XCTAssertEqual(210058, count) //2837626 // with 54 there where 24191
         print(edgeShapes.count)
         print(count)
         
@@ -261,7 +274,9 @@ final class MergeCalculatorTests: XCTestCase {
         
         let gpuShapes = GpuShapeModel(shapes: shapes, totalWords:words.count, wordCountInShapes: 4)
         
-        let result = MergeCalculator.ExecuteSameShape(shapes: gpuShapes)
+        let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
+        
+        let result = MergeCalculator.ExecuteSameShape(shapes:gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         
         // This result is actually wrong so we have more to do I think
         for items in result {
@@ -309,14 +324,17 @@ final class MergeCalculatorTests: XCTestCase {
         
         let gpuShapes = GpuShapeModel(shapes: shapes, totalWords:words.count, wordCountInShapes: 4)
         
-        let result = MergeCalculator.ExecuteSameShape(shapes: gpuShapes)
+        let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
+        
+        let result = MergeCalculator.ExecuteSameShape(shapes:gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        
         
         
         for items in result {
             for shape in items {
                 let (newShape,text) = ShapeCalculator.ToValidShape(shape: shape, words:words)
                 //if text.contains("#") == false {
-                    print(text)
+                    //print(text)
                 //}
             }
             //let edge = edges[items]
@@ -345,7 +363,10 @@ final class MergeCalculatorTests: XCTestCase {
             heightMax: heightMax)
         print("found gpu shapes")
         
-        let wordMatches = MergeCalculator.ExecuteSameShape(shapes: gpuShapes)
+        let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
+        
+        let wordMatches = MergeCalculator.ExecuteSameShape(shapes:gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        
         var count = 0
         for i in 0..<wordMatches.count {
             
@@ -385,19 +406,22 @@ final class MergeCalculatorTests: XCTestCase {
         }
         
         
-        let rectangleShapes = await GpuShapeCalculator.get_4_word_shapes(
+        let gpuShapes = await GpuShapeCalculator.get_4_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax)
         
-        let wordMatches = MergeCalculator.ExecuteSameShape(shapes: rectangleShapes)
+        let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
+        
+        let wordMatches = MergeCalculator.ExecuteSameShape(shapes:gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        
         var count = 0
         for i in 0..<wordMatches.count {
             count += wordMatches[i].count
         }
         XCTAssertEqual(2854550,count)
-        print(rectangleShapes.count)
+        print(gpuShapes.count)
         print(count)
         
     }
