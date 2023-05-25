@@ -103,36 +103,85 @@ public struct MergePlacementCalculator {
                                         xSource: Int, ySource: Int,
                                         xSearch: Int, ySearch: Int,
                                         flipped: Bool )
-    -> (Int8, Int8, Int8, Int8) {
+    -> (Int8, Int8, Int8, Int8)
+    {
         
-        let xDiff = xSource - xSearch
-        let yDiff = ySource - ySearch
-        
-        
-        print("xOffset:\(xOffset), yOffset:\(yOffset)")
-        print("xSource - xSearch = xDiff : \(xSource) - \(xSearch) = \(xDiff) ")
-        print("ySource - ySearch = yDiff : \(ySource) - \(ySearch) = \(yDiff) ")
-        print("flipped:\(flipped)")
-        
-        // When it is minus then we need to move the first one in that direction in the absolute amount
-        // when its plus then we need to move the other one in that direction
-        
-        var sourceOffsetX = 0
-        var sourceOffsetY = 0
-        var searchOffsetX = 0
-        var searchOffsetY = 0
-        
-        
-        if xDiff < 0 {
-            sourceOffsetX += xDiff * -1
-        } else if xDiff > 0 {
-            searchOffsetX += xDiff
+        if flipped == false {
+            let xDiff = xSource - xSearch
+            let yDiff = ySource - ySearch
+            
+            
+            print("xOffset:\(xOffset), yOffset:\(yOffset)")
+            print("xSource - xSearch = xDiff : \(xSource) - \(xSearch) = \(xDiff) ")
+            print("ySource - ySearch = yDiff : \(ySource) - \(ySearch) = \(yDiff) ")
+            print("flipped:\(flipped)")
+            
+            // When it is minus then we need to move the first one in that direction in the absolute amount
+            // when its plus then we need to move the other one in that direction
+            
+            var sourceOffsetX = 0
+            var sourceOffsetY = 0
+            var searchOffsetX = 0
+            var searchOffsetY = 0
+            
+            
+            if xDiff < 0 {
+                sourceOffsetX += xDiff * -1
+            } else if xDiff > 0 {
+                searchOffsetX += xDiff
+            }
+            if yDiff < 0 {
+                sourceOffsetY += yDiff * -1
+            } else if yDiff > 0 {
+                searchOffsetY += yDiff
+            }
+            
+            //        if xOffset < 0 {
+            //            sourceOffsetX += xOffset * -1
+            //        } else if xOffset > 0 {
+            //            searchOffsetX += xOffset
+            //        }
+            //        if yOffset < 0 {
+            //            sourceOffsetY += yOffset * -1
+            //        } else if yOffset > 0 {
+            //            searchOffsetY += yOffset
+            //        }
+            
+            
+            print("sourceOffsetX: \(sourceOffsetX), sourceOffsetY: \(sourceOffsetY)")
+            print("searchOffsetX: \(searchOffsetX), searchOffsetY: \(searchOffsetY)")
+            
+            return (Int8(sourceOffsetX),Int8(sourceOffsetY),Int8(searchOffsetX),Int8(searchOffsetY))
         }
-        if yDiff < 0 {
-            sourceOffsetY += yDiff * -1
-        } else if yDiff > 0 {
-            searchOffsetY += yDiff
-        }
+        else {
+            let xDiff = xSource - ySearch
+            let yDiff = ySource - xSearch
+        
+        
+            print("xOffset:\(xOffset), yOffset:\(yOffset)")
+            print("xSource - xSearch = xDiff : \(xSource) - \(xSearch) = \(xDiff) ")
+            print("ySource - ySearch = yDiff : \(ySource) - \(ySearch) = \(yDiff) ")
+            print("flipped:\(flipped)")
+            
+            // When it is minus then we need to move the first one in that direction in the absolute amount
+            // when its plus then we need to move the other one in that direction
+            
+            var sourceOffsetX = 0
+            var sourceOffsetY = 0
+            var searchOffsetX = 0
+            var searchOffsetY = 0
+            
+            
+            if xDiff < 0 {
+                sourceOffsetX += xDiff * -1
+            } else if xDiff > 0 {
+                searchOffsetX += xDiff
+            }
+            if yDiff < 0 {
+                sourceOffsetY += yDiff * -1
+            } else if yDiff > 0 {
+                searchOffsetY += yDiff
+            }
         
 //        if xOffset < 0 {
 //            sourceOffsetX += xOffset * -1
@@ -146,15 +195,10 @@ public struct MergePlacementCalculator {
 //        }
         
         
-        print("sourceOffsetX: \(sourceOffsetX), sourceOffsetY: \(sourceOffsetY)")
-        print("searchOffsetX: \(searchOffsetX), searchOffsetY: \(searchOffsetY)")
-        
-        
-        
-        if flipped == false {
+            print("sourceOffsetX: \(sourceOffsetX), sourceOffsetY: \(sourceOffsetY)")
+            print("searchOffsetX: \(searchOffsetX), searchOffsetY: \(searchOffsetY)")
+            
             return (Int8(sourceOffsetX),Int8(sourceOffsetY),Int8(searchOffsetX),Int8(searchOffsetY))
-        } else {
-            return (Int8(sourceOffsetY),Int8(sourceOffsetX),Int8(searchOffsetY),Int8(searchOffsetX))
         }
         
         
