@@ -12,6 +12,151 @@ final class MergeCalculatorTests: XCTestCase {
     func test_FindAnyRectangleMerge() throws {
         
     }
+    func test_EdgesBasic3() throws {
+        let words = ["CANDLES","EVE","STAR"]
+        
+        /*
+         .   .
+         S   E
+         T   V
+       .CANDLES.
+         R   .
+         .
+         */
+        var edges = EdgeCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        
+        edges.sort {
+            if $0.score == $1.score {
+                return $0.width * $0.height < $1.width * $1.height
+            } else {
+                return $0.score > $1.score
+            }
+        }
+        
+        
+        let edgeShapes = GpuShapeCalculator.get_2_word_shapes(
+            words: words,
+            scoreMin: scoreMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        let wordMatches = MergeCalculator.ExecuteSameShape(shapes:edgeShapes)
+        
+        let wordMatchesFirst = wordMatches[0]
+        // Interesting that we can have different numbers depending on the arrangement of words
+        for items in wordMatches {
+            for shape in items {
+                let (newShape,text) = ShapeCalculator.ToValidShape(shape: shape, words:words)
+                if newShape != nil {
+                    print(text)
+                }
+            }
+            //let edge = edges[items]
+            //print(edge.ToText(words:words))
+        }
+        
+        // There are 301 likely matches between the first and all other shapes
+        //XCTAssertEqual(301, wordMatches[0].count)
+    }
+    func test_EdgesBasic2() throws {
+        let words = ["CANDLES","STAR","EVE"]
+        
+        /*
+         .   .
+         S   E
+         T   V
+       .CANDLES.
+         R   .
+         .
+         */
+        
+        var edges = EdgeCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        
+        edges.sort {
+            if $0.score == $1.score {
+                return $0.width * $0.height < $1.width * $1.height
+            } else {
+                return $0.score > $1.score
+            }
+        }
+        
+        
+        let edgeShapes = GpuShapeCalculator.get_2_word_shapes(
+            words: words,
+            scoreMin: scoreMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        let wordMatches = MergeCalculator.ExecuteSameShape(shapes:edgeShapes)
+        
+        let wordMatchesFirst = wordMatches[0]
+        // Interesting that we can have different numbers depending on the arrangement of words
+        for items in wordMatches {
+            for shape in items {
+                let (newShape,text) = ShapeCalculator.ToValidShape(shape: shape, words:words)
+                if newShape != nil {
+                    print(text)
+                }
+            }
+            //let edge = edges[items]
+            //print(edge.ToText(words:words))
+        }
+        
+        // There are 301 likely matches between the first and all other shapes
+        //XCTAssertEqual(301, wordMatches[0].count)
+    }
+    func test_EdgesBasic() throws {
+        let words = ["STAR","EVE","CANDLES"]
+        
+        /*
+         .
+         C
+      .STAR.
+         N
+         D
+         L
+      .EVE.
+         S
+         .
+         */
+        
+        var edges = EdgeCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        
+        edges.sort {
+            if $0.score == $1.score {
+                return $0.width * $0.height < $1.width * $1.height
+            } else {
+                return $0.score > $1.score
+            }
+        }
+        
+        
+        let edgeShapes = GpuShapeCalculator.get_2_word_shapes(
+            words: words,
+            scoreMin: scoreMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        let wordMatches = MergeCalculator.ExecuteSameShape(shapes:edgeShapes)
+        
+        let wordMatchesFirst = wordMatches[0]
+        // Interesting that we can have different numbers depending on the arrangement of words
+        for items in wordMatches {
+            for shape in items {
+                let (newShape,text) = ShapeCalculator.ToValidShape(shape: shape, words:words)
+                if newShape != nil {
+                    print(text)
+                }
+            }
+            //let edge = edges[items]
+            //print(edge.ToText(words:words))
+        }
+        
+        // There are 301 likely matches between the first and all other shapes
+        //XCTAssertEqual(301, wordMatches[0].count)
+    }
+        
+    
     
     func test_Edges() throws {
         
@@ -39,7 +184,7 @@ final class MergeCalculatorTests: XCTestCase {
         for items in wordMatches {
             for shape in items {
                 let (newShape,text) = ShapeCalculator.ToValidShape(shape: shape, words:words)
-                if text.contains("#") == false {
+                if newShape != nil {
                     print(text)
                 }
             }
@@ -122,12 +267,10 @@ final class MergeCalculatorTests: XCTestCase {
         for items in result {
             for shape in items {
                 let (newShape,text) = ShapeCalculator.ToValidShape(shape: shape, words:words)
-                //if text.contains("#") == false {
+                if newShape != nil {
                     print(text)
-                //}
+                }
             }
-            //let edge = edges[items]
-            //print(edge.ToText(words:words))
         }
         
         XCTAssertEqual(2, result.count)

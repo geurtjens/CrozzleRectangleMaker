@@ -23,9 +23,9 @@ public struct ShapeCalculator {
         let (text,score) = ToText(shape: shape, words: words)
         
         // We should also check that the text doesnt have text running in parallel and without the . at each end
-        let verifiedText = ShapeCalculator.VerifyText(text: text)
+        let textIsVerified = ShapeCalculator.VerifyText(text: text)
         
-        if score > 0 {
+        if score > 0 && textIsVerified {
             let newShape = ShapeModel(score: Int(score), width: shape.width, height: shape.height, placements: shape.placements)
             return (newShape, text)
         } else {
@@ -34,20 +34,72 @@ public struct ShapeCalculator {
         }
         
     }
+    
+    public static func rotateGrid(grid: [Substring]) -> [String] {
+        if grid.count == 0 {
+            return []
+        }
+
+        var result: [String] = []
+        
+        let width = grid[0].count
+        for j in 1..<width {
+            var line = ""
+            for i in 0..<grid.count {
+                
+            
+                line += String(grid[i][j])
+            }
+            result.append(line)
+        }
+        
+        return result
+    }
     public static func VerifyText(text: String) -> Bool {
 
         let grid = text.split(separator: "\n")
-
-        // Horizontal verification
         
-//        for line in grid {
-//            var wordStarted = false
-//            for letter in line {
-//                if letter == "." {
-//                    wordStarted = true
-//                }
-//            }
-//        }
+        //var blockDetected = false
+        //var moreThanTwoLettersDetected = false
+
+        let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        // Horizontal verification
+        var previous: Character = " "
+        var current: Character = " "
+        var next: Character = " "
+        for line in grid {
+            previous = line[0]
+            for i in 1..<line.count - 1 {
+                current = line[i]
+                next = line[i+1]
+                
+                if previous == " " && alphabet.contains(current) && alphabet.contains(next) {
+                    return false
+                } else if i == 1 && alphabet.contains(previous) && alphabet.contains(current) {
+                    return false
+                }
+            }
+        }
+        
+        let reversed = rotateGrid(grid: grid)
+        
+        for line in reversed {
+            previous = line[0]
+            for i in 1..<line.count - 1 {
+                current = line[i]
+                next = line[i+1]
+                
+                if previous == " " && alphabet.contains(current) && alphabet.contains(next) {
+                    return false
+                } else if i == 1 && alphabet.contains(previous) && alphabet.contains(current) {
+                    return false
+                }
+            }
+        }
+        
+        
+        
+        
         return true
     }
     public static func ToText(shape: ShapeModel, words:[String]) -> (String, UInt16) {

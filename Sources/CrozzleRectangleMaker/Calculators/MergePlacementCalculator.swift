@@ -111,10 +111,10 @@ public struct MergePlacementCalculator {
             let yDiff = ySource - ySearch
             
             
-            print("xOffset:\(xOffset), yOffset:\(yOffset)")
-            print("xSource - xSearch = xDiff : \(xSource) - \(xSearch) = \(xDiff) ")
-            print("ySource - ySearch = yDiff : \(ySource) - \(ySearch) = \(yDiff) ")
-            print("flipped:\(flipped)")
+            //print("xOffset:\(xOffset), yOffset:\(yOffset)")
+            //print("xSource - xSearch = xDiff : \(xSource) - \(xSearch) = \(xDiff) ")
+            //print("ySource - ySearch = yDiff : \(ySource) - \(ySearch) = \(yDiff) ")
+            //print("flipped:\(flipped)")
             
             // When it is minus then we need to move the first one in that direction in the absolute amount
             // when its plus then we need to move the other one in that direction
@@ -148,8 +148,8 @@ public struct MergePlacementCalculator {
             //        }
             
             
-            print("sourceOffsetX: \(sourceOffsetX), sourceOffsetY: \(sourceOffsetY)")
-            print("searchOffsetX: \(searchOffsetX), searchOffsetY: \(searchOffsetY)")
+            //print("sourceOffsetX: \(sourceOffsetX), sourceOffsetY: \(sourceOffsetY)")
+            //print("searchOffsetX: \(searchOffsetX), searchOffsetY: \(searchOffsetY)")
             
             return (Int8(sourceOffsetX),Int8(sourceOffsetY),Int8(searchOffsetX),Int8(searchOffsetY))
         }
@@ -158,10 +158,10 @@ public struct MergePlacementCalculator {
             let yDiff = ySource - xSearch
         
         
-            print("xOffset:\(xOffset), yOffset:\(yOffset)")
-            print("xSource - xSearch = xDiff : \(xSource) - \(xSearch) = \(xDiff) ")
-            print("ySource - ySearch = yDiff : \(ySource) - \(ySearch) = \(yDiff) ")
-            print("flipped:\(flipped)")
+            //print("xOffset:\(xOffset), yOffset:\(yOffset)")
+            //print("xSource - xSearch = xDiff : \(xSource) - \(xSearch) = \(xDiff) ")
+            //print("ySource - ySearch = yDiff : \(ySource) - \(ySearch) = \(yDiff) ")
+            //print("flipped:\(flipped)")
             
             // When it is minus then we need to move the first one in that direction in the absolute amount
             // when its plus then we need to move the other one in that direction
@@ -195,8 +195,8 @@ public struct MergePlacementCalculator {
 //        }
         
         
-            print("sourceOffsetX: \(sourceOffsetX), sourceOffsetY: \(sourceOffsetY)")
-            print("searchOffsetX: \(searchOffsetX), searchOffsetY: \(searchOffsetY)")
+            //print("sourceOffsetX: \(sourceOffsetX), sourceOffsetY: \(sourceOffsetY)")
+            //print("searchOffsetX: \(searchOffsetX), searchOffsetY: \(searchOffsetY)")
             
             return (Int8(sourceOffsetX),Int8(sourceOffsetY),Int8(searchOffsetX),Int8(searchOffsetY))
         }
@@ -250,7 +250,7 @@ public struct MergePlacementCalculator {
         
         let width = PlacementCalculator.width(fromPlacements: combined)
         let height = PlacementCalculator.height(fromPlacements: combined)
-        print("width: \(width), height: \(height)")
+       // print("width: \(width), height: \(height)")
         // We do not know the score just yet
         let shape = ShapeModel(score:10, width: width, height: height, placements: combined)
         
