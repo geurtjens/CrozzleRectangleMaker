@@ -7,6 +7,15 @@
 
 import Foundation
 public struct ShapeCalculator {
+    
+    public static func toShape(fromClusters clusters: [ClusterMakerModel]) -> [ShapeModel] {
+        var shapes: [ShapeModel] = []
+        for cluster in clusters {
+            shapes.append(cluster.ToShape())
+        }
+        return shapes
+    }
+    
     public static func Flip(shape: ShapeModel) -> ShapeModel {
         var placements:[PlacementModel] = []
         
@@ -85,6 +94,7 @@ public struct ShapeCalculator {
                 } else if i == 1 && alphabet.contains(previous) && alphabet.contains(current) {
                     return false
                 }
+                previous = current
             }
         }
         
@@ -101,6 +111,7 @@ public struct ShapeCalculator {
                 } else if i == 1 && alphabet.contains(previous) && alphabet.contains(current) {
                     return false
                 }
+                previous = current
             }
         }
         

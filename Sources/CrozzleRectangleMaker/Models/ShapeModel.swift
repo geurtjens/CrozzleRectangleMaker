@@ -7,8 +7,8 @@
 
 import Foundation
 public struct ShapeModel {
-    let score: Int
-    let width: Int
-    let height: Int
-    let placements: [PlacementModel]
+    public let score: Int
+    public let width: Int
+    public let height: Int
+    public let placements: [PlacementModel]
 }

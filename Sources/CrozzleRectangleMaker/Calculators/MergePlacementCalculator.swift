@@ -248,6 +248,23 @@ public struct MergePlacementCalculator {
         var combined = sourceFinal + searchFinal
         combined.sort { $0.i < $1.i }
         
+        /*
+         .  .
+         S .G
+         T.BUOY.
+        .AHOY.
+        .YAW.
+         .W.
+          S
+          E
+          R
+          .
+         
+         
+         
+         */
+        
+        
         let width = PlacementCalculator.width(fromPlacements: combined)
         let height = PlacementCalculator.height(fromPlacements: combined)
        // print("width: \(width), height: \(height)")

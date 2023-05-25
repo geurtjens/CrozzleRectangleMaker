@@ -9,19 +9,19 @@ import Foundation
 
 // This will construct the shape and get its width height and score so we can work out if its valid
 
-struct ClusterMakerModel : ShapeProtocol {
+public struct ClusterMakerModel : ShapeProtocol {
     
-    let wordsHorizontal: [Int]
-    let wordsVertical: [Int]
-    let patternHorizontal: [ClusterPosition]
-    let patternVertical: [ClusterPosition]
+    public let wordsHorizontal: [Int]
+    public let wordsVertical: [Int]
+    public let patternHorizontal: [ClusterPosition]
+    public let patternVertical: [ClusterPosition]
     
-    let lengthsHorizontal: [UInt8]
-    let lengthsVertical: [UInt8]
+    public let lengthsHorizontal: [UInt8]
+    public let lengthsVertical: [UInt8]
     
-    let score: Int
-    let width: Int
-    let height: Int
+    public let score: Int
+    public let width: Int
+    public let height: Int
     
     init(wordsHorizontal: [Int], wordsVertical: [Int], patternHorizontal: [ClusterPosition], patternVertical: [ClusterPosition], start: [String], end: [String], len:[Int]) {
         self.wordsHorizontal = wordsHorizontal
@@ -148,7 +148,7 @@ struct ClusterMakerModel : ShapeProtocol {
     }
 
         
-    func ToPlacement() -> [PlacementModel] {
+    public func ToPlacement() -> [PlacementModel] {
 
         let interlockWidth = wordsVertical.count
         let interlockHeight = wordsHorizontal.count

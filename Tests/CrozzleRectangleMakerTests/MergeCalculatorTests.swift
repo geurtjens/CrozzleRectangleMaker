@@ -189,24 +189,172 @@ final class MergeCalculatorTests: XCTestCase {
         
         let wordMatches = MergeCalculator.ExecuteSameShape(shapes:edgeShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         
-        
-        let wordMatchesFirst = wordMatches[0]
-        
+        var shapes: [ShapeModel] = []
         for items in wordMatches {
             for shape in items {
-                let (newShape,text) = ShapeCalculator.ToValidShape(shape: shape, words:words)
-                if newShape != nil {
-                    print(text)
-                }
+                shapes.append(shape)
             }
-            //let edge = edges[items]
-            //print(edge.ToText(words:words))
         }
         
+        shapes.sort { $0.score > $1.score}
+        for shape in shapes {
+            let (text,score) = ShapeCalculator.ToText(shape: shape, words:words)
+            print("score of \(score) using \(shape.placements.count) words")
+            print(text)
+        }
+        
+        
         // There are 301 likely matches between the first and all other shapes
-        XCTAssertEqual(301, wordMatches[0].count)
+        XCTAssertEqual(301, shapes.count)
     }
     
+    func test_Execute2x2_2x3_From_8806() throws {
+        
+        /*
+         ..
+      .STAY.
+        .HAWSER.
+       .BOW.
+      .GUY.
+        O.
+        Y
+        .
+         */
+        
+        
+        let words = WordData.words_8806()
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+        
+        let c2x2 = ClusterCalculator.C2x2(
+            start: words,
+            end: end,
+            len: len,
+            scoreMin: scoreMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        let c2x2Shapes = ShapeCalculator.toShape(fromClusters: c2x2)
+        
+//        let (C2x2Text,C2x2Score) = ShapeCalculator.ToText(shape:c2x2Shapes[0], words: words)
+//        print("Shape A score: \(C2x2Score)")
+//        print(C2x2Text)
+        
+        let c2x3 = ClusterCalculator.C2x3(
+            start: words,
+            end: end,
+            len: len,
+            scoreMin: scoreMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        let c2x3Shapes = ShapeCalculator.toShape(fromClusters: c2x3)
+//        let (C2x3Text,C2x3Score) = ShapeCalculator.ToText(shape:c2x3Shapes[0], words: words)
+//        print("Shape B score: \(C2x3Score)")
+//        print(C2x3Text)
+        
+
+        
+        
+        let c2x2Gpu = GpuShapeModel(shapes: c2x2Shapes, totalWords: words.count, wordCountInShapes: 4)
+        let c2x3Gpu = GpuShapeModel(shapes: c2x3Shapes, totalWords: words.count, wordCountInShapes: 5)
+        
+       
+        
+        let scoresMin = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        
+        let shapesCollection = MergeCalculator.ExecuteDifferentShapes(source: c2x2Gpu, search:c2x3Gpu, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        
+        var shapes: [ShapeModel] = []
+        for items in shapesCollection {
+            for shape in items {
+                shapes.append(shape)
+            }
+        }
+        
+        shapes.sort { $0.score > $1.score}
+        for shape in shapes {
+            let (text,score) = ShapeCalculator.ToText(shape: shape, words:words)
+            
+
+            print("score of \(score) using \(shape.placements.count) words")
+            print(text)
+            
+        }
+        
+        XCTAssertEqual(300, shapes.count)
+       
+    }
+    
+    func test_Execute2x2_2x3_From_8806_One() throws {
+        
+        /*
+         ..
+      .STAY.
+        .HAWSER.
+       .BOW.
+      .GUY.
+        O.
+        Y
+        .       
+         */
+        
+        
+        let words = ["AHOY", "YAW", "STAY", "HAWSER","BOW", "GUY", "BUOY"] // WordData.words_8806()
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+        
+        let c2x2 = ClusterCalculator.C2x2(
+            start: words,
+            end: end,
+            len: len,
+            scoreMin: scoreMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        let c2x2Shapes = ShapeCalculator.toShape(fromClusters: c2x2)
+        
+        let (C2x2Text,C2x2Score) = ShapeCalculator.ToText(shape:c2x2Shapes[0], words: words)
+        print("Shape A score: \(C2x2Score)")
+        print(C2x2Text)
+        
+        let c2x3 = ClusterCalculator.C2x3(
+            start: words,
+            end: end,
+            len: len,
+            scoreMin: scoreMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        let c2x3Shapes = ShapeCalculator.toShape(fromClusters: c2x3)
+        let (C2x3Text,C2x3Score) = ShapeCalculator.ToText(shape:c2x3Shapes[0], words: words)
+        print("Shape B score: \(C2x3Score)")
+        print(C2x3Text)
+        
+
+        
+        
+        let c2x2Gpu = GpuShapeModel(shapes: c2x2Shapes, totalWords: words.count, wordCountInShapes: 4)
+        let c2x3Gpu = GpuShapeModel(shapes: c2x3Shapes, totalWords: words.count, wordCountInShapes: 5)
+        
+       
+        
+        let scoresMin = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        
+        let wordMatches = MergeCalculator.ExecuteDifferentShapes(source: c2x2Gpu, search:c2x3Gpu, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        XCTAssertEqual(1, wordMatches.count)
+        XCTAssertEqual(1, wordMatches[0].count)
+        let shape = wordMatches[0][0]
+        
+        let expectedText = "   ..     \n.STAY.    \n  .HAWSER.\n .BOW.    \n.GUY.     \n  O.      \n  Y       \n  .       "
+        let (text, score) = ShapeCalculator.ToText(shape: shape, words: words)
+        
+        XCTAssertEqual(184, score)
+        
+        XCTAssertEqual(expectedText, text)
+        print("Result score: \(score)")
+        print(text)
+    }
     
     func test_EdgesAll() throws {
         

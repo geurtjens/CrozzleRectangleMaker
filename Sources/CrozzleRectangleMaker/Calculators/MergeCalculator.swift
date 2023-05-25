@@ -288,6 +288,35 @@ struct MergeCalculator {
         return result
     }
     
+    public static func ExecuteDifferentShapes(source: GpuShapeModel, search: GpuShapeModel, words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [[ShapeModel]] {
+        var result: [[ShapeModel]] = []
+        
+        for shapeId in 0..<source.count {
+            let item = ExecuteOne(searchableShapes: search, searchMin: 0, searchMax: search.count, sourceShapes: source, sourceShapeId: shapeId)
+            
+            let instructions = getMergeInstructions(source:source, searchable: search, matches: item)
+            var shapeList: [ShapeModel] = []
+            for instruction in instructions {
+           
+                let a = MergePlacementCalculator.GetPlacementsOne(source: source, search: search, instruction: instruction)
+                
+                if (a.width <= widthMax && a.height <= heightMax) || (a.width <= heightMax && a.height <= widthMax) {
+                    let (shape,_) = ShapeCalculator.ToValidShape(shape: a, words: words)
+                    
+                    if let shape = shape {
+                        let wordCount = shape.placements.count
+                        let scoreMin = scoresMin[wordCount]
+                        if shape.score >= scoreMin {
+                            shapeList.append(shape)
+                        }
+                    }
+                }
+            }
+            result.append(shapeList)
+        }
+        return result
+    }
+    
     
     public static func Execute(
         searchableShapes: GpuShapeModel,
