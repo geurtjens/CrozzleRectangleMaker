@@ -23,7 +23,5 @@ public struct ToCsv {
         } catch {
             print("error creating file")
         }
-        
-        
     }
 }

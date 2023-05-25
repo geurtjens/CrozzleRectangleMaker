@@ -8,13 +8,13 @@
 import Foundation
 public struct EdgeModel : ShapeProtocol {
     
-    let horizontalWordId: UInt8
-    let horizontalPosition: UInt8
-    let horizontalLength: UInt8
+    public let horizontalWordId: UInt8
+    public let horizontalPosition: UInt8
+    public let horizontalLength: UInt8
     
-    let verticalWordId: UInt8
-    let verticalPosition: UInt8
-    let verticalLength: UInt8
+    public let verticalWordId: UInt8
+    public let verticalPosition: UInt8
+    public let verticalLength: UInt8
     
     public let width: Int
     public let height: Int

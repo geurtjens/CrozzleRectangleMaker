@@ -31,7 +31,7 @@ public struct GpuShapeModel {
     
     public let wordIndex: [[Int]]
     
-    init(shapes: [ShapeModel], totalWords: Int, wordCountInShapes: Int) {
+    public init(shapes: [ShapeModel], totalWords: Int, wordCountInShapes: Int) {
         
         let _shapeCount = shapes.count
         let _size = _shapeCount * wordCountInShapes

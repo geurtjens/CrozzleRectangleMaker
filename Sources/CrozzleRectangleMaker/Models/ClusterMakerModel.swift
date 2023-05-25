@@ -23,7 +23,7 @@ public struct ClusterMakerModel : ShapeProtocol {
     public let width: Int
     public let height: Int
     
-    init(wordsHorizontal: [Int], wordsVertical: [Int], patternHorizontal: [ClusterPosition], patternVertical: [ClusterPosition], start: [String], end: [String], len:[Int]) {
+    public init(wordsHorizontal: [Int], wordsVertical: [Int], patternHorizontal: [ClusterPosition], patternVertical: [ClusterPosition], start: [String], end: [String], len:[Int]) {
         self.wordsHorizontal = wordsHorizontal
         self.wordsVertical = wordsVertical
         self.patternHorizontal = patternHorizontal
@@ -54,7 +54,7 @@ public struct ClusterMakerModel : ShapeProtocol {
     
     
     
-    func maxLeftCalculate() -> Int {
+    public func maxLeftCalculate() -> Int {
         
         var maxLeft = 0
         
@@ -68,7 +68,7 @@ public struct ClusterMakerModel : ShapeProtocol {
         return maxLeft
     }
     
-    func maxUpCalculate() -> Int {
+    public func maxUpCalculate() -> Int {
         
         var maxUp = 0
         
@@ -82,7 +82,7 @@ public struct ClusterMakerModel : ShapeProtocol {
         return maxUp
     }
     
-    static func widthCalculation(words: [Int], patterns: [ClusterPosition], wordCountOther: Int, len:[UInt8]) -> Int {
+    public static func widthCalculation(words: [Int], patterns: [ClusterPosition], wordCountOther: Int, len:[UInt8]) -> Int {
         
         var maxLeft = 0
         var maxRight = 0
@@ -109,7 +109,7 @@ public struct ClusterMakerModel : ShapeProtocol {
         return width
     }
     
-    static func scoreCalculator(wordsHorizontal: [Int],patternHorizontal: [ClusterPosition], start: [String], end: [String], horizontalWordCount: Int, verticalWordCount: Int) -> Int {
+    public static func scoreCalculator(wordsHorizontal: [Int],patternHorizontal: [ClusterPosition], start: [String], end: [String], horizontalWordCount: Int, verticalWordCount: Int) -> Int {
         
         var score = (horizontalWordCount + verticalWordCount) * 10
         
@@ -188,7 +188,7 @@ public struct ClusterMakerModel : ShapeProtocol {
         return placements
     }
     
-    func isValid(scoreMin: Int, widthMax: Int, heightMax: Int) -> Bool {
+    public func isValid(scoreMin: Int, widthMax: Int, heightMax: Int) -> Bool {
         if self.score < scoreMin {
             return false
         }

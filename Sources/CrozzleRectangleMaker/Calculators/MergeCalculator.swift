@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct MergeCalculator {
+public struct MergeCalculator {
     
     public static func MatchingDistance(matchingWords: [Int], x:[UInt8], y:[UInt8], xList: [UInt8], yList: [UInt8], matchingDirection: Bool) -> Bool {
         

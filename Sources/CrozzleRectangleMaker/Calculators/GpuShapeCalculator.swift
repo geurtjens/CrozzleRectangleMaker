@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct GpuShapeCalculator {
+public struct GpuShapeCalculator {
     
     public static func get_2_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> GpuShapeModel {
         let edges = EdgeCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
