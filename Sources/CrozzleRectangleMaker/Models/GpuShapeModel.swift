@@ -6,31 +6,31 @@
 //
 
 import Foundation
-// We are going to put all the placements from all shapes into this structure
-struct GpuShapeModel {
+/// We are going to put all the placements from all shapes into this structure
+public struct GpuShapeModel {
     /// The number of shapes contained within this structure
-    let count: Int
+    public let count: Int
     /// The number of words in this list of shapes, so it acts like a stride as you go through the shapes for example 4 at a time if its a four word collection
-    let stride: Int
+    public let stride: Int
     /// List of widths and there will be one for each shape.  Not sure we need them
-    let widths: [UInt8]
+    public let widths: [UInt8]
     /// List of heights, not sure if we need them
-    let heights: [UInt8]
+    public let heights: [UInt8]
     /// List of scores for each shape
-    let scores: [UInt16]
-    
+    public let scores: [UInt16]
     /// The word ids for each shape and they will be sorted by word id increasing
-    let wordId: [UInt8]
+    public let wordId: [UInt8]
     /// Is this placement horizontal otherwise its vertical
-    let isHorizontal: [Bool]
+    public let isHorizontal: [Bool]
     /// The x position for the placed word
-    let x: [UInt8]
+    public let x: [UInt8]
     /// The y position for the placed word
-    let y: [UInt8]
+    public let y: [UInt8]
     
-    let length: [UInt8]
+    public let length: [UInt8]
     
-    let wordIndex: [[Int]]
+    public let wordIndex: [[Int]]
+    
     init(shapes: [ShapeModel], totalWords: Int, wordCountInShapes: Int) {
         
         let _shapeCount = shapes.count

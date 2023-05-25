@@ -177,4 +177,29 @@ public struct PlacementCalculator {
         
         return placements
     }
+    
+    public static func width(fromPlacements placements: [PlacementModel]) -> Int {
+        var maxWidth = 0
+        for placement in placements {
+            if placement.h {
+                let end = placement.x + placement.l
+                if maxWidth < end {
+                    maxWidth = end
+                }
+            }
+        }
+        return maxWidth + 2
+    }
+    public static func height(fromPlacements placements: [PlacementModel]) -> Int {
+        var maxHeight = 0
+        for placement in placements {
+            if placement.h == false {
+                let end = placement.y + placement.l
+                if maxHeight < end {
+                    maxHeight = end
+                }
+            }
+        }
+        return maxHeight + 2
+    }
 }

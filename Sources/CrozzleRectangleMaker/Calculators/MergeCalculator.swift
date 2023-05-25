@@ -252,14 +252,20 @@ struct MergeCalculator {
     
     
     // Execute same shape requires that we avoid repeats and so we go through each one
-    public static func ExecuteSameShape(shapes: GpuShapeModel) -> [[MergeInstructionModel]] {
-        var result: [[MergeInstructionModel]] = []
+    public static func ExecuteSameShape(shapes: GpuShapeModel) -> [[ShapeModel]] {
+        var result: [[ShapeModel]] = []
         
         for shapeId in 0..<shapes.count {
             let item = ExecuteOne(searchableShapes: shapes, searchMin: shapeId+1, searchMax: shapes.count, sourceShapes: shapes, sourceShapeId: shapeId)
             
-            let mergeInstruction = getMergeInstructions(source:shapes, searchable: shapes, matches: item)
-            result.append(mergeInstruction)
+            let instructions = getMergeInstructions(source:shapes, searchable: shapes, matches: item)
+            var shapeList: [ShapeModel] = []
+            for instruction in instructions {
+           
+                let a = MergePlacementCalculator.GetPlacementsOne(source: shapes, search: shapes, instruction: instruction)
+                shapeList.append(a)
+            }
+            result.append(shapeList)
         }
 
         return result

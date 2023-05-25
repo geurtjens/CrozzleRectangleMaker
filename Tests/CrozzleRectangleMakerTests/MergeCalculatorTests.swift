@@ -36,9 +36,15 @@ final class MergeCalculatorTests: XCTestCase {
         
         let wordMatchesFirst = wordMatches[0]
         
-        for items in wordMatchesFirst {
-            let edge = edges[items.searchableShapeId]
-            print(edge.ToText(words:words))
+        for items in wordMatches {
+            for shape in items {
+                let (newShape,text) = ShapeCalculator.ToValidShape(shape: shape, words:words)
+                if text.contains("#") == false {
+                    print(text)
+                }
+            }
+            //let edge = edges[items]
+            //print(edge.ToText(words:words))
         }
         
         // There are 301 likely matches between the first and all other shapes
@@ -95,14 +101,34 @@ final class MergeCalculatorTests: XCTestCase {
         
         XCTAssertEqual(2, items.count)
         
+        
+        let aText = items[0].ToText(words: words)
         let a = items[0].ToShape()
+        print(aText)
+        print(a.placements)
+        
+        let bText = items[1].ToText(words: words)
         let b = items[1].ToShape()
+        print(bText)
+        print(b.placements)
         
         let shapes = [a, b]
         
         let gpuShapes = GpuShapeModel(shapes: shapes, totalWords:words.count, wordCountInShapes: 4)
         
         let result = MergeCalculator.ExecuteSameShape(shapes: gpuShapes)
+        
+        // This result is actually wrong so we have more to do I think
+        for items in result {
+            for shape in items {
+                let (newShape,text) = ShapeCalculator.ToValidShape(shape: shape, words:words)
+                //if text.contains("#") == false {
+                    print(text)
+                //}
+            }
+            //let edge = edges[items]
+            //print(edge.ToText(words:words))
+        }
         
         XCTAssertEqual(2, result.count)
         
