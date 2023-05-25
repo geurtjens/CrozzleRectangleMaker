@@ -57,6 +57,13 @@ public struct ShapeCalculator {
     }
     public static func VerifyText(text: String) -> Bool {
 
+        if text == "" {
+            return false
+        }
+        if text.contains("#") {
+            return false
+        }
+        
         let grid = text.split(separator: "\n")
         
         //var blockDetected = false
