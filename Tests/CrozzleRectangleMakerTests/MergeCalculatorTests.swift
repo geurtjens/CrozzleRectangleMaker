@@ -168,6 +168,19 @@ final class MergeCalculatorTests: XCTestCase {
         
         let result = MergeCalculator.ExecuteSameShape(shapes: gpuShapes)
         
+        
+        for items in result {
+            for shape in items {
+                let (newShape,text) = ShapeCalculator.ToValidShape(shape: shape, words:words)
+                //if text.contains("#") == false {
+                    print(text)
+                //}
+            }
+            //let edge = edges[items]
+            //print(edge.ToText(words:words))
+        }
+        
+        
         XCTAssertEqual(2, result.count)
         
         let resultA = result[0]

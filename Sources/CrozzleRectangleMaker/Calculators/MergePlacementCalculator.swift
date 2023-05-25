@@ -154,7 +154,7 @@ public struct MergePlacementCalculator {
         if flipped == false {
             return (Int8(sourceOffsetX),Int8(sourceOffsetY),Int8(searchOffsetX),Int8(searchOffsetY))
         } else {
-            return (Int8(sourceOffsetX),Int8(sourceOffsetY),Int8(searchOffsetY),Int8(searchOffsetX))
+            return (Int8(sourceOffsetY),Int8(sourceOffsetX),Int8(searchOffsetY),Int8(searchOffsetX))
         }
         
         
