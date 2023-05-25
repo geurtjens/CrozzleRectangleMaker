@@ -16,7 +16,7 @@ final class GpuShapeCalculatorTests: XCTestCase {
             scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax)
-        XCTAssertEqual(2, result.wordCount)
+        XCTAssertEqual(2, result.stride)
         XCTAssertEqual(10757, result.count)
     }
     
@@ -27,7 +27,7 @@ final class GpuShapeCalculatorTests: XCTestCase {
             scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax)
-        XCTAssertEqual(4, result.wordCount)
+        XCTAssertEqual(4, result.stride)
         XCTAssertEqual(4531541, result.count)
     }
     
@@ -39,7 +39,7 @@ final class GpuShapeCalculatorTests: XCTestCase {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        XCTAssertEqual(5, result.wordCount)
+        XCTAssertEqual(5, result.stride)
         XCTAssertEqual(292, result.count)
     }
     
@@ -51,7 +51,7 @@ final class GpuShapeCalculatorTests: XCTestCase {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        XCTAssertEqual(6, result.wordCount)
+        XCTAssertEqual(6, result.stride)
         XCTAssertEqual(52, result.count)
     }
     
@@ -62,7 +62,7 @@ final class GpuShapeCalculatorTests: XCTestCase {
             scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax)
-        XCTAssertEqual(7, result.wordCount)
+        XCTAssertEqual(7, result.stride)
         XCTAssertEqual(6, result.count)
     }
     
@@ -73,7 +73,7 @@ final class GpuShapeCalculatorTests: XCTestCase {
             scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax)
-        XCTAssertEqual(8, result.wordCount)
+        XCTAssertEqual(8, result.stride)
         XCTAssertEqual(0, result.count)
     }
     

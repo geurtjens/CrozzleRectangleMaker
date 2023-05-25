@@ -81,97 +81,213 @@ struct MergeCalculator {
         return true
     }
     
-    public static func Execute(gpuShapeModel: GpuShapeModel, searchMax: Int, shapePosition: Int) -> [Int] {
+    ///// The next question is whether the multiWordMatch complies with what we want so we can then add those that comply to our list of oneWordMatch to get all possible matches that we can then use to do the more heavy lifting work that requires a lot more computation.
+    public static func ValidateMultiWordMatches(wordId: [UInt8], isHorizontal:[Bool], x: [UInt8], y: [UInt8], searchableShapes: GpuShapeModel, multiWordMatch: [Int]) -> [MatchingWordCountInShapeModel] {
+ 
+        var result:[MatchingWordCountInShapeModel] = []
         
-        let searchSpaceSize = searchMax - (shapePosition + 1)
+        let strideSearchable = searchableShapes.stride
+        let strideSource = wordId.count
         
-        let (wordId, isHorizontal, x, y) = SearchFor(gpuShapeModel: gpuShapeModel, shapePosition: shapePosition)
+        var matchingWords: [Int] = Array(repeating: -1, count: strideSource)
         
-        let wordIdList = gpuShapeModel.wordId
-        let isHorizontalList = gpuShapeModel.isHorizontal
-        
-        let stride = gpuShapeModel.wordCount
-        
-        var searchSpace: [Bool] = Array(repeating: false, count: searchSpaceSize)
-        var matchingWords: [Int] = Array(repeating: -1, count: stride)
-        var unmatchingWords: [Int] = Array(repeating: -1, count: stride)
-        
-        for shapeId in (shapePosition+1)..<searchMax {
+        for shapeIdPos in 0..<multiWordMatch.count {
             
-            let startPos = shapeId * stride
+            let searchStartPos = shapeIdPos * strideSearchable
             
             var j = 0
             var k = 0
             var matchingCount = 0
 
             // Clear the matching words
-            for i in 0..<stride {
+            for i in 0..<strideSource {
                 matchingWords[i] = -1
-                unmatchingWords[i] = -1
             }
             
             
-            while j < stride && k < stride {
-                if wordId[j] == wordIdList[startPos + k] {
+            while j < strideSource && k < strideSearchable {
+                if wordId[j] == searchableShapes.wordId[searchStartPos + k] {
                     matchingCount += 1
-                    matchingWords[j] = startPos + k
+                    matchingWords[j] = searchStartPos + k
                     j += 1
-                } else if wordId[j] < wordIdList[startPos + k] {
+                } else if wordId[j] < searchableShapes.wordId[searchStartPos + k] {
                     j += 1
                 } else {
                     k += 1
                 }
             }
-            // We want to calculate unmatching words also so that we can get their lengths and see if they overwrite our words in the location
-            for i in 0..<stride {
-                if matchingWords[i] == -1 {
-                    unmatchingWords[i] = startPos + i
-                } else {
-                    unmatchingWords[i] = -1
-                }
-            }
+            
             
             // Lets investigate the unmatching here and try it out on the faster thing which is edges
             
             
             
-            if matchingCount == 1 {
-                // We will let this pass as a single word can connect to another single word
-                searchSpace[shapeId - (shapePosition + 1)] = true
-            }
-            // If there are more than 1 word matching then do these words have matching direction
-            else if matchingCount > 1 && matchingCount < stride &&
-                        MatchingDirection(
-                            matchingWords: matchingWords,
-                            isHorizontal: isHorizontal,
-                            isHorizontalList: isHorizontalList) &&
-                        MatchingDistance(
+            if MatchingDirection(
+                matchingWords: matchingWords,
+                isHorizontal: isHorizontal,
+                isHorizontalList: searchableShapes.isHorizontal) &&
+                
+                MatchingDistance(
                             matchingWords: matchingWords,
                             x: x,
                             y: y,
-                            xList: gpuShapeModel.x,
-                            yList: gpuShapeModel.y)
+                            xList: searchableShapes.x,
+                            yList: searchableShapes.y)
 
             {
-                searchSpace[shapeId - (shapePosition + 1)] = true
+                result.append(MatchingWordCountInShapeModel(shapeId: multiWordMatch[shapeIdPos], matchingWordCount: matchingCount))
+
             }
             
         }
         
-        // So lets count the number of true in the
-        let matchCount = searchSpace.filter{ $0 }.count
+        return result
+    }
+    
+    
+    public static func ExecuteOne(
+        searchableShapes: GpuShapeModel,
+        searchMin: Int,
+        searchMax: Int,
+    
+        sourceShapes: GpuShapeModel,
+        sourceShapeId: Int
+        ) -> [MatchingWordCountInShapeModel]
+    {
+        let (oneWordMatch, multiWordMatch) = matchingShapes(
+            sourceShapes: sourceShapes,
+            sourceShapeId: sourceShapeId,
+            searchableShapes: searchableShapes,
+            searchMin: searchMin,
+            searchMax: searchMax
+        )
         
-        var matches:[Int] = Array(repeating:-1, count:matchCount)
+        let (wordId, isHorizontal, x, y) = SearchFor(gpuShapeModel: sourceShapes, shapePosition: sourceShapeId)
         
-        var matchIndex = 0
-        for i in 0..<searchSpaceSize {
-            if searchSpace[i] {
-                matches[matchIndex] = i + shapePosition + 1
-                matchIndex += 1
+        let validatedMultiWordMatch = ValidateMultiWordMatches(
+            wordId: wordId,
+            isHorizontal: isHorizontal,
+            x: x,
+            y: y,
+            searchableShapes: searchableShapes,
+            multiWordMatch: multiWordMatch)
+        
+        let result = oneWordMatch + validatedMultiWordMatch
+        
+        return result
+    }
+    
+    
+    
+    // Execute same shape requires that we avoid repeats and so we go through each one
+    public static func ExecuteSameShape(shapes: GpuShapeModel) -> [[MatchingWordCountInShapeModel]] {
+        var result: [[MatchingWordCountInShapeModel]] = []
+        
+        for shapeId in 0..<shapes.count {
+            let item = ExecuteOne(searchableShapes: shapes, searchMin: shapeId+1, searchMax: shapes.count, sourceShapes: shapes, sourceShapeId: shapeId)
+            result.append(item)
+        }
+        
+        
+        
+        
+        return result
+    }
+    
+    
+    public static func Execute(
+        searchableShapes: GpuShapeModel,
+        searchMin: Int,
+        searchMax: Int,
+    
+        sourceShapes: GpuShapeModel,
+        sourceMin: Int,
+        sourceMax: Int) -> [[MatchingWordCountInShapeModel]]
+    {
+    
+        var result: [[MatchingWordCountInShapeModel]] = []
+        if searchableShapes.stride > sourceShapes.stride {
+            // We can only merge a source which has a smaller or equal number of word count within the shapes
+            return Execute(
+                searchableShapes: sourceShapes,
+                searchMin: sourceMin,
+                searchMax: sourceMax,
+                sourceShapes: searchableShapes,
+                sourceMin: searchMin,
+                sourceMax: searchMin)
+        }
+        
+        for sourceShapeId in sourceMin..<sourceMax {
+            let matchingShapes = ExecuteOne(
+                searchableShapes: searchableShapes,
+                searchMin: searchMin,
+                searchMax: searchMax,
+                sourceShapes: sourceShapes,
+                sourceShapeId: sourceShapeId)
+            
+            result.append(matchingShapes)
+        }
+        return result
+    }
+    
+    public static func countOfWordsInShapes(matchingShapes: [Int]) -> [MatchingWordCountInShapeModel] {
+        if matchingShapes.count == 0 {
+            return []
+        }
+        
+        var result:[MatchingWordCountInShapeModel] = []
+        var shapeId = matchingShapes[0]
+        var matchingWordCount = 1
+        for i in 1..<matchingShapes.count {
+            let current = matchingShapes[i]
+            if current != shapeId {
+                result.append(MatchingWordCountInShapeModel(shapeId: shapeId, matchingWordCount: matchingWordCount))
+                shapeId = current
+                matchingWordCount = 1
+            } else {
+                matchingWordCount += 1
             }
         }
-        return matches
+        result.append(MatchingWordCountInShapeModel(shapeId: shapeId, matchingWordCount: matchingWordCount))
+        return result
     }
+    
+    public static func matchingShapes(sourceShapes: GpuShapeModel, sourceShapeId: Int, searchableShapes: GpuShapeModel, searchMin: Int, searchMax: Int) -> ([MatchingWordCountInShapeModel],[Int]) {
+        // First let us find shapes that have the same words in them
+        
+        var shapesWithWords:[Int] = []
+        let startPos = sourceShapeId * sourceShapes.stride
+        for i in 0..<sourceShapes.stride {
+            let pos = startPos + i
+            let wordId = Int(sourceShapes.wordId[pos])
+            shapesWithWords += searchableShapes.wordIndex[wordId]
+        }
+        
+        
+        
+        var filtered = shapesWithWords.filter { $0 >= searchMin && $0 <= searchMax}
+        
+        filtered.sort()
+        
+        // So now we can work out how many words there are that are matching
+        let result = countOfWordsInShapes(matchingShapes: filtered)
+        
+        // for those where there are only 1 word lets just give them a list of those as they require no more processing
+        let oneWordMatch = result.filter { $0.matchingWordCount == 1}
+        
+        let moreThanOneWordMatch = result.filter { $0.matchingWordCount > 1 && $0.matchingWordCount < sourceShapes.stride}
+        
+        //let oneWordId:[Int] = oneWordMatch.map {$0.shapeId}
+        
+        
+        
+        let moreThanOneWordId = moreThanOneWordMatch.map {$0.shapeId}
+        
+        return (oneWordMatch, moreThanOneWordId)
+        
+    }
+    
+    
     
 
     
@@ -183,9 +299,9 @@ struct MergeCalculator {
         var x: [UInt8] = []
         var y: [UInt8] = []
         
-        let startPos = shapePosition * gpuShapeModel.wordCount
+        let startPos = shapePosition * gpuShapeModel.stride
         
-        for i in 0..<gpuShapeModel.wordCount {
+        for i in 0..<gpuShapeModel.stride {
             let j = startPos + i
             wordId.append(gpuShapeModel.wordId[j])
             isHorizontal.append(gpuShapeModel.isHorizontal[j])

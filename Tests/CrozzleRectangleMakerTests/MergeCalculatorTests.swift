@@ -26,40 +26,44 @@ final class MergeCalculatorTests: XCTestCase {
         }
         
         
-        let gpuShapes = GpuShapeCalculator.get_2_word_shapes(
+        let edgeShapes = GpuShapeCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax)
         
-        let wordMatches = MergeCalculator.Execute(gpuShapeModel: gpuShapes, searchMax: gpuShapes.count, shapePosition: 0)
+        let wordMatches = MergeCalculator.ExecuteSameShape(shapes:edgeShapes)
         
-        for items in wordMatches {
-            let edge = edges[items]
+        let wordMatchesFirst = wordMatches[0]
+        
+        for items in wordMatchesFirst {
+            let edge = edges[items.shapeId]
             print(edge.ToText(words:words))
         }
         
         // There are 301 likely matches between the first and all other shapes
-        XCTAssertEqual(301, wordMatches.count)
+        XCTAssertEqual(301, wordMatches[0].count)
     }
     
     
     func test_EdgesAll() throws {
         
-        let gpuShapes = GpuShapeCalculator.get_2_word_shapes(
+        let edgeShapes = GpuShapeCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax)
         
+        
+        let wordMatches = MergeCalculator.ExecuteSameShape(shapes: edgeShapes)
+        
         var count = 0
-        for i in 0..<gpuShapes.count {
-            let wordMatches = MergeCalculator.Execute(gpuShapeModel: gpuShapes, searchMax: gpuShapes.count, shapePosition: i)
-           
-            count += wordMatches.count
+        for i in 0..<wordMatches.count {
+            
+            count += wordMatches[i].count
         }
         XCTAssertEqual(2837626, count) //2837626
-        print(gpuShapes.count)
+        print(edgeShapes.count)
         print(count)
         
         //        var edges = EdgeCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
@@ -78,20 +82,19 @@ final class MergeCalculatorTests: XCTestCase {
     
     func test_RectangleOne() async throws {
         
-        
-        
-        
         let gpuShapes = await GpuShapeCalculator.get_4_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax)
         print("found gpu shapes")
+        
+        let wordMatches = MergeCalculator.ExecuteSameShape(shapes: gpuShapes)
         var count = 0
-        for i in 0..<gpuShapes.count {
-            let wordMatches = MergeCalculator.Execute(gpuShapeModel: gpuShapes, searchMax: gpuShapes.count, shapePosition: i)
+        for i in 0..<wordMatches.count {
+            
            
-            count += wordMatches.count
+            count += wordMatches[i].count
             
 //            let shape1 = rectangles[0]
 //            print(shape1.ToText(words: words))
@@ -126,20 +129,19 @@ final class MergeCalculatorTests: XCTestCase {
         }
         
         
-        let gpuShapes = await GpuShapeCalculator.get_4_word_shapes(
+        let rectangleShapes = await GpuShapeCalculator.get_4_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax)
         
+        let wordMatches = MergeCalculator.ExecuteSameShape(shapes: rectangleShapes)
         var count = 0
-        for i in 0..<gpuShapes.count {
-            let wordMatches = MergeCalculator.Execute(gpuShapeModel: gpuShapes, searchMax: gpuShapes.count, shapePosition: i)
-           
-            count += wordMatches.count
+        for i in 0..<wordMatches.count {
+            count += wordMatches[i].count
         }
         XCTAssertEqual(2854550,count)
-        print(gpuShapes.count)
+        print(rectangleShapes.count)
         print(count)
         
     }

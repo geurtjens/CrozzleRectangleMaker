@@ -22,7 +22,7 @@ struct GpuShapeCalculator {
         }
         
         // Now we can store the record
-        let result = GpuShapeModel(shapes:shapes, wordCount: 2)
+        let result = GpuShapeModel(shapes:shapes, totalWords: words.count, wordCountInShapes: 2)
         return result
     }
     
@@ -62,7 +62,7 @@ struct GpuShapeCalculator {
         }
         
         // Now we can store the record
-        let result = GpuShapeModel(shapes:shapes, wordCount: 4)
+        let result = GpuShapeModel(shapes:shapes, totalWords: words.count, wordCountInShapes: 4)
         return result
         
         
@@ -93,7 +93,7 @@ struct GpuShapeCalculator {
         }
         
         // Now we can store the record
-        let result = GpuShapeModel(shapes:shapes, wordCount: 5)
+        let result = GpuShapeModel(shapes:shapes, totalWords: words.count, wordCountInShapes: 5)
         return result
     }
     
@@ -131,7 +131,7 @@ struct GpuShapeCalculator {
         }
         
         // Now we can store the record
-        let result = GpuShapeModel(shapes:shapes, wordCount: 6)
+        let result = GpuShapeModel(shapes:shapes, totalWords: words.count, wordCountInShapes: 6)
         return result
     }
     
@@ -169,7 +169,7 @@ struct GpuShapeCalculator {
         }
         
         // Now we can store the record
-        let result = GpuShapeModel(shapes:shapes, wordCount: 7)
+        let result = GpuShapeModel(shapes:shapes, totalWords: words.count, wordCountInShapes: 7)
         return result
     }
     
@@ -210,7 +210,7 @@ struct GpuShapeCalculator {
         }
         
         // Now we can store the record
-        let result = GpuShapeModel(shapes:shapes, wordCount: 8)
+        let result = GpuShapeModel(shapes:shapes, totalWords: words.count, wordCountInShapes: 8)
         return result
     }
     
