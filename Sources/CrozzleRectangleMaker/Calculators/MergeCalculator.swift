@@ -8,7 +8,7 @@
 import Foundation
 struct MergeCalculator {
     
-    public static func MatchingDistance(matchingWords: [Int], x:[UInt8], y:[UInt8], xList: [UInt8], yList: [UInt8]) -> Bool {
+    public static func MatchingDistance(matchingWords: [Int], x:[UInt8], y:[UInt8], xList: [UInt8], yList: [UInt8], matchingDirection: Bool) -> Bool {
         
         let stride = matchingWords.count
         var found = false
@@ -29,13 +29,25 @@ struct MergeCalculator {
                 } else {
                     let distanceX = startingX - Int(x[i])
                     let distanceListX = startingListX - Int(xList[matchingWordPos])
-                    if distanceX != distanceListX {
-                        return false
-                    }
+                    
                     let distanceY = startingY - Int(y[i])
                     let distanceListY = startingListY - Int(yList[matchingWordPos])
-                    if distanceY != distanceListY {
-                        return false
+                    if matchingDirection {
+                        if distanceX != distanceListX {
+                            return false
+                        }
+                        
+                        if distanceY != distanceListY {
+                            return false
+                        }
+                    } else {
+                        if distanceX != distanceListY {
+                            return false
+                        }
+                        
+                        if distanceY != distanceListX {
+                            return false
+                        }
                     }
                 }
             }
@@ -47,7 +59,7 @@ struct MergeCalculator {
     public static func MatchingDirection(
         matchingWords:[Int],
         isHorizontal:[Bool],
-        isHorizontalList:[Bool]) -> Bool {
+        isHorizontalList:[Bool]) -> (Bool,Bool) {
         // Well we know which words are matching fro the matchingWords array
         // lets compare the direction
         var directionIsSame: Bool?
@@ -60,7 +72,7 @@ struct MergeCalculator {
                         directionIsSame = true
                     } else if directionIsSame! != true {
                         // We do not have matching directions
-                        return false
+                        return (false, directionIsSame!)
                     }
                 } else {
                     // The direction is not the same in this case
@@ -68,7 +80,7 @@ struct MergeCalculator {
                         directionIsSame = false
                     } else if directionIsSame! != false {
                         // We do not have matching direction
-                        return false
+                        return (false, directionIsSame!)
                     }
                 }
             }
@@ -78,11 +90,11 @@ struct MergeCalculator {
         // So the next thing is to determine if we have matching spacing
         
             
-        return true
+        return (true, directionIsSame!)
     }
     
     ///// The next question is whether the multiWordMatch complies with what we want so we can then add those that comply to our list of oneWordMatch to get all possible matches that we can then use to do the more heavy lifting work that requires a lot more computation.
-    public static func ValidateMultiWordMatches(wordId: [UInt8], isHorizontal:[Bool], x: [UInt8], y: [UInt8], searchableShapes: GpuShapeModel, multiWordMatch: [Int]) -> [MatchingWordCountInShapeModel] {
+    public static func ValidateMultiWordMatches(sourceShapeId: Int, wordId: [UInt8], isHorizontal:[Bool], x: [UInt8], y: [UInt8], searchableShapes: GpuShapeModel, multiWordMatch: [Int]) -> [MatchingWordCountInShapeModel] {
  
         var result:[MatchingWordCountInShapeModel] = []
         
@@ -93,7 +105,7 @@ struct MergeCalculator {
         
         for shapeIdPos in 0..<multiWordMatch.count {
             
-            let searchStartPos = shapeIdPos * strideSearchable
+            let searchStartPos = multiWordMatch[shapeIdPos] * strideSearchable
             
             var j = 0
             var k = 0
@@ -118,25 +130,28 @@ struct MergeCalculator {
             }
             
             
-            // Lets investigate the unmatching here and try it out on the faster thing which is edges
-            
-            
-            
-            if MatchingDirection(
+            // This checks if all the isHorizontal are all same all opposite
+            let (isMatching, directionIsSame) = MatchingDirection(
                 matchingWords: matchingWords,
                 isHorizontal: isHorizontal,
-                isHorizontalList: searchableShapes.isHorizontal) &&
+                isHorizontalList: searchableShapes.isHorizontal)
+            
+            if isMatching {
                 
-                MatchingDistance(
-                            matchingWords: matchingWords,
-                            x: x,
-                            y: y,
-                            xList: searchableShapes.x,
-                            yList: searchableShapes.y)
-
-            {
-                result.append(MatchingWordCountInShapeModel(shapeId: multiWordMatch[shapeIdPos], matchingWordCount: matchingCount))
-
+                if MatchingDistance(
+                        matchingWords: matchingWords,
+                        x: x,
+                        y: y,
+                        xList: searchableShapes.x,
+                        yList: searchableShapes.y,
+                        matchingDirection: directionIsSame)
+                 {
+                    
+                    result.append(MatchingWordCountInShapeModel(
+                        sourceShapeId:sourceShapeId,
+                        shapeId: multiWordMatch[shapeIdPos],
+                        matchingWordCount: UInt8(matchingCount)))
+                }
             }
             
         }
@@ -144,6 +159,62 @@ struct MergeCalculator {
         return result
     }
     
+    
+    public static func getMergeInstructions(source: GpuShapeModel, searchable: GpuShapeModel, matches:[MatchingWordCountInShapeModel]) -> [MergeInstructionModel]{
+        
+        let strideSource = source.stride
+        let strideSearchable = searchable.stride
+        
+        var result: [MergeInstructionModel] = []
+        
+        for item in matches {
+            let sourceStartPos = item.sourceShapeId * strideSource
+            let searchStartPos = item.shapeId * strideSearchable
+            
+            // We want to find the starting position for each of them
+            var found = false
+            var i = 0
+            var k = 0
+            while i < strideSource && k < strideSearchable {
+                if source.wordId[sourceStartPos + i] == searchable.wordId[searchStartPos + k] {
+                    found = true
+                    break
+                } else if source.wordId[sourceStartPos + i] < searchable.wordId[searchStartPos + k] {
+                    i += 1
+                } else {
+                    k += 1
+                }
+            }
+            
+            if found == false {
+                
+                print("we didnt find any matching words here")
+                break
+            }
+            
+            // I am hoping now that we have the exact locations of the matching word in both structures
+            let sourceIndex = i + sourceStartPos
+            let searchableIndex = k + searchStartPos
+            
+            // We know if the first word is rotated
+            let flipped = (source.isHorizontal[sourceIndex] != searchable.isHorizontal[searchableIndex])
+            
+            let xOffset = Int8(source.x[sourceIndex]) - Int8(searchable.x[searchableIndex])
+            let yOffset = Int8(source.y[sourceIndex]) - Int8(searchable.y[searchableIndex])
+            
+            let mergeInstruction = MergeInstructionModel(
+                sourceShapeId: item.sourceShapeId,
+                searchableShapeId: item.shapeId,
+                sourceMatchingWordPosition: UInt8(i),
+                searchableMatchingWordPosition: UInt8(k),
+                flipped: flipped,
+                xOffset: xOffset,
+                yOffset: yOffset,
+                matchingWordCount: item.matchingWordCount)
+            result.append(mergeInstruction)
+        }
+        return result
+    }
     
     public static func ExecuteOne(
         searchableShapes: GpuShapeModel,
@@ -165,6 +236,7 @@ struct MergeCalculator {
         let (wordId, isHorizontal, x, y) = SearchFor(gpuShapeModel: sourceShapes, shapePosition: sourceShapeId)
         
         let validatedMultiWordMatch = ValidateMultiWordMatches(
+            sourceShapeId: sourceShapeId,
             wordId: wordId,
             isHorizontal: isHorizontal,
             x: x,
@@ -180,17 +252,16 @@ struct MergeCalculator {
     
     
     // Execute same shape requires that we avoid repeats and so we go through each one
-    public static func ExecuteSameShape(shapes: GpuShapeModel) -> [[MatchingWordCountInShapeModel]] {
-        var result: [[MatchingWordCountInShapeModel]] = []
+    public static func ExecuteSameShape(shapes: GpuShapeModel) -> [[MergeInstructionModel]] {
+        var result: [[MergeInstructionModel]] = []
         
         for shapeId in 0..<shapes.count {
             let item = ExecuteOne(searchableShapes: shapes, searchMin: shapeId+1, searchMax: shapes.count, sourceShapes: shapes, sourceShapeId: shapeId)
-            result.append(item)
+            
+            let mergeInstruction = getMergeInstructions(source:shapes, searchable: shapes, matches: item)
+            result.append(mergeInstruction)
         }
-        
-        
-        
-        
+
         return result
     }
     
@@ -230,7 +301,7 @@ struct MergeCalculator {
         return result
     }
     
-    public static func countOfWordsInShapes(matchingShapes: [Int]) -> [MatchingWordCountInShapeModel] {
+    public static func countOfWordsInShapes(sourceShapeId: Int,matchingShapes: [Int]) -> [MatchingWordCountInShapeModel] {
         if matchingShapes.count == 0 {
             return []
         }
@@ -241,14 +312,14 @@ struct MergeCalculator {
         for i in 1..<matchingShapes.count {
             let current = matchingShapes[i]
             if current != shapeId {
-                result.append(MatchingWordCountInShapeModel(shapeId: shapeId, matchingWordCount: matchingWordCount))
+                result.append(MatchingWordCountInShapeModel(sourceShapeId: sourceShapeId,shapeId: shapeId, matchingWordCount: UInt8(matchingWordCount)))
                 shapeId = current
                 matchingWordCount = 1
             } else {
                 matchingWordCount += 1
             }
         }
-        result.append(MatchingWordCountInShapeModel(shapeId: shapeId, matchingWordCount: matchingWordCount))
+        result.append(MatchingWordCountInShapeModel(sourceShapeId: sourceShapeId,shapeId: shapeId, matchingWordCount: UInt8(matchingWordCount)))
         return result
     }
     
@@ -270,7 +341,7 @@ struct MergeCalculator {
         filtered.sort()
         
         // So now we can work out how many words there are that are matching
-        let result = countOfWordsInShapes(matchingShapes: filtered)
+        let result = countOfWordsInShapes(sourceShapeId: sourceShapeId,matchingShapes: filtered)
         
         // for those where there are only 1 word lets just give them a list of those as they require no more processing
         let oneWordMatch = result.filter { $0.matchingWordCount == 1}

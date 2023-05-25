@@ -37,7 +37,7 @@ final class MergeCalculatorTests: XCTestCase {
         let wordMatchesFirst = wordMatches[0]
         
         for items in wordMatchesFirst {
-            let edge = edges[items.shapeId]
+            let edge = edges[items.searchableShapeId]
             print(edge.ToText(words:words))
         }
         
@@ -78,6 +78,80 @@ final class MergeCalculatorTests: XCTestCase {
                 
                 
                 
+    }
+    
+    func test_RectangleMergeBasic() async throws {
+        let words = [ "AZURE", "GLAZE", "WISEMEN", "NUTMEG", "SILENTNIGHT", "SNOW" ]
+        let lengths = WordCalculator.lengths(words: words)
+        
+        let items = RectangleCalculator.BottomLeftRectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        XCTAssertEqual(2, items.count)
+        
+        let a = items[0].ToShape()
+        let b = items[1].ToShape()
+        
+        let shapes = [a, b]
+        
+        let gpuShapes = GpuShapeModel(shapes: shapes, totalWords:words.count, wordCountInShapes: 4)
+        
+        let result = MergeCalculator.ExecuteSameShape(shapes: gpuShapes)
+        
+        XCTAssertEqual(2, result.count)
+        
+        let resultA = result[0]
+        let resultB = result[1]
+        
+        XCTAssertEqual(1,resultA.count)
+        
+        // The second shape has nothing to match with so its empty
+        XCTAssertEqual(0, resultB.count)
+    }
+    
+    /// We flip one of the shapes over to see if it passes as it should
+    func test_RectangleMergeBasicReverseB() async throws {
+        let words = [ "AZURE", "GLAZE", "WISEMEN", "NUTMEG", "SILENTNIGHT", "SNOW" ]
+        let lengths = WordCalculator.lengths(words: words)
+        
+        let items = RectangleCalculator.BottomLeftRectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: lengths,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoreMin: scoreMin)
+        
+        XCTAssertEqual(2, items.count)
+        
+        let a = items[0].ToShape()
+        let b = items[1].ToShape()
+        
+        let c = ShapeCalculator.Flip(shape: b)
+        
+        let shapes = [a, c]
+        
+        let gpuShapes = GpuShapeModel(shapes: shapes, totalWords:words.count, wordCountInShapes: 4)
+        
+        let result = MergeCalculator.ExecuteSameShape(shapes: gpuShapes)
+        
+        XCTAssertEqual(2, result.count)
+        
+        let resultA = result[0]
+        let resultB = result[1]
+        
+        // Looks like we fail if the two words are not in the same direction so need to handle that properly
+        XCTAssertEqual(1,resultA.count)
+
+        // The second shape has nothing to match with so its empty
+        XCTAssertEqual(0, resultB.count)
     }
     
     func test_RectangleOne() async throws {

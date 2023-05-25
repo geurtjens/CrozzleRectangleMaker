@@ -7,6 +7,7 @@
 
 import Foundation
 public struct MatchingWordCountInShapeModel {
+    public let sourceShapeId: Int
     public let shapeId: Int
-    public let matchingWordCount: Int
+    public let matchingWordCount: UInt8
 }
