@@ -58,6 +58,18 @@ public struct StatisticsCalculator {
         return statistics.count
     }
     
+    public static func Execute(shapes: [ShapeModel]) -> [StatisticsModel] {
+        
+        var shapes = shapes
+        shapes.sort { $0.score > $1.score }
+        
+        var scores:[UInt16] = []
+        for shape in shapes {
+            scores.append(UInt16(shape.score))
+        }
+
+        return Execute(scores: scores)
+    }
     /// Create a statistics model that has the score, number of shapes with that score, where it appears in all shapes and various percentages that we can use for filtering
     public static func Execute(scores:[UInt16]) -> [StatisticsModel] {
         if scores.count == 0 {

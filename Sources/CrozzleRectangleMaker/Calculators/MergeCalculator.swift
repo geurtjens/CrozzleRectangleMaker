@@ -251,68 +251,305 @@ public struct MergeCalculator {
     
     
     
-    // Execute same shape requires that we avoid repeats and so we go through each one
-    public static func ExecuteSameShape(shapes: GpuShapeModel, words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [[ShapeModel]] {
-        var result: [[ShapeModel]] = []
+    public static func ExecuteSameShapeOnce(shapeId: Int, shapes: GpuShapeModel, words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         
-        for shapeId in 0..<shapes.count {
-            let item = ExecuteOne(searchableShapes: shapes, searchMin: shapeId+1, searchMax: shapes.count, sourceShapes: shapes, sourceShapeId: shapeId)
+        let matchingWords: [MatchingWordCountInShapeModel] = ExecuteOne(
+            searchableShapes: shapes,
+            searchMin: shapeId+1,
+            searchMax: shapes.count,
+            sourceShapes: shapes,
+            sourceShapeId: shapeId)
+        
+        let instructions = getMergeInstructions(
+            source:shapes,
+            searchable: shapes,
+            matches: matchingWords)
+        
+        var shapeList: [ShapeModel] = []
+        for instruction in instructions {
+       
+            let potentialShape = MergePlacementCalculator.GetPlacementsOne(source: shapes, search: shapes, instruction: instruction)
             
-            let instructions = getMergeInstructions(source:shapes, searchable: shapes, matches: item)
-            var shapeList: [ShapeModel] = []
-            for instruction in instructions {
-           
-                let a = MergePlacementCalculator.GetPlacementsOne(source: shapes, search: shapes, instruction: instruction)
+            if (potentialShape.width <= widthMax && potentialShape.height <= heightMax) ||
+                (potentialShape.width <= heightMax && potentialShape.height <= widthMax) {
+                let (validShape,_) = ShapeCalculator.ToValidShape(shape: potentialShape, words: words)
                 
-                if (a.width <= widthMax && a.height <= heightMax) || (a.width <= heightMax && a.height <= widthMax) {
-                    let (shape,_) = ShapeCalculator.ToValidShape(shape: a, words: words)
-                    
-                    if let shape = shape {
-                        let wordCount = shape.placements.count
-                        let scoreMin = scoresMin[wordCount]
-                        if shape.score >= scoreMin {
-                            shapeList.append(shape)
-                        }
+                if let validShape = validShape {
+                    let wordCount = validShape.placements.count
+                    let scoreMin = scoresMin[wordCount]
+                    if validShape.score >= scoreMin {
+                        shapeList.append(validShape)
                     }
                 }
             }
-            result.append(shapeList)
         }
-
+        return shapeList
+    }
+    
+    
+    public static func ExecuteSameShapeAsyncOne(zeroToNine: Int, shapes: GpuShapeModel, words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
+        var result:[ShapeModel] = []
         
-        // We should now validate the shapes
-        
-        
-        
-        
+        // The difference is that each cpu works on 0,10,20 .. or 1, 11, 21 and so we divide the task
+        for shapeId in stride(from: zeroToNine, to:shapes.count, by: 10) {
+            let shapes = ExecuteSameShapeOnce(
+                shapeId: shapeId,
+                shapes: shapes,
+                words: words,
+                scoresMin: scoresMin,
+                widthMax: widthMax,
+                heightMax: heightMax)
+            result += shapes
+        }
         return result
     }
     
-    public static func ExecuteDifferentShapes(source: GpuShapeModel, search: GpuShapeModel, words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [[ShapeModel]] {
-        var result: [[ShapeModel]] = []
+    
+    // Execute same shape requires that we avoid repeats and so we go through each one
+    public static func ExecuteSameShapeAsync(shapes: GpuShapeModel, words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) async -> [ShapeModel] {
         
-        for shapeId in 0..<source.count {
-            let item = ExecuteOne(searchableShapes: search, searchMin: 0, searchMax: search.count, sourceShapes: source, sourceShapeId: shapeId)
+        // Rather than having a loop and running one at a time we have these async things that process all going up 10 at a time
+        
+        async let a0 = ExecuteSameShapeAsyncOne(
+            zeroToNine:0,
+            shapes: shapes,
+            words: words,
+            scoresMin:scoresMin,
+            widthMax: widthMax, heightMax: heightMax)
+        
+        async let a1 = ExecuteSameShapeAsyncOne(
+            zeroToNine: 1,
+            shapes: shapes,
+            words: words,
+            scoresMin:scoresMin,
+            widthMax: widthMax, heightMax: heightMax)
+        
+        async let a2 = ExecuteSameShapeAsyncOne(
+            zeroToNine: 2,
+            shapes: shapes,
+            words: words,
+            scoresMin:scoresMin,
+            widthMax: widthMax, heightMax: heightMax)
+        
+        async let a3 = ExecuteSameShapeAsyncOne(
+            zeroToNine: 3,
+            shapes: shapes,
+            words: words,
+            scoresMin:scoresMin,
+            widthMax: widthMax, heightMax: heightMax)
+        
+        async let a4 = ExecuteSameShapeAsyncOne(
+            zeroToNine: 4,
+            shapes: shapes,
+            words: words,
+            scoresMin:scoresMin,
+            widthMax: widthMax, heightMax: heightMax)
+        
+        async let a5 = ExecuteSameShapeAsyncOne(
+            zeroToNine: 5,
+            shapes: shapes,
+            words: words,
+            scoresMin:scoresMin,
+            widthMax: widthMax, heightMax: heightMax)
+        
+        async let a6 = ExecuteSameShapeAsyncOne(
+            zeroToNine: 6,
+            shapes: shapes,
+            words: words,
+            scoresMin:scoresMin,
+            widthMax: widthMax, heightMax: heightMax)
+        
+        async let a7 = ExecuteSameShapeAsyncOne(
+            zeroToNine: 7,
+            shapes: shapes,
+            words: words,
+            scoresMin:scoresMin,
+            widthMax: widthMax, heightMax: heightMax)
+        
+        async let a8 = ExecuteSameShapeAsyncOne(
+            zeroToNine: 8,
+            shapes: shapes,
+            words: words,
+            scoresMin:scoresMin,
+            widthMax: widthMax, heightMax: heightMax)
+        
+        async let a9 = ExecuteSameShapeAsyncOne(
+            zeroToNine: 9,
+            shapes: shapes,
+            words: words,
+            scoresMin:scoresMin,
+            widthMax: widthMax, heightMax: heightMax)
+        
+   
+        return await a0 + a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9
+    }
+    
+    
+    // Execute same shape requires that we avoid repeats and so we go through each one
+    public static func ExecuteSameShape(shapes: GpuShapeModel, words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
+        var result: [ShapeModel] = []
+        
+        for shapeId in 0..<shapes.count {
+            let shapes = ExecuteSameShapeOnce(
+                shapeId: shapeId,
+                shapes: shapes,
+                words: words,
+                scoresMin: scoresMin,
+                widthMax: widthMax,
+                heightMax: heightMax)
+            result += shapes
+        }
+   
+        return result
+    }
+    
+    public static func ExecuteDifferentShapesOne(source: GpuShapeModel, sourceShapeId: Int, search: GpuShapeModel, words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
+        
+        var shapeList: [ShapeModel] = []
+        
+        
+        let matches: [MatchingWordCountInShapeModel] = ExecuteOne(searchableShapes: search, searchMin: 0, searchMax: search.count, sourceShapes: source, sourceShapeId: sourceShapeId)
+        
+        let instructions = getMergeInstructions(source:source, searchable: search, matches: matches)
+        
+        for instruction in instructions {
+       
+            let potentialShape = MergePlacementCalculator.GetPlacementsOne(source: source, search: search, instruction: instruction)
             
-            let instructions = getMergeInstructions(source:source, searchable: search, matches: item)
-            var shapeList: [ShapeModel] = []
-            for instruction in instructions {
-           
-                let a = MergePlacementCalculator.GetPlacementsOne(source: source, search: search, instruction: instruction)
+            if (potentialShape.width <= widthMax && potentialShape.height <= heightMax) || (potentialShape.width <= heightMax && potentialShape.height <= widthMax) {
                 
-                if (a.width <= widthMax && a.height <= heightMax) || (a.width <= heightMax && a.height <= widthMax) {
-                    let (shape,_) = ShapeCalculator.ToValidShape(shape: a, words: words)
-                    
-                    if let shape = shape {
-                        let wordCount = shape.placements.count
-                        let scoreMin = scoresMin[wordCount]
-                        if shape.score >= scoreMin {
-                            shapeList.append(shape)
-                        }
+                let (shape,_) = ShapeCalculator.ToValidShape(shape: potentialShape, words: words)
+                
+                if let shape = shape {
+                    let wordCount = shape.placements.count
+                    let scoreMin = scoresMin[wordCount]
+                    if shape.score >= scoreMin {
+                        shapeList.append(shape)
                     }
                 }
             }
-            result.append(shapeList)
+        }
+        return shapeList
+    }
+    
+    
+    
+    public static func ExecuteDifferentShapesAsyncOne(zeroToNine: Int, source: GpuShapeModel, search: GpuShapeModel, words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
+        var result: [ShapeModel] = []
+        
+        for shapeId in stride(from: zeroToNine, to: source.count, by: 10) {
+            let shapes = ExecuteDifferentShapesOne(source: source, sourceShapeId: shapeId, search: search, words: words, scoresMin:scoresMin, widthMax: widthMax, heightMax: heightMax)
+            
+            result += shapes
+        }
+        return result
+    }
+    
+    public static func ExecuteDifferentShapesAsync(source: GpuShapeModel, search: GpuShapeModel, words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) async -> [ShapeModel] {
+       
+        
+        // Rather than having a loop and running one at a time we have these async things that process all going up 10 at a time
+        
+        async let a0 = ExecuteDifferentShapesAsyncOne(
+            zeroToNine: 0,
+            source: source,
+            search: search,
+            words: words,
+            scoresMin: scoresMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        async let a1 = ExecuteDifferentShapesAsyncOne(
+            zeroToNine: 1,
+            source: source,
+            search: search,
+            words: words,
+            scoresMin: scoresMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        async let a2 = ExecuteDifferentShapesAsyncOne(
+            zeroToNine: 2,
+            source: source,
+            search: search,
+            words: words,
+            scoresMin: scoresMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        async let a3 = ExecuteDifferentShapesAsyncOne(
+            zeroToNine: 3,
+            source: source,
+            search: search,
+            words: words,
+            scoresMin: scoresMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        async let a4 = ExecuteDifferentShapesAsyncOne(
+            zeroToNine: 4,
+            source: source,
+            search: search,
+            words: words,
+            scoresMin: scoresMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        async let a5 = ExecuteDifferentShapesAsyncOne(
+            zeroToNine: 5,
+            source: source,
+            search: search,
+            words: words,
+            scoresMin: scoresMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        async let a6 = ExecuteDifferentShapesAsyncOne(
+            zeroToNine: 6,
+            source: source,
+            search: search,
+            words: words,
+            scoresMin: scoresMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        async let a7 = ExecuteDifferentShapesAsyncOne(
+            zeroToNine: 7,
+            source: source,
+            search: search,
+            words: words,
+            scoresMin: scoresMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        async let a8 = ExecuteDifferentShapesAsyncOne(
+            zeroToNine: 8,
+            source: source,
+            search: search,
+            words: words,
+            scoresMin: scoresMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        async let a9 = ExecuteDifferentShapesAsyncOne(
+            zeroToNine: 9,
+            source: source,
+            search: search,
+            words: words,
+            scoresMin: scoresMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+
+        return await a0 + a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9
+    }
+    
+    public static func ExecuteDifferentShapes(source: GpuShapeModel, search: GpuShapeModel, words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
+        var result: [ShapeModel] = []
+        
+        for shapeId in 0..<source.count {
+            let shapes = ExecuteDifferentShapesOne(source: source, sourceShapeId: shapeId, search: search, words: words, scoresMin:scoresMin, widthMax: widthMax, heightMax: heightMax)
+            
+            result += shapes
         }
         return result
     }
