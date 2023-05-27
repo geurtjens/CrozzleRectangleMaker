@@ -16,6 +16,14 @@ public struct ShapeCalculator {
         return shapes
     }
     
+    public static func toShape(fromEdges edges: [EdgeModel]) -> [ShapeModel] {
+        var shapes: [ShapeModel] = []
+        for edge in edges {
+            shapes.append(edge.ToShape())
+        }
+        return shapes
+    }
+    
     public static func Flip(shape: ShapeModel) -> ShapeModel {
         var placements:[PlacementModel] = []
         

@@ -33,6 +33,16 @@ public struct GpuShapeModel {
     
     public init(shapes: [ShapeModel], totalWords: Int, wordCountInShapes: Int) {
         
+        var shapes = shapes
+        shapes.sort {
+            if $0.score == $1.score {
+                return $0.width * $0.height < $1.width * $1.height
+            } else {
+                return $0.score > $1.score
+            }
+        }
+        
+        
         let _shapeCount = shapes.count
         let _size = _shapeCount * wordCountInShapes
 
