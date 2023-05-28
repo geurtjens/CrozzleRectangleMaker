@@ -27,24 +27,20 @@ public struct GpuShapeModel {
     /// The y position for the placed word
     public let y: [UInt8]
     
+    /// length of each word in the wordlist
     public let length: [UInt8]
     
+    /// Which words are in which shapes, so if there are 91 words then there will be an index for each so we can quickly find matching shapes.
     public let wordIndex: [[Int]]
     
-    public init(shapes: [ShapeModel], totalWords: Int, wordCountInShapes: Int) {
+    public init(shapes: [ShapeModel], totalWords: Int, stride: Int) {
         
-        var shapes = shapes
-        shapes.sort {
-            if $0.score == $1.score {
-                return $0.width * $0.height < $1.width * $1.height
-            } else {
-                return $0.score > $1.score
-            }
+        if shapes.count > 0 && shapes[0].placements.count != stride {
+            print("ERROR HERE IN GPU SHAPE MODEL")
         }
         
-        
         let _shapeCount = shapes.count
-        let _size = _shapeCount * wordCountInShapes
+        let _size = _shapeCount * stride
 
         // Initialize all arrays to allocate the space
         var _widths:  [UInt8] = Array(repeating:0, count:_shapeCount)
@@ -71,7 +67,7 @@ public struct GpuShapeModel {
             for j in 0..<placements.count {
                 let placement:PlacementModel = placements[j]
                 
-                let k = i * wordCountInShapes + j
+                let k = i * stride + j
                 
                 _wordIds[k] = UInt8(placement.i)
                 _isHorizontals[k] = placement.h
@@ -81,7 +77,7 @@ public struct GpuShapeModel {
             }
         }
         
-        self.stride = wordCountInShapes
+        self.stride = stride
         self.count = _shapeCount
         self.widths = _widths
         self.heights = _heights
@@ -97,18 +93,18 @@ public struct GpuShapeModel {
         // Lastly we want to know all words
         self.wordIndex = GpuShapeModel.createWordIndex(
             totalWords: totalWords,
-            wordCountInShapes: wordCountInShapes,
+            stride: stride,
             shapeCount: _shapeCount,
             words: _wordIds)
          
     }
         
     /// We want to find all the shapes for each word so we can easily identify what shapes to look through when we merge
-    public static func createWordIndex(totalWords: Int, wordCountInShapes: Int, shapeCount: Int, words:[UInt8]) -> [[Int]] {
+    public static func createWordIndex(totalWords: Int, stride: Int, shapeCount: Int, words:[UInt8]) -> [[Int]] {
         var result: [[Int]] = Array(repeating: [], count: totalWords)
         var i = 0
         for shapeId in 0..<shapeCount {
-            for _ in 0..<wordCountInShapes {
+            for _ in 0..<stride {
                 let wordId = words[i]
                 
                 result[Int(wordId)].append(shapeId)

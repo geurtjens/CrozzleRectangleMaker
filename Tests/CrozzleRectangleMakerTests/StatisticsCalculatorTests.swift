@@ -10,13 +10,13 @@ import XCTest
 final class StatisticsCalculatorTests: XCTestCase {
 
     func test_ScoreFor_Edge() throws {
-        let gpuShapes = GpuShapeCalculator.get_2_word_shapes(
+        let shapes = ShapeQueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax)
         
-        let a = StatisticsCalculator.Execute(scores: gpuShapes.scores)
+        let a = StatisticsCalculator.Execute(shapes: shapes)
         
         let scoreMinWeWant = StatisticsCalculator.scoreFor(topPercentage: 20, statistics: a)
         
@@ -28,13 +28,13 @@ final class StatisticsCalculatorTests: XCTestCase {
     }
     
     func test_PositionMax_Edge() throws {
-        let gpuShapes = GpuShapeCalculator.get_2_word_shapes(
+        let shapes = ShapeQueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax)
         
-        let statistics = StatisticsCalculator.Execute(scores: gpuShapes.scores)
+        let statistics = StatisticsCalculator.Execute(shapes: shapes)
         
         let a = StatisticsCalculator.positionMax(topPercentage: 20, statistics: statistics)
         
@@ -46,15 +46,15 @@ final class StatisticsCalculatorTests: XCTestCase {
     }
     
     func test_Edges_8612() throws {
-        let gpuShapes = GpuShapeCalculator.get_2_word_shapes(
+        let shapes = ShapeQueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax)
         
-        XCTAssertEqual(10757, gpuShapes.count)
+        XCTAssertEqual(10757, shapes.count)
         
-        let a = StatisticsCalculator.Execute(scores: gpuShapes.scores)
+        let a = StatisticsCalculator.Execute(shapes: shapes)
         XCTAssertEqual(6, a.count)
         
         XCTAssertEqual(84, a[0].score)
@@ -103,14 +103,14 @@ final class StatisticsCalculatorTests: XCTestCase {
     
     func test_Rectangle_8612() async throws {
         
-        let gpuShapes = await GpuShapeCalculator.get_4_word_shapes(
+        let shapes = await ShapeQueueListCalculator.get_4_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax)
         
         
-        let a = StatisticsCalculator.Execute(scores: gpuShapes.scores)
+        let a = StatisticsCalculator.Execute(shapes: shapes)
         XCTAssertEqual(55, a.count)
         
         // Create a baseline test

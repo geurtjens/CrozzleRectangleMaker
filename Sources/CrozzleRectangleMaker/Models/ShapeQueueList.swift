@@ -8,93 +8,53 @@
 import Foundation
 public struct ShapeQueueList {
     
-    let words: [String]
-    let wordCount: Int
-    var q2: ShapeQueueModel
-    var q3: ShapeQueueModel
-    var q4: ShapeQueueModel
-    var q5: ShapeQueueModel
-    var q6: ShapeQueueModel
-    var q7: ShapeQueueModel
-    var q8: ShapeQueueModel
-    var q9: ShapeQueueModel
-    var q10: ShapeQueueModel
-    var q11: ShapeQueueModel
-    var q12: ShapeQueueModel
-    var q13: ShapeQueueModel
-    var q14: ShapeQueueModel
-    var q15: ShapeQueueModel
-    var q16: ShapeQueueModel
-    var q17: ShapeQueueModel
-    var q18: ShapeQueueModel
-    var q19: ShapeQueueModel
-    var q20: ShapeQueueModel
-    var q21: ShapeQueueModel
-    var q22: ShapeQueueModel
-    var q23: ShapeQueueModel
-    var q24: ShapeQueueModel
-    var q25: ShapeQueueModel
-    var q26: ShapeQueueModel
-    var q27: ShapeQueueModel
-    var q28: ShapeQueueModel
-    var q29: ShapeQueueModel
-    var q30: ShapeQueueModel
-    var q31: ShapeQueueModel
-    var q32: ShapeQueueModel
-    var q33: ShapeQueueModel
-    var q34: ShapeQueueModel
-    var q35: ShapeQueueModel
-    var q36: ShapeQueueModel
-    var q37: ShapeQueueModel
-    var q38: ShapeQueueModel
-    var q39: ShapeQueueModel
-    var q40: ShapeQueueModel
+    /// these are the words that are used in all processing.  They must say in the same order / sequence throughout the game
+    public let words: [String]
+    
+    /// number of words in the words collection
+    public let wordCount: Int
+    
+    /// when a shape is rendered as text, its width must be less than or equal to `widthMax` for it to comply with the games size.  Shapes can be flipped so the constraint is width x height or height x width
+    public let widthMax: Int
+    /// when a shape is rendered as text, its height must be less than or equal to `heightMax` for it to comply with the games size.  Shapes can be flipped so its width x height or height x width
+    public let heightMax: Int
+    
+    /// all possible queue sizes that a game can handle, max of `maxQueues`
+    public var queues: [Int:ShapeQueueModel] = [:]
+    
+    /// number of queues we allow in the game meaning the max number of words in any winning game
+    public let maxQueues = 40
         
-    public init( words: [String]) {
+    /// Adding shapes that may have any number of words in them.  Here we split them into the different `stride` and add to appropriate queue.
+    public func add(shapes: [ShapeModel]) {
+        let dictionary = Dictionary(grouping: shapes, by: { $0.placements.count})
+        
+        for item in dictionary {
+            let wordCount = item.key
+            let shapes = item.value
+            
+            if var queue = self.queues[wordCount] {
+                let filteredShapes = shapes.filter { $0.score >= queue.scoreMin }
+            
+                queue.shapes += filteredShapes
+                ShapeCalculator.Sort(shapes: &queue.shapes)
+                
+                queue.gpuShapes = GpuShapeModel(shapes:queue.shapes, totalWords: queue.totalWords, stride: queue.stride)
+                queue.statistics = StatisticsCalculator.Execute(scores: queue.gpuShapes.scores)
+                
+            }
+        }
+    }
+    
+    /// create a bunch of these queues and create the entire strucutre
+    public init(words: [String], scoresMin:[Int], widthMax: Int, heightMax: Int) {
         let wordCount = words.count
         self.words = words
         self.wordCount = wordCount
-        
-        self.q2 = ShapeQueueModel(wordCount: 2, minScore: 28, totalWords: wordCount)
-        self.q3 = ShapeQueueModel(wordCount: 3, minScore: 42, totalWords: wordCount)
-        self.q4 = ShapeQueueModel(wordCount: 4, minScore: 52, totalWords: wordCount)
-        self.q5 = ShapeQueueModel(wordCount: 5, minScore: 62, totalWords: wordCount)
-        self.q6 = ShapeQueueModel(wordCount: 6, minScore: 28, totalWords: wordCount)
-        self.q7 = ShapeQueueModel(wordCount: 7, minScore: 42, totalWords: wordCount)
-        self.q8 = ShapeQueueModel(wordCount: 8, minScore: 52, totalWords: wordCount)
-        self.q9 = ShapeQueueModel(wordCount: 9, minScore: 62, totalWords: wordCount)
-        self.q10 = ShapeQueueModel(wordCount: 10, minScore: 62, totalWords: wordCount)
-        self.q11 = ShapeQueueModel(wordCount: 11, minScore: 62, totalWords: wordCount)
-        self.q12 = ShapeQueueModel(wordCount: 12, minScore: 28, totalWords: wordCount)
-        self.q13 = ShapeQueueModel(wordCount: 13, minScore: 42, totalWords: wordCount)
-        self.q14 = ShapeQueueModel(wordCount: 14, minScore: 52, totalWords: wordCount)
-        self.q15 = ShapeQueueModel(wordCount: 15, minScore: 62, totalWords: wordCount)
-        self.q16 = ShapeQueueModel(wordCount: 16, minScore: 28, totalWords: wordCount)
-        self.q17 = ShapeQueueModel(wordCount: 17, minScore: 42, totalWords: wordCount)
-        self.q18 = ShapeQueueModel(wordCount: 18, minScore: 52, totalWords: wordCount)
-        self.q19 = ShapeQueueModel(wordCount: 19, minScore: 62, totalWords: wordCount)
-        self.q20 = ShapeQueueModel(wordCount: 20, minScore: 62, totalWords: wordCount)
-        self.q21 = ShapeQueueModel(wordCount: 21, minScore: 62, totalWords: wordCount)
-        self.q22 = ShapeQueueModel(wordCount: 22, minScore: 28, totalWords: wordCount)
-        self.q23 = ShapeQueueModel(wordCount: 23, minScore: 42, totalWords: wordCount)
-        self.q24 = ShapeQueueModel(wordCount: 24, minScore: 52, totalWords: wordCount)
-        self.q25 = ShapeQueueModel(wordCount: 25, minScore: 62, totalWords: wordCount)
-        self.q26 = ShapeQueueModel(wordCount: 26, minScore: 28, totalWords: wordCount)
-        self.q27 = ShapeQueueModel(wordCount: 27, minScore: 42, totalWords: wordCount)
-        self.q28 = ShapeQueueModel(wordCount: 28, minScore: 52, totalWords: wordCount)
-        self.q29 = ShapeQueueModel(wordCount: 29, minScore: 62, totalWords: wordCount)
-        self.q30 = ShapeQueueModel(wordCount: 30, minScore: 62, totalWords: wordCount)
-        self.q31 = ShapeQueueModel(wordCount: 31, minScore: 62, totalWords: wordCount)
-        self.q32 = ShapeQueueModel(wordCount: 32, minScore: 28, totalWords: wordCount)
-        self.q33 = ShapeQueueModel(wordCount: 33, minScore: 42, totalWords: wordCount)
-        self.q34 = ShapeQueueModel(wordCount: 34, minScore: 52, totalWords: wordCount)
-        self.q35 = ShapeQueueModel(wordCount: 35, minScore: 62, totalWords: wordCount)
-        self.q36 = ShapeQueueModel(wordCount: 36, minScore: 28, totalWords: wordCount)
-        self.q37 = ShapeQueueModel(wordCount: 37, minScore: 42, totalWords: wordCount)
-        self.q38 = ShapeQueueModel(wordCount: 38, minScore: 52, totalWords: wordCount)
-        self.q39 = ShapeQueueModel(wordCount: 39, minScore: 62, totalWords: wordCount)
-        self.q40 = ShapeQueueModel(wordCount: 40, minScore: 62, totalWords: wordCount)
-
-        
+        self.widthMax = widthMax
+        self.heightMax = heightMax
+        for i in 2..<maxQueues {
+            self.queues[i] = ShapeQueueModel(shapes:[], stride:i, scoreMin: scoresMin[i], totalWords: words.count)
+        }
     }
 }

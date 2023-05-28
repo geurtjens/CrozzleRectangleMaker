@@ -34,8 +34,8 @@ final class SplitShapesIntoWordCountCalculatorTests: XCTestCase {
             heightMax: heightMax)
         let shapes2x2 = ShapeCalculator.toShape(fromClusters: c2x2)
         
-        let gpu2x2 = GpuShapeModel(shapes: shapes2x2, totalWords: words.count, wordCountInShapes: 4)
-        let gpu1x1 = GpuShapeModel(shapes: shapes1x1, totalWords: words.count, wordCountInShapes: 2)
+        let gpu2x2 = GpuShapeModel(shapes: shapes2x2, totalWords: words.count, stride: 4)
+        let gpu1x1 = GpuShapeModel(shapes: shapes1x1, totalWords: words.count, stride: 2)
         
         let scoresMin = [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         

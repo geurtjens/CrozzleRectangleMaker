@@ -34,19 +34,21 @@ final class MergeCalculatorTests: XCTestCase {
         }
         
         
-        let edgeShapes = GpuShapeCalculator.get_2_word_shapes(
+        let shapes = ShapeQueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax)
         
+        let gpuShapes = GpuShapeModel(shapes: shapes, totalWords: words.count, stride: 2)
+        
         let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
         
-        let shapes = MergeCalculator.ExecuteSameShape(shapes:edgeShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        let merged = MergeCalculator.ExecuteSameShape(shapes:gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         
         
         // Interesting that we can have different numbers depending on the arrangement of words
-        for shape in shapes {
+        for shape in merged {
             print(ShapeCalculator.ToText(shape: shape, words: words).0)
         }
         
@@ -76,7 +78,7 @@ final class MergeCalculatorTests: XCTestCase {
         }
         
         
-        let edgeShapes = GpuShapeCalculator.get_2_word_shapes(
+        let shapes = ShapeQueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -84,21 +86,15 @@ final class MergeCalculatorTests: XCTestCase {
         
         let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
         
-        let shapes = MergeCalculator.ExecuteSameShape(shapes:edgeShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        let gpuShapes = GpuShapeModel(shapes: shapes, totalWords: words.count, stride: 2)
         
+        let merged = MergeCalculator.ExecuteSameShape(shapes: gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         
-        // Interesting that we can have different numbers depending on the arrangement of words
-            for shape in shapes {
-                let (newShape,text) = ShapeCalculator.ToValidShape(shape: shape, words:words)
-                if newShape != nil {
-                    print(text)
-                }
-            //let edge = edges[items]
-            //print(edge.ToText(words:words))
+        XCTAssertEqual(3, merged.count)
+        
+        for shape in merged {
+            print(ShapeCalculator.ToText(shape: shape, words: words).0)
         }
-        
-        // There are 301 likely matches between the first and all other shapes
-        //XCTAssertEqual(301, wordMatches[0].count)
     }
     func test_EdgesBasic() throws {
         let words = ["STAR","EVE","CANDLES"]
@@ -115,18 +111,12 @@ final class MergeCalculatorTests: XCTestCase {
          .
          */
         
-        var edges = EdgeCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        //let edges = EdgeCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
-        edges.sort {
-            if $0.score == $1.score {
-                return $0.width * $0.height < $1.width * $1.height
-            } else {
-                return $0.score > $1.score
-            }
-        }
+        //let edgeShapesTest = ShapeCalculator.toShapesSorted(edges: edges)
         
         
-        let edgeShapes = GpuShapeCalculator.get_2_word_shapes(
+        let shapes = ShapeQueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -134,28 +124,17 @@ final class MergeCalculatorTests: XCTestCase {
         
         let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
         
-        let shapes = MergeCalculator.ExecuteSameShape(shapes:edgeShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
-
-        // Interesting that we can have different numbers depending on the arrangement of words
-
-        for shape in shapes {
-            let (newShape,text) = ShapeCalculator.ToValidShape(shape: shape, words:words)
-            if newShape != nil {
-                print(text)
-            }
-        }
-            
-            //let edge = edges[items]
-            //print(edge.ToText(words:words))
-      
+        let gpuShapes = GpuShapeModel(shapes:shapes,totalWords: words.count, stride:2)
         
-        // There are 301 likely matches between the first and all other shapes
-        //XCTAssertEqual(301, wordMatches[0].count)
+        let merged = MergeCalculator.ExecuteSameShape(shapes:gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+
+        XCTAssertEqual(3, merged.count)
+        
     }
         
     func test_EdgesAllAsync() async throws {
         
-        let edgeShapes = GpuShapeCalculator.get_2_word_shapes(
+        let shapes = ShapeQueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -164,21 +143,23 @@ final class MergeCalculatorTests: XCTestCase {
         
         let scoresMin = [0, 0, 0, 104, 0, 0, 0, 0, 0, 0, 0]
 
+        let gpuShapes = GpuShapeModel(shapes:shapes,totalWords: words.count, stride:2)
         
-        let shapes = await MergeCalculator.ExecuteSameShapeAsync(shapes:edgeShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         
-        let statistics = StatisticsCalculator.Execute(shapes: shapes)
+        let merged = await MergeCalculator.ExecuteSameShapeAsync(shapes:gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        
+        let statistics = StatisticsCalculator.Execute(shapes: merged)
         
         print(statistics)
         
-        XCTAssertEqual(347, shapes.count) //2_837_626 // with 54 there where 24191 but now 53834 in 72 seconds
-        print(edgeShapes.count)
+        XCTAssertEqual(347, merged.count) //2_837_626 // with 54 there where 24191 but now 53834 in 72 seconds
+        print(merged.count)
         print(shapes.count)
     }
     
     func test_EdgesAll() throws {
         
-        let edgeShapes = GpuShapeCalculator.get_2_word_shapes(
+        let shapes = ShapeQueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -187,14 +168,16 @@ final class MergeCalculatorTests: XCTestCase {
         
         let scoresMin = [0, 0, 0, 104, 0, 0, 0, 0, 0, 0, 0]
         
-        let shapes = MergeCalculator.ExecuteSameShape(shapes:edgeShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        let gpuShapes = GpuShapeModel(shapes:shapes,totalWords: words.count, stride:2)
         
-        let histogram = StatisticsCalculator.Execute(shapes: shapes)
+        let merged = MergeCalculator.ExecuteSameShape(shapes:gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        
+        let histogram = StatisticsCalculator.Execute(shapes: merged)
         print(histogram)
        
-        XCTAssertEqual(347, shapes.count) //2837626 // with 54 there where 24191
-        print(edgeShapes.count)
+        XCTAssertEqual(347, merged.count) //2837626 // with 54 there where 24191
         print(shapes.count)
+        print(merged.count)
     }
     
     func test_Edges() throws {
@@ -210,28 +193,20 @@ final class MergeCalculatorTests: XCTestCase {
         }
         
         
-        let edgeShapes = GpuShapeCalculator.get_2_word_shapes(
+        let shapes = ShapeQueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax)
         
+        let gpuShapes = GpuShapeModel(shapes:shapes, totalWords: words.count, stride:2)
+        
         let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
         
-        var shapes = MergeCalculator.ExecuteSameShape(shapes:edgeShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
-        
-
-        
-        shapes.sort { $0.score > $1.score}
-        for shape in shapes {
-            let (text,score) = ShapeCalculator.ToText(shape: shape, words:words)
-            print("score of \(score) using \(shape.placements.count) words")
-            print(text)
-        }
-        
+        let merged = MergeCalculator.ExecuteSameShape(shapes: gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         
         // There are 301 likely matches between the first and all other shapes
-        XCTAssertEqual(301, shapes.count)
+        XCTAssertEqual(1641783, merged.count)
     }
     
     func test_Execute_2x2_2x3_From_8806() throws {
@@ -282,27 +257,15 @@ final class MergeCalculatorTests: XCTestCase {
 
         
         
-        let c2x2Gpu = GpuShapeModel(shapes: c2x2Shapes, totalWords: words.count, wordCountInShapes: 4)
-        let c2x3Gpu = GpuShapeModel(shapes: c2x3Shapes, totalWords: words.count, wordCountInShapes: 5)
+        let c2x2Gpu = GpuShapeModel(shapes: c2x2Shapes, totalWords: words.count, stride: 4)
+        let c2x3Gpu = GpuShapeModel(shapes: c2x3Shapes, totalWords: words.count, stride: 5)
         
        
         
         let scoresMin = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         
-        var shapes = MergeCalculator.ExecuteDifferentShapes(source: c2x2Gpu, search:c2x3Gpu, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
-        
-        
-        
-//        shapes.sort { $0.score > $1.score}
-//        for shape in shapes {
-//            let (text,score) = ShapeCalculator.ToText(shape: shape, words:words)
-//
-//
-//            print("score of \(score) using \(shape.placements.count) words")
-//            print(text)
-//
-//        }
-        
+        let shapes = MergeCalculator.ExecuteDifferentShapes(source: c2x2Gpu, search:c2x3Gpu, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+                
         XCTAssertEqual(891360, shapes.count)
        
     }
@@ -355,14 +318,14 @@ final class MergeCalculatorTests: XCTestCase {
 
         
         
-        let c2x2Gpu = GpuShapeModel(shapes: c2x2Shapes, totalWords: words.count, wordCountInShapes: 4)
-        let c2x3Gpu = GpuShapeModel(shapes: c2x3Shapes, totalWords: words.count, wordCountInShapes: 5)
+        let c2x2Gpu = GpuShapeModel(shapes: c2x2Shapes, totalWords: words.count, stride: 4)
+        let c2x3Gpu = GpuShapeModel(shapes: c2x3Shapes, totalWords: words.count, stride: 5)
         
        
         
         let scoresMin = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         
-        var shapes = await MergeCalculator.ExecuteDifferentShapesAsync(source: c2x2Gpu, search:c2x3Gpu, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        let shapes = await MergeCalculator.ExecuteDifferentShapesAsync(source: c2x2Gpu, search:c2x3Gpu, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         
         
         
@@ -427,8 +390,8 @@ final class MergeCalculatorTests: XCTestCase {
 
         
         
-        let c2x2Gpu = GpuShapeModel(shapes: c2x2Shapes, totalWords: words.count, wordCountInShapes: 4)
-        let c2x3Gpu = GpuShapeModel(shapes: c2x3Shapes, totalWords: words.count, wordCountInShapes: 5)
+        let c2x2Gpu = GpuShapeModel(shapes: c2x2Shapes, totalWords: words.count, stride: 4)
+        let c2x3Gpu = GpuShapeModel(shapes: c2x3Shapes, totalWords: words.count, stride: 5)
         
        
         
@@ -478,7 +441,7 @@ final class MergeCalculatorTests: XCTestCase {
         
         let shapes = [a, b]
         
-        let gpuShapes = GpuShapeModel(shapes: shapes, totalWords:words.count, wordCountInShapes: 4)
+        let gpuShapes = GpuShapeModel(shapes: shapes, totalWords:words.count, stride: 4)
         
         let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
         
@@ -521,84 +484,56 @@ final class MergeCalculatorTests: XCTestCase {
         
         let shapes = [a, c]
         
-        let gpuShapes = GpuShapeModel(shapes: shapes, totalWords:words.count, wordCountInShapes: 4)
+        let gpuShapes = GpuShapeModel(shapes: shapes, totalWords:words.count, stride: 4)
         
         let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
         
         let result = MergeCalculator.ExecuteSameShape(shapes:gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         
-
-        for shape in result {
-            let (newShape,text) = ShapeCalculator.ToValidShape(shape: shape, words:words)
-            //if text.contains("#") == false {
-                //print(text)
-            //}
-        }
-            //let edge = edges[items]
-            //print(edge.ToText(words:words))
-       
-        
-        
         XCTAssertEqual(1, result.count)
-        
-     
     }
     
     func test_RectangleOne() async throws {
         
-        let gpuShapes = await GpuShapeCalculator.get_4_word_shapes(
+        let shapes = await ShapeQueueListCalculator.get_4_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax)
         print("found gpu shapes")
         
+        let gpuShapes = GpuShapeModel(shapes: shapes, totalWords:words.count, stride: 4)
+        
         let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
         
-        let wordMatches = MergeCalculator.ExecuteSameShape(shapes:gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        let merged = MergeCalculator.ExecuteSameShape(shapes:gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         
        
-        XCTAssertEqual(2854550,wordMatches.count)
+        XCTAssertEqual(2854550,merged.count)
         print(gpuShapes.count)
-        print(wordMatches.count)
+        print(merged.count)
         
-//        var rectangles = await RectangleCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
-//
-//        rectangles.sort() {
-//            if $0.score == $1.score {
-//                return $0.width * $0.height < $1.width * $1.height
-//            } else {
-//                return $0.score > $1.score
-//            }
-//        }
+
     }
     func test_RectangleAll() async throws {
-        
-        var donuts = await RectangleCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
-        
-        donuts.sort() {
-            if $0.score == $1.score {
-                return $0.width * $0.height < $1.width * $1.height
-            } else {
-                return $0.score > $1.score
-            }
-        }
-        
-        
-        let gpuShapes = await GpuShapeCalculator.get_4_word_shapes(
+
+        let shapes = await ShapeQueueListCalculator.get_4_word_shapes(
             words: words,
-            scoreMin: scoreMin,
+            scoreMin: 104,
             widthMax: widthMax,
             heightMax: heightMax)
         
-        let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
+        print("Shapes found:\(shapes.count) at \(Date.now)")
+        let gpuShapes = GpuShapeModel(shapes: shapes, totalWords:words.count, stride: 4)
+        print("gpuShapes finished at \(Date.now)")
+        let scoresMin:[Int] = Array(repeating: 0, count: 20)
         
-        let wordMatches = MergeCalculator.ExecuteSameShape(shapes:gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        let mergedShapes = await MergeCalculator.ExecuteSameShapeAsync(shapes:gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         
-        
-        XCTAssertEqual(2854550,wordMatches.count)
+        // When scoreMin is 104 it creates 24,802 shapes yeilding 1,653,937 merged shapes in 887 seconds which is around 15 minutes.
+        XCTAssertEqual(2854550,mergedShapes.count)
         print(gpuShapes.count)
-        print(wordMatches.count)
+        print(mergedShapes.count)
         
     }
     

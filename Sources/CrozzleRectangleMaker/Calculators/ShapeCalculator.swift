@@ -128,6 +128,60 @@ public struct ShapeCalculator {
         
         return true
     }
+    
+    public static func toShapes(clusters: [ClusterMakerModel]) -> [ShapeModel] {
+        var shapes:[ShapeModel] = []
+        for cluster in clusters {
+            let shape = cluster.ToShape()
+            shapes.append(shape)
+        }
+        return shapes
+    }
+    public static func toShapesSorted(clusters: [ClusterMakerModel]) -> [ShapeModel] {
+        var shapes = toShapes(clusters: clusters)
+        Sort(shapes: &shapes)
+        return shapes
+    }
+    
+    public static func toShapesSorted(rectangles: [RectangleModel]) -> [ShapeModel] {
+        var shapes = toShapes(rectangles: rectangles)
+        Sort(shapes: &shapes)
+        return shapes
+    }
+    
+    public static func toShapes(rectangles: [RectangleModel]) -> [ShapeModel] {
+        var shapes:[ShapeModel] = []
+        for rectangle in rectangles {
+            let shape = rectangle.ToShape()
+            shapes.append(shape)
+        }
+        return shapes
+    }
+    
+    public static func toShapes(edges: [EdgeModel]) -> [ShapeModel] {
+        var shapes:[ShapeModel] = []
+        for edge in edges {
+            let shape = edge.ToShape()
+            shapes.append(shape)
+        }
+        return shapes
+    }
+    public static func toShapesSorted(edges: [EdgeModel]) -> [ShapeModel] {
+        var shapes = toShapes(edges: edges)
+        Sort(shapes:&shapes)
+        return shapes
+    }
+    
+    public static func Sort(shapes: inout [ShapeModel]) {
+        shapes.sort {
+            if $0.score == $1.score {
+                return $0.width * $0.height < $1.width * $1.height
+            } else {
+                return $0.score > $1.score
+            }
+        }
+    }
+    
     public static func ToText(shape: ShapeModel, words:[String]) -> (String, UInt16) {
         
         var score = 0
