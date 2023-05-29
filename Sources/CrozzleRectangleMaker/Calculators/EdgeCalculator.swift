@@ -49,9 +49,9 @@ public class EdgeCalculator {
                                         verticalPosition: UInt8(verticalLetter),
                                         verticalLength: UInt8(verticalWord.count),
                                         
-                                        width: width,
-                                        height: height,
-                                        score: score
+                                        width: UInt8(width),
+                                        height: UInt8(height),
+                                        score: UInt16(score)
                                     ))
                                 }
                             }

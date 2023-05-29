@@ -7,9 +7,9 @@
 
 import Foundation
 public protocol ShapeProtocol {
-    var score: Int {get}
-    var width: Int {get}
-    var height: Int {get}
+    var score: UInt16 {get}
+    var width: UInt8 {get}
+    var height: UInt8 {get}
 
     func ToPlacement() -> [PlacementModel]
 }
@@ -22,20 +22,23 @@ extension ShapeProtocol {
         
         let shape = ToShape()
         
-        let widthEOL = shape.width + 1
+        let width = Int(shape.width)
+        let height = Int(shape.height)
         
-        let gridSize = widthEOL * shape.height
+        let widthEOL = width + 1
+        
+        let gridSize = widthEOL * height
         
         var grid:[Character] = Array(repeating: " ", count: gridSize)
         
         // Place all end of line characters into the space
-        for i in 0..<shape.height {
+        for i in 0..<height {
             grid[i * widthEOL] = "\n"
         }
         
         for placement in shape.placements {
             
-            let word = "." + words[placement.i] + "."
+            let word = "." + words[Int(placement.i)] + "."
             
             // Just to create the variables that will be used in the loop
             var gridPos = 0
@@ -45,9 +48,9 @@ extension ShapeProtocol {
                 let letter = word[i]
                 
                 if placement.h {
-                    gridPos = placement.x + i + (placement.y * widthEOL + 1)
+                    gridPos = Int(placement.x) + i + (Int(placement.y) * widthEOL + 1)
                 } else {
-                    gridPos = placement.x + 1 + ((placement.y + i) * widthEOL)
+                    gridPos = Int(placement.x) + 1 + ((Int(placement.y) + i) * widthEOL)
                 }
                 
                 if grid[gridPos] != " " && grid[gridPos] != letter {
@@ -68,20 +71,24 @@ extension ShapeProtocol {
     func ToTextFlipped(words:[String]) -> String {
         
         let shape = ToShape()
-        let widthEOL = shape.height + 1
         
-        let gridSize = widthEOL * shape.width
+        let width = Int(shape.width)
+        let height = Int(shape.height)
+        
+        let widthEOL = height + 1
+        
+        let gridSize = widthEOL * width
         
         var grid:[Character] = Array(repeating: " ", count: gridSize)
         
         // Place all end of line characters into the space
-        for i in 0..<shape.width {
+        for i in 0..<width {
             grid[i * widthEOL] = "\n"
         }
         
         for placement in shape.placements {
             
-            let word = "." + words[placement.i] + "."
+            let word = "." + words[Int(placement.i)] + "."
             
             // Just to create the variables that will be used in the loop
             var gridPos = 0
@@ -91,9 +98,9 @@ extension ShapeProtocol {
                 let letter = word[i]
                 
                 if placement.h == false {
-                    gridPos = placement.y + i + (placement.x * widthEOL + 1)
+                    gridPos = Int(placement.y) + i + (Int(placement.x) * widthEOL + 1)
                 } else {
-                    gridPos = placement.y + 1 + ((placement.x + i) * widthEOL)
+                    gridPos = Int(placement.y) + 1 + ((Int(placement.x) + i) * widthEOL)
                 }
                 
                 if grid[gridPos] != " " && grid[gridPos] != letter {

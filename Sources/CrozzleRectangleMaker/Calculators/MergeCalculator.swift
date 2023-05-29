@@ -149,7 +149,7 @@ public struct MergeCalculator {
                     
                     result.append(MatchingWordCountInShapeModel(
                         sourceShapeId:sourceShapeId,
-                        shapeId: multiWordMatch[shapeIdPos],
+                        searchShapeId: multiWordMatch[shapeIdPos],
                         matchingWordCount: UInt8(matchingCount)))
                 }
             }
@@ -169,7 +169,7 @@ public struct MergeCalculator {
         
         for item in matches {
             let sourceStartPos = item.sourceShapeId * strideSource
-            let searchStartPos = item.shapeId * strideSearchable
+            let searchStartPos = item.searchShapeId * strideSearchable
             
             // We want to find the starting position for each of them
             var found = false
@@ -199,18 +199,17 @@ public struct MergeCalculator {
             // We know if the first word is rotated
             let flipped = (source.isHorizontal[sourceIndex] != searchable.isHorizontal[searchableIndex])
             
-            let xOffset = Int8(source.x[sourceIndex]) - Int8(searchable.x[searchableIndex])
-            let yOffset = Int8(source.y[sourceIndex]) - Int8(searchable.y[searchableIndex])
+            //let xOffset = Int8(source.x[sourceIndex]) - Int8(searchable.x[searchableIndex])
+            //let yOffset = Int8(source.y[sourceIndex]) - Int8(searchable.y[searchableIndex])
             
             let mergeInstruction = MergeInstructionModel(
                 sourceShapeId: item.sourceShapeId,
-                searchableShapeId: item.shapeId,
+                searchShapeId: item.searchShapeId,
+                matchingWordCount: item.matchingWordCount,
                 sourceMatchingWordPosition: UInt8(i),
-                searchableMatchingWordPosition: UInt8(k),
-                flipped: flipped,
-                xOffset: xOffset,
-                yOffset: yOffset,
-                matchingWordCount: item.matchingWordCount)
+                searchMatchingWordPosition: UInt8(k),
+                flipped: flipped)
+                
             result.append(mergeInstruction)
         }
         return result
@@ -601,14 +600,14 @@ public struct MergeCalculator {
         for i in 1..<matchingShapes.count {
             let current = matchingShapes[i]
             if current != shapeId {
-                result.append(MatchingWordCountInShapeModel(sourceShapeId: sourceShapeId,shapeId: shapeId, matchingWordCount: UInt8(matchingWordCount)))
+                result.append(MatchingWordCountInShapeModel(sourceShapeId: sourceShapeId,searchShapeId: shapeId, matchingWordCount: UInt8(matchingWordCount)))
                 shapeId = current
                 matchingWordCount = 1
             } else {
                 matchingWordCount += 1
             }
         }
-        result.append(MatchingWordCountInShapeModel(sourceShapeId: sourceShapeId,shapeId: shapeId, matchingWordCount: UInt8(matchingWordCount)))
+        result.append(MatchingWordCountInShapeModel(sourceShapeId: sourceShapeId,searchShapeId: shapeId, matchingWordCount: UInt8(matchingWordCount)))
         return result
     }
     
@@ -641,7 +640,7 @@ public struct MergeCalculator {
         
         
         
-        let moreThanOneWordId = moreThanOneWordMatch.map {$0.shapeId}
+        let moreThanOneWordId = moreThanOneWordMatch.map {$0.searchShapeId}
         
         return (oneWordMatch, moreThanOneWordId)
         

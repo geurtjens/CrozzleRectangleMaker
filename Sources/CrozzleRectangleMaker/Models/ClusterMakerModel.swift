@@ -19,9 +19,9 @@ public struct ClusterMakerModel : ShapeProtocol {
     public let lengthsHorizontal: [UInt8]
     public let lengthsVertical: [UInt8]
     
-    public let score: Int
-    public let width: Int
-    public let height: Int
+    public let score: UInt16
+    public let width: UInt8
+    public let height: UInt8
     
     public init(wordsHorizontal: [Int], wordsVertical: [Int], patternHorizontal: [ClusterPosition], patternVertical: [ClusterPosition], start: [String], end: [String], len:[Int]) {
         self.wordsHorizontal = wordsHorizontal
@@ -82,7 +82,7 @@ public struct ClusterMakerModel : ShapeProtocol {
         return maxUp
     }
     
-    public static func widthCalculation(words: [Int], patterns: [ClusterPosition], wordCountOther: Int, len:[UInt8]) -> Int {
+    public static func widthCalculation(words: [Int], patterns: [ClusterPosition], wordCountOther: Int, len:[UInt8]) -> UInt8 {
         
         var maxLeft = 0
         var maxRight = 0
@@ -106,10 +106,10 @@ public struct ClusterMakerModel : ShapeProtocol {
             }
         }
         let width = maxLeft + maxRight + wordCountOther + 2
-        return width
+        return UInt8(width)
     }
     
-    public static func scoreCalculator(wordsHorizontal: [Int],patternHorizontal: [ClusterPosition], start: [String], end: [String], horizontalWordCount: Int, verticalWordCount: Int) -> Int {
+    public static func scoreCalculator(wordsHorizontal: [Int],patternHorizontal: [ClusterPosition], start: [String], end: [String], horizontalWordCount: Int, verticalWordCount: Int) -> UInt16 {
         
         var score = (horizontalWordCount + verticalWordCount) * 10
         
@@ -131,7 +131,7 @@ public struct ClusterMakerModel : ShapeProtocol {
                 break;
             }
         }
-        return score
+        return UInt16(score)
     }
     
     public func csvWords(words:[String]) -> String {
@@ -163,10 +163,10 @@ public struct ClusterMakerModel : ShapeProtocol {
             let y = maxUp + i + 1
             let wordId = wordsHorizontal[i]
             if pattern == .leading {
-                let placement = PlacementModel(i: wordId, h: true, x: maxLeft - length, y: y, length: lengthsHorizontal[i])
+                let placement = PlacementModel(i: UInt8(wordId), h: true, x: UInt8(maxLeft - length), y: UInt8(y), length: lengthsHorizontal[i])
                 placements.append(placement)
             } else {
-                let placement = PlacementModel(i: wordId, h: true, x: maxLeft, y: y, length: lengthsHorizontal[i])
+                let placement = PlacementModel(i: UInt8(wordId), h: true, x: UInt8(maxLeft), y: UInt8(y), length: lengthsHorizontal[i])
                 placements.append(placement)
             }
         }
@@ -176,11 +176,11 @@ public struct ClusterMakerModel : ShapeProtocol {
             let x = maxLeft + i + 1
             let wordId = wordsVertical[i]
             if pattern == .leading {
-                let placement = PlacementModel(i: wordId, h: false, x: x, y: maxUp - length, length: lengthsVertical[i])
+                let placement = PlacementModel(i: UInt8(wordId), h: false, x: UInt8(x), y: UInt8(maxUp - length), length: lengthsVertical[i])
                 placements.append(placement)
             } else {
                 // y is maxUp - 1 because it needs to add his .
-                let placement = PlacementModel(i: wordId, h: false, x: x, y: maxUp, length: lengthsVertical[i])
+                let placement = PlacementModel(i: UInt8(wordId), h: false, x: UInt8(x), y: UInt8(maxUp), length: lengthsVertical[i])
                 placements.append(placement)
             }
         }

@@ -6,8 +6,14 @@
 //
 
 import Foundation
+/// Two shapes can be merged and have a common number of words.
 public struct MatchingWordCountInShapeModel {
+    /// location of the shape in its list that we are finding matches for
     public let sourceShapeId: Int
-    public let shapeId: Int
+    
+    /// location of the shape in its list that we have found a match for
+    public let searchShapeId: Int
+    
+    /// number of words that are matching in both shapes
     public let matchingWordCount: UInt8
 }

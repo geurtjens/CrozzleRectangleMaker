@@ -6,6 +6,7 @@
 //
 
 import Foundation
+/// contains all shape queues and so is a central repository of all known shapes
 public struct ShapeQueueList {
     
     /// these are the words that are used in all processing.  They must say in the same order / sequence throughout the game

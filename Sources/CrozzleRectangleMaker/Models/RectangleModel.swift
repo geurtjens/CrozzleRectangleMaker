@@ -10,13 +10,10 @@ public struct RectangleModel : ShapeProtocol {
         
     // 75 MB vs 161 MB
     // This trick allows me to store smaller sized variables and so do type conversion at source
-    public var score: Int { get { return Int(_score) } }
-    public var width: Int { get { return Int(_width) } }
-    public var height: Int { get { return Int(_height) } }
-    
-    private let _score: UInt16
-    private let _width: UInt8
-    private let _height: UInt8
+   
+    public let score: UInt16
+    public let width: UInt8
+    public let height: UInt8
     
     public let top: UInt8
     public let topLetterPos: UInt8
@@ -49,9 +46,9 @@ public struct RectangleModel : ShapeProtocol {
 //        self.height = height
         
         
-        self._score = UInt16(score)
-        self._width = UInt8(width)
-        self._height = UInt8(height)
+        self.score = UInt16(score)
+        self.width = UInt8(width)
+        self.height = UInt8(height)
         self.top = UInt8(top)
         self.topLetterPos = UInt8(topLetterPos)
         self.topLength = UInt8(topLength)

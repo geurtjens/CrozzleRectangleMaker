@@ -23,25 +23,25 @@ public struct EdgeModel : ShapeProtocol {
     public let verticalLength: UInt8
     
     /// When shape is rendered into text, this will be the width of the text
-    public let width: Int
+    public let width: UInt8
     /// When shape is rendered into text, this will be the height of the text
-    public let height: Int
+    public let height: UInt8
     /// Score of the shape
-    public let score: Int
+    public let score: UInt16
 
     /// Convert the edge into a list of placements, a placement is an instruction of where to put a single word
     public func ToPlacement() -> [PlacementModel] {
         let horizontal = PlacementModel(
-            i:Int(horizontalWordId),
+            i:horizontalWordId,
             h: true,
             x: 0,
-            y: Int(verticalPosition) + 1,
+            y: verticalPosition + 1,
             length: horizontalLength
         )
         let vertical = PlacementModel(
-            i: Int(verticalWordId),
+            i: verticalWordId,
             h: false,
-            x: Int(horizontalPosition) + 1,
+            x: horizontalPosition + 1,
             y: 0,
             length: verticalLength
         )

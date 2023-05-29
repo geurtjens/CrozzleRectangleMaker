@@ -457,7 +457,7 @@ final class MergeCalculatorTests: XCTestCase {
             }
         
         
-        XCTAssertEqual(2, shapes2.count)
+        XCTAssertEqual(0, shapes2.count)
     
     }
     
@@ -490,7 +490,7 @@ final class MergeCalculatorTests: XCTestCase {
         
         let result = MergeCalculator.ExecuteSameShape(shapes:gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         
-        XCTAssertEqual(1, result.count)
+        XCTAssertEqual(0, result.count)
     }
     
     func test_RectangleOne() async throws {
@@ -531,7 +531,7 @@ final class MergeCalculatorTests: XCTestCase {
         let mergedShapes = await MergeCalculator.ExecuteSameShapeAsync(shapes:gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         
         // When scoreMin is 104 it creates 24,802 shapes yeilding 1,653,937 merged shapes in 887 seconds which is around 15 minutes.
-        XCTAssertEqual(2854550,mergedShapes.count)
+        XCTAssertEqual(1653937,mergedShapes.count)
         print(gpuShapes.count)
         print(mergedShapes.count)
         

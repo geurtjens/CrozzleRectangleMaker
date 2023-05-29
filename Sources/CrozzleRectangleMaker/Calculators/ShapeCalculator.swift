@@ -43,7 +43,7 @@ public struct ShapeCalculator {
         let textIsVerified = ShapeCalculator.VerifyText(text: text)
         
         if score > 0 && textIsVerified {
-            let newShape = ShapeModel(score: Int(score), width: shape.width, height: shape.height, placements: shape.placements)
+            let newShape = ShapeModel(score: score, width: shape.width, height: shape.height, placements: shape.placements)
             return (newShape, text)
         } else {
            
@@ -186,20 +186,21 @@ public struct ShapeCalculator {
         
         var score = 0
         
-        let widthEOL = shape.width + 1
+        let widthEOL = Int(shape.width) + 1
+        let height = Int(shape.height)
         
-        let gridSize = widthEOL * shape.height
+        let gridSize = widthEOL * height
         
-        var grid:[Character] = Array(repeating: " ", count: gridSize)
+        var grid:[Character] = Array(repeating: " ", count: Int(gridSize))
         
         // Place all end of line characters into the space
-        for i in 0..<shape.height {
+        for i in 0..<height {
             grid[i * widthEOL] = "\n"
         }
         
         for placement in shape.placements {
             
-            let word = "." + words[placement.i] + "."
+            let word = "." + words[Int(placement.i)] + "."
             
             // Just to create the variables that will be used in the loop
             var gridPos = 0
@@ -209,9 +210,9 @@ public struct ShapeCalculator {
                 let letter = word[i]
                 
                 if placement.h {
-                    gridPos = placement.x + i + (placement.y * widthEOL + 1)
+                    gridPos = Int(placement.x) + i + (Int(placement.y) * widthEOL + 1)
                 } else {
-                    gridPos = placement.x + 1 + ((placement.y + i) * widthEOL)
+                    gridPos = Int(placement.x) + 1 + (Int(placement.y) + i) * widthEOL
                 }
                 
                 if grid[gridPos] != " " && grid[gridPos] != letter {

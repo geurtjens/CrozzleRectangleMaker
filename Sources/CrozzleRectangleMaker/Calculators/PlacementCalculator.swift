@@ -17,31 +17,31 @@ public struct PlacementCalculator {
         let maxUp = Int(input.rightLetterPos) + 1
         
         let topPlacement = PlacementModel(
-            i: Int(input.top),
+            i: input.top,
             h: true,
-            x: maxLeft + 1,
-            y: maxUp,
+            x: UInt8(maxLeft + 1),
+            y: UInt8(maxUp),
             length: input.topLength
         )
         
         let bottomPlacement = PlacementModel(
-            i: Int(input.bottom),
+            i: input.bottom,
             h: true,
-            x: maxLeft - Int(input.bottomLetterPos),
-            y: maxUp + Int(input.interlockHeight),
+            x: UInt8(maxLeft - Int(input.bottomLetterPos)),
+            y: UInt8(maxUp + Int(input.interlockHeight)),
             length: input.bottomLength)
         
         let leftPlacement = PlacementModel(
-            i: Int(input.left),
+            i: input.left,
             h: false,
-            x: maxLeft + 1,
-            y: maxUp,
+            x: UInt8(maxLeft + 1),
+            y: UInt8(maxUp),
             length: input.leftLength)
         
         let rightPlacement = PlacementModel(
-            i: Int(input.right),
+            i: input.right,
             h: false,
-            x: maxLeft + Int(input.interlockWidth) + 1,
+            x: UInt8(maxLeft + Int(input.interlockWidth) + 1),
             y: 0,
             length: input.rightLength)
         
@@ -59,31 +59,31 @@ public struct PlacementCalculator {
         let maxUp = Int(input.leftLetterPos) + 1
         
         let topPlacement = PlacementModel(
-            i: Int(input.top),
+            i: input.top,
             h: true,
-            x: maxLeft - Int(input.topLetterPos),
-            y: maxUp,
+            x: UInt8(maxLeft - Int(input.topLetterPos)),
+            y: UInt8(maxUp),
             length: input.topLength)
         
         let bottomPlacement = PlacementModel(
-            i: Int(input.bottom),
+            i: input.bottom,
             h: true,
-            x: maxLeft - Int(input.bottomLetterPos),
-            y: maxUp + Int(input.interlockHeight),
+            x: UInt8(maxLeft - Int(input.bottomLetterPos)),
+            y: UInt8(maxUp + Int(input.interlockHeight)),
             length: input.bottomLength)
         
         let leftPlacement = PlacementModel(
-            i: Int(input.left),
+            i: input.left,
             h: false,
-            x: maxLeft + 1,
+            x: UInt8(maxLeft + 1),
             y: 0,
             length: input.leftLength)
         
         let rightPlacement = PlacementModel(
-            i: Int(input.right),
+            i: input.right,
             h: false,
-            x: maxLeft + Int(input.interlockWidth) + 1,
-            y: maxUp,
+            x: UInt8(maxLeft + Int(input.interlockWidth) + 1),
+            y: UInt8(maxUp),
             length: input.rightLength)
         
         var placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
@@ -100,31 +100,31 @@ public struct PlacementCalculator {
         let maxUp = Int(max(input.leftLetterPos, input.rightLetterPos))
         
         let topPlacement = PlacementModel(
-            i: Int(input.top),
+            i: input.top,
             h: true,
             x: 0, //maxLeft - input.topLetterPos,
-            y: maxUp + 1,
+            y: UInt8(maxUp + 1),
             length: input.topLength)
         
         let bottomPlacement = PlacementModel(
-            i: Int(input.bottom),
+            i: input.bottom,
             h: true,
-            x: maxLeft, // - input.bottomLetterPos,
-            y: maxUp + 1 + Int(input.interlockHeight),
+            x: UInt8(maxLeft), // - input.bottomLetterPos,
+            y: UInt8(maxUp + 1 + Int(input.interlockHeight)),
             length: input.bottomLength)
         
         let leftPlacement = PlacementModel(
-            i: Int(input.left),
+            i: input.left,
             h: false,
-            x: maxLeft,
-            y: maxUp - Int(input.leftLetterPos),
+            x: UInt8(maxLeft),
+            y: UInt8(maxUp - Int(input.leftLetterPos)),
             length: input.leftLength)
         
         let rightPlacement = PlacementModel(
-            i: Int(input.right),
+            i: input.right,
             h: false,
-            x: maxLeft + Int(input.interlockWidth),
-            y: maxUp - Int(input.rightLetterPos),
+            x: UInt8(maxLeft + Int(input.interlockWidth)),
+            y: UInt8(maxUp - Int(input.rightLetterPos)),
             length: input.rightLength)
         
         var placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
@@ -144,31 +144,31 @@ public struct PlacementCalculator {
         let maxUp = Int(max(input.leftLetterPos, input.rightLetterPos))
         
         let topPlacement = PlacementModel(
-            i: Int(input.top),
+            i: input.top,
             h: true,
-            x: maxLeft - Int(input.topLetterPos),
-            y: maxUp + 1,
+            x: UInt8(maxLeft - Int(input.topLetterPos)),
+            y: UInt8(maxUp + 1),
             length: input.topLength)
         
         let bottomPlacement = PlacementModel(
-            i: Int(input.bottom),
+            i: input.bottom,
             h: true,
-            x: maxLeft - Int(input.bottomLetterPos),
-            y: maxUp + 1 + Int(input.interlockHeight),
+            x: UInt8(maxLeft - Int(input.bottomLetterPos)),
+            y: UInt8(maxUp + 1 + Int(input.interlockHeight)),
             length: input.bottomLength)
         
         let leftPlacement = PlacementModel(
-            i: Int(input.left),
+            i: input.left,
             h: false,
-            x: maxLeft + 1,
-            y: maxUp - Int(input.leftLetterPos),
+            x: UInt8(maxLeft + 1),
+            y: UInt8(maxUp - Int(input.leftLetterPos)),
             length: input.leftLength)
         
         let rightPlacement = PlacementModel(
-            i: Int(input.right),
+            i: input.right,
             h: false,
-            x: maxLeft + 1 + Int(input.interlockWidth),
-            y: maxUp - Int(input.rightLetterPos),
+            x: UInt8(maxLeft + 1 + Int(input.interlockWidth)),
+            y: UInt8(maxUp - Int(input.rightLetterPos)),
             length: input.rightLength)
         
         var placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
@@ -178,28 +178,28 @@ public struct PlacementCalculator {
         return placements
     }
     
-    public static func width(fromPlacements placements: [PlacementModel]) -> Int {
+    public static func width(fromPlacements placements: [PlacementModel]) -> UInt8 {
         var maxWidth = 0
         for placement in placements {
             if placement.h {
-                let end = placement.x + placement.l
+                let end = Int(placement.x + placement.l)
                 if maxWidth < end {
                     maxWidth = end
                 }
             }
         }
-        return maxWidth + 2
+        return UInt8(maxWidth + 2)
     }
-    public static func height(fromPlacements placements: [PlacementModel]) -> Int {
+    public static func height(fromPlacements placements: [PlacementModel]) -> UInt8 {
         var maxHeight = 0
         for placement in placements {
             if placement.h == false {
-                let end = placement.y + placement.l
+                let end = Int(placement.y + placement.l)
                 if maxHeight < end {
                     maxHeight = end
                 }
             }
         }
-        return maxHeight + 2
+        return UInt8(maxHeight + 2)
     }
 }

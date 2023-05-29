@@ -8,11 +8,10 @@
 import Foundation
 public struct MergeInstructionModel {
     public let sourceShapeId: Int
-    public let searchableShapeId: Int
-    public let sourceMatchingWordPosition: UInt8
-    public let searchableMatchingWordPosition: UInt8
-    public let flipped: Bool
-    public let xOffset: Int8
-    public let yOffset: Int8
+    public let searchShapeId: Int
     public let matchingWordCount: UInt8
+    public let sourceMatchingWordPosition: UInt8
+    public let searchMatchingWordPosition: UInt8
+    public let flipped: Bool
+    
 }

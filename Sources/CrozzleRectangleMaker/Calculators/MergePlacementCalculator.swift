@@ -12,7 +12,7 @@ public struct MergePlacementCalculator {
     public static func GetPlacementsForBothShapes(source: GpuShapeModel, search: GpuShapeModel, instruction: MergeInstructionModel) -> ([PlacementModel], [PlacementModel]) {
         
         let sourceStartPos = instruction.sourceShapeId * source.stride
-        let searchStartPos = instruction.searchableShapeId * search.stride
+        let searchStartPos = instruction.searchShapeId * search.stride
         
         
         
@@ -33,10 +33,10 @@ public struct MergePlacementCalculator {
             words.append(source.wordId[idx])
             
             let placement = PlacementModel(
-                i: Int(source.wordId[idx]),
+                i: source.wordId[idx],
                 h: source.isHorizontal[idx],
-                x: Int(source.x[idx]),
-                y: Int(source.y[idx]),
+                x: source.x[idx],
+                y: source.y[idx],
                 length: source.length[idx])
             placements.append(placement)
             
@@ -53,13 +53,13 @@ public struct MergePlacementCalculator {
             if words.contains(wordId) == false {
                 
                 let h = search.isHorizontal[idx]
-                let x = Int(search.x[idx])
-                let y = Int(search.y[idx])
+                let x = search.x[idx]
+                let y = search.y[idx]
                 let length = search.length[idx]
                 
                 if flipped {
                     let placement = PlacementModel(
-                        i: Int(wordId),
+                        i: wordId,
                         h: !h,
                         x: y,
                         y: x,
@@ -67,7 +67,7 @@ public struct MergePlacementCalculator {
                     otherPlacements.append(placement)
                 } else {
                     let placement = PlacementModel(
-                        i: Int(wordId),
+                        i: wordId,
                         h: h,
                         x: x,
                         y: y,
@@ -84,7 +84,11 @@ public struct MergePlacementCalculator {
     public static func ApplySourceOffsets(placements:[PlacementModel], xOffset: Int8, yOffset: Int8) -> [PlacementModel] {
         var newPlacements: [PlacementModel] = []
         for j in placements {
-            let newPlacement = PlacementModel(i:j.i, h: j.h, x: j.x + Int(xOffset), y: j.y + Int(yOffset), length: UInt8(j.l))
+            let newPlacement = PlacementModel(
+                i:j.i,
+                h: j.h,
+                x: UInt8(Int(j.x) + Int(xOffset)),
+                y: UInt8(Int(j.y) + Int(yOffset)), length: UInt8(j.l))
             newPlacements.append(newPlacement)
         }
         return newPlacements
@@ -92,14 +96,19 @@ public struct MergePlacementCalculator {
     public static func ApplySearchOffsets(placements:[PlacementModel], xOffset: Int8, yOffset: Int8) -> [PlacementModel] {
         var newPlacements: [PlacementModel] = []
         for j in placements {
-            let newPlacement = PlacementModel(i:j.i, h: j.h, x: j.x + Int(xOffset), y: j.y + Int(yOffset), length: UInt8(j.l))
+            let newPlacement = PlacementModel(
+                i:j.i,
+                h: j.h,
+                x: UInt8(Int(j.x) + Int(xOffset)),
+                y: UInt8(Int(j.y) + Int(yOffset)),
+                length: UInt8(j.l))
             newPlacements.append(newPlacement)
         }
         return newPlacements
     }
     
     // This is going to be rather complex I would say
-    public static func CalculateOffsets(xOffset: Int, yOffset: Int,
+    public static func CalculateOffsets(//xOffset: Int, yOffset: Int,
                                         xSource: Int, ySource: Int,
                                         xSearch: Int, ySearch: Int,
                                         flipped: Bool )
@@ -110,12 +119,6 @@ public struct MergePlacementCalculator {
             let xDiff = xSource - xSearch
             let yDiff = ySource - ySearch
             
-            
-            //print("xOffset:\(xOffset), yOffset:\(yOffset)")
-            //print("xSource - xSearch = xDiff : \(xSource) - \(xSearch) = \(xDiff) ")
-            //print("ySource - ySearch = yDiff : \(ySource) - \(ySearch) = \(yDiff) ")
-            //print("flipped:\(flipped)")
-            
             // When it is minus then we need to move the first one in that direction in the absolute amount
             // when its plus then we need to move the other one in that direction
             
@@ -135,33 +138,12 @@ public struct MergePlacementCalculator {
             } else if yDiff > 0 {
                 searchOffsetY += yDiff
             }
-            
-            //        if xOffset < 0 {
-            //            sourceOffsetX += xOffset * -1
-            //        } else if xOffset > 0 {
-            //            searchOffsetX += xOffset
-            //        }
-            //        if yOffset < 0 {
-            //            sourceOffsetY += yOffset * -1
-            //        } else if yOffset > 0 {
-            //            searchOffsetY += yOffset
-            //        }
-            
-            
-            //print("sourceOffsetX: \(sourceOffsetX), sourceOffsetY: \(sourceOffsetY)")
-            //print("searchOffsetX: \(searchOffsetX), searchOffsetY: \(searchOffsetY)")
             
             return (Int8(sourceOffsetX),Int8(sourceOffsetY),Int8(searchOffsetX),Int8(searchOffsetY))
         }
         else {
             let xDiff = xSource - ySearch
             let yDiff = ySource - xSearch
-        
-        
-            //print("xOffset:\(xOffset), yOffset:\(yOffset)")
-            //print("xSource - xSearch = xDiff : \(xSource) - \(xSearch) = \(xDiff) ")
-            //print("ySource - ySearch = yDiff : \(ySource) - \(ySearch) = \(yDiff) ")
-            //print("flipped:\(flipped)")
             
             // When it is minus then we need to move the first one in that direction in the absolute amount
             // when its plus then we need to move the other one in that direction
@@ -183,26 +165,8 @@ public struct MergePlacementCalculator {
                 searchOffsetY += yDiff
             }
         
-//        if xOffset < 0 {
-//            sourceOffsetX += xOffset * -1
-//        } else if xOffset > 0 {
-//            searchOffsetX += xOffset
-//        }
-//        if yOffset < 0 {
-//            sourceOffsetY += yOffset * -1
-//        } else if yOffset > 0 {
-//            searchOffsetY += yOffset
-//        }
-        
-        
-            //print("sourceOffsetX: \(sourceOffsetX), sourceOffsetY: \(sourceOffsetY)")
-            //print("searchOffsetX: \(searchOffsetX), searchOffsetY: \(searchOffsetY)")
-            
             return (Int8(sourceOffsetX),Int8(sourceOffsetY),Int8(searchOffsetX),Int8(searchOffsetY))
         }
-        
-        
-        
     }
     
     public static func GetPlacementsOne(source: GpuShapeModel, search: GpuShapeModel, instruction: MergeInstructionModel) -> ShapeModel {
@@ -216,7 +180,7 @@ public struct MergePlacementCalculator {
         
         let sourcePos = instruction.sourceShapeId * source.stride + Int(instruction.sourceMatchingWordPosition)
         
-        let searchPos = instruction.searchableShapeId * search.stride + Int(instruction.searchableMatchingWordPosition)
+        let searchPos = instruction.searchShapeId * search.stride + Int(instruction.searchMatchingWordPosition)
         
         // I think the first word position might be useful
         let xSource = source.x[sourcePos]
@@ -226,8 +190,8 @@ public struct MergePlacementCalculator {
         let ySearch = search.y[searchPos]
         
         let (sourceOffsetX, sourceOffsetY, searchOffsetX, searchOffsetY) = CalculateOffsets(
-            xOffset: Int(instruction.xOffset),
-            yOffset: Int(instruction.yOffset),
+            //xOffset: Int(instruction.xOffset),
+            //yOffset: Int(instruction.yOffset),
             xSource: Int(xSource),
             ySource: Int(ySource),
             xSearch: Int(xSearch),
@@ -269,7 +233,7 @@ public struct MergePlacementCalculator {
         let height = PlacementCalculator.height(fromPlacements: combined)
        // print("width: \(width), height: \(height)")
         // We do not know the score just yet
-        let shape = ShapeModel(score:10, width: width, height: height, placements: combined)
+        let shape = ShapeModel(score:10, width: UInt8(width), height: UInt8(height), placements: combined)
         
         
         return shape

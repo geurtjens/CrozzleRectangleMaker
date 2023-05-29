@@ -8,22 +8,22 @@
 import Foundation
 public struct PlacementModel {
     
-    public var i: Int { get { return Int(_i) } }
-    public var x: Int { get { return Int(_x) } }
-    public var y: Int { get { return Int(_y) } }
-    public var l: Int { get { return Int(_length)}}
-    public let h: Bool // Is horizontal
+    //public var i: Int { get { return Int(_i) } }
+    //public var x: Int { get { return Int(_x) } }
+    //public var y: Int { get { return Int(_y) } }
+    //public var l: Int { get { return Int(_length)}}
     
-    let _i: UInt8 // word id
-     
-    let _x: UInt8
-    let _y: UInt8
-    let _length: UInt8
-    init(i: Int, h: Bool, x: Int, y: Int, length: UInt8) {
-        self._i = UInt8(i)
+    
+    public let i: UInt8 // word id
+    public let h: Bool // Is horizontal
+    public let x: UInt8
+    public let y: UInt8
+    public let l: UInt8
+    init(i: UInt8, h: Bool, x: UInt8, y: UInt8, length: UInt8) {
+        self.i = UInt8(i)
         self.h = h
-        self._x = UInt8(x)
-        self._y = UInt8(y)
-        self._length = length
+        self.x = UInt8(x)
+        self.y = UInt8(y)
+        self.l = length
     }
 }
