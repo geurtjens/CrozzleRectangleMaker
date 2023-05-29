@@ -7,8 +7,7 @@
 
 import Foundation
 
-// This will construct the shape and get its width height and score so we can work out if its valid
-
+/// This will construct the shape and get its width height and score so we can work out if its valid
 public struct ClusterMakerModel : ShapeProtocol {
     
     public let wordsHorizontal: [Int]

@@ -8,6 +8,7 @@
 import Foundation
 public struct ShapeCalculator {
     
+    /// conveniently convert all clusters to shapes
     public static func toShape(fromClusters clusters: [ClusterMakerModel]) -> [ShapeModel] {
         var shapes: [ShapeModel] = []
         for cluster in clusters {
@@ -16,6 +17,7 @@ public struct ShapeCalculator {
         return shapes
     }
     
+    /// conveniently convert all edges to shapes
     public static func toShape(fromEdges edges: [EdgeModel]) -> [ShapeModel] {
         var shapes: [ShapeModel] = []
         for edge in edges {
@@ -24,6 +26,7 @@ public struct ShapeCalculator {
         return shapes
     }
     
+    /// rotate a shape and return a rotated shape which means width becomes height and all placements are rearranged
     public static func Flip(shape: ShapeModel) -> ShapeModel {
         var placements:[PlacementModel] = []
         
@@ -36,6 +39,7 @@ public struct ShapeCalculator {
         return shape
     }
     
+    /// convert the shape to a valid shape or return null.  We might preprocess a shape but not yet know its valid so we use this to make sure
     public static func ToValidShape(shape: ShapeModel, words:[String]) -> (ShapeModel?, String) {
         let (text,score) = ToText(shape: shape, words: words)
         
@@ -52,7 +56,9 @@ public struct ShapeCalculator {
         
     }
     
+    /// Given a grid, rotate it so that we can tell if the text is valid in the vertical direction but reuse the horizontal direction validation
     public static func rotateGrid(grid: [Substring]) -> [String] {
+        
         if grid.count == 0 {
             return []
         }
@@ -63,8 +69,6 @@ public struct ShapeCalculator {
         for j in 1..<width {
             var line = ""
             for i in 0..<grid.count {
-                
-            
                 line += String(grid[i][j])
             }
             result.append(line)
@@ -72,6 +76,8 @@ public struct ShapeCalculator {
         
         return result
     }
+    
+    /// Verify that the shapes text is valid, that is there are no overlaps and no errors like #
     public static func VerifyText(text: String) -> Bool {
 
         if text == "" {
@@ -83,9 +89,6 @@ public struct ShapeCalculator {
         
         let grid = text.split(separator: "\n")
         
-        //var blockDetected = false
-        //var moreThanTwoLettersDetected = false
-
         let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         // Horizontal verification
         var previous: Character = " "
@@ -123,12 +126,10 @@ public struct ShapeCalculator {
             }
         }
         
-        
-        
-        
         return true
     }
     
+    /// convert `clusters` to `shapes` and then we sort them
     public static func toShapes(clusters: [ClusterMakerModel]) -> [ShapeModel] {
         var shapes:[ShapeModel] = []
         for cluster in clusters {
@@ -137,18 +138,20 @@ public struct ShapeCalculator {
         }
         return shapes
     }
+    
+    /// first we convert `clusters` to `shapes` and then we sort them
     public static func toShapesSorted(clusters: [ClusterMakerModel]) -> [ShapeModel] {
         var shapes = toShapes(clusters: clusters)
         Sort(shapes: &shapes)
         return shapes
     }
-    
+    /// first we convert `rectangles` to `shapes` and then we sort them
     public static func toShapesSorted(rectangles: [RectangleModel]) -> [ShapeModel] {
         var shapes = toShapes(rectangles: rectangles)
         Sort(shapes: &shapes)
         return shapes
     }
-    
+    /// convert `rectangles` to `shapes`
     public static func toShapes(rectangles: [RectangleModel]) -> [ShapeModel] {
         var shapes:[ShapeModel] = []
         for rectangle in rectangles {
@@ -158,6 +161,7 @@ public struct ShapeCalculator {
         return shapes
     }
     
+    /// convert the edges to shapes
     public static func toShapes(edges: [EdgeModel]) -> [ShapeModel] {
         var shapes:[ShapeModel] = []
         for edge in edges {
@@ -166,12 +170,15 @@ public struct ShapeCalculator {
         }
         return shapes
     }
+    
+    /// first we convert the edges to shapes and then we sort them
     public static func toShapesSorted(edges: [EdgeModel]) -> [ShapeModel] {
         var shapes = toShapes(edges: edges)
         Sort(shapes:&shapes)
         return shapes
     }
     
+    /// sort shapes by score and area
     public static func Sort(shapes: inout [ShapeModel]) {
         shapes.sort {
             if $0.score == $1.score {
@@ -182,6 +189,7 @@ public struct ShapeCalculator {
         }
     }
     
+    /// sort shapes by score, area and then also word sequence.  Useful for finding duplicates
     public static func SortWithWordSequence(shapes: inout [ShapeModel]) {
         
         shapes.sort {
@@ -198,6 +206,7 @@ public struct ShapeCalculator {
         }
     }
     
+    /// convert a shape into the text and return the score as well
     public static func ToText(shape: ShapeModel, words:[String]) -> (String, UInt16) {
         
         var score = 0
@@ -216,12 +225,11 @@ public struct ShapeCalculator {
         
         for placement in shape.placements {
             
+            // the word must include the blocking characters at either end of the shape
             let word = "." + words[Int(placement.i)] + "."
             
-            // Just to create the variables that will be used in the loop
             var gridPos = 0
 
-            
             for i in 0..<word.count {
                 let letter = word[i]
                 
@@ -235,18 +243,17 @@ public struct ShapeCalculator {
                     grid[gridPos] = "#"
                 } else if grid[gridPos] == " " {
                     grid[gridPos] = letter
-                }
-                else if grid[gridPos] == letter {
+                } else if grid[gridPos] == letter {
                     score += ScoreCalculator.score(forLetter: letter)
-                    
                 }
             }
-            
         }
         let gridString = String(grid)
+        
         // Remove the first character as it is a \n
         let range = gridString.index(after: gridString.startIndex)..<gridString.endIndex
         let result = String(gridString[range])
+        
         if result.contains("#") {
             score = 0
         } else {

@@ -10,6 +10,7 @@ import Foundation
 // Placements will be sorted with lowest wordId first
 public struct PlacementCalculator {
     
+    /// converts `topLeft` rectangles to placements
     public static func ConvertToPlacements(topLeft input: RectangleModel) -> [PlacementModel] {
         
         let maxLeft = Int(input.bottomLetterPos)
@@ -52,6 +53,8 @@ public struct PlacementCalculator {
         return placements
     }
     
+    
+    /// converts `topRight` rectangles to placements
     public static func ConvertToPlacements(topRight input: RectangleModel) -> [PlacementModel] {
         
         let maxLeft = Int(max(input.topLetterPos, input.bottomLetterPos))
@@ -93,6 +96,8 @@ public struct PlacementCalculator {
         return placements
     }
     
+    
+    /// converts `bottomLeft` rectangles to placements
     public static func ConvertToPlacements(bottomLeft input: RectangleModel) -> [PlacementModel] {
         
         let maxLeft = Int(input.topLetterPos) + 1
@@ -136,7 +141,7 @@ public struct PlacementCalculator {
     }
     
     
-    // This is just like rectangle actually so two birds with one stone
+    /// Converts `rectangles` to placements
     public static func ConvertToPlacements(rectangle input: RectangleModel) -> [PlacementModel] {
         
         let maxLeft = Int(max(input.topLetterPos, input.bottomLetterPos))
@@ -178,6 +183,8 @@ public struct PlacementCalculator {
         return placements
     }
     
+    
+    /// calculates `width` from `placements`
     public static func width(fromPlacements placements: [PlacementModel]) -> UInt8 {
         var maxWidth = 0
         for placement in placements {
@@ -190,6 +197,9 @@ public struct PlacementCalculator {
         }
         return UInt8(maxWidth + 2)
     }
+    
+    
+    /// calculates `height` from `placements`
     public static func height(fromPlacements placements: [PlacementModel]) -> UInt8 {
         var maxHeight = 0
         for placement in placements {

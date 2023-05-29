@@ -8,24 +8,26 @@
 import Foundation
 public struct RectangleCalculator {
     
+    /// Creates all possible rectangles and then sorts them by score and then area
     public static func ExecuteAndSortByScoreAndArea(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) async -> [RectangleModel]  {
         
-        var shapes = await Execute(
+        var rectangles = await Execute(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax)
         
-        shapes.sort {
+        rectangles.sort {
             if $0.score == $1.score {
                 return $0.width * $0.height > $1.width * $1.height
             } else {
                 return $0.score > $1.score
             }
         }
-        return shapes
+        return rectangles
     }
     
+    /// returns each and every rectangle that we can create
     public static func Execute(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) async -> [RectangleModel] {
             
         let lengths = WordCalculator.lengths(words: words)
@@ -1017,7 +1019,7 @@ public struct RectangleCalculator {
                                                                     words[_bottom][_bottomLetterPos + interlockWidth] == words[_right][_rightLetterPos + interlockWidth])
                                                                 {
 
-                                                                    let score = ScoreCalculator.square(
+                                                                    let score = ScoreCalculator.rectangle(
                                                                         topLeft: words[_top][_topLetterPos],
                                                                         topRight: words[_top][_topLetterPos + interlockWidth],
                                                                         bottomLeft: words[_bottom][_bottomLetterPos],
@@ -1135,7 +1137,7 @@ public struct RectangleCalculator {
                                                                     words[_bottom][_bottomLetterPos + interlockWidth] == words[_right][_rightLetterPos + interlockHeight])
                                                                 {
                                                                     
-                                                                    let score = ScoreCalculator.square(
+                                                                    let score = ScoreCalculator.rectangle(
                                                                         topLeft: words[_top][_topLetterPos],
                                                                         topRight: words[_top][_topLetterPos + interlockWidth],
                                                                         bottomLeft: words[_bottom][_bottomLetterPos],
@@ -1257,7 +1259,7 @@ public struct RectangleCalculator {
 
                                                         if (words[_top][_topLetterPos] == words[_right][_rightLetterPos])
                                                         {
-                                                            let score = ScoreCalculator.openTopLeft(
+                                                            let score = ScoreCalculator.topLeft(
                                                                 topRight: words[_top][_topLetterPos],
                                                                 bottomLeft: words[_bottom][_bottomLetterPos],
                                                                 bottomRight: words[_bottom][_bottomLetterPos + interlockWidth])
@@ -1369,7 +1371,7 @@ public struct RectangleCalculator {
 
                                                         if (words[_top][_topLetterPos] == words[_right][_rightLetterPos])
                                                         {
-                                                            let score = ScoreCalculator.openTopLeft(
+                                                            let score = ScoreCalculator.topLeft(
                                                                 topRight: words[_top][_topLetterPos],
                                                                 bottomLeft: words[_bottom][_bottomLetterPos],
                                                                 bottomRight: words[_bottom][_bottomLetterPos + interlockWidth])
@@ -1494,7 +1496,7 @@ public struct RectangleCalculator {
 
                                                         if (words[_bottom][_bottomLetterPos + interlockWidth] == words[_right][_rightLetterPos])
                                                         {
-                                                            let score = ScoreCalculator.openTopRight(
+                                                            let score = ScoreCalculator.topRight(
                                                                 topLeft: words[_top][_topLetterPos],
                                                                 bottomLeft: words[_bottom][_bottomLetterPos],
                                                                 bottomRight: words[_bottom][_bottomLetterPos + interlockWidth])
@@ -1609,7 +1611,7 @@ public struct RectangleCalculator {
 
                                                         if (words[_bottom][_bottomLetterPos + interlockWidth] == words[_right][_rightLetterPos]) {
                                                             
-                                                            let score = ScoreCalculator.openTopRight(
+                                                            let score = ScoreCalculator.topRight(
                                                                 topLeft: words[_top][_topLetterPos],
                                                                 bottomLeft: words[_bottom][_bottomLetterPos],
                                                                 bottomRight: words[_bottom][_bottomLetterPos + interlockWidth])
@@ -1726,7 +1728,7 @@ public struct RectangleCalculator {
                                                         
                                                         if words[_left][_leftLetterPos + interlockHeight] == words[_bottom][_bottomLetterPos] {
                                                         
-                                                            let score = ScoreCalculator.openBottomRight(
+                                                            let score = ScoreCalculator.bottomRight(
                                                                 topLeft: words[_top][_topLetterPos],
                                                                 topRight: words[_top][_topLetterPos + interlockWidth],
                                                                 bottomLeft: words[_bottom][_bottomLetterPos])
@@ -1840,7 +1842,7 @@ public struct RectangleCalculator {
                                                         
                                                         if words[_left][_leftLetterPos + interlockWidth] == words[_bottom][_bottomLetterPos] {
                                                         
-                                                            let score = ScoreCalculator.openBottomRight(
+                                                            let score = ScoreCalculator.bottomRight(
                                                                 topLeft: words[_top][_topLetterPos],
                                                                 topRight: words[_top][_topLetterPos + interlockWidth],
                                                                 bottomLeft: words[_bottom][_bottomLetterPos])
@@ -1961,7 +1963,7 @@ public struct RectangleCalculator {
                                         
                                                         if words[_top][_topLetterPos] == words[_left][_leftLetterPos] {
                                                         
-                                                            let score = ScoreCalculator.openBottomRight(
+                                                            let score = ScoreCalculator.bottomRight(
                                                                 topLeft: words[_top][_topLetterPos],
                                                                 topRight: words[_top][_topLetterPos + interlockWidth],
                                                                 bottomLeft: words[_bottom][_bottomLetterPos])

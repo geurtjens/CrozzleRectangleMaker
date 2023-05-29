@@ -51,8 +51,7 @@ public class EdgeCalculator {
                                         
                                         width: UInt8(width),
                                         height: UInt8(height),
-                                        score: UInt16(score)
-                                    ))
+                                        score: UInt16(score)))
                                 }
                             }
                         }

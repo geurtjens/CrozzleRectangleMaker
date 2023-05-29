@@ -14,9 +14,6 @@ public struct MergePlacementCalculator {
         let sourceStartPos = instruction.sourceShapeId * source.stride
         let searchStartPos = instruction.searchShapeId * search.stride
         
-        
-        
-        
         // We want to add all of the original shape and cater for the offsets
         
         // Then we only add those placements from the second shape that we need
@@ -108,12 +105,7 @@ public struct MergePlacementCalculator {
     }
     
     // This is going to be rather complex I would say
-    public static func CalculateOffsets(//xOffset: Int, yOffset: Int,
-                                        xSource: Int, ySource: Int,
-                                        xSearch: Int, ySearch: Int,
-                                        flipped: Bool )
-    -> (Int8, Int8, Int8, Int8)
-    {
+    public static func CalculateOffsets(xSource: Int, ySource: Int,xSearch: Int, ySearch: Int,flipped: Bool) -> (Int8, Int8, Int8, Int8) {
         
         if flipped == false {
             let xDiff = xSource - xSearch
@@ -170,13 +162,8 @@ public struct MergePlacementCalculator {
     }
     
     public static func GetPlacementsOne(source: GpuShapeModel, search: GpuShapeModel, instruction: MergeInstructionModel) -> ShapeModel {
+        
         let (sourcePlacement, searchPlacement) = GetPlacementsForBothShapes(source: source, search: search, instruction: instruction)
-        
-        
-        //print("Source Placements")
-        //print(sourcePlacement)
-        //print("Search Placements")
-        //print(searchPlacement)
         
         let sourcePos = instruction.sourceShapeId * source.stride + Int(instruction.sourceMatchingWordPosition)
         
@@ -190,8 +177,6 @@ public struct MergePlacementCalculator {
         let ySearch = search.y[searchPos]
         
         let (sourceOffsetX, sourceOffsetY, searchOffsetX, searchOffsetY) = CalculateOffsets(
-            //xOffset: Int(instruction.xOffset),
-            //yOffset: Int(instruction.yOffset),
             xSource: Int(xSource),
             ySource: Int(ySource),
             xSearch: Int(xSearch),
@@ -223,23 +208,18 @@ public struct MergePlacementCalculator {
           E
           R
           .
-         
-         
-         
          */
-        
         
         let width = PlacementCalculator.width(fromPlacements: combined)
         let height = PlacementCalculator.height(fromPlacements: combined)
-       // print("width: \(width), height: \(height)")
+
         // We do not know the score just yet
         let shape = ShapeModel(score:10, width: UInt8(width), height: UInt8(height), placements: combined)
-        
-        
+
         return shape
-        
-        
     }
+    
+    
     public static func GetPlacements(source: GpuShapeModel, search: GpuShapeModel, instructions: [MergeInstructionModel]) -> [ShapeModel] {
        
         var shapeList: [ShapeModel] = []

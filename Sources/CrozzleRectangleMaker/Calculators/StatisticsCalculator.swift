@@ -6,7 +6,51 @@
 //
 
 import Foundation
+/// provides statistics based on scores in a list of shapes that have already been sorted by score
 public struct StatisticsCalculator {
+    
+    /// Create a statistics model that has the score, number of shapes with that score, where it appears in all shapes and various percentages that we can use for filtering
+    public static func Execute(scores:[UInt16]) -> [StatisticsModel] {
+        if scores.count == 0 {
+            return []
+        }
+        
+        let total = scores.count
+        var result:[StatisticsModel] = []
+        var currentScore = scores[0]
+        var count = 1
+        var startPosition = 0
+        for i in 1..<total {
+            if scores[i] != currentScore {
+                result.append(StatisticsModel(
+                    score: currentScore,
+                    startPosition: startPosition,
+                    count: count,
+                    total: total))
+                
+                count = 1
+                currentScore = scores[i]
+                startPosition = i
+                
+            } else {
+                count += 1
+            }
+        }
+        result.append(StatisticsModel(
+            score: currentScore,
+            startPosition: startPosition,
+            count: count,
+            total: total))
+        return result
+    }
+    
+    /// First we must work out the scores for these shapes and then call `Execute`
+    public static func Execute(shapes: [ShapeModel]) -> [StatisticsModel] {
+        
+        let scores = getScores(shapes: shapes)
+        
+        return Execute(scores: scores)
+    }
     
     /// How many shapes are there that has a score that is equal or greater than the score we provide.
     public static func lastPositionWithScoreOrHigher(scoreMin: Int, statistics: [StatisticsModel]) -> Int {
@@ -58,50 +102,14 @@ public struct StatisticsCalculator {
         return statistics.count
     }
     
-    public static func Execute(shapes: [ShapeModel]) -> [StatisticsModel] {
-        
-        var shapes = shapes
-        shapes.sort { $0.score > $1.score }
-        
+    /// When given a list of shapes give the scores for each shape
+    public static func getScores(shapes: [ShapeModel]) -> [UInt16] {
         var scores:[UInt16] = []
         for shape in shapes {
             scores.append(UInt16(shape.score))
         }
-
-        return Execute(scores: scores)
+        return scores
     }
-    /// Create a statistics model that has the score, number of shapes with that score, where it appears in all shapes and various percentages that we can use for filtering
-    public static func Execute(scores:[UInt16]) -> [StatisticsModel] {
-        if scores.count == 0 {
-            return []
-        }
-        
-        let total = scores.count
-        var result:[StatisticsModel] = []
-        var currentScore = scores[0]
-        var count = 1
-        var startPosition = 0
-        for i in 1..<total {
-            if scores[i] != currentScore {
-                result.append(StatisticsModel(
-                    score: currentScore,
-                    startPosition: startPosition,
-                    count: count,
-                    total: total))
-                
-                count = 1
-                currentScore = scores[i]
-                startPosition = i
-                
-            } else {
-                count += 1
-            }
-        }
-        result.append(StatisticsModel(
-            score: currentScore,
-            startPosition: startPosition,
-            count: count,
-            total: total))
-        return result
-    }
+    
+    
 }

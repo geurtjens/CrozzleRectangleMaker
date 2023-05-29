@@ -14,7 +14,6 @@ public struct ToCsv {
             csvContent += "\n" + csv
         }
         
-        
         let fileManager = FileManager.default
         do {
             let path = try fileManager.url(for: .documentDirectory, in: .allDomainsMask, appropriateFor: nil, create: false)

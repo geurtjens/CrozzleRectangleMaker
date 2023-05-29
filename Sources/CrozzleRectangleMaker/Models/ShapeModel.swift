@@ -24,6 +24,7 @@ public struct ShapeModel {
     /// Used when we want to remove shapes from a collection such as when its a duplicate.  When duplicate is detected its set to false and so we can easily remove it using filter
     public var isValid: Bool = true
     
+    /// Used to find duplicates, it is a csv for all the words in the shape.
     public let wordSequence: String
     
     public init(score: UInt16, width: UInt8, height: UInt8, placements: [PlacementModel]) {

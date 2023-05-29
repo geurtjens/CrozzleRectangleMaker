@@ -6,7 +6,11 @@
 //
 
 import Foundation
+
+/// A way of populating all standard shapes and placing them into the `ShapeQueueList`.  There is no merges in here rather just getting shapes we can make from the raw single words of the words list.
 public struct ShapeQueueListCalculator {
+    
+    /// provides all known shapes as a starting point to our calculations.  The scoresMin array tells what the min score is no matter what the number of words and its indexed such that 4 word shapes will be found in scoresMin[4] just to keep it simple.
     public static func Execute(words: [String], scoresMin:[Int], widthMax: Int, heightMax: Int) async -> ShapeQueueList {
         let result = ShapeQueueList(words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         
@@ -61,6 +65,8 @@ public struct ShapeQueueListCalculator {
         return result
     }
     
+    
+    /// get 2 word shapes which is really only edges of which there are 10,000 or so
     public static func get_2_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel] {
         
         let edges = EdgeCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
@@ -70,6 +76,8 @@ public struct ShapeQueueListCalculator {
         return shapes
     }
     
+    
+    /// get all four word shapes which includes 2x2 and all rectangle shapes.  Concerning rectangle shapes there are many of these, millions of these
     public static func get_4_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) async -> [ShapeModel] {
         let rectangles = await RectangleCalculator.Execute(
             words: words,
@@ -96,12 +104,11 @@ public struct ShapeQueueListCalculator {
         
         ShapeCalculator.Sort(shapes: &shapes)
         
-        //let gpuShapes = GpuShapeModel(shapes:shapes, totalWords: words.count, wordCountInShapes: 4)
-        
         return shapes
     }
     
     
+    /// get all 5 word shapes which is basically all 2x3 clusters
     public static func get_5_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel] {
         
         let end = WordCalculator.reverse(words: words)
@@ -116,12 +123,12 @@ public struct ShapeQueueListCalculator {
             heightMax: heightMax)
         
         let shapes = ShapeCalculator.toShapesSorted(clusters: c2x3)
-        
-        //let gpuShapes = GpuShapeModel(shapes:shapes, totalWords: words.count, wordCountInShapes: 5)
-        
-        return shapes //, gpuShapes)
+ 
+        return shapes
     }
     
+    
+    /// gets the 6 word shapes which are the 2x4 and 3x3 clusters
     public static func get_6_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel] {
         
         let end = WordCalculator.reverse(words: words)
@@ -147,11 +154,11 @@ public struct ShapeQueueListCalculator {
         
         let shapes = ShapeCalculator.toShapesSorted(clusters: clusterList)
         
-        //let gpuShapes = GpuShapeModel(shapes:shapes, totalWords: words.count, wordCountInShapes: 6)
-        
         return shapes
     }
     
+    
+    /// gets shapes with 7 words in them which is the 2x5 and 3x4 clusters
     public static func get_7_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel] {
         
         let end = WordCalculator.reverse(words: words)
@@ -177,12 +184,11 @@ public struct ShapeQueueListCalculator {
         
         let shapes = ShapeCalculator.toShapesSorted(clusters: clusterList)
         
-        //let gpuShapes = GpuShapeModel(shapes:shapes, totalWords: words.count, wordCountInShapes: 7)
-        
         return shapes
     }
     
     
+    /// gets 8 word shapes which are the 2x6 and 3x5 clusters
     public static func get_8_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel] {
         
         let end = WordCalculator.reverse(words: words)
@@ -207,8 +213,6 @@ public struct ShapeQueueListCalculator {
         let clusterList = c2x6 + c3x5
         
         let shapes = ShapeCalculator.toShapesSorted(clusters: clusterList)
-        
-        //let gpuShapes = GpuShapeModel(shapes:shapes, totalWords: words.count, wordCountInShapes: 8)
         
         return shapes
     }

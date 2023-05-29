@@ -6,6 +6,7 @@
 //
 
 import Foundation
+/// Merges two shapes together
 public struct MergeCalculator {
     
     public static func MatchingDistance(matchingWords: [Int], x:[UInt8], y:[UInt8], xList: [UInt8], yList: [UInt8], matchingDirection: Bool) -> Bool {

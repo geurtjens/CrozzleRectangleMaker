@@ -6,7 +6,10 @@
 //
 
 import Foundation
+/// calculations that are necessary for processing words in the word list
 public struct WordCalculator {
+    
+    /// each word is returned backwards so that `ABC` becomes `CBA`
     public static func reverse(words:[String]) -> [String] {
         var reversedWords:[String] = []
         for word in words {
@@ -15,6 +18,8 @@ public struct WordCalculator {
         }
         return reversedWords
     }
+    
+    /// Calculates the lengths of each word in the list
     public static func lengths(words: [String]) -> [Int] {
         var result: [Int] = []
         for word in words {

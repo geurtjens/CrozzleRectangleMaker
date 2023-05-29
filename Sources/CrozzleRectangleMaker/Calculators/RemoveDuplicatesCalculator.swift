@@ -6,7 +6,22 @@
 //
 
 import Foundation
+/// ability to remove duplicates
 public struct RemoveDuplicatesCalculator {
+    
+    /// This provides a new list of shapes that have no duplicates
+    public static func execute(shapes: [ShapeModel]) -> [ShapeModel] {
+        var shapes = shapes
+        
+        let duplicateCount = findDuplicates(shapes: &shapes)
+        if duplicateCount == 0 {
+            return shapes
+        } else {
+            return removeDuplicates(shapes: shapes)
+        }
+    }
+    
+    /// Marks duplicates as shapeModel.isValid = false so we can remove them later.  Also returns how many duplicates there are so we dont have to worry about removing what is not there
     public static func findDuplicates(shapes: inout [ShapeModel]) -> Int{
         
         if shapes.count == 0 {
@@ -63,16 +78,16 @@ public struct RemoveDuplicatesCalculator {
                 } else {
                     previous = current
                 }
-            
-                
             } else {
                 // They are not the same in score or wordSequence
                 previous = current
             }
-            
-            
-            
         }
         return duplicateCount
+    }
+    
+    /// removes the duplicates once find duplicates has happened but not before
+    public static func removeDuplicates(shapes: [ShapeModel]) -> [ShapeModel] {
+        return shapes.filter { $0.isValid }
     }
 }
