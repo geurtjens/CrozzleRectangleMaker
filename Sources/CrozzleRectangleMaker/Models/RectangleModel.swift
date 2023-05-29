@@ -6,6 +6,7 @@
 //
 
 import Foundation
+/// This structure can create a shape.  It is what the `RectangleCalculator` creates
 public struct RectangleModel : ShapeProtocol {
         
     // 75 MB vs 161 MB
@@ -41,11 +42,7 @@ public struct RectangleModel : ShapeProtocol {
                 left: Int, leftLetterPos: Int, leftLength: Int,
                 right: Int, rightLetterPos: Int, rightLength: Int,
                 interlockWidth: Int, interlockHeight: Int, type: RectangleType) {
-//        self.score = score
-//        self.width = width
-//        self.height = height
-        
-        
+
         self.score = UInt16(score)
         self.width = UInt8(width)
         self.height = UInt8(height)
@@ -65,18 +62,6 @@ public struct RectangleModel : ShapeProtocol {
         self.interlockHeight = UInt8(interlockHeight)
         self.type = type
     }
-    
-//    public func ToText(words:[String]) -> String {
-//        let shape = ToShape()
-//        let text = ShapeCalculator.ConvertToText(shape: shape, words: words)
-//        return text
-//    }
-//
-//    public func ToTextFlipped(words:[String]) -> String {
-//        let shape = ToShape()
-//        let text = ShapeCalculator.ConvertToTextFlipped(shape: shape, words: words)
-//        return text
-//    }
     
     public func ToPlacement() -> [PlacementModel] {
         switch type {

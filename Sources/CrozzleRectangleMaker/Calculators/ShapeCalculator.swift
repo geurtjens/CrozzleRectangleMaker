@@ -182,6 +182,22 @@ public struct ShapeCalculator {
         }
     }
     
+    public static func SortWithWordSequence(shapes: inout [ShapeModel]) {
+        
+        shapes.sort {
+            if $0.score == $1.score {
+                if $0.width * $0.height == $1.width * $1.height {
+                    return $0.wordSequence < $1.wordSequence
+                }
+                else {
+                    return $0.width * $0.height < $1.width * $1.height
+                }
+            } else {
+                return $0.score > $1.score
+            }
+        }
+    }
+    
     public static func ToText(shape: ShapeModel, words:[String]) -> (String, UInt16) {
         
         var score = 0
