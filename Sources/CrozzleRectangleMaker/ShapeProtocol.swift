@@ -6,18 +6,28 @@
 //
 
 import Foundation
+/// When supporting this protocol an object can become a shape
 public protocol ShapeProtocol {
+    
+    /// score of the object
     var score: UInt16 {get}
+    /// width of the object
     var width: UInt8 {get}
+    /// height of the object
     var height: UInt8 {get}
 
+    /// object must support the ability to change itself into a list of placements
     func ToPlacement() -> [PlacementModel]
 }
+
 extension ShapeProtocol {
+    
+    /// takes the width, height and score of a structure that supports this protocol and make a shape
     func ToShape() -> ShapeModel {
         return ShapeModel(score: score, width: width, height: height, placements: ToPlacement())
     }
     
+    /// take this object that supports the ShapeProtocol and convert it to a text grid
     func ToText(words:[String]) -> String {
         
         let shape = ToShape()
@@ -68,6 +78,7 @@ extension ShapeProtocol {
         return result
     }
     
+    /// converts a shape into a flipped shape of text
     func ToTextFlipped(words:[String]) -> String {
         
         let shape = ToShape()

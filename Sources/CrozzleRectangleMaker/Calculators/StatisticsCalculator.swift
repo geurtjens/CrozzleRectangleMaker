@@ -7,7 +7,7 @@
 
 import Foundation
 /// provides statistics based on scores in a list of shapes that have already been sorted by score
-public struct StatisticsCalculator {
+public class StatisticsCalculator {
     
     /// Create a statistics model that has the score, number of shapes with that score, where it appears in all shapes and various percentages that we can use for filtering
     public static func Execute(scores:[UInt16]) -> [StatisticsModel] {

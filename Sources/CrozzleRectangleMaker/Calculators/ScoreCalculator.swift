@@ -8,7 +8,7 @@
 import Foundation
 
 /// Scoring of letters as per crozzle rules
-public struct ScoreCalculator {
+public class ScoreCalculator {
     /// Score of one interlocked letter.  Always pass in a capital letter.  We should also calculate score for number of words so dont forget that elsewhere in the calling code
     /// - Parameter letter: A letter from "A" to "Z" which was interlocked
     /// - Returns: The score for interlocking that letter

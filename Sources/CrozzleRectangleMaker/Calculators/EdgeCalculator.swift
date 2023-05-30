@@ -6,6 +6,7 @@
 //
 
 import Foundation
+/// calculates all instances when one word can interlock with another word
 public class EdgeCalculator {
 
     /// Finds all edges found within an array of words

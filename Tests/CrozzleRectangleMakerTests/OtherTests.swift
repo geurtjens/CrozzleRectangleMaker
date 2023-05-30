@@ -8,8 +8,7 @@
 import XCTest
 @testable import CrozzleRectangleMaker
 final class OtherTests: XCTestCase {
-
-
+    
     func test_Execute() async throws {
         
         let result = await RectangleCalculator.Execute(
@@ -22,6 +21,7 @@ final class OtherTests: XCTestCase {
         // 463 MB and 57 seconds
         // 160 MB and 55.9 seconds if we make the size smaller
     }
+    
     
     func test_ExecuteSortByScoreAndArea() async throws {
         
@@ -40,6 +40,7 @@ final class OtherTests: XCTestCase {
         // 160 MB and 55.9 seconds if we make the size smaller
     }
     
+    
     func test_ExecuteSerial() throws {
         
         let result = RectangleCalculator.ExecuteSerial(
@@ -52,7 +53,6 @@ final class OtherTests: XCTestCase {
         // 463 MB and 57 seconds
         // 160 MB and 55.9 seconds if we make the size smaller
     }
-    
     
     
     func test_ExecuteSortByScoreAndAreaAndSaveToCSV() async throws {
@@ -68,12 +68,11 @@ final class OtherTests: XCTestCase {
         ToCsv.Save(filename: filename, rectangles: result)
     }
     
+    
     func test_BottomRight4x6_Repeats() throws {
         
         let result = RectangleCalculator.BottomRightRectangle(interlockWidth: 3, interlockHeight: 5, words: words, lengths: lengths, widthMax: widthMax, heightMax: heightMax, scoreMin: scoreMin)
-        
-        
-        
+
         var text:[String] = []
         for item in result {
             text.append(item.ToText(words: words))
@@ -87,9 +86,6 @@ final class OtherTests: XCTestCase {
             }
         }
         XCTAssertEqual(0,repeats)
-//        for textItem in text {
-//            print(textItem)
-//        }
     }
 
     
@@ -131,9 +127,6 @@ final class OtherTests: XCTestCase {
             heightMax: heightMax,
             scoreMin: scoreMin)
         
-        
-        
-        
         var result: [(RectangleModel, String)] = []
         for item in o4x6_BottomLeft {
             let text = item.ToText(words:words)
@@ -165,10 +158,9 @@ final class OtherTests: XCTestCase {
         print(result.count)
     }
     
-   
-    
-    
+
     func test_ToTextFlipped() throws {
+        
         let result = RectangleCalculator.Square(
             interlockWidth: 2,
             words: words,
@@ -190,20 +182,14 @@ final class OtherTests: XCTestCase {
     }
     
     
-//    func getLengths() -> [Int] {
-//        let words = getWords_8612()
-//        let lengths = RectangleCalculator.WordListToLengths(words: words)
-//        return lengths
-//    }
-    
+    /// standard values for all tests
+    let widthMax = 17
+    let heightMax = 12
+    let scoreMin = 0
     var words:[String] = []
     var lengths: [Int] = []
     override func setUpWithError() throws {
         words = WordData.words_8612()
         lengths = WordCalculator.lengths(words: words)
     }
-    
-    let widthMax = 17
-    let heightMax = 12
-    let scoreMin = 0
 }

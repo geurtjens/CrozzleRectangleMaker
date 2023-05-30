@@ -7,7 +7,7 @@
 
 import Foundation
 /// calculations that are necessary for processing words in the word list
-public struct WordCalculator {
+public class WordCalculator {
     
     /// each word is returned backwards so that `ABC` becomes `CBA`
     public static func reverse(words:[String]) -> [String] {

@@ -8,7 +8,7 @@
 import Foundation
 
 /// A way of populating all standard shapes and placing them into the `ShapeQueueList`.  There is no merges in here rather just getting shapes we can make from the raw single words of the words list.
-public struct ShapeQueueListCalculator {
+public class ShapeQueueListCalculator {
     
     /// provides all known shapes as a starting point to our calculations.  The scoresMin array tells what the min score is no matter what the number of words and its indexed such that 4 word shapes will be found in scoresMin[4] just to keep it simple.
     public static func Execute(words: [String], scoresMin:[Int], widthMax: Int, heightMax: Int) async -> ShapeQueueList {

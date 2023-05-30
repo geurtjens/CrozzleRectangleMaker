@@ -6,24 +6,18 @@
 //
 
 import Foundation
+/// Contains instructions on how to place a word into a grid
 public struct PlacementModel {
+
+    /// word Id which is the position of the word in the given word list
+    public let i: UInt8
     
-    //public var i: Int { get { return Int(_i) } }
-    //public var x: Int { get { return Int(_x) } }
-    //public var y: Int { get { return Int(_y) } }
-    //public var l: Int { get { return Int(_length)}}
-    
-    
-    public let i: UInt8 // word id
-    public let h: Bool // Is horizontal
+    /// is Horizontal so this is true if the word is to be placed horizontally else false if vertically
+    public let h: Bool
+    /// x coordinate within the grid that the word should begin
     public let x: UInt8
+    /// y coordinate within the grid that the word should begin
     public let y: UInt8
+    /// length of the word
     public let l: UInt8
-    init(i: UInt8, h: Bool, x: UInt8, y: UInt8, length: UInt8) {
-        self.i = UInt8(i)
-        self.h = h
-        self.x = UInt8(x)
-        self.y = UInt8(y)
-        self.l = length
-    }
 }

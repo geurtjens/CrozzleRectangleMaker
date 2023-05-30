@@ -6,7 +6,8 @@
 //
 
 import Foundation
-public struct RectangleCalculator {
+/// Calculates all rectangle shapes from the words list and according to the constraints of score, width and height
+public class RectangleCalculator {
     
     /// Creates all possible rectangles and then sorts them by score and then area
     public static func ExecuteAndSortByScoreAndArea(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) async -> [RectangleModel]  {

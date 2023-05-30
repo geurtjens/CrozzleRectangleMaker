@@ -6,6 +6,7 @@
 //
 
 import Foundation
+/// captures all the information needed to formulate an edge which is interlocks of two words and the ability to make a shape out of this data
 public struct EdgeModel : ShapeProtocol {
     
     /// first word involved in the edge.  It will have the lower wordId out of both words being interlocked, to avoid duplicates
@@ -36,14 +37,14 @@ public struct EdgeModel : ShapeProtocol {
             h: true,
             x: 0,
             y: verticalPosition + 1,
-            length: horizontalLength
+            l: horizontalLength
         )
         let vertical = PlacementModel(
             i: verticalWordId,
             h: false,
             x: horizontalPosition + 1,
             y: 0,
-            length: verticalLength
+            l: verticalLength
         )
         return [horizontal, vertical]
     }

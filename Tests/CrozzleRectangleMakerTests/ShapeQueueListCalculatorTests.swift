@@ -10,9 +10,7 @@ import XCTest
 final class ShapeQueueListCalculatorTests: XCTestCase {
 
     func test_execute() async throws {
-        
-        
-        
+
         let scoresMin = Array(repeating: 1000, count: 40)
         let result = await ShapeQueueListCalculator.Execute(
             words: words,
@@ -44,6 +42,7 @@ final class ShapeQueueListCalculatorTests: XCTestCase {
         XCTAssertEqual(10757, shapes.count)
     }
     
+    
     func test_get_4_word_shapes() async throws {
         
         let shapes = await ShapeQueueListCalculator.get_4_word_shapes(
@@ -54,6 +53,7 @@ final class ShapeQueueListCalculatorTests: XCTestCase {
         XCTAssertEqual(4, shapes[0].placements.count)
         XCTAssertEqual(4531541, shapes.count)
     }
+    
     
     func test_get_5_word_shapes() throws {
         
@@ -67,6 +67,7 @@ final class ShapeQueueListCalculatorTests: XCTestCase {
         XCTAssertEqual(292, shapes.count)
     }
     
+    
     func test_get_6_word_shapes() throws {
         
         let shapes = ShapeQueueListCalculator.get_6_word_shapes(
@@ -78,6 +79,7 @@ final class ShapeQueueListCalculatorTests: XCTestCase {
         XCTAssertEqual(6, shapes[0].placements.count)
         XCTAssertEqual(52, shapes.count)
     }
+    
     
     func test_get_7_word_shapes() throws {
         
@@ -91,6 +93,7 @@ final class ShapeQueueListCalculatorTests: XCTestCase {
         XCTAssertEqual(6, shapes.count)
     }
     
+    
     func test_get_8_word_shapes() throws {
         
         let shapes = ShapeQueueListCalculator.get_8_word_shapes(
@@ -98,19 +101,19 @@ final class ShapeQueueListCalculatorTests: XCTestCase {
             scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax)
-        
-        //XCTAssertEqual(8, gpuShapes.stride)
+
         XCTAssertEqual(0, shapes.count)
     }
     
+    
+    /// standard values for all tests
+    let widthMax = 17
+    let heightMax = 12
+    let scoreMin = 0
     var words:[String] = []
     var lengths: [Int] = []
     override func setUpWithError() throws {
         words = WordData.words_8612()
         lengths = WordCalculator.lengths(words: words)
     }
-    
-    let widthMax = 17
-    let heightMax = 12
-    let scoreMin = 0
 }

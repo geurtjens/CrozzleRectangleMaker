@@ -23,7 +23,7 @@ final class EdgeCalculatorTests: XCTestCase {
     }
     
     
-    
+    /// standard values for all tests
     let widthMax = 17
     let heightMax = 12
     let scoreMin = 0

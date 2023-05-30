@@ -19,6 +19,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
+    
     func test_D3x4() {
         
         let result = RectangleCalculator.Rectangle(
@@ -34,6 +35,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print("D3x4 = \(result.count)")
         print(result[0].ToText(words:words))
     }
+    
     
     func test_D3x5() {
         
@@ -51,6 +53,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
+    
     func test_D3x6() {
         
         let result = RectangleCalculator.Rectangle(
@@ -67,6 +70,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
+    
     func test_D4x4() throws {
         
         let result = RectangleCalculator.Square(
@@ -81,6 +85,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print("D4x4 = \(result.count)")
         print(result[0].ToText(words:words))
     }
+    
     
     func test_D4x5() {
         
@@ -97,6 +102,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print("D4x5 = \(result.count)")
         print(result[0].ToText(words:words))
     }
+    
     
     func test_D4x6() {
         
@@ -130,6 +136,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
+    
     func test_D5x6() {
         
         let result = RectangleCalculator.Rectangle(
@@ -144,8 +151,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
         XCTAssertEqual(19_577, result.count);
         print("D5x6 = \(result.count)")
         print(result[0].ToText(words:words))
-
     }
+    
     
     func test_D6x6() throws {
         
@@ -178,6 +185,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
+    
     func test_O3x3_TopLeft() throws {
         
         let result = RectangleCalculator.TopLeftSquare(
@@ -192,6 +200,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print("O3x3_TopLeft = \(result.count)")
         print(result[0].ToText(words:words))
     }
+    
     
     func test_O3x3_TopRight() throws {
         
@@ -208,6 +217,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
+    
     func test_O3x4_BottomLeft() throws {
         
         let result = RectangleCalculator.BottomLeftRectangle(
@@ -223,6 +233,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print("D3x4_BottomLeft = \(result.count)")
         print(result[0].ToText(words:words))
     }
+    
+    
     func test_O3x4_BottomRight() throws {
         
         let result = RectangleCalculator.BottomRightRectangle(
@@ -239,6 +251,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
+    
     func test_O3x4_TopLeft() throws {
         
         let result = RectangleCalculator.TopLeftRectangle(
@@ -254,6 +267,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print("D3x4_TopLeft = \(result.count)")
         print(result[0].ToText(words:words))
     }
+    
     
     func test_O3x4_TopRight() throws {
         
@@ -288,6 +302,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
+    
     func test_O3x5_BottomRight() throws {
         
         let result = RectangleCalculator.BottomRightRectangle(
@@ -303,6 +318,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print("D3x5_BottomRight = \(result.count)")
         print(result[0].ToText(words:words))
     }
+    
     
     func test_O3x5_TopLeft() throws {
         
@@ -337,6 +353,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
+    
     func test_O3x6_BottomLeft() throws {
         
         let result = RectangleCalculator.BottomLeftRectangle(
@@ -352,6 +369,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print("D3x6_BottomLeft = \(result.count)")
         print(result[0].ToText(words:words))
     }
+    
+    
     func test_O3x6_BottomRight() throws {
         
         let result = RectangleCalculator.BottomRightRectangle(
@@ -367,6 +386,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print("D3x6_BottomRight = \(result.count)")
         print(result[0].ToText(words:words))
     }
+    
     
     func test_O3x6_TopLeft() throws {
         
@@ -384,6 +404,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
+    
     func test_O3x6_TopRight() throws {
         
         let result = RectangleCalculator.TopRightRectangle(
@@ -400,6 +421,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
+    
     func test_O4x4_BottomRight() throws {
         
         let result = RectangleCalculator.BottomRightSquare(
@@ -414,6 +436,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print("D4x4_BottomRight = \(result.count)")
         print(result[0].ToText(words:words))
     }
+    
+    
     func test_O4x4_TopLeft() throws {
         
         let result = RectangleCalculator.TopLeftSquare(
@@ -429,6 +453,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
+    
     func test_O4x4_TopRight() throws {
         
         let result = RectangleCalculator.TopRightSquare(
@@ -443,6 +468,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print("D4x4_TopRight = \(result.count)")
         print(result[0].ToText(words:words))
     }
+    
     
     func test_O4x5_BottomLeft() throws {
         
@@ -460,6 +486,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
+    
     func test_O4x5_BottomRight() throws {
         
         let result = RectangleCalculator.BottomRightRectangle(
@@ -475,6 +502,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print("D4x5_BottomRight = \(result.count)")
         print(result[0].ToText(words:words))
     }
+    
     
     func test_O4x5_TopLeft() throws {
         
@@ -492,6 +520,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
+    
     func test_O4x5_TopRight() throws {
         
         let result = RectangleCalculator.TopRightRectangle(
@@ -507,6 +536,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print("D4x5_TopRight = \(result.count)")
         print(result[0].ToText(words:words))
     }
+    
     
     func test_O4x6_BottomLeft() throws {
         
@@ -524,6 +554,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
+    
     func test_O4x6_BottomRight() throws {
         
         let result = RectangleCalculator.BottomRightRectangle(
@@ -539,6 +570,8 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print("D4x6_BottomRight = \(result.count)")
         print(result[0].ToText(words:words))
     }
+    
+    
     func test_O4x6_TopLeft() throws {
         
         let result = RectangleCalculator.TopLeftRectangle(
@@ -554,6 +587,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print("D4x6_TopLeft = \(result.count)")
         print(result[0].ToText(words:words))
     }
+    
     
     func test_O4x6_TopRight() throws {
         
@@ -571,6 +605,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
+    
     func test_O5x5_BottomRight() throws {
         
         let result = RectangleCalculator.BottomRightSquare(
@@ -585,6 +620,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print("D5x5_BottomRight = \(result.count)")
         print(result[0].ToText(words:words))
     }
+    
     
     func test_O5x5_TopLeft() throws {
         
@@ -601,6 +637,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
+    
     func test_O5x5_TopRight() throws {
         
         let result = RectangleCalculator.TopRightSquare(
@@ -615,6 +652,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print("D5x5_TopRight = \(result.count)")
         print(result[0].ToText(words:words))
     }
+    
     
     func test_O5x6_BottomLeft() throws {
         
@@ -632,6 +670,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
+    
     func test_O5x6_BottomRight() throws {
         
         let result = RectangleCalculator.BottomRightRectangle(
@@ -647,6 +686,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
         
     }
+    
     
     func test_O5x6_TopLeft() throws {
         
@@ -664,6 +704,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
+    
     func test_O5x6_TopRight() throws {
         
         let result = RectangleCalculator.TopRightRectangle(
@@ -680,6 +721,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
+    
     func test_O6x6_BottomRight() throws {
         
         let result = RectangleCalculator.BottomRightSquare(
@@ -694,6 +736,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print("D6x6_BottomRight = \(result.count)")
         print(result[0].ToText(words:words))
     }
+    
     
     func test_O6x6_TopLeft() throws {
         
@@ -710,6 +753,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
+    
     func test_O6x6_TopRight() throws {
         
         let result = RectangleCalculator.TopRightSquare(
@@ -725,30 +769,14 @@ final class RectangleCalculator8612Tests: XCTestCase {
         print(result[0].ToText(words:words))
     }
     
-    
-    
-    func getWords_8612() -> [String] {
-        let wordList = [
-            "ZION", "AZURE", "TOYS", "JOY", "HAZELNUT", "NUTS", "NAZARETH", "HYMN", "TURKEY", "SNOW", "MERRY", "TOAST", "STAR", "HOLLY", "JELLY", "FAMILY", "WHITE", "SING", "SAUCE", "PORK", "TREE", "EVE", "INN", "BELLS", "CAKE",
-            
-            "GLAZE", "PARTYHATS", "TWENTYFIFTH", "WALNUT", "PEANUTS", "PRESENTS", "FRUIT", "NUTMEG", "CUSTARD", "CHRISTMAS", "MISTLETOE", "GIFTS", "SANTACLAUS", "FESTIVE", "RAISINS", "LIGHTS", "WREATH", "HOLIDAY", "WISEMEN", "CRANBERRY", "OPENHOUSE", "SILENTNIGHT", "STOCKING", "PUNCH", "WINE", "SHOPPING", "PLUMPUDDING", "WRAPPING", "NEIGHBOURS", "GREETINGS", "DECORATIONS", "ALMONDS", "LANTERN", "KRISSKRINGLE", "SPICE", "GOODWILL", "BONBON", "CHURCH", "FRIENDS", "PARCELS", "CINNAMON", "NICHOLAS", "MINCEPIES", "CHERRIES", "SLEIGH", "ALMOND", "MANGER", "RIBBON", "CHOCOLATE", "MIXEDPEEL", "DRINK", "CANDLES", "FOOD", "GINGER", "BETHLEHEM", "CAROL", "REINDEER", "GOODCHEER", "CREAM", "CORDIAL", "CHILDREN", "ICECREAM", "CHICKEN", "CARD", "DECEMBER", "PEACE"]
-        return wordList
-    }
-    
-//    func getLengths() -> [Int] {
-//        let words = getWords_8612()
-//        let lengths = RectangleCalculator.WordListToLengths(words: words)
-//        return lengths
-//    }
-    
+    /// standard values for all tests
+    let widthMax = 17
+    let heightMax = 12
+    let scoreMin = 0
     var words:[String] = []
     var lengths: [Int] = []
     override func setUpWithError() throws {
         words = WordData.words_8612()
         lengths = WordCalculator.lengths(words: words)
     }
-    
-    let widthMax = 17
-    let heightMax = 12
-    let scoreMin = 0
 }

@@ -6,10 +6,11 @@
 //
 
 import Foundation
-public struct ShapeCalculator {
+/// A variety of functions used with shapes convertion from clusters and edges and ability to flip shapes etc
+public class ShapeCalculator {
     
     /// conveniently convert all clusters to shapes
-    public static func toShape(fromClusters clusters: [ClusterMakerModel]) -> [ShapeModel] {
+    public static func toShape(fromClusters clusters: [ClusterModel]) -> [ShapeModel] {
         var shapes: [ShapeModel] = []
         for cluster in clusters {
             shapes.append(cluster.ToShape())
@@ -31,7 +32,7 @@ public struct ShapeCalculator {
         var placements:[PlacementModel] = []
         
         for p in shape.placements {
-            let reversed = PlacementModel(i: p.i, h: !p.h, x: p.y, y: p.x, length: UInt8(p.l))
+            let reversed = PlacementModel(i: p.i, h: !p.h, x: p.y, y: p.x, l: UInt8(p.l))
             placements.append(reversed)
         }
         
@@ -130,7 +131,7 @@ public struct ShapeCalculator {
     }
     
     /// convert `clusters` to `shapes` and then we sort them
-    public static func toShapes(clusters: [ClusterMakerModel]) -> [ShapeModel] {
+    public static func toShapes(clusters: [ClusterModel]) -> [ShapeModel] {
         var shapes:[ShapeModel] = []
         for cluster in clusters {
             let shape = cluster.ToShape()
@@ -140,7 +141,7 @@ public struct ShapeCalculator {
     }
     
     /// first we convert `clusters` to `shapes` and then we sort them
-    public static func toShapesSorted(clusters: [ClusterMakerModel]) -> [ShapeModel] {
+    public static func toShapesSorted(clusters: [ClusterModel]) -> [ShapeModel] {
         var shapes = toShapes(clusters: clusters)
         Sort(shapes: &shapes)
         return shapes

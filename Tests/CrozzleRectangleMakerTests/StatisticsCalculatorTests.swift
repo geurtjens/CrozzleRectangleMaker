@@ -27,6 +27,7 @@ final class StatisticsCalculatorTests: XCTestCase {
         XCTAssertEqual(52,scoreMinWeWant2)
     }
     
+    
     func test_PositionMax_Edge() throws {
         let shapes = ShapeQueueListCalculator.get_2_word_shapes(
             words: words,
@@ -44,6 +45,7 @@ final class StatisticsCalculatorTests: XCTestCase {
         
         XCTAssertEqual(75, b)
     }
+    
     
     func test_Edges_8612() throws {
         let shapes = ShapeQueueListCalculator.get_2_word_shapes(
@@ -98,8 +100,8 @@ final class StatisticsCalculatorTests: XCTestCase {
         XCTAssertEqual(10756, a[5].endPosition)
         XCTAssertEqual(367202, a[5].percentage)
         XCTAssertEqual(1000000, a[5].topPercentage)
-
     }
+    
     
     func test_Rectangle_8612() async throws {
         
@@ -108,7 +110,6 @@ final class StatisticsCalculatorTests: XCTestCase {
             scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax)
-        
         
         let a = StatisticsCalculator.Execute(shapes: shapes)
         XCTAssertEqual(55, a.count)
@@ -134,7 +135,6 @@ final class StatisticsCalculatorTests: XCTestCase {
         XCTAssertEqual(28, a[0].count)
         XCTAssertEqual(6, a[0].percentage)
         XCTAssertEqual(6, a[0].topPercentage)
-
 
         XCTAssertEqual(172, a[1].score)
         XCTAssertEqual(141, a[1].count)
@@ -475,6 +475,8 @@ final class StatisticsCalculatorTests: XCTestCase {
          */
     }
     
+    
+    /// standard values for all tests
     let widthMax = 17
     let heightMax = 12
     let scoreMin = 0

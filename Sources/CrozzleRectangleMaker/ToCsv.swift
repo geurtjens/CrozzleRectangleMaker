@@ -6,7 +6,10 @@
 //
 
 import Foundation
-public struct ToCsv {
+/// Converts a rectangle data structure into a csv file
+public class ToCsv {
+    
+    /// provide a filename and an array of rectangles to get a CSV file
     public static func Save(filename: String, rectangles: [RectangleModel]) {
         var csvContent = "Score,Width,Height,W1,W2,W3,W4,D1,D2,D3,D4,X1,X2,X3,X4,Y1,Y2,Y3,Y4,Type"
         for rectangle in rectangles {

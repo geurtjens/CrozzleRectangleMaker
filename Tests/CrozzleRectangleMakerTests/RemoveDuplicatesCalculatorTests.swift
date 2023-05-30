@@ -27,8 +27,9 @@ final class RemoveDuplicatesCalculatorTests: XCTestCase {
         XCTAssertEqual(0, duplicateCount)
         XCTAssertTrue(shapes[0].isValid)
         XCTAssertTrue(shapes[1].isValid)
-       
     }
+    
+    
     func test_Find_1() throws {
         
         let result = EdgeCalculator.Execute(
@@ -47,8 +48,8 @@ final class RemoveDuplicatesCalculatorTests: XCTestCase {
         XCTAssertEqual(1, duplicateCount)
         XCTAssertTrue(shapes[0].isValid)
         XCTAssertFalse(shapes[1].isValid)
-       
     }
+    
     
     func test_Find_1_Flipped() throws {
         
@@ -70,8 +71,8 @@ final class RemoveDuplicatesCalculatorTests: XCTestCase {
         XCTAssertEqual(1, duplicateCount)
         XCTAssertTrue(shapes[0].isValid)
         XCTAssertFalse(shapes[1].isValid)
-       
     }
+    
     
     func test_Find_2() throws {
         
@@ -109,9 +110,8 @@ final class RemoveDuplicatesCalculatorTests: XCTestCase {
         XCTAssertEqual(4,noduplicates.count)
     }
     
-    
-    
-    
+
+    /// standard values for all tests
     let widthMax = 17
     let heightMax = 12
     let scoreMin = 0

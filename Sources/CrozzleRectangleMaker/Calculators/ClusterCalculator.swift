@@ -6,9 +6,11 @@
 //
 
 import Foundation
-public struct ClusterCalculator {
+
+/// calculates all clusters which are shapes that have a block of interlocks in the middle of the structure
+public class ClusterCalculator {
     
-    public static func Execute(words start: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func Execute(words start: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
         let end = WordCalculator.reverse(words: start)
         let len = WordCalculator.lengths(words: start)
         
@@ -35,7 +37,7 @@ public struct ClusterCalculator {
         return result
     }
     
-    public static func C2x2(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x2(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
         let C2x2_LR_UD = C2x2_LR_UD(
             start: start,
             end: end,
@@ -64,7 +66,7 @@ public struct ClusterCalculator {
         
         return result
     }
-    public static func C2x3(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x3(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
         let C2x3_LRL_DU = C2x3_LRL_DU(
             start: start,
             end: end,
@@ -101,7 +103,7 @@ public struct ClusterCalculator {
         
         return result
     }
-    public static func C2x4(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x4(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
         
         let C2x4_LRLR_DU = C2x4_LRLR_DU(
             start: start,
@@ -140,7 +142,7 @@ public struct ClusterCalculator {
         return result
     }
     
-    public static func C2x5(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x5(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
         
         let C2x5_LRLRL_DU = C2x5_LRLRL_DU(
             start: start,
@@ -179,7 +181,7 @@ public struct ClusterCalculator {
         return result
     }
     
-    public static func C2x6(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x6(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
         
         let C2x6_LRLRLR_DU = C2x6_LRLRLR_DU(
             start: start,
@@ -218,7 +220,7 @@ public struct ClusterCalculator {
         return result
     }
     
-    public static func C3x3(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C3x3(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
         let C3x3_LRL_UDU = C3x3_LRL_UDU(
             start: start,
             end: end,
@@ -248,7 +250,7 @@ public struct ClusterCalculator {
         return result
     }
     
-    public static func C3x4(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C3x4(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
         
         let C3x4_LRLR_DUD = C3x4_LRLR_DUD(
             start: start,
@@ -287,7 +289,7 @@ public struct ClusterCalculator {
         return result
     }
     
-    public static func C3x5(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C3x5(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
         
         let C3x5_LRLRL_DUD = C3x5_LRLRL_DUD(
             start: start,
@@ -326,12 +328,12 @@ public struct ClusterCalculator {
         return result
     }
     
-    public static func C2x2_LR_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x2_LR_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
         
         let wordCount = start.count
         let interlockWidth = 2
         let interlockHeight = 2
-        var result: [ClusterMakerModel] = []
+        var result: [ClusterModel] = []
         
         //var textList: [String] = []
         
@@ -365,7 +367,7 @@ public struct ClusterCalculator {
                                         right2 != up1) {
                                         //print("right2:\(W.Start[right2])")
                                         
-                                        let cluster = ClusterMakerModel(
+                                        let cluster = ClusterModel(
                                             wordsHorizontal: [left1, right2], // We could put id here if needed
                                             wordsVertical: [up1, down2],
                                             patternHorizontal: [.leading, .trailing],
@@ -376,13 +378,7 @@ public struct ClusterCalculator {
                                         )
                                         
                                         if cluster.isValid(scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax) {
-                                            //print("left1:\(start[left1]), right2:\(start[right2]), up1:\(start[up1]), down2:\(start[down2])")
-                                            //                                             let text = cluster.ToText(words:start)
-                                            //
-                                            //                                             textList.append(text)
-                                            //                                             let textReversed = cluster.ToTextFlipped(words: start)
-                                            //                                             textList.append(textReversed)
-//                                            print("Width:\(cluster.width), Height:\(cluster.height), Horizontal: \(start[left1]),\(start[right2]), Vertical:\(start[up1]),\(start[down2])")
+                        
                                             let text = cluster.ToText(words:start)
                                             if text.contains("#") == false {
                                                 result.append(cluster)
@@ -396,23 +392,17 @@ public struct ClusterCalculator {
                 }
             }
         }
-        //textList.sort()
-        
-        //        for text in textList {
-        //            print(text)
-        //            print("")
-        //        }
         
         return result
     }
     
     
-    public static func C2x2_RL_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x2_RL_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
         
         let wordCount = start.count
         let interlockWidth = 2
         let interlockHeight = 2
-        var result: [ClusterMakerModel] = []
+        var result: [ClusterModel] = []
         
         for down1 in 0..<wordCount {
             
@@ -445,7 +435,7 @@ public struct ClusterCalculator {
                                         left2 != down1) {
                                         //print("left2:\(W.Start[left2])")
                                         
-                                        let cluster = ClusterMakerModel(
+                                        let cluster = ClusterModel(
                                             wordsHorizontal: [right1, left2], // We could put id here if needed
                                             wordsVertical: [down1, up2],
                                             patternHorizontal: [.trailing, .leading],
@@ -480,12 +470,12 @@ public struct ClusterCalculator {
     }
     
     // This one does not need duplicate removal
-    public static func C2x2_RL_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x2_RL_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
         
         let wordCount = start.count
         let interlockWidth = 2
         let interlockHeight = 2
-        var result: [ClusterMakerModel] = []
+        var result: [ClusterModel] = []
         
         //var textList: [String] = []
         
@@ -519,7 +509,7 @@ public struct ClusterCalculator {
                                         left2 != up1) {
                                         //print("left2:\(W.Start[left2])")
                                         
-                                        let cluster = ClusterMakerModel(
+                                        let cluster = ClusterModel(
                                             wordsHorizontal: [right1, left2], // We could put id here if needed
                                             wordsVertical: [up1, down2],
                                             patternHorizontal: [.trailing, .leading],
@@ -555,12 +545,12 @@ public struct ClusterCalculator {
     
     
     
-    public static func C2x3_LRL_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x3_LRL_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
         
         let wordCount = start.count
         let interlockWidth = 2
         let interlockHeight = 3
-        var result: [ClusterMakerModel] = []
+        var result: [ClusterModel] = []
         
         for down1 in 0..<wordCount {
             
@@ -603,7 +593,7 @@ public struct ClusterCalculator {
                                                 left3 != down1) {
                                                 //print("left3:\(start[left3])")
                                                 
-                                                let cluster = ClusterMakerModel(
+                                                let cluster = ClusterModel(
                                                     wordsHorizontal: [left1, right2, left3],
                                                     wordsVertical: [down1, up2],
                                                     patternHorizontal: [.leading, .trailing, .leading],
@@ -631,12 +621,12 @@ public struct ClusterCalculator {
         return result
     }
     
-    public static func C2x3_LRL_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x3_LRL_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
         let interlockWidth = 2
         let interlockHeight = 3
-        var result: [ClusterMakerModel] = []
+        var result: [ClusterModel] = []
 
         for up1 in 0..<wordCount {
             
@@ -679,7 +669,7 @@ public struct ClusterCalculator {
                                                 left3 != up1) {
                                                 //print("left3:\(start[left3])")
                                                 
-                                                let cluster = ClusterMakerModel(
+                                                let cluster = ClusterModel(
                                                     wordsHorizontal: [left1, right2, left3],
                                                     wordsVertical: [up1, down2],
                                                     patternHorizontal: [.leading, .trailing, .leading],
@@ -707,12 +697,12 @@ public struct ClusterCalculator {
          return result
      }
     
-    public static func C2x3_RLR_DU(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x3_RLR_DU(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
         let interlockWidth = 2
         let interlockHeight = 3
-        var result: [ClusterMakerModel] = []
+        var result: [ClusterModel] = []
 
         for down1 in 0..<wordCount {
 
@@ -755,7 +745,7 @@ public struct ClusterCalculator {
                                                  right3 != down1) {
                                                  //print("right3:\(start[right3])")
 
-                                                 let cluster = ClusterMakerModel(
+                                                 let cluster = ClusterModel(
                                                      wordsHorizontal: [right1, left2, right3],
                                                      wordsVertical: [down1, up2],
                                                      patternHorizontal: [.trailing, .leading, .trailing],
@@ -783,12 +773,12 @@ public struct ClusterCalculator {
          return result
     }
     
-    public static func C2x3_RLR_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x3_RLR_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 2
          let interlockHeight = 3
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for up1 in 0..<wordCount {
 
@@ -831,7 +821,7 @@ public struct ClusterCalculator {
                                                  right3 != up1) {
                                                  //print("right3:\(start[right3])")
 
-                                                 let cluster = ClusterMakerModel(
+                                                 let cluster = ClusterModel(
                                                      wordsHorizontal: [right1, left2, right3],
                                                      wordsVertical: [up1, down2],
                                                      patternHorizontal: [.trailing, .leading, .trailing],
@@ -860,12 +850,12 @@ public struct ClusterCalculator {
      }
     
     
-    public static func C2x4_LRLR_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x4_LRLR_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 2
          let interlockHeight = 4
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for down1 in 0..<wordCount {
 
@@ -920,7 +910,7 @@ public struct ClusterCalculator {
                                                          right4 != down1) {
                                                          //print("right4:\(start[right4])")
 
-                                                         let cluster = ClusterMakerModel(
+                                                         let cluster = ClusterModel(
                                                              wordsHorizontal: [left1, right2, left3, right4],
                                                              wordsVertical: [down1, up2],
                                                              patternHorizontal: [.leading, .trailing, .leading, .trailing],
@@ -950,12 +940,12 @@ public struct ClusterCalculator {
          return result
      }
     
-    public static func C2x4_LRLR_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x4_LRLR_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 2
          let interlockHeight = 4
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for up1 in 0..<wordCount {
 
@@ -1010,7 +1000,7 @@ public struct ClusterCalculator {
                                                          right4 != up1) {
                                                          //print("right4:\(start[right4])")
 
-                                                         let cluster = ClusterMakerModel(
+                                                         let cluster = ClusterModel(
                                                              wordsHorizontal: [left1, right2, left3, right4],
                                                              wordsVertical: [up1, down2],
                                                              patternHorizontal: [.leading, .trailing, .leading, .trailing],
@@ -1040,12 +1030,12 @@ public struct ClusterCalculator {
          return result
      }
 
-    public static func C2x4_RLRL_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x4_RLRL_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 2
          let interlockHeight = 4
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for down1 in 0..<wordCount {
 
@@ -1100,7 +1090,7 @@ public struct ClusterCalculator {
                                                          left4 != down1) {
                                                          //print("left4:\(start[left4])")
 
-                                                         let cluster = ClusterMakerModel(
+                                                         let cluster = ClusterModel(
                                                              wordsHorizontal: [right1, left2, right3, left4],
                                                              wordsVertical: [down1, up2],
                                                              patternHorizontal: [.trailing, .leading, .trailing, .leading],
@@ -1131,12 +1121,12 @@ public struct ClusterCalculator {
      }
     
     
-    public static func C2x4_RLRL_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x4_RLRL_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 2
          let interlockHeight = 4
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for up1 in 0..<wordCount {
 
@@ -1191,7 +1181,7 @@ public struct ClusterCalculator {
                                                          left4 != up1) {
                                                          //print("left4:\(start[left4])")
 
-                                                         let cluster = ClusterMakerModel(
+                                                         let cluster = ClusterModel(
                                                              wordsHorizontal: [right1, left2, right3, left4],
                                                              wordsVertical: [up1, down2],
                                                              patternHorizontal: [.trailing, .leading, .trailing, .leading],
@@ -1222,12 +1212,12 @@ public struct ClusterCalculator {
      }
     
     
-    public static func C2x5_LRLRL_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x5_LRLRL_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 2
          let interlockHeight = 5
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for down1 in 0..<wordCount {
 
@@ -1295,7 +1285,7 @@ public struct ClusterCalculator {
                                                                  left5 != down1) {
                                                                  //print("left5:\(start[left5])")
 
-                                                                 let cluster = ClusterMakerModel(
+                                                                 let cluster = ClusterModel(
                                                                      wordsHorizontal: [left1, right2, left3, right4, left5],
                                                                      wordsVertical: [down1, up2],
                                                                      patternHorizontal: [.leading, .trailing, .leading, .trailing, .leading],
@@ -1328,12 +1318,12 @@ public struct ClusterCalculator {
      }
     
     
-    public static func C2x5_LRLRL_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x5_LRLRL_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 2
          let interlockHeight = 5
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for up1 in 0..<wordCount {
 
@@ -1401,7 +1391,7 @@ public struct ClusterCalculator {
                                                                  left5 != up1) {
                                                                  //print("left5:\(start[left5])")
 
-                                                                 let cluster = ClusterMakerModel(
+                                                                 let cluster = ClusterModel(
                                                                      wordsHorizontal: [left1, right2, left3, right4, left5],
                                                                      wordsVertical: [up1, down2],
                                                                      patternHorizontal: [.leading, .trailing, .leading, .trailing, .leading],
@@ -1433,12 +1423,12 @@ public struct ClusterCalculator {
          return result
      }
     
-    public static func C2x5_RLRLR_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x5_RLRLR_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 2
          let interlockHeight = 5
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for down1 in 0..<wordCount {
 
@@ -1506,7 +1496,7 @@ public struct ClusterCalculator {
                                                                  right5 != down1) {
                                                                  //print("right5:\(start[right5])")
 
-                                                                 let cluster = ClusterMakerModel(
+                                                                 let cluster = ClusterModel(
                                                                      wordsHorizontal: [right1, left2, right3, left4, right5],
                                                                      wordsVertical: [down1, up2],
                                                                      patternHorizontal: [.trailing, .leading, .trailing, .leading, .trailing],
@@ -1539,12 +1529,12 @@ public struct ClusterCalculator {
      }
     
     
-    public static func C2x5_RLRLR_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x5_RLRLR_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 2
          let interlockHeight = 5
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for up1 in 0..<wordCount {
 
@@ -1612,7 +1602,7 @@ public struct ClusterCalculator {
                                                                  right5 != up1) {
                                                                  //print("right5:\(start[right5])")
 
-                                                                 let cluster = ClusterMakerModel(
+                                                                 let cluster = ClusterModel(
                                                                      wordsHorizontal: [right1, left2, right3, left4, right5],
                                                                      wordsVertical: [up1, down2],
                                                                      patternHorizontal: [.trailing, .leading, .trailing, .leading, .trailing],
@@ -1645,12 +1635,12 @@ public struct ClusterCalculator {
      }
     
     
-    public static func C2x6_LRLRLR_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x6_LRLRLR_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 2
          let interlockHeight = 6
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for down1 in 0..<wordCount {
 
@@ -1732,7 +1722,7 @@ public struct ClusterCalculator {
                                                                          right6 != down1) {
                                                                          //print("right6:\(start[right6])")
 
-                                                                         let cluster = ClusterMakerModel(
+                                                                         let cluster = ClusterModel(
                                                                              wordsHorizontal: [left1, right2, left3, right4, left5, right6],
                                                                              wordsVertical: [down1, up2],
                                                                              patternHorizontal: [.leading, .trailing, .leading, .trailing, .leading, .trailing],
@@ -1766,12 +1756,12 @@ public struct ClusterCalculator {
          return result
      }
     
-    public static func C2x6_LRLRLR_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x6_LRLRLR_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 2
          let interlockHeight = 6
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for up1 in 0..<wordCount {
 
@@ -1853,7 +1843,7 @@ public struct ClusterCalculator {
                                                                          right6 != up1) {
                                                                          //print("right6:\(start[right6])")
 
-                                                                         let cluster = ClusterMakerModel(
+                                                                         let cluster = ClusterModel(
                                                                              wordsHorizontal: [left1, right2, left3, right4, left5, right6],
                                                                              wordsVertical: [up1, down2],
                                                                              patternHorizontal: [.leading, .trailing, .leading, .trailing, .leading, .trailing],
@@ -1888,12 +1878,12 @@ public struct ClusterCalculator {
      }
     
     
-    public static func C2x6_RLRLRL_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x6_RLRLRL_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 2
          let interlockHeight = 6
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for down1 in 0..<wordCount {
 
@@ -1975,7 +1965,7 @@ public struct ClusterCalculator {
                                                                          left6 != down1) {
                                                                          //print("left6:\(start[left6])")
 
-                                                                         let cluster = ClusterMakerModel(
+                                                                         let cluster = ClusterModel(
                                                                              wordsHorizontal: [right1, left2, right3, left4, right5, left6],
                                                                              wordsVertical: [down1, up2],
                                                                              patternHorizontal: [.trailing, .leading, .trailing, .leading, .trailing, .leading],
@@ -2009,12 +1999,12 @@ public struct ClusterCalculator {
          return result
      }
     
-    public static func C2x6_RLRLRL_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C2x6_RLRLRL_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 2
          let interlockHeight = 6
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for up1 in 0..<wordCount {
 
@@ -2096,7 +2086,7 @@ public struct ClusterCalculator {
                                                                          left6 != up1) {
                                                                          //print("left6:\(start[left6])")
 
-                                                                         let cluster = ClusterMakerModel(
+                                                                         let cluster = ClusterModel(
                                                                              wordsHorizontal: [right1, left2, right3, left4, right5, left6],
                                                                              wordsVertical: [up1, down2],
                                                                              patternHorizontal: [.trailing, .leading, .trailing, .leading, .trailing, .leading],
@@ -2133,12 +2123,12 @@ public struct ClusterCalculator {
     
     
     
-    public static func C3x3_LRL_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C3x3_LRL_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 3
          let interlockHeight = 3
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for up1 in 0..<wordCount {
 
@@ -2194,7 +2184,7 @@ public struct ClusterCalculator {
                                                          left3 != up1) {
                                                          //print("left3:\(start[left3])")
 
-                                                         let cluster = ClusterMakerModel(
+                                                         let cluster = ClusterModel(
                                                              wordsHorizontal: [left1, right2, left3],
                                                              wordsVertical: [up1, down2, up3],
                                                              patternHorizontal: [.leading, .trailing, .leading],
@@ -2224,12 +2214,12 @@ public struct ClusterCalculator {
          return result
      }
     
-    public static func C3x3_RLR_DUD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C3x3_RLR_DUD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 3
          let interlockHeight = 3
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for down1 in 0..<wordCount {
 
@@ -2286,7 +2276,7 @@ public struct ClusterCalculator {
                                                          right3 != down1) {
                                                          //print("right3:\(start[right3])")
 
-                                                         let cluster = ClusterMakerModel(
+                                                         let cluster = ClusterModel(
                                                              wordsHorizontal: [right1, left2, right3],
                                                              wordsVertical: [down1, up2, down3],
                                                              patternHorizontal: [.trailing, .leading, .trailing],
@@ -2317,12 +2307,12 @@ public struct ClusterCalculator {
      }
     
     // Does not require duplicate checking as it forms a different shape LRL_DUD so we also exclude LRL_DUD as this provides LRL_DUD also
-    public static func C3x3_RLR_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C3x3_RLR_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 3
          let interlockHeight = 3
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for up1 in 0..<wordCount {
 
@@ -2378,7 +2368,7 @@ public struct ClusterCalculator {
                                                          right3 != up1) {
                                                          //print("right3:\(start[right3])")
 
-                                                         let cluster = ClusterMakerModel(
+                                                         let cluster = ClusterModel(
                                                              wordsHorizontal: [right1, left2, right3],
                                                              wordsVertical: [up1, down2, up3],
                                                              patternHorizontal: [.trailing, .leading, .trailing],
@@ -2410,12 +2400,12 @@ public struct ClusterCalculator {
     
     
     
-    public static func C3x4_LRLR_DUD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C3x4_LRLR_DUD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 3
          let interlockHeight = 4
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for down1 in 0..<wordCount {
 
@@ -2485,7 +2475,7 @@ public struct ClusterCalculator {
                                                                  right4 != down1) {
                                                                  //print("right4:\(start[right4])")
 
-                                                                 let cluster = ClusterMakerModel(
+                                                                 let cluster = ClusterModel(
                                                                      wordsHorizontal: [left1, right2, left3, right4],
                                                                      wordsVertical: [down1, up2, down3],
                                                                      patternHorizontal: [.leading, .trailing, .leading, .trailing],
@@ -2514,12 +2504,12 @@ public struct ClusterCalculator {
          return result
      }
     
-    public static func C3x4_RLRL_DUD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C3x4_RLRL_DUD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 3
          let interlockHeight = 4
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for down1 in 0..<wordCount {
 
@@ -2589,7 +2579,7 @@ public struct ClusterCalculator {
                                                                  left4 != down1) {
                                                                  //print("left4:\(start[left4])")
 
-                                                                 let cluster = ClusterMakerModel(
+                                                                 let cluster = ClusterModel(
                                                                      wordsHorizontal: [right1, left2, right3, left4],
                                                                      wordsVertical: [down1, up2, down3],
                                                                      patternHorizontal: [.trailing, .leading, .trailing, .leading],
@@ -2618,12 +2608,12 @@ public struct ClusterCalculator {
          return result
      }
     
-    public static func C3x4_LRLR_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C3x4_LRLR_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 3
          let interlockHeight = 4
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for up1 in 0..<wordCount {
 
@@ -2693,7 +2683,7 @@ public struct ClusterCalculator {
                                                                  right4 != up1) {
                                                                  //print("right4:\(start[right4])")
 
-                                                                 let cluster = ClusterMakerModel(
+                                                                 let cluster = ClusterModel(
                                                                      wordsHorizontal: [left1, right2, left3, right4],
                                                                      wordsVertical: [up1, down2, up3],
                                                                      patternHorizontal: [.leading, .trailing, .leading, .trailing],
@@ -2722,12 +2712,12 @@ public struct ClusterCalculator {
          return result
      }
     
-    public static func C3x4_RLRL_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C3x4_RLRL_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 3
          let interlockHeight = 4
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for up1 in 0..<wordCount {
 
@@ -2797,7 +2787,7 @@ public struct ClusterCalculator {
                                                                  left4 != up1) {
                                                                  //print("left4:\(start[left4])")
 
-                                                                 let cluster = ClusterMakerModel(
+                                                                 let cluster = ClusterModel(
                                                                      wordsHorizontal: [right1, left2, right3, left4],
                                                                      wordsVertical: [up1, down2, up3],
                                                                      patternHorizontal: [.trailing, .leading, .trailing, .leading],
@@ -2826,12 +2816,12 @@ public struct ClusterCalculator {
          return result
      }
     
-    public static func C3x5_LRLRL_DUD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C3x5_LRLRL_DUD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 3
          let interlockHeight = 5
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for down1 in 0..<wordCount {
 
@@ -2916,7 +2906,7 @@ public struct ClusterCalculator {
                                                                          left5 != down1) {
                                                                          //print("left5:\(start[left5])")
 
-                                                                         let cluster = ClusterMakerModel(
+                                                                         let cluster = ClusterModel(
                                                                              wordsHorizontal: [left1, right2, left3, right4, left5],
                                                                              wordsVertical: [down1, up2, down3],
                                                                              patternHorizontal: [.leading, .trailing, .leading, .trailing, .leading],
@@ -2947,12 +2937,12 @@ public struct ClusterCalculator {
          return result
      }
     
-    public static func C3x5_LRLRL_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C3x5_LRLRL_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 3
          let interlockHeight = 5
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for up1 in 0..<wordCount {
 
@@ -3037,7 +3027,7 @@ public struct ClusterCalculator {
                                                                          left5 != up1) {
                                                                          //print("left5:\(start[left5])")
 
-                                                                         let cluster = ClusterMakerModel(
+                                                                         let cluster = ClusterModel(
                                                                              wordsHorizontal: [left1, right2, left3, right4, left5],
                                                                              wordsVertical: [up1, down2, up3],
                                                                              patternHorizontal: [.leading, .trailing, .leading, .trailing, .leading],
@@ -3068,12 +3058,12 @@ public struct ClusterCalculator {
          return result
      }
     
-    public static func C3x5_RLRLR_DUD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C3x5_RLRLR_DUD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 3
          let interlockHeight = 5
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for down1 in 0..<wordCount {
 
@@ -3158,7 +3148,7 @@ public struct ClusterCalculator {
                                                                          right5 != down1) {
                                                                          //print("right5:\(start[right5])")
 
-                                                                         let cluster = ClusterMakerModel(
+                                                                         let cluster = ClusterModel(
                                                                              wordsHorizontal: [right1, left2, right3, left4, right5],
                                                                              wordsVertical: [down1, up2, down3],
                                                                              patternHorizontal: [.trailing, .leading, .trailing, .leading, .trailing],
@@ -3189,12 +3179,12 @@ public struct ClusterCalculator {
          return result
      }
     
-    public static func C3x5_RLRLR_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterMakerModel] {
+    public static func C3x5_RLRLR_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = start.count
          let interlockWidth = 3
          let interlockHeight = 5
-         var result: [ClusterMakerModel] = []
+         var result: [ClusterModel] = []
 
          for up1 in 0..<wordCount {
 
@@ -3279,7 +3269,7 @@ public struct ClusterCalculator {
                                                                          right5 != up1) {
                                                                          //print("right5:\(start[right5])")
 
-                                                                         let cluster = ClusterMakerModel(
+                                                                         let cluster = ClusterModel(
                                                                              wordsHorizontal: [right1, left2, right3, left4, right5],
                                                                              wordsVertical: [up1, down2, up3],
                                                                              patternHorizontal: [.trailing, .leading, .trailing, .leading, .trailing],
