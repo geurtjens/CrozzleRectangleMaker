@@ -91,26 +91,29 @@ public struct GpuShapeModel {
         self.length = _lengths
         
         // Lastly we want to know all words
-        self.wordIndex = GpuShapeModel.createWordIndex(
+        self.wordIndex = WordIndexCalculator.createWordIndex(
             totalWords: totalWords,
             stride: stride,
             shapeCount: _shapeCount,
             words: _wordIds)
-         
     }
+    
+    public func getItem(shapePosition: Int) -> ([UInt8], [Bool], [UInt8], [UInt8]){
         
-    /// We want to find all the shapes for each word so we can easily identify what shapes to look through when we merge
-    public static func createWordIndex(totalWords: Int, stride: Int, shapeCount: Int, words:[UInt8]) -> [[Int]] {
-        var result: [[Int]] = Array(repeating: [], count: totalWords)
-        var i = 0
-        for shapeId in 0..<shapeCount {
-            for _ in 0..<stride {
-                let wordId = words[i]
-                
-                result[Int(wordId)].append(shapeId)
-                i += 1
-            }
+        var wordId: [UInt8] = []
+        var isHorizontal: [Bool] = []
+        var x: [UInt8] = []
+        var y: [UInt8] = []
+        
+        let startPos = shapePosition * self.stride
+        
+        for i in 0..<self.stride {
+            let j = startPos + i
+            wordId.append(self.wordId[j])
+            isHorizontal.append(self.isHorizontal[j])
+            x.append(self.x[j])
+            y.append(self.y[j])
         }
-        return result
+        return (wordId, isHorizontal, x, y)
     }
 }

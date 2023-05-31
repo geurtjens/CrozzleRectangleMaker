@@ -20,4 +20,5 @@ public struct PlacementModel {
     public let y: UInt8
     /// length of the word
     public let l: UInt8
+    
 }

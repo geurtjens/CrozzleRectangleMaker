@@ -37,7 +37,14 @@ public struct ShapeModel {
         
         self.wordSequence = ShapeModel.getWordSequence(placements: placements)
     }
-    
+    /// provide the words that are found in this shape
+    public func getWords() -> [UInt8] {
+        var result:[UInt8] = []
+        for placement in placements {
+            result.append(placement.i)
+        }
+        return result
+    }
     public static func getWordSequence(placements: [PlacementModel]) -> String {
         var wordSequence = ""
         for placement in placements {

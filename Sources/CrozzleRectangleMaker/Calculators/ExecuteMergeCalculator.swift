@@ -63,7 +63,7 @@ public class ExecuteMergeCalculator {
             searchMax: searchMax
         )
         
-        let (wordId, isHorizontal, x, y) = MergeCalculator.SearchFor(gpuShapeModel: sourceShapes, shapePosition: sourceShapeId)
+        let (wordId, isHorizontal, x, y) = sourceShapes.getItem(shapePosition: sourceShapeId)
         
         let validatedMultiWordMatch = MergeCalculator.ValidateMultiWordMatches(
             sourceShapeId: sourceShapeId,
@@ -116,16 +116,18 @@ public class ExecuteMergeCalculator {
         for instruction in instructions {
        
             let potentialShape = MergePlacementCalculator.Execute(source: shapes, search: shapes, instruction: instruction)
-            
-            if (potentialShape.width <= widthMax && potentialShape.height <= heightMax) ||
-                (potentialShape.width <= heightMax && potentialShape.height <= widthMax) {
-                let (validShape,_) = ShapeCalculator.ToValidShape(shape: potentialShape, words: words)
-                
-                if let validShape = validShape {
-                    let wordCount = validShape.placements.count
-                    let scoreMin = scoresMin[wordCount]
-                    if validShape.score >= scoreMin {
-                        shapeList.append(validShape)
+            if let potentialShape = potentialShape {
+                if (potentialShape.width <= widthMax && potentialShape.height <= heightMax) ||
+                    (potentialShape.width <= heightMax && potentialShape.height <= widthMax) {
+                    let (validShape,_) = ShapeCalculator.ToValidShape(shape: potentialShape, words: words)
+                    
+                    if let validShape = validShape {
+                        // is shape is not nil so it must be a valid shape
+                        let wordCount = validShape.placements.count
+                        let scoreMin = scoresMin[wordCount]
+                        if validShape.score >= scoreMin {
+                            shapeList.append(validShape)
+                        }
                     }
                 }
             }
@@ -371,16 +373,18 @@ public class ExecuteMergeCalculator {
         for instruction in instructions {
        
             let potentialShape = MergePlacementCalculator.Execute(source: source, search: search, instruction: instruction)
-            
-            if (potentialShape.width <= widthMax && potentialShape.height <= heightMax) || (potentialShape.width <= heightMax && potentialShape.height <= widthMax) {
-                
-                let (shape,_) = ShapeCalculator.ToValidShape(shape: potentialShape, words: words)
-                
-                if let shape = shape {
-                    let wordCount = shape.placements.count
-                    let scoreMin = scoresMin[wordCount]
-                    if shape.score >= scoreMin {
-                        shapeList.append(shape)
+            if let potentialShape {
+                if (potentialShape.width <= widthMax && potentialShape.height <= heightMax) || (potentialShape.width <= heightMax && potentialShape.height <= widthMax) {
+                    
+                    let (shape,_) = ShapeCalculator.ToValidShape(shape: potentialShape, words: words)
+                    
+                    if let shape = shape {
+                        // the shape is not null so it must be a valid shape
+                        let wordCount = shape.placements.count
+                        let scoreMin = scoresMin[wordCount]
+                        if shape.score >= scoreMin {
+                            shapeList.append(shape)
+                        }
                     }
                 }
             }

@@ -42,12 +42,15 @@ public class ShapeCalculator {
     
     /// convert the shape to a valid shape or return null.  We might preprocess a shape but not yet know its valid so we use this to make sure
     public static func ToValidShape(shape: ShapeModel, words:[String]) -> (ShapeModel?, String) {
-        let (text,score) = ToText(shape: shape, words: words)
+        let (score, text) = getScoreAndText(shape: shape, words: words)
         
+        if score == 0 {
+            return (nil, "")
+        }
         // We should also check that the text doesnt have text running in parallel and without the . at each end
         let textIsVerified = ShapeCalculator.VerifyText(text: text)
         
-        if score > 0 && textIsVerified {
+        if textIsVerified {
             let newShape = ShapeModel(score: score, width: shape.width, height: shape.height, placements: shape.placements)
             return (newShape, text)
         } else {
@@ -207,6 +210,64 @@ public class ShapeCalculator {
         }
     }
     
+    
+    public static func getScoreAndText(shape: ShapeModel, words:[String]) -> (UInt16, String) {
+        
+        var score = 0
+        
+        let widthEOL = Int(shape.width) + 1
+        let height = Int(shape.height)
+        
+        let gridSize = widthEOL * height
+        
+        var grid:[Character] = Array(repeating: " ", count: Int(gridSize))
+        
+        // Place all end of line characters into the space
+        for i in 0..<height {
+            grid[i * widthEOL] = "\n"
+        }
+        
+        for placement in shape.placements {
+            
+            // the word must include the blocking characters at either end of the shape
+            let word = "." + words[Int(placement.i)] + "."
+            
+            var gridPos = 0
+
+            for i in 0..<word.count {
+                let letter = word[i]
+                
+                if placement.h {
+                    gridPos = Int(placement.x) + i + (Int(placement.y) * widthEOL + 1)
+                } else {
+                    gridPos = Int(placement.x) + 1 + (Int(placement.y) + i) * widthEOL
+                }
+                
+                if grid[gridPos] != " " && grid[gridPos] != letter {
+                    grid[gridPos] = "#"
+                    return (UInt16(0),"")
+                } else if grid[gridPos] == " " {
+                    grid[gridPos] = letter
+                } else if grid[gridPos] == letter {
+                    score += ScoreCalculator.score(forLetter: letter)
+                }
+            }
+        }
+        let gridString = String(grid)
+        
+        // Remove the first character as it is a \n
+        let range = gridString.index(after: gridString.startIndex)..<gridString.endIndex
+        let result = String(gridString[range])
+        
+        if result.contains("#") {
+            score = 0
+        } else {
+            score += shape.placements.count * 10
+        }
+        return (UInt16(score), result)
+    }
+    
+    
     /// convert a shape into the text and return the score as well
     public static func ToText(shape: ShapeModel, words:[String]) -> (String, UInt16) {
         
@@ -242,6 +303,7 @@ public class ShapeCalculator {
                 
                 if grid[gridPos] != " " && grid[gridPos] != letter {
                     grid[gridPos] = "#"
+                    return ("", UInt16(0))
                 } else if grid[gridPos] == " " {
                     grid[gridPos] = letter
                 } else if grid[gridPos] == letter {

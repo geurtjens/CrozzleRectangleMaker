@@ -218,7 +218,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         let words = WordData.words_8806()
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
-        
+        print("calculating 2x2 starting at \(Date.now)")
         let c2x2 = ClusterCalculator.C2x2(
             start: words,
             end: end,
@@ -229,6 +229,9 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         
         let c2x2Shapes = ShapeCalculator.toShape(fromClusters: c2x2)
         
+        print("\(c2x2.count) c2x2 found finishing at \(Date.now)")
+        
+        
         let c2x3 = ClusterCalculator.C2x3(
             start: words,
             end: end,
@@ -238,13 +241,19 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
             heightMax: heightMax)
         
         let c2x3Shapes = ShapeCalculator.toShape(fromClusters: c2x3)
+        
+        print("\(c2x3.count) c2x3 found finishing at \(Date.now)")
         let c2x2Gpu = GpuShapeModel(shapes: c2x2Shapes, totalWords: words.count, stride: 4)
+        print("initialised c2x2Gpu finishing at \(Date.now)")
         let c2x3Gpu = GpuShapeModel(shapes: c2x3Shapes, totalWords: words.count, stride: 5)
+        print("initialised c2x3Gpu finishing at \(Date.now)")
         
-        let scoresMin = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        let scoresMin = Array(repeating: 104, count: 20)
         
+        print("merge starting at \(Date.now)")
         let shapes = ExecuteMergeCalculator.ExecuteDifferentShapes(source: c2x2Gpu, search:c2x3Gpu, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
-                
+        print("merge produced \(shapes.count) shapes, merged finished at \(Date.now)")
+        // takes 509 minutes without async
         XCTAssertEqual(891360, shapes.count)
     }
     
@@ -288,11 +297,13 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         let c2x2Gpu = GpuShapeModel(shapes: c2x2Shapes, totalWords: words.count, stride: 4)
         let c2x3Gpu = GpuShapeModel(shapes: c2x3Shapes, totalWords: words.count, stride: 5)
    
-        let scoresMin = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        let scoresMin = Array(repeating: 104, count: 20)
         
         let shapes = await ExecuteMergeCalculator.ExecuteDifferentShapesAsync(source: c2x2Gpu, search:c2x3Gpu, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
       
-        // 147.794 seconds runtime
+        // 112.877 seconds runtime
+        
+        // with the new thing it took 62 seconds but it stripped out and returned 352,825
         XCTAssertEqual(891360, shapes.count)
        
     }

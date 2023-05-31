@@ -193,6 +193,11 @@ public class PlacementCalculator {
                 if maxWidth < end {
                     maxWidth = end
                 }
+            } else {
+                let end = Int(placement.x)
+                if maxWidth < end {
+                    maxWidth = end
+                }
             }
         }
         return UInt8(maxWidth + 2)
@@ -205,6 +210,11 @@ public class PlacementCalculator {
         for placement in placements {
             if placement.h == false {
                 let end = Int(placement.y + placement.l)
+                if maxHeight < end {
+                    maxHeight = end
+                }
+            } else {
+                let end = Int(placement.y)
                 if maxHeight < end {
                     maxHeight = end
                 }

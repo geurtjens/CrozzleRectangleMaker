@@ -11,6 +11,14 @@ public class MergeCalculator {
     
     
     /// if you have multiple words that are matching then are the distances between each of the words the same because if they are not then its not a proper match
+    /// - Parameters:
+    ///   - matchingWords: Can be -1 or else it can be the position of the shape and word within the other shape
+    ///   - x: A list of all x positions within the source shape
+    ///   - y: A list of all y positions within the source shape
+    ///   - xList: A list of all x positions in the search shape
+    ///   - yList: A list of all y positions in the search shape
+    ///   - matchingDirection: Are these two shapes in the same direction, then its true, else its false
+    /// - Returns: Tells us if the distances are matching because if they are not matching then this is not a valid merge
     public static func MatchingDistance(matchingWords: [Int], x:[UInt8], y:[UInt8], xList: [UInt8], yList: [UInt8], matchingDirection: Bool) -> Bool {
         
         let stride = matchingWords.count
@@ -242,7 +250,7 @@ public class MergeCalculator {
         
     }
     
-    public static func countOfWordsInShapes(sourceShapeId: Int,matchingShapes: [Int]) -> [MatchingShapesModel] {
+    public static func countOfWordsInShapes(sourceShapeId: Int, matchingShapes: [Int]) -> [MatchingShapesModel] {
         if matchingShapes.count == 0 {
             return []
         }
@@ -262,27 +270,5 @@ public class MergeCalculator {
         }
         result.append(MatchingShapesModel(sourceShapeId: sourceShapeId,searchShapeId: shapeId, matchingWordCount: UInt8(matchingWordCount)))
         return result
-    }
-    
-
-    
-    
-    public static func SearchFor(gpuShapeModel: GpuShapeModel, shapePosition: Int) -> ([UInt8], [Bool], [UInt8], [UInt8]){
-        
-        var wordId: [UInt8] = []
-        var isHorizontal: [Bool] = []
-        var x: [UInt8] = []
-        var y: [UInt8] = []
-        
-        let startPos = shapePosition * gpuShapeModel.stride
-        
-        for i in 0..<gpuShapeModel.stride {
-            let j = startPos + i
-            wordId.append(gpuShapeModel.wordId[j])
-            isHorizontal.append(gpuShapeModel.isHorizontal[j])
-            x.append(gpuShapeModel.x[j])
-            y.append(gpuShapeModel.y[j])
-        }
-        return (wordId, isHorizontal, x, y)
     }
 }
