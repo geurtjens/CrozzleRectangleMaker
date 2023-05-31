@@ -23,7 +23,7 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
         let shape = ShapeModel(score:0, width:width, height:height, placements: placements)
         let (text,score) = ShapeCalculator.ToText(shape:shape, words: words)
         print(text)
-        let a = OverlappingPlacementsCalculator.columnsAreOverlapping(sourceStart: item.x, sourceLength: item.l, searchStart:find.x, searchLength: find.l)
+        //let a = OverlappingPlacementsCalculator.columnsAreOverlapping(sourceStart: item.x, sourceLength: item.l, searchStart:find.x, searchLength: find.l)
         XCTAssertEqual(20, score)
     }
     func test_ErrorIFound2() throws {
@@ -33,9 +33,6 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
         
         let placements = [find, item]
         
-        
-        
-        
         let height = PlacementCalculator.height(fromPlacements: placements)
         let width = PlacementCalculator.width(fromPlacements: placements)
         let shape = ShapeModel(score:0, width:width, height:height, placements: placements)
@@ -43,7 +40,7 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
         print(text)
         XCTAssertEqual(20, score)
         
-        let a = OverlappingPlacementsCalculator.columnsAreOverlapping(sourceStart: item.x, sourceLength: item.l, searchStart:find.x, searchLength: find.l)
+        //let a = OverlappingPlacementsCalculator.columnsAreOverlapping(sourceStart: item.x, sourceLength: item.l, searchStart:find.x, searchLength: find.l)
         
         let result = OverlappingPlacementsCalculator.isOverlappingOne(item: item, find: find)
         XCTAssertFalse(result)

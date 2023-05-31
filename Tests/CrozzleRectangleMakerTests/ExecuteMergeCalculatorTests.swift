@@ -454,9 +454,9 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         
         let gpuShapes = GpuShapeModel(shapes: shapes, totalWords:words.count, stride: 4)
         
-        let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
+        let scoresMin:[Int] = Array(repeating: 104, count: 20)  //[0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
         
-        let merged = ExecuteMergeCalculator.ExecuteSameShape(shapes:gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        let merged = await ExecuteMergeCalculator.ExecuteSameShapeAsync(shapes:gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(2854550,merged.count)
         print(gpuShapes.count)
