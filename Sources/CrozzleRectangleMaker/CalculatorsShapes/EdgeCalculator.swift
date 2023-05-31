@@ -12,18 +12,19 @@ public class EdgeCalculator {
     /// Finds all edges found within an array of words
     /// - Parameter wordList: A list of words
     /// - Returns: A list of valid edges
-    public static func Execute(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [EdgeModel] {
-        let wordListSize = words.count
+    public static func Execute(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [EdgeModel] {
+        
+        let wordCount = (wordsMax == 0) ? words.count : wordsMax
         
         var result: [EdgeModel] = []
         
-        for horizontalWordId in 0..<wordListSize {
+        for horizontalWordId in 0..<wordCount {
             
             let horizontalWord = words[horizontalWordId]
             
             for horizontalLetter in 0..<horizontalWord.count {
                 
-                for verticalWordId in (horizontalWordId + 1)..<wordListSize {
+                for verticalWordId in (horizontalWordId + 1)..<wordCount {
                     
                     let verticalWord = words[verticalWordId];
                     

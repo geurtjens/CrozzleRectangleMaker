@@ -381,9 +381,10 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
             interlockHeight: 3,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: 0)
         
         XCTAssertEqual(2, items.count)
         
@@ -420,9 +421,10 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
             interlockHeight: 3,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: 0)
         
         XCTAssertEqual(2, items.count)
         

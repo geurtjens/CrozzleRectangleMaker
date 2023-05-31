@@ -10,13 +10,14 @@ import Foundation
 public class RectangleCalculator {
     
     /// Creates all possible rectangles and then sorts them by score and then area
-    public static func ExecuteAndSortByScoreAndArea(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) async -> [RectangleModel]  {
+    public static func ExecuteAndSortByScoreAndArea(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) async -> [RectangleModel]  {
         
         var rectangles = await Execute(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         rectangles.sort {
             if $0.score == $1.score {
@@ -29,7 +30,7 @@ public class RectangleCalculator {
     }
     
     /// returns each and every rectangle that we can create
-    public static func Execute(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) async -> [RectangleModel] {
+    public static func Execute(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) async -> [RectangleModel] {
             
         let lengths = WordCalculator.lengths(words: words)
             
@@ -37,399 +38,445 @@ public class RectangleCalculator {
             interlockWidth: 2,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
             
         async let d3x4 = Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
             
         async let d3x5 = Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
             
         async let d3x6 = Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let d4x4 = Square(
             interlockWidth: 3,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
             
         async let d4x5 = Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
             
         async let d4x6 = Rectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let d5x5 = Square(
             interlockWidth: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
             
         async let d5x6 = Rectangle(
             interlockWidth: 4,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let d6x6 = Square(
             interlockWidth: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
             
         async let o3x3_BottomRight = BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o3x3_TopLeft = TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
               
         async let o3x3_TopRight = TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
             
         async let o3x4_BottomLeft = BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o3x4_BottomRight = BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
                      
         async let o3x4_TopLeft = TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
             
         async let o3x4_TopRight = TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
 
         async let o3x5_BottomLeft = BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
             
         async let o3x5_BottomRight = BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o3x5_TopLeft = TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
                        
         async let o3x5_TopRight = TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
 
         async let o3x6_BottomLeft = BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o3x6_BottomRight = BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
 
         async let o3x6_TopLeft = TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
             
         async let o3x6_TopRight = TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o4x4_BottomRight = BottomRightSquare(
             interlockWidth: 3,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o4x4_TopLeft = TopLeftSquare(
             interlockWidth: 3,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o4x4_TopRight = TopRightSquare(
             interlockWidth: 3,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o4x5_BottomLeft = BottomLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o4x5_BottomRight = BottomRightRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o4x5_TopLeft = TopLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
 
         async let o4x5_TopRight = TopRightRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
 
         async let o4x6_BottomLeft = BottomLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o4x6_BottomRight = BottomRightRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
 
         async let o4x6_TopLeft = TopLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o4x6_TopRight = TopRightRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o5x5_BottomRight = BottomRightSquare(
             interlockWidth: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o5x5_TopLeft = TopLeftSquare(
             interlockWidth: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o5x5_TopRight = TopRightSquare(
             interlockWidth: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o5x6_BottomLeft = BottomLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o5x6_BottomRight = RectangleCalculator.BottomRightRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o5x6_TopLeft = RectangleCalculator.TopLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o5x6_TopRight = RectangleCalculator.TopRightRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o6x6_BottomRight = RectangleCalculator.BottomRightSquare(
             interlockWidth: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o6x6_TopLeft = RectangleCalculator.TopLeftSquare(
             interlockWidth: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         async let o6x6_TopRight = RectangleCalculator.TopRightSquare(
             interlockWidth: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         let result = await
             d3x3 + o3x3_TopLeft + o3x3_TopRight + o3x3_BottomRight +
@@ -447,7 +494,7 @@ public class RectangleCalculator {
     }
     
     
-    public static func ExecuteSerial(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [RectangleModel] {
+    public static func ExecuteSerial(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [RectangleModel] {
             
         let lengths = WordCalculator.lengths(words: words)
             
@@ -455,9 +502,10 @@ public class RectangleCalculator {
             interlockWidth: 2,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("d3x3 \(d3x3.count)")
             
@@ -466,9 +514,10 @@ public class RectangleCalculator {
             interlockHeight: 3,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
             
         print("d3x4 \(d3x4.count)")
         
@@ -477,9 +526,10 @@ public class RectangleCalculator {
             interlockHeight: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
             
         print("d3x5 \(d3x5.count)")
         
@@ -488,9 +538,10 @@ public class RectangleCalculator {
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("d3x6 \(d3x6.count)")
         
@@ -498,9 +549,10 @@ public class RectangleCalculator {
             interlockWidth: 3,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
             
         print("d4x4 \(d4x4.count)")
         
@@ -509,9 +561,10 @@ public class RectangleCalculator {
             interlockHeight: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
             
         print("d4x5 \(d4x5.count)")
         
@@ -520,9 +573,10 @@ public class RectangleCalculator {
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("d4x6 \(d4x6.count)")
         
@@ -530,9 +584,10 @@ public class RectangleCalculator {
             interlockWidth: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
             
         print("d5x5 \(d5x5.count)")
         
@@ -541,9 +596,10 @@ public class RectangleCalculator {
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("d5x6 \(d5x6.count)")
         
@@ -551,9 +607,10 @@ public class RectangleCalculator {
             interlockWidth: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
             
         print("d6x6 \(d6x6.count)")
         
@@ -561,9 +618,10 @@ public class RectangleCalculator {
             interlockWidth: 2,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o3x3_BottomRight \(o3x3_BottomRight.count)")
         
@@ -571,9 +629,10 @@ public class RectangleCalculator {
             interlockWidth: 2,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o3x3_TopLeft \(o3x3_TopLeft.count)")
         
@@ -581,9 +640,10 @@ public class RectangleCalculator {
             interlockWidth: 2,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
             
         print("o3x3_TopRight \(o3x3_TopRight.count)")
         
@@ -592,9 +652,10 @@ public class RectangleCalculator {
             interlockHeight: 3,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o3x4_BottomLeft \(o3x4_BottomLeft.count)")
         
@@ -603,9 +664,10 @@ public class RectangleCalculator {
             interlockHeight: 3,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
                      
         print("o3x4_BottomRight \(o3x4_BottomRight.count)")
         
@@ -614,9 +676,10 @@ public class RectangleCalculator {
             interlockHeight: 3,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
             
         print("o3x4_TopLeft \(o3x4_TopLeft.count)")
         
@@ -625,9 +688,10 @@ public class RectangleCalculator {
             interlockHeight: 3,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
 
         print("o3x4_TopRight \(o3x4_TopRight.count)")
         
@@ -636,9 +700,10 @@ public class RectangleCalculator {
             interlockHeight: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
             
         print("o3x5_BottomLeft \(o3x5_BottomLeft.count)")
         
@@ -647,9 +712,10 @@ public class RectangleCalculator {
             interlockHeight: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o3x5_BottomRight \(o3x5_BottomRight.count)")
         
@@ -658,9 +724,10 @@ public class RectangleCalculator {
             interlockHeight: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
                        
         print("o3x5_TopLeft \(o3x5_TopLeft.count)")
         
@@ -669,9 +736,10 @@ public class RectangleCalculator {
             interlockHeight: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
 
         print("o3x5_TopRight \(o3x5_TopRight.count)")
         
@@ -680,9 +748,10 @@ public class RectangleCalculator {
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o3x6_BottomLeft \(o3x6_BottomLeft.count)")
         
@@ -691,9 +760,10 @@ public class RectangleCalculator {
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o3x6_BottomRight \(o3x6_BottomRight.count)")
 
@@ -702,9 +772,10 @@ public class RectangleCalculator {
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
             
         print("o3x6_TopLeft \(o3x6_TopLeft.count)")
         
@@ -713,9 +784,10 @@ public class RectangleCalculator {
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o3x6_TopRight \(o3x6_TopRight.count)")
         
@@ -723,9 +795,10 @@ public class RectangleCalculator {
             interlockWidth: 3,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o4x4_BottomRight \(o4x4_BottomRight.count)")
         
@@ -733,9 +806,10 @@ public class RectangleCalculator {
             interlockWidth: 3,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o4x4_TopLeft \(o4x4_TopLeft.count)")
         
@@ -743,9 +817,10 @@ public class RectangleCalculator {
             interlockWidth: 3,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o4x4_TopRight \(o4x4_TopRight.count)")
         
@@ -754,9 +829,10 @@ public class RectangleCalculator {
             interlockHeight: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o4x5_BottomLeft \(o4x5_BottomLeft.count)")
         
@@ -765,9 +841,10 @@ public class RectangleCalculator {
             interlockHeight: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o4x5_BottomRight \(o4x5_BottomRight.count)")
         
@@ -776,9 +853,10 @@ public class RectangleCalculator {
             interlockHeight: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
 
         print("o4x5_TopLeft \(o4x5_TopLeft.count)")
         
@@ -787,9 +865,10 @@ public class RectangleCalculator {
             interlockHeight: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
 
         print("o4x5_TopRight \(o4x5_TopRight.count)")
         
@@ -798,9 +877,10 @@ public class RectangleCalculator {
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o4x6_BottomLeft \(o4x6_BottomLeft.count)")
         
@@ -809,9 +889,10 @@ public class RectangleCalculator {
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
 
         print("o4x6_BottomRight \(o4x6_BottomRight.count)")
         
@@ -820,9 +901,10 @@ public class RectangleCalculator {
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o4x6_TopLeft \(o4x6_TopLeft.count)")
         
@@ -831,9 +913,10 @@ public class RectangleCalculator {
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o4x6_TopRight \(o4x6_TopRight.count)")
         
@@ -841,9 +924,10 @@ public class RectangleCalculator {
             interlockWidth: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o5x5_BottomRight \(o5x5_BottomRight.count)")
         
@@ -851,9 +935,10 @@ public class RectangleCalculator {
             interlockWidth: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o5x5_TopLeft \(o5x5_TopLeft.count)")
         
@@ -861,9 +946,10 @@ public class RectangleCalculator {
             interlockWidth: 4,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o5x5_TopRight \(o5x5_TopRight.count)")
         
@@ -872,9 +958,10 @@ public class RectangleCalculator {
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o5x6_BottomLeft \(o5x6_BottomLeft.count)")
         
@@ -883,9 +970,10 @@ public class RectangleCalculator {
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o5x6_BottomRight \(o5x6_BottomRight.count)")
         
@@ -894,9 +982,10 @@ public class RectangleCalculator {
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o5x6_TopLeft \(o5x6_TopLeft.count)")
         
@@ -905,9 +994,10 @@ public class RectangleCalculator {
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o5x6_TopRight \(o5x6_TopRight.count)")
         
@@ -915,9 +1005,10 @@ public class RectangleCalculator {
             interlockWidth: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o6x6_BottomRight \(o6x6_BottomRight.count)")
         
@@ -925,9 +1016,10 @@ public class RectangleCalculator {
             interlockWidth: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o6x6_TopLeft \(o6x6_TopLeft.count)")
         
@@ -935,9 +1027,10 @@ public class RectangleCalculator {
             interlockWidth: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         print("o6x6_TopRight \(o6x6_TopRight.count)")
         
@@ -981,11 +1074,11 @@ public class RectangleCalculator {
     
     
     
-    public static func Square(interlockWidth: Int, words: [String], lengths: [Int],  widthMax: Int, heightMax: Int, scoreMin: Int) -> [RectangleModel] {
+    public static func Square(interlockWidth: Int, words: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [RectangleModel] {
 
+        let wordCount = (wordsMax == 0) ? words.count : wordsMax
+        
         var result: [RectangleModel] = [];
-
-        let wordCount = words.count;
 
         for _top in 0..<wordCount {
             
@@ -1063,18 +1156,18 @@ public class RectangleCalculator {
                                                                                 interlockHeight: interlockWidth,
                                                                                 type: .rectangle
                                                                             )
-#if DEBUG
-                                                                            if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
-                                                                                print("error occurred as words are matching")
-                                                                                return []
-                                                                            }
-                                                                            let text = donut.ToText(words: words)
-                                                                            
-                                                                            if text.contains("#") {
-                                                                                print("error # detected in \n\(text)")
-                                                                                return []
-                                                                            }
-#endif
+//#if DEBUG
+//                                                                            if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
+//                                                                                print("error occurred as words are matching")
+//                                                                                return []
+//                                                                            }
+//                                                                            let text = donut.ToText(words: words)
+//                                                                            
+//                                                                            if text.contains("#") {
+//                                                                                print("error # detected in \n\(text)")
+//                                                                                return []
+//                                                                            }
+//#endif
                                                                             result.append(donut)
                                                                         }
                                                                     }
@@ -1096,7 +1189,7 @@ public class RectangleCalculator {
         return result;
     }
     
-    public static func Rectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [RectangleModel] {
+    public static func Rectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [RectangleModel] {
 
         var result: [RectangleModel] = [];
 
@@ -1104,7 +1197,7 @@ public class RectangleCalculator {
             return result;
         }
         
-        let wordCount = words.count;
+        let wordCount = (wordsMax == 0) ? words.count : wordsMax
        
         for _top in 0..<wordCount {
         
@@ -1180,18 +1273,18 @@ public class RectangleCalculator {
                                                                                 interlockWidth: interlockWidth,
                                                                                 interlockHeight: interlockHeight,
                                                                                 type: .rectangle)
-#if DEBUG
-                                                                            if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
-                                                                                print("error occurred as words are matching")
-                                                                                return []
-                                                                            }
-                                                                            let text = donut.ToText(words: words)
-                                                                            
-                                                                            if text.contains("#") {
-                                                                                print("error # detected in \n\(text)")
-                                                                                return []
-                                                                            }
-#endif
+//#if DEBUG
+//                                                                            if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
+//                                                                                print("error occurred as words are matching")
+//                                                                                return []
+//                                                                            }
+//                                                                            let text = donut.ToText(words: words)
+//                                                                            
+//                                                                            if text.contains("#") {
+//                                                                                print("error # detected in \n\(text)")
+//                                                                                return []
+//                                                                            }
+//#endif
                                                                             result.append(donut)
                                                                         }
                                                                     }
@@ -1213,7 +1306,7 @@ public class RectangleCalculator {
         return result;
     }
     
-    public static func TopLeftRectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [RectangleModel] {
+    public static func TopLeftRectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [RectangleModel] {
         /*
               .AZURE
               S I
@@ -1227,7 +1320,7 @@ public class RectangleCalculator {
             return result;
         }
         
-        let wordCount = words.count
+        let wordCount = (wordsMax == 0) ? words.count : wordsMax
         
         for _left in 0..<wordCount {
         
@@ -1299,18 +1392,18 @@ public class RectangleCalculator {
                                                                         interlockWidth: interlockWidth,
                                                                         interlockHeight: interlockHeight,
                                                                         type: .topLeft)
-#if DEBUG
-                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
-                                                                        print("error occurred as words are matching")
-                                                                        return []
-                                                                    }
-                                                                    let text = donut.ToText(words: words)
-                                                                    
-                                                                    if text.contains("#") {
-                                                                        print("error # detected in \n\(text)")
-                                                                        return []
-                                                                    }
-#endif
+//#if DEBUG
+//                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
+//                                                                        print("error occurred as words are matching")
+//                                                                        return []
+//                                                                    }
+//                                                                    let text = donut.ToText(words: words)
+//                                                                    
+//                                                                    if text.contains("#") {
+//                                                                        print("error # detected in \n\(text)")
+//                                                                        return []
+//                                                                    }
+//#endif
                                                                     result.append(donut)
                                                                 }
                                                             }
@@ -1330,7 +1423,7 @@ public class RectangleCalculator {
         return result;
     }
     
-    public static func TopLeftSquare(interlockWidth: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [RectangleModel] {
+    public static func TopLeftSquare(interlockWidth: Int, words: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [RectangleModel] {
         /*
               .AZURE
               S I
@@ -1340,7 +1433,7 @@ public class RectangleCalculator {
         */
         var result: [RectangleModel] = [];
         
-        let wordCount = words.count
+        let wordCount = (wordsMax == 0) ? words.count : wordsMax
         
         for _left in 0..<wordCount {
         
@@ -1418,18 +1511,18 @@ public class RectangleCalculator {
                                                                         interlockWidth: interlockWidth,
                                                                         interlockHeight: interlockWidth,
                                                                         type:.topLeft)
-#if DEBUG
-                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
-                                                                        print("error occurred as words are matching")
-                                                                        return []
-                                                                    }
-                                                                    let text = donut.ToText(words: words)
-                                                                    
-                                                                    if text.contains("#") {
-                                                                        print("error # detected in \n\(text)")
-                                                                        return []
-                                                                    }
-#endif
+//#if DEBUG
+//                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
+//                                                                        print("error occurred as words are matching")
+//                                                                        return []
+//                                                                    }
+//                                                                    let text = donut.ToText(words: words)
+//
+//                                                                    if text.contains("#") {
+//                                                                        print("error # detected in \n\(text)")
+//                                                                        return []
+//                                                                    }
+//#endif
                                                                     result.append(donut)
                                                                 }
                                                             }
@@ -1449,7 +1542,7 @@ public class RectangleCalculator {
         return result;
     }
     
-    public static func TopRightRectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [RectangleModel] {
+    public static func TopRightRectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [RectangleModel] {
         /*
            H
          TOYS.
@@ -1465,7 +1558,7 @@ public class RectangleCalculator {
             return result;
         }
         
-        let wordCount = words.count
+        let wordCount = (wordsMax == 0) ? words.count : wordsMax
 
         for _top in 0..<wordCount {
         
@@ -1537,18 +1630,18 @@ public class RectangleCalculator {
                                                                         interlockWidth: interlockWidth,
                                                                         interlockHeight: interlockHeight,
                                                                         type:.topRight)
-#if DEBUG
-                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
-                                                                        print("error occurred as words are matching")
-                                                                        return []
-                                                                    }
-                                                                    let text = donut.ToText(words: words)
-                                                                    
-                                                                    if text.contains("#") {
-                                                                        print("error # detected in \n\(text)")
-                                                                        return []
-                                                                    }
-#endif
+//#if DEBUG
+//                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
+//                                                                        print("error occurred as words are matching")
+//                                                                        return []
+//                                                                    }
+//                                                                    let text = donut.ToText(words: words)
+//
+//                                                                    if text.contains("#") {
+//                                                                        print("error # detected in \n\(text)")
+//                                                                        return []
+//                                                                    }
+//#endif
                                                                     result.append(donut)
                                                                 }
                                                             }
@@ -1568,7 +1661,7 @@ public class RectangleCalculator {
         return result;
     }
     
-    public static func TopRightSquare(interlockWidth: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [RectangleModel] {
+    public static func TopRightSquare(interlockWidth: Int, words: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [RectangleModel] {
         /*
            H
          TOYS.
@@ -1580,7 +1673,7 @@ public class RectangleCalculator {
         */
         var result: [RectangleModel] = [];
         
-        let wordCount = words.count
+        let wordCount = (wordsMax == 0) ? words.count : wordsMax
 
         for _top in 0..<wordCount {
 
@@ -1652,18 +1745,18 @@ public class RectangleCalculator {
                                                                         interlockWidth: interlockWidth,
                                                                         interlockHeight: interlockWidth,
                                                                         type: .topRight)
-#if DEBUG
-                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
-                                                                        print("error occurred as words are matching")
-                                                                        return []
-                                                                    }
-                                                                    let text = donut.ToText(words: words)
-                                                                    
-                                                                    if text.contains("#") {
-                                                                        print("error # detected in \n\(text)")
-                                                                        return []
-                                                                    }
-#endif
+//#if DEBUG
+//                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
+//                                                                        print("error occurred as words are matching")
+//                                                                        return []
+//                                                                    }
+//                                                                    let text = donut.ToText(words: words)
+//
+//                                                                    if text.contains("#") {
+//                                                                        print("error # detected in \n\(text)")
+//                                                                        return []
+//                                                                    }
+//#endif
                                                                     result.append(donut)
                                                                 }
                                                             }
@@ -1683,7 +1776,7 @@ public class RectangleCalculator {
         return result;
     }
     
-    public static func BottomRightRectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [RectangleModel] {
+    public static func BottomRightRectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [RectangleModel] {
         /*
             T
           Z R
@@ -1697,7 +1790,7 @@ public class RectangleCalculator {
             return result;
         }
         
-        let wordCount = words.count
+        let wordCount = (wordsMax == 0) ? words.count : wordsMax
 
         for _right in 0..<wordCount {
             
@@ -1801,7 +1894,7 @@ public class RectangleCalculator {
         return result;
     }
     
-    public static func BottomRightSquare(interlockWidth: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [RectangleModel] {
+    public static func BottomRightSquare(interlockWidth: Int, words: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [RectangleModel] {
         /*
             T
           Z R
@@ -1811,7 +1904,7 @@ public class RectangleCalculator {
         */
         var result: [RectangleModel] = [];
         
-        let wordCount = words.count
+        let wordCount = (wordsMax == 0) ? words.count : wordsMax
 
         for _right in 0..<wordCount {
             
@@ -1883,18 +1976,18 @@ public class RectangleCalculator {
                                                                         interlockWidth: interlockWidth,
                                                                         interlockHeight: interlockWidth,
                                                                         type: .bottomRight)
-#if DEBUG
-                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
-                                                                        print("error occurred as words are matching")
-                                                                        return []
-                                                                    }
-                                                                    let text = donut.ToText(words: words)
-                                                                    
-                                                                    if text.contains("#") {
-                                                                        print("error # detected in \n\(text)")
-                                                                        return []
-                                                                    }
-#endif
+//#if DEBUG
+//                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
+//                                                                        print("error occurred as words are matching")
+//                                                                        return []
+//                                                                    }
+//                                                                    let text = donut.ToText(words: words)
+//
+//                                                                    if text.contains("#") {
+//                                                                        print("error # detected in \n\(text)")
+//                                                                        return []
+//                                                                    }
+//#endif
                                                                     result.append(donut)
                                                                 }
                                                             }
@@ -1914,7 +2007,7 @@ public class RectangleCalculator {
         return result;
     }
     
-    public static func BottomLeftRectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], widthMax: Int, heightMax: Int, scoreMin: Int) -> [RectangleModel] {
+    public static func BottomLeftRectangle(interlockWidth: Int, interlockHeight: Int, words: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [RectangleModel] {
         /*
             .
             H
@@ -1932,7 +2025,7 @@ public class RectangleCalculator {
             return result;
         }
         
-        let wordCount = words.count
+        let wordCount = (wordsMax == 0) ? words.count : wordsMax
 
         for _bottom in 0..<wordCount {
             
@@ -2004,18 +2097,18 @@ public class RectangleCalculator {
                                                                         interlockWidth: interlockWidth,
                                                                         interlockHeight: interlockHeight,
                                                                         type: .bottomLeft)
-#if DEBUG
-                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
-                                                                        print("error occurred as words are matching")
-                                                                        return []
-                                                                    }
-                                                                    let text = donut.ToText(words: words)
-                                                                    
-                                                                    if text.contains("#") {
-                                                                        print("error # detected in \n\(text)")
-                                                                        return []
-                                                                    }
-#endif
+//#if DEBUG
+//                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
+//                                                                        print("error occurred as words are matching")
+//                                                                        return []
+//                                                                    }
+//                                                                    let text = donut.ToText(words: words)
+//
+//                                                                    if text.contains("#") {
+//                                                                        print("error # detected in \n\(text)")
+//                                                                        return []
+//                                                                    }
+//#endif
                                                                     result.append(donut)
                                                                 }
                                                             }

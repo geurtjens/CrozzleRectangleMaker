@@ -62,6 +62,7 @@ public class ShapeQueueListCalculator {
         
         result.add(shapes: words8)
         
+        
         return result
     }
     

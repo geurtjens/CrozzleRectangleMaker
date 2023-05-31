@@ -10,19 +10,19 @@ import Foundation
 /// calculates all clusters which are shapes that have a block of interlocks in the middle of the structure
 public class ClusterCalculator {
     
-    public static func Execute(words start: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func Execute(words start: [String], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
         let end = WordCalculator.reverse(words: start)
         let len = WordCalculator.lengths(words: start)
         
-        let c2x2 = C2x2(start:start,end:end,len:len,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
-        let c2x3 = C2x3(start:start,end:end,len:len,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
-        let c2x4 = C2x4(start:start,end:end,len:len,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
-        let c2x5 = C2x5(start:start,end:end,len:len,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
-        let c2x6 = C2x6(start:start,end:end,len:len,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+        let c2x2 = C2x2(start:start,end:end,len:len,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax,wordsMax:wordsMax)
+        let c2x3 = C2x3(start:start,end:end,len:len,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax,wordsMax:wordsMax)
+        let c2x4 = C2x4(start:start,end:end,len:len,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax,wordsMax:wordsMax)
+        let c2x5 = C2x5(start:start,end:end,len:len,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax,wordsMax:wordsMax)
+        let c2x6 = C2x6(start:start,end:end,len:len,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax,wordsMax:wordsMax)
         
-        let c3x3 = C3x3(start:start,end:end,len:len,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
-        let c3x4 = C3x4(start:start,end:end,len:len,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
-        let c3x5 = C3x5(start:start,end:end,len:len,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+        let c3x3 = C3x3(start:start,end:end,len:len,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax,wordsMax:wordsMax)
+        let c3x4 = C3x4(start:start,end:end,len:len,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax,wordsMax:wordsMax)
+        let c3x5 = C3x5(start:start,end:end,len:len,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax,wordsMax:wordsMax)
         
         var result = c2x2 + c2x3 + c2x4 + c2x5 + c2x6 + c3x3 + c3x4 + c3x5
         
@@ -37,14 +37,15 @@ public class ClusterCalculator {
         return result
     }
     
-    public static func C2x2(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x2(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
         let C2x2_LR_UD = C2x2_LR_UD(
             start: start,
             end: end,
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C2x2_RL_DU = C2x2_RL_DU(
             start: start,
@@ -52,7 +53,8 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C2x2_RL_UD = C2x2_RL_UD(
             start: start,
@@ -60,20 +62,22 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let result = C2x2_LR_UD + C2x2_RL_DU + C2x2_RL_UD
         
         return result
     }
-    public static func C2x3(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x3(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
         let C2x3_LRL_DU = C2x3_LRL_DU(
             start: start,
             end: end,
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C2x3_LRL_UD = C2x3_LRL_UD(
             start: start,
@@ -81,7 +85,8 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C2x3_RLR_DU = C2x3_RLR_DU(
             start: start,
@@ -89,7 +94,8 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C2x3_RLR_UD = C2x3_RLR_UD(
             start: start,
@@ -97,13 +103,14 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let result = C2x3_LRL_DU + C2x3_LRL_UD + C2x3_RLR_DU + C2x3_RLR_UD
         
         return result
     }
-    public static func C2x4(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x4(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
         
         let C2x4_LRLR_DU = C2x4_LRLR_DU(
             start: start,
@@ -111,7 +118,8 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C2x4_LRLR_UD = C2x4_LRLR_UD(
             start: start,
@@ -119,7 +127,8 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C2x4_RLRL_DU = C2x4_RLRL_DU(
             start: start,
@@ -127,7 +136,8 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C2x4_RLRL_UD = C2x4_RLRL_UD(
             start: start,
@@ -135,14 +145,15 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let result = C2x4_LRLR_DU + C2x4_LRLR_UD + C2x4_RLRL_DU + C2x4_RLRL_UD
         
         return result
     }
     
-    public static func C2x5(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x5(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
         
         let C2x5_LRLRL_DU = C2x5_LRLRL_DU(
             start: start,
@@ -150,7 +161,8 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C2x5_LRLRL_UD = C2x5_LRLRL_UD(
             start: start,
@@ -158,7 +170,8 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C2x5_RLRLR_DU = C2x5_RLRLR_DU(
             start: start,
@@ -166,7 +179,8 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C2x5_RLRLR_UD = C2x5_RLRLR_UD(
             start: start,
@@ -174,14 +188,15 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let result = C2x5_LRLRL_DU + C2x5_LRLRL_UD + C2x5_RLRLR_DU + C2x5_RLRLR_UD
         
         return result
     }
     
-    public static func C2x6(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x6(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
         
         let C2x6_LRLRLR_DU = C2x6_LRLRLR_DU(
             start: start,
@@ -189,7 +204,8 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C2x6_LRLRLR_UD = C2x6_LRLRLR_UD(
             start: start,
@@ -197,7 +213,8 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C2x6_RLRLRL_DU = C2x6_RLRLRL_DU(
             start: start,
@@ -205,7 +222,8 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C2x6_RLRLRL_UD = C2x6_RLRLRL_UD(
             start: start,
@@ -213,21 +231,23 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let result = C2x6_LRLRLR_DU + C2x6_LRLRLR_UD + C2x6_RLRLRL_DU + C2x6_RLRLRL_UD
         
         return result
     }
     
-    public static func C3x3(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C3x3(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
         let C3x3_LRL_UDU = C3x3_LRL_UDU(
             start: start,
             end: end,
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C3x3_RLR_DUD = C3x3_RLR_DUD(
             start: start,
@@ -235,7 +255,8 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C3x3_RLR_UDU = C3x3_RLR_UDU(
             start: start,
@@ -243,14 +264,15 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let result = C3x3_LRL_UDU + C3x3_RLR_DUD + C3x3_RLR_UDU
         
         return result
     }
     
-    public static func C3x4(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C3x4(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
         
         let C3x4_LRLR_DUD = C3x4_LRLR_DUD(
             start: start,
@@ -258,7 +280,8 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C3x4_LRLR_UDU = C3x4_LRLR_UDU(
             start: start,
@@ -266,7 +289,8 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C3x4_RLRL_DUD = C3x4_RLRL_DUD(
             start: start,
@@ -274,7 +298,8 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C3x4_RLRL_UDU = C3x4_RLRL_UDU(
             start: start,
@@ -282,14 +307,15 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let result = C3x4_LRLR_DUD + C3x4_LRLR_UDU + C3x4_RLRL_DUD + C3x4_RLRL_UDU
         
         return result
     }
     
-    public static func C3x5(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C3x5(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
         
         let C3x5_LRLRL_DUD = C3x5_LRLRL_DUD(
             start: start,
@@ -297,7 +323,8 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C3x5_LRLRL_UDU = C3x5_LRLRL_UDU(
             start: start,
@@ -305,7 +332,8 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C3x5_RLRLR_DUD = C3x5_RLRLR_DUD(
             start: start,
@@ -313,7 +341,8 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let C3x5_RLRLR_UDU = C3x5_RLRLR_UDU(
             start: start,
@@ -321,16 +350,17 @@ public class ClusterCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let result = C3x5_LRLRL_DUD + C3x5_LRLRL_UDU + C3x5_RLRLR_DUD + C3x5_RLRLR_UDU
         
         return result
     }
     
-    public static func C2x2_LR_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x2_LR_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
         
-        let wordCount = start.count
+        let wordCount = (wordsMax == 0) ? start.count : wordsMax
         let interlockWidth = 2
         let interlockHeight = 2
         var result: [ClusterModel] = []
@@ -397,9 +427,9 @@ public class ClusterCalculator {
     }
     
     
-    public static func C2x2_RL_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x2_RL_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
         
-        let wordCount = start.count
+        let wordCount = (wordsMax == 0) ? start.count : wordsMax
         let interlockWidth = 2
         let interlockHeight = 2
         var result: [ClusterModel] = []
@@ -470,9 +500,9 @@ public class ClusterCalculator {
     }
     
     // This one does not need duplicate removal
-    public static func C2x2_RL_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x2_RL_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
         
-        let wordCount = start.count
+        let wordCount = (wordsMax == 0) ? start.count : wordsMax
         let interlockWidth = 2
         let interlockHeight = 2
         var result: [ClusterModel] = []
@@ -520,12 +550,7 @@ public class ClusterCalculator {
                                         
                                         
                                         if cluster.isValid(scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax) {
-                                            //print("left1:\(start[left1]), right2:\(start[right2]), up1:\(start[up1]), down2:\(start[down2])")
-                                            //                                             let text = cluster.ToText(words:start)
-                                            //
-                                            //                                             textList.append(text)
-                                            //                                             let textReversed = cluster.ToTextFlipped(words: start)
-                                            //                                             textList.append(textReversed)
+                                    
                                             let text = cluster.ToText(words:start)
                                             if text.contains("#") == false {
                                                 result.append(cluster)
@@ -545,9 +570,9 @@ public class ClusterCalculator {
     
     
     
-    public static func C2x3_LRL_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x3_LRL_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
         
-        let wordCount = start.count
+        let wordCount = (wordsMax == 0) ? start.count : wordsMax
         let interlockWidth = 2
         let interlockHeight = 3
         var result: [ClusterModel] = []
@@ -621,9 +646,9 @@ public class ClusterCalculator {
         return result
     }
     
-    public static func C2x3_LRL_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x3_LRL_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+        let wordCount = (wordsMax == 0) ? start.count : wordsMax
         let interlockWidth = 2
         let interlockHeight = 3
         var result: [ClusterModel] = []
@@ -697,9 +722,9 @@ public class ClusterCalculator {
          return result
      }
     
-    public static func C2x3_RLR_DU(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x3_RLR_DU(start: [String], end: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+        let wordCount = (wordsMax == 0) ? start.count : wordsMax
         let interlockWidth = 2
         let interlockHeight = 3
         var result: [ClusterModel] = []
@@ -773,9 +798,9 @@ public class ClusterCalculator {
          return result
     }
     
-    public static func C2x3_RLR_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x3_RLR_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 2
          let interlockHeight = 3
          var result: [ClusterModel] = []
@@ -850,9 +875,9 @@ public class ClusterCalculator {
      }
     
     
-    public static func C2x4_LRLR_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x4_LRLR_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 2
          let interlockHeight = 4
          var result: [ClusterModel] = []
@@ -940,9 +965,9 @@ public class ClusterCalculator {
          return result
      }
     
-    public static func C2x4_LRLR_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x4_LRLR_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 2
          let interlockHeight = 4
          var result: [ClusterModel] = []
@@ -1030,9 +1055,9 @@ public class ClusterCalculator {
          return result
      }
 
-    public static func C2x4_RLRL_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x4_RLRL_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 2
          let interlockHeight = 4
          var result: [ClusterModel] = []
@@ -1121,9 +1146,9 @@ public class ClusterCalculator {
      }
     
     
-    public static func C2x4_RLRL_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x4_RLRL_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 2
          let interlockHeight = 4
          var result: [ClusterModel] = []
@@ -1212,9 +1237,9 @@ public class ClusterCalculator {
      }
     
     
-    public static func C2x5_LRLRL_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x5_LRLRL_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 2
          let interlockHeight = 5
          var result: [ClusterModel] = []
@@ -1318,9 +1343,9 @@ public class ClusterCalculator {
      }
     
     
-    public static func C2x5_LRLRL_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x5_LRLRL_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 2
          let interlockHeight = 5
          var result: [ClusterModel] = []
@@ -1423,9 +1448,9 @@ public class ClusterCalculator {
          return result
      }
     
-    public static func C2x5_RLRLR_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x5_RLRLR_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 2
          let interlockHeight = 5
          var result: [ClusterModel] = []
@@ -1529,9 +1554,9 @@ public class ClusterCalculator {
      }
     
     
-    public static func C2x5_RLRLR_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x5_RLRLR_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 2
          let interlockHeight = 5
          var result: [ClusterModel] = []
@@ -1635,9 +1660,9 @@ public class ClusterCalculator {
      }
     
     
-    public static func C2x6_LRLRLR_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x6_LRLRLR_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 2
          let interlockHeight = 6
          var result: [ClusterModel] = []
@@ -1756,9 +1781,9 @@ public class ClusterCalculator {
          return result
      }
     
-    public static func C2x6_LRLRLR_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x6_LRLRLR_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 2
          let interlockHeight = 6
          var result: [ClusterModel] = []
@@ -1878,9 +1903,9 @@ public class ClusterCalculator {
      }
     
     
-    public static func C2x6_RLRLRL_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x6_RLRLRL_DU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 2
          let interlockHeight = 6
          var result: [ClusterModel] = []
@@ -1999,9 +2024,9 @@ public class ClusterCalculator {
          return result
      }
     
-    public static func C2x6_RLRLRL_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C2x6_RLRLRL_UD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 2
          let interlockHeight = 6
          var result: [ClusterModel] = []
@@ -2123,9 +2148,9 @@ public class ClusterCalculator {
     
     
     
-    public static func C3x3_LRL_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C3x3_LRL_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 3
          let interlockHeight = 3
          var result: [ClusterModel] = []
@@ -2214,9 +2239,9 @@ public class ClusterCalculator {
          return result
      }
     
-    public static func C3x3_RLR_DUD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C3x3_RLR_DUD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 3
          let interlockHeight = 3
          var result: [ClusterModel] = []
@@ -2307,9 +2332,9 @@ public class ClusterCalculator {
      }
     
     // Does not require duplicate checking as it forms a different shape LRL_DUD so we also exclude LRL_DUD as this provides LRL_DUD also
-    public static func C3x3_RLR_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C3x3_RLR_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 3
          let interlockHeight = 3
          var result: [ClusterModel] = []
@@ -2400,9 +2425,9 @@ public class ClusterCalculator {
     
     
     
-    public static func C3x4_LRLR_DUD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C3x4_LRLR_DUD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 3
          let interlockHeight = 4
          var result: [ClusterModel] = []
@@ -2504,9 +2529,9 @@ public class ClusterCalculator {
          return result
      }
     
-    public static func C3x4_RLRL_DUD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C3x4_RLRL_DUD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 3
          let interlockHeight = 4
          var result: [ClusterModel] = []
@@ -2608,9 +2633,9 @@ public class ClusterCalculator {
          return result
      }
     
-    public static func C3x4_LRLR_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C3x4_LRLR_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 3
          let interlockHeight = 4
          var result: [ClusterModel] = []
@@ -2712,9 +2737,9 @@ public class ClusterCalculator {
          return result
      }
     
-    public static func C3x4_RLRL_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C3x4_RLRL_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 3
          let interlockHeight = 4
          var result: [ClusterModel] = []
@@ -2816,9 +2841,9 @@ public class ClusterCalculator {
          return result
      }
     
-    public static func C3x5_LRLRL_DUD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C3x5_LRLRL_DUD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 3
          let interlockHeight = 5
          var result: [ClusterModel] = []
@@ -2937,9 +2962,9 @@ public class ClusterCalculator {
          return result
      }
     
-    public static func C3x5_LRLRL_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C3x5_LRLRL_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 3
          let interlockHeight = 5
          var result: [ClusterModel] = []
@@ -3058,9 +3083,9 @@ public class ClusterCalculator {
          return result
      }
     
-    public static func C3x5_RLRLR_DUD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C3x5_RLRLR_DUD(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 3
          let interlockHeight = 5
          var result: [ClusterModel] = []
@@ -3179,9 +3204,9 @@ public class ClusterCalculator {
          return result
      }
     
-    public static func C3x5_RLRLR_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
+    public static func C3x5_RLRLR_UDU(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
 
-        let wordCount = start.count
+         let wordCount = (wordsMax == 0) ? start.count : wordsMax
          let interlockWidth = 3
          let interlockHeight = 5
          var result: [ClusterModel] = []

@@ -71,7 +71,15 @@ final class OtherTests: XCTestCase {
     
     func test_BottomRight4x6_Repeats() throws {
         
-        let result = RectangleCalculator.BottomRightRectangle(interlockWidth: 3, interlockHeight: 5, words: words, lengths: lengths, widthMax: widthMax, heightMax: heightMax, scoreMin: scoreMin)
+        let result = RectangleCalculator.BottomRightRectangle(
+            interlockWidth: 3,
+            interlockHeight: 5,
+            words: words,
+            lengths: lengths,
+            scoreMin: scoreMin,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            wordsMax: wordsMax)
 
         var text:[String] = []
         for item in result {
@@ -96,36 +104,40 @@ final class OtherTests: XCTestCase {
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         let o4x6_BottomRight = RectangleCalculator.BottomRightRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
 
         let o4x6_TopLeft = RectangleCalculator.TopLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         let o4x6_TopRight = RectangleCalculator.TopRightRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         var result: [(RectangleModel, String)] = []
         for item in o4x6_BottomLeft {
@@ -165,9 +177,10 @@ final class OtherTests: XCTestCase {
             interlockWidth: 2,
             words: words,
             lengths: lengths,
+            scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax,
-            scoreMin: scoreMin)
+            wordsMax: wordsMax)
         
         let first = result[0]
         
@@ -183,6 +196,7 @@ final class OtherTests: XCTestCase {
     
     
     /// standard values for all tests
+    let wordsMax = 0
     let widthMax = 17
     let heightMax = 12
     let scoreMin = 0

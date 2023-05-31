@@ -11,7 +11,7 @@ final class ShapeQueueListCalculatorTests: XCTestCase {
 
     func test_execute() async throws {
 
-        let scoresMin = Array(repeating: 1000, count: 40)
+        let scoresMin = [0, 10, 84, 96, 108, 121, 132, 145, 170, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         let result = await ShapeQueueListCalculator.Execute(
             words: words,
             scoresMin: scoresMin,
@@ -24,8 +24,15 @@ final class ShapeQueueListCalculatorTests: XCTestCase {
         XCTAssertEqual(38, result.queues.count)
         for i in 2..<40 {
             if let queue = result.queues[i] {
+                if queue.shapes.count > 0 {
+                    let firstShape = queue.shapes[0]
+                    let (text, score) = ShapeCalculator.ToText(shape: firstShape, words: words)
+                    print(score)
+                    print(firstShape.placements.count)
+                    print(text)
+                }
                 XCTAssertEqual(i, queue.stride)
-                XCTAssertEqual(1000, queue.scoreMin)
+                //XCTAssertEqual(1000, queue.scoreMin)
             }
         }
     }

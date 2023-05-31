@@ -1,6 +1,6 @@
 # ShapeStatistics
 
-type here
+Ability to read a set of shapes and gather score based statistics on them to know the histogram of scores
 
 ## Overview
 
