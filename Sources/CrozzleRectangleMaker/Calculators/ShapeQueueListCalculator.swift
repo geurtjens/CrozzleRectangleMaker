@@ -11,14 +11,15 @@ import Foundation
 public class ShapeQueueListCalculator {
     
     /// provides all known shapes as a starting point to our calculations.  The scoresMin array tells what the min score is no matter what the number of words and its indexed such that 4 word shapes will be found in scoresMin[4] just to keep it simple.
-    public static func Execute(words: [String], scoresMin:[Int], widthMax: Int, heightMax: Int) async -> ShapeQueueList {
+    public static func Execute(words: [String], scoresMin:[Int], widthMax: Int, heightMax: Int, wordsMax: Int = 0) async -> ShapeQueueList {
         let result = ShapeQueueList(words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         
         let words2 = ShapeQueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoresMin[2],
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         result.add(shapes: words2)
         
@@ -26,7 +27,8 @@ public class ShapeQueueListCalculator {
             words: words,
             scoreMin: scoresMin[4],
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         result.add(shapes: words4)
         
@@ -34,7 +36,8 @@ public class ShapeQueueListCalculator {
             words: words,
             scoreMin: scoresMin[5],
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         result.add(shapes: words5)
         
@@ -42,7 +45,8 @@ public class ShapeQueueListCalculator {
             words: words,
             scoreMin: scoresMin[6],
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         result.add(shapes: words6)
         
@@ -50,7 +54,8 @@ public class ShapeQueueListCalculator {
             words: words,
             scoreMin: scoresMin[7],
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         result.add(shapes: words7)
         
@@ -58,7 +63,8 @@ public class ShapeQueueListCalculator {
             words: words,
             scoreMin: scoresMin[8],
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         result.add(shapes: words8)
         
@@ -68,9 +74,14 @@ public class ShapeQueueListCalculator {
     
     
     /// get 2 word shapes which is really only edges of which there are 10,000 or so
-    public static func get_2_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel] {
+    public static func get_2_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ShapeModel] {
         
-        let edges = EdgeCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let edges = EdgeCalculator.Execute(
+            words: words,
+            scoreMin: scoreMin,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let shapes = ShapeCalculator.toShapesSorted(edges: edges)
         
@@ -79,12 +90,13 @@ public class ShapeQueueListCalculator {
     
     
     /// get all four word shapes which includes 2x2 and all rectangle shapes.  Concerning rectangle shapes there are many of these, millions of these
-    public static func get_4_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) async -> [ShapeModel] {
+    public static func get_4_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) async -> [ShapeModel] {
         let rectangles = await RectangleCalculator.Execute(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -95,7 +107,8 @@ public class ShapeQueueListCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
                                             
         let rectangleShapes = ShapeCalculator.toShapes(rectangles: rectangles)
         
@@ -110,7 +123,7 @@ public class ShapeQueueListCalculator {
     
     
     /// get all 5 word shapes which is basically all 2x3 clusters
-    public static func get_5_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel] {
+    public static func get_5_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ShapeModel] {
         
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -121,7 +134,8 @@ public class ShapeQueueListCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let shapes = ShapeCalculator.toShapesSorted(clusters: c2x3)
  
@@ -130,7 +144,7 @@ public class ShapeQueueListCalculator {
     
     
     /// gets the 6 word shapes which are the 2x4 and 3x3 clusters
-    public static func get_6_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel] {
+    public static func get_6_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ShapeModel] {
         
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -141,7 +155,8 @@ public class ShapeQueueListCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let c3x3 = ClusterCalculator.C3x3(
             start: words,
@@ -149,7 +164,8 @@ public class ShapeQueueListCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let clusterList = c2x4 + c3x3
         
@@ -160,7 +176,7 @@ public class ShapeQueueListCalculator {
     
     
     /// gets shapes with 7 words in them which is the 2x5 and 3x4 clusters
-    public static func get_7_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel] {
+    public static func get_7_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ShapeModel] {
         
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -171,7 +187,8 @@ public class ShapeQueueListCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let c3x4 = ClusterCalculator.C3x4(
             start: words,
@@ -179,7 +196,8 @@ public class ShapeQueueListCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let clusterList = c2x5 + c3x4
         
@@ -190,7 +208,7 @@ public class ShapeQueueListCalculator {
     
     
     /// gets 8 word shapes which are the 2x6 and 3x5 clusters
-    public static func get_8_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel] {
+    public static func get_8_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ShapeModel] {
         
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -201,7 +219,8 @@ public class ShapeQueueListCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let c3x5 = ClusterCalculator.C3x5(
             start: words,
@@ -209,7 +228,8 @@ public class ShapeQueueListCalculator {
             len: len,
             scoreMin: scoreMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsMax: wordsMax)
         
         let clusterList = c2x6 + c3x5
         
