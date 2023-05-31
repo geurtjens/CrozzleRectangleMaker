@@ -74,7 +74,7 @@ public class OverlappingPlacementsCalculator {
     public static func columnsAreOverlapping(sourceStart: UInt8, sourceLength: UInt8, searchStart: UInt8, searchLength: UInt8) -> Bool {
         // Here is the tricky part about overlapping.  Can we figure this out and then fully test it.
         let sourceEnd = sourceStart + sourceLength
-        let searchEnd = searchStart + sourceLength
+        let searchEnd = searchStart + searchLength
         
         /*
          01234567890

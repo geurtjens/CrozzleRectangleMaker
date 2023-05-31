@@ -45,18 +45,6 @@ public class MergePlacementCalculator {
         
         let isOverlapping = OverlappingPlacementsCalculator.isOverlapping(sourcePlacements: sourceFinal, searchPlacements: searchFinal)
         if isOverlapping {
-            /// lets see what is wrong first
-            let combined = sourceFinal + searchFinal
-            let width = PlacementCalculator.width(fromPlacements: combined)
-            let height = PlacementCalculator.height(fromPlacements: combined)
-
-            // We do not know the score just yet
-            let shape = ShapeModel(score:10, width: UInt8(width), height: UInt8(height), placements: combined)
-            let (text,score) = ShapeCalculator.ToText(shape: shape, words: WordData.words_8806())
-            if score > 0 {
-                print(text)
-                let isOverlapping2 = OverlappingPlacementsCalculator.isOverlapping(sourcePlacements: sourceFinal, searchPlacements: searchFinal)
-            }
             return nil
         }
         

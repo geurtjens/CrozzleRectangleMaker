@@ -301,7 +301,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         
         let shapes = await ExecuteMergeCalculator.ExecuteDifferentShapesAsync(source: c2x2Gpu, search:c2x3Gpu, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
       
-        // 112.877 seconds runtime
+        // 89.5 seconds runtime. used to be 140 when we didnt cut short the shape text looking for #
         
         // with the new thing it took 62 seconds but it stripped out and returned 352,825
         XCTAssertEqual(891360, shapes.count)
