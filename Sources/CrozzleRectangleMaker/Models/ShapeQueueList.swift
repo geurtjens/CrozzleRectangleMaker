@@ -21,29 +21,37 @@ public struct ShapeQueueList {
     public let heightMax: Int
     
     /// all possible queue sizes that a game can handle, max of `maxQueues`
-    public var queues: [Int:ShapeQueueModel] = [:]
+    public var queues: [ShapeQueueModel] = []
     
     /// number of queues we allow in the game meaning the max number of words in any winning game
     public let maxQueues = 40
         
     /// Adding shapes that may have any number of words in them.  Here we split them into the different `stride` and add to appropriate queue.
-    public func add(shapes: [ShapeModel]) {
+    public mutating func add(shapes: [ShapeModel]) {
         let dictionary = Dictionary(grouping: shapes, by: { $0.placements.count})
         
         for item in dictionary {
             let wordCount = item.key
             let shapes = item.value
             
-            if var queue = self.queues[wordCount] {
-                let filteredShapes = shapes.filter { $0.score >= queue.scoreMin }
+
+            let filteredShapes = shapes.filter { $0.score >= self.queues[wordCount].scoreMin }
             
-                queue.shapes += filteredShapes
-                ShapeCalculator.Sort(shapes: &queue.shapes)
-                
-                queue.gpuShapes = GpuShapeModel(shapes:queue.shapes, totalWords: queue.totalWords, stride: queue.stride)
-                queue.statistics = StatisticsCalculator.Execute(scores: queue.gpuShapes.scores)
-                
+            self.queues[wordCount].shapes += filteredShapes
+            ShapeCalculator.SortWithWordSequence(shapes: &self.queues[wordCount].shapes)
+            
+            let duplicates = RemoveDuplicatesCalculator.findDuplicates(shapes: &self.queues[wordCount].shapes)
+            if duplicates > 0 {
+                let duplicateList = self.queues[wordCount].shapes.filter { $0.isValid == false}
+                for duplicate in duplicateList {
+                    print(ShapeCalculator.ToText(shape:duplicate, words: words).1)
+                    print(ShapeCalculator.ToText(shape:duplicate, words: words).0)
+                }
+                self.queues[wordCount].shapes = self.queues[wordCount].shapes.filter { $0.isValid}
             }
+            
+            self.queues[wordCount].gpuShapes = GpuShapeModel(shapes:self.queues[wordCount].shapes, totalWords: self.queues[wordCount].totalWords, stride: self.queues[wordCount].stride)
+            self.queues[wordCount].statistics = StatisticsCalculator.Execute(scores: self.queues[wordCount].gpuShapes.scores)
         }
     }
     
@@ -54,8 +62,8 @@ public struct ShapeQueueList {
         self.wordCount = wordCount
         self.widthMax = widthMax
         self.heightMax = heightMax
-        for i in 2..<maxQueues {
-            self.queues[i] = ShapeQueueModel(shapes:[], stride:i, scoreMin: scoresMin[i], totalWords: words.count)
+        for i in 0..<maxQueues {
+            queues.append(ShapeQueueModel(shapes:[], stride:i, scoreMin: scoresMin[i], totalWords: words.count))
         }
     }
 }

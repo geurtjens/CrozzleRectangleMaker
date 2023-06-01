@@ -9,33 +9,7 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class ShapeQueueListCalculatorTests: XCTestCase {
 
-    func test_execute() async throws {
-
-        let scoresMin = [0, 10, 84, 96, 108, 121, 132, 145, 170, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        let result = await ShapeQueueListCalculator.Execute(
-            words: words,
-            scoresMin: scoresMin,
-            widthMax: widthMax,
-            heightMax: heightMax)
-        
-        XCTAssertEqual(words.count, result.wordCount)
-        XCTAssertEqual(widthMax, result.widthMax)
-        XCTAssertEqual(heightMax, result.heightMax)
-        XCTAssertEqual(38, result.queues.count)
-        for i in 2..<40 {
-            if let queue = result.queues[i] {
-                if queue.shapes.count > 0 {
-                    let firstShape = queue.shapes[0]
-                    let (text, score) = ShapeCalculator.ToText(shape: firstShape, words: words)
-                    print(score)
-                    print(firstShape.placements.count)
-                    print(text)
-                }
-                XCTAssertEqual(i, queue.stride)
-                //XCTAssertEqual(1000, queue.scoreMin)
-            }
-        }
-    }
+    
     
     
     func test_get_2_word_shapes() throws {
@@ -112,8 +86,38 @@ final class ShapeQueueListCalculatorTests: XCTestCase {
         XCTAssertEqual(0, shapes.count)
     }
     
+    func test_execute() async throws {
+
+        let scoresMin = [0, 10, 84, 96, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        let result = await ShapeQueueListCalculator.Execute(
+            words: words,
+            scoresMin: scoresMin,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            wordsMax: wordsMax)
+        
+        XCTAssertEqual(words.count, result.wordCount)
+        XCTAssertEqual(widthMax, result.widthMax)
+        XCTAssertEqual(heightMax, result.heightMax)
+        XCTAssertEqual(38, result.queues.count)
+        for i in 2..<40 {
+            let queue = result.queues[i]
+            if queue.shapes.count > 0 {
+                let firstShape = queue.shapes[0]
+                let (text, score) = ShapeCalculator.ToText(shape: firstShape, words: words)
+                print(score)
+                print(firstShape.placements.count)
+                print(text)
+            }
+            XCTAssertEqual(i, queue.stride)
+                //XCTAssertEqual(1000, queue.scoreMin)
+            
+        }
+    }
+    
     
     /// standard values for all tests
+    let wordsMax = WordData.winningWordsCount_8612
     let widthMax = 17
     let heightMax = 12
     let scoreMin = 0
@@ -123,4 +127,6 @@ final class ShapeQueueListCalculatorTests: XCTestCase {
         words = WordData.words_8612()
         lengths = WordCalculator.lengths(words: words)
     }
+    
+    
 }

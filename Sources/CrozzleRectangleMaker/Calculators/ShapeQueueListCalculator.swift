@@ -12,8 +12,9 @@ public class ShapeQueueListCalculator {
     
     /// provides all known shapes as a starting point to our calculations.  The scoresMin array tells what the min score is no matter what the number of words and its indexed such that 4 word shapes will be found in scoresMin[4] just to keep it simple.
     public static func Execute(words: [String], scoresMin:[Int], widthMax: Int, heightMax: Int, wordsMax: Int = 0) async -> ShapeQueueList {
-        let result = ShapeQueueList(words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        var result = ShapeQueueList(words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         
+        //print(scoresMin[2])
         let words2 = ShapeQueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoresMin[2],
@@ -23,6 +24,7 @@ public class ShapeQueueListCalculator {
         
         result.add(shapes: words2)
         
+        //print(scoresMin[4])
         let words4 = await ShapeQueueListCalculator.get_4_word_shapes(
             words: words,
             scoreMin: scoresMin[4],
@@ -67,7 +69,6 @@ public class ShapeQueueListCalculator {
             wordsMax: wordsMax)
         
         result.add(shapes: words8)
-        
         
         return result
     }

@@ -51,7 +51,7 @@ public class ScoreCalculator {
     
     /// convenience method for calculating the score of the `bottomRight` rectangle
     public static func bottomRight(topLeft: Character, topRight: Character, bottomLeft: Character) -> Int {
-        let score = score(forLetter:topLeft) + score(forLetter:bottomLeft) + score(forLetter:bottomLeft) + 40
+        let score = score(forLetter:topLeft) + score(forLetter:topRight) + score(forLetter:bottomLeft) + 40
         return score
     }
 }
