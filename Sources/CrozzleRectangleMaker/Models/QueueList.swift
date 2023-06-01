@@ -9,16 +9,8 @@ import Foundation
 /// contains all shape queues and so is a central repository of all known shapes
 public struct QueueList {
     
-    /// these are the words that are used in all processing.  They must say in the same order / sequence throughout the game
-    public let words: [String]
+    public let game: GameModel
     
-    /// number of words in the words collection
-    public let wordCount: Int
-    
-    /// when a shape is rendered as text, its width must be less than or equal to `widthMax` for it to comply with the games size.  Shapes can be flipped so the constraint is width x height or height x width
-    public let widthMax: Int
-    /// when a shape is rendered as text, its height must be less than or equal to `heightMax` for it to comply with the games size.  Shapes can be flipped so its width x height or height x width
-    public let heightMax: Int
     
     /// all possible queue sizes that a game can handle, max of `maxQueues`
     public var queues: [QueueModel] = []
@@ -45,8 +37,8 @@ public struct QueueList {
             if duplicates > 0 {
                 let duplicateList = self.queues[wordCount].shapes.filter { $0.isValid == false}
                 for duplicate in duplicateList {
-                    print(ShapeCalculator.ToText(shape:duplicate, words: words).1)
-                    print(ShapeCalculator.ToText(shape:duplicate, words: words).0)
+                    print(ShapeCalculator.ToText(shape:duplicate, words: self.game.words()).1)
+                    print(ShapeCalculator.ToText(shape:duplicate, words: self.game.words()).0)
                 }
                 self.queues[wordCount].shapes = self.queues[wordCount].shapes.filter { $0.isValid}
             }
@@ -144,14 +136,13 @@ public struct QueueList {
     
     
     /// create a bunch of these queues and create the entire strucutre
-    public init(words: [String], scoresMin:[Int], widthMax: Int, heightMax: Int) {
-        let wordCount = words.count
-        self.words = words
-        self.wordCount = wordCount
-        self.widthMax = widthMax
-        self.heightMax = heightMax
+    public init(game: GameModel, scoresMin:[Int]) {
+        let wordCount = game.words().count
+        
+        self.game = game
+        
         for i in 0..<maxQueues {
-            queues.append(QueueModel(shapes:[], stride:i, scoreMin: scoresMin[i], totalWords: words.count))
+            queues.append(QueueModel(shapes:[], stride:i, scoreMin: scoresMin[i], totalWords: wordCount))
         }
     }
 }

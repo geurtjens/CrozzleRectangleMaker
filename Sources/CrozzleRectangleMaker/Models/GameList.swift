@@ -10,6 +10,11 @@ public struct GameList {
     
     public var games: [GameModel]
     
+    public func getGame(gameId: Int) -> GameModel? {
+        let filter = games.filter { $0.gameId == gameId }.first
+        return filter
+    }
+    
     public init() {
     
         games = []

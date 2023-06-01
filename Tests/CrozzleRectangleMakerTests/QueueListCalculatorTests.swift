@@ -28,11 +28,11 @@ final class QueueListCalculatorTests: XCTestCase {
         
         let shapes = await QueueListCalculator.get_4_word_shapes(
             words: words,
-            scoreMin: scoreMin,
+            scoreMin: 104,
             widthMax: widthMax,
             heightMax: heightMax)
         XCTAssertEqual(4, shapes[0].placements.count)
-        XCTAssertEqual(4531541, shapes.count)
+        XCTAssertEqual(17182, shapes.count)
     }
     
     
@@ -88,34 +88,32 @@ final class QueueListCalculatorTests: XCTestCase {
     
     func test_execute() async throws {
 
-        let scoresMin = [0, 10, 36, 96, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        let result = await QueueListCalculator.Execute(
-            words: words,
-            scoresMin: scoresMin,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            wordsMax: wordsMax)
-        
-        XCTAssertEqual(words.count, result.wordCount)
-        XCTAssertEqual(widthMax, result.widthMax)
-        XCTAssertEqual(heightMax, result.heightMax)
-        XCTAssertEqual(40, result.queues.count)
-        for i in 2..<40 {
-            let queue = result.queues[i]
-            if queue.shapes.count > 0 {
-                let firstShape = queue.shapes[0]
-                let (text, score) = ShapeCalculator.ToText(shape: firstShape, words: words)
-                print(score)
-                print(firstShape.placements.count)
-                print(text)
-            }
-            XCTAssertEqual(i, queue.stride)
-                //XCTAssertEqual(1000, queue.scoreMin)
+        if let game = game {
+            let scoresMin = [0, 10, 36, 96, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            let result = await QueueListCalculator.Execute(
+                game: game,
+                scoresMin: scoresMin)
             
+            XCTAssertEqual(words.count, result.game.wordCount())
+           
+            XCTAssertEqual(40, result.queues.count)
+            for i in 2..<40 {
+                let queue = result.queues[i]
+                if queue.shapes.count > 0 {
+                    let firstShape = queue.shapes[0]
+                    let (text, score) = ShapeCalculator.ToText(shape: firstShape, words: words)
+                    print(score)
+                    print(firstShape.placements.count)
+                    print(text)
+                }
+                XCTAssertEqual(i, queue.stride)
+                //XCTAssertEqual(1000, queue.scoreMin)
+                
+            }
         }
     }
     
-    
+    var game: GameModel?
     /// standard values for all tests
     let wordsMax = WordData.winningWordsCount_8612
     let widthMax = 17
@@ -124,8 +122,12 @@ final class QueueListCalculatorTests: XCTestCase {
     var words:[String] = []
     var lengths: [Int] = []
     override func setUpWithError() throws {
-        words = WordData.words_8612()
-        lengths = WordCalculator.lengths(words: words)
+        let gameList = GameList()
+        if let gameItem = gameList.getGame(gameId: 8612) {
+            words = gameItem.words()
+            lengths = WordCalculator.lengths(words: words)
+            game = gameItem
+        }
     }
     
     

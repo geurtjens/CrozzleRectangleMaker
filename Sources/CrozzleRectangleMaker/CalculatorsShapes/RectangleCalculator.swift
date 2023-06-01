@@ -421,7 +421,7 @@ public class RectangleCalculator {
             heightMax: heightMax,
             wordsMax: wordsMax)
         
-        async let o5x6_BottomRight = RectangleCalculator.BottomRightRectangle(
+        async let o5x6_BottomRight = BottomRightRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -431,7 +431,7 @@ public class RectangleCalculator {
             heightMax: heightMax,
             wordsMax: wordsMax)
         
-        async let o5x6_TopLeft = RectangleCalculator.TopLeftRectangle(
+        async let o5x6_TopLeft = TopLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -441,7 +441,7 @@ public class RectangleCalculator {
             heightMax: heightMax,
             wordsMax: wordsMax)
         
-        async let o5x6_TopRight = RectangleCalculator.TopRightRectangle(
+        async let o5x6_TopRight = TopRightRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -451,7 +451,7 @@ public class RectangleCalculator {
             heightMax: heightMax,
             wordsMax: wordsMax)
         
-        async let o6x6_BottomRight = RectangleCalculator.BottomRightSquare(
+        async let o6x6_BottomRight = BottomRightSquare(
             interlockWidth: 5,
             words: words,
             lengths: lengths,
@@ -460,7 +460,7 @@ public class RectangleCalculator {
             heightMax: heightMax,
             wordsMax: wordsMax)
         
-        async let o6x6_TopLeft = RectangleCalculator.TopLeftSquare(
+        async let o6x6_TopLeft = TopLeftSquare(
             interlockWidth: 5,
             words: words,
             lengths: lengths,
@@ -469,7 +469,7 @@ public class RectangleCalculator {
             heightMax: heightMax,
             wordsMax: wordsMax)
         
-        async let o6x6_TopRight = RectangleCalculator.TopRightSquare(
+        async let o6x6_TopRight = TopRightSquare(
             interlockWidth: 5,
             words: words,
             lengths: lengths,
@@ -965,7 +965,7 @@ public class RectangleCalculator {
         
         print("o5x6_BottomLeft \(o5x6_BottomLeft.count)")
         
-        let o5x6_BottomRight = RectangleCalculator.BottomRightRectangle(
+        let o5x6_BottomRight = BottomRightRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -977,7 +977,7 @@ public class RectangleCalculator {
         
         print("o5x6_BottomRight \(o5x6_BottomRight.count)")
         
-        let o5x6_TopLeft = RectangleCalculator.TopLeftRectangle(
+        let o5x6_TopLeft = TopLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -989,7 +989,7 @@ public class RectangleCalculator {
         
         print("o5x6_TopLeft \(o5x6_TopLeft.count)")
         
-        let o5x6_TopRight = RectangleCalculator.TopRightRectangle(
+        let o5x6_TopRight = TopRightRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -1001,7 +1001,7 @@ public class RectangleCalculator {
         
         print("o5x6_TopRight \(o5x6_TopRight.count)")
         
-        let o6x6_BottomRight = RectangleCalculator.BottomRightSquare(
+        let o6x6_BottomRight = BottomRightSquare(
             interlockWidth: 5,
             words: words,
             lengths: lengths,
@@ -1012,7 +1012,7 @@ public class RectangleCalculator {
         
         print("o6x6_BottomRight \(o6x6_BottomRight.count)")
         
-        let o6x6_TopLeft = RectangleCalculator.TopLeftSquare(
+        let o6x6_TopLeft = TopLeftSquare(
             interlockWidth: 5,
             words: words,
             lengths: lengths,
@@ -1023,7 +1023,7 @@ public class RectangleCalculator {
         
         print("o6x6_TopLeft \(o6x6_TopLeft.count)")
         
-        let o6x6_TopRight = RectangleCalculator.TopRightSquare(
+        let o6x6_TopRight = TopRightSquare(
             interlockWidth: 5,
             words: words,
             lengths: lengths,

@@ -11,8 +11,12 @@ import Foundation
 public class QueueListCalculator {
     
     /// provides all known shapes as a starting point to our calculations.  The scoresMin array tells what the min score is no matter what the number of words and its indexed such that 4 word shapes will be found in scoresMin[4] just to keep it simple.
-    public static func Execute(words: [String], scoresMin:[Int], widthMax: Int, heightMax: Int, wordsMax: Int = 0) async -> QueueList {
-        var result = QueueList(words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+    public static func Execute(game: GameModel, scoresMin:[Int], wordsMax: Int = 0) async -> QueueList {
+        var result = QueueList(game: game, scoresMin: scoresMin)
+        
+        let words = game.words()
+        let widthMax = game.maxWidth
+        let heightMax = game.maxHeight
         
         //print(scoresMin[2])
         let words2 = QueueListCalculator.get_2_word_shapes(

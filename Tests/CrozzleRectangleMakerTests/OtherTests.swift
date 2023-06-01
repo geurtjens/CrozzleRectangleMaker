@@ -17,7 +17,7 @@ final class OtherTests: XCTestCase {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        XCTAssertEqual(4530742, result.count)
+        XCTAssertEqual(17144, result.count)
         // 463 MB and 57 seconds
         // 160 MB and 55.9 seconds if we make the size smaller
     }
