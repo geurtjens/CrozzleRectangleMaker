@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  QueueModel.swift
 //  
 //
 //  Created by Michael Geurtjens on 27/5/2023.
