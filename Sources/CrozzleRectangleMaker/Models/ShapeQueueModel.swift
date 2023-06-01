@@ -65,4 +65,6 @@ public struct ShapeQueueModel {
         self.gpuShapes = gpuShapes
         self.statistics = StatisticsCalculator.Execute(scores: gpuShapes.scores)
     }
+    
+    
 }

@@ -88,7 +88,7 @@ final class ShapeQueueListCalculatorTests: XCTestCase {
     
     func test_execute() async throws {
 
-        let scoresMin = [0, 10, 84, 96, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        let scoresMin = [0, 10, 36, 96, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         let result = await ShapeQueueListCalculator.Execute(
             words: words,
             scoresMin: scoresMin,

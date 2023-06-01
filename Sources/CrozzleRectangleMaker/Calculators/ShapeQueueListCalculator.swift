@@ -24,6 +24,8 @@ public class ShapeQueueListCalculator {
         
         result.add(shapes: words2)
         
+        await result.mergeWithItselfAsync(wordCount:2, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        
         //print(scoresMin[4])
         let words4 = await ShapeQueueListCalculator.get_4_word_shapes(
             words: words,
@@ -33,6 +35,13 @@ public class ShapeQueueListCalculator {
             wordsMax: wordsMax)
         
         result.add(shapes: words4)
+        await result.mergeWithItselfAsync(wordCount:4, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        
+        await result.mergeTwoAsync(mergeIndex:6, withIndex: 7, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        let example = result.queues[12].shapes[0]
+        let (text,score) = ShapeCalculator.ToText(shape:example, words: words)
+        print(score)
+        print(text)
         
         let words5 = ShapeQueueListCalculator.get_5_word_shapes(
             words: words,
@@ -40,6 +49,7 @@ public class ShapeQueueListCalculator {
             widthMax: widthMax,
             heightMax: heightMax,
             wordsMax: wordsMax)
+        
         
         result.add(shapes: words5)
         
@@ -69,6 +79,7 @@ public class ShapeQueueListCalculator {
             wordsMax: wordsMax)
         
         result.add(shapes: words8)
+        
         
         return result
     }

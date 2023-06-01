@@ -38,6 +38,7 @@ public struct ShapeQueueList {
             let filteredShapes = shapes.filter { $0.score >= self.queues[wordCount].scoreMin }
             
             self.queues[wordCount].shapes += filteredShapes
+            
             ShapeCalculator.SortWithWordSequence(shapes: &self.queues[wordCount].shapes)
             
             let duplicates = RemoveDuplicatesCalculator.findDuplicates(shapes: &self.queues[wordCount].shapes)
@@ -54,6 +55,28 @@ public struct ShapeQueueList {
             self.queues[wordCount].statistics = StatisticsCalculator.Execute(scores: self.queues[wordCount].gpuShapes.scores)
         }
     }
+    
+    public mutating func mergeWithItselfAsync(wordCount: Int, words: [String], scoresMin:[Int], widthMax: Int, heightMax: Int) async {
+        let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(shapes: self.queues[wordCount].gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        if shapes.count > 0 {
+            add(shapes: shapes)
+        }
+    }
+    
+    public mutating func mergeTwoAsync(mergeIndex: Int, withIndex mergeIndex2: Int, words: [String], scoresMin:[Int], widthMax: Int, heightMax: Int) async {
+        let shapes = await ExecuteMergeCalculator.ExecuteDifferentShapesAsync(
+            source: self.queues[mergeIndex].gpuShapes,
+            search:self.queues[mergeIndex2].gpuShapes,
+            words: words,
+            scoresMin: scoresMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+
+        if shapes.count > 0 {
+            add(shapes: shapes)
+        }
+    }
+    
     
     /// create a bunch of these queues and create the entire strucutre
     public init(words: [String], scoresMin:[Int], widthMax: Int, heightMax: Int) {
