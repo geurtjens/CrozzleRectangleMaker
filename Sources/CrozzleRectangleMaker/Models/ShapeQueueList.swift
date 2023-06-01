@@ -56,14 +56,49 @@ public struct ShapeQueueList {
         }
     }
     
-    public mutating func mergeWithItselfAsync(wordCount: Int, words: [String], scoresMin:[Int], widthMax: Int, heightMax: Int) async {
+    public mutating func mergeWithItselfAsync(
+        wordCount: Int,
+        words: [String],
+        scoresMin:[Int],
+        widthMax: Int,
+        heightMax: Int) async {
+            
         let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(shapes: self.queues[wordCount].gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         if shapes.count > 0 {
             add(shapes: shapes)
         }
     }
     
-    public mutating func mergeTwoAsync(mergeIndex: Int, withIndex mergeIndex2: Int, words: [String], scoresMin:[Int], widthMax: Int, heightMax: Int) async {
+    /// Perform the merge on yourself but do not let the `notTheseWordCounts` count of words to be included.  So merge 3 words with 3 words and ignore the 4 word, only include the 5 word shapes
+    public mutating func mergeWithItselfAsync(
+        wordCount: Int,
+        words: [String],
+        scoresMin:[Int],
+        widthMax: Int,
+        heightMax: Int,
+        notTheseWordCounts:[Int]) async {
+            
+        let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(shapes: self.queues[wordCount].gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        if shapes.count > 0 {
+            var filteredShapes: [ShapeModel] = []
+            let dictionary = Dictionary(grouping: shapes, by: { $0.placements.count})
+            for item in dictionary {
+                if notTheseWordCounts.contains(item.key) == false {
+                    filteredShapes += item.value
+                }
+            }
+            
+            add(shapes: filteredShapes)
+        }
+    }
+    
+    public mutating func mergeTwoAsync(
+        mergeIndex: Int,
+        withIndex mergeIndex2: Int,
+        words: [String],
+        scoresMin:[Int],
+        widthMax: Int,
+        heightMax: Int) async {
         let shapes = await ExecuteMergeCalculator.ExecuteDifferentShapesAsync(
             source: self.queues[mergeIndex].gpuShapes,
             search:self.queues[mergeIndex2].gpuShapes,
@@ -74,6 +109,36 @@ public struct ShapeQueueList {
 
         if shapes.count > 0 {
             add(shapes: shapes)
+        }
+    }
+    
+    public mutating func mergeTwoAsync(
+        mergeIndex: Int,
+        withIndex mergeIndex2: Int,
+        words: [String],
+        scoresMin:[Int],
+        widthMax: Int,
+        heightMax: Int,
+        notTheseWordCounts:[Int]) async {
+        let shapes = await ExecuteMergeCalculator.ExecuteDifferentShapesAsync(
+            source: self.queues[mergeIndex].gpuShapes,
+            search:self.queues[mergeIndex2].gpuShapes,
+            words: words,
+            scoresMin: scoresMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+
+        if shapes.count > 0 {
+            
+            var filteredShapes: [ShapeModel] = []
+            let dictionary = Dictionary(grouping: shapes, by: { $0.placements.count})
+            for item in dictionary {
+                if notTheseWordCounts.contains(item.key) == false {
+                    filteredShapes += item.value
+                }
+            }
+            
+            add(shapes: filteredShapes)
         }
     }
     
