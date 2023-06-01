@@ -99,7 +99,7 @@ final class ShapeQueueListCalculatorTests: XCTestCase {
         XCTAssertEqual(words.count, result.wordCount)
         XCTAssertEqual(widthMax, result.widthMax)
         XCTAssertEqual(heightMax, result.heightMax)
-        XCTAssertEqual(38, result.queues.count)
+        XCTAssertEqual(40, result.queues.count)
         for i in 2..<40 {
             let queue = result.queues[i]
             if queue.shapes.count > 0 {

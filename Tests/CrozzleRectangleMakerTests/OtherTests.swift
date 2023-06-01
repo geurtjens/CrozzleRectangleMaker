@@ -13,7 +13,7 @@ final class OtherTests: XCTestCase {
         
         let result = await RectangleCalculator.Execute(
             words: words,
-            scoreMin: scoreMin,
+            scoreMin: 104,
             widthMax: widthMax,
             heightMax: heightMax)
         
