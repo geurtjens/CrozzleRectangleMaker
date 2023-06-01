@@ -11,7 +11,7 @@ final class RemoveDuplicatesCalculatorTests: XCTestCase {
 
     func test_DuplicatesInRectangle() async throws {
         
-        var rectangles = await RectangleCalculator.Execute(words: words, scoreMin: 104, widthMax: widthMax, heightMax: heightMax)
+        let rectangles = await RectangleCalculator.Execute(words: words, scoreMin: 104, widthMax: widthMax, heightMax: heightMax)
         
         var shapes = ShapeCalculator.toShapes(rectangles: rectangles)
         
