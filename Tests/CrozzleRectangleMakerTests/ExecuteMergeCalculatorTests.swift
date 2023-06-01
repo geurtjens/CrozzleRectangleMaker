@@ -30,7 +30,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
             }
         }
         
-        let shapes = ShapeQueueListCalculator.get_2_word_shapes(
+        let shapes = QueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -75,7 +75,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
             }
         }
         
-        let shapes = ShapeQueueListCalculator.get_2_word_shapes(
+        let shapes = QueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -110,7 +110,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
          .
          */
         
-        let shapes = ShapeQueueListCalculator.get_2_word_shapes(
+        let shapes = QueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -128,7 +128,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
     
     func test_EdgesAllAsync() async throws {
         
-        let shapes = ShapeQueueListCalculator.get_2_word_shapes(
+        let shapes = QueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -154,7 +154,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
     
     func test_EdgesAll() throws {
         
-        let shapes = ShapeQueueListCalculator.get_2_word_shapes(
+        let shapes = QueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -189,7 +189,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
             }
         }
         
-        let shapes = ShapeQueueListCalculator.get_2_word_shapes(
+        let shapes = QueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -460,7 +460,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
     
     func test_RectangleOne() async throws {
         
-        let shapes = await ShapeQueueListCalculator.get_4_word_shapes(
+        let shapes = await QueueListCalculator.get_4_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -483,7 +483,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
     
     func test_RectangleAll() async throws {
 
-        let shapes = await ShapeQueueListCalculator.get_4_word_shapes(
+        let shapes = await QueueListCalculator.get_4_word_shapes(
             words: words,
             scoreMin: 104,
             widthMax: widthMax,

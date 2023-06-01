@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  QueueListCalculator.swift
 //  
 //
 //  Created by Michael Geurtjens on 29/5/2023.
@@ -7,15 +7,15 @@
 
 import Foundation
 
-/// A way of populating all standard shapes and placing them into the `ShapeQueueList`.  There is no merges in here rather just getting shapes we can make from the raw single words of the words list.
-public class ShapeQueueListCalculator {
+/// A way of populating all standard shapes and placing them into the `QueueList`.  There is no merges in here rather just getting shapes we can make from the raw single words of the words list.
+public class QueueListCalculator {
     
     /// provides all known shapes as a starting point to our calculations.  The scoresMin array tells what the min score is no matter what the number of words and its indexed such that 4 word shapes will be found in scoresMin[4] just to keep it simple.
-    public static func Execute(words: [String], scoresMin:[Int], widthMax: Int, heightMax: Int, wordsMax: Int = 0) async -> ShapeQueueList {
-        var result = ShapeQueueList(words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+    public static func Execute(words: [String], scoresMin:[Int], widthMax: Int, heightMax: Int, wordsMax: Int = 0) async -> QueueList {
+        var result = QueueList(words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         
         //print(scoresMin[2])
-        let words2 = ShapeQueueListCalculator.get_2_word_shapes(
+        let words2 = QueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoresMin[2],
             widthMax: widthMax,
@@ -27,7 +27,7 @@ public class ShapeQueueListCalculator {
         await result.mergeWithItselfAsync(wordCount:2, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         
         //print(scoresMin[4])
-        let words4 = await ShapeQueueListCalculator.get_4_word_shapes(
+        let words4 = await QueueListCalculator.get_4_word_shapes(
             words: words,
             scoreMin: scoresMin[4],
             widthMax: widthMax,
@@ -43,7 +43,7 @@ public class ShapeQueueListCalculator {
         print(score)
         print(text)
         
-        let words5 = ShapeQueueListCalculator.get_5_word_shapes(
+        let words5 = QueueListCalculator.get_5_word_shapes(
             words: words,
             scoreMin: scoresMin[5],
             widthMax: widthMax,
@@ -53,7 +53,7 @@ public class ShapeQueueListCalculator {
         
         result.add(shapes: words5)
         
-        let words6 = ShapeQueueListCalculator.get_6_word_shapes(
+        let words6 = QueueListCalculator.get_6_word_shapes(
             words: words,
             scoreMin: scoresMin[6],
             widthMax: widthMax,
@@ -62,7 +62,7 @@ public class ShapeQueueListCalculator {
         
         result.add(shapes: words6)
         
-        let words7 = ShapeQueueListCalculator.get_7_word_shapes(
+        let words7 = QueueListCalculator.get_7_word_shapes(
             words: words,
             scoreMin: scoresMin[7],
             widthMax: widthMax,
@@ -71,7 +71,7 @@ public class ShapeQueueListCalculator {
         
         result.add(shapes: words7)
         
-        let words8 = ShapeQueueListCalculator.get_8_word_shapes(
+        let words8 = QueueListCalculator.get_8_word_shapes(
             words: words,
             scoreMin: scoresMin[8],
             widthMax: widthMax,

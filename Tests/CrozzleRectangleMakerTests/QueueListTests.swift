@@ -1,5 +1,5 @@
 //
-//  ShapeQueueListTests.swift
+//  QueueListTests.swift
 //  
 //
 //  Created by Michael Geurtjens on 1/6/2023.
@@ -7,15 +7,15 @@
 
 import XCTest
 @testable import CrozzleRectangleMaker
-final class ShapeQueueListTests: XCTestCase {
+final class QueueListTests: XCTestCase {
     
     /// Merge 2 word shapes gives 3 word shapes, then merge 3 words shapes with `notTheseWordCounts: [4]` which will allow the 5 word shapes to be added but not any 4 word shapes added
     func test_NotTheseWords() async throws {
         let scoresMin = [0, 10, 28, 38, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        var result = ShapeQueueList(words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        var result = QueueList(words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
         
         //print(scoresMin[2])
-        let words2 = ShapeQueueListCalculator.get_2_word_shapes(
+        let words2 = QueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoresMin[2],
             widthMax: widthMax,

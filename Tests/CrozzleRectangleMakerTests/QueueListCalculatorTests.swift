@@ -1,5 +1,5 @@
 //
-//  GpuShapeCalculatorTests.swift
+//  QueueListCalculatorTests.swift
 //  
 //
 //  Created by Michael Geurtjens on 23/5/2023.
@@ -7,14 +7,14 @@
 
 import XCTest
 @testable import CrozzleRectangleMaker
-final class ShapeQueueListCalculatorTests: XCTestCase {
+final class QueueListCalculatorTests: XCTestCase {
 
     
     
     
     func test_get_2_word_shapes() throws {
         
-        let shapes = ShapeQueueListCalculator.get_2_word_shapes(
+        let shapes = QueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -26,7 +26,7 @@ final class ShapeQueueListCalculatorTests: XCTestCase {
     
     func test_get_4_word_shapes() async throws {
         
-        let shapes = await ShapeQueueListCalculator.get_4_word_shapes(
+        let shapes = await QueueListCalculator.get_4_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -38,7 +38,7 @@ final class ShapeQueueListCalculatorTests: XCTestCase {
     
     func test_get_5_word_shapes() throws {
         
-        let shapes = ShapeQueueListCalculator.get_5_word_shapes(
+        let shapes = QueueListCalculator.get_5_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -51,7 +51,7 @@ final class ShapeQueueListCalculatorTests: XCTestCase {
     
     func test_get_6_word_shapes() throws {
         
-        let shapes = ShapeQueueListCalculator.get_6_word_shapes(
+        let shapes = QueueListCalculator.get_6_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -64,7 +64,7 @@ final class ShapeQueueListCalculatorTests: XCTestCase {
     
     func test_get_7_word_shapes() throws {
         
-        let shapes = ShapeQueueListCalculator.get_7_word_shapes(
+        let shapes = QueueListCalculator.get_7_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -77,7 +77,7 @@ final class ShapeQueueListCalculatorTests: XCTestCase {
     
     func test_get_8_word_shapes() throws {
         
-        let shapes = ShapeQueueListCalculator.get_8_word_shapes(
+        let shapes = QueueListCalculator.get_8_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -89,7 +89,7 @@ final class ShapeQueueListCalculatorTests: XCTestCase {
     func test_execute() async throws {
 
         let scoresMin = [0, 10, 36, 96, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        let result = await ShapeQueueListCalculator.Execute(
+        let result = await QueueListCalculator.Execute(
             words: words,
             scoresMin: scoresMin,
             widthMax: widthMax,

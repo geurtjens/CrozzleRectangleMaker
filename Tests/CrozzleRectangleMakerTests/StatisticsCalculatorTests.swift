@@ -10,7 +10,7 @@ import XCTest
 final class StatisticsCalculatorTests: XCTestCase {
 
     func test_ScoreFor_Edge() throws {
-        let shapes = ShapeQueueListCalculator.get_2_word_shapes(
+        let shapes = QueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -29,7 +29,7 @@ final class StatisticsCalculatorTests: XCTestCase {
     
     
     func test_PositionMax_Edge() throws {
-        let shapes = ShapeQueueListCalculator.get_2_word_shapes(
+        let shapes = QueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -48,7 +48,7 @@ final class StatisticsCalculatorTests: XCTestCase {
     
     
     func test_Edges_8612() throws {
-        let shapes = ShapeQueueListCalculator.get_2_word_shapes(
+        let shapes = QueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -105,7 +105,7 @@ final class StatisticsCalculatorTests: XCTestCase {
     
     func test_Rectangle_8612() async throws {
         
-        let shapes = await ShapeQueueListCalculator.get_4_word_shapes(
+        let shapes = await QueueListCalculator.get_4_word_shapes(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,

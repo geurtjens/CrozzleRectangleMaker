@@ -7,7 +7,7 @@
 
 import Foundation
 /// contains all shape queues and so is a central repository of all known shapes
-public struct ShapeQueueList {
+public struct QueueList {
     
     /// these are the words that are used in all processing.  They must say in the same order / sequence throughout the game
     public let words: [String]
@@ -21,7 +21,7 @@ public struct ShapeQueueList {
     public let heightMax: Int
     
     /// all possible queue sizes that a game can handle, max of `maxQueues`
-    public var queues: [ShapeQueueModel] = []
+    public var queues: [QueueModel] = []
     
     /// number of queues we allow in the game meaning the max number of words in any winning game
     public let maxQueues = 40
@@ -151,7 +151,7 @@ public struct ShapeQueueList {
         self.widthMax = widthMax
         self.heightMax = heightMax
         for i in 0..<maxQueues {
-            queues.append(ShapeQueueModel(shapes:[], stride:i, scoreMin: scoresMin[i], totalWords: words.count))
+            queues.append(QueueModel(shapes:[], stride:i, scoreMin: scoresMin[i], totalWords: words.count))
         }
     }
 }

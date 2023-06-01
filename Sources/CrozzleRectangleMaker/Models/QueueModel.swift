@@ -8,7 +8,7 @@
 import Foundation
 
 /// A collection of all shapes that have `stride` number of words
-public struct ShapeQueueModel {
+public struct QueueModel {
     
     /// total number of words in the word list that we are processing
     public let totalWords: Int
