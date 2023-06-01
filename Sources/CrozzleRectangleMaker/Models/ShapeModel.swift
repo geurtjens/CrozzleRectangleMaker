@@ -55,4 +55,9 @@ public struct ShapeModel {
         }
         return wordSequence
     }
+    
+    public func ToString(words: [String]) -> String {
+        let (text, score) = ShapeCalculator.ToText(shape: self, words: words)
+        return "score:\(score), width:\(width), height:\(height)\n\n" + text
+    }
 }

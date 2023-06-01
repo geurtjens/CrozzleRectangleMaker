@@ -9,6 +9,28 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class RemoveDuplicatesCalculatorTests: XCTestCase {
 
+    func test_DuplicatesInRectangle() async throws {
+        
+        var rectangles = await RectangleCalculator.Execute(words: words, scoreMin: 104, widthMax: widthMax, heightMax: heightMax)
+        
+        var shapes = ShapeCalculator.toShapes(rectangles: rectangles)
+        
+        
+        ShapeCalculator.SortWithWordSequence(shapes: &shapes)
+        
+        let duplicateCount = RemoveDuplicatesCalculator.findDuplicates(shapes: &shapes)
+        
+        let duplicates = shapes.filter { $0.isValid == false}
+        
+        for duplicate in duplicates {
+            print(duplicate.ToString(words: words))
+        }
+        
+        // There are 296 duplicates from 17144 values when scoreMin: 104 and it takes 60 seconds for this to run
+        XCTAssertEqual(0, duplicateCount)
+        XCTAssertEqual(17144, rectangles.count)
+    }
+    
     func test_Find_0() throws {
         
         let result = EdgeCalculator.Execute(
