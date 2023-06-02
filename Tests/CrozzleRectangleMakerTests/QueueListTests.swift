@@ -90,6 +90,28 @@ final class QueueListTests: XCTestCase {
     }
     
     
+    func test_MergeEverythingWithEverything() async throws {
+        if let game = game {
+            let scoresMin = [0, 10, 28, 38, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            
+            let constraints = ConstraintsModel(
+                scoresMin: scoresMin,
+                wordsMax: 0,
+                wordsToUse: .winningWordsOnly,
+                queueLengthMax: 2000)
+            
+            var queueList = await QueueListCalculator.Execute(game: game, constraints: constraints)
+            await queueList.mergeWithItselfAll()
+            
+            for i in 0..<40 {
+                if queueList.queues[i].shapes.count > 0 {
+                    await queueList.mergeEverythingBelowWith(index: i)
+                    queueList.printBestScore()
+                }
+            }
+        }
+    }
+    
     func test_ExecuteAndMergeItself() async throws {
         if let game = game {
             let scoresMin = [0, 10, 28, 38, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -98,12 +120,32 @@ final class QueueListTests: XCTestCase {
                 scoresMin: scoresMin,
                 wordsMax: 0,
                 wordsToUse: .winningWordsOnly,
-                queueLengthMax: 1000)
+                queueLengthMax: 2000)
             
             var queueList = await QueueListCalculator.Execute(game: game, constraints: constraints)
             await queueList.mergeWithItselfAll()
-            print("HERE IS PRINT BEST")
-            queueList.printBest()
+            
+            if let bestShape = queueList.getBestShape() {
+                
+                let index = bestShape.placements.count
+                await queueList.mergeEverythingBelowWith(index: index)
+                queueList.printBest()
+                
+                if let bestShape2 = queueList.getBestShape() {
+                    
+                    let index2 = bestShape2.placements.count
+                    await queueList.mergeEverythingBelowWith(index: index2)
+                    queueList.printBest()
+                    
+                    for _ in 0..<10 {
+                        let index3 = bestShape2.placements.count
+                        await queueList.mergeTwoAsync(mergeIndex: 2, withIndex: index3)
+                        queueList.printBest()
+                    }
+                }
+            }
+            
+            
         }
     }
     
