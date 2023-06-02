@@ -38,14 +38,17 @@ public struct QueueList {
             
             //RemoveDuplicatesCalculator.printDuplicateSpread(shapes: self.queues[wordCount].shapes)
             if duplicates > 0 {
-                let duplicateList = self.queues[wordCount].shapes.filter { $0.isValid == false}
-                for duplicate in duplicateList {
-                    print(ShapeCalculator.ToText(shape:duplicate, words: self.game.words).1)
-                    print(ShapeCalculator.ToText(shape:duplicate, words: self.game.words).0)
-                }
+                //let duplicateList = self.queues[wordCount].shapes.filter { $0.isValid == false}
+                //for duplicate in duplicateList {
+                    //print(ShapeCalculator.ToText(shape:duplicate, words: self.game.words).1)
+                    //print(ShapeCalculator.ToText(shape:duplicate, words: self.game.words).0)
+                //}
                 self.queues[wordCount].shapes = self.queues[wordCount].shapes.filter { $0.isValid}
             }
-            
+            if self.queues[wordCount].shapes.count > constraints.queueLengthMax {
+                
+                self.queues[wordCount].shapes.removeSubrange(constraints.queueLengthMax..<self.queues[wordCount].shapes.count)
+            }
             self.queues[wordCount].gpuShapes = GpuShapeModel(shapes:self.queues[wordCount].shapes, totalWords: self.queues[wordCount].totalWords, stride: self.queues[wordCount].stride)
             self.queues[wordCount].statistics = StatisticsCalculator.Execute(scores: self.queues[wordCount].gpuShapes.scores)
         }

@@ -91,7 +91,11 @@ final class QueueListCalculatorTests: XCTestCase {
         if let game = game {
             
             let scoresMin = [0, 10, 36, 96, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            let constraints = ConstraintsModel(scoresMin: scoresMin, wordsMax: 0, wordsToUse: .winningWordsOnly)
+            let constraints = ConstraintsModel(
+                scoresMin: scoresMin,
+                wordsMax: 0,
+                wordsToUse: .winningWordsOnly,
+                queueLengthMax: 1000)
             let result = await QueueListCalculator.Execute(
                 game: game,
                 constraints: constraints)

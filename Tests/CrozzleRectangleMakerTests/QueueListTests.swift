@@ -14,7 +14,7 @@ final class QueueListTests: XCTestCase {
         if let game = game {
             let scoresMin = [0, 10, 28, 38, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             
-            let constraints = ConstraintsModel(scoresMin: scoresMin, wordsMax: 0, wordsToUse: .winningWordsOnly)
+            let constraints = ConstraintsModel(scoresMin: scoresMin, wordsMax: 0, wordsToUse: .winningWordsOnly, queueLengthMax: 1000)
             var result = QueueList(game: game, constraints: constraints)
             
             //print(scoresMin[2])
@@ -65,7 +65,8 @@ final class QueueListTests: XCTestCase {
                 let constraints = ConstraintsModel(
                     scoresMin: scoresMin,
                     wordsMax: 0,
-                    wordsToUse: .winningWordsOnly)
+                    wordsToUse: .winningWordsOnly,
+                    queueLengthMax: 1000)
                 
                 var result = QueueList(game: game, constraints: constraints)
                 
@@ -96,12 +97,33 @@ final class QueueListTests: XCTestCase {
             let constraints = ConstraintsModel(
                 scoresMin: scoresMin,
                 wordsMax: 0,
-                wordsToUse: .winningWordsOnly)
+                wordsToUse: .winningWordsOnly,
+                queueLengthMax: 1000)
             
             var queueList = await QueueListCalculator.Execute(game: game, constraints: constraints)
             await queueList.mergeWithItselfAll()
             print("HERE IS PRINT BEST")
             queueList.printBest()
+        }
+    }
+    
+    func test_QueueLengthMax() async throws {
+        if let game = game {
+            let scoresMin = [0, 10, 28, 38, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            
+            let constraints = ConstraintsModel(
+                scoresMin: scoresMin,
+                wordsMax: 0,
+                wordsToUse: .winningWordsOnly,
+                queueLengthMax: 25)
+            
+            var queueList = QueueList(game: game, constraints: constraints)
+            
+            let shapes = QueueListCalculator.get_2_word_shapes(words: game.words, scoreMin: 0, widthMax: widthMax, heightMax: heightMax)
+            queueList.add(shapes:shapes)
+            
+            XCTAssertEqual(25,queueList.queues[2].shapes.count)
+            
         }
     }
 
