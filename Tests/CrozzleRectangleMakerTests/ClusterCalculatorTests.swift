@@ -106,28 +106,28 @@ final class ClusterCalculatorTests: XCTestCase {
         
         // The order of placements is based on the sequence or order of the words are we are sorting by wordId
         let up1 = shape.placements[0]
-        XCTAssertEqual(0, up1.y)
-        XCTAssertEqual(3, up1.x)
-        XCTAssertFalse(up1.h)
+        XCTAssertEqual(3, up1.y)
+        XCTAssertEqual(0, up1.x)
+        XCTAssertTrue(up1.h)
         
         let down2 = shape.placements[1]
-        XCTAssertEqual(2, down2.y)
-        XCTAssertEqual(4, down2.x)
-        XCTAssertFalse(up1.h)
+        XCTAssertEqual(4, down2.y)
+        XCTAssertEqual(2, down2.x)
+        XCTAssertTrue(up1.h)
         
         
         let left1 = shape.placements[2]
-        XCTAssertEqual(3, left1.y)
-        XCTAssertEqual(0, left1.x)
-        XCTAssertTrue(left1.h)
+        XCTAssertEqual(0, left1.y)
+        XCTAssertEqual(3, left1.x)
+        XCTAssertFalse(left1.h)
         
         let right2 = shape.placements[3]
-        XCTAssertEqual(4, right2.y)
-        XCTAssertEqual(2, right2.x)
-        XCTAssertTrue(right2.h)
+        XCTAssertEqual(2, right2.y)
+        XCTAssertEqual(4, right2.x)
+        XCTAssertFalse(right2.h)
         
         let text = item.ToText(words: words)
-        let textExpected = "   .      \n   S      \n   N.     \n.ZION.    \n  .WALNUT.\n   .Z     \n    A     \n    R     \n    E     \n    T     \n    H     \n    .     "
+        let textExpected = "   .        \n   Z        \n   I.       \n.SNOW.      \n  .NAZARETH.\n   .L       \n    N       \n    U       \n    T       \n    .       "
         XCTAssertEqual(textExpected,text)
         print(text)
         /*

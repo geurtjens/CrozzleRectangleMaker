@@ -53,6 +53,19 @@ public struct ShapeModel {
             }
             wordSequence += String(placement.i)
         }
+        
+        for placement in placements {
+            if wordSequence != "" {
+                wordSequence += ","
+            }
+            wordSequence += String(placement.x)
+        }
+        for placement in placements {
+            if wordSequence != "" {
+                wordSequence += ","
+            }
+            wordSequence += String(placement.y)
+        }
         return wordSequence
     }
     

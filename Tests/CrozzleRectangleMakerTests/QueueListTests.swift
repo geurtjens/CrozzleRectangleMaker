@@ -9,30 +9,80 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class QueueListTests: XCTestCase {
     
-    /// Merge 2 word shapes gives 3 word shapes, then merge 3 words shapes with `notTheseWordCounts: [4]` which will allow the 5 word shapes to be added but not any 4 word shapes added
-    func test_NotTheseWords() async throws {
+    
+    func test_Merging_2_Words_Twice() async throws {
         if let game = game {
             let scoresMin = [0, 10, 28, 38, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            var result = QueueList(game: game, scoresMin: scoresMin)
+            
+            let constraints = ConstraintsModel(scoresMin: scoresMin, wordsMax: 0)
+            var result = QueueList(game: game, constraints: constraints)
             
             //print(scoresMin[2])
             let words2 = QueueListCalculator.get_2_word_shapes(
-                words: words,
+                words: result.game.words,
                 scoreMin: scoresMin[2],
                 widthMax: widthMax,
                 heightMax: heightMax,
                 wordsMax: wordsMax)
             
+            XCTAssertEqual(203, words2.count)
+            
             result.add(shapes: words2)
             
-            await result.mergeWithItselfAsync(wordCount: 2, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
-            await result.mergeWithItselfAsync(wordCount: 3, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax, notTheseWordCounts: [4])
+            XCTAssertEqual(203, result.queues[2].shapes.count)
             
-            XCTAssertEqual(0, result.queues[4].shapes.count)
-            XCTAssertEqual(78222, result.queues[5].shapes.count)
+            let words2Twice = QueueListCalculator.get_2_word_shapes(
+                words: result.game.words,
+                scoreMin: scoresMin[2],
+                widthMax: widthMax,
+                heightMax: heightMax,
+                wordsMax: wordsMax)
+            
+            XCTAssertEqual(203, words2Twice.count)
+            
+            result.add(shapes: words2Twice)
+            // This should not really happen as creating the same thing twice should not produce a different score
+            XCTAssertEqual(203, result.queues[2].shapes.count)
+            
+            // it could have exactly the same words sorted but different in those other ways.  The sort order is not yet perfect
+            
+            // Now merge twice
+            
+            await result.mergeWithItselfAsync(index: 2)
+            XCTAssertEqual(1687, result.queues[3].shapes.count)
+            
+            await result.mergeWithItselfAsync(index: 2)
+            XCTAssertEqual(1687, result.queues[3].shapes.count)
+            
+        }
+        
+        
+        /// Merge 2 word shapes gives 3 word shapes, then merge 3 words shapes with `notTheseWordCounts: [4]` which will allow the 5 word shapes to be added but not any 4 word shapes added
+        func test_NotTheseWords() async throws {
+            if let game = game {
+                let scoresMin = [0, 10, 28, 38, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                
+                let constraints = ConstraintsModel(scoresMin: scoresMin, wordsMax: 0)
+                var result = QueueList(game: game, constraints: constraints)
+                
+                //print(scoresMin[2])
+                let words2 = QueueListCalculator.get_2_word_shapes(
+                    words: words,
+                    scoreMin: scoresMin[2],
+                    widthMax: widthMax,
+                    heightMax: heightMax,
+                    wordsMax: wordsMax)
+                
+                result.add(shapes: words2)
+                
+                await result.mergeWithItselfAsync(wordCount: 2, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+                await result.mergeWithItselfAsync(wordCount: 3, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax, notTheseWordCounts: [4])
+                
+                XCTAssertEqual(0, result.queues[4].shapes.count)
+                XCTAssertEqual(78222, result.queues[5].shapes.count)
+            }
         }
     }
-    
     
     /// standard values for all tests
     var game: GameModel?
@@ -42,10 +92,11 @@ final class QueueListTests: XCTestCase {
     let scoreMin = 0
     var words:[String] = []
     var lengths: [Int] = []
+    
     override func setUpWithError() throws {
         let gameList = GameList()
         if let gameItem = gameList.getGame(gameId: 8612) {
-            words = gameItem.words()
+            words = gameItem.words
             lengths = WordCalculator.lengths(words: words)
             game = gameItem
         }

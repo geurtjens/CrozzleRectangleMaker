@@ -89,12 +89,14 @@ final class QueueListCalculatorTests: XCTestCase {
     func test_execute() async throws {
 
         if let game = game {
+            
             let scoresMin = [0, 10, 36, 96, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            let constraints = ConstraintsModel(scoresMin: scoresMin, wordsMax: 0)
             let result = await QueueListCalculator.Execute(
                 game: game,
-                scoresMin: scoresMin)
+                constraints: constraints)
             
-            XCTAssertEqual(words.count, result.game.wordCount())
+            XCTAssertEqual(words.count, result.game.wordCount)
            
             XCTAssertEqual(40, result.queues.count)
             for i in 2..<40 {
@@ -124,7 +126,7 @@ final class QueueListCalculatorTests: XCTestCase {
     override func setUpWithError() throws {
         let gameList = GameList()
         if let gameItem = gameList.getGame(gameId: 8612) {
-            words = gameItem.words()
+            words = gameItem.words
             lengths = WordCalculator.lengths(words: words)
             game = gameItem
         }

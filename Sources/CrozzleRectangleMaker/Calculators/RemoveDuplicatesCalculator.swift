@@ -21,6 +21,17 @@ public class RemoveDuplicatesCalculator {
         }
     }
     
+    public static func printDuplicateSpread(shapes: [ShapeModel]) {
+        for shape in shapes {
+            if shape.isValid == true {
+                print("true")
+            } else {
+                print("false")
+            }
+            
+        }
+    }
+    
     /// Marks duplicates as shapeModel.isValid = false so we can remove them later.  Also returns how many duplicates there are so we dont have to worry about removing what is not there
     public static func findDuplicates(shapes: inout [ShapeModel]) -> Int{
         
@@ -35,13 +46,19 @@ public class RemoveDuplicatesCalculator {
         
         var previous = 0
         
+        /// We can only switch previous when we have gone through all of the same word id sequences maybe then we have a change at duplicates
+        /// because adding the x and y is not going to work because of the possibility that words are flipped.
+        /// what if all shapes are flipped if their first shape is not horizontal so that it is always horizontal,  then the using x and y will work for removing duplicates
         for current in 1..<shapes.count {
+            previous = current - 1
             if (shapes[current].score == shapes[previous].score &&
                 shapes[current].wordSequence == shapes[previous].wordSequence &&
-                shapes[current].width * shapes[current].height == shapes[current].width * shapes[current].height)
+                shapes[current].width * shapes[current].height == shapes[previous].width * shapes[previous].height)
             {
                 // We most likely have a duplicate
                 var isDuplicate = true
+                
+                // This is not going to work anymore when we flip some shapes.  Oh duplicates is so hard to implement.
                 if shapes[current].placements[0].h == shapes[previous].placements[0].h {
                     // Our potential duplicate is in the same direction
                     for i in 0..<wordCount {
@@ -78,12 +95,7 @@ public class RemoveDuplicatesCalculator {
                 if isDuplicate {
                     shapes[current].isValid = false
                     duplicateCount += 1
-                } else {
-                    previous = current
                 }
-            } else {
-                // They are not the same in score or wordSequence
-                previous = current
             }
         }
         return duplicateCount

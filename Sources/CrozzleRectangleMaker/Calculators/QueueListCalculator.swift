@@ -11,37 +11,40 @@ import Foundation
 public class QueueListCalculator {
     
     /// provides all known shapes as a starting point to our calculations.  The scoresMin array tells what the min score is no matter what the number of words and its indexed such that 4 word shapes will be found in scoresMin[4] just to keep it simple.
-    public static func Execute(game: GameModel, scoresMin:[Int], wordsMax: Int = 0) async -> QueueList {
-        var result = QueueList(game: game, scoresMin: scoresMin)
+    public static func Execute(game: GameModel, constraints: ConstraintsModel) async -> QueueList {
         
-        let words = game.words()
+        
+        
+        var result = QueueList(game: game, constraints: constraints)
+        
+        let words = game.words
         let widthMax = game.maxWidth
         let heightMax = game.maxHeight
         
         //print(scoresMin[2])
         let words2 = QueueListCalculator.get_2_word_shapes(
             words: words,
-            scoreMin: scoresMin[2],
+            scoreMin: constraints.scoresMin[2],
             widthMax: widthMax,
             heightMax: heightMax,
-            wordsMax: wordsMax)
+            wordsMax: constraints.wordsMax)
         
         result.add(shapes: words2)
         
-        await result.mergeWithItselfAsync(wordCount:2, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        await result.mergeWithItselfAsync(index:2)
         
         //print(scoresMin[4])
         let words4 = await QueueListCalculator.get_4_word_shapes(
             words: words,
-            scoreMin: scoresMin[4],
+            scoreMin: constraints.scoresMin[4],
             widthMax: widthMax,
             heightMax: heightMax,
-            wordsMax: wordsMax)
+            wordsMax: constraints.wordsMax)
         
         result.add(shapes: words4)
-        await result.mergeWithItselfAsync(wordCount:4, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        await result.mergeWithItselfAsync(index:4)
         
-        await result.mergeTwoAsync(mergeIndex:6, withIndex: 7, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        await result.mergeTwoAsync(mergeIndex:6, withIndex: 7)
         let example = result.queues[12].shapes[0]
         let (text,score) = ShapeCalculator.ToText(shape:example, words: words)
         print(score)
@@ -49,38 +52,38 @@ public class QueueListCalculator {
         
         let words5 = QueueListCalculator.get_5_word_shapes(
             words: words,
-            scoreMin: scoresMin[5],
+            scoreMin: constraints.scoresMin[5],
             widthMax: widthMax,
             heightMax: heightMax,
-            wordsMax: wordsMax)
+            wordsMax: constraints.wordsMax)
         
         
         result.add(shapes: words5)
         
         let words6 = QueueListCalculator.get_6_word_shapes(
             words: words,
-            scoreMin: scoresMin[6],
+            scoreMin: constraints.scoresMin[6],
             widthMax: widthMax,
             heightMax: heightMax,
-            wordsMax: wordsMax)
+            wordsMax: constraints.wordsMax)
         
         result.add(shapes: words6)
         
         let words7 = QueueListCalculator.get_7_word_shapes(
             words: words,
-            scoreMin: scoresMin[7],
+            scoreMin: constraints.scoresMin[7],
             widthMax: widthMax,
             heightMax: heightMax,
-            wordsMax: wordsMax)
+            wordsMax: constraints.wordsMax)
         
         result.add(shapes: words7)
         
         let words8 = QueueListCalculator.get_8_word_shapes(
             words: words,
-            scoreMin: scoresMin[8],
+            scoreMin: constraints.scoresMin[8],
             widthMax: widthMax,
             heightMax: heightMax,
-            wordsMax: wordsMax)
+            wordsMax: constraints.wordsMax)
         
         result.add(shapes: words8)
         

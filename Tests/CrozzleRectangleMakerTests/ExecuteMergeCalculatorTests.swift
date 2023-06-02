@@ -373,7 +373,8 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         XCTAssertEqual(1, shapes.count)
         let shape = shapes[0]
         
-        let expectedText = "   ..     \n.STAY.    \n  .HAWSER.\n .BOW.    \n.GUY.     \n  O.      \n  Y       \n  .       "
+        let expectedText = " .  .   \n S .G   \n T.BUOY.\n.AHOY.  \n.YAW.   \n .W.    \n  S     \n  E     \n  R     \n  .     "
+        //"   ..     \n.STAY.    \n  .HAWSER.\n .BOW.    \n.GUY.     \n  O.      \n  Y       \n  .       "
         let (text, score) = ShapeCalculator.ToText(shape: shape, words: words)
         
         XCTAssertEqual(184, score)

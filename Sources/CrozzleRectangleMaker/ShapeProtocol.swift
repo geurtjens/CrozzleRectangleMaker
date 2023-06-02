@@ -24,7 +24,16 @@ extension ShapeProtocol {
     
     /// takes the width, height and score of a structure that supports this protocol and make a shape
     func ToShape() -> ShapeModel {
-        return ShapeModel(score: score, width: width, height: height, placements: ToPlacement())
+        let shape = ShapeModel(score: score, width: width, height: height, placements: ToPlacement())
+        
+        
+        // We want all shapes to be flipped so the first word in the interlock is always horizontal
+        // helps for the duplicate removal
+        if shape.placements[0].h == false {
+            return ShapeCalculator.Flip(shape: shape)
+        } else {
+            return shape
+        }
     }
     
     /// take this object that supports the ShapeProtocol and convert it to a text grid

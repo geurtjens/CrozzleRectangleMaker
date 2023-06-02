@@ -10,7 +10,7 @@ import Foundation
 public struct QueueList {
     
     public let game: GameModel
-    
+    public let constraints: ConstraintsModel
     
     /// all possible queue sizes that a game can handle, max of `maxQueues`
     public var queues: [QueueModel] = []
@@ -33,12 +33,15 @@ public struct QueueList {
             
             ShapeCalculator.SortWithWordSequence(shapes: &self.queues[wordCount].shapes)
             
+            // it should find 203 duplicates but found only 142 duplicates
             let duplicates = RemoveDuplicatesCalculator.findDuplicates(shapes: &self.queues[wordCount].shapes)
+            
+            RemoveDuplicatesCalculator.printDuplicateSpread(shapes: self.queues[wordCount].shapes)
             if duplicates > 0 {
                 let duplicateList = self.queues[wordCount].shapes.filter { $0.isValid == false}
                 for duplicate in duplicateList {
-                    print(ShapeCalculator.ToText(shape:duplicate, words: self.game.words()).1)
-                    print(ShapeCalculator.ToText(shape:duplicate, words: self.game.words()).0)
+                    print(ShapeCalculator.ToText(shape:duplicate, words: self.game.words).1)
+                    print(ShapeCalculator.ToText(shape:duplicate, words: self.game.words).0)
                 }
                 self.queues[wordCount].shapes = self.queues[wordCount].shapes.filter { $0.isValid}
             }
@@ -56,6 +59,20 @@ public struct QueueList {
         heightMax: Int) async {
             
         let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(shapes: self.queues[wordCount].gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        if shapes.count > 0 {
+            add(shapes: shapes)
+        }
+    }
+    
+    public mutating func mergeWithItselfAsync(index wordCount: Int) async {
+            
+        let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(
+                shapes: self.queues[wordCount].gpuShapes,
+                words: self.game.words,
+                scoresMin: self.constraints.scoresMin,
+                widthMax: self.game.maxWidth,
+                heightMax: self.game.maxHeight)
+        
         if shapes.count > 0 {
             add(shapes: shapes)
         }
@@ -86,18 +103,14 @@ public struct QueueList {
     
     public mutating func mergeTwoAsync(
         mergeIndex: Int,
-        withIndex mergeIndex2: Int,
-        words: [String],
-        scoresMin:[Int],
-        widthMax: Int,
-        heightMax: Int) async {
+        withIndex mergeIndex2: Int) async {
         let shapes = await ExecuteMergeCalculator.ExecuteDifferentShapesAsync(
             source: self.queues[mergeIndex].gpuShapes,
-            search:self.queues[mergeIndex2].gpuShapes,
-            words: words,
-            scoresMin: scoresMin,
-            widthMax: widthMax,
-            heightMax: heightMax)
+            search: self.queues[mergeIndex2].gpuShapes,
+            words: self.game.words,
+            scoresMin: self.constraints.scoresMin,
+            widthMax: self.game.maxWidth,
+            heightMax: self.game.maxHeight)
 
         if shapes.count > 0 {
             add(shapes: shapes)
@@ -136,13 +149,14 @@ public struct QueueList {
     
     
     /// create a bunch of these queues and create the entire strucutre
-    public init(game: GameModel, scoresMin:[Int]) {
-        let wordCount = game.words().count
+    public init(game: GameModel, constraints: ConstraintsModel) {
+        let wordCount = game.wordCount
         
         self.game = game
+        self.constraints = constraints
         
         for i in 0..<maxQueues {
-            queues.append(QueueModel(shapes:[], stride:i, scoreMin: scoresMin[i], totalWords: wordCount))
+            queues.append(QueueModel(shapes:[], stride:i, scoreMin: constraints.scoresMin[i], totalWords: wordCount))
         }
     }
 }

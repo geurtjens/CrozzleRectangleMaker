@@ -72,7 +72,7 @@ final class RemoveDuplicatesCalculatorTests: XCTestCase {
         XCTAssertFalse(shapes[1].isValid)
     }
     
-    
+    // We no longer support things being flipped I guess
     func test_Find_1_Flipped() throws {
         
         let result = EdgeCalculator.Execute(
