@@ -25,10 +25,10 @@ final class RemoveDuplicatesCalculatorTests: XCTestCase {
         for duplicate in duplicates {
             print(duplicate.ToString(words: words))
         }
-        
+        // somehow everything O4x6 makes duplicates and I dont know why
         // There are 296 duplicates from 17144 values when scoreMin: 104 and it takes 60 seconds for this to run
         XCTAssertEqual(0, duplicateCount)
-        XCTAssertEqual(17144, rectangles.count)
+        XCTAssertEqual(17389, rectangles.count)
     }
     
     func test_Find_0() throws {

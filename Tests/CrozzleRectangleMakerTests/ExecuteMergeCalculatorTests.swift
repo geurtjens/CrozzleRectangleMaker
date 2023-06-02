@@ -476,7 +476,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         
         // with all words it was XCTAssertEqual(2854550,merged.count)
         // now it takes only 20 seconds rather than hours
-        XCTAssertEqual(150_789,merged.count)
+        XCTAssertEqual(151_596,merged.count)
         print(gpuShapes.count)
         print(merged.count)
     }
@@ -501,7 +501,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         // When scoreMin is 104 it creates 24,802 shapes yeilding 1,653,937 merged shapes in 887 seconds which is around 15 minutes.
         
         // It started with 1624 but I think it found many duplicates as we ended up with only 1082 left over
-        XCTAssertEqual(1082,mergedShapes.count)
+        XCTAssertEqual(1502,mergedShapes.count)
         print(gpuShapes.count)
         print(mergedShapes.count)
     }

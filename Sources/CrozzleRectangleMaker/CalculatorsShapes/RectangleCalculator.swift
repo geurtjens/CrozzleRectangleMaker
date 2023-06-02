@@ -412,7 +412,7 @@ public class RectangleCalculator {
             wordsMax: wordsMax)
         
         async let o5x6_BottomLeft = BottomLeftRectangle(
-            interlockWidth: 3,
+            interlockWidth: 4,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
@@ -422,7 +422,7 @@ public class RectangleCalculator {
             wordsMax: wordsMax)
         
         async let o5x6_BottomRight = BottomRightRectangle(
-            interlockWidth: 3,
+            interlockWidth: 4,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
@@ -432,7 +432,7 @@ public class RectangleCalculator {
             wordsMax: wordsMax)
         
         async let o5x6_TopLeft = TopLeftRectangle(
-            interlockWidth: 3,
+            interlockWidth: 4,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
@@ -442,7 +442,7 @@ public class RectangleCalculator {
             wordsMax: wordsMax)
         
         async let o5x6_TopRight = TopRightRectangle(
-            interlockWidth: 3,
+            interlockWidth: 4,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
@@ -954,7 +954,7 @@ public class RectangleCalculator {
         print("o5x5_TopRight \(o5x5_TopRight.count)")
         
         let o5x6_BottomLeft = BottomLeftRectangle(
-            interlockWidth: 3,
+            interlockWidth: 4,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
@@ -966,7 +966,7 @@ public class RectangleCalculator {
         print("o5x6_BottomLeft \(o5x6_BottomLeft.count)")
         
         let o5x6_BottomRight = BottomRightRectangle(
-            interlockWidth: 3,
+            interlockWidth: 4,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
@@ -978,7 +978,7 @@ public class RectangleCalculator {
         print("o5x6_BottomRight \(o5x6_BottomRight.count)")
         
         let o5x6_TopLeft = TopLeftRectangle(
-            interlockWidth: 3,
+            interlockWidth: 4,
             interlockHeight: 5,
             words: words,
             lengths: lengths,
@@ -990,7 +990,7 @@ public class RectangleCalculator {
         print("o5x6_TopLeft \(o5x6_TopLeft.count)")
         
         let o5x6_TopRight = TopRightRectangle(
-            interlockWidth: 3,
+            interlockWidth: 4,
             interlockHeight: 5,
             words: words,
             lengths: lengths,

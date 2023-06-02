@@ -70,6 +70,7 @@ public class MergePlacementCalculator {
         // We do not know the score just yet
         let shape = ShapeModel(score:10, width: UInt8(width), height: UInt8(height), placements: combined)
 
+        
         return shape
     }
     

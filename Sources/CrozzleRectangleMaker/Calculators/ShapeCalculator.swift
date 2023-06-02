@@ -52,7 +52,14 @@ public class ShapeCalculator {
         
         if textIsVerified {
             let newShape = ShapeModel(score: score, width: shape.width, height: shape.height, placements: shape.placements)
-            return (newShape, text)
+            
+            // our shapes must have first word as horizontal to help with removing duplicates
+            if (newShape.placements[0].h == false) {
+                let flipped = ShapeCalculator.Flip(shape: newShape)
+                return (flipped, text)
+            } else {
+                return (newShape, text)
+            }
         } else {
            
             return (nil,text)
