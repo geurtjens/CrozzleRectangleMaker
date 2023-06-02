@@ -81,6 +81,8 @@ public class ShapeCalculator {
         return result
     }
     
+    
+    
     /// Verify that the shapes text is valid, that is there are no overlaps and no errors like #
     public static func VerifyText(text: String) -> Bool {
 
