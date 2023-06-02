@@ -36,7 +36,7 @@ public struct QueueList {
             // it should find 203 duplicates but found only 142 duplicates
             let duplicates = RemoveDuplicatesCalculator.findDuplicates(shapes: &self.queues[wordCount].shapes)
             
-            RemoveDuplicatesCalculator.printDuplicateSpread(shapes: self.queues[wordCount].shapes)
+            //RemoveDuplicatesCalculator.printDuplicateSpread(shapes: self.queues[wordCount].shapes)
             if duplicates > 0 {
                 let duplicateList = self.queues[wordCount].shapes.filter { $0.isValid == false}
                 for duplicate in duplicateList {
@@ -51,18 +51,28 @@ public struct QueueList {
         }
     }
     
-    public mutating func mergeWithItselfAsync(
-        wordCount: Int,
-        words: [String],
-        scoresMin:[Int],
-        widthMax: Int,
-        heightMax: Int) async {
-            
-        let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(shapes: self.queues[wordCount].gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
-        if shapes.count > 0 {
-            add(shapes: shapes)
-        }
-    }
+    
+    
+    
+    
+    
+//    public mutating func mergeWithItselfAsync(
+//        wordCount: Int,
+//        words: [String],
+//        scoresMin:[Int],
+//        widthMax: Int,
+//        heightMax: Int) async {
+//
+//            let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(
+//                shapes: self.queues[wordCount].gpuShapes,
+//                words: self.game.words,
+//                scoresMin: scoresMin,
+//                widthMax: widthMax,
+//                heightMax: heightMax)
+//        if shapes.count > 0 {
+//            add(shapes: shapes)
+//        }
+//    }
     
     public mutating func mergeWithItselfAsync(index wordCount: Int) async {
             
@@ -74,6 +84,47 @@ public struct QueueList {
                 heightMax: self.game.maxHeight)
         
         if shapes.count > 0 {
+            add(shapes: shapes)
+        }
+    }
+    
+    
+    public mutating func mergeWithItselfAll() async {
+        
+        for i in 0..<self.queues.count {
+            if self.queues[i].shapes.count > 0 {
+                await mergeWithItselfAsync(index:i)
+            }
+        }
+    }
+    
+    public func printBest() {
+        for i in 0..<self.queues.count {
+            if self.queues[i].shapes.count > 0 {
+                let shape = self.queues[i].shapes[0]
+                print(shape.ToString(words: self.game.words))
+            }
+        }
+    }
+    
+    public mutating func mergeWithItselfAsync(index wordCount: Int, notTheseWordCounts:[Int]) async {
+            
+        let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(
+                shapes: self.queues[wordCount].gpuShapes,
+                words: self.game.words,
+                scoresMin: self.constraints.scoresMin,
+                widthMax: self.game.maxWidth,
+                heightMax: self.game.maxHeight)
+        
+        if shapes.count > 0 {
+            var filteredShapes: [ShapeModel] = []
+            let dictionary = Dictionary(grouping: shapes, by: { $0.placements.count})
+            for item in dictionary {
+                if notTheseWordCounts.contains(item.key) == false {
+                    filteredShapes += item.value
+                }
+            }
+            
             add(shapes: shapes)
         }
     }

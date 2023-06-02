@@ -32,7 +32,7 @@ final class QueueListCalculatorTests: XCTestCase {
             widthMax: widthMax,
             heightMax: heightMax)
         XCTAssertEqual(4, shapes[0].placements.count)
-        XCTAssertEqual(17182, shapes.count)
+        XCTAssertEqual(17427, shapes.count)
     }
     
     
@@ -91,10 +91,12 @@ final class QueueListCalculatorTests: XCTestCase {
         if let game = game {
             
             let scoresMin = [0, 10, 36, 96, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            let constraints = ConstraintsModel(scoresMin: scoresMin, wordsMax: 0)
+            let constraints = ConstraintsModel(scoresMin: scoresMin, wordsMax: 0, wordsToUse: .winningWordsOnly)
             let result = await QueueListCalculator.Execute(
                 game: game,
                 constraints: constraints)
+            
+            
             
             XCTAssertEqual(words.count, result.game.wordCount)
            

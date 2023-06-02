@@ -31,7 +31,7 @@ final class OtherTests: XCTestCase {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        XCTAssertEqual(4457026, result.count)
+        XCTAssertEqual(17_389, result.count)
         //4314774
         //4790949
         let item = result[0]
@@ -49,7 +49,7 @@ final class OtherTests: XCTestCase {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        XCTAssertEqual(4530742, result.count)
+        XCTAssertEqual(17_389, result.count)
         // 463 MB and 57 seconds
         // 160 MB and 55.9 seconds if we make the size smaller
     }

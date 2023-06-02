@@ -10,16 +10,21 @@ import Foundation
 /// A way of populating all standard shapes and placing them into the `QueueList`.  There is no merges in here rather just getting shapes we can make from the raw single words of the words list.
 public class QueueListCalculator {
     
+    
+    
     /// provides all known shapes as a starting point to our calculations.  The scoresMin array tells what the min score is no matter what the number of words and its indexed such that 4 word shapes will be found in scoresMin[4] just to keep it simple.
     public static func Execute(game: GameModel, constraints: ConstraintsModel) async -> QueueList {
-        
-        
-        
+
         var result = QueueList(game: game, constraints: constraints)
         
         let words = game.words
         let widthMax = game.maxWidth
         let heightMax = game.maxHeight
+        var wordsMax = constraints.wordsMax
+            
+        if constraints.wordsToUse == .winningWordsOnly {
+            wordsMax = game.winningWords.count
+        }
         
         //print(scoresMin[2])
         let words2 = QueueListCalculator.get_2_word_shapes(
@@ -27,7 +32,7 @@ public class QueueListCalculator {
             scoreMin: constraints.scoresMin[2],
             widthMax: widthMax,
             heightMax: heightMax,
-            wordsMax: constraints.wordsMax)
+            wordsMax: wordsMax)
         
         result.add(shapes: words2)
         
@@ -39,24 +44,16 @@ public class QueueListCalculator {
             scoreMin: constraints.scoresMin[4],
             widthMax: widthMax,
             heightMax: heightMax,
-            wordsMax: constraints.wordsMax)
+            wordsMax: wordsMax)
         
         result.add(shapes: words4)
-        await result.mergeWithItselfAsync(index:4)
-        
-        await result.mergeTwoAsync(mergeIndex:6, withIndex: 7)
-        let example = result.queues[12].shapes[0]
-        let (text,score) = ShapeCalculator.ToText(shape:example, words: words)
-        print(score)
-        print(text)
         
         let words5 = QueueListCalculator.get_5_word_shapes(
             words: words,
             scoreMin: constraints.scoresMin[5],
             widthMax: widthMax,
             heightMax: heightMax,
-            wordsMax: constraints.wordsMax)
-        
+            wordsMax: wordsMax)
         
         result.add(shapes: words5)
         
@@ -65,7 +62,7 @@ public class QueueListCalculator {
             scoreMin: constraints.scoresMin[6],
             widthMax: widthMax,
             heightMax: heightMax,
-            wordsMax: constraints.wordsMax)
+            wordsMax: wordsMax)
         
         result.add(shapes: words6)
         
@@ -74,7 +71,7 @@ public class QueueListCalculator {
             scoreMin: constraints.scoresMin[7],
             widthMax: widthMax,
             heightMax: heightMax,
-            wordsMax: constraints.wordsMax)
+            wordsMax: wordsMax)
         
         result.add(shapes: words7)
         
@@ -83,7 +80,7 @@ public class QueueListCalculator {
             scoreMin: constraints.scoresMin[8],
             widthMax: widthMax,
             heightMax: heightMax,
-            wordsMax: constraints.wordsMax)
+            wordsMax: wordsMax)
         
         result.add(shapes: words8)
         

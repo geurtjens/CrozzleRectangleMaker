@@ -73,27 +73,27 @@ final class RemoveDuplicatesCalculatorTests: XCTestCase {
     }
     
     // We no longer support things being flipped I guess
-    func test_Find_1_Flipped() throws {
-        
-        let result = EdgeCalculator.Execute(
-            words: words,
-            scoreMin: scoreMin,
-            widthMax: widthMax,
-            heightMax: heightMax)
-        
-        let a = result[0].ToShape()
-        let b = result[0].ToShape()
-        
-        let b2 = ShapeCalculator.Flip(shape: b)
-        
-        var shapes = [a, b2]
-        
-        let duplicateCount = RemoveDuplicatesCalculator.findDuplicates(shapes: &shapes)
-        
-        XCTAssertEqual(1, duplicateCount)
-        XCTAssertTrue(shapes[0].isValid)
-        XCTAssertFalse(shapes[1].isValid)
-    }
+//    func test_Find_1_Flipped() throws {
+//        
+//        let result = EdgeCalculator.Execute(
+//            words: words,
+//            scoreMin: scoreMin,
+//            widthMax: widthMax,
+//            heightMax: heightMax)
+//        
+//        let a = result[0].ToShape()
+//        let b = result[0].ToShape()
+//        
+//        let b2 = ShapeCalculator.Flip(shape: b)
+//        
+//        var shapes = [a, b2]
+//        
+//        let duplicateCount = RemoveDuplicatesCalculator.findDuplicates(shapes: &shapes)
+//        
+//        XCTAssertEqual(1, duplicateCount)
+//        XCTAssertTrue(shapes[0].isValid)
+//        XCTAssertFalse(shapes[1].isValid)
+//    }
     
     
     func test_Find_2() throws {

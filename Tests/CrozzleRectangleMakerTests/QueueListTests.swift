@@ -14,7 +14,7 @@ final class QueueListTests: XCTestCase {
         if let game = game {
             let scoresMin = [0, 10, 28, 38, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             
-            let constraints = ConstraintsModel(scoresMin: scoresMin, wordsMax: 0)
+            let constraints = ConstraintsModel(scoresMin: scoresMin, wordsMax: 0, wordsToUse: .winningWordsOnly)
             var result = QueueList(game: game, constraints: constraints)
             
             //print(scoresMin[2])
@@ -62,7 +62,11 @@ final class QueueListTests: XCTestCase {
             if let game = game {
                 let scoresMin = [0, 10, 28, 38, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 
-                let constraints = ConstraintsModel(scoresMin: scoresMin, wordsMax: 0)
+                let constraints = ConstraintsModel(
+                    scoresMin: scoresMin,
+                    wordsMax: 0,
+                    wordsToUse: .winningWordsOnly)
+                
                 var result = QueueList(game: game, constraints: constraints)
                 
                 //print(scoresMin[2])
@@ -75,14 +79,34 @@ final class QueueListTests: XCTestCase {
                 
                 result.add(shapes: words2)
                 
-                await result.mergeWithItselfAsync(wordCount: 2, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
-                await result.mergeWithItselfAsync(wordCount: 3, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax, notTheseWordCounts: [4])
+                await result.mergeWithItselfAsync(index: 2)
+                await result.mergeWithItselfAsync(index: 3, notTheseWordCounts: [4])
                 
                 XCTAssertEqual(0, result.queues[4].shapes.count)
                 XCTAssertEqual(78222, result.queues[5].shapes.count)
             }
         }
     }
+    
+    
+    func test_ExecuteAndMergeItself() async throws {
+        if let game = game {
+            let scoresMin = [0, 10, 28, 38, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            
+            let constraints = ConstraintsModel(
+                scoresMin: scoresMin,
+                wordsMax: 0,
+                wordsToUse: .winningWordsOnly)
+            
+            var queueList = await QueueListCalculator.Execute(game: game, constraints: constraints)
+            await queueList.mergeWithItselfAll()
+            print("HERE IS PRINT BEST")
+            queueList.printBest()
+        }
+    }
+
+    
+    
     
     /// standard values for all tests
     var game: GameModel?
