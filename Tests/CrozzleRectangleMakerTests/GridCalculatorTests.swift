@@ -9,12 +9,53 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class GridCalculatorTests: XCTestCase {
 
-    func test_findWords() throws {
+    func test_findWords_9205() throws {
+        let gameList = GameList()
+        if let game = gameList.getGame(gameId: 9205) {
+            let (winning, nonWinning, unfound) = GridCalculator.FindWords(grid: game.winningGame, words: game.words())
+            print("winningWords:\(winning),")
+            print("nonWinningWords:\(nonWinning),")
+            print("unfound:\(unfound)")
+        }
+    }
+    
+    func test_findWords_8812() throws {
+        let gameList = GameList()
+        if let game = gameList.getGame(gameId: 8812) {
+            let (winning, nonWinning, unfound) = GridCalculator.FindWords(grid: game.winningGame, words: game.words())
+            print("winningWords:\(winning),")
+            print("nonWinningWords:\(nonWinning),")
+            print("unfound:\(unfound)")
+        }
+    }
+    
+    func test_findWords_8705() throws {
+        let gameList = GameList()
+        if let game = gameList.getGame(gameId: 8705) {
+            let (winning, nonWinning, unfound) = GridCalculator.FindWords(grid: game.winningGame, words: game.words())
+            print("winningWords:\(winning),")
+            print("nonWinningWords:\(nonWinning),")
+            print("unfound:\(unfound)")
+        }
+    }
+    
+    
+    func test_findWords_8702() throws {
+        let gameList = GameList()
+        if let game = gameList.getGame(gameId: 8702) {
+            let (winning, nonWinning, unfound) = GridCalculator.FindWords(grid: game.winningGame, words: game.words())
+            print("winningWords:\(winning),")
+            print("nonWinningWords:\(nonWinning),")
+            print("unfound:\(unfound)")
+        }
+    }
+    
+    func test_findWords_8612() throws {
         let gameList = GameList()
         if let game = gameList.getGame(gameId: 8612) {
             let (winning, nonWinning, unfound) = GridCalculator.FindWords(grid: game.winningGame, words: game.words())
-            print("winning:\(winning)")
-            print("notwinning:\(nonWinning)")
+            print("winningWords:\(winning),")
+            print("nonWinningWords:\(nonWinning),")
             print("unfound:\(unfound)")
         }
     }
