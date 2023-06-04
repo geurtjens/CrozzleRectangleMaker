@@ -27,12 +27,18 @@ public struct ShapeModel {
     /// Used to find duplicates, it is a csv for all the words in the shape.
     public let wordSequence: String
     
+    public let area: UInt8
+    
+    public let density: Float32
+    
     public init(score: UInt16, width: UInt8, height: UInt8, placements: [PlacementModel]) {
         self.score = score
         self.width = width
         self.height = height
         self.placements = placements
-        
+        let area = (width - 2) * (height - 2)
+        self.area = area
+        self.density = Float32(score) / Float32(area)
         // This code may slow things down alot
         
         self.wordSequence = ShapeModel.getWordSequence(placements: placements)

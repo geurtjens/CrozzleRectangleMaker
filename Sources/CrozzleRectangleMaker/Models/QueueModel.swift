@@ -32,10 +32,10 @@ public struct QueueModel {
     public mutating func add(shapes: [ShapeModel]) {
         self.shapes += shapes
         self.shapes.sort() {
-            if $0.score == $1.score {
-                return $0.width * $0.height < $1.width * $1.height
+            if $0.density == $1.density {
+                return $0.score < $1.score
             } else {
-                return $0.score > $1.score
+                return $0.density > $1.density
             }
         }
         self.gpuShapes = GpuShapeModel(shapes: self.shapes, totalWords: self.totalWords, stride: self.stride)

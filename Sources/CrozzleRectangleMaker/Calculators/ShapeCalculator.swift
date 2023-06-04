@@ -195,7 +195,7 @@ public class ShapeCalculator {
     public static func Sort(shapes: inout [ShapeModel]) {
         shapes.sort {
             if $0.score == $1.score {
-                return $0.width * $0.height < $1.width * $1.height
+                return $0.area < $1.area
             } else {
                 return $0.score > $1.score
             }
@@ -207,11 +207,11 @@ public class ShapeCalculator {
         
         shapes.sort {
             if $0.score == $1.score {
-                if $0.width * $0.height == $1.width * $1.height {
+                if $0.area == $1.area {
                     return $0.wordSequence < $1.wordSequence
                 }
                 else {
-                    return $0.width * $0.height < $1.width * $1.height
+                    return $0.area < $1.area
                 }
             } else {
                 return $0.score > $1.score

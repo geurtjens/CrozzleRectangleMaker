@@ -45,8 +45,12 @@ public struct QueueList {
                 //}
                 self.queues[wordCount].shapes = self.queues[wordCount].shapes.filter { $0.isValid}
             }
+            
+            self.queues[wordCount].shapes.sort() {
+                $0.density > $1.density
+            }
+            
             if self.queues[wordCount].shapes.count > constraints.queueLengthMax {
-                
                 self.queues[wordCount].shapes.removeSubrange(constraints.queueLengthMax..<self.queues[wordCount].shapes.count)
             }
             self.queues[wordCount].gpuShapes = GpuShapeModel(shapes:self.queues[wordCount].shapes, totalWords: self.queues[wordCount].totalWords, stride: self.queues[wordCount].stride)
