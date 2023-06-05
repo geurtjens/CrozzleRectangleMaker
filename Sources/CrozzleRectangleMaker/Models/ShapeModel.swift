@@ -29,7 +29,7 @@ public struct ShapeModel {
     
     public let area: UInt8
     
-    public let density: Float32
+    public var density: Float32
     
     public init(score: UInt16, width: UInt8, height: UInt8, placements: [PlacementModel]) {
         self.score = score
@@ -38,7 +38,7 @@ public struct ShapeModel {
         self.placements = placements
         let area = (width - 2) * (height - 2)
         self.area = area
-        self.density = (Float32(score) * 12) / Float32(area)
+        self.density = Float32(score) / Float32(area)
         // This code may slow things down alot
         
         self.wordSequence = ShapeModel.getWordSequence(placements: placements)

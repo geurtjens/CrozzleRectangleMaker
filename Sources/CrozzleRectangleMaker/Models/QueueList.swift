@@ -46,6 +46,13 @@ public struct QueueList {
                 self.queues[wordCount].shapes = self.queues[wordCount].shapes.filter { $0.isValid}
             }
             
+            switch (self.constraints.priorityFunction) {
+            case .score_area:
+                ShapeCalculator.SortByScoreThenArea(shapes: &self.queues[wordCount].shapes) 
+            case .density_score:
+                ShapeCalculator.SortByDensityThenScore(shapes: &self.queues[wordCount].shapes)
+            }
+            
             self.queues[wordCount].shapes.sort() {
                 $0.density > $1.density
             }

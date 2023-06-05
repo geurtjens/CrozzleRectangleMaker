@@ -14,7 +14,12 @@ final class QueueListTests: XCTestCase {
         if let game = game {
             let scoresMin = [0, 10, 28, 38, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             
-            let constraints = ConstraintsModel(scoresMin: scoresMin, wordsMax: 0, wordsToUse: .winningWordsOnly, queueLengthMax: 1000)
+            let constraints = ConstraintsModel(
+                scoresMin: scoresMin,
+                wordsMax: 0,
+                wordsToUse: .winningWordsOnly,
+                queueLengthMax: 1000,
+                priorityFunction: .score_area)
             var result = QueueList(game: game, constraints: constraints)
             
             //print(scoresMin[2])
@@ -66,7 +71,8 @@ final class QueueListTests: XCTestCase {
                     scoresMin: scoresMin,
                     wordsMax: 0,
                     wordsToUse: .winningWordsOnly,
-                    queueLengthMax: 1000)
+                    queueLengthMax: 1000,
+                    priorityFunction: .score_area)
                 
                 var result = QueueList(game: game, constraints: constraints)
                 
@@ -98,7 +104,8 @@ final class QueueListTests: XCTestCase {
                 scoresMin: scoresMin,
                 wordsMax: 0,
                 wordsToUse: .winningWordsOnly,
-                queueLengthMax: 2000)
+                queueLengthMax: 2000,
+                priorityFunction: .score_area)
             
             var queueList = await QueueListCalculator.Execute(game: game, constraints: constraints)
             await queueList.mergeWithItselfAll()
@@ -120,7 +127,8 @@ final class QueueListTests: XCTestCase {
                 scoresMin: scoresMin,
                 wordsMax: 0,
                 wordsToUse: .winningWordsOnly,
-                queueLengthMax: 2000)
+                queueLengthMax: 2000,
+                priorityFunction: .score_area)
             
             var queueList = await QueueListCalculator.Execute(game: game, constraints: constraints)
             await queueList.mergeWithItselfAll()
@@ -157,7 +165,8 @@ final class QueueListTests: XCTestCase {
                 scoresMin: scoresMin,
                 wordsMax: 0,
                 wordsToUse: .winningWordsOnly,
-                queueLengthMax: 25)
+                queueLengthMax: 25,
+                priorityFunction: .score_area)
             
             var queueList = QueueList(game: game, constraints: constraints)
             

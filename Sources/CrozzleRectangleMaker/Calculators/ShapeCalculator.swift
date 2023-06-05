@@ -202,6 +202,26 @@ public class ShapeCalculator {
         }
     }
     
+    public static func SortByScoreThenArea(shapes: inout [ShapeModel]) {
+        shapes.sort {
+            if $0.score == $1.score {
+                return $0.area < $1.area
+            } else {
+                return $0.score > $1.score
+            }
+        }
+    }
+    
+    public static func SortByDensityThenScore(shapes: inout [ShapeModel]) {
+        shapes.sort {
+            if $0.density == $1.density {
+                return $0.score > $1.score
+            } else {
+                return $0.density > $1.density
+            }
+        }
+    }
+    
     /// sort shapes by score, area and then also word sequence.  Useful for finding duplicates
     public static func SortWithWordSequence(shapes: inout [ShapeModel]) {
         

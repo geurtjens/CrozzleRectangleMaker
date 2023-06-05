@@ -95,7 +95,8 @@ final class QueueListCalculatorTests: XCTestCase {
                 scoresMin: scoresMin,
                 wordsMax: 0,
                 wordsToUse: .winningWordsOnly,
-                queueLengthMax: 1000)
+                queueLengthMax: 1000,
+                priorityFunction: .score_area)
             let result = await QueueListCalculator.Execute(
                 game: game,
                 constraints: constraints)
