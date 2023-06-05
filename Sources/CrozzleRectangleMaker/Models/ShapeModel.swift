@@ -39,8 +39,6 @@ public struct ShapeModel {
         let area = (width - 2) * (height - 2)
         self.area = area
         self.density = Float32(score) / Float32(area)
-        // This code may slow things down alot
-        
         self.wordSequence = ShapeModel.getWordSequence(placements: placements)
     }
     /// provide the words that are found in this shape

@@ -53,10 +53,6 @@ public struct QueueList {
                 ShapeCalculator.SortByDensityThenScore(shapes: &self.queues[wordCount].shapes)
             }
             
-            self.queues[wordCount].shapes.sort() {
-                $0.density > $1.density
-            }
-            
             if self.queues[wordCount].shapes.count > constraints.queueLengthMax {
                 self.queues[wordCount].shapes.removeSubrange(constraints.queueLengthMax..<self.queues[wordCount].shapes.count)
             }
