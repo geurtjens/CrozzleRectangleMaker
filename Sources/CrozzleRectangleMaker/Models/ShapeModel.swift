@@ -37,8 +37,8 @@ public struct ShapeModel {
         self.width = width
         self.height = height
         self.placements = placements
-        let area = (width - 2) * (height - 2)
-        self.area = UInt16(area)
+        let area: UInt16 = (UInt16(width) - 2) * (UInt16(height) - 2)
+        self.area = area
         self.density = Float32(score) / Float32(area)
         self.wordSequence = ShapeModel.getWordSequence(placements: placements)
     }
