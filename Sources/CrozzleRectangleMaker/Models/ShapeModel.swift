@@ -38,7 +38,7 @@ public struct ShapeModel {
         self.placements = placements
         let area = (width - 2) * (height - 2)
         self.area = area
-        self.density = Float32(score) / Float32(area)
+        self.density = (Float32(score) * 12) / Float32(area)
         // This code may slow things down alot
         
         self.wordSequence = ShapeModel.getWordSequence(placements: placements)
@@ -77,6 +77,6 @@ public struct ShapeModel {
     
     public func ToString(words: [String]) -> String {
         let (text, score) = ShapeCalculator.ToText(shape: self, words: words)
-        return "\nscore:\(score), width:\(width), height:\(height), words:\(self.placements.count)\n\n" + text
+        return "\nscore:\(score), width:\(width), height:\(height), words:\(self.placements.count), area:\(area), density:\(density))\n\n" + text
     }
 }
