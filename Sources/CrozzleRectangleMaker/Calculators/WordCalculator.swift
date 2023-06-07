@@ -19,6 +19,14 @@ public class WordCalculator {
         return reversedWords
     }
     
+    public static func removeLastWords(words: [String], countMax: Int) -> [String] {
+        var result: [String] = []
+        
+        for i in 0..<countMax {
+            result.append(words[i])
+        }
+        return result
+    }
     /// Calculates the lengths of each word in the list
     public static func lengths(words: [String]) -> [Int] {
         var result: [Int] = []
