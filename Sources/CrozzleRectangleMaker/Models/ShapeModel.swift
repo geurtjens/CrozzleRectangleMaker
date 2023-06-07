@@ -76,6 +76,6 @@ public struct ShapeModel {
     
     public func ToString(words: [String]) -> String {
         let (text, score) = ShapeCalculator.ToText(shape: self, words: words)
-        return "\nscore:\(score), width:\(width), height:\(height), words:\(self.placements.count), area:\(area), density:\(density))\n\n" + text
+        return "\nscore:\(score), width:\(width), height:\(height), words:\(self.placements.count), area:\(area), density:\(density)\n\n" + text
     }
 }

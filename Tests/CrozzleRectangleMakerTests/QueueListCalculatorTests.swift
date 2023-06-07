@@ -58,7 +58,7 @@ final class QueueListCalculatorTests: XCTestCase {
             heightMax: heightMax)
         
         XCTAssertEqual(6, shapes[0].placements.count)
-        XCTAssertEqual(52, shapes.count)
+        XCTAssertEqual(74, shapes.count)
     }
     
     

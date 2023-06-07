@@ -183,9 +183,39 @@ public class QueueListCalculator {
             heightMax: heightMax,
             wordsMax: wordsMax)
         
+        let pacman3x3_bottomRight = PacmanCalculator.bottomRight(
+            start: words,
+            end: end,
+            len: len,
+            scoreMin: scoreMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        let pacman3x3_topLeft = PacmanCalculator.topLeft(
+            start: words,
+            end: end,
+            len: len,
+            scoreMin: scoreMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        let pacman3x3_topRight = PacmanCalculator.topRight(
+            start: words,
+            end: end,
+            len: len,
+            scoreMin: scoreMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
         let clusterList = c2x4 + c3x3
         
-        let shapes = ShapeCalculator.toShapesSorted(clusters: clusterList)
+        let clusterShapes = ShapeCalculator.toShapesSorted(clusters: clusterList)
+        
+        let pacmanList = pacman3x3_bottomRight + pacman3x3_topLeft + pacman3x3_topRight
+        
+        let pacmanShapes = ShapeCalculator.toShapesSorted(pacmans: pacmanList)
+        
+        let shapes = pacmanShapes + clusterShapes
         
         return shapes
     }

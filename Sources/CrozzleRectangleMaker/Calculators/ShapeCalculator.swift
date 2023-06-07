@@ -152,6 +152,26 @@ public class ShapeCalculator {
         return shapes
     }
     
+    /// convert `pacmans` to `shapes`
+    public static func toShapes(pacmans: [PacmanModel]) -> [ShapeModel] {
+        var shapes:[ShapeModel] = []
+        for pacman in pacmans {
+            let shape = pacman.ToShape()
+            shapes.append(shape)
+        }
+        return shapes
+    }
+    /// convert `pacmans` to `shapes`
+    public static func toShapesSorted(pacmans: [PacmanModel]) -> [ShapeModel] {
+        var shapes:[ShapeModel] = []
+        for pacman in pacmans {
+            let shape = pacman.ToShape()
+            shapes.append(shape)
+        }
+        ShapeCalculator.Sort(shapes: &shapes)
+        return shapes
+    }
+    
     /// first we convert `clusters` to `shapes` and then we sort them
     public static func toShapesSorted(clusters: [ClusterModel]) -> [ShapeModel] {
         var shapes = toShapes(clusters: clusters)
@@ -332,7 +352,7 @@ public class ShapeCalculator {
                 
                 if grid[gridPos] != " " && grid[gridPos] != letter {
                     grid[gridPos] = "#"
-                    return ("", UInt16(0))
+                    return (String(grid), UInt16(0))
                 } else if grid[gridPos] == " " {
                     grid[gridPos] = letter
                 } else if grid[gridPos] == letter {
