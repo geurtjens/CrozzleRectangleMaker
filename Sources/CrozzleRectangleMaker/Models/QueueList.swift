@@ -144,6 +144,24 @@ public struct QueueList {
         }
     }
     
+    /// This words on shape lists that are not already sorted by score
+    public func printBestScoreDeep() {
+        var bestShapes: [ShapeModel] = []
+        for i in 0..<self.queues.count {
+            if self.queues[i].shapes.count > 0 {
+                
+                let sorted = ShapeCalculator.SortWithoutUpdate(shapes: self.queues[i].shapes)
+                
+                let shape = sorted[0]
+                bestShapes.append(shape)
+            }
+        }
+        bestShapes.sort() { $0.score > $1.score }
+        if bestShapes.count > 0 {
+            print(bestShapes[0].ToString(words: self.game.words))
+        }
+    }
+    
     public func getBestShape() -> ShapeModel? {
         var bestShapes: [ShapeModel] = []
         for i in 0..<self.queues.count {

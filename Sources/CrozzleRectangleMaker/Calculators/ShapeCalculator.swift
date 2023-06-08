@@ -222,6 +222,17 @@ public class ShapeCalculator {
         }
     }
     
+    public static func SortWithoutUpdate(shapes: [ShapeModel]) -> [ShapeModel] {
+        var sorted = shapes
+        sorted.sort {
+            if $0.score == $1.score {
+                return $0.area < $1.area
+            } else {
+                return $0.score > $1.score
+            }
+        }
+        return sorted
+    }
     public static func SortByScoreThenArea(shapes: inout [ShapeModel]) {
         shapes.sort {
             if $0.score == $1.score {
