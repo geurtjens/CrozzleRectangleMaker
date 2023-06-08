@@ -373,4 +373,25 @@ public class ShapeCalculator {
         }
         return (result, UInt16(score))
     }
+    
+    
+    public static func filterInclude(shapes: [ShapeModel], containing search:[String], fromWordList words: [String]) -> [ShapeModel]{
+        let wordIds = WordCalculator.extractPositions(ofWords: search, from: words)
+        
+        var result:[ShapeModel]=[]
+        for shape in shapes {
+            var wordsFound = true
+            for wordId in wordIds {
+                let wordsInShape = shape.getWords()
+                if wordsInShape.contains(wordId) == false {
+                    wordsFound = false
+                    break
+                }
+            }
+            if wordsFound {
+                result.append(shape)
+            }
+        }
+        return result
+    }
 }

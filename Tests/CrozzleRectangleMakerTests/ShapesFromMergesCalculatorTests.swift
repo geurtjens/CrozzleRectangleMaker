@@ -49,9 +49,14 @@ final class ShapesFromMergesCalculatorTests: XCTestCase {
             
             let result = ShapesFromMergesCalculator.Glasses2(words: words, scoreMin: 42, widthMax: 17, heightMax: 12)
             
+            
+            
             XCTAssertEqual(2070, result.count)
             
-            for item in result {
+            let expectedWords = ["ZIMBABWE", "NARITA", "FIN", "WALES", "TIME", "VIEW"]
+            let filtered = ShapeCalculator.filterInclude(shapes: result, containing: expectedWords, fromWordList: words)
+            XCTAssertEqual(1, filtered.count)
+            for item in filtered {
                 print(item.ToString(words: words))
             }
         }
@@ -68,9 +73,10 @@ final class ShapesFromMergesCalculatorTests: XCTestCase {
             
             XCTAssertEqual(284, result.count)
             
-            print("D3x3 = \(result.count)")
+            let searchFor = ["HAZELNUT", "MERRY", "HYMN", "NAZARETH", "JELLY"]
+            let filtered = ShapeCalculator.filterInclude(shapes: result, containing: searchFor, fromWordList: words)
             
-            for item in result {
+            for item in filtered {
                 print(item.ToString(words: words))
             }
         }
@@ -120,41 +126,33 @@ final class ShapesFromMergesCalculatorTests: XCTestCase {
         let gameList = GameList()
         if let game = gameList.getGame(gameId: 8612) {
             
-            // I would like to give winning words only
-            let words = WordCalculator.removeLastWords(words: game.words, countMax: game.winningWordCount)
+            let words = game.winningWords
             
             let result = ShapesFromMergesCalculator.Execute2x3And2x2(words: words, scoreMin: 52, widthMax: 17, heightMax: 12)
             
             XCTAssertEqual(69, result.count)
             
-            print("D3x3 = \(result.count)")
+            let searchFor = ["NUTS","ZION","EVE","NAZARETH","SING","BELLS"]
+            let filtered = ShapeCalculator.filterInclude(shapes: result, containing: searchFor, fromWordList: words)
             
-            for item in result {
-                print(item.ToString(words: words))
-            }
+            XCTAssertEqual(1, filtered.count)
             
+            let shape = filtered[0]
+            let flipped = ShapeCalculator.Flip(shape: shape)
             
+            print(flipped.ToString(words: words))
+
             /*
-             score:178, width:7, height:11, words:7, area:45, density:3.9555554
-
-              .  .
-             .NUTS.
-              A  I
-             .ZION.
-              A .G
-              R B.
-             .EVE.
-              T L
-             .HOLLY.
-              . S
-                .
+             score:178, width:11, height:7, words:7, area:45, density:3.9555554
              
+             . .  . .
+            .NAZARETH.
+             U I  V O
+             T O.BELLS.
+            .SING.. L
+             . .    Y
+                    .
              */
-            
-            //print(result[0].ToText(words:words))
         }
-        
-        
     }
-
 }
