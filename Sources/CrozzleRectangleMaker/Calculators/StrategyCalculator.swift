@@ -161,7 +161,7 @@ public class StrategyCalculator {
     
     //public static func
     
-    public static func Shapes_8612() async {
+    public static func Shapes_8612() {
         
         let widthMax = 17
         let heightMax = 12
@@ -173,101 +173,64 @@ public class StrategyCalculator {
         
         let words = game.winningWords
       
-        
-        // now lets see if the merge with edges will work
         let edges = EdgeCalculator.Execute(words: words, scoreMin: 0, widthMax: widthMax, heightMax: heightMax)
         
         let edgeShapes = ShapeCalculator.toShapes(edges: edges)
         
-        
-        
-        
-        
         let hazelnut_merry = Create_Hazelnut_Merry(words: words)
-        let nazareth_sing = Create_Nazareth_Sing(words: words)
-        let toys_tree = Create_Toys_Tree(words: words)
-        let joy_jelly_holly = Create_Joy_Jelly_Holly(edgeShapes: edgeShapes, words: words)
-        let fork = Create_Fork(edgeShapes: edgeShapes, words: words)
-        
         print(hazelnut_merry.ToString(words: words))
+        
+        let nazareth_sing = Create_Nazareth_Sing(words: words)
         print(nazareth_sing.ToString(words: words))
+        
+        let toys_tree = Create_Toys_Tree(words: words)
         print(toys_tree.ToString(words: words))
+        
+        let joy_jelly_holly = Create_Joy_Jelly_Holly(edgeShapes: edgeShapes, words: words)
         print(joy_jelly_holly.ToString(words: words))
+        
+        let fork = Create_Fork(edgeShapes: edgeShapes, words: words)
         print(fork.ToString(words: words))
         
-        let hazelnut_merry_joy = Merge_Two_Shapes(smaller: [joy_jelly_holly], larger: [hazelnut_merry], words: words)
-
-        print(hazelnut_merry_joy[0].ToString(words: words))
-        print(nazareth_sing.ToString(words: words))
-        //
-        
-        //queue.add(shapes:merged)
-        let hazelnut_merry_joy_nazareth = Merge_Two_Shapes(smaller: hazelnut_merry_joy, larger: [nazareth_sing], words: words)
-        
-        let hazelnut_merry_joy_nazareth_flipped = ShapeCalculator.Flip(shape: hazelnut_merry_joy_nazareth[0])
-        print(hazelnut_merry_joy_nazareth_flipped.ToString(words: words))
-        
-        
+        // These are just the edges that are in the winning game
         let turkey_hymn = ShapeCalculator.filterInclude(shapes: edgeShapes, containing: ["TURKEY","HYMN"], fromWordList: words)
         let turkey_sauce = ShapeCalculator.filterInclude(shapes: edgeShapes, containing: ["TURKEY","SAUCE"], fromWordList: words)
+        let toys_family = ShapeCalculator.filterInclude(shapes: edgeShapes, containing: ["TOYS","FAMILY"], fromWordList: words)
+        let turkey_pork = ShapeCalculator.filterInclude(shapes: edgeShapes, containing: ["TURKEY","PORK"], fromWordList: words)
+        let inn_hymn = ShapeCalculator.filterInclude(shapes: edgeShapes, containing: ["INN","HYMN"], fromWordList: words)
+        let hazelnut_star = ShapeCalculator.filterInclude(shapes: edgeShapes, containing: ["HAZELNUT","STAR"], fromWordList: words)
+        
+        let hazelnut_merry_joy = Merge_Two_Shapes(smaller: [joy_jelly_holly], larger: [hazelnut_merry], words: words)
+        print(hazelnut_merry_joy[0].ToString(words: words))
+        
+        let hazelnut_merry_joy_nazareth = Merge_Two_Shapes(smaller: hazelnut_merry_joy, larger: [nazareth_sing], words: words)
+        print(hazelnut_merry_joy_nazareth[0].ToString(words: words))
         
         let turkey_sauce_hymn = Merge_Two_Shapes(smaller: turkey_hymn, larger: turkey_sauce, words:words)
-        
-        print(ShapeCalculator.Flip(shape: turkey_sauce_hymn[0]).ToString(words: words))
+        print(turkey_sauce_hymn[0].ToString(words: words))
         
         let turkey_hazelnut_merry_joy_nazareth = Merge_Two_Shapes(smaller: turkey_sauce_hymn, larger: hazelnut_merry_joy_nazareth, words: words)
-        
-        print(ShapeCalculator.Flip(shape: turkey_hazelnut_merry_joy_nazareth[0]).ToString(words: words))
+        print(turkey_hazelnut_merry_joy_nazareth[0].ToString(words: words))
         
         let toys_turkey_hazelnut_merry_joy_nazareth = Merge_Two_Shapes(smaller: [toys_tree], larger: turkey_hazelnut_merry_joy_nazareth, words: words)
-        
-        
-        print(ShapeCalculator.Flip(shape:toys_turkey_hazelnut_merry_joy_nazareth[0]).ToString(words: words))
-        
-        let toys_family = ShapeCalculator.filterInclude(shapes: edgeShapes, containing: ["TOYS","FAMILY"], fromWordList: words)
-        
+        print(toys_turkey_hazelnut_merry_joy_nazareth[0].ToString(words: words))
         
         let family_toys_turkey_hazelnut_merry_joy_nazareth = Merge_Two_Shapes(smaller: toys_family, larger: toys_turkey_hazelnut_merry_joy_nazareth, words: words)
-        
-        
-        print(ShapeCalculator.Flip(shape:family_toys_turkey_hazelnut_merry_joy_nazareth[0]).ToString(words: words))
-        
-        print(ShapeCalculator.Flip(shape:fork).ToString(words:words))
+        print(family_toys_turkey_hazelnut_merry_joy_nazareth[0].ToString(words: words))
         
         let fork_family_toys_turkey_hazelnut_merry_joy_nazareth = Merge_Two_Shapes(smaller: [fork], larger: family_toys_turkey_hazelnut_merry_joy_nazareth, words: words)
-        
-        
-        print(ShapeCalculator.Flip(shape:fork_family_toys_turkey_hazelnut_merry_joy_nazareth[0]).ToString(words: words))
-        
-        
-        print(ShapeCalculator.ToCode(fromShape:fork_family_toys_turkey_hazelnut_merry_joy_nazareth[0]))
-        
-        /// we cannot merge with `turkey_pork`, `inn_hymn` nor `hazelnut_star` I think because of the overlap tests failing
-        let turkey_pork = ShapeCalculator.filterInclude(shapes: edgeShapes, containing: ["TURKEY","PORK"], fromWordList: words)
-        print(ShapeCalculator.ToCode(fromShape:turkey_pork[0]))
-        
+        print(fork_family_toys_turkey_hazelnut_merry_joy_nazareth[0].ToString(words: words))
         
         let pork_fork_family_toys_turkey_hazelnut_merry_joy_nazareth = Merge_Two_Shapes(smaller: turkey_pork, larger: fork_family_toys_turkey_hazelnut_merry_joy_nazareth, words: words)
         print(pork_fork_family_toys_turkey_hazelnut_merry_joy_nazareth[0].ToString(words: words))
         
-        let inn_hymn = ShapeCalculator.filterInclude(shapes: edgeShapes, containing: ["INN","HYMN"], fromWordList: words)
-        
         let inn_pork_fork_family_toys_turkey_hazelnut_merry_joy_nazareth = Merge_Two_Shapes(smaller: inn_hymn, larger: pork_fork_family_toys_turkey_hazelnut_merry_joy_nazareth, words: words)
-        
         print(inn_pork_fork_family_toys_turkey_hazelnut_merry_joy_nazareth[0].ToString(words: words))
         
-        let hazelnut_star = ShapeCalculator.filterInclude(shapes: edgeShapes, containing: ["HAZELNUT","STAR"], fromWordList: words)
-        
-        //print(hazelnut_star_flipped.ToCode())
-        //print(fork_family_toys_turkey_hazelnut_merry_joy_nazareth[0].ToCode())
-        
-        
-        /// the problem is that `OverlappingPlacementsCalculator.isOverlapping` is saying that it is overlapping even though it isnt
-        /// so there is a bug in the program.
-        /// I unflipped the instruction so that is not the problem
         let star_inn_pork_fork_family_toys_turkey_hazelnut_merry_joy_nazareth = Merge_Two_Shapes(smaller: hazelnut_star, larger: inn_pork_fork_family_toys_turkey_hazelnut_merry_joy_nazareth, words: words)
+        print(star_inn_pork_fork_family_toys_turkey_hazelnut_merry_joy_nazareth[0].ToString(words: words))
         
+        print("\nWINNING GAME")
         print(ShapeCalculator.Flip(shape:star_inn_pork_fork_family_toys_turkey_hazelnut_merry_joy_nazareth[0]).ToString(words: words))
-        
     }
 }
