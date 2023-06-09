@@ -405,4 +405,16 @@ public class ShapeCalculator {
         }
         return result
     }
+    
+    
+    public static func ToCode(fromShape shape: ShapeModel) -> String {
+        var code = ""
+        
+        code += PlacementCalculator.ToCode(fromPlacements: shape.placements) + "\n"
+        
+        
+        code += "let shape = ShapeModel(score: \(shape.score), width: \(shape.width), height: \(shape.height), placements: placements)"
+        
+        return code
+    }
 }

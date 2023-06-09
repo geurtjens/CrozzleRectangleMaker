@@ -222,4 +222,27 @@ public class PlacementCalculator {
         }
         return UInt8(maxHeight + 2)
     }
+    
+    public static func ToCode(fromPlacements placements: [PlacementModel]) -> String {
+        var code = ""
+        
+        for placement in placements {
+            if code != "" {
+                code += ",\n"
+            }
+            code += "        " + ToCode(fromPlacement: placement)
+        }
+        
+        let result = "let placements = [\n\(code)\n    ]"
+        return result
+    }
+    
+    public static func ToCode(fromPlacement placement: PlacementModel) -> String {
+        var horizontal = "true"
+        if placement.h == false {
+            horizontal = "false"
+        }
+        
+        return "PlacementModel(i: \(placement.i), h: \(horizontal), x: \(placement.x), y: \(placement.y), l:\(placement.l))"
+    }
 }
