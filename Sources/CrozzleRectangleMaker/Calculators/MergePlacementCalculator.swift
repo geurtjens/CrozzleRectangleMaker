@@ -143,6 +143,70 @@ public class MergePlacementCalculator {
         
     }
     
+    /// This is a duplicate of `GetPlacementsForBothShapes` except we do things in opposite order.  But currently this doesnt work, needs refining
+    public static func GetPlacementsForBothShapesOpposite(source: GpuShapeModel, search: GpuShapeModel, instruction: MergeInstructionModel) -> ([PlacementModel], [PlacementModel]) {
+        
+        let sourceStartPos = instruction.sourceShapeId * source.stride
+        let searchStartPos = instruction.searchShapeId * search.stride
+        
+        var words: [UInt8] = []
+        
+        var searchPlacements:[PlacementModel] = []
+        for i in 0..<search.stride {
+            
+            let idx = searchStartPos + i
+            
+            words.append(search.wordId[idx])
+            
+            let placement = PlacementModel(
+                i: search.wordId[idx],
+                h: search.isHorizontal[idx],
+                x: search.x[idx],
+                y: search.y[idx],
+                l: search.length[idx])
+            searchPlacements.append(placement)
+            
+        }
+        
+        var sourcePlacements:[PlacementModel] = []
+        
+        for i in 0..<source.stride {
+            
+            let idx = sourceStartPos + i
+            
+            let wordId = source.wordId[idx]
+            
+            if words.contains(wordId) == false {
+                
+                let h = source.isHorizontal[idx]
+                let x = source.x[idx]
+                let y = source.y[idx]
+                let length = source.length[idx]
+                
+                if instruction.flipped {
+                    let placement = PlacementModel(
+                        i: wordId,
+                        h: !h,
+                        x: y,
+                        y: x,
+                        l: length)
+                    sourcePlacements.append(placement)
+                } else {
+                    let placement = PlacementModel(
+                        i: wordId,
+                        h: h,
+                        x: x,
+                        y: y,
+                        l: length)
+                    sourcePlacements.append(placement)
+                }
+            }
+        }
+        return (sourcePlacements, searchPlacements)
+        
+    }
+    
+    
     /// change where we are placing each word, adjusting them so two placements can fall together in the one grid
     public static func ApplyOffsets(placements:[PlacementModel], xOffset: Int8, yOffset: Int8) -> [PlacementModel] {
         var newPlacements: [PlacementModel] = []

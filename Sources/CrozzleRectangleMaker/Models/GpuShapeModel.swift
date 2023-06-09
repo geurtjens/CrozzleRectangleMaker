@@ -33,6 +33,12 @@ public struct GpuShapeModel {
     /// Which words are in which shapes, so if there are 91 words then there will be an index for each so we can quickly find matching shapes.
     public let wordIndex: [[Int]]
     
+    public init(shapes: [ShapeModel], totalWords: Int) {
+        let shape = shapes[0]
+        let stride = shape.placements.count
+        self.init(shapes:shapes, totalWords: totalWords, stride: stride)
+    }
+    
     public init(shapes: [ShapeModel], totalWords: Int, stride: Int) {
         
         if shapes.count > 0 && shapes[0].placements.count != stride {

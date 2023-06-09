@@ -221,6 +221,7 @@ public class MergeCalculator {
     
     /// find the matching shapes using filters and word indexes
     public static func matchingShapes(sourceShapes: GpuShapeModel, sourceShapeId: Int, searchableShapes: GpuShapeModel, searchMin: Int, searchMax: Int) -> ([MatchingShapesModel],[Int]) {
+        
         // First let us find shapes that have the same words in them
         
         var shapesWithWords:[Int] = []
@@ -228,7 +229,10 @@ public class MergeCalculator {
         for i in 0..<sourceShapes.stride {
             let pos = startPos + i
             let wordId = Int(sourceShapes.wordId[pos])
-            shapesWithWords += searchableShapes.wordIndex[wordId]
+            let shapesWithThatWordId = searchableShapes.wordIndex[wordId]
+            if shapesWithThatWordId.count > 0 {
+                shapesWithWords += shapesWithThatWordId
+            }
         }
         
         
@@ -237,7 +241,7 @@ public class MergeCalculator {
         filtered.sort()
         
         // So now we can work out how many words there are that are matching
-        let result = countOfWordsInShapes(sourceShapeId: sourceShapeId,matchingShapes: filtered)
+        let result = countOfWordsInShapes(sourceShapeId: sourceShapeId, matchingShapes: filtered)
         
         // for those where there are only 1 word lets just give them a list of those as they require no more processing
         let oneWordMatch = result.filter { $0.matchingWordCount == 1}

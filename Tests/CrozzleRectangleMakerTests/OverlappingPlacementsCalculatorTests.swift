@@ -9,6 +9,92 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class OverlappingPlacementsCalculatorTests: XCTestCase {
 
+    
+    func test_WinningGameOverlap8612() throws {
+        
+        let placements = [
+                PlacementModel(i: 0, h: true, x: 0, y: 9, l:4),
+                PlacementModel(i: 1, h: true, x: 5, y: 10, l:5),
+                PlacementModel(i: 2, h: false, x: 6, y: 0, l:4),
+                PlacementModel(i: 3, h: false, x: 5, y: 11, l:3),
+                PlacementModel(i: 4, h: false, x: 7, y: 7, l:8),
+                PlacementModel(i: 5, h: true, x: 0, y: 7, l:4),
+                PlacementModel(i: 6, h: false, x: 1, y: 6, l:8),
+                PlacementModel(i: 7, h: true, x: 6, y: 8, l:4),
+                PlacementModel(i: 9, h: true, x: 0, y: 1, l:4),
+                PlacementModel(i: 10, h: false, x: 9, y: 7, l:5),
+                PlacementModel(i: 11, h: true, x: 5, y: 1, l:5),
+                PlacementModel(i: 13, h: true, x: 0, y: 14, l:5),
+                PlacementModel(i: 14, h: true, x: 4, y: 12, l:5),
+                PlacementModel(i: 15, h: true, x: 0, y: 3, l:6),
+                PlacementModel(i: 16, h: false, x: 4, y: 0, l:5),
+                PlacementModel(i: 17, h: false, x: 4, y: 6, l:4),
+                PlacementModel(i: 18, h: true, x: 5, y: 4, l:5),
+                PlacementModel(i: 20, h: false, x: 10, y: 0, l:4),
+                PlacementModel(i: 21, h: true, x: 0, y: 12, l:3),
+                PlacementModel(i: 23, h: false, x: 3, y: 10, l:5),
+                PlacementModel(i: 24, h: true, x: 0, y: 5, l:4)
+            ]
+        
+        
+        let largePlacements = [
+            PlacementModel(i: 0, h: false, x: 9, y: 0, l:4),
+            PlacementModel(i: 1, h: false, x: 10, y: 5, l:5),
+            PlacementModel(i: 2, h: true, x: 0, y: 6, l:4),
+            PlacementModel(i: 3, h: true, x: 11, y: 5, l:3),
+            PlacementModel(i: 4, h: true, x: 7, y: 7, l:8),
+            PlacementModel(i: 5, h: false, x: 7, y: 0, l:4),
+            PlacementModel(i: 6, h: true, x: 6, y: 1, l:8),
+            PlacementModel(i: 7, h: false, x: 8, y: 6, l:4),
+            PlacementModel(i: 10, h: true, x: 7, y: 9, l:5),
+            PlacementModel(i: 11, h: false, x: 1, y: 5, l:5),
+            PlacementModel(i: 13, h: false, x: 14, y: 0, l:5),
+            PlacementModel(i: 14, h: false, x: 12, y: 4, l:5),
+            PlacementModel(i: 15, h: false, x: 3, y: 0, l:6),
+            PlacementModel(i: 17, h: true, x: 6, y: 4, l:4),
+            PlacementModel(i: 18, h: false, x: 4, y: 5, l:5),
+            PlacementModel(i: 20, h: true, x: 0, y: 10, l:4),
+            PlacementModel(i: 21, h: false, x: 12, y: 0, l:3),
+            PlacementModel(i: 23, h: true, x: 10, y: 3, l:5)
+        ]
+        let largeShape = ShapeModel(score: 636, width: 12, height: 17, placements: largePlacements)
+        
+        let gameList = GameList()
+        if let game = gameList.getGame(gameId: 8612) {
+        
+            //print(largeShape.ToString(words: game.winningWords))
+        
+            let smallPlacements = [
+                PlacementModel(i: 8, h: true, x: 2, y: 8, l:6),
+                PlacementModel(i: 19, h: false, x: 5, y: 5, l:4)
+            ]
+        
+            //let smallShape = ShapeModel(score: 28, width: 8, height: 6, placements: smallPlacements)
+        
+            //print(smallShape.ToString(words: game.winningWords))
+            
+            
+        let item = PlacementModel(i: 2, h: true, x: 0, y: 6, l:4)
+        let find = PlacementModel(i: 19, h: false, x: 5, y: 5, l:4)
+        let isOverlapping = OverlappingPlacementsCalculator.isOverlappingOne(item: item, find: find)
+        
+        let shape = ShapeModel(score:2, width:20, height:20, placements: [item,find])
+        
+        
+            
+        print(shape.ToString(words:game.winningWords))
+            //print(smallShape.ToString(words:game.winningWords))
+            
+            
+            print(shape.ToString(words:game.winningWords))
+            
+            
+            XCTAssertFalse(isOverlapping)
+        }
+        
+        
+    }
+    
     func test_AnotherError() throws {
         let words = WordData.words_8806()
         

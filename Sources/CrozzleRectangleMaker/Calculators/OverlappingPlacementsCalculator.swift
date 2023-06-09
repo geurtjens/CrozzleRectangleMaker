@@ -38,7 +38,8 @@ public class OverlappingPlacementsCalculator {
     }
     
     public static func isOverlappingOne(sourcePlacements: [PlacementModel], find: PlacementModel) -> Bool {
-        for item in sourcePlacements {
+        for i in 0..<sourcePlacements.count {
+            let item = sourcePlacements[i]
             if isOverlappingOne(item: item, find: find) {
                 return true
             }

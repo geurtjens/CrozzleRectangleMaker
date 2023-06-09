@@ -33,7 +33,7 @@ public class RemoveDuplicatesCalculator {
     }
     
     /// Marks duplicates as shapeModel.isValid = false so we can remove them later.  Also returns how many duplicates there are so we dont have to worry about removing what is not there
-    public static func findDuplicates(shapes: inout [ShapeModel]) -> Int{
+    public static func findDuplicates(shapes: inout [ShapeModel]) -> Int {
         
         if shapes.count == 0 {
             return 0
