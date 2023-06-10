@@ -8,51 +8,7 @@
 import Foundation
 public class StrategyCalculator {
     
-    private static let widthMax = 17
-    private static let heightMax = 12
     
-    public static func Create_Fork(edges: [ShapeModel], words: [String]) -> ShapeModel {
-        
-        
-        
-        let white_family = ShapeCalculator.filterInclude(shapes: edges, containing: ["WHITE","FAMILY"], from: words)[0]
-        print(white_family.ToString(words: words))
-        
-        let white_snow = ShapeCalculator.filterInclude(shapes: edges, containing: ["WHITE","SNOW"], from: words)[0]
-        print(white_snow.ToString(words: words))
-        
-        let white_cake = ShapeCalculator.filterInclude(shapes: edges, containing: ["WHITE","CAKE"], from: words)[0]
-        print(white_cake.ToString(words: words))
-        
-        let fork = [white_snow, white_family, white_cake]
-        
-        let gpuFork = GpuShapeModel(shapes: fork, totalWords: words.count, stride: 2)
-        
-        let mergeFork = ExecuteMergeCalculator.ExecuteSameShape(shapes: gpuFork, words: words, scoresMin: [0,0,0,0,0,0,0,0,0,0], widthMax: widthMax, heightMax: heightMax)
-        
-//        for item in mergeFork {
-//            print(item.ToString(words: words))
-//        }
-        
-        let gpuFork2 = GpuShapeModel(shapes: mergeFork, totalWords: words.count, stride:3)
-        
-        var mergeFork2 = ExecuteMergeCalculator.ExecuteSameShape(shapes: gpuFork2, words: words, scoresMin: [0,0,0,0,0,0,0,0,0,0], widthMax: widthMax, heightMax: heightMax)
-        
-        ShapeCalculator.SortWithWordSequence(shapes: &mergeFork2)
-        
-        let _ = RemoveDuplicatesCalculator.findDuplicates(shapes: &mergeFork2)
-        
-        
-        let withoutDuplicates = RemoveDuplicatesCalculator.removeDuplicates(shapes: mergeFork2)
-            
-        
-        
-//        for item in withoutDuplicates {
-//            print(item.ToString(words: words))
-//        }
-        
-        return withoutDuplicates[0]
-    }
     
    
     
@@ -373,6 +329,112 @@ public class StrategyCalculator {
         
     }
     
+    public static func Shapes_8704New() {
+        
+        let widthMax = 17
+        let heightMax = 12
+        let gameList = GameList()
+        
+        guard let game = gameList.getGame(gameId: 8704) else {
+            return
+        }
+        
+        let words = game.winningWords
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+        
+        
+        // Create required shapes
+        let edges = ShapeCalculator.toShapes(edges:EdgeCalculator.Execute(
+            words: words,
+            scoreMin: 0,
+            widthMax: widthMax,
+            heightMax: heightMax))
+        
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3_RLR_DU(
+            start: words,
+            end: end,
+            len: len,
+            scoreMin: 0,
+            widthMax: widthMax,
+            heightMax: heightMax))
+        
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles: RectangleCalculator.Rectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: len,
+            scoreMin:0,
+            widthMax: widthMax,
+            heightMax: heightMax))
+        
+        let square3x3 = ShapeCalculator.toShapes(rectangles: RectangleCalculator.Square(
+            interlockWidth: 2,
+            words: words,
+            lengths: len,
+            scoreMin: 0,
+            widthMax: widthMax,
+            heightMax: heightMax))
+        
+        let rectangle3x4_topRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: len,
+            scoreMin:0,
+            widthMax: widthMax,
+            heightMax: heightMax))
+        let square3x4_topLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+            interlockWidth: 3,
+            words: words,
+            lengths: len,
+            scoreMin:0,
+            widthMax: widthMax,
+            heightMax: heightMax))
+        
+       
+
+        
+        // Assemble the game from the generated shapes
+        
+        let donne_hood_yeats = c2x3.containing(["DONNE","HOOD","YEATS","DOYLE","ODE"], from: words)[0]
+        let donne_yeats_slessor = rectangle3x4.containing(["DONNE","YEATS","ODE", "SLESSOR"], from: words)[0]
+        let slessor_scott = rectangle3x4.containing(["SLESSOR", "SCOTT","HARDY","POESY"], from: words)[0]
+        let short_units = square3x3.containing(["POESY","SCOTT", "SAXE","TEXT"], from: words)[0]
+        let slessor_stanza = edges.containing(["SLESSOR", "STANZA"], from: words)[0]
+        let homer_stanza = rectangle3x4.containing(["STANZA", "HOMER","FOOT","PRIZE"], from: words)[0]
+        let donne_poet = rectangle3x4_topRight.containing(["DONNE", "MILTON","POET","HOPE"], from: words)[0]
+        let milton_poet_hope_lamb = square3x4_topLeft.containing(["MILTON","POET", "HOPE","LAMB"], from: words)[0]
+        let hood_hymn = edges.containing(["HOOD", "HYMN"], from: words)[0]
+        let hymn_gray_scan_bridges = rectangle3x4.containing(["HYMN", "GRAY","SCAN","BRIDGES"], from: words)[0]
+        let bridges_rhyme = edges.containing(["BRIDGES", "RHYME"], from: words)[0]
+        let rhyme_elegy = edges.containing(["RHYME", "ELEGY"], from: words)[0]
+        let elegy_poe = edges.containing(["ELEGY", "POE"], from: words)[0]
+        
+        
+        let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes:[
+            donne_hood_yeats,
+            donne_yeats_slessor,
+            slessor_scott,
+            short_units,
+            slessor_stanza,
+            homer_stanza,
+            donne_poet,
+            milton_poet_hope_lamb,
+            hood_hymn,
+            hymn_gray_scan_bridges,
+            bridges_rhyme,
+            rhyme_elegy,
+            elegy_poe
+            
+        ], words: words)
+        
+        print("WINNER ")
+        print(result.ToString(words:words))
+        
+        
+    }
+    
     public static func Shapes_8702() {
         
         let widthMax = 17
@@ -556,5 +618,51 @@ public class StrategyCalculator {
         
         let final = MergeShapesCalculator.Merge_Two_Shapes(smaller: [loss_spot_par_bear_bid_deed], larger: [stock_pay_debit_short_units_bull_sold_notes_scrip_capital_cut_buyer_iou], words: words)[0]
         print(final.ToString(words: words))
+    }
+    
+    private static let widthMax = 17
+    private static let heightMax = 12
+    
+    public static func Create_Fork(edges: [ShapeModel], words: [String]) -> ShapeModel {
+        
+        
+        
+        let white_family = ShapeCalculator.filterInclude(shapes: edges, containing: ["WHITE","FAMILY"], from: words)[0]
+        print(white_family.ToString(words: words))
+        
+        let white_snow = ShapeCalculator.filterInclude(shapes: edges, containing: ["WHITE","SNOW"], from: words)[0]
+        print(white_snow.ToString(words: words))
+        
+        let white_cake = ShapeCalculator.filterInclude(shapes: edges, containing: ["WHITE","CAKE"], from: words)[0]
+        print(white_cake.ToString(words: words))
+        
+        let fork = [white_snow, white_family, white_cake]
+        
+        let gpuFork = GpuShapeModel(shapes: fork, totalWords: words.count, stride: 2)
+        
+        let mergeFork = ExecuteMergeCalculator.ExecuteSameShape(shapes: gpuFork, words: words, scoresMin: [0,0,0,0,0,0,0,0,0,0], widthMax: widthMax, heightMax: heightMax)
+        
+//        for item in mergeFork {
+//            print(item.ToString(words: words))
+//        }
+        
+        let gpuFork2 = GpuShapeModel(shapes: mergeFork, totalWords: words.count, stride:3)
+        
+        var mergeFork2 = ExecuteMergeCalculator.ExecuteSameShape(shapes: gpuFork2, words: words, scoresMin: [0,0,0,0,0,0,0,0,0,0], widthMax: widthMax, heightMax: heightMax)
+        
+        ShapeCalculator.SortWithWordSequence(shapes: &mergeFork2)
+        
+        let _ = RemoveDuplicatesCalculator.findDuplicates(shapes: &mergeFork2)
+        
+        
+        let withoutDuplicates = RemoveDuplicatesCalculator.removeDuplicates(shapes: mergeFork2)
+            
+        
+        
+//        for item in withoutDuplicates {
+//            print(item.ToString(words: words))
+//        }
+        
+        return withoutDuplicates[0]
     }
 }
