@@ -174,6 +174,126 @@ public class StrategyCalculator {
         print(ShapeCalculator.Flip(shape:star_inn_pork_fork_family_toys_turkey_hazelnut_merry_joy_nazareth[0]).ToString(words: words))
     }
     
+    public static func Shapes_8702New() {
+        
+        let widthMax = 17
+        let heightMax = 12
+        let gameList = GameList()
+        
+        guard let game = gameList.getGame(gameId: 8702) else {
+            return
+        }
+        
+        let words = game.winningWords
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+        
+        
+        // Create required shapes
+        let edges = ShapeCalculator.toShapes(edges:EdgeCalculator.Execute(
+            words: words,
+            scoreMin: 0,
+            widthMax: widthMax,
+            heightMax: heightMax))
+        
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2_RL_DU(
+            start: words,
+            end: end,
+            len: len,
+            scoreMin: 106,
+            widthMax: widthMax,
+            heightMax: heightMax))
+        
+        let square4x4 = ShapeCalculator.toShapes(rectangles: RectangleCalculator.Square(
+            interlockWidth:3,
+            words: words,
+            lengths: len,
+            scoreMin:76,
+            widthMax: widthMax,
+            heightMax: heightMax))
+        
+        let squares3x3 = ShapeCalculator.toShapes(rectangles: RectangleCalculator.Square(
+            interlockWidth: 2,
+            words: words,
+            lengths: len,
+            scoreMin: 0,
+            widthMax: widthMax,
+            heightMax: heightMax))
+        
+        let square3x3_topRight = ShapeCalculator.toShapes(rectangles: RectangleCalculator.TopRightSquare(
+            interlockWidth: 2,
+            words: words,
+            lengths: len,
+            scoreMin: 0,
+            widthMax: widthMax,
+            heightMax: heightMax))
+        
+        let square3x3_topLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+            interlockWidth:2,
+            words: words,
+            lengths: len,
+            scoreMin:72,
+            widthMax: widthMax,
+            heightMax: heightMax))
+        
+        let pacman3x3_bottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.bottomRight(
+            start: words,
+            end: end,
+            len: len,
+            scoreMin: 0,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        
+        // Assemble the game from the generated shapes
+        
+        let stock_pay = c2x2[0]
+        let stock_debit = square4x4.containing(["STOCK","DEBIT","SALE","COST"], from: words)[0]
+        let stock_short = square3x3_topRight.containing(["STOCK","SHORT","COST","BONUS"], from: words)[0]
+        let short_units = square3x3_topLeft.containing(["SHORT","BONUS", "UNITS","NET"], from: words)[0]
+        let units_bull_sold = pacman3x3_bottomRight[0]
+        let bull_notes = squares3x3.containing(["BULL","TRUST","SELL", "NOTES"], from: words)[0]
+        let scrip_stock = square3x3_topRight.containing(["STOCK","PARITY", "CASH","SCRIP"], from: words)[0]
+        let capital_scrip = squares3x3.containing(["SCRIP","PARITY", "CASH", "CAPITAL"], from: words)[0]
+        let capital_scrip2 = squares3x3.containing(["SCRIP","PARITY","CAPITAL","TIP"], from: words)[0]
+        let short_cut = square3x3_topRight.containing(["SHORT","BONUS","COST", "CUT"], from: words)[0]
+        let debit_buy = edges.containing(["DEBIT", "BUY"], from: words)[0]
+        let buyer_buy = edges.containing(["BUY", "BUYER"], from: words)[2]
+        let units_iou = edges.containing(["UNITS", "IOU"], from: words)[0]
+        let loss_spot = edges.containing(["LOSS", "SPOT"], from: words)[1]
+        let spot_tax = edges.containing(["SPOT", "TAX"], from: words)[0]
+        let spot_par = edges.containing(["SPOT", "PAR"], from: words)[0]
+        let par_bear = edges.containing(["PAR", "BEAR"], from: words)[1]
+        let bear_bid = edges.containing(["BEAR", "BID"], from: words)[0]
+        let bid_deed = edges.containing(["BID", "DEED"], from: words)[0]
+        
+        let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes:[
+            stock_pay,
+            stock_debit,
+            stock_short,
+            short_units,
+            units_bull_sold,
+            bull_notes,
+            scrip_stock,
+            capital_scrip,
+            capital_scrip2,
+            short_cut,
+            debit_buy,
+            buyer_buy,
+            units_iou,
+            loss_spot,
+            spot_tax,
+            spot_par,
+            par_bear,
+            bear_bid,
+            bid_deed
+        ], words: words)
+        
+        print("WINNER ")
+        print(result.ToString(words:words))
+        
+        
+    }
     
     public static func Shapes_8702() {
         

@@ -8,8 +8,76 @@
 import Foundation
 public class MergeShapesCalculator {
     
+    
+    
+    
     private static let widthMax = 17
     private static let heightMax = 12
+    
+    
+    public static func Merge_Sequence_Of_Shapes(shapeAndSelectedPosition: [(ShapeModel,Int)], words:[String]) -> ShapeModel {
+        
+        var currentShape = shapeAndSelectedPosition[0].0
+        var results: [ShapeModel] = []
+        for i in 1..<shapeAndSelectedPosition.count {
+            let mergeShape = shapeAndSelectedPosition[i].0
+            let index = shapeAndSelectedPosition[i].1
+
+            if currentShape.placements.count < mergeShape.placements.count {
+                print(currentShape.ToString(words: words))
+                print("Merging with")
+                print(mergeShape.ToString(words: words))
+                results = Merge_Two_Shapes(smaller: [currentShape], larger: [mergeShape], words: words)
+            } else {
+                print(mergeShape.ToString(words: words))
+                print("Merging with")
+                print(currentShape.ToString(words: words))
+                results = Merge_Two_Shapes(smaller: [mergeShape], larger: [currentShape], words: words)
+                
+            }
+            
+            print("Found \(results.count) results")
+            if results.count == 1 {
+                currentShape = results[0]
+            } else {
+                print("Out of \(results.count) shapes produced we choose \(index)")
+                currentShape = results[index]
+            }
+            print(currentShape.ToString(words: words))
+        }
+        return currentShape
+    }
+    
+    public static func Merge_Sequence_Of_Shapes(shapes: [ShapeModel], words:[String]) -> ShapeModel {
+        
+        var currentShape = shapes[0]
+        var results: [ShapeModel] = []
+        for i in 1..<shapes.count {
+            let mergeShape = shapes[i]
+
+            if currentShape.placements.count < mergeShape.placements.count {
+                print(currentShape.ToString(words: words))
+                print("Merging with")
+                print(mergeShape.ToString(words: words))
+                results = Merge_Two_Shapes(smaller: [currentShape], larger: [mergeShape], words: words)
+            } else {
+                print(mergeShape.ToString(words: words))
+                print("Merging with")
+                print(currentShape.ToString(words: words))
+                results = Merge_Two_Shapes(smaller: [mergeShape], larger: [currentShape], words: words)
+                
+            }
+            
+            
+            if results.count > 1 {
+                print("Out of \(results.count) shapes produced we choose 0, use shapeAndSelectedPosition variant if you want different")
+            }
+            currentShape = results[0]
+            print(currentShape.ToString(words: words))
+        }
+        return currentShape
+    }
+    
     public static func Merge_Two_Shapes(smaller: [ShapeModel], larger: [ShapeModel], words:[String]) -> [ShapeModel] {
         
         var smaller_gpu = GpuShapeModel(shapes:smaller, totalWords: words.count)
