@@ -29,9 +29,9 @@ public class MergeShapesCalculator {
                 print(mergeShape.ToString(words: words))
                 results = Merge_Two_Shapes(smaller: [currentShape], larger: [mergeShape], words: words)
             } else {
-                print(mergeShape.ToString(words: words))
+                
                 print("Merging with")
-                print(currentShape.ToString(words: words))
+                print(mergeShape.ToString(words: words))
                 results = Merge_Two_Shapes(smaller: [mergeShape], larger: [currentShape], words: words)
                 
             }
@@ -61,9 +61,9 @@ public class MergeShapesCalculator {
                 print(mergeShape.ToString(words: words))
                 results = Merge_Two_Shapes(smaller: [currentShape], larger: [mergeShape], words: words)
             } else {
-                print(mergeShape.ToString(words: words))
+                
                 print("Merging with")
-                print(currentShape.ToString(words: words))
+                print(mergeShape.ToString(words: words))
                 results = Merge_Two_Shapes(smaller: [mergeShape], larger: [currentShape], words: words)
                 
             }

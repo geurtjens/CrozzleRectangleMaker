@@ -174,6 +174,84 @@ public class StrategyCalculator {
         print(ShapeCalculator.Flip(shape:star_inn_pork_fork_family_toys_turkey_hazelnut_merry_joy_nazareth[0]).ToString(words: words))
     }
     
+    public static func Shapes_8612New() {
+        
+        let widthMax = 17
+        let heightMax = 12
+        let gameList = GameList()
+        
+        guard let game = gameList.getGame(gameId: 8612) else {
+            return
+        }
+        
+        let words = game.winningWords
+      
+        let len = WordCalculator.lengths(words: words)
+        
+        let rectangles4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+            interlockWidth:3,
+            interlockHeight:4,
+            words: words,
+            lengths:len,
+            scoreMin:48,
+            widthMax: widthMax,
+            heightMax:heightMax))
+        
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+            words: words,
+            scoreMin: 0,
+            widthMax: widthMax,
+            heightMax: heightMax))
+        
+        let C2x3_2x2 = ShapesFromMergesCalculator.Execute2x3And2x2(
+            words: words,
+            scoreMin: 52,
+            widthMax: 17,
+            heightMax: 12)
+        
+        let ladder2x2x2 = ShapesFromMergesCalculator.Ladder2x2x2(
+            words: words,
+            scoreMin: 104,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        let nazareth_sing_bells = C2x3_2x2.containing(["NUTS","ZION","EVE","NAZARETH","SING","BELLS"], from: words)[0]
+        let holly_joy = edges.containing(["HOLLY", "JOY"], from: words)[1]
+        let joy_jelly = edges.containing(["JOY", "JELLY"], from: words)[0]
+        let jelly_hazelnut_merry = ladder2x2x2.containing(["HAZELNUT", "MERRY", "HYMN", "AZURE", "JELLY"], from: words)[0]
+        let hymn_turkey = edges.containing(["HYMN", "TURKEY"], from: words)[0]
+        let turkey_sauce = edges.containing(["TURKEY","SAUCE"], from: words)[0]
+        let sauce_toys_tree = rectangles4x5.containing(["SAUCE", "TOYS","TREE","TOAST"], from: words)[0]
+        let toys_family = edges.containing(["TOYS", "FAMILY"], from: words)[0]
+        let hazelnut_star = edges.containing(["HAZELNUT", "STAR"], from: words)[1]
+        let hymn_inn = edges.containing(["HYMN", "INN"], from: words)[1]
+        let turkey_pork = edges.containing(["TURKEY", "PORK"], from: words)[1]
+        let family_white = ShapeCalculator.filterInclude(shapes: edges, containing: ["FAMILY", "WHITE"], from: words)[0]
+        let white_snow = ShapeCalculator.filterInclude(shapes: edges, containing: ["WHITE", "SNOW"], from: words)[0]
+        let white_cake = ShapeCalculator.filterInclude(shapes: edges, containing: ["WHITE", "CAKE"], from: words)[0]
+        let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes:[
+            nazareth_sing_bells,
+            holly_joy,
+            joy_jelly,
+            jelly_hazelnut_merry,
+            hymn_turkey,
+            turkey_sauce,
+            sauce_toys_tree,
+            toys_family,
+            hazelnut_star,
+            hymn_inn,
+            turkey_pork,
+            family_white,
+            white_snow,
+            white_cake
+        ], words: words)
+        
+        print("WINNER ")
+        print(result.Flip().ToString(words:words))
+        
+        
+    }
+    
     public static func Shapes_8702New() {
         
         let widthMax = 17

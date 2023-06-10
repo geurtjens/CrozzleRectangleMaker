@@ -82,4 +82,8 @@ public struct ShapeModel {
     public func Code() -> String {
         return ShapeCalculator.ToCode(fromShape: self)
     }
+    
+    public func Flip() -> ShapeModel {
+        return ShapeCalculator.Flip(shape: self)
+    }
 }

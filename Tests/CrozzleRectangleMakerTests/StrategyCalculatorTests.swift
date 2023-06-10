@@ -12,7 +12,9 @@ final class StrategyCalculatorTests: XCTestCase {
     func test_Shapes8612() throws {
         StrategyCalculator.Shapes_8612()
     }
-    
+    func test_Shapes_8612New() throws {
+        StrategyCalculator.Shapes_8612New()
+    }
     func test_Shapes8702() throws {
         StrategyCalculator.Shapes_8702()
     }
