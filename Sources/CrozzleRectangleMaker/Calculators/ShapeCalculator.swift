@@ -386,7 +386,7 @@ public class ShapeCalculator {
     }
     
     
-    public static func filterInclude(shapes: [ShapeModel], containing search:[String], fromWordList words: [String]) -> [ShapeModel]{
+    public static func filterInclude(shapes: [ShapeModel], containing search:[String], from words: [String]) -> [ShapeModel]{
         let wordIds = WordCalculator.extractPositions(ofWords: search, from: words)
         
         var result:[ShapeModel]=[]

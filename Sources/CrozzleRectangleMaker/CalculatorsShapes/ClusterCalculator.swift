@@ -483,6 +483,7 @@ public class ClusterCalculator {
                                             //                                             let textReversed = cluster.ToTextFlipped(words: start)
                                             //                                             textList.append(textReversed)
                                             let text = cluster.ToText(words:start)
+                                            //print(text)
                                             if text.contains("#") == false {
                                                 result.append(cluster)
                                             }

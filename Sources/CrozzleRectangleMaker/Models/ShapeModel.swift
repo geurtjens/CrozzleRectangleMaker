@@ -79,7 +79,7 @@ public struct ShapeModel {
         return "\nscore:\(score), width:\(width), height:\(height), words:\(self.placements.count), area:\(area), density:\(density)\n\n" + text
     }
     
-    public func ToCode() -> String {
+    public func Code() -> String {
         return ShapeCalculator.ToCode(fromShape: self)
     }
 }

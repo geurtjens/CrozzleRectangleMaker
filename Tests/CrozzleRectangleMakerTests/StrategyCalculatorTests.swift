@@ -9,7 +9,11 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class StrategyCalculatorTests: XCTestCase {
 
-    func test_Shapes8612() async throws {
+    func test_Shapes8612() throws {
         StrategyCalculator.Shapes_8612()
+    }
+    
+    func test_Shapes8702() throws {
+        StrategyCalculator.Shapes_8702()
     }
 }

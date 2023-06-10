@@ -54,7 +54,7 @@ final class ShapesFromMergesCalculatorTests: XCTestCase {
             XCTAssertEqual(2070, result.count)
             
             let expectedWords = ["ZIMBABWE", "NARITA", "FIN", "WALES", "TIME", "VIEW"]
-            let filtered = ShapeCalculator.filterInclude(shapes: result, containing: expectedWords, fromWordList: words)
+            let filtered = ShapeCalculator.filterInclude(shapes: result, containing: expectedWords, from: words)
             XCTAssertEqual(1, filtered.count)
             for item in filtered {
                 print(item.ToString(words: words))
@@ -74,7 +74,7 @@ final class ShapesFromMergesCalculatorTests: XCTestCase {
             XCTAssertEqual(284, result.count)
             
             let searchFor = ["HAZELNUT", "MERRY", "HYMN", "NAZARETH", "JELLY"]
-            let filtered = ShapeCalculator.filterInclude(shapes: result, containing: searchFor, fromWordList: words)
+            let filtered = ShapeCalculator.filterInclude(shapes: result, containing: searchFor, from: words)
             
             for item in filtered {
                 print(item.ToString(words: words))
@@ -133,7 +133,7 @@ final class ShapesFromMergesCalculatorTests: XCTestCase {
             XCTAssertEqual(69, result.count)
             
             let searchFor = ["NUTS","ZION","EVE","NAZARETH","SING","BELLS"]
-            let filtered = ShapeCalculator.filterInclude(shapes: result, containing: searchFor, fromWordList: words)
+            let filtered = ShapeCalculator.filterInclude(shapes: result, containing: searchFor, from: words)
             
             XCTAssertEqual(1, filtered.count)
             
