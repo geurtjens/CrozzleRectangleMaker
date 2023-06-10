@@ -145,177 +145,140 @@ final class StatisticsCalculatorTests: XCTestCase {
         XCTAssertEqual(156, a[2].score)
         XCTAssertEqual(1, a[2].count)
         XCTAssertEqual(57, a[2].percentage)
-        XCTAssertEqual(172, a[2].topPercentage)
+        XCTAssertEqual(171, a[2].topPercentage)
 
         XCTAssertEqual(152, a[3].score)
         XCTAssertEqual(27, a[3].count)
-        XCTAssertEqual(1549, a[3].percentage)
-        XCTAssertEqual(1721, a[3].topPercentage)
+        XCTAssertEqual(1547, a[3].percentage)
+        XCTAssertEqual(1719, a[3].topPercentage)
 
         XCTAssertEqual(148, a[4].score)
         XCTAssertEqual(12, a[4].count)
-        XCTAssertEqual(688, a[4].percentage)
-        XCTAssertEqual(2410, a[4].topPercentage)
+        XCTAssertEqual(687, a[4].percentage)
+        XCTAssertEqual(2406, a[4].topPercentage)
 
         XCTAssertEqual(144, a[5].score)
         XCTAssertEqual(44, a[5].count)
-        XCTAssertEqual(2524, a[5].percentage)
-        XCTAssertEqual(4934, a[5].topPercentage)
+        XCTAssertEqual(2521, a[5].percentage)
+        XCTAssertEqual(4928, a[5].topPercentage)
 
         XCTAssertEqual(140, a[6].score)
         XCTAssertEqual(34, a[6].count)
-        XCTAssertEqual(1950, a[6].percentage)
-        XCTAssertEqual(6885, a[6].topPercentage)
+        XCTAssertEqual(1948, a[6].percentage)
+        XCTAssertEqual(6876, a[6].topPercentage)
 
         XCTAssertEqual(138, a[7].score)
         XCTAssertEqual(42, a[7].count)
-        XCTAssertEqual(2410, a[7].percentage)
-        XCTAssertEqual(9295, a[7].topPercentage)
+        XCTAssertEqual(2406, a[7].percentage)
+        XCTAssertEqual(9283, a[7].topPercentage)
 
         XCTAssertEqual(136, a[8].score)
         XCTAssertEqual(528, a[8].count)
-        XCTAssertEqual(30297, a[8].percentage)
-        XCTAssertEqual(39593, a[8].topPercentage)
+        XCTAssertEqual(30256, a[8].percentage)
+        XCTAssertEqual(39539, a[8].topPercentage)
 
         XCTAssertEqual(132, a[9].score)
         XCTAssertEqual(221, a[9].count)
-        XCTAssertEqual(12681, a[9].percentage)
-        XCTAssertEqual(52275, a[9].topPercentage)
+        XCTAssertEqual(12664, a[9].percentage)
+        XCTAssertEqual(52203, a[9].topPercentage)
 
         XCTAssertEqual(130, a[10].score)
-        XCTAssertEqual(226, a[10].count)
-        XCTAssertEqual(12968, a[10].percentage)
-        XCTAssertEqual(65243, a[10].topPercentage)
+        XCTAssertEqual(224, a[10].count)
+        XCTAssertEqual(12835, a[10].percentage)
+        XCTAssertEqual(65039, a[10].topPercentage)
 
 
         XCTAssertEqual(128, a[11].score)
-        XCTAssertEqual(1019, a[11].count)
-        XCTAssertEqual(58472, a[11].percentage)
-        XCTAssertEqual(123716, a[11].topPercentage)
+        XCTAssertEqual(1017, a[11].count)
+        XCTAssertEqual(58277, a[11].percentage)
+        XCTAssertEqual(123316, a[11].topPercentage)
 
         XCTAssertEqual(126, a[12].score)
         XCTAssertEqual(170, a[12].count)
-        XCTAssertEqual(9754, a[12].percentage)
-        XCTAssertEqual(133471, a[12].topPercentage)
+        XCTAssertEqual(9741, a[12].percentage)
+        XCTAssertEqual(133058, a[12].topPercentage)
 
         XCTAssertEqual(124, a[13].score)
-        XCTAssertEqual(773, a[13].count)
-        XCTAssertEqual(44356, a[13].percentage)
-        XCTAssertEqual(177827, a[13].topPercentage)
+        XCTAssertEqual(770, a[13].count)
+        XCTAssertEqual(44123, a[13].percentage)
+        XCTAssertEqual(177181, a[13].topPercentage)
 
         XCTAssertEqual(122, a[14].score)
         XCTAssertEqual(1253, a[14].count)
-        XCTAssertEqual(71899, a[14].percentage)
-        XCTAssertEqual(249727, a[14].topPercentage)
+        XCTAssertEqual(71801, a[14].percentage)
+        XCTAssertEqual(248982, a[14].topPercentage)
 
         XCTAssertEqual(120, a[15].score)
-        XCTAssertEqual(1948, a[15].count)
-        XCTAssertEqual(111780, a[15].percentage)
-        XCTAssertEqual(361508, a[15].topPercentage)
+        XCTAssertEqual(1947, a[15].count)
+        XCTAssertEqual(111569, a[15].percentage)
+        XCTAssertEqual(360552, a[15].topPercentage)
 
         XCTAssertEqual(118, a[16].score)
-        XCTAssertEqual(381, a[16].count)
-        XCTAssertEqual(21862, a[16].percentage)
-        XCTAssertEqual(383370, a[16].topPercentage)
+        XCTAssertEqual(383, a[16].count)
+        XCTAssertEqual(21947, a[16].percentage)
+        XCTAssertEqual(382499, a[16].topPercentage)
 
         XCTAssertEqual(116, a[17].score)
-        XCTAssertEqual(2386, a[17].count)
-        XCTAssertEqual(136913, a[17].percentage)
-        XCTAssertEqual(520284, a[17].topPercentage)
+        XCTAssertEqual(2385, a[17].count)
+        XCTAssertEqual(136668, a[17].percentage)
+        XCTAssertEqual(519167, a[17].topPercentage)
 
         XCTAssertEqual(114, a[18].score)
-        XCTAssertEqual(2956, a[18].count)
-        XCTAssertEqual(169621, a[18].percentage)
-        XCTAssertEqual(689906, a[18].topPercentage)
+        XCTAssertEqual(2951, a[18].count)
+        XCTAssertEqual(169102, a[18].percentage)
+        XCTAssertEqual(688270, a[18].topPercentage)
 
         XCTAssertEqual(112, a[19].score)
-        XCTAssertEqual(890, a[19].count)
-        XCTAssertEqual(51070, a[19].percentage)
-        XCTAssertEqual(740976, a[19].topPercentage)
+        XCTAssertEqual(889, a[19].count)
+        XCTAssertEqual(50942, a[19].percentage)
+        XCTAssertEqual(739212, a[19].topPercentage)
 
         XCTAssertEqual(110, a[20].score)
-        XCTAssertEqual(1692, a[20].count)
-        XCTAssertEqual(97090, a[20].percentage)
-        XCTAssertEqual(838067, a[20].topPercentage)
+        XCTAssertEqual(1691, a[20].count)
+        XCTAssertEqual(96899, a[20].percentage)
+        XCTAssertEqual(836112, a[20].topPercentage)
 
 
         XCTAssertEqual(108, a[21].score)
-        XCTAssertEqual(940, a[21].count)
-        XCTAssertEqual(53939, a[21].percentage)
-        XCTAssertEqual(892006, a[21].topPercentage)
+        XCTAssertEqual(938, a[21].count)
+        XCTAssertEqual(53750, a[21].percentage)
+        XCTAssertEqual(889863, a[21].topPercentage)
 
         XCTAssertEqual(106, a[22].score)
-        XCTAssertEqual(245, a[22].count)
-        XCTAssertEqual(14058, a[22].percentage)
-        XCTAssertEqual(906065, a[22].topPercentage)
+        XCTAssertEqual(244, a[22].count)
+        XCTAssertEqual(13982, a[22].percentage)
+        XCTAssertEqual(903845, a[22].topPercentage)
 
         XCTAssertEqual(104, a[23].score)
-        XCTAssertEqual(1637, a[23].count)
-        XCTAssertEqual(93934, a[23].percentage)
+        XCTAssertEqual(1678, a[23].count)
+        XCTAssertEqual(96154, a[23].percentage)
         XCTAssertEqual(1000000, a[23].topPercentage)
 
-
         /*
-         176,28,6,6
-         172,141,31,37
-         170,27,5,43
-         168,2,0,43
-         160,1,0,43
-         156,1,0,44
-         152,27,5,50
-         148,12,2,52
-         144,43,9,62
-         140,22,4,67
-         
-         138,42,9,76
-         136,1109,244,321
-         132,221,48,369
-         130,226,49,419
-         128,577,127,547
-         126,170,37,584
-         124,534,117,702
-         122,966,213,915
-         120,3070,677,1593
-         118,381,84,1677
-         
-         116,1707,376,2053
-         114,1923,424,2478
-         112,3649,805,3283
-         110,1032,227,3511
-         108,3896,859,4370
-         106,3364,742,5113
-         104,1631,359,5473
-         100,881,194,5667
-         98,1072,236,5904
-         96,4000,882,6786
-         
-         94,829,182,6969
-         92,3840,847,7817
-         90,6639,1465,9282
-         88,36689,8096,17378
-         86,1800,397,17775
-         84,16833,3714,21490
-         82,27267,6017,27507
-         80,75026,16556,44064
-         78,21023,4639,48703
-         76,91656,20226,68929
-         
-         74,139320,30744,99674
-         72,136448,30110,129784
-         70,62072,13697,143482
-         68,179568,39626,183108
-         66,220963,48761,231869
-         64,283013,62454,294323
-         62,208578,46028,340351
-         60,479418,105795,446147
-         58,400014,88273,534421
-         56,215580,47573,581994
-         
-         54,358897,79199,661194
-         52,548142,120961,782155
-         50,228297,50379,832535
-         48,377741,83358,915893
-         46,381133,84106,1000000
+         176,1,57,57
+         160,1,57,114
+         156,1,57,171
+         152,27,1547,1719
+         148,12,687,2406
+         144,44,2521,4928
+         140,34,1948,6876
+         138,42,2406,9283
+         136,528,30256,39539
+         132,221,12664,52203
+         130,224,12835,65039
+         128,1017,58277,123316
+         126,170,9741,133058
+         124,770,44123,177181
+         122,1253,71801,248982
+         120,1947,111569,360552
+         118,383,21947,382499
+         116,2385,136668,519167
+         114,2951,169102,688270
+         112,889,50942,739212
+         110,1691,96899,836112
+         108,938,53750,889863
+         106,244,13982,903845
+         104,1678,96154,1000000
          */
     }
     

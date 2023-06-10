@@ -14,7 +14,7 @@ final class ClusterCalculatorTests: XCTestCase {
         let result = ClusterCalculator.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
         
         XCTAssertEqual(1149,result.count)
-        XCTAssertEqual(170, result[0].score)
+        XCTAssertEqual(146, result[0].score)
         print(result[0].ToText(words:words))
     }
     
@@ -24,7 +24,7 @@ final class ClusterCalculatorTests: XCTestCase {
         let result = ClusterCalculator.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
         
         XCTAssertEqual(7853,result.count)
-        XCTAssertEqual(220, result[0].score)
+        XCTAssertEqual(164, result[0].score)
         print(result[0].ToText(words:words))
     }
     
@@ -34,7 +34,7 @@ final class ClusterCalculatorTests: XCTestCase {
         let result = ClusterCalculator.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
         
         XCTAssertEqual(13596,result.count)
-        XCTAssertEqual(182, result[0].score)
+        XCTAssertEqual(172, result[0].score)
         print(result[0].ToText(words:words))
     }
     
@@ -44,7 +44,7 @@ final class ClusterCalculatorTests: XCTestCase {
         let result = ClusterCalculator.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
         
         XCTAssertEqual(15269,result.count)
-        XCTAssertEqual(186, result[0].score)
+        XCTAssertEqual(172, result[0].score)
         print(result[0].ToText(words:words))
     }
     
@@ -54,7 +54,7 @@ final class ClusterCalculatorTests: XCTestCase {
         let result = ClusterCalculator.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
         
         XCTAssertEqual(24231,result.count)
-        XCTAssertEqual(220, result[0].score)
+        XCTAssertEqual(204, result[0].score)
         print(result[0].ToText(words:words))
     }
     
@@ -64,7 +64,7 @@ final class ClusterCalculatorTests: XCTestCase {
         let result = ClusterCalculator.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
         
         XCTAssertEqual(9802,result.count)
-        XCTAssertEqual(226, result[0].score)
+        XCTAssertEqual(180, result[0].score)
         print(result[0].ToText(words:words))
     }
     
@@ -74,7 +74,7 @@ final class ClusterCalculatorTests: XCTestCase {
         let result = ClusterCalculator.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
         
         XCTAssertEqual(11750,result.count)
-        XCTAssertEqual(192, result[0].score)
+        XCTAssertEqual(178, result[0].score)
         print(result[0].ToText(words:words))
     }
     
@@ -84,7 +84,7 @@ final class ClusterCalculatorTests: XCTestCase {
         let result = ClusterCalculator.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
         
         XCTAssertEqual(24757,result.count)
-        XCTAssertEqual(322, result[0].score)
+        XCTAssertEqual(168, result[0].score)
         print(result[0].ToText(words:words))
     }
     

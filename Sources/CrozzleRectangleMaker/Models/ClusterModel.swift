@@ -120,7 +120,7 @@ public struct ClusterModel : ShapeProtocol {
                 }
             case .trailing:
                 for j in 0..<verticalWordCount {
-                    score += ScoreCalculator.score(forLetter: end[wordsHorizontal[i]][j])
+                    score += ScoreCalculator.score(forLetter: start[wordsHorizontal[i]][j])
                 }
             case .middle:
                 for j in 0..<verticalWordCount {

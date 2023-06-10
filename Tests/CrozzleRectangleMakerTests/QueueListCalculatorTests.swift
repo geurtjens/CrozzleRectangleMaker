@@ -32,7 +32,7 @@ final class QueueListCalculatorTests: XCTestCase {
             widthMax: widthMax,
             heightMax: heightMax)
         XCTAssertEqual(4, shapes[0].placements.count)
-        XCTAssertEqual(17427, shapes.count)
+        XCTAssertEqual(17451, shapes.count)
     }
     
     
