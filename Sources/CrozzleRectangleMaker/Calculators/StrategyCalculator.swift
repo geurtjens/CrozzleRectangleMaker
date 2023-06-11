@@ -182,9 +182,9 @@ public class StrategyCalculator {
         let hazelnut_star = edges.containing(["HAZELNUT", "STAR"], from: words)[1]
         let hymn_inn = edges.containing(["HYMN", "INN"], from: words)[1]
         let turkey_pork = edges.containing(["TURKEY", "PORK"], from: words)[1]
-        let family_white = ShapeCalculator.filterInclude(shapes: edges, containing: ["FAMILY", "WHITE"], from: words)[0]
-        let white_snow = ShapeCalculator.filterInclude(shapes: edges, containing: ["WHITE", "SNOW"], from: words)[0]
-        let white_cake = ShapeCalculator.filterInclude(shapes: edges, containing: ["WHITE", "CAKE"], from: words)[0]
+        let family_white = edges.containing(["FAMILY", "WHITE"], from: words)[0]
+        let white_snow = edges.containing(["WHITE", "SNOW"], from: words)[0]
+        let white_cake = edges.containing(["WHITE", "CAKE"], from: words)[0]
         let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes:[
             nazareth_sing_bells,
             holly_joy,
