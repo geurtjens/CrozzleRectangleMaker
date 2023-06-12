@@ -107,6 +107,15 @@ final class JsonIOCalculatorTests: XCTestCase {
         print(result)
     }
     
+    func test_8902() throws {
+        let result = JsonIOCalculator.execute(gameId: 8902, winningScore: 746, widthMax: 17, heightMax: 12)
+        print(result)
+    }
+    
+    func test_8903() throws {
+        let result = JsonIOCalculator.execute(gameId: 8903, winningScore: 652, widthMax: 17, heightMax: 12)
+        print(result)
+    }
     func test_JsonLoadingStuff() throws {
         let filename = "/Users/michaelgeurtjens/Downloads/CrozzleDataFromWinningGames/8710.json"
         

@@ -126,6 +126,25 @@ final class StrategyCalculatorTests: XCTestCase {
             XCTAssertEqual(720, result.score)
         }
     }
+    
+    func test_Shapes_8902() {
+        let result = StrategyCalculator.Shapes_8902()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(746, result.score)
+        }
+    }
+    
+    func test_Shapes_8903() {
+        let result = StrategyCalculator.Shapes_8903()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(652, result.score)
+        }
+    }
+    
+    
+    
     func test_Shapes_8702New() throws {
         StrategyCalculator.Shapes_8702New()
     }

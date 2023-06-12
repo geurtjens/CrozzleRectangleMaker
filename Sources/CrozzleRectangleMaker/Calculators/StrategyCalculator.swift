@@ -1237,6 +1237,172 @@ public class StrategyCalculator {
         return result
     }
     
+    public static func Shapes_8902() -> ShapeModel? {
+
+        let widthMax = 17
+        let heightMax = 12
+
+        let gameList = GameList()
+        guard let game = gameList.getGame(gameId: 8902) else {
+            return nil
+        }
+
+        let words = game.winningWords
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+           start: words,
+           end: end,
+           len: len,
+           scoreMin: 154,
+           widthMax: widthMax,
+           heightMax: heightMax))
+
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+            words: words,
+            scoreMin: 28,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+            interlockWidth: 2,
+            interlockHeight: 4,
+            words: words,
+            lengths: len,
+            scoreMin: 132,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+            interlockWidth: 2,
+            words: words,
+            lengths: len,
+            scoreMin: 74,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+            interlockWidth: 2,
+            words: words,
+            lengths: len,
+            scoreMin: 76,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let square5x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+            interlockWidth: 4,
+            words: words,
+            lengths: len,
+            scoreMin: 88,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let flowers_rendezvous_waltz_woo = square3x3.containing(["FLOWERS", "RENDEZVOUS", "WALTZ", "WOO"], from: words)[0]
+        let flowers_rendezvous_waltz_words = rectangle3x5.containing(["FLOWERS", "RENDEZVOUS", "WALTZ", "WORDS"], from: words)[0]
+        let pew_words = edges.containing(["PEW", "WORDS"], from: words)[0]
+        let pew_trip = edges.containing(["PEW", "TRIP"], from: words)[0]
+        let guests_tryst_post_trip_posy = c2x3.containing(["GUESTS", "TRYST", "POST", "TRIP", "POSY"], from: words)[0]
+        let old_tryst_posy_date = square3x3.containing(["OLD", "TRYST", "POSY", "DATE"], from: words)[0]
+        let guests_trust = edges.containing(["GUESTS", "TRUST"], from: words)[1]
+        let toast_gift_taxi_trust = square5x5_BottomLeft.containing(["TOAST", "GIFT", "TAXI", "TRUST"], from: words)[1]
+        let mix_taxi = edges.containing(["MIX", "TAXI"], from: words)[0]
+        let mix_hymn = edges.containing(["MIX", "HYMN"], from: words)[0]
+        let joy_hymn = edges.containing(["JOY", "HYMN"], from: words)[0]
+        let win_hymn = edges.containing(["WIN", "HYMN"], from: words)[0]
+        let win_wine = edges.containing(["WIN", "WINE"], from: words)[0]
+        let gift_roses_usher_kiss = square3x3_TopLeft.containing(["GIFT", "ROSES", "USHER", "KISS"], from: words)[0]
+        let roses_adore_groom_usher = square3x3.containing(["ROSES", "ADORE", "GROOM", "USHER"], from: words)[0]
+
+        let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: [
+            flowers_rendezvous_waltz_woo,
+            flowers_rendezvous_waltz_words,
+            pew_words,
+            pew_trip,
+            guests_tryst_post_trip_posy,
+            old_tryst_posy_date,
+            guests_trust,
+            toast_gift_taxi_trust,
+            mix_taxi,
+            mix_hymn,
+            joy_hymn,
+            win_hymn,
+            win_wine,
+            gift_roses_usher_kiss,
+            roses_adore_groom_usher
+        ], words: words)
+        return result
+    }
+    
+    
+    public static func Shapes_8903() -> ShapeModel? {
+
+        let widthMax = 17
+        let heightMax = 12
+
+        let gameList = GameList()
+        guard let game = gameList.getGame(gameId: 8903) else {
+            return nil
+        }
+
+        let words = game.winningWords
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+            words: words,
+            scoreMin: 24,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: len,
+            scoreMin: 82,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+            interlockWidth: 2,
+            words: words,
+            lengths: len,
+            scoreMin: 82,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let tanzania_zambia = edges.containing(["TANZANIA", "ZAMBIA"], from: words)[0]
+        let germany_tanzania_yemen_guyana = rectangle3x4.containing(["GERMANY", "TANZANIA", "YEMEN", "GUYANA"], from: words)[0]
+        let italy_germany_togo_yemen = rectangle3x4.containing(["ITALY", "GERMANY", "TOGO", "YEMEN"], from: words)[0]
+        let uruguay_tanzania_guyana_hungary = rectangle3x4.containing(["URUGUAY", "TANZANIA", "GUYANA", "HUNGARY"], from: words)[1]
+        let uruguay_syria = edges.containing(["URUGUAY", "SYRIA"], from: words)[1]
+        let tanzania_cyprus_guyana_hungary = square3x3_BottomLeft.containing(["TANZANIA", "CYPRUS", "GUYANA", "HUNGARY"], from: words)[1]
+        let uruguay_cuba = edges.containing(["URUGUAY", "CUBA"], from: words)[2]
+        let cyprus_sudan_peru_burma = rectangle3x4.containing(["CYPRUS", "SUDAN", "PERU", "BURMA"], from: words)[0]
+        let tanzania_turkey = edges.containing(["TANZANIA", "TURKEY"], from: words)[0]
+        let kenya_turkey = edges.containing(["KENYA", "TURKEY"], from: words)[1]
+        let zaire_turkey = edges.containing(["ZAIRE", "TURKEY"], from: words)[0]
+        let zaire_belize = edges.containing(["ZAIRE", "BELIZE"], from: words)[0]
+        let niger_zambia = edges.containing(["NIGER", "ZAMBIA"], from: words)[0]
+
+        let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: [
+            tanzania_zambia,
+            germany_tanzania_yemen_guyana,
+            italy_germany_togo_yemen,
+            uruguay_tanzania_guyana_hungary,
+            uruguay_syria,
+            tanzania_cyprus_guyana_hungary,
+            uruguay_cuba,
+            cyprus_sudan_peru_burma,
+            tanzania_turkey,
+            kenya_turkey,
+            zaire_turkey,
+            zaire_belize,
+            niger_zambia
+        ], words: words)
+        return result
+    }
     
     
     public static func Shapes_8705() -> ShapeModel? {
