@@ -12,7 +12,7 @@ class PacmanCalculator {
     
     // flips to bottom left so does not need to worry about duplicates.  Visually inspected
     
-    static func topRight(start: [String], end: [String], len: [Int],
+    static func TopRight(start: [String], end: [String], len: [Int],
                          scoreMin: Int, widthMax: Int, heightMax: Int) -> [PacmanModel] {
         let interlockWidth = 3
         let interlockHeight = 3
@@ -99,7 +99,7 @@ class PacmanCalculator {
         return result;
     }
 
-    static func bottomRight(start: [String], end: [String], len: [Int],
+    static func BottomRight(start: [String], end: [String], len: [Int],
                             scoreMin: Int, widthMax: Int, heightMax: Int) -> [PacmanModel] {
         let interlockWidth = 3
         let interlockHeight = 3
@@ -190,7 +190,7 @@ class PacmanCalculator {
     
     // Flips to topLeft, visually verified
     // This does not appear in any winning game
-    static func topLeft(start: [String], end: [String], len: [Int],
+    static func TopLeft(start: [String], end: [String], len: [Int],
                         scoreMin: Int, widthMax: Int, heightMax: Int) -> [PacmanModel] {
         
         let interlockWidth = 3

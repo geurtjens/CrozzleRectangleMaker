@@ -51,12 +51,13 @@ public class MergeShapesCalculator {
     public static func Merge_Sequence_Of_Shapes(shapes: [ShapeModel], words:[String]) -> ShapeModel {
         
         var currentShape = shapes[0]
+        print(currentShape.ToString(words: words))
         var results: [ShapeModel] = []
         for i in 1..<shapes.count {
             let mergeShape = shapes[i]
 
             if currentShape.placements.count < mergeShape.placements.count {
-                print(currentShape.ToString(words: words))
+                
                 print("Merging with")
                 print(mergeShape.ToString(words: words))
                 results = Merge_Two_Shapes(smaller: [currentShape], larger: [mergeShape], words: words)

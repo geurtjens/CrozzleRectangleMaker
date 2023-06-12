@@ -55,6 +55,58 @@ final class JsonIOCalculatorTests: XCTestCase {
         print(result)
     }
     
+    func test_8710() throws {
+        let result = JsonIOCalculator.execute(gameId: 8710, winningScore: 764, widthMax: 17, heightMax: 12)
+        print(result)
+    }
+    func test_8711() throws {
+        let result = JsonIOCalculator.execute(gameId: 8711, winningScore: 810, widthMax: 17, heightMax: 12)
+        print(result)
+    }
+    func test_8712() throws {
+        let result = JsonIOCalculator.execute(gameId: 8712, winningScore: 680, widthMax: 17, heightMax: 12)
+        print(result)
+    }
+    func test_8802() throws {
+        let result = JsonIOCalculator.execute(gameId: 8802, winningScore: 720, widthMax: 17, heightMax: 12)
+        print(result)
+    }
+    
+    func test_8803() throws {
+        let result = JsonIOCalculator.execute(gameId: 8803, winningScore: 626, widthMax: 17, heightMax: 12)
+        print(result)
+    }
+    
+    func test_8804() throws {
+        let result = JsonIOCalculator.execute(gameId: 8804, winningScore: 836, widthMax: 17, heightMax: 12)
+        print(result)
+    }
+    
+    func test_8806() throws {
+        let result = JsonIOCalculator.execute(gameId: 8806, winningScore: 816, widthMax: 17, heightMax: 12)
+        print(result)
+    }
+    
+    func test_8809() throws {
+        let result = JsonIOCalculator.execute(gameId: 8809, winningScore: 676, widthMax: 17, heightMax: 12)
+        print(result)
+    }
+    
+    func test_8810() throws {
+        let result = JsonIOCalculator.execute(gameId: 8810, winningScore: 716, widthMax: 17, heightMax: 12)
+        print(result)
+    }
+    
+    func test_8811() throws {
+        let result = JsonIOCalculator.execute(gameId: 8811, winningScore: 630, widthMax: 17, heightMax: 12)
+        print(result)
+    }
+    
+    func test_8812() throws {
+        let result = JsonIOCalculator.execute(gameId: 8812, winningScore: 720, widthMax: 17, heightMax: 12)
+        print(result)
+    }
+    
     func test_JsonLoadingStuff() throws {
         let filename = "/Users/michaelgeurtjens/Downloads/CrozzleDataFromWinningGames/8710.json"
         

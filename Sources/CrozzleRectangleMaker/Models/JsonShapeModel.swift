@@ -8,7 +8,7 @@
 import Foundation
 public struct JsonShapeModel: Codable {
     public let id: Int
-    public let name: String
+    public var name: String // We can change the name as we go if the dimensions are wrong
     public let score: Int
     public let potential: Int
     public let h:[String]

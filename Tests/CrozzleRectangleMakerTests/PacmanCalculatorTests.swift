@@ -15,7 +15,7 @@ final class PacmanCalculatorTests: XCTestCase {
         let end = WordCalculator.reverse(words: start)
         let len = WordCalculator.lengths(words: start)
         
-        let result = PacmanCalculator.bottomRight(
+        let result = PacmanCalculator.BottomRight(
             start: start,
             end: end,
             len: len,
@@ -88,7 +88,7 @@ final class PacmanCalculatorTests: XCTestCase {
         let end = WordCalculator.reverse(words: start)
         let len = WordCalculator.lengths(words: start)
         
-        let result = PacmanCalculator.topLeft(
+        let result = PacmanCalculator.TopLeft(
             start: start,
             end: end,
             len: len,
@@ -154,7 +154,7 @@ final class PacmanCalculatorTests: XCTestCase {
             let end = WordCalculator.reverse(words: start)
             let len = WordCalculator.lengths(words: start)
             
-            let result = PacmanCalculator.bottomRight(
+            let result = PacmanCalculator.BottomRight(
                 start: start,
                 end: end,
                 len: len,
@@ -182,7 +182,7 @@ final class PacmanCalculatorTests: XCTestCase {
             let end = WordCalculator.reverse(words: start)
             let len = WordCalculator.lengths(words: start)
             
-            let result = PacmanCalculator.topRight(
+            let result = PacmanCalculator.TopRight(
                 start: start,
                 end: end,
                 len: len,
@@ -210,7 +210,7 @@ final class PacmanCalculatorTests: XCTestCase {
             let end = WordCalculator.reverse(words: start)
             let len = WordCalculator.lengths(words: start)
             
-            let result = PacmanCalculator.topLeft(
+            let result = PacmanCalculator.TopLeft(
                 start: start,
                 end: end,
                 len: len,
@@ -237,7 +237,7 @@ final class PacmanCalculatorTests: XCTestCase {
         let end = WordCalculator.reverse(words: start)
         let len = WordCalculator.lengths(words: start)
         
-        let result = PacmanCalculator.topRight(
+        let result = PacmanCalculator.TopRight(
             start: start,
             end: end,
             len: len,

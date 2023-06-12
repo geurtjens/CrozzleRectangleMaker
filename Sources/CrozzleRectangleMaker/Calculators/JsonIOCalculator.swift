@@ -10,28 +10,55 @@ public class JsonIOCalculator {
 
     public static var path = "/Users/michaelgeurtjens/Downloads/CrozzleDataFromWinningGames/"
     
-    public static func execute(gameId: Int, winningScore: Int, widthMax: Int, heightMax: Int) -> String {
-        let jsonShapes = load(gameId: gameId)
+    public static func getHeaderBlock(gameId: Int, widthMax: Int, heightMax: Int) -> String {
+        var code = ""
+        code += "    public static func Shapes_\(gameId)() -> ShapeModel? {\n\n"
         
+        code += "        let widthMax = \(widthMax)\n"
+        code += "        let heightMax = \(heightMax)\n\n"
+        code += "        let gameList = GameList()\n"
+        code += "        guard let game = gameList.getGame(gameId: \(gameId)) else {\n"
+        code += "            return nil\n"
+        code += "        }\n\n"
+        code += "        let words = game.winningWords\n"
+        code += "        let end = WordCalculator.reverse(words: words)\n"
+        code += "        let len = WordCalculator.lengths(words: words)\n\n"
+        return code
+    }
+    
+    public static func execute(gameId: Int, winningScore: Int, widthMax: Int, heightMax: Int) -> String {
+        var jsonShapes = load(gameId: gameId)
+        
+        changeNameOrientationToLargerHorizontal(jsonShapes: &jsonShapes)
+        let headerBlock = getHeaderBlock(gameId: gameId, widthMax: widthMax, heightMax: heightMax)
         let calculatedBlock = getCalculationBlock(jsonShapes: jsonShapes)
         let shapeFindingBlock = getShapeFindingBlock(jsonShapes: jsonShapes)
         let mergeBlock = getMergeBlock(jsonShapes: jsonShapes)
         
         var code = ""
-        code += "    public static func Shapes_\(gameId)() {\n\n"
+        code += headerBlock
         
-        code += "        let widthMax = \(widthMax)\n"
-        code += "        let heightMax = \(heightMax)\n\n"
         code += calculatedBlock
         code += shapeFindingBlock + "\n"
         code += mergeBlock
         
-        code += "\n        XCTAssertEqual(\(winningScore), result[0].score)\n"
-        
+        //code += "\n        XCTAssertEqual(\(winningScore), result[0].score)\n"
+        code += "        return result\n"
         code += "    }\n"
+        code += testCode(gameId: gameId, score: winningScore)
         return code
     }
-    
+    public static func testCode(gameId: Int, score: Int) -> String {
+        var result = ""
+        result += "    func test_Shapes_\(gameId)() {\n"
+        result += "        let result = StrategyCalculator.Shapes_\(gameId)()\n"
+        result += "        XCTAssertNotNil(result)\n"
+        result += "        if let result = result {\n"
+        result += "            XCTAssertEqual(\(score), result.score)\n"
+        result += "        }\n"
+        result += "    }\n\n"
+        return result
+    }
     
 //    public static func convertName(name: String) -> (String, Int, Int) {
 //        if name.contains("Cluster") {
@@ -66,7 +93,7 @@ public class JsonIOCalculator {
             }
             code += "            \(variableName)"
         }
-        code = "        let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: [\n" + code + "\n        ]\n"
+        code = "        let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: [\n" + code + "\n        ], words: words)\n"
         
         return code
     }
@@ -115,6 +142,101 @@ public class JsonIOCalculator {
         return text
     }
     
+    /// We cannot handle a 4x3 structure and so it must be changed to a 3x4 structure
+    public static func changeNameOrientationToLargerHorizontal(jsonShapes: inout [JsonShapeModel]) {
+        for i in 0..<jsonShapes.count {
+            switch jsonShapes[i].name {
+            case "Donut4x3":
+                jsonShapes[i].name = "Donut3x4"
+            case "Donut5x3":
+                jsonShapes[i].name = "Donut3x5"
+            case "Donut6x3":
+                jsonShapes[i].name = "Donut3x6"
+            case "Donut5x4":
+                jsonShapes[i].name = "Donut4x5"
+            case "Donut6x5":
+                jsonShapes[i].name = "Donut5x6"
+                
+            case "Cluster3x2":
+                jsonShapes[i].name = "Cluster2x3"
+            case "Cluster4x2":
+                jsonShapes[i].name = "Cluster2x4"
+            case "Cluster5x2":
+                jsonShapes[i].name = "Cluster2x5"
+            case "Cluster6x2":
+                jsonShapes[i].name = "Cluster2x6"
+                
+            case "Cluster4x3":
+                jsonShapes[i].name = "Cluster3x4"
+            case "Cluster5x3":
+                jsonShapes[i].name = "Cluster3x5"
+            case "Cluster6x3":
+                jsonShapes[i].name = "Cluster3x6"
+            case "Cluster5x4":
+                jsonShapes[i].name = "Cluster4x5"
+            case "Cluster6x5":
+                jsonShapes[i].name = "Cluster5x6"
+                
+            case "OpenDonut4x3_TopLeft":
+                jsonShapes[i].name = "OpenDonut3x4_TopLeft"
+            case "OpenDonut5x3_TopLeft":
+                jsonShapes[i].name = "OpenDonut3x5_TopLeft"
+            case "OpenDonut5x4_TopLeft":
+                jsonShapes[i].name = "OpenDonut4x5_TopLeft"
+            case "OpenDonut6x3_TopLeft":
+                jsonShapes[i].name = "OpenDonut3x6_TopLeft"
+            case "OpenDonut6x4_TopLeft":
+                jsonShapes[i].name = "OpenDonut4x6_TopLeft"
+            case "OpenDonut6x5_TopLeft":
+                jsonShapes[i].name = "OpenDonut5x6_TopLeft"
+                
+            case "OpenDonut4x3_BottomRight":
+                jsonShapes[i].name = "OpenDonut3x4_BottomRight"
+            case "OpenDonut5x3_BottomRight":
+                jsonShapes[i].name = "OpenDonut3x5_BottomRight"
+            case "OpenDonut5x4_BottomRight":
+                jsonShapes[i].name = "OpenDonut4x5_BottomRight"
+            case "OpenDonut6x3_BottomRight":
+                jsonShapes[i].name = "OpenDonut3x6_BottomRight"
+            case "OpenDonut6x4_BottomRight":
+                jsonShapes[i].name = "OpenDonut4x6_BottomRight"
+            case "OpenDonut6x5_BottomRight":
+                jsonShapes[i].name = "OpenDonut5x6_BottomRight"
+                
+            case "OpenDonut4x3_TopRight":
+                jsonShapes[i].name = "OpenDonut3x4_BottomLeft"
+            case "OpenDonut5x3_TopRight":
+                jsonShapes[i].name = "OpenDonut3x5_BottomLeft"
+            case "OpenDonut5x4_TopRight":
+                jsonShapes[i].name = "OpenDonut4x5_BottomLeft"
+            case "OpenDonut6x3_TopRight":
+                jsonShapes[i].name = "OpenDonut3x6_BottomLeft"
+            case "OpenDonut6x4_TopRight":
+                jsonShapes[i].name = "OpenDonut4x6_BottomLeft"
+            case "OpenDonut6x5_TopRight":
+                jsonShapes[i].name = "OpenDonut5x6_BottomLeft"
+                
+                // BottomLeft is opposite to TopRight
+            case "OpenDonut4x3_BottomLeft":
+                jsonShapes[i].name = "OpenDonut3x4_TopRight"
+            case "OpenDonut5x3_BottomLeft":
+                jsonShapes[i].name = "OpenDonut3x5_TopRight"
+            case "OpenDonut5x4_BottomLeft":
+                jsonShapes[i].name = "OpenDonut4x5_TopRight"
+            case "OpenDonut6x3_BottomLeft":
+                jsonShapes[i].name = "OpenDonut3x6_TopRight"
+            case "OpenDonut6x4_BottomLeft":
+                jsonShapes[i].name = "OpenDonut4x6_TopRight"
+            case "OpenDonut6x5_BottomLeft":
+                jsonShapes[i].name = "OpenDonut5x6_TopRight"
+                
+            default:
+                break
+            }
+        }
+    }
+    
+    
     public static func getShapeNamesAndMinScores(jsonShapes: [JsonShapeModel]) -> [(String,Int)] {
         if jsonShapes.count == 0 {
             return []
@@ -140,8 +262,10 @@ public class JsonIOCalculator {
     public static func clusterGen(shapeName: String, minScore: Int) -> String {
         let size = shapeName.replacingOccurrences(of: "Cluster", with: "")
         
+        let (width, height, _) = getNumbers(numbers: size)
+        
         var code = ""
-        code += "        let c\(size) = ShapeCalculator.toShapes(clusters: ClusterCalculator.C\(size)(\n"
+        code += "        let c\(width)x\(height) = ShapeCalculator.toShapes(clusters: ClusterCalculator.C\(width)x\(height)(\n"
         code += "           start: words,\n"
         code += "           end: end,\n"
         code += "           len: len,\n"
@@ -162,17 +286,20 @@ public class JsonIOCalculator {
         return code
     }
     
-    public static func getNumbers(numbers: String) -> (Int, Int) {
+    public static func getNumbers(numbers: String) -> (Int, Int, Bool) {
         let split = numbers.split(separator:"x")
         
         let width = Int(split[0]) ?? 0
         let height = Int(split[1]) ?? 0
         
+        /// is it swapped
         if width > height {
-            return (height, width)
+            return (height, width, true)
         } else {
-            return (width, height)
+            return (width, height, false)
         }
+        
+        
     }
     
     
@@ -185,11 +312,17 @@ public class JsonIOCalculator {
         let underscore = numberAndAngle.split(separator:"_")
         
         let numbers = underscore[0]
-        let angle = underscore[1]
+        var angle = underscore[1]
         
-        let (width,height) = getNumbers(numbers: String(numbers))
+        let (width,height,swapped) = getNumbers(numbers: String(numbers))
         
         if width == height {
+            if angle == "BottomLeft" {
+                angle = "TopRight"
+            }
+            
+           
+            
             // We have a square
             var code = ""
             code += "        let \(variableName) = ShapeCalculator.toShapes(rectangles:RectangleCalculator.\(angle)Square(\n"
@@ -202,6 +335,13 @@ public class JsonIOCalculator {
             return code
         } else {
             
+            if swapped {
+                if angle == "BottomLeft" {
+                    angle = "TopRight"
+                } else if angle == "TopRight" {
+                    angle = "BottomLeft"
+                }
+            }
             var code = ""
             code += "        let \(variableName) = ShapeCalculator.toShapes(rectangles:RectangleCalculator.\(angle)Rectangle(\n"
             code += "            interlockWidth: \(width - 1),\n"
@@ -223,7 +363,7 @@ public class JsonIOCalculator {
         
         let numbers = name.replacingOccurrences(of: "Donut", with: "")
         
-        let (width,height) = getNumbers(numbers: String(numbers))
+        let (width, height, _) = getNumbers(numbers: String(numbers))
         
         if width == height {
 
@@ -261,7 +401,7 @@ public class JsonIOCalculator {
         
         let underscore = numberAndAngle.split(separator:"_")
         
-        let numbers = underscore[0]
+        //let numbers = underscore[0]
         let angle = underscore[1]
         
         //let (width,height) = getNumbers(numbers: String(numbers))
@@ -296,12 +436,15 @@ public class JsonIOCalculator {
     }
     public static func clusterName(name: String) -> String {
         let numbers = name.replacingOccurrences(of: "Cluster", with: "")
-        return "c\(numbers)"
+        
+        let (width, height, _) = getNumbers(numbers: String(numbers))
+        /// In clusters the biggest one is last
+        return "c\(width)x\(height)"
     }
     public static func donutName(name: String) -> String {
         let numbers = name.replacingOccurrences(of: "Donut", with: "")
         
-        let (width,height) = getNumbers(numbers: String(numbers))
+        let (width, height, _) = getNumbers(numbers: String(numbers))
         
         if width == height {
             return "square\(width)x\(height)"
@@ -317,7 +460,7 @@ public class JsonIOCalculator {
         let numbers = underscore[0]
         let angle = underscore[1]
         
-        let (width,height) = getNumbers(numbers: String(numbers))
+        let (width, height, _) = getNumbers(numbers: String(numbers))
         
         if width == height {
             return "square\(width)x\(height)_\(angle)"
@@ -333,7 +476,7 @@ public class JsonIOCalculator {
         let numbers = underscore[0]
         let angle = underscore[1]
         
-        let (width,height) = getNumbers(numbers: String(numbers))
+        let (width, height, _) = getNumbers(numbers: String(numbers))
 
         return "pacman\(width)x\(height)_\(angle)"
         

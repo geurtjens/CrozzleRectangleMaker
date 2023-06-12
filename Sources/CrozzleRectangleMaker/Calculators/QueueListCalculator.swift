@@ -183,7 +183,7 @@ public class QueueListCalculator {
             heightMax: heightMax,
             wordsMax: wordsMax)
         
-        let pacman3x3_bottomRight = PacmanCalculator.bottomRight(
+        let pacman3x3_bottomRight = PacmanCalculator.BottomRight(
             start: words,
             end: end,
             len: len,
@@ -191,7 +191,7 @@ public class QueueListCalculator {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        let pacman3x3_topLeft = PacmanCalculator.topLeft(
+        let pacman3x3_topLeft = PacmanCalculator.TopLeft(
             start: words,
             end: end,
             len: len,
@@ -199,7 +199,7 @@ public class QueueListCalculator {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        let pacman3x3_topRight = PacmanCalculator.topRight(
+        let pacman3x3_topRight = PacmanCalculator.TopRight(
             start: words,
             end: end,
             len: len,
