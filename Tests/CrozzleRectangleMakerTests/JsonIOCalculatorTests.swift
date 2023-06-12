@@ -9,6 +9,52 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class JsonIOCalculatorTests: XCTestCase {
 
+    func test_GetAllNames() throws {
+        
+        var names:[String] = []
+        let gameList = GameList()
+        for game in gameList.games {
+            let gameId = game.gameId
+            
+            let jsonShapes = JsonIOCalculator.load(gameId: gameId)
+            for shape in jsonShapes {
+                if names.contains(shape.name) == false {
+                    names.append(shape.name)
+                }
+            }
+        }
+        names.sort()
+        print(names)
+    }
+    
+    func test_JsonAll() throws {
+        var codes:[String] = []
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            let gameId = game.gameId
+            
+            let code = JsonIOCalculator.execute(gameId: game.gameId, winningScore: game.winningScore, widthMax: game.maxWidth, heightMax: game.maxHeight)
+            codes.append(code)
+        }
+        var result = ""
+        for code in codes {
+            result += code + "\n\n"
+        }
+        print(result)
+    }
+    
+    
+    func test_8612() throws {
+        let result = JsonIOCalculator.execute(gameId: 8612, winningScore: 698, widthMax: 17, heightMax: 12)
+        print(result)
+    }
+    
+    func test_8702() throws {
+        let result = JsonIOCalculator.execute(gameId: 8702, winningScore: 698, widthMax: 17, heightMax: 12)
+        print(result)
+    }
+    
     func test_JsonLoadingStuff() throws {
         let filename = "/Users/michaelgeurtjens/Downloads/CrozzleDataFromWinningGames/8710.json"
         
@@ -16,7 +62,7 @@ final class JsonIOCalculatorTests: XCTestCase {
 
         do {
             let data = try Data(contentsOf: url)
-            let json = try JSONSerialization.jsonObject(with: data, options: [])
+            //let json = try JSONSerialization.jsonObject(with: data, options: [])
             let decoder = JSONDecoder()
             
                 do {

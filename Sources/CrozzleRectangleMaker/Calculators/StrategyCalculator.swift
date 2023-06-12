@@ -457,7 +457,7 @@ public class StrategyCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
         
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2_RL_DU(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
             start: words,
             end: end,
             len: len,
