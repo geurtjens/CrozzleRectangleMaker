@@ -25,13 +25,14 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_8703_DifferentShape() {
+    func test_Shapes_8703_PacmanVariant4x3() {
         // Cannot do as it has a different shape
 //        let result = StrategyCalculator.Shapes_8703()
 //        XCTAssertNotNil(result)
 //        if let result = result {
 //            XCTAssertEqual(758, result.score)
 //        }
+        XCTFail("Not yet implemented PacmanVariant4x3")
     }
     
     func test_Shapes_8704() {
@@ -98,8 +99,9 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_8805_ShapesWrong() {
+    func test_Shapes_8805_PacmanVariant4x3() {
         // Has shapes I cannot make yet
+        XCTFail("Not yet implemented PacmanVariant4x3")
     }
     
     func test_Shapes_8806() {
@@ -110,11 +112,17 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_8807_ShapesWrong() {
+    func test_Shapes_8807_Outer2x3() {
         // Has shapes I cannot make yet
+        XCTFail("Not yet implemented Outer2x3")
     }
-    func test_Shapes_8808_ShapesWrong() {
-        // Has shapes I cannot make yet  it has an MG word so not sure we can cater for two letter words try later
+    
+    func test_Shapes_8808() {
+        let result = StrategyCalculator.Shapes_8808()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(696, result.score)
+        }
     }
     
     func test_Shapes_8809() {
@@ -189,8 +197,9 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_8907_OuterShape() {
+    func test_Shapes_8907_Outer2x3() {
         /// this is impossible as we do not have the outer shape.
+        XCTFail("Not yet implemented Outer2x3")
     }
     
     func test_Shapes_8908() {
@@ -202,7 +211,7 @@ final class StrategyCalculatorTests: XCTestCase {
     }
     
     /// this should work but it cannot merge with ALoE:oXLIP even though it has plenty of space to do so.
-    func test_Shapes_8909_MergeProblem() {
+    func test_Shapes_8909_MergeError() throws {
         let result = StrategyCalculator.Shapes_8909()
         XCTAssertNotNil(result)
         if let result = result {
@@ -211,8 +220,8 @@ final class StrategyCalculatorTests: XCTestCase {
     }
 
     /// cannot do as it has an outer 2x2
-    func test_Shapes_8910_Outer() {
-        
+    func test_Shapes_8910_Outer2x3() {
+        XCTFail("Not yet implemented Outer2x3")
     }
     
     func test_Shapes_8911() {
@@ -239,8 +248,8 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_9002_Cannot() {
-        
+    func test_Shapes_9002_TwoCrazyShapes() {
+        XCTFail("Not yet implemented TwoCrazyShapes")
     }
     
     func test_Shapes_9003() {
@@ -283,8 +292,8 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_9008_CannotDo() {
-        
+    func test_Shapes_9008_Outer2x3() {
+        XCTFail("Not yet implemented Outer2x3")
     }
     
     func test_Shapes_9009() {
@@ -328,7 +337,7 @@ final class StrategyCalculatorTests: XCTestCase {
     }
 
     func test_Shapes_9102_CannotSolve() {
-        
+        XCTFail("Not yet implemented CannotSolve")
     }
     
     func test_Shapes_9103() {
@@ -379,6 +388,7 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     func test_Shapes_9109_WontWork() {
+        XCTFail("Not yet implemented UniqueShape")
 //        let result = StrategyCalculator.Shapes_9109()
 //        XCTAssertNotNil(result)
 //        if let result = result {
@@ -435,8 +445,8 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_9204_WontWork() {
-        
+    func test_Shapes_9204_Outer3x5() {
+        XCTFail("Not yet implemented Outer3x5")
     }
     
     func test_Shapes_9205() {
@@ -447,7 +457,7 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_9206_MergeDefect() {
+    func test_Shapes_9206_MergeError() {
         let result = StrategyCalculator.Shapes_9206()
         XCTAssertNotNil(result)
         if let result = result {
@@ -471,8 +481,8 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_9209_Outer() {
-        
+    func test_Shapes_9209_Outer3x4() {
+        XCTFail("Not yet implemented Outer3x4")
     }
     
     func test_Shapes_9210() {
@@ -507,7 +517,7 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
 
-    func test_Shapes_9302_MergeProblemSimple() {
+    func test_Shapes_9302_MergeErrorSimpleShapes() {
         let result = StrategyCalculator.Shapes_9302()
         XCTAssertNotNil(result)
         if let result = result {
@@ -595,7 +605,7 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
 
-    func test_Shapes_9401_Merge() {
+    func test_Shapes_9401_MergeError() {
         let result = StrategyCalculator.Shapes_9401()
         XCTAssertNotNil(result)
         if let result = result {
@@ -619,7 +629,7 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_9404_Merge() {
+    func test_Shapes_9404_MergeError() {
         let result = StrategyCalculator.Shapes_9404()
         XCTAssertNotNil(result)
         if let result = result {
@@ -635,8 +645,8 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_9407_Outer() {
-        
+    func test_Shapes_9407_Outer3x4() {
+        XCTFail("Not yet implemented Outer3x3")
     }
     
     
@@ -705,7 +715,7 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_9504_MergeProblem() {
+    func test_Shapes_9504_MergeError() {
         let result = StrategyCalculator.Shapes_9504()
         XCTAssertNotNil(result)
         if let result = result {
@@ -728,12 +738,12 @@ final class StrategyCalculatorTests: XCTestCase {
             XCTAssertEqual(706, result.score)
         }
     }
-    func test_Shapes_9507_Outer() {
-        
+    func test_Shapes_9507_Outer2x3() {
+        XCTFail("Not yet implemented Outer2x3")
     }
     
-    func test_Shapes_9508_Outer() {
-        
+    func test_Shapes_9508_Outer2x3() {
+        XCTFail("Not yet implemented Outer2x3")
     }
     
     func test_Shapes_9509() {
@@ -760,15 +770,15 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_9512_MergeBoundary() {
+    func test_Shapes_9512_MergeErrorBoundary() {
         let result = StrategyCalculator.Shapes_9512()
         XCTAssertNotNil(result)
         if let result = result {
             XCTAssertEqual(764, result.score)
         }
     }
-    func test_Shapes_9601_Outer() {
-        
+    func test_Shapes_9601_Outer2x4() {
+        XCTFail("Not yet implemented Outer2x4")
     }
     func test_Shapes_9602() {
         let result = StrategyCalculator.Shapes_9602()
@@ -786,12 +796,12 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_9604_Outer() {
-        
+    func test_Shapes_9604_Outer2x4() {
+        XCTFail("Not yet implemented Outer2x4")
     }
     
     func test_Shapes_9605_UnknownShape() {
-        
+        XCTFail("Not yet implemented UnknownShape")
     }
   
 }

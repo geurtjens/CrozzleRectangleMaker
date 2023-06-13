@@ -85,7 +85,11 @@ final class JsonIOCalculatorTests: XCTestCase {
 //        print(JsonIOCalculator.execute(gameId: 8806, winningScore: 816, widthMax: 17, heightMax: 12))
 //    }
 //    
-//    func test_8809() throws {
+    func test_8808() throws {
+        print(JsonIOCalculator.execute(gameId: 8808, winningScore: 696, widthMax: 17, heightMax: 12))
+    }
+    
+    //    func test_8809() throws {
 //        print(JsonIOCalculator.execute(gameId: 8809, winningScore: 676, widthMax: 17, heightMax: 12))
 //    }
 //    

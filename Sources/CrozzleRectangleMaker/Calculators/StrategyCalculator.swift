@@ -1119,6 +1119,125 @@ public class StrategyCalculator {
         return result
     }
     
+    
+    public static func Shapes_8808() -> ShapeModel? {
+
+        let widthMax = 17
+        let heightMax = 12
+
+        let gameList = GameList()
+        guard let game = gameList.getGame(gameId: 8808) else {
+            return nil
+        }
+
+        let words = game.winningWords
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+           start: words,
+           end: end,
+           len: len,
+           scoreMin: 68,
+           widthMax: widthMax,
+           heightMax: heightMax))
+
+        let c3x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C3x3(
+           start: words,
+           end: end,
+           len: len,
+           scoreMin: 190,
+           widthMax: widthMax,
+           heightMax: heightMax))
+
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+            words: words,
+            scoreMin: 24,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: len,
+            scoreMin: 88,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+            interlockWidth: 2,
+            interlockHeight: 4,
+            words: words,
+            lengths: len,
+            scoreMin: 74,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+            interlockWidth: 2,
+            words: words,
+            lengths: len,
+            scoreMin: 136,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let square4x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+            interlockWidth: 3,
+            words: words,
+            lengths: len,
+            scoreMin: 122,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let square4x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+            interlockWidth: 3,
+            words: words,
+            lengths: len,
+            scoreMin: 48,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let stutz_lada_astra_renault_tarago_mazda = c3x3.containing(["STUTZ", "LADA", "ASTRA", "RENAULT", "TARAGO", "MAZDA"], from: words)[0]
+        let nomad_stutz_renault_mazda = square3x3.containing(["NOMAD", "STUTZ", "RENAULT", "MAZDA"], from: words)[0]
+        let rolls_nomad_renault_sedan = rectangle3x5.containing(["ROLLS", "NOMAD", "RENAULT", "SEDAN"], from: words)[0]
+        let astra_supra_telstar_saab = c2x2.containing(["ASTRA", "SUPRA", "TELSTAR", "SAAB"], from: words)[0]
+        //let stutz_telstar = edges.containing(["STUTZ", "TELSTAR"], from: words)[0]
+        let colt_telstar = edges.containing(["COLT", "TELSTAR"], from: words)[0]
+        let supra_audi = edges.containing(["SUPRA", "AUDI"], from: words)[0]
+        let colt_rocky = edges.containing(["COLT", "ROCKY"], from: words)[0]
+        let colt_camry_romeo_rocky = rectangle3x4_TopLeft.containing(["COLT", "CAMRY", "ROMEO", "ROCKY"], from: words)[0]
+        let turbo_romeo = edges.containing(["TURBO", "ROMEO"], from: words)[2]
+        let turbo_suzuki_vortex_benz = square4x4_BottomLeft.containing(["TURBO", "SUZUKI", "VORTEX", "BENZ"], from: words)[0]
+        let vw_vortex = edges.containing(["VW", "VORTEX"], from: words)[0]
+        let vw_bmw = edges.containing(["VW", "BMW"], from: words)[0]
+        let mg_bmw = edges.containing(["MG", "BMW"], from: words)[0]
+        let lada_golf_tarago_alfa = square4x4_TopRight.containing(["LADA", "GOLF", "TARAGO", "ALFA"], from: words)[0]
+        //let suzuki_audi = edges.containing(["SUZUKI", "AUDI"], from: words)[0]
+
+        let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: [
+            stutz_lada_astra_renault_tarago_mazda,
+            nomad_stutz_renault_mazda,
+            rolls_nomad_renault_sedan,
+            astra_supra_telstar_saab,
+            //stutz_telstar,
+            colt_telstar,
+            supra_audi,
+            colt_rocky,
+            colt_camry_romeo_rocky,
+            turbo_romeo,
+            turbo_suzuki_vortex_benz,
+            vw_vortex,
+            vw_bmw,
+            mg_bmw,
+            lada_golf_tarago_alfa
+            //suzuki_audi
+        ], words: words, widthMax: widthMax, heightMax: heightMax)
+        return result
+    }
+    
+    
+    
     public static func Shapes_8809() -> ShapeModel? {
 
         let widthMax = 17
@@ -7377,7 +7496,7 @@ public class StrategyCalculator {
         let bulls_risk_loans_sale = rectangle3x5_BottomRight.containing(["BULLS", "RISK", "LOANS", "SALE"], from: words)[0]
         //let equity_sale = edges.containing(["EQUITY", "SALE"], from: words)[0]
         //let automated_yield = edges.containing(["AUTOMATED", "YIELD"], from: words)[0]
-        let house_free = edges.containing(["HOUSE", "FREE"], from: words)[0]
+        //let house_free = edges.containing(["HOUSE", "FREE"], from: words)[0]
 
         let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: [
             automated_interest_sum_transfer_terms_business_assets_futures,
@@ -7396,10 +7515,10 @@ public class StrategyCalculator {
             house_cash,
             title_buyer,
             bulls_risk_buyer_loans,
-            bulls_risk_loans_sale,
+            bulls_risk_loans_sale
             //equity_sale,
             //automated_yield,
-            house_free
+            //house_free
         ], words: words, widthMax: widthMax, heightMax: heightMax)
         return result
     }
