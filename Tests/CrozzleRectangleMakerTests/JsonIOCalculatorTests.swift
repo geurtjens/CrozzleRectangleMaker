@@ -317,9 +317,9 @@ final class JsonIOCalculatorTests: XCTestCase {
 //        print(JsonIOCalculator.execute(gameId: 9403, winningScore: 710, widthMax: 17, heightMax: 15))
 //    }
 //    
-//    func test_9404() {
-//        print(JsonIOCalculator.execute(gameId: 9404, winningScore: 740, widthMax: 17, heightMax: 15))
-//    }
+    func test_9404() {
+        print(JsonIOCalculator.execute(gameId: 9404, winningScore: 740, widthMax: 17, heightMax: 15))
+    }
 //    
 //    func test_9406() {
 //        print(JsonIOCalculator.execute(gameId: 9406, winningScore: 718, widthMax: 17, heightMax: 15))

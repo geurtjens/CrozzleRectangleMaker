@@ -2404,7 +2404,7 @@ public class StrategyCalculator {
         let azalea_pansy_zinnia_lily = rectangle3x4.containing(["AZALEA", "PANSY", "ZINNIA", "LILY"], from: words)[0]
         let azalea_pansy_poppy_zinnia = rectangle3x4_TopLeft.containing(["AZALEA", "PANSY", "POPPY", "ZINNIA"], from: words)[0]
         let may_poppy = edges.containing(["MAY", "POPPY"], from: words)[0]
-        let may_mimosa = edges.containing(["MAY", "MIMOSA"], from: words)[0]
+        let may_mimosa = edges.containing(["MAY", "MIMOSA"], from: words)[1]
         let sage_mimosa = edges.containing(["SAGE", "MIMOSA"], from: words)[0]
         let azalea_aloe = edges.containing(["AZALEA", "ALOE"], from: words)[4]
         let oxlip_aloe = edges.containing(["OXLIP", "ALOE"], from: words)[0]
@@ -2413,7 +2413,7 @@ public class StrategyCalculator {
         let tulip_tansy_lupin_peony = rectangle3x5.containing(["TULIP", "TANSY", "LUPIN", "PEONY"], from: words)[0]
         let cactus_rose_iris_balsam = square3x3_TopLeft.containing(["CACTUS", "ROSE", "IRIS", "BALSAM"], from: words)[0]
         let rose_alyssum_iris_balsam = square3x3.containing(["ROSE", "ALYSSUM", "IRIS", "BALSAM"], from: words)[0]
-        let nerine_aster = edges.containing(["NERINE", "ASTER"], from: words)[0]
+        let nerine_aster = edges.containing(["NERINE", "ASTER"], from: words)[2]
 
         let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: [
             azalea_pansy_zinnia_lily,
@@ -4355,9 +4355,9 @@ public class StrategyCalculator {
         let salt_sharks_molluscs_oyster = rectangle3x4.containing(["SALT", "SHARKS", "MOLLUSCS", "OYSTER"], from: words)[1]
         //let hydrozoa_coast_rocks_protozoa = square3x3.containing(["HYDROZOA", "COAST", "ROCKS", "PROTOZOA"], from: words)[0]
         let shells_mussels = edges.containing(["SHELLS", "MUSSELS"], from: words)[5]
-        let dunes_mussels = edges.containing(["DUNES", "MUSSELS"], from: words)[1]
+        let dunes_mussels = edges.containing(["DUNES", "MUSSELS"], from: words)[2]
         let prawns_dunes_wind_sting = rectangle3x4.containing(["PRAWNS", "DUNES", "WIND", "STING"], from: words)[0]
-        let prawns_protozoa = edges.containing(["PRAWNS", "PROTOZOA"], from: words)[0]
+        //let prawns_protozoa = edges.containing(["PRAWNS", "PROTOZOA"], from: words)[0]
         let marine_molluscs = edges.containing(["MARINE", "MOLLUSCS"], from: words)[0]
         let roses_marine_surf_sand = square3x3.containing(["ROSES", "MARINE", "SURF", "SAND"], from: words)[0]
 
@@ -4371,7 +4371,7 @@ public class StrategyCalculator {
             shells_mussels,
             dunes_mussels,
             prawns_dunes_wind_sting,
-            prawns_protozoa,
+            // prawns_protozoa,
             marine_molluscs,
             roses_marine_surf_sand
         ], words: words, widthMax: widthMax, heightMax: heightMax)
@@ -4841,7 +4841,7 @@ public class StrategyCalculator {
         let clot_eczema_lozenge_anatomy = square3x3.containing(["CLOT", "ECZEMA", "LOZENGE", "ANATOMY"], from: words)[0]
         let galen_anatomy = edges.containing(["GALEN", "ANATOMY"], from: words)[1]
         let eczema_reid = edges.containing(["ECZEMA", "REID"], from: words)[0]
-        let eyes_lozenge = edges.containing(["EYES", "LOZENGE"], from: words)[2]
+        let eyes_lozenge = edges.containing(["EYES", "LOZENGE"], from: words)[3]
         let ail_eczema_anatomy_salve = rectangle3x4_BottomRight.containing(["AIL", "ECZEMA", "ANATOMY", "SALVE"], from: words)[0]
         let salk_salve = edges.containing(["SALK", "SALVE"], from: words)[0]
         let virus_salve = edges.containing(["VIRUS", "SALVE"], from: words)[0]
@@ -5455,17 +5455,17 @@ public class StrategyCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let kunzite_amazonite = edges.containing(["KUNZITE", "AMAZONITE"], from: words)[0]
+        let kunzite_amazonite = edges.containing(["KUNZITE", "AMAZONITE"], from: words)[1]
         let garnet_kunzite_agate_fire = square3x3_BottomRight.containing(["GARNET", "KUNZITE", "AGATE", "FIRE"], from: words)[0]
         let garnet_trinkets = edges.containing(["GARNET", "TRINKETS"], from: words)[0]
         let coin_buckle_locket_trinkets = square3x3.containing(["COIN", "BUCKLE", "LOCKET", "TRINKETS"], from: words)[0]
         let buckle_amethyst_ruby_locket = square3x3.containing(["BUCKLE", "AMETHYST", "RUBY", "LOCKET"], from: words)[0]
         let kunzite_beauty = edges.containing(["KUNZITE", "BEAUTY"], from: words)[0]
-        let rarity_beauty = edges.containing(["RARITY", "BEAUTY"], from: words)[0]
+        let rarity_beauty = edges.containing(["RARITY", "BEAUTY"], from: words)[2]
         let rarity_watch_crown_carat = square3x3.containing(["RARITY", "WATCH", "CROWN", "CARAT"], from: words)[0]
-        let amethyst_amazonite = edges.containing(["AMETHYST", "AMAZONITE"], from: words)[0]
+        //let amethyst_amazonite = edges.containing(["AMETHYST", "AMAZONITE"], from: words)[0]
         let pyrope_beauty = edges.containing(["PYROPE", "BEAUTY"], from: words)[0]
-        let pyrope_onyx = edges.containing(["PYROPE", "ONYX"], from: words)[0]
+        let pyrope_onyx = edges.containing(["PYROPE", "ONYX"], from: words)[1]
         let coral_onyx = edges.containing(["CORAL", "ONYX"], from: words)[0]
 
         let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: [
@@ -5477,7 +5477,7 @@ public class StrategyCalculator {
             kunzite_beauty,
             rarity_beauty,
             rarity_watch_crown_carat,
-            amethyst_amazonite,
+            //amethyst_amazonite,
             pyrope_beauty,
             pyrope_onyx,
             coral_onyx
@@ -5867,12 +5867,13 @@ public class StrategyCalculator {
         let zeugloptera_thrips_termite_zoraptera = rectangle3x6.containing(["ZEUGLOPTERA", "THRIPS", "TERMITE", "ZORAPTERA"], from: words)[0]
         let epizoon_zoraptera = edges.containing(["EPIZOON", "ZORAPTERA"], from: words)[2]
         let tsetse_thrips_zoraptera_mantis = rectangle3x4.containing(["TSETSE", "THRIPS", "ZORAPTERA", "MANTIS"], from: words)[0]
-        let wasp_tsetse_mantis_dipterans = square3x3.containing(["WASP", "TSETSE", "MANTIS", "DIPTERANS"], from: words)[0]
-        let aphis_dipterans = edges.containing(["APHIS", "DIPTERANS"], from: words)[0]
+        let wasp_tsetse_mantis_dipterans = square3x3.containing(["WASP", "TSETSE", "MANTIS", "DIPTERANS"], from: words)[1]
+        let aphis_dipterans = edges.containing(["APHIS", "DIPTERANS"], from: words)[3]
+        let dayfly_lema = edges.containing(["DAYFLY", "LEMA"], from: words)[1]
         let mite_lema = edges.containing(["MITE", "LEMA"], from: words)[0]
-        let dayfly_lema = edges.containing(["DAYFLY", "LEMA"], from: words)[0]
+        
         let borer_buzzardet = edges.containing(["BORER", "BUZZARDET"], from: words)[0]
-        let mite_termite = edges.containing(["MITE", "TERMITE"], from: words)[0]
+        //let mite_termite = edges.containing(["MITE", "TERMITE"], from: words)[0]
 
         let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: [
             zeugloptera_dayfly_buzzardet_botfly,
@@ -5882,10 +5883,11 @@ public class StrategyCalculator {
             tsetse_thrips_zoraptera_mantis,
             wasp_tsetse_mantis_dipterans,
             aphis_dipterans,
-            mite_lema,
             dayfly_lema,
-            borer_buzzardet,
-            mite_termite
+            mite_lema,
+            
+            borer_buzzardet
+            //mite_termite
         ], words: words, widthMax: widthMax, heightMax: heightMax)
         return result
     }
@@ -6438,7 +6440,7 @@ public class StrategyCalculator {
         let test_lotto_netball_skating = rectangle3x4.containing(["TEST", "LOTTO", "NETBALL", "SKATING"], from: words)[0]
         let lotto_rugby_skating_hobby = rectangle3x4.containing(["LOTTO", "RUGBY", "SKATING", "HOBBY"], from: words)[0]
         let squash_skittles = edges.containing(["SQUASH", "SKITTLES"], from: words)[0]
-        let darts_skittles = edges.containing(["DARTS", "SKITTLES"], from: words)[1]
+        let darts_skittles = edges.containing(["DARTS", "SKITTLES"], from: words)[2]
         let skiing_skittles = edges.containing(["SKIING", "SKITTLES"], from: words)[4]
         let judo_croquet = edges.containing(["JUDO", "CROQUET"], from: words)[0]
         let waltzing_golf = edges.containing(["WALTZING", "GOLF"], from: words)[0]
@@ -6448,8 +6450,8 @@ public class StrategyCalculator {
         let play_ball = edges.containing(["PLAY", "BALL"], from: words)[1]
         //let rodeo_diving = edges.containing(["RODEO", "DIVING"], from: words)[0]
         let darts_canasta = edges.containing(["DARTS", "CANASTA"], from: words)[1]
-        let bait_canasta = edges.containing(["BAIT", "CANASTA"], from: words)[0]
-        let bait_hobby = edges.containing(["BAIT", "HOBBY"], from: words)[0]
+        let bait_canasta = edges.containing(["BAIT", "CANASTA"], from: words)[2]
+        //let bait_hobby = edges.containing(["BAIT", "HOBBY"], from: words)[0]
 
         let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: [
             waltzing_squash_bezique_tennis,
@@ -6469,8 +6471,8 @@ public class StrategyCalculator {
             play_ball,
             //rodeo_diving,
             darts_canasta,
-            bait_canasta,
-            bait_hobby
+            bait_canasta
+           // bait_hobby
         ], words: words, widthMax: widthMax, heightMax: heightMax)
         return result
     }
@@ -6704,7 +6706,7 @@ public class StrategyCalculator {
         }
 
         let words = game.winningWords
-       // let end = WordCalculator.reverse(words: words)
+        //let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
@@ -6719,6 +6721,15 @@ public class StrategyCalculator {
             words: words,
             lengths: len,
             scoreMin: 118,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: len,
+            scoreMin: 52,
             widthMax: widthMax,
             heightMax: heightMax))
 
@@ -6749,44 +6760,47 @@ public class StrategyCalculator {
             heightMax: heightMax))
 
         let schizanthus_banks_herbs_zinnia = rectangle3x4.containing(["SCHIZANTHUS", "BANKS", "HERBS", "ZINNIA"], from: words)[0]
+        
+        let banks_hake_zinnia_asters = square3x3.containing(["BANKS", "HAKE", "ZINNIA", "ASTERS"], from: words)[0]
         let schizanthus_thyme_henry_spore = rectangle3x5.containing(["SCHIZANTHUS", "THYME", "HENRY", "SPORE"], from: words)[0]
         let schizanthus_seeds_stamens_herbs = rectangle3x5.containing(["SCHIZANTHUS", "SEEDS", "STAMENS", "HERBS"], from: words)[0]
         let seeds_lotus_forsyth_stamens = square3x3.containing(["SEEDS", "LOTUS", "FORSYTH", "STAMENS"], from: words)[0]
-        let viola_lotus_forsyth_stamens = rectangle3x5.containing(["VIOLA", "LOTUS", "FORSYTH", "STAMENS"], from: words)[0]
-        let banks_hake_zinnia_asters = square3x3.containing(["BANKS", "HAKE", "ZINNIA", "ASTERS"], from: words)[0]
+        let viola_seeds_forsyth_stamens = square3x3.containing(["VIOLA", "SEEDS", "FORSYTH", "STAMENS"], from: words)[0]
+        
         let hake_flores_flowers_asters = rectangle3x5_TopLeft.containing(["HAKE", "FLORES", "FLOWERS", "ASTERS"], from: words)[0]
         let flores_tweedie_flowers_reeves = square3x3.containing(["FLORES", "TWEEDIE", "FLOWERS", "REEVES"], from: words)[0]
         let tweedie_rue_flowers_reeves = square3x3.containing(["TWEEDIE", "RUE", "FLOWERS", "REEVES"], from: words)[0]
-        let thyme_asters = edges.containing(["THYME", "ASTERS"], from: words)[0]
+        let flores_tweedie_reeves_kew = rectangle3x4_BottomLeft.containing(["FLORES", "TWEEDIE", "REEVES", "KEW"], from: words)[0]
+        //let thyme_asters = edges.containing(["THYME", "ASTERS"], from: words)[0]
         let viola_david = edges.containing(["VIOLA", "DAVID"], from: words)[0]
-        let petals_flowers = edges.containing(["PETALS", "FLOWERS"], from: words)[0]
+        let petals_flowers = edges.containing(["PETALS", "FLOWERS"], from: words)[1]
         let petals_fruit = edges.containing(["PETALS", "FRUIT"], from: words)[0]
         let gum_fruit = edges.containing(["GUM", "FRUIT"], from: words)[0]
         let shrubs_reeves = edges.containing(["SHRUBS", "REEVES"], from: words)[0]
-        let shrubs_ferns = edges.containing(["SHRUBS", "FERNS"], from: words)[0]
-        let ward_ferns = edges.containing(["WARD", "FERNS"], from: words)[0]
+        let shrubs_ferns = edges.containing(["SHRUBS", "FERNS"], from: words)[2]
         let ward_kew = edges.containing(["WARD", "KEW"], from: words)[0]
         let robin_asters = edges.containing(["ROBIN", "ASTERS"], from: words)[0]
         let lotus_lupin = edges.containing(["LOTUS", "LUPIN"], from: words)[0]
 
         let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: [
             schizanthus_banks_herbs_zinnia,
+            banks_hake_zinnia_asters,
             schizanthus_thyme_henry_spore,
             schizanthus_seeds_stamens_herbs,
             seeds_lotus_forsyth_stamens,
-            viola_lotus_forsyth_stamens,
-            banks_hake_zinnia_asters,
+            viola_seeds_forsyth_stamens,
+            
             hake_flores_flowers_asters,
             flores_tweedie_flowers_reeves,
             tweedie_rue_flowers_reeves,
-            thyme_asters,
+            flores_tweedie_reeves_kew,
+            //thyme_asters,
             viola_david,
             petals_flowers,
             petals_fruit,
             gum_fruit,
             shrubs_reeves,
             shrubs_ferns,
-            ward_ferns,
             ward_kew,
             robin_asters,
             lotus_lupin
@@ -7366,11 +7380,11 @@ public class StrategyCalculator {
 
         let egypt_glory_yule_myrrh = rectangle3x4_BottomLeft.containing(["EGYPT", "GLORY", "YULE", "MYRRH"], from: words)[0]
         let egypt_night = edges.containing(["EGYPT", "NIGHT"], from: words)[1]
-        let magi_night = edges.containing(["MAGI", "NIGHT"], from: words)[0]
+        let magi_night = edges.containing(["MAGI", "NIGHT"], from: words)[1]
         let egypt_three = edges.containing(["EGYPT", "THREE"], from: words)[1]
         let watch_three = edges.containing(["WATCH", "THREE"], from: words)[0]
         let watch_wish = edges.containing(["WATCH", "WISH"], from: words)[0]
-        let tidings_wish = edges.containing(["TIDINGS", "WISH"], from: words)[0]
+        let tidings_wish = edges.containing(["TIDINGS", "WISH"], from: words)[2]
         let feast_tidings_father_spirit = rectangle3x4.containing(["FEAST", "TIDINGS", "FATHER", "SPIRIT"], from: words)[0]
         let tidings_frost_father_spirit = square4x4.containing(["TIDINGS", "FROST", "FATHER", "SPIRIT"], from: words)[0]
         let frost_saint = edges.containing(["FROST", "SAINT"], from: words)[0]
@@ -7380,8 +7394,8 @@ public class StrategyCalculator {
         let bless_halo_eve_stable_love = c2x3.containing(["BLESS", "HALO", "EVE", "STABLE", "LOVE"], from: words)[0]
         let bless_stall_kiss_star = c2x2.containing(["BLESS", "STALL", "KISS", "STAR"], from: words)[0]
         let stall_prayer_star_holly = square3x3.containing(["STALL", "PRAYER", "STAR", "HOLLY"], from: words)[0]
-        let halo_hay = edges.containing(["HALO", "HAY"], from: words)[0]
-        let inn_spirit = edges.containing(["INN", "SPIRIT"], from: words)[0]
+        //let halo_hay = edges.containing(["HALO", "HAY"], from: words)[0]
+        let inn_spirit = edges.containing(["INN", "SPIRIT"], from: words)[1]
 
         let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: [
             egypt_glory_yule_myrrh,
@@ -7400,7 +7414,7 @@ public class StrategyCalculator {
             bless_halo_eve_stable_love,
             bless_stall_kiss_star,
             stall_prayer_star_holly,
-            halo_hay,
+           // halo_hay,
             inn_spirit
         ], words: words, widthMax: widthMax, heightMax: heightMax)
         return result
@@ -7838,19 +7852,19 @@ public class StrategyCalculator {
         let gorgonzola_swiss_goats_enzymes = rectangle4x5.containing(["GORGONZOLA", "SWISS", "GOATS", "ENZYMES"], from: words)[0]
         let aroma_feta_swiss_goats_raw = c2x3.containing(["AROMA", "FETA", "SWISS", "GOATS", "RAW"], from: words)[0]
         let swiss_savoury = edges.containing(["SWISS", "SAVOURY"], from: words)[2]
-        let dairy_savoury = edges.containing(["DAIRY", "SAVOURY"], from: words)[1]
+        let dairy_savoury = edges.containing(["DAIRY", "SAVOURY"], from: words)[2]
         let churn_savoury = edges.containing(["CHURN", "SAVOURY"], from: words)[0]
         let churn_ketones = edges.containing(["CHURN", "KETONES"], from: words)[0]
-        let aroma_enzymes = edges.containing(["AROMA", "ENZYMES"], from: words)[0]
+        //let aroma_enzymes = edges.containing(["AROMA", "ENZYMES"], from: words)[0]
         let gorgonzola_bar = edges.containing(["GORGONZOLA", "BAR"], from: words)[0]
         let gorgonzola_aged = edges.containing(["GORGONZOLA", "AGED"], from: words)[0]
-        let mature_aged = edges.containing(["MATURE", "AGED"], from: words)[0]
+        let mature_aged = edges.containing(["MATURE", "AGED"], from: words)[1]
         let sapid_mature_skim_industry = square4x4.containing(["SAPID", "MATURE", "SKIM", "INDUSTRY"], from: words)[0]
         let white_gruyere_hard_industry = square3x3.containing(["WHITE", "GRUYERE", "HARD", "INDUSTRY"], from: words)[0]
         let white_gruyere_industry_cream = square3x3_TopRight.containing(["WHITE", "GRUYERE", "INDUSTRY", "CREAM"], from: words)[0]
         let fat_milk_cream_tint = c2x2.containing(["FAT", "MILK", "CREAM", "TINT"], from: words)[0]
         let byre_milk_tint_yak = square3x3_TopLeft.containing(["BYRE", "MILK", "TINT", "YAK"], from: words)[0]
-        let dessert_tint = edges.containing(["DESSERT", "TINT"], from: words)[0]
+        let dessert_tint = edges.containing(["DESSERT", "TINT"], from: words)[1]
         let cows_dessert_acid_ewes = square3x3.containing(["COWS", "DESSERT", "ACID", "EWES"], from: words)[0]
 
         let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: [
@@ -7861,7 +7875,7 @@ public class StrategyCalculator {
             dairy_savoury,
             churn_savoury,
             churn_ketones,
-            aroma_enzymes,
+            //aroma_enzymes,
             gorgonzola_bar,
             gorgonzola_aged,
             mature_aged,
@@ -8522,21 +8536,21 @@ public class StrategyCalculator {
         let spices_thyme_cherry_sesame = rectangle3x6.containing(["SPICES", "THYME", "CHERRY", "SESAME"], from: words)[0]
         let salt_mint_sesame_melons = square3x3.containing(["SALT", "MINT", "SESAME", "MELONS"], from: words)[0]
         let mint_savory_melons_tansy = c2x2.containing(["MINT", "SAVORY", "MELONS", "TANSY"], from: words)[0]
-        let savory_betony = edges.containing(["SAVORY", "BETONY"], from: words)[0]
+        let savory_betony = edges.containing(["SAVORY", "BETONY"], from: words)[1]
         let cranberry_tansy = edges.containing(["CRANBERRY", "TANSY"], from: words)[1]
         let salsify_tansy = edges.containing(["SALSIFY", "TANSY"], from: words)[0]
-        let salsify_costmary = edges.containing(["SALSIFY", "COSTMARY"], from: words)[0]
+        let salsify_costmary = edges.containing(["SALSIFY", "COSTMARY"], from: words)[2]
         let salsify_lemon_rosemary_fennel = square3x3.containing(["SALSIFY", "LEMON", "ROSEMARY", "FENNEL"], from: words)[0]
         let lemon_cicely_lime_rosemary = rectangle3x4.containing(["LEMON", "CICELY", "LIME", "ROSEMARY"], from: words)[0]
         let lemon_rue_rosemary_fennel = square3x3.containing(["LEMON", "RUE", "ROSEMARY", "FENNEL"], from: words)[0]
-        let thyme_mulberry = edges.containing(["THYME", "MULBERRY"], from: words)[0]
+        let thyme_mulberry = edges.containing(["THYME", "MULBERRY"], from: words)[1]
         let cranberry_comfrey_mulberry_curry = square3x3.containing(["CRANBERRY", "COMFREY", "MULBERRY", "CURRY"], from: words)[0]
         let bay_mulberry = edges.containing(["BAY", "MULBERRY"], from: words)[0]
         let cranberry_comfrey_cocoa_balm = square3x3.containing(["CRANBERRY", "COMFREY", "COCOA", "BALM"], from: words)[0]
         let mace_melons = edges.containing(["MACE", "MELONS"], from: words)[0]
-        let savory_rosemary = edges.containing(["SAVORY", "ROSEMARY"], from: words)[0]
-        let port_costmary = edges.containing(["PORT", "COSTMARY"], from: words)[0]
-        let port_betony = edges.containing(["PORT", "BETONY"], from: words)[0]
+        //let savory_rosemary = edges.containing(["SAVORY", "ROSEMARY"], from: words)[0]
+        let port_costmary = edges.containing(["PORT", "COSTMARY"], from: words)[1]
+        //let port_betony = edges.containing(["PORT", "BETONY"], from: words)[1]
 
         let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: [
             spices_thyme_pimento_cherry,
@@ -8555,9 +8569,9 @@ public class StrategyCalculator {
             bay_mulberry,
             cranberry_comfrey_cocoa_balm,
             mace_melons,
-            savory_rosemary,
-            port_costmary,
-            port_betony
+            //savory_rosemary,
+            port_costmary
+            //port_betony
         ], words: words, widthMax: widthMax, heightMax: heightMax)
         return result
     }

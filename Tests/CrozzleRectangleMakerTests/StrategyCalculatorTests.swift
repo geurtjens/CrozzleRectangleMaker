@@ -211,7 +211,7 @@ final class StrategyCalculatorTests: XCTestCase {
     }
     
     /// this should work but it cannot merge with ALoE:oXLIP even though it has plenty of space to do so.
-    func test_Shapes_8909_MergeError() throws {
+    func test_Shapes_8909() throws {
         let result = StrategyCalculator.Shapes_8909()
         XCTAssertNotNil(result)
         if let result = result {
@@ -404,8 +404,7 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_9111_MergeError() {
-        // This should totally work but something stopping and I think its a merge error
+    func test_Shapes_9111() {
         let result = StrategyCalculator.Shapes_9111()
         XCTAssertNotNil(result)
         if let result = result {
@@ -457,7 +456,7 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_9206_MergeError() {
+    func test_Shapes_9206() {
         let result = StrategyCalculator.Shapes_9206()
         XCTAssertNotNil(result)
         if let result = result {
@@ -517,7 +516,7 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
 
-    func test_Shapes_9302_MergeErrorSimpleShapes() {
+    func test_Shapes_9302() {
         let result = StrategyCalculator.Shapes_9302()
         XCTAssertNotNil(result)
         if let result = result {
@@ -549,7 +548,7 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_9306_MergeError() {
+    func test_Shapes_9306() {
         let result = StrategyCalculator.Shapes_9306()
         XCTAssertNotNil(result)
         if let result = result {
@@ -605,7 +604,7 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
 
-    func test_Shapes_9401_MergeError() {
+    func test_Shapes_9401() {
         let result = StrategyCalculator.Shapes_9401()
         XCTAssertNotNil(result)
         if let result = result {
@@ -629,7 +628,7 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_9404_MergeError() {
+    func test_Shapes_9404() {
         let result = StrategyCalculator.Shapes_9404()
         XCTAssertNotNil(result)
         if let result = result {
@@ -682,7 +681,7 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_9412_MergeError() {
+    func test_Shapes_9412() {
         let result = StrategyCalculator.Shapes_9412()
         XCTAssertNotNil(result)
         if let result = result {
@@ -715,7 +714,7 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_9504_MergeError() {
+    func test_Shapes_9504() {
         let result = StrategyCalculator.Shapes_9504()
         XCTAssertNotNil(result)
         if let result = result {
@@ -770,7 +769,7 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_9512_MergeErrorBoundary() {
+    func test_Shapes_9512() {
         let result = StrategyCalculator.Shapes_9512()
         XCTAssertNotNil(result)
         if let result = result {
