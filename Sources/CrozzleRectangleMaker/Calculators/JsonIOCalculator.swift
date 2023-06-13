@@ -77,6 +77,42 @@ public class JsonIOCalculator {
 //        }
 //    }
     
+    public static func getWinningGames() -> String {
+        let gameList = GameList()
+        var result = ""
+        for game in gameList.games {
+            let code = getWinningGame(gameId: game.gameId)
+            result += code
+        }
+        return result
+    }
+    
+    public static func getWinningGameTests() -> String {
+        let gameList = GameList()
+        var result = ""
+        for game in gameList.games {
+            let code = getWinningGameTest(gameId: game.gameId, score: game.winningScore)
+            result += code
+        }
+        return result
+    }
+    
+    public static func getWinningGameTest(gameId: Int, score: Int) -> String {
+        var code = ""
+        code += "    func test_WinningShape_\(gameId)() {\n"
+        code += "        let winningGame = WinningGamesCalculator.WinningShape_\(gameId)()\n"
+        code += "        XCTAssertEqual(\(score), winningGame.score)\n"
+        code += "    }\n\n"
+        return code
+    }
+    public static func getWinningGame(gameId: Int) -> String {
+        var result = ""
+        result += "    public static func WinningShape_\(gameId)() -> ShapeModel {\n"
+        result += "        let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_\(gameId)()\n"
+        result += "        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)\n"
+        result += "    }\n\n"
+        return result
+    }
     public static func getMergeBlock(jsonShapes: [JsonShapeModel]) -> String {
 
         var variableNames:[String] = []

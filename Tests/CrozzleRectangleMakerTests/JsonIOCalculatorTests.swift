@@ -43,6 +43,14 @@ final class JsonIOCalculatorTests: XCTestCase {
         print(result)
     }
     
+    func test_getWinningGamesTests() {
+        let code = JsonIOCalculator.getWinningGameTests()
+        print (code)
+    }
+    func test_getWinningGames() {
+        let code = JsonIOCalculator.getWinningGames()
+        print(code)
+    }
     
 //    func test_8612() throws {
 //        print(JsonIOCalculator.execute(gameId: 8612, winningScore: 694, widthMax: 17, heightMax: 12))
