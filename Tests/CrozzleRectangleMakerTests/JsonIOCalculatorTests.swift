@@ -46,11 +46,19 @@ final class JsonIOCalculatorTests: XCTestCase {
     
     
     func test_8612() throws {
-        print(JsonIOCalculator.execute(gameId: 8612, winningScore: 698, widthMax: 17, heightMax: 12))
+        print(JsonIOCalculator.execute(gameId: 8612, winningScore: 694, widthMax: 17, heightMax: 12))
     }
     
     func test_8702() throws {
-        print(JsonIOCalculator.execute(gameId: 8702, winningScore: 698, widthMax: 17, heightMax: 12))
+        print(JsonIOCalculator.execute(gameId: 8702, winningScore: 726, widthMax: 17, heightMax: 12))
+    }
+    
+    func test_8703() throws {
+        print(JsonIOCalculator.execute(gameId: 8703, winningScore: 758, widthMax: 17, heightMax: 12))
+    }
+    
+    func test_8704() throws {
+        print(JsonIOCalculator.execute(gameId: 8704, winningScore: 704, widthMax: 17, heightMax: 12))
     }
     
     func test_8710() throws {
@@ -292,6 +300,94 @@ final class JsonIOCalculatorTests: XCTestCase {
     }
     func test_9312() {
         print(JsonIOCalculator.execute(gameId: 9312, winningScore: 506, widthMax: 17, heightMax: 12))
+    }
+    
+    func test_9401() {
+        print(JsonIOCalculator.execute(gameId: 9401, winningScore: 656, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9402() {
+        print(JsonIOCalculator.execute(gameId: 9402, winningScore: 636, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9403() {
+        print(JsonIOCalculator.execute(gameId: 9403, winningScore: 710, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9404() {
+        print(JsonIOCalculator.execute(gameId: 9404, winningScore: 740, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9406() {
+        print(JsonIOCalculator.execute(gameId: 9406, winningScore: 718, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9408() {
+        print(JsonIOCalculator.execute(gameId: 9408, winningScore: 828, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9409() {
+        print(JsonIOCalculator.execute(gameId: 9409, winningScore: 766, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9410() {
+        print(JsonIOCalculator.execute(gameId: 9410, winningScore: 688, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9411() {
+        print(JsonIOCalculator.execute(gameId: 9411, winningScore: 696, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9412() {
+        print(JsonIOCalculator.execute(gameId: 9412, winningScore: 874, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9501() {
+        print(JsonIOCalculator.execute(gameId: 9501, winningScore: 800, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9502() {
+        print(JsonIOCalculator.execute(gameId: 9502, winningScore: 654, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9503() {
+        print(JsonIOCalculator.execute(gameId: 9503, winningScore: 746, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9504() {
+        print(JsonIOCalculator.execute(gameId: 9504, winningScore: 824, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9505() {
+        print(JsonIOCalculator.execute(gameId: 9505, winningScore: 748, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9506() {
+        print(JsonIOCalculator.execute(gameId: 9506, winningScore: 706, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9509() {
+        print(JsonIOCalculator.execute(gameId: 9509, winningScore: 762, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9510() {
+        print(JsonIOCalculator.execute(gameId: 9510, winningScore: 706, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9511() {
+        print(JsonIOCalculator.execute(gameId: 9511, winningScore: 772, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9512() {
+        print(JsonIOCalculator.execute(gameId: 9512, winningScore: 764, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9602() {
+        print(JsonIOCalculator.execute(gameId: 9602, winningScore: 844, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9603() {
+        print(JsonIOCalculator.execute(gameId: 9603, winningScore: 680, widthMax: 17, heightMax: 15))
     }
     
     func test_JsonLoadingStuff() throws {

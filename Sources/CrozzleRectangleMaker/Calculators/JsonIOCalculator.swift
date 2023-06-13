@@ -93,7 +93,7 @@ public class JsonIOCalculator {
             }
             code += "            \(variableName)"
         }
-        code = "        let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: [\n" + code + "\n        ], words: words)\n"
+        code = "        let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: [\n" + code + "\n        ], words: words, widthMax: widthMax, heightMax: heightMax)\n"
         
         return code
     }

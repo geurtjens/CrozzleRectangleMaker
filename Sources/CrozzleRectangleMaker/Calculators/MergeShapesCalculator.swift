@@ -7,15 +7,8 @@
 
 import Foundation
 public class MergeShapesCalculator {
-    
-    
-    
-    
-    private static let widthMax = 17
-    private static let heightMax = 12
-    
-    
-    public static func Merge_Sequence_Of_Shapes(shapeAndSelectedPosition: [(ShapeModel,Int)], words:[String]) -> ShapeModel {
+     
+    public static func Merge_Sequence_Of_Shapes(shapeAndSelectedPosition: [(ShapeModel,Int)], words:[String], widthMax: Int, heightMax: Int) -> ShapeModel {
         
         var currentShape = shapeAndSelectedPosition[0].0
         var results: [ShapeModel] = []
@@ -27,12 +20,12 @@ public class MergeShapesCalculator {
                 print(currentShape.ToString(words: words))
                 print("Merging with")
                 print(mergeShape.ToString(words: words))
-                results = Merge_Two_Shapes(smaller: [currentShape], larger: [mergeShape], words: words)
+                results = Merge_Two_Shapes(smaller: [currentShape], larger: [mergeShape], words: words, widthMax: widthMax, heightMax: heightMax)
             } else {
                 
                 print("Merging with")
                 print(mergeShape.ToString(words: words))
-                results = Merge_Two_Shapes(smaller: [mergeShape], larger: [currentShape], words: words)
+                results = Merge_Two_Shapes(smaller: [mergeShape], larger: [currentShape], words: words, widthMax: widthMax, heightMax: heightMax)
                 
             }
             
@@ -48,7 +41,7 @@ public class MergeShapesCalculator {
         return currentShape
     }
     
-    public static func Merge_Sequence_Of_Shapes(shapes: [ShapeModel], words:[String]) -> ShapeModel {
+    public static func Merge_Sequence_Of_Shapes(shapes: [ShapeModel], words:[String], widthMax: Int, heightMax: Int) -> ShapeModel {
         
         var currentShape = shapes[0]
         print(currentShape.ToString(words: words))
@@ -60,12 +53,12 @@ public class MergeShapesCalculator {
                 
                 print("Merging with")
                 print(mergeShape.ToString(words: words))
-                results = Merge_Two_Shapes(smaller: [currentShape], larger: [mergeShape], words: words)
+                results = Merge_Two_Shapes(smaller: [currentShape], larger: [mergeShape], words: words, widthMax: widthMax, heightMax: heightMax)
             } else {
                 
                 print("Merging with")
                 print(mergeShape.ToString(words: words))
-                results = Merge_Two_Shapes(smaller: [mergeShape], larger: [currentShape], words: words)
+                results = Merge_Two_Shapes(smaller: [mergeShape], larger: [currentShape], words: words, widthMax: widthMax, heightMax: heightMax)
                 
             }
             
@@ -79,7 +72,7 @@ public class MergeShapesCalculator {
         return currentShape
     }
     
-    public static func Merge_Two_Shapes(smaller: [ShapeModel], larger: [ShapeModel], words:[String]) -> [ShapeModel] {
+    public static func Merge_Two_Shapes(smaller: [ShapeModel], larger: [ShapeModel], words:[String], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         
         var smaller_gpu = GpuShapeModel(shapes:smaller, totalWords: words.count)
         

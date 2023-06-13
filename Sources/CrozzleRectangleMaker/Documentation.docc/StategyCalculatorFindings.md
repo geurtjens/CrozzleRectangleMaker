@@ -239,6 +239,28 @@ to
 let quiet_wet = edges.containing(["QUIET", "WET"], from: words)[1]
 ```
 
+Look at ems, again bad from 9408 error but it allowed it. "PLATES,EMS" was wrong
+
+`
+ . .  . . . 
+ . .PAPERS.F I 
+.PICA.A .CROWN.
+ R  G.PAIR.R K 
+ O.DEMY. I.M . 
+ O ...R .PRESS.
+ F T.QUARTO. E 
+.STYLUS.E.L  W 
+ . P I.BALLOON.
+ .MOULD.M.E  . 
+ C G L F.PRINT.
+ O R .ROLLS. E 
+ S A   N A.BOX.
+.TYPES.TITLE.T 
+ E H   ..EMS.. 
+.ROYAL.  S     
+ . .     .     
+`
+
 ## Topics
 
 ### <!--@START_MENU_TOKEN@-->Group<!--@END_MENU_TOKEN@-->

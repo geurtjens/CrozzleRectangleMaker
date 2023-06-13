@@ -9,15 +9,39 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class StrategyCalculatorTests: XCTestCase {
 
-    func test_Shapes8612() throws {
-        StrategyCalculator.Shapes_8612()
+    func test_Shapes_8612() {
+        let result = StrategyCalculator.Shapes_8612()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(694, result.score)
+        }
     }
-    func test_Shapes_8612New() throws {
-        StrategyCalculator.Shapes_8612New()
+    
+    func test_Shapes_8702() {
+        let result = StrategyCalculator.Shapes_8702()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(726, result.score) // The score in game is 736 but it has the single word RIG which is invalid so we deduct that
+        }
     }
-    func test_Shapes8702() throws {
-        StrategyCalculator.Shapes_8702()
+    
+    func test_Shapes_8703_DifferentShape() {
+        // Cannot do as it has a different shape
+//        let result = StrategyCalculator.Shapes_8703()
+//        XCTAssertNotNil(result)
+//        if let result = result {
+//            XCTAssertEqual(758, result.score)
+//        }
     }
+    
+    func test_Shapes_8704() {
+        let result = StrategyCalculator.Shapes_8704()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(704, result.score)
+        }
+    }
+    
     func test_Shapes_8705() {
         let result = StrategyCalculator.Shapes_8705()
         XCTAssertNotNil(result)
@@ -25,7 +49,6 @@ final class StrategyCalculatorTests: XCTestCase {
             XCTAssertEqual(610, result.score)
         }
     }
-    
     
     func test_Shapes_8710() {
         let result = StrategyCalculator.Shapes_8710()
@@ -42,7 +65,6 @@ final class StrategyCalculatorTests: XCTestCase {
             XCTAssertEqual(810, result.score)
         }
     }
-    
     
     func test_Shapes_8712() {
         let result = StrategyCalculator.Shapes_8712()
@@ -76,7 +98,7 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_8805() {
+    func test_Shapes_8805_ShapesWrong() {
         // Has shapes I cannot make yet
     }
     
@@ -88,10 +110,10 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_8807() {
+    func test_Shapes_8807_ShapesWrong() {
         // Has shapes I cannot make yet
     }
-    func test_Shapes_8808() {
+    func test_Shapes_8808_ShapesWrong() {
         // Has shapes I cannot make yet  it has an MG word so not sure we can cater for two letter words try later
     }
     
@@ -158,7 +180,7 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    func test_Shapes_8906() {
+    func test_Shapes_8906_ShapeDeadlock() {
         /// cannot solve this as you have a shape deadlock around aRC:aRIES
         let result = StrategyCalculator.Shapes_8906()
         XCTAssertNotNil(result)
@@ -167,10 +189,7 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    
-    
-    
-    func test_Shapes_8907() {
+    func test_Shapes_8907_OuterShape() {
         /// this is impossible as we do not have the outer shape.
     }
     
@@ -183,7 +202,7 @@ final class StrategyCalculatorTests: XCTestCase {
     }
     
     /// this should work but it cannot merge with ALoE:oXLIP even though it has plenty of space to do so.
-    func test_Shapes_8909() {
+    func test_Shapes_8909_MergeProblem() {
         let result = StrategyCalculator.Shapes_8909()
         XCTAssertNotNil(result)
         if let result = result {
@@ -192,10 +211,9 @@ final class StrategyCalculatorTests: XCTestCase {
     }
 
     /// cannot do as it has an outer 2x2
-    func test_Shapes_8910() {
+    func test_Shapes_8910_Outer() {
         
     }
-    
     
     func test_Shapes_8911() {
         let result = StrategyCalculator.Shapes_8911()
@@ -421,7 +439,6 @@ final class StrategyCalculatorTests: XCTestCase {
         
     }
     
-    
     func test_Shapes_9205() {
         let result = StrategyCalculator.Shapes_9205()
         XCTAssertNotNil(result)
@@ -445,7 +462,6 @@ final class StrategyCalculatorTests: XCTestCase {
             XCTAssertEqual(518, result.score)
         }
     }
-    
     
     func test_Shapes_9208() {
         let result = StrategyCalculator.Shapes_9208()
@@ -483,8 +499,6 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    
-    
     func test_Shapes_9301() {
         let result = StrategyCalculator.Shapes_9301()
         XCTAssertNotNil(result)
@@ -509,7 +523,6 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    
     func test_Shapes_9304() {
         let result = StrategyCalculator.Shapes_9304()
         XCTAssertNotNil(result)
@@ -526,7 +539,6 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
     
-    
     func test_Shapes_9306_MergeError() {
         let result = StrategyCalculator.Shapes_9306()
         XCTAssertNotNil(result)
@@ -534,7 +546,6 @@ final class StrategyCalculatorTests: XCTestCase {
             XCTAssertEqual(554, result.score)
         }
     }
-    
     
     func test_Shapes_9307() {
         let result = StrategyCalculator.Shapes_9307()
@@ -584,16 +595,203 @@ final class StrategyCalculatorTests: XCTestCase {
         }
     }
 
+    func test_Shapes_9401_Merge() {
+        let result = StrategyCalculator.Shapes_9401()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(656, result.score)
+        }
+    }
     
+    func test_Shapes_9402() {
+        let result = StrategyCalculator.Shapes_9402()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(636, result.score)
+        }
+    }
     
-    func test_Shapes_8702New() throws {
-        StrategyCalculator.Shapes_8702New()
+    func test_Shapes_9403() {
+        let result = StrategyCalculator.Shapes_9403()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(710, result.score)
+        }
+    }
+    
+    func test_Shapes_9404_Merge() {
+        let result = StrategyCalculator.Shapes_9404()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(740, result.score)
+        }
+    }
+    
+    func test_Shapes_9406() {
+        let result = StrategyCalculator.Shapes_9406()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(718, result.score)
+        }
+    }
+    
+    func test_Shapes_9407_Outer() {
+        
     }
     
     
-    
-    
-    func test_Shapes_8704New() throws {
-        StrategyCalculator.Shapes_8704New()
+    func test_Shapes_9408() {
+        let result = StrategyCalculator.Shapes_9408()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(828, result.score)
+        }
     }
+    
+    func test_Shapes_9409() {
+        let result = StrategyCalculator.Shapes_9409()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(766, result.score)
+        }
+    }
+    
+    func test_Shapes_9410() {
+        let result = StrategyCalculator.Shapes_9410()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(688, result.score)
+        }
+    }
+    
+    func test_Shapes_9411() {
+        let result = StrategyCalculator.Shapes_9411()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(696, result.score)
+        }
+    }
+    
+    func test_Shapes_9412_MergeError() {
+        let result = StrategyCalculator.Shapes_9412()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(874, result.score)
+        }
+    }
+    
+    
+    func test_Shapes_9501() {
+        let result = StrategyCalculator.Shapes_9501()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(800, result.score)
+        }
+    }
+    
+    func test_Shapes_9502() {
+        let result = StrategyCalculator.Shapes_9502()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(654, result.score)
+        }
+    }
+    
+    func test_Shapes_9503() {
+        let result = StrategyCalculator.Shapes_9503()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(746, result.score)
+        }
+    }
+    
+    func test_Shapes_9504_MergeProblem() {
+        let result = StrategyCalculator.Shapes_9504()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(824, result.score)
+        }
+    }
+    
+    func test_Shapes_9505() {
+        let result = StrategyCalculator.Shapes_9505()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(748, result.score)
+        }
+    }
+    
+    func test_Shapes_9506() {
+        let result = StrategyCalculator.Shapes_9506()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(706, result.score)
+        }
+    }
+    func test_Shapes_9507_Outer() {
+        
+    }
+    
+    func test_Shapes_9508_Outer() {
+        
+    }
+    
+    func test_Shapes_9509() {
+        let result = StrategyCalculator.Shapes_9509()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(762, result.score)
+        }
+    }
+    
+    func test_Shapes_9510() {
+        let result = StrategyCalculator.Shapes_9510()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(706, result.score)
+        }
+    }
+    
+    func test_Shapes_9511() {
+        let result = StrategyCalculator.Shapes_9511()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(772, result.score)
+        }
+    }
+    
+    func test_Shapes_9512_MergeBoundary() {
+        let result = StrategyCalculator.Shapes_9512()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(764, result.score)
+        }
+    }
+    func test_Shapes_9601_Outer() {
+        
+    }
+    func test_Shapes_9602() {
+        let result = StrategyCalculator.Shapes_9602()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(844, result.score)
+        }
+    }
+    
+    func test_Shapes_9603() {
+        let result = StrategyCalculator.Shapes_9603()
+        XCTAssertNotNil(result)
+        if let result = result {
+            XCTAssertEqual(680, result.score)
+        }
+    }
+    
+    func test_Shapes_9604_Outer() {
+        
+    }
+    
+    func test_Shapes_9605_UnknownShape() {
+        
+    }
+  
 }
