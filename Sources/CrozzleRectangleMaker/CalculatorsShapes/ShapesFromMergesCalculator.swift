@@ -117,32 +117,32 @@ public class ShapesFromMergesCalculator {
         
         // Next we get all the opens
         
-        let squareBottomRight2x2 = RectangleCalculator.BottomRightSquare(
-            interlockWidth: 2,
-            words: words,
-            lengths: len,
-            scoreMin: scoreMin,
-            widthMax: widthMax, heightMax: heightMax)
+//        let squareBottomRight2x2 = RectangleCalculator.BottomRightSquare(
+//            interlockWidth: 2,
+//            words: words,
+//            lengths: len,
+//            scoreMin: scoreMin,
+//            widthMax: widthMax, heightMax: heightMax)
+//        
+//        let squareTopLeft2x2 = RectangleCalculator.TopLeftSquare(
+//            interlockWidth: 2,
+//            words: words,
+//            lengths: len,
+//            scoreMin: scoreMin,
+//            widthMax: widthMax, heightMax: heightMax)
+//        
+//        let squareTopRight2x2 = RectangleCalculator.TopRightSquare(
+//            interlockWidth: 2,
+//            words: words,
+//            lengths: len,
+//            scoreMin: scoreMin,
+//            widthMax: widthMax, heightMax: heightMax)
         
-        let squareTopLeft2x2 = RectangleCalculator.TopLeftSquare(
-            interlockWidth: 2,
-            words: words,
-            lengths: len,
-            scoreMin: scoreMin,
-            widthMax: widthMax, heightMax: heightMax)
+       // let squareOpen2x2 = squareBottomRight2x2 + squareTopLeft2x2 + squareTopRight2x2
         
-        let squareTopRight2x2 = RectangleCalculator.TopRightSquare(
-            interlockWidth: 2,
-            words: words,
-            lengths: len,
-            scoreMin: scoreMin,
-            widthMax: widthMax, heightMax: heightMax)
+        //let shapesOpen2x2 = ShapeCalculator.toShapes(rectangles: squareOpen2x2)
         
-        let squareOpen2x2 = squareBottomRight2x2 + squareTopLeft2x2 + squareTopRight2x2
-        
-        let shapesOpen2x2 = ShapeCalculator.toShapes(rectangles: squareOpen2x2)
-        
-        let gpuOpen2x2 = GpuShapeModel(shapes: shapesOpen2x2, totalWords: words.count, stride: 4)
+       // let gpuOpen2x2 = GpuShapeModel(shapes: shapesOpen2x2, totalWords: words.count, stride: 4)
         
         var merged = ExecuteMergeWithSpecificNumberOfCommonWordsCalculator.ExecuteTwoShapes(
             matchingWordCount: 3,
