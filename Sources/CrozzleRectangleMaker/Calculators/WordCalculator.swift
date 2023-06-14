@@ -65,4 +65,11 @@ public class WordCalculator {
         }
         return result;
     }
+    public static func lengths8(words: [String]) -> [UInt8] {
+        var result: [UInt8] = []
+        for word in words {
+            result.append(UInt8(word.count))
+        }
+        return result;
+    }
 }
