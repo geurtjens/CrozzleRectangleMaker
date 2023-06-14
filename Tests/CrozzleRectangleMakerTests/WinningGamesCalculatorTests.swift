@@ -76,10 +76,9 @@ final class WinningGamesCalculatorTests: XCTestCase {
         XCTAssertEqual(816, winningGame.score)
     }
 
-    func test_WinningShape_8807_Open2x3() {
-        XCTFail("Outer2x3 not implemented")
-//        let winningGame = WinningGamesCalculator.WinningShape_8807()
-//        XCTAssertEqual(764, winningGame.score)
+    func test_WinningShape_8807() {
+        let winningGame = WinningGamesCalculator.WinningShape_8807()
+        XCTAssertEqual(764, winningGame.score)
     }
 
     func test_WinningShape_8808() {
@@ -132,10 +131,9 @@ final class WinningGamesCalculatorTests: XCTestCase {
         XCTAssertEqual(760, winningGame.score)
     }
 
-    func test_WinningShape_8907_Outer2x3() {
-        XCTFail("Outer2x3 not implemented")
-//        let winningGame = WinningGamesCalculator.WinningShape_8907()
-//        XCTAssertEqual(818, winningGame.score)
+    func test_WinningShape_8907() {
+        let winningGame = WinningGamesCalculator.WinningShape_8907()
+        XCTAssertEqual(818, winningGame.score)
     }
 
     func test_WinningShape_8908() {
@@ -148,10 +146,9 @@ final class WinningGamesCalculatorTests: XCTestCase {
         XCTAssertEqual(616, winningGame.score)
     }
 
-    func test_WinningShape_8910_Outer2x3() {
-        XCTFail("Outer2x3 not implemented")
-//        let winningGame = WinningGamesCalculator.WinningShape_8910()
-//        XCTAssertEqual(576, winningGame.score)
+    func test_WinningShape_8910() {
+        let winningGame = WinningGamesCalculator.WinningShape_8910()
+        XCTAssertEqual(576, winningGame.score)
     }
 
     func test_WinningShape_8911() {
@@ -200,10 +197,9 @@ final class WinningGamesCalculatorTests: XCTestCase {
         XCTAssertEqual(626, winningGame.score)
     }
 
-    func test_WinningShape_9008_Outer2x3() {
-        XCTFail("Outer2x3 not implemented ")
-//        let winningGame = WinningGamesCalculator.WinningShape_9008()
-//        XCTAssertEqual(592, winningGame.score)
+    func test_WinningShape_9008() {
+        let winningGame = WinningGamesCalculator.WinningShape_9008()
+        XCTAssertEqual(592, winningGame.score)
     }
 
     func test_WinningShape_9009() {
@@ -232,8 +228,8 @@ final class WinningGamesCalculatorTests: XCTestCase {
 //        XCTAssertEqual(734, winningGame.score)
     }
 
-    func test_WinningShape_9102_Outer() {
-        XCTFail("Outer not implemented")
+    func test_WinningShape_9102_Hill() {
+        XCTFail("Hill not implemented")
 //        let winningGame = WinningGamesCalculator.WinningShape_9102()
 //        XCTAssertEqual(712, winningGame.score)
     }
@@ -497,16 +493,14 @@ final class WinningGamesCalculatorTests: XCTestCase {
         XCTAssertEqual(706, winningGame.score)
     }
 
-    func test_WinningShape_9507_Outer2x3() {
-        XCTFail("Outer2x3 not implemented")
-//        let winningGame = WinningGamesCalculator.WinningShape_9507()
-//        XCTAssertEqual(802, winningGame.score)
+    func test_WinningShape_9507() {
+        let winningGame = WinningGamesCalculator.WinningShape_9507()
+        XCTAssertEqual(802, winningGame.score)
     }
 
-    func test_WinningShape_9508_Outer2x3() {
-        XCTFail("Outer2x3 not implemented")
-//        let winningGame = WinningGamesCalculator.WinningShape_9508()
-//        XCTAssertEqual(778, winningGame.score)
+    func test_WinningShape_9508() {
+        let winningGame = WinningGamesCalculator.WinningShape_9508()
+        XCTAssertEqual(778, winningGame.score)
     }
 
     func test_WinningShape_9509() {
@@ -529,10 +523,9 @@ final class WinningGamesCalculatorTests: XCTestCase {
         XCTAssertEqual(764, winningGame.score)
     }
 
-    func test_WinningShape_9601_Outer2x4() {
-        XCTFail("Outer2x4 not implemented")
-//        let winningGame = WinningGamesCalculator.WinningShape_9601()
-//        XCTAssertEqual(800, winningGame.score)
+    func test_WinningShape_9601() {
+        let winningGame = WinningGamesCalculator.WinningShape_9601()
+        XCTAssertEqual(830, winningGame.score)
     }
 
     func test_WinningShape_9602() {
@@ -545,10 +538,9 @@ final class WinningGamesCalculatorTests: XCTestCase {
         XCTAssertEqual(680, winningGame.score)
     }
 
-    func test_WinningShape_9604_Outer2x4() {
-        XCTFail("Outer2x4 not implemented")
-//        let winningGame = WinningGamesCalculator.WinningShape_9604()
-//        XCTAssertEqual(720, winningGame.score)
+    func test_WinningShape_9604() {
+        let winningGame = WinningGamesCalculator.WinningShape_9604()
+        XCTAssertEqual(720, winningGame.score)
     }
 
     func test_WinningShape_9605_UnknownShape() {

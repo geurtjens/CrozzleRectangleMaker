@@ -137,6 +137,38 @@ final class OuterCalculatorTests: XCTestCase {
         print(text)
     }
     
+    func test_C2x4_9601() {
+        let words = ["FERRY", "GALLEY", "SCOW", "SLAVER", "ARGOSY", "YAWL"]
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+        let result = OuterCalculator.C2x4_LRLR_OM(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
+        XCTAssertEqual(1, result.count)
+        XCTAssertEqual(11, result[0].width)
+        XCTAssertEqual(8, result[0].height)
+        XCTAssertEqual(124, result[0].score)
+        
+        let text = result[0].ToText(words: words)
+        let expectedText = "    .      \n    A.     \n.FERRY.    \n   .GALLEY.\n .SCOW.    \n    SL     \n    Y.     \n    .      "
+        XCTAssertEqual(expectedText, text)
+        print(text)
+    }
+    
+    func test_C2x4_9601_2x4() {
+        let words = ["FERRY", "GALLEY", "SCOW", "SLAVER", "ARGOSY", "YAWL"]
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+        let result = OuterCalculator.C2x4(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
+        XCTAssertEqual(1, result.count)
+        XCTAssertEqual(11, result[0].width)
+        XCTAssertEqual(8, result[0].height)
+        XCTAssertEqual(150, result[0].score)
+        
+        let text = result[0].ToText(words: words)
+        let expectedText = "    .      \n    A.     \n.FERRY.    \n   .GALLEY.\n .SCOW.    \n   .SLAVER.\n    Y.     \n    .      "
+        XCTAssertEqual(expectedText, text)
+        print(text)
+    }
+    
     func test_C2x4_RLRL_MO_9604() {
         let words = ["PLAN","PAGODA","WALL","GALLERY","ALETTE","MEZZANINE"]
         let end = WordCalculator.reverse(words: words)

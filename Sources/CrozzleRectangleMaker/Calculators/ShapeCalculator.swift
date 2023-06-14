@@ -204,6 +204,16 @@ public class ShapeCalculator {
         return shapes
     }
     
+    /// convert the outers to shapes
+    public static func toShapes(outers: [OuterModel]) -> [ShapeModel] {
+        var shapes:[ShapeModel] = []
+        for outer in outers {
+            let shape = outer.ToShape()
+            shapes.append(shape)
+        }
+        return shapes
+    }
+    
     /// first we convert the edges to shapes and then we sort them
     public static func toShapesSorted(edges: [EdgeModel]) -> [ShapeModel] {
         var shapes = toShapes(edges: edges)

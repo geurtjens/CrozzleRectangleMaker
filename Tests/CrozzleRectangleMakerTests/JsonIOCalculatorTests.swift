@@ -67,7 +67,10 @@ final class JsonIOCalculatorTests: XCTestCase {
 //    func test_8704() throws {
 //        print(JsonIOCalculator.execute(gameId: 8704, winningScore: 704, widthMax: 17, heightMax: 12))
 //    }
-//    
+//
+    func test_8807() throws {
+        print(JsonIOCalculator.execute(gameId: 8807, winningScore: 764, widthMax: 17, heightMax: 12))
+    }
 //    func test_8710() throws {
 //        print(JsonIOCalculator.execute(gameId: 8710, winningScore: 764, widthMax: 17, heightMax: 12))
 //    }
@@ -97,7 +100,7 @@ final class JsonIOCalculatorTests: XCTestCase {
         print(JsonIOCalculator.execute(gameId: 8808, winningScore: 696, widthMax: 17, heightMax: 12))
     }
     
-    //    func test_8809() throws {
+//    func test_8809() throws {
 //        print(JsonIOCalculator.execute(gameId: 8809, winningScore: 676, widthMax: 17, heightMax: 12))
 //    }
 //    
@@ -132,7 +135,10 @@ final class JsonIOCalculatorTests: XCTestCase {
 //    func test_8906() throws {
 //        print(JsonIOCalculator.execute(gameId: 8906, winningScore: 760, widthMax: 17, heightMax: 12))
 //    }
-//    
+//
+        func test_8907() {
+            print(JsonIOCalculator.execute(gameId: 8907, winningScore: 818, widthMax: 17, heightMax: 12))
+        }
 //    func test_8908() {
 //        print(JsonIOCalculator.execute(gameId: 8908, winningScore: 634, widthMax: 17, heightMax: 12))
 //    }
@@ -140,7 +146,10 @@ final class JsonIOCalculatorTests: XCTestCase {
 //    func test_8909() {
 //        print(JsonIOCalculator.execute(gameId: 8909, winningScore: 616, widthMax: 17, heightMax: 12))
 //    }
-//    
+//
+    func test_8910() {
+            print(JsonIOCalculator.execute(gameId: 8910, winningScore: 818, widthMax: 17, heightMax: 12))
+        }
 //    func test_8911() {
 //        print(JsonIOCalculator.execute(gameId: 8911, winningScore: 692, widthMax: 17, heightMax: 12))
 //    }
@@ -172,7 +181,11 @@ final class JsonIOCalculatorTests: XCTestCase {
 //    func test_9007() {
 //        print(JsonIOCalculator.execute(gameId: 9007, winningScore: 626, widthMax: 17, heightMax: 12))
 //    }
-//    
+        func test_9008() {
+            print(JsonIOCalculator.execute(gameId: 9008, winningScore: 592, widthMax: 17, heightMax: 12))
+        }
+    
+    //
 //    func test_9009() {
 //        print(JsonIOCalculator.execute(gameId: 9009, winningScore: 736, widthMax: 17, heightMax: 12))
 //    }
@@ -376,7 +389,14 @@ final class JsonIOCalculatorTests: XCTestCase {
 //    func test_9506() {
 //        print(JsonIOCalculator.execute(gameId: 9506, winningScore: 706, widthMax: 17, heightMax: 15))
 //    }
-//    
+    func test_9507() {
+        print(JsonIOCalculator.execute(gameId: 9507, winningScore: 802, widthMax: 17, heightMax: 15))
+    }
+    
+    func test_9508() {
+        print(JsonIOCalculator.execute(gameId: 9508, winningScore: 778, widthMax: 17, heightMax: 15))
+    }
+    //
 //    func test_9509() {
 //        print(JsonIOCalculator.execute(gameId: 9509, winningScore: 762, widthMax: 17, heightMax: 15))
 //    }
@@ -396,10 +416,19 @@ final class JsonIOCalculatorTests: XCTestCase {
 //    func test_9602() {
 //        print(JsonIOCalculator.execute(gameId: 9602, winningScore: 844, widthMax: 17, heightMax: 15))
 //    }
-//    
+    func test_9601() {
+        print(JsonIOCalculator.execute(gameId: 9601, winningScore: 800, widthMax: 17, heightMax: 15))
+    }
+    
+    
+    //
 //    func test_9603() {
 //        print(JsonIOCalculator.execute(gameId: 9603, winningScore: 680, widthMax: 17, heightMax: 15))
 //    }
+    
+    func test_9604() {
+        print(JsonIOCalculator.execute(gameId: 9604, winningScore: 720, widthMax: 17, heightMax: 15))
+    }
     
     func test_JsonLoadingStuff() throws {
         let filename = "/Users/michaelgeurtjens/Downloads/CrozzleDataFromWinningGames/8710.json"

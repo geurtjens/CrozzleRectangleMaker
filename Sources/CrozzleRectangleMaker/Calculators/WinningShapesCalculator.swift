@@ -1056,6 +1056,87 @@ public class WinningShapesCalculator {
     }
     
     
+    public static func Shapes_8807() -> ([ShapeModel], [String], Int, Int) {
+
+        let game = GameList().getGame(gameId: 8807)!
+
+        let widthMax = game.maxWidth
+        let heightMax = game.maxHeight
+
+        let words = game.winningWords
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+            words: words,
+            scoreMin: 22,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
+           start: words,
+           end: end,
+           len: len,
+           scoreMin: 90,
+           widthMax: widthMax,
+           heightMax: heightMax))
+
+        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+            interlockWidth: 2,
+            interlockHeight: 4,
+            words: words,
+            lengths: len,
+            scoreMin: 96,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+            interlockWidth: 2,
+            words: words,
+            lengths: len,
+            scoreMin: 104,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let zsa_caine_liza_sidney_alan = outer2x3.containing(["ZSA", "CAINE", "LIZA", "SIDNEY", "ALAN"], from: words)[0]
+        let alda_zsa_liza_alan = square3x3.containing(["ALDA", "ZSA", "LIZA", "ALAN"], from: words)[0]
+        let dunaway_taylor_sidney_woody = square3x3.containing(["DUNAWAY", "TAYLOR", "SIDNEY", "WOODY"], from: words)[0]
+        let faye_woody = edges.containing(["FAYE", "WOODY"], from: words)[0]
+        let dunaway_tony = edges.containing(["DUNAWAY", "TONY"], from: words)[1]
+        let taylor_tom = edges.containing(["TAYLOR", "TOM"], from: words)[0]
+        let steve_tony = edges.containing(["STEVE", "TONY"], from: words)[0]
+        let omar_steve_al_novak_mel = outer2x3.containing(["OMAR", "STEVE", "AL", "NOVAK", "MEL"], from: words)[0]
+        let john_novak = edges.containing(["JOHN", "NOVAK"], from: words)[0]
+        let omar_rod = edges.containing(["OMAR", "ROD"], from: words)[1]
+        let dean_rod = edges.containing(["DEAN", "ROD"], from: words)[0]
+        let dean_murphy_dustin_finney = rectangle3x5_TopLeft.containing(["DEAN", "MURPHY", "DUSTIN", "FINNEY"], from: words)[0]
+        let burt_ryan_judy_dustin = square3x3.containing(["BURT", "RYAN", "JUDY", "DUSTIN"], from: words)[0]
+        let murphy_peter = edges.containing(["MURPHY", "PETER"], from: words)[1]
+        let tab_peter = edges.containing(["TAB", "PETER"], from: words)[0]
+        let tab_bow = edges.containing(["TAB", "BOW"], from: words)[0]
+
+        let winningShapes = [
+            zsa_caine_liza_sidney_alan,
+            alda_zsa_liza_alan,
+            dunaway_taylor_sidney_woody,
+            faye_woody,
+            dunaway_tony,
+            taylor_tom,
+            steve_tony,
+            omar_steve_al_novak_mel,
+            john_novak,
+            omar_rod,
+            dean_rod,
+            dean_murphy_dustin_finney,
+            burt_ryan_judy_dustin,
+            murphy_peter,
+            tab_peter,
+            tab_bow
+        ]
+        return (winningShapes, words, widthMax, heightMax)
+    }
+    
+    
     public static func Shapes_8808() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8808)!
@@ -2123,6 +2204,117 @@ public class WinningShapesCalculator {
     }
    
     
+    public static func Shapes_8907() -> ([ShapeModel], [String], Int, Int) {
+
+        let game = GameList().getGame(gameId: 8907)!
+
+        let widthMax = game.maxWidth
+        let heightMax = game.maxHeight
+
+        let words = game.winningWords
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+            words: words,
+            scoreMin: 24,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
+           start: words,
+           end: end,
+           len: len,
+           scoreMin: 140,
+           widthMax: widthMax,
+           heightMax: heightMax))
+
+        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.BottomRight(
+            start: words,
+            end: end,
+            len: len,
+            scoreMin: 180,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: len,
+            scoreMin: 116,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: len,
+            scoreMin: 66,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+            interlockWidth: 2,
+            words: words,
+            lengths: len,
+            scoreMin: 78,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+            interlockWidth: 2,
+            words: words,
+            lengths: len,
+            scoreMin: 58,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let shape_rule_quartz_art_puzzle_easel = pacman3x3_BottomRight.containing(["SHAPE", "RULE", "QUARTZ", "ART", "PUZZLE", "EASEL"], from: words)[0]
+        let zipper_puzzle = edges.containing(["ZIPPER", "PUZZLE"], from: words)[3]
+        let quartz_scraps_hat_nuts = square3x3_TopLeft.containing(["QUARTZ", "SCRAPS", "HAT", "NUTS"], from: words)[0]
+        let rod_scraps_brush_hat = rectangle3x4_BottomLeft.containing(["ROD", "SCRAPS", "BRUSH", "HAT"], from: words)[0]
+        let quartz_jewel_rope_puzzle = rectangle3x4.containing(["QUARTZ", "JEWEL", "ROPE", "PUZZLE"], from: words)[0]
+        let bow_rod_brush_plywood = square3x3_TopLeft.containing(["BOW", "ROD", "BRUSH", "PLYWOOD"], from: words)[0]
+        let toys_wax_bow_plywood_saw = outer2x3.containing(["TOYS", "WAX", "BOW", "PLYWOOD", "SAW"], from: words)[0]
+        let toys_lath = edges.containing(["TOYS", "LATH"], from: words)[0]
+        let shape_tools = edges.containing(["SHAPE", "TOOLS"], from: words)[0]
+        let paint_tools = edges.containing(["PAINT", "TOOLS"], from: words)[0]
+        let wool_tools = edges.containing(["WOOL", "TOOLS"], from: words)[2]
+        //let paint_plywood = edges.containing(["PAINT", "PLYWOOD"], from: words)[0]
+        let wool_awl = edges.containing(["WOOL", "AWL"], from: words)[1]
+        let wheels_awl = edges.containing(["WHEELS", "AWL"], from: words)[0]
+        let wheels_sew_easel_clown = square3x3.containing(["WHEELS", "SEW", "EASEL", "CLOWN"], from: words)[0]
+        let net_clown = edges.containing(["NET", "CLOWN"], from: words)[0]
+        let net_cut = edges.containing(["NET", "CUT"], from: words)[0]
+        let zipper_spin = edges.containing(["ZIPPER", "SPIN"], from: words)[2]
+        let zipper_draw = edges.containing(["ZIPPER", "DRAW"], from: words)[0]
+
+        let winningShapes = [
+            shape_rule_quartz_art_puzzle_easel,
+            zipper_puzzle,
+            quartz_scraps_hat_nuts,
+            rod_scraps_brush_hat,
+            quartz_jewel_rope_puzzle,
+            bow_rod_brush_plywood,
+            toys_wax_bow_plywood_saw,
+            toys_lath,
+            shape_tools,
+            paint_tools,
+            wool_tools,
+            //paint_plywood,
+            wool_awl,
+            wheels_awl,
+            wheels_sew_easel_clown,
+            net_clown,
+            net_cut,
+            zipper_spin,
+            zipper_draw
+        ]
+        return (winningShapes, words, widthMax, heightMax)
+    }
+    
     public static func Shapes_8908() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8908)!
@@ -2310,6 +2502,95 @@ public class WinningShapesCalculator {
         return (winningShapes, words, widthMax, heightMax)
     }
        
+    
+    public static func Shapes_8910() -> ([ShapeModel], [String], Int, Int) {
+
+        let game = GameList().getGame(gameId: 8910)!
+
+        let widthMax = game.maxWidth
+        let heightMax = game.maxHeight
+
+        let words = game.winningWords
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+
+        let c3x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C3x4(
+           start: words,
+           end: end,
+           len: len,
+           scoreMin: 186,
+           widthMax: widthMax,
+           heightMax: heightMax))
+
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+            words: words,
+            scoreMin: 28,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
+           start: words,
+           end: end,
+           len: len,
+           scoreMin: 108,
+           widthMax: widthMax,
+           heightMax: heightMax))
+
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: len,
+            scoreMin: 70,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+            interlockWidth: 2,
+            interlockHeight: 5,
+            words: words,
+            lengths: len,
+            scoreMin: 108,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+            interlockWidth: 2,
+            words: words,
+            lengths: len,
+            scoreMin: 52,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let surveyor_unionist_typist_writer = square3x3.containing(["SURVEYOR", "UNIONIST", "TYPIST", "WRITER"], from: words)[0]
+        let unionist_usher_porter_nurse_typist_shearer_writer = c3x4.containing(["UNIONIST", "USHER", "PORTER", "NURSE", "TYPIST", "SHEARER", "WRITER"], from: words)[0]
+        let surveyor_unionist_sculptor_typist = rectangle3x6.containing(["SURVEYOR", "UNIONIST", "SCULPTOR", "TYPIST"], from: words)[0]
+        let porter_pilot = edges.containing(["PORTER", "PILOT"], from: words)[0]
+        let brewer_shearer = edges.containing(["BREWER", "SHEARER"], from: words)[1]
+        let critic_brewer_crew_vicar = rectangle3x4.containing(["CRITIC", "BREWER", "CREW", "VICAR"], from: words)[0]
+        let vet_critic_vicar_valet_tiler = outer2x3.containing(["VET", "CRITIC", "VICAR", "VALET", "TILER"], from: words)[0]
+        let navvy_valet = edges.containing(["NAVVY", "VALET"], from: words)[0]
+        let navvy_ayah = edges.containing(["NAVVY", "AYAH"], from: words)[0]
+        let navvy_monk = edges.containing(["NAVVY", "MONK"], from: words)[0]
+        let maid_monk = edges.containing(["MAID", "MONK"], from: words)[0]
+        let critic_agent_vicar_tiler = square3x3.containing(["CRITIC", "AGENT", "VICAR", "TILER"], from: words)[0]
+
+        let winningShapes = [
+            surveyor_unionist_typist_writer,
+            unionist_usher_porter_nurse_typist_shearer_writer,
+            surveyor_unionist_sculptor_typist,
+            porter_pilot,
+            brewer_shearer,
+            critic_brewer_crew_vicar,
+            vet_critic_vicar_valet_tiler,
+            navvy_valet,
+            navvy_ayah,
+            navvy_monk,
+            maid_monk,
+            critic_agent_vicar_tiler
+        ]
+        return (winningShapes, words, widthMax, heightMax)
+    }
     
     public static func Shapes_8911() -> ([ShapeModel], [String], Int, Int) {
 
@@ -3030,6 +3311,107 @@ public class WinningShapesCalculator {
         return (winningShapes, words, widthMax, heightMax)
     }
     
+    
+    public static func Shapes_9008() -> ([ShapeModel], [String], Int, Int) {
+
+        let game = GameList().getGame(gameId: 9008)!
+
+        let widthMax = game.maxWidth
+        let heightMax = game.maxHeight
+
+        let words = game.winningWords
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+            words: words,
+            scoreMin: 22,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
+           start: words,
+           end: end,
+           len: len,
+           scoreMin: 130,
+           widthMax: widthMax,
+           heightMax: heightMax))
+
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: len,
+            scoreMin: 58,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+            interlockWidth: 3,
+            interlockHeight: 4,
+            words: words,
+            lengths: len,
+            scoreMin: 92,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+            interlockWidth: 2,
+            words: words,
+            lengths: len,
+            scoreMin: 80,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+            interlockWidth: 2,
+            words: words,
+            lengths: len,
+            scoreMin: 66,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+            interlockWidth: 2,
+            words: words,
+            lengths: len,
+            scoreMin: 80,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let yam_eucalyptus_yacca_coral_myall = outer2x3.containing(["YAM", "EUCALYPTUS", "YACCA", "CORAL", "MYALL"], from: words)[0]
+        let eucalyptus_huon_gum_quena = square3x3_TopLeft.containing(["EUCALYPTUS", "HUON", "GUM", "QUENA"], from: words)[1]
+        let buttons_yam_coral_sassy = square3x3_BottomRight.containing(["BUTTONS", "YAM", "CORAL", "SASSY"], from: words)[0]
+        let simlax_yalbah_sassy_saltbush = rectangle3x4.containing(["SIMLAX", "YALBAH", "SASSY", "SALTBUSH"], from: words)[0]
+        let hibiscus_simlax_sassy_saltbush = rectangle3x4.containing(["HIBISCUS", "SIMLAX", "SASSY", "SALTBUSH"], from: words)[0]
+        let simlax_wax = edges.containing(["SIMLAX", "WAX"], from: words)[1]
+        let hibiscus_buttons_heath_sassy = rectangle4x5.containing(["HIBISCUS", "BUTTONS", "HEATH", "SASSY"], from: words)[0]
+        let yalbah_hop_saltbush_hoop = rectangle3x4.containing(["YALBAH", "HOP", "SALTBUSH", "HOOP"], from: words)[0]
+        //let eucalyptus_saltbush = edges.containing(["EUCALYPTUS", "SALTBUSH"], from: words)[0]
+        let eucalyptus_colane_yacca_myall = square3x3.containing(["EUCALYPTUS", "COLANE", "YACCA", "MYALL"], from: words)[0]
+        let hop_oak = edges.containing(["HOP", "OAK"], from: words)[0]
+        let myrtle_heath = edges.containing(["MYRTLE", "HEATH"], from: words)[1]
+        let myrtle_cypress = edges.containing(["MYRTLE", "CYPRESS"], from: words)[0]
+        let ash_cypress = edges.containing(["ASH", "CYPRESS"], from: words)[0]
+
+        let winningShapes = [
+            yam_eucalyptus_yacca_coral_myall,
+            eucalyptus_huon_gum_quena,
+            buttons_yam_coral_sassy,
+            simlax_yalbah_sassy_saltbush,
+            hibiscus_simlax_sassy_saltbush,
+            simlax_wax,
+            hibiscus_buttons_heath_sassy,
+            yalbah_hop_saltbush_hoop,
+            //eucalyptus_saltbush,
+            eucalyptus_colane_yacca_myall,
+            hop_oak,
+            myrtle_heath,
+            myrtle_cypress,
+            ash_cypress
+        ]
+        return (winningShapes, words, widthMax, heightMax)
+    }
     
     public static func Shapes_9009() -> ([ShapeModel], [String], Int, Int) {
 
@@ -7631,6 +8013,207 @@ public class WinningShapesCalculator {
     }
     
     
+    public static func Shapes_9507() -> ([ShapeModel], [String], Int, Int) {
+
+        let game = GameList().getGame(gameId: 9507)!
+
+        let widthMax = game.maxWidth
+        let heightMax = game.maxHeight
+
+        let words = game.winningWords
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+           start: words,
+           end: end,
+           len: len,
+           scoreMin: 62,
+           widthMax: widthMax,
+           heightMax: heightMax))
+
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+            words: words,
+            scoreMin: 22,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
+           start: words,
+           end: end,
+           len: len,
+           scoreMin: 96,
+           widthMax: widthMax,
+           heightMax: heightMax))
+
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+            interlockWidth: 3,
+            interlockHeight: 4,
+            words: words,
+            lengths: len,
+            scoreMin: 84,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+            interlockWidth: 2,
+            words: words,
+            lengths: len,
+            scoreMin: 70,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let artists_zoo_razzamatazz_show = square3x3.containing(["ARTISTS", "ZOO", "RAZZAMATAZZ", "SHOW"], from: words)[0]
+        let trapeze_razzamatazz = edges.containing(["TRAPEZE", "RAZZAMATAZZ"], from: words)[2]
+        let van_cage_artists_act_gymnast = outer2x3.containing(["VAN", "CAGE", "ARTISTS", "ACT", "GYMNAST"], from: words)[0]
+        let flyer_gymnast = edges.containing(["FLYER", "GYMNAST"], from: words)[0]
+        let wagon_show = edges.containing(["WAGON", "SHOW"], from: words)[1]
+        let flyer_busker = edges.containing(["FLYER", "BUSKER"], from: words)[1]
+        let lions_busker = edges.containing(["LIONS", "BUSKER"], from: words)[0]
+        let star_trapeze_actors_rope = square3x3.containing(["STAR", "TRAPEZE", "ACTORS", "ROPE"], from: words)[0]
+        let trapeze_bears_trainer_actors = c2x2.containing(["TRAPEZE", "BEARS", "TRAINER", "ACTORS"], from: words)[1]
+        let bears_skill_tumblers_trainer = square3x3.containing(["BEARS", "SKILL", "TUMBLERS", "TRAINER"], from: words)[0]
+        
+        let artists_magic = edges.containing(["ARTISTS", "MAGIC"], from: words)[0]
+        
+        let tamer_ring_trainer_risk = c2x2.containing(["TAMER", "RING", "TRAINER", "RISK"], from: words)[1]
+        let tamer_truck_tent_risk = rectangle4x5.containing(["TAMER", "TRUCK", "TENT", "RISK"], from: words)[0]
+        let fun_tumblers = edges.containing(["FUN", "TUMBLERS"], from: words)[0]
+        let lions_whip = edges.containing(["LIONS", "WHIP"], from: words)[0]
+        let clown_whip = edges.containing(["CLOWN", "WHIP"], from: words)[0]
+        let band_actors = edges.containing(["BAND", "ACTORS"], from: words)[0]
+        //let ring_magic = edges.containing(["RING", "MAGIC"], from: words)[0]
+        
+        let cage_nets = edges.containing(["CAGE", "NETS"], from: words)[0]
+
+        let winningShapes = [
+            artists_zoo_razzamatazz_show,
+            trapeze_razzamatazz,
+            van_cage_artists_act_gymnast,
+            flyer_gymnast,
+            wagon_show,
+            flyer_busker,
+            lions_busker,
+            star_trapeze_actors_rope,
+            trapeze_bears_trainer_actors,
+            bears_skill_tumblers_trainer,
+            artists_magic,
+            tamer_ring_trainer_risk,
+            tamer_truck_tent_risk,
+            fun_tumblers,
+            lions_whip,
+            clown_whip,
+            band_actors,
+            //ring_magic,
+            
+            cage_nets
+        ]
+        return (winningShapes, words, widthMax, heightMax)
+    }
+    
+    
+    public static func Shapes_9508() -> ([ShapeModel], [String], Int, Int) {
+
+        let game = GameList().getGame(gameId: 9508)!
+
+        let widthMax = game.maxWidth
+        let heightMax = game.maxHeight
+
+        let words = game.winningWords
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+           start: words,
+           end: end,
+           len: len,
+           scoreMin: 78,
+           widthMax: widthMax,
+           heightMax: heightMax))
+
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+           start: words,
+           end: end,
+           len: len,
+           scoreMin: 148,
+           widthMax: widthMax,
+           heightMax: heightMax))
+
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+            words: words,
+            scoreMin: 22,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
+           start: words,
+           end: end,
+           len: len,
+           scoreMin: 98,
+           widthMax: widthMax,
+           heightMax: heightMax))
+
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: len,
+            scoreMin: 92,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+            interlockWidth: 3,
+            interlockHeight: 4,
+            words: words,
+            lengths: len,
+            scoreMin: 86,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let grapes_slivovitz_gin_port_azerbaijan = c2x3.containing(["GRAPES", "SLIVOVITZ", "GIN", "PORT", "AZERBAIJAN"], from: words)[0]
+        let greece_winery_azerbaijan_perry = rectangle4x5.containing(["GREECE", "WINERY", "AZERBAIJAN", "PERRY"], from: words)[0]
+        let slivovitz_nog_spain_vodka_grog = outer2x3.containing(["SLIVOVITZ", "NOG", "SPAIN", "VODKA", "GROG"], from: words)[0]
+        let cask_water_sweet_vodka = c2x2.containing(["CASK", "WATER", "SWEET", "VODKA"], from: words)[0]
+        let water_tokay_sweet_turkey = rectangle3x4.containing(["WATER", "TOKAY", "SWEET", "TURKEY"], from: words)[0]
+        let tokay_rye = edges.containing(["TOKAY", "RYE"], from: words)[0]
+        let italy_turkey = edges.containing(["ITALY", "TURKEY"], from: words)[1]
+        let slivovitz_rose = edges.containing(["SLIVOVITZ", "ROSE"], from: words)[0]
+        let grapes_ussr = edges.containing(["GRAPES", "USSR"], from: words)[1]
+        let soil_ussr = edges.containing(["SOIL", "USSR"], from: words)[0]
+        let winery_rhone = edges.containing(["WINERY", "RHONE"], from: words)[2]
+        let corks_sherry_rhone_malmsey = rectangle3x4.containing(["CORKS", "SHERRY", "RHONE", "MALMSEY"], from: words)[0]
+        let rum_perry = edges.containing(["RUM", "PERRY"], from: words)[0]
+        //let rum_malmsey = edges.containing(["RUM", "MALMSEY"], from: words)[0]
+        let apple_port = edges.containing(["APPLE", "PORT"], from: words)[1]
+        let soil_wine = edges.containing(["SOIL", "WINE"], from: words)[0]
+        let italy_chianti = edges.containing(["ITALY", "CHIANTI"], from: words)[1]
+        //let cask_chianti = edges.containing(["CASK", "CHIANTI"], from: words)[0]
+
+        let winningShapes = [
+            grapes_slivovitz_gin_port_azerbaijan,
+            greece_winery_azerbaijan_perry,
+            slivovitz_nog_spain_vodka_grog,
+            cask_water_sweet_vodka,
+            water_tokay_sweet_turkey,
+            tokay_rye,
+            italy_turkey,
+            slivovitz_rose,
+            grapes_ussr,
+            soil_ussr,
+            winery_rhone,
+            corks_sherry_rhone_malmsey,
+            rum_perry,
+            //rum_malmsey,
+            apple_port,
+            soil_wine,
+            italy_chianti
+            //cask_chianti
+        ]
+        return (winningShapes, words, widthMax, heightMax)
+    }
+    
+    
     public static func Shapes_9509() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9509)!
@@ -8044,7 +8627,101 @@ public class WinningShapesCalculator {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    
+    public static func Shapes_9601() -> ([ShapeModel], [String], Int, Int) {
+
+        let game = GameList().getGame(gameId: 9601)!
+
+        let widthMax = game.maxWidth
+        let heightMax = game.maxHeight
+
+        let words = game.winningWords
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+           start: words,
+           end: end,
+           len: len,
+           scoreMin: 84,
+           widthMax: widthMax,
+           heightMax: heightMax))
+
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+            words: words,
+            scoreMin: 22,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let outer2x4 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x4(
+           start: words,
+           end: end,
+           len: len,
+           scoreMin: 0,
+           widthMax: widthMax,
+           heightMax: heightMax))
+        
+        for item in outer2x4 {
+            print(item.ToString(words: words))
+        }
+
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+            interlockWidth: 3,
+            interlockHeight: 4,
+            words: words,
+            lengths: len,
+            scoreMin: 96,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+            interlockWidth: 2,
+            words: words,
+            lengths: len,
+            scoreMin: 76,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let barge_mizzen_prize_galleon = square3x3.containing(["BARGE", "MIZZEN", "PRIZE", "GALLEON"], from: words)[0]
+        let barge_mizzen_brig_prize = square3x3.containing(["BARGE", "MIZZEN", "BRIG", "PRIZE"], from: words)[0]
+        let log_galleon = edges.containing(["LOG", "GALLEON"], from: words)[3]
+        let log_coble = edges.containing(["LOG", "COBLE"], from: words)[0]
+        let rowboat_coble = edges.containing(["ROWBOAT", "COBLE"], from: words)[2]
+        let tramp_rowboat_trawler_punt = rectangle4x5.containing(["TRAMP", "ROWBOAT", "TRAWLER", "PUNT"], from: words)[0]
+        let tosher_rowboat_wherry_trawler = square3x3.containing(["TOSHER", "ROWBOAT", "WHERRY", "TRAWLER"], from: words)[1]
+        let galley_wherry = edges.containing(["GALLEY", "WHERRY"], from: words)[1]
+        let ferry_galley_scow_slaver_argosy_yawl = outer2x4.containing(["FERRY", "GALLEY", "SCOW", "SLAVER", "ARGOSY", "YAWL"], from: words)[0]
+        let scow_dory_shoaler_argosy = square3x3.containing(["SCOW", "DORY", "SHOALER", "ARGOSY"], from: words)[0]
+        let tosher_tug_tub_cog = c2x2.containing(["TOSHER", "TUG", "TUB", "COG"], from: words)[0]
+        let slaver_raft = edges.containing(["SLAVER", "RAFT"], from: words)[1]
+        let dugout_raft = edges.containing(["DUGOUT", "RAFT"], from: words)[0]
+        let dugout_ketch_junk_boat = square3x3.containing(["DUGOUT", "KETCH", "JUNK", "BOAT"], from: words)[0]
+        let ark_shoaler = edges.containing(["ARK", "SHOALER"], from: words)[1]
+        let ferry_skiff = edges.containing(["FERRY", "SKIFF"], from: words)[0]
+        let ship_skiff = edges.containing(["SHIP", "SKIFF"], from: words)[0]
+        let ship_gig = edges.containing(["SHIP", "GIG"], from: words)[0]
+
+        let winningShapes = [
+            barge_mizzen_prize_galleon,
+            barge_mizzen_brig_prize,
+            log_galleon,
+            log_coble,
+            rowboat_coble,
+            tramp_rowboat_trawler_punt,
+            tosher_rowboat_wherry_trawler,
+            galley_wherry,
+            ferry_galley_scow_slaver_argosy_yawl,
+            scow_dory_shoaler_argosy,
+            tosher_tug_tub_cog,
+            slaver_raft,
+            dugout_raft,
+            dugout_ketch_junk_boat,
+            ark_shoaler,
+            ferry_skiff,
+            ship_skiff,
+            ship_gig
+        ]
+        return (winningShapes, words, widthMax, heightMax)
+    }
     public static func Shapes_9602() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9602)!
@@ -8222,6 +8899,102 @@ public class WinningShapesCalculator {
             court_castle,
             squire_lists_castle_quest,
             squire_lists_quest_arms
+        ]
+        return (winningShapes, words, widthMax, heightMax)
+    }
+    
+    public static func Shapes_9604() -> ([ShapeModel], [String], Int, Int) {
+
+        let game = GameList().getGame(gameId: 9604)!
+
+        let widthMax = game.maxWidth
+        let heightMax = game.maxHeight
+
+        let words = game.winningWords
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+           start: words,
+           end: end,
+           len: len,
+           scoreMin: 74,
+           widthMax: widthMax,
+           heightMax: heightMax))
+
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+            words: words,
+            scoreMin: 22,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let outer2x4 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x4(
+           start: words,
+           end: end,
+           len: len,
+           scoreMin: 94,
+           widthMax: widthMax,
+           heightMax: heightMax))
+
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: len,
+            scoreMin: 90,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+            interlockWidth: 2,
+            words: words,
+            lengths: len,
+            scoreMin: 68,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+            interlockWidth: 3,
+            words: words,
+            lengths: len,
+            scoreMin: 74,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        let alcazar_window_mezzanine_armoury = square3x3.containing(["ALCAZAR", "WINDOW", "MEZZANINE", "ARMOURY"], from: words)[0]
+        let window_gallery_mezzanine_armoury = rectangle3x4.containing(["WINDOW", "GALLERY", "MEZZANINE", "ARMOURY"], from: words)[0]
+        let plan_gallery_pagoda_wall_alette_mezzanine = outer2x4.containing(["PLAN", "GALLERY", "PAGODA", "WALL", "ALETTE", "MEZZANINE"], from: words)[0]
+        //let window_plan_wall_mezzanine = square3x3.containing(["WINDOW", "PLAN", "WALL", "MEZZANINE"], from: words)[0]
+        let hostel_eaves_pagoda_alette = square3x3.containing(["HOSTEL", "EAVES", "PAGODA", "ALETTE"], from: words)[0]
+        let dome_mezzanine = edges.containing(["DOME", "MEZZANINE"], from: words)[0]
+        let alcazar_theatre = edges.containing(["ALCAZAR", "THEATRE"], from: words)[0]
+        let atrium_armoury = edges.containing(["ATRIUM", "ARMOURY"], from: words)[0]
+        let atrium_door_stud_monastery = c2x2.containing(["ATRIUM", "DOOR", "STUD", "MONASTERY"], from: words)[0]
+        let piazza_cottage_monastery_ziggurat = square3x3.containing(["PIAZZA", "COTTAGE", "MONASTERY", "ZIGGURAT"], from: words)[0]
+        let abbey_monastery = edges.containing(["ABBEY", "MONASTERY"], from: words)[2]
+        let scape_door_stud_pier = square4x4.containing(["SCAPE", "DOOR", "STUD", "PIER"], from: words)[0]
+        let atrium_hut = edges.containing(["ATRIUM", "HUT"], from: words)[1]
+        let labyrinth_ziggurat = edges.containing(["LABYRINTH", "ZIGGURAT"], from: words)[3]
+        let labyrinth_bay = edges.containing(["LABYRINTH", "BAY"], from: words)[2]
+        //let abbey_bay = edges.containing(["ABBEY", "BAY"], from: words)[1]
+
+        let winningShapes = [
+            alcazar_window_mezzanine_armoury,
+            window_gallery_mezzanine_armoury,
+            plan_gallery_pagoda_wall_alette_mezzanine,
+            //window_plan_wall_mezzanine,
+            hostel_eaves_pagoda_alette,
+            dome_mezzanine,
+            alcazar_theatre,
+            atrium_armoury,
+            atrium_door_stud_monastery,
+            piazza_cottage_monastery_ziggurat,
+            abbey_monastery,
+            scape_door_stud_pier,
+            atrium_hut,
+            labyrinth_ziggurat,
+            labyrinth_bay
+            //abbey_bay
         ]
         return (winningShapes, words, widthMax, heightMax)
     }

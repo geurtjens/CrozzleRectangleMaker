@@ -10,19 +10,18 @@ public class JsonIOCalculator {
 
     public static var path = "/Users/michaelgeurtjens/Downloads/CrozzleDataFromWinningGames/"
     
-    public static func getHeaderBlock(gameId: Int, widthMax: Int, heightMax: Int) -> String {
+    public static func getHeaderBlock(gameId: Int) -> String {
         var code = ""
-        code += "    public static func Shapes_\(gameId)() -> ShapeModel? {\n\n"
-        
-        code += "        let widthMax = \(widthMax)\n"
-        code += "        let heightMax = \(heightMax)\n\n"
-        code += "        let gameList = GameList()\n"
-        code += "        guard let game = gameList.getGame(gameId: \(gameId)) else {\n"
-        code += "            return nil\n"
-        code += "        }\n\n"
+        code += "    public static func Shapes_\(gameId)() -> ([ShapeModel], [String], Int, Int) {\n"
+        code += "\n"
+        code += "        let game = GameList().getGame(gameId: \(gameId))!\n"
+        code += "\n"
+        code += "        let widthMax = game.maxWidth\n"
+        code += "        let heightMax = game.maxHeight\n\n"
         code += "        let words = game.winningWords\n"
         code += "        let end = WordCalculator.reverse(words: words)\n"
-        code += "        let len = WordCalculator.lengths(words: words)\n\n"
+        code += "        let len = WordCalculator.lengths(words: words)\n"
+        code += "\n"
         return code
     }
     
@@ -30,7 +29,7 @@ public class JsonIOCalculator {
         var jsonShapes = load(gameId: gameId)
         
         changeNameOrientationToLargerHorizontal(jsonShapes: &jsonShapes)
-        let headerBlock = getHeaderBlock(gameId: gameId, widthMax: widthMax, heightMax: heightMax)
+        let headerBlock = getHeaderBlock(gameId: gameId)
         let calculatedBlock = getCalculationBlock(jsonShapes: jsonShapes)
         let shapeFindingBlock = getShapeFindingBlock(jsonShapes: jsonShapes)
         let mergeBlock = getMergeBlock(jsonShapes: jsonShapes)
@@ -42,8 +41,7 @@ public class JsonIOCalculator {
         code += shapeFindingBlock + "\n"
         code += mergeBlock
         
-        //code += "\n        XCTAssertEqual(\(winningScore), result[0].score)\n"
-        code += "        return result\n"
+        code += "        return (winningShapes, words, widthMax, heightMax)\n"
         code += "    }\n"
         code += testCode(gameId: gameId, score: winningScore)
         return code
@@ -129,7 +127,7 @@ public class JsonIOCalculator {
             }
             code += "            \(variableName)"
         }
-        code = "        let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: [\n" + code + "\n        ], words: words, widthMax: widthMax, heightMax: heightMax)\n"
+        code = "        let winningShapes = [\n" + code + "\n        ]\n"
         
         return code
     }
@@ -311,6 +309,21 @@ public class JsonIOCalculator {
         return code
     }
     
+    public static func outerGen(shapeName: String, minScore: Int) -> String {
+        let size = shapeName.replacingOccurrences(of: "Outer", with: "")
+        
+        let (width, height, _) = getNumbers(numbers: size)
+        
+        var code = ""
+        code += "        let outer\(width)x\(height) = ShapeCalculator.toShapes(outers: OuterCalculator.C\(width)x\(height)(\n"
+        code += "           start: words,\n"
+        code += "           end: end,\n"
+        code += "           len: len,\n"
+        code += "           scoreMin: \(minScore),\n"
+        code += "           widthMax: widthMax,\n"
+        code += "           heightMax: heightMax))\n\n"
+        return code
+    }
     public static func edgeGen(minScore: Int) -> String {
         var code = ""
         code += "        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(\n"
@@ -467,7 +480,7 @@ public class JsonIOCalculator {
         } else if shapeName.contains("Pacman") {
             return pacmanName(name: shapeName)
         } else {
-            return shapeName
+            return shapeName.lowercased()
         }
     }
     public static func clusterName(name: String) -> String {
@@ -532,6 +545,8 @@ public class JsonIOCalculator {
             return donutGen(name: shapeName, minScore: minScore)
         } else if shapeName.contains("Pacman") {
             return pacmanGen(name: shapeName, minScore: minScore)
+        } else if shapeName.contains("Outer") {
+            return outerGen(shapeName: shapeName, minScore: minScore)
         }
         switch shapeName {
         case "Special8703":

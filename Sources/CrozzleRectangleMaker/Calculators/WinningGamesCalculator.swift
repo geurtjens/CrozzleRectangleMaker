@@ -73,10 +73,10 @@ public class WinningGamesCalculator {
         return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
     }
 
-//    public static func WinningShape_8807() -> ShapeModel {
-//        let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_8807()
-//        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
-//    }
+    public static func WinningShape_8807() -> ShapeModel {
+        let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_8807()
+        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
+    }
 
     public static func WinningShape_8808() -> ShapeModel {
         let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_8808()
@@ -128,10 +128,10 @@ public class WinningGamesCalculator {
         return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
     }
 
-//    public static func WinningShape_8907() -> ShapeModel {
-//        let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_8907()
-//        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
-//    }
+    public static func WinningShape_8907() -> ShapeModel {
+        let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_8907()
+        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
+    }
 
     public static func WinningShape_8908() -> ShapeModel {
         let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_8908()
@@ -143,10 +143,10 @@ public class WinningGamesCalculator {
         return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
     }
 
-//    public static func WinningShape_8910() -> ShapeModel {
-//        let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_8910()
-//        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
-//    }
+    public static func WinningShape_8910() -> ShapeModel {
+        let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_8910()
+        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
+    }
 
     public static func WinningShape_8911() -> ShapeModel {
         let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_8911()
@@ -193,10 +193,10 @@ public class WinningGamesCalculator {
         return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
     }
 
-//    public static func WinningShape_9008() -> ShapeModel {
-//        let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_9008()
-//        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
-//    }
+    public static func WinningShape_9008() -> ShapeModel {
+        let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_9008()
+        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
+    }
 
     public static func WinningShape_9009() -> ShapeModel {
         let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_9009()
@@ -483,15 +483,15 @@ public class WinningGamesCalculator {
         return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
     }
 
-//    public static func WinningShape_9507() -> ShapeModel {
-//        let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_9507()
-//        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
-//    }
+    public static func WinningShape_9507() -> ShapeModel {
+        let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_9507()
+        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
+    }
 
-//    public static func WinningShape_9508() -> ShapeModel {
-//        let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_9508()
-//        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
-//    }
+    public static func WinningShape_9508() -> ShapeModel {
+        let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_9508()
+        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
+    }
 
     public static func WinningShape_9509() -> ShapeModel {
         let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_9509()
@@ -513,10 +513,10 @@ public class WinningGamesCalculator {
         return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
     }
 
-//    public static func WinningShape_9601() -> ShapeModel {
-//        let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_9601()
-//        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
-//    }
+    public static func WinningShape_9601() -> ShapeModel {
+        let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_9601()
+        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
+    }
 
     public static func WinningShape_9602() -> ShapeModel {
         let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_9602()
@@ -528,10 +528,10 @@ public class WinningGamesCalculator {
         return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
     }
 
-//    public static func WinningShape_9604() -> ShapeModel {
-//        let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_9604()
-//        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
-//    }
+    public static func WinningShape_9604() -> ShapeModel {
+        let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_9604()
+        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
+    }
 
 //    public static func WinningShape_9605() -> ShapeModel {
 //        let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_9605()

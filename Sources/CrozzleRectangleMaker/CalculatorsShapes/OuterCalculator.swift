@@ -8,6 +8,31 @@
 import Foundation
 public class OuterCalculator {
     
+    public static func C2x3(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [OuterModel] {
+        
+        let LRL_MO = C2x3_LRL_MO(start: start, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let LRL_OM = C2x3_LRL_OM(start: start, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let RLR_MO = C2x3_RLR_MO(start: start, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let RLR_OM = C2x3_RLR_OM(start: start, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+                
+        var result = LRL_MO + LRL_OM + RLR_MO + RLR_OM
+        
+        return result
+    }
+    
+    public static func C2x4(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [OuterModel] {
+        
+        let LRL_MO = C2x4_LRLR_MO(start: start, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let LRL_OM = C2x4_LRLR_OM(start: start, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let RLR_MO = C2x4_RLRL_MO(start: start, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let RLR_OM = C2x4_RLRL_OM(start: start, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+                
+        let result = LRL_MO + LRL_OM + RLR_MO + RLR_OM
+        
+        return result
+    }
+    
+    
     public static func C2x3_LRL_MO(start: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [OuterModel] {
         
         let wordCount = (wordsMax == 0) ? start.count : wordsMax
@@ -535,9 +560,9 @@ public class OuterCalculator {
                                                             right4 != outer1) {
                                                             
                                                             let cluster = OuterModel(
-                                                                wordsHorizontal: [left1, right2, left3],
+                                                                wordsHorizontal: [left1, right2, left3, right4],
                                                                 wordsVertical: [outer1, middle2],
-                                                                patternHorizontal: [.leading, .trailing, .leading],
+                                                                patternHorizontal: [.leading, .trailing, .leading, .trailing],
                                                                 patternVertical: [.trailing, .leading],
                                                                 start: start,
                                                                 end: end,
@@ -621,9 +646,9 @@ public class OuterCalculator {
                                                                 right4 != middle1) {
 
                                                                 let cluster = OuterModel(
-                                                                    wordsHorizontal: [left1, right2, left3],
+                                                                    wordsHorizontal: [left1, right2, left3, right4],
                                                                     wordsVertical: [middle1, outer2],
-                                                                    patternHorizontal: [.leading, .trailing, .leading],
+                                                                    patternHorizontal: [.leading, .trailing, .leading, .trailing],
                                                                     patternVertical: [.trailing, .leading],
                                                                     start: start,
                                                                     end: end,
