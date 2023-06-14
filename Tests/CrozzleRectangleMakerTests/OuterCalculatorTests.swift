@@ -64,4 +64,65 @@ final class OuterCalculatorTests: XCTestCase {
         let result = OuterCalculator.C2x3_LRL_OM(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
     }
+    
+    func test_C2x4_LRLR_OM_9601() {
+        let words = ["ARGOSY","FERRY","YAWL","GALLEY","SCOW","SLAVERY"]
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+        let result = OuterCalculator.C2x4_LRLR_OM(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
+        XCTAssertEqual(1, result.count)
+    }
+    
+    func test_C2x4_RLRL_MO_9604() {
+        let words = ["PLAN","PAGODA","WALL","GALLERY","ALETTE","MEZZANINE"]
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+        let result = OuterCalculator.C2x4_RLRL_MO(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
+        XCTAssertEqual(1, result.count)
+    }
+    
+    
+    
+    /*
+     
+     A
+     BCD
+    ACD
+     DEF
+    AEF
+     F
+
+     */
+    
+    func test_C2x4_RLRL_OM() {
+        let words = ["ABCDEF","BCD","CDEF","ACD","DEF","AEF"]
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+        let result = OuterCalculator.C2x4_RLRL_OM(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
+        XCTAssertEqual(1, result.count)
+    }
+    
+    
+    /*
+     
+      A
+    BCD
+     ACD
+    DEF
+     AEF
+      F
+
+     */
+    
+    func test_C2x4_LRLR_MO() {
+        let words = ["CAEA","BCD","ADCFEF","ACD","DEF","AEF"]
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+        let result = OuterCalculator.C2x4_LRLR_MO(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
+        XCTAssertEqual(1, result.count)
+    }
+    
+    
+    
+    
 }
