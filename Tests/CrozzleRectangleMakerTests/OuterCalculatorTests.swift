@@ -15,6 +15,14 @@ final class OuterCalculatorTests: XCTestCase {
         let len = WordCalculator.lengths(words: words)
         let result = OuterCalculator.C2x3_LRL_MO(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
+        XCTAssertEqual(10, result[0].width)
+        XCTAssertEqual(7, result[0].height)
+        XCTAssertEqual(146, result[0].score)
+        
+        let text = result[0].ToText(words: words)
+        let expectedText = "    .     \n   .C     \n.LIZA.    \n  .SIDNEY.\n.ALAN.    \n   .E     \n    .     "
+        XCTAssertEqual(expectedText, text)
+        print(text)
     }
 
     func test_C2x3_RLR_OM_8807() {
@@ -23,6 +31,14 @@ final class OuterCalculatorTests: XCTestCase {
         let len = WordCalculator.lengths(words: words)
         let result = OuterCalculator.C2x3_RLR_OM(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
+        XCTAssertEqual(9, result[0].width)
+        XCTAssertEqual(7, result[0].height)
+        XCTAssertEqual(90, result[0].score)
+        
+        let text = result[0].ToText(words: words)
+        let expectedText = "    .    \n    N.   \n   .OMAR.\n.STEVE.  \n   .AL.  \n    K.   \n    .    "
+        XCTAssertEqual(expectedText, text)
+        print(text)
     }
     
     func test_C2x3_LRL_OM_8907() {
@@ -31,6 +47,14 @@ final class OuterCalculatorTests: XCTestCase {
         let len = WordCalculator.lengths(words: words)
         let result = OuterCalculator.C2x3_LRL_OM(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
+        XCTAssertEqual(7, result[0].width)
+        XCTAssertEqual(9, result[0].height)
+        XCTAssertEqual(140, result[0].score)
+        
+        let text = result[0].ToText(words: words)
+        let expectedText = "   .   \n   P   \n   L.  \n.TOYS. \n  .WAX.\n .BOW. \n   O.  \n   D   \n   .   "
+        XCTAssertEqual(expectedText, text)
+        print(text)
     }
     
     func test_C2x3_RLR_MO_8910() {
@@ -39,6 +63,14 @@ final class OuterCalculatorTests: XCTestCase {
         let len = WordCalculator.lengths(words: words)
         let result = OuterCalculator.C2x3_RLR_MO(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
+        XCTAssertEqual(10, result[0].width)
+        XCTAssertEqual(8, result[0].height)
+        XCTAssertEqual(108, result[0].score)
+        
+        let text = result[0].ToText(words: words)
+        let expectedText = "     .    \n     C    \n    .R    \n   .VICAR.\n.VALET.   \n   .TILER.\n    .C    \n     .    "
+        XCTAssertEqual(expectedText, text)
+        print(text)
     }
     
     func test_C2x3_RLR_MO_9008() {
@@ -47,6 +79,14 @@ final class OuterCalculatorTests: XCTestCase {
         let len = WordCalculator.lengths(words: words)
         let result = OuterCalculator.C2x3_RLR_MO(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
+        XCTAssertEqual(10, result[0].width)
+        XCTAssertEqual(12, result[0].height)
+        XCTAssertEqual(130, result[0].score)
+        
+        let text = result[0].ToText(words: words)
+        let expectedText = "     .    \n     E    \n     U    \n    .C    \n   .YACCA.\n.CORAL.   \n   .MYALL.\n    .P    \n     T    \n     U    \n     S    \n     .    "
+        XCTAssertEqual(expectedText, text)
+        print(text)
     }
     
     func test_C2x3_LRL_MO_9507() {
@@ -55,6 +95,14 @@ final class OuterCalculatorTests: XCTestCase {
         let len = WordCalculator.lengths(words: words)
         let result = OuterCalculator.C2x3_LRL_MO(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
+        XCTAssertEqual(11, result[0].width)
+        XCTAssertEqual(9, result[0].height)
+        XCTAssertEqual(96, result[0].score)
+        
+        let text = result[0].ToText(words: words)
+        let expectedText = "       .   \n       G   \n       Y   \n      .M   \n    .VAN.  \n     .CAGE.\n.ARTISTS.  \n      .T   \n       .   "
+        XCTAssertEqual(expectedText, text)
+        print(text)
     }
     
     func test_C2x3_LRL_OM_9508() {
@@ -63,6 +111,14 @@ final class OuterCalculatorTests: XCTestCase {
         let len = WordCalculator.lengths(words: words)
         let result = OuterCalculator.C2x3_LRL_OM(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
+        XCTAssertEqual(10, result[0].width)
+        XCTAssertEqual(11, result[0].height)
+        XCTAssertEqual(98, result[0].score)
+        
+        let text = result[0].ToText(words: words)
+        let expectedText = "    .     \n    S     \n    L.    \n.SPAIN.   \n   .VODKA.\n .GROG.   \n    V.    \n    I     \n    T     \n    Z     \n    .     "
+        XCTAssertEqual(expectedText, text)
+        print(text)
     }
     
     func test_C2x4_LRLR_OM_9601() {
@@ -71,6 +127,14 @@ final class OuterCalculatorTests: XCTestCase {
         let len = WordCalculator.lengths(words: words)
         let result = OuterCalculator.C2x4_LRLR_OM(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
+        XCTAssertEqual(11, result[0].width)
+        XCTAssertEqual(8, result[0].height)
+        XCTAssertEqual(124, result[0].score)
+        
+        let text = result[0].ToText(words: words)
+        let expectedText = "    .      \n    A.     \n.FERRY.    \n   .GALLEY.\n .SCOW.    \n    SL     \n    Y.     \n    .      "
+        XCTAssertEqual(expectedText, text)
+        print(text)
     }
     
     func test_C2x4_RLRL_MO_9604() {
@@ -79,19 +143,23 @@ final class OuterCalculatorTests: XCTestCase {
         let len = WordCalculator.lengths(words: words)
         let result = OuterCalculator.C2x4_RLRL_MO(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
+        XCTAssertEqual(15, result[0].width)
+        XCTAssertEqual(9, result[0].height)
+        XCTAssertEqual(94, result[0].score)
+        
+        let text = result[0].ToText(words: words)
+        let expectedText = "         .     \n        .G     \n       .PAGODA.\n     .WALL.    \n       .ALETTE.\n.MEZZANINE.    \n        .R     \n         Y     \n         .     "
+        XCTAssertEqual(expectedText, text)
+        print(text)
     }
-    
-    
-    
+
     /*
-     
      A
      BCD
     ACD
      DEF
     AEF
      F
-
      */
     
     func test_C2x4_RLRL_OM() {
@@ -100,18 +168,23 @@ final class OuterCalculatorTests: XCTestCase {
         let len = WordCalculator.lengths(words: words)
         let result = OuterCalculator.C2x4_RLRL_OM(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
+        XCTAssertEqual(6, result[0].width)
+        XCTAssertEqual(8, result[0].height)
+        XCTAssertEqual(76, result[0].score)
+        
+        let text = result[0].ToText(words: words)
+        let expectedText = "  .   \n  A.  \n .BCD.\n.ACD. \n .DEF.\n.AEF. \n  F.  \n  .   "
+        XCTAssertEqual(expectedText, text)
+        print(text)
     }
     
-    
     /*
-     
       A
     BCD
      ACD
     DEF
      AEF
       F
-
      */
     
     func test_C2x4_LRLR_MO() {
@@ -120,9 +193,13 @@ final class OuterCalculatorTests: XCTestCase {
         let len = WordCalculator.lengths(words: words)
         let result = OuterCalculator.C2x4_LRLR_MO(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
+        XCTAssertEqual(6, result[0].width)
+        XCTAssertEqual(8, result[0].height)
+        XCTAssertEqual(64, result[0].score)
+        
+        let text = result[0].ToText(words: words)
+        let expectedText = "   .  \n  .A  \n.BCD. \n .ACD.\n.DEF. \n  AE  \n  .F  \n   .  "
+        XCTAssertEqual(expectedText, text)
+        print(text)
     }
-    
-    
-    
-    
 }
