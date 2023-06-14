@@ -122,17 +122,17 @@ final class OuterCalculatorTests: XCTestCase {
     }
     
     func test_C2x4_LRLR_OM_9601() {
-        let words = ["ARGOSY","FERRY","YAWL","GALLEY","SCOW","SLAVERY"]
+        let words = ["ARGOSY","FERRY","YAWL","GALLEY","SCOW","SLAVER"]
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
         let result = OuterCalculator.C2x4_LRLR_OM(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
         XCTAssertEqual(11, result[0].width)
         XCTAssertEqual(8, result[0].height)
-        XCTAssertEqual(124, result[0].score)
+        XCTAssertEqual(150, result[0].score)
         
         let text = result[0].ToText(words: words)
-        let expectedText = "    .      \n    A.     \n.FERRY.    \n   .GALLEY.\n .SCOW.    \n    SL     \n    Y.     \n    .      "
+        let expectedText = "    .      \n    A.     \n.FERRY.    \n   .GALLEY.\n .SCOW.    \n   .SLAVER.\n    Y.     \n    .      "
         XCTAssertEqual(expectedText, text)
         print(text)
     }
@@ -145,10 +145,10 @@ final class OuterCalculatorTests: XCTestCase {
         XCTAssertEqual(1, result.count)
         XCTAssertEqual(11, result[0].width)
         XCTAssertEqual(8, result[0].height)
-        XCTAssertEqual(124, result[0].score)
+        XCTAssertEqual(150, result[0].score)
         
         let text = result[0].ToText(words: words)
-        let expectedText = "    .      \n    A.     \n.FERRY.    \n   .GALLEY.\n .SCOW.    \n    SL     \n    Y.     \n    .      "
+        let expectedText = "    .      \n    A.     \n.FERRY.    \n   .GALLEY.\n .SCOW.    \n   .SLAVER.\n    Y.     \n    .      "
         XCTAssertEqual(expectedText, text)
         print(text)
     }
@@ -227,10 +227,10 @@ final class OuterCalculatorTests: XCTestCase {
         XCTAssertEqual(1, result.count)
         XCTAssertEqual(6, result[0].width)
         XCTAssertEqual(8, result[0].height)
-        XCTAssertEqual(64, result[0].score)
+        XCTAssertEqual(76, result[0].score)
         
         let text = result[0].ToText(words: words)
-        let expectedText = "   .  \n  .A  \n.BCD. \n .ACD.\n.DEF. \n  AE  \n  .F  \n   .  "
+        let expectedText = "   .  \n  .A  \n.BCD. \n .ACD.\n.DEF. \n .AEF.\n  .F  \n   .  "
         XCTAssertEqual(expectedText, text)
         print(text)
     }

@@ -221,13 +221,14 @@ final class WinningGamesCalculatorTests: XCTestCase {
         let winningGame = WinningGamesCalculator.WinningShape_9012()
         XCTAssertEqual(634, winningGame.score)
     }
-
+/// This looks like an elegant shape and very unique.
     func test_WinningShape_9101_Outer() {
         XCTFail("Outer not implemented")
 //        let winningGame = WinningGamesCalculator.WinningShape_9101()
 //        XCTAssertEqual(734, winningGame.score)
     }
 
+    /// just hard code this one as its not found anywhere else
     func test_WinningShape_9102_Hill() {
         XCTFail("Hill not implemented")
 //        let winningGame = WinningGamesCalculator.WinningShape_9102()
