@@ -42,11 +42,10 @@ public class StrategyCalculator {
                 if queue.queues[i].shapes.count > 0 {
                     await queue.mergeEverythingBelowWith(index: i)
                     
-                    
                     if let bestShape = queue.getBestShape() {
                         if bestShape.score > maxScore {
                             maxScore = bestShape.score
-                            print(bestShape.ToString(words: words))
+                            print(bestShape.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore))
                         }
                         if maxScore == highScore {
                             print("High Score Reached")

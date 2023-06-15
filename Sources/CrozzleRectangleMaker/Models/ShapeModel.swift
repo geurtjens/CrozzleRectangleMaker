@@ -79,6 +79,11 @@ public struct ShapeModel {
         return "\nscore:\(score), width:\(width), height:\(height), words:\(self.placements.count), area:\(area), density:\(density)\n\n" + text
     }
     
+    public func ToStringExtended(words: [String], gameId: Int, winningScore: Int) -> String {
+        let (text, score) = ShapeCalculator.ToText(shape: self, words: words)
+        return "\ngameId:\(gameId), winningScore:\(winningScore), score:\(score), width:\(width), height:\(height), words:\(self.placements.count), area:\(area), density:\(density)\n\n" + text
+    }
+    
     public func Code() -> String {
         return ShapeCalculator.ToCode(fromShape: self)
     }
