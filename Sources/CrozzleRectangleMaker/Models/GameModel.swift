@@ -41,4 +41,15 @@ public struct GameModel {
         self.winningWordCount = winningWords.count
         
     }
+    
+    public func winningText() -> String {
+        var text = ""
+        for line in winningGame {
+            if text != "" {
+                text += "\n"
+            }
+            text += line
+        }
+        return text
+    }
 }
