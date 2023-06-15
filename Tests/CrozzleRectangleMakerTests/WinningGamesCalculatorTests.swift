@@ -9,6 +9,43 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class WinningGamesCalculatorTests: XCTestCase {
 
+    func test_TryThis() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            let (shapes, words, widthMax, heightMax) = GameList.getShapes(gameId: game.gameId)
+            
+            if let winningGame = GameList.getWinningShape(gameId: game.gameId) {
+                if winningGame.width > winningGame.height {
+                    print(winningGame.CodeGridText(words: words))
+                } else {
+                    print(winningGame.Flip().CodeGridText(words: words))
+                }
+            }
+            
+            
+        }
+        
+        
+        
+//        var text = ""
+//        for shape in shapes {
+//            if text != "" {
+//                text += ","
+//            }
+//            text += shape.CodeGridText(words: words)
+//        }
+//        print("    " + text)
+//
+//        // Then we make the winning game and create that as a grid as well
+//
+//        let winningShape = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
+//
+//        let winningShapeText = winningShape.CodeGridText(words: words)
+//
+    }
+    
     func test_WinningShape_8612() {
         let winningGame = WinningGamesCalculator.WinningShape_8612()
         XCTAssertEqual(694, winningGame.score)

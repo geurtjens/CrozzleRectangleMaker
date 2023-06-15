@@ -27,6 +27,18 @@ final class JsonIOCalculatorTests: XCTestCase {
         print(names)
     }
     
+    func test_GetSwitchStatement() throws {
+        var text = ""
+        let gameList = GameList()
+        for game in gameList.games {
+            let gameId = game.gameId
+            
+            text += "        case \(game.gameId):\n"
+            text += "            return WinningShapesCalculator.Shapes_\(gameId)()\n"
+        }
+        print(text)
+    }
+    
     func test_JsonAll() throws {
         var codes:[String] = []
         let gameList = GameList()

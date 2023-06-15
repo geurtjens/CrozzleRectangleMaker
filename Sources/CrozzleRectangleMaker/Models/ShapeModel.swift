@@ -86,4 +86,25 @@ public struct ShapeModel {
     public func Flip() -> ShapeModel {
         return ShapeCalculator.Flip(shape: self)
     }
+    
+    public func CodeGridText(words: [String]) -> String {
+        // firstly if we are more vertical than horizontal lets flip
+        var shape = self
+        if shape.width < shape.height {
+            shape = ShapeCalculator.Flip(shape: shape)
+        }
+        
+        let (_,text) = ShapeCalculator.getScoreAndText(shape: shape, words: words)
+        
+        let grid = text.split(separator:"\n")
+        
+        var result = ""
+        for line in grid {
+            if result != "" {
+                result += ",\n"
+            }
+            result += "        \"\(line)\""
+        }
+        return "[\n\(result)\n    ]"
+    }
 }

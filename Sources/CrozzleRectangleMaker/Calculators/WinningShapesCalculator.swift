@@ -8,6 +8,16 @@
 import Foundation
 public class WinningShapesCalculator {
     
+    
+//    public static func Shapes(gameId: Int) -> ([ShapeModel], [String], Int, Int) {
+//        switch gameId {
+//    
+//        case 8612:
+//            return Shapes_8612()
+//            
+//    }
+    
+    
     public static func Shapes_8612() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8612)!
