@@ -20,6 +20,30 @@ public struct QueueList {
     /// number of queues we allow in the game meaning the max number of words in any winning game
     public let maxQueues = 40
         
+    
+    public func status() -> (ShapeModel?, Int) {
+        var maxShape: ShapeModel? = nil
+        var maxScore: UInt16 = 0
+        var count = 0
+        for i in 0..<maxQueues {
+            if queues[i].shapes.count > 0 {
+                print("\(queues[i].shapes.count) shapes with \(i) words")
+                count += queues[i].shapes.count
+                
+                for item in queues[i].shapes {
+                    if item.score > maxScore {
+                        maxScore = item.score
+                        maxShape = item
+                    }
+                }
+            }
+        }
+        print("\(count) total")
+        if let maxShape = maxShape {
+            print("Max Score = \(maxShape.score)")
+        }
+        return (maxShape, count)
+    }
     /// Adding shapes that may have any number of words in them.  Here we split them into the different `stride` and add to appropriate queue.
     public mutating func add(shapes: [ShapeModel]) {
         let dictionary = Dictionary(grouping: shapes, by: { $0.placements.count})

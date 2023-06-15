@@ -265,7 +265,7 @@ public struct GameList {
             ".TREE.INN.E .  . ",
             " .  .   . .      "]))
 
-       games.append(GameModel(gameId:8702, maxWidth:17, maxHeight:12, winningScore:736, tags:["P","P33","C","C22"],
+       games.append(GameModel(gameId:8702, maxWidth:17, maxHeight:12, winningScore:726, tags:["P","P33","C","C22"],
                               
        winningWords:["CAPITAL", "NOTES", "SCRIP", "BULL", "SOLD", "STOCK", "UNITS", "PAY", "SPOT", "SHORT", "DEBIT", "BEAR", "CUT", "BUYER", "DEED", "CASH", "SALE", "PARITY", "BUY", "TIP", "COST", "BONUS", "IOU", "NET", "BID", "TRUST", "LOSS", "SELL", "PAR", "RIG", "TAX"],
                               
@@ -285,7 +285,7 @@ public struct GameList {
             ".BUYER.S .DEED.  ",
             "   .   .  .      "]))
 
-        games.append(GameModel(gameId:8703, maxWidth:17, maxHeight:12, winningScore:758, tags:[],
+        games.append(GameModel(gameId:8703, maxWidth:17, maxHeight:12, winningScore:564, tags:[],
         winningWords:["ALWAYS","CENTURY","DAY","TODAY","MONTHLY","YEAR","NOW","PAST","WEEKLY","EARLY","FAST","DAILY","JIFFY","OFT","TERM","MORN","PM","WATCH","THEN","TIME","WIND","FIX","DAWN","TICK","EON","LATE","WEEK","DATE","AM","AGO","GAIN","ERA","AGE","FACE"],
         nonWinningWords:["BUZZ","QUARTZ","SLOWLY","YESTERDAY","SUNSET","INSTANTLY","BATTERY","SLOW","AUTUMN","ETERNITY","FUTURE","INSTANT","TOMORROW","SUMMER","UNTIL","HOROLOGY","ADJUST","LATEST","HOUR","MINUTE","WINTER","PUNCTUAL","MONTH","SEASON","ETERNALLY","TONIGHT","MOVEMENT","MIDDAY","MOMENT","NOON","SPRING","DURATION","PENDULUM","STRIKING","FORTNIGHT","EXACT","LOSE","INTERVAL","EVERLASTING","ALREADY","SUNDIAL","AFTERWARDS","NEVER","NIGHT","OFTEN","INTERIM","EVER","AFTERNOON","MORNING","QUICK","SPELL","CHRONOMETER","ANNUAL","FORENOON","HANDS","LATER","SECOND","EVENING","MIDNIGHT","GONG","RING","AFTER","WHILE","ANCIENT","ETERNAL","PERIOD","IMMEDIATE","WEEKEND","ONCE","ELECTRIC","ALARM","EPOCH","PERIODIC","EARLIER","CHIME","CLOCK","BEFORE","BELL","DIAL","DECADE"],
         winningGame: [
@@ -319,7 +319,7 @@ public struct GameList {
             ".SCAN.E.HARDY.T  ",
             " .  . .   . . .  "]))
 
-        games.append(GameModel(gameId:8705, maxWidth:17, maxHeight:12, winningScore:738, tags:[],
+        games.append(GameModel(gameId:8705, maxWidth:17, maxHeight:12, winningScore:610, tags:[],
         winningWords:[
            "POT", "HOSE", "ALYSSUM", "MIMOSA", "SWEEP", "PANSY", "WEED", "MOWER", "STALK", "PATH",
            "PEONY", "DIG", "ROSE", "CAN", "PALM", "WATER", "TRIM", "EDGES", "GRASS", "TAP",
