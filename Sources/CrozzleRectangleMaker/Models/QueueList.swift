@@ -191,6 +191,15 @@ public struct QueueList {
         }
     }
     
+    public func createScoresMin() -> [UInt16] {
+        var result:[UInt16]=[]
+        
+        for queue in queues {
+            result.append(queue.minScore())
+        }
+        return result
+    }
+    
     /// This words on shape lists that are not already sorted by score
     public func printBestScoreDeep() {
         var bestShapes: [ShapeModel] = []

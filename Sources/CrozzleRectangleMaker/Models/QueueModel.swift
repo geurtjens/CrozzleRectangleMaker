@@ -66,5 +66,18 @@ public struct QueueModel {
         self.statistics = StatisticsCalculator.Execute(scores: gpuShapes.scores)
     }
     
+    public func minScore() -> UInt16 {
+        if shapes.count == 0 {
+            return 0
+        } else {
+            var min = UInt16(9999)
+            for score in gpuShapes.scores {
+                if score < min {
+                    min = score
+                }
+            }
+            return min
+        }
+    }
     
 }
