@@ -43,7 +43,7 @@ public class JsonIOCalculator {
         
         code += "        return (winningShapes, words, widthMax, heightMax)\n"
         code += "    }\n"
-        code += testCode(gameId: gameId, score: winningScore)
+        //code += testCode(gameId: gameId, score: winningScore)
         return code
     }
     public static func testCode(gameId: Int, score: Int) -> String {
@@ -309,6 +309,14 @@ public class JsonIOCalculator {
         return code
     }
     
+    public static func specialGen(shapeName: String, minScore: Int) -> String {
+        let gameId = shapeName.replacingOccurrences(of: "Special", with: "")
+
+        var code = ""
+        code += "        let \(shapeName.lowercased()) = SpecialShapesCalculator.C\(gameId)(words: words)\n\n"
+        return code
+    }
+    
     public static func outerGen(shapeName: String, minScore: Int) -> String {
         let size = shapeName.replacingOccurrences(of: "Outer", with: "")
         
@@ -479,6 +487,8 @@ public class JsonIOCalculator {
             return donutName(name: shapeName)
         } else if shapeName.contains("Pacman") {
             return pacmanName(name: shapeName)
+        } else if shapeName.contains("Special") {
+            return shapeName.lowercased()
         } else {
             return shapeName.lowercased()
         }
@@ -547,6 +557,8 @@ public class JsonIOCalculator {
             return pacmanGen(name: shapeName, minScore: minScore)
         } else if shapeName.contains("Outer") {
             return outerGen(shapeName: shapeName, minScore: minScore)
+        } else if shapeName.contains("Special") {
+            return specialGen(shapeName: shapeName, minScore: minScore)
         }
         switch shapeName {
         case "Special8703":

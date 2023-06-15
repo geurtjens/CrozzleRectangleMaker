@@ -47,6 +47,7 @@ final class JsonIOCalculatorTests: XCTestCase {
         let code = JsonIOCalculator.getWinningGameTests()
         print (code)
     }
+    
     func test_getWinningGames() {
         let code = JsonIOCalculator.getWinningGames()
         print(code)
@@ -68,18 +69,22 @@ final class JsonIOCalculatorTests: XCTestCase {
 //        print(JsonIOCalculator.execute(gameId: 8704, winningScore: 704, widthMax: 17, heightMax: 12))
 //    }
 //
-    func test_8807() throws {
-        print(JsonIOCalculator.execute(gameId: 8807, winningScore: 764, widthMax: 17, heightMax: 12))
-    }
+//    func test_8807() throws {
+//        print(JsonIOCalculator.execute(gameId: 8807, winningScore: 764, widthMax: 17, heightMax: 12))
+//    }
+//
 //    func test_8710() throws {
 //        print(JsonIOCalculator.execute(gameId: 8710, winningScore: 764, widthMax: 17, heightMax: 12))
 //    }
+//
 //    func test_8711() throws {
 //        print(JsonIOCalculator.execute(gameId: 8711, winningScore: 810, widthMax: 17, heightMax: 12))
 //    }
+//
 //    func test_8712() throws {
 //        print(JsonIOCalculator.execute(gameId: 8712, winningScore: 680, widthMax: 17, heightMax: 12))
 //    }
+//
 //    func test_8802() throws {
 //        print(JsonIOCalculator.execute(gameId: 8802, winningScore: 720, widthMax: 17, heightMax: 12))
 //    }
@@ -91,15 +96,19 @@ final class JsonIOCalculatorTests: XCTestCase {
 //    func test_8804() throws {
 //        print(JsonIOCalculator.execute(gameId: 8804, winningScore: 836, widthMax: 17, heightMax: 12))
 //    }
-//    
+//
+//    func test_8805() throws {
+//        print(JsonIOCalculator.execute(gameId: 8805, winningScore: 668, widthMax: 17, heightMax: 12))
+//    }
+//
 //    func test_8806() throws {
 //        print(JsonIOCalculator.execute(gameId: 8806, winningScore: 816, widthMax: 17, heightMax: 12))
 //    }
 //    
-    func test_8808() throws {
-        print(JsonIOCalculator.execute(gameId: 8808, winningScore: 696, widthMax: 17, heightMax: 12))
-    }
-    
+//    func test_8808() throws {
+//        print(JsonIOCalculator.execute(gameId: 8808, winningScore: 696, widthMax: 17, heightMax: 12))
+//    }
+//
 //    func test_8809() throws {
 //        print(JsonIOCalculator.execute(gameId: 8809, winningScore: 676, widthMax: 17, heightMax: 12))
 //    }
@@ -136,9 +145,10 @@ final class JsonIOCalculatorTests: XCTestCase {
 //        print(JsonIOCalculator.execute(gameId: 8906, winningScore: 760, widthMax: 17, heightMax: 12))
 //    }
 //
-        func test_8907() {
-            print(JsonIOCalculator.execute(gameId: 8907, winningScore: 818, widthMax: 17, heightMax: 12))
-        }
+//    func test_8907() {
+//        print(JsonIOCalculator.execute(gameId: 8907, winningScore: 818, widthMax: 17, heightMax: 12))
+//    }
+//
 //    func test_8908() {
 //        print(JsonIOCalculator.execute(gameId: 8908, winningScore: 634, widthMax: 17, heightMax: 12))
 //    }
@@ -147,9 +157,10 @@ final class JsonIOCalculatorTests: XCTestCase {
 //        print(JsonIOCalculator.execute(gameId: 8909, winningScore: 616, widthMax: 17, heightMax: 12))
 //    }
 //
-    func test_8910() {
-            print(JsonIOCalculator.execute(gameId: 8910, winningScore: 818, widthMax: 17, heightMax: 12))
-        }
+//    func test_8910() {
+//        print(JsonIOCalculator.execute(gameId: 8910, winningScore: 818, widthMax: 17, heightMax: 12))
+//    }
+//
 //    func test_8911() {
 //        print(JsonIOCalculator.execute(gameId: 8911, winningScore: 692, widthMax: 17, heightMax: 12))
 //    }
@@ -161,7 +172,11 @@ final class JsonIOCalculatorTests: XCTestCase {
 //    func test_9001() {
 //        print(JsonIOCalculator.execute(gameId: 9001, winningScore: 612, widthMax: 17, heightMax: 12))
 //    }
-//    
+//
+//    func test_9002() throws {
+//        print(JsonIOCalculator.execute(gameId: 9002, winningScore: 714, widthMax: 17, heightMax: 12))
+//    }
+//
 //    func test_9003() {
 //        print(JsonIOCalculator.execute(gameId: 9003, winningScore: 672, widthMax: 17, heightMax: 12))
 //    }
@@ -181,11 +196,11 @@ final class JsonIOCalculatorTests: XCTestCase {
 //    func test_9007() {
 //        print(JsonIOCalculator.execute(gameId: 9007, winningScore: 626, widthMax: 17, heightMax: 12))
 //    }
-        func test_9008() {
-            print(JsonIOCalculator.execute(gameId: 9008, winningScore: 592, widthMax: 17, heightMax: 12))
-        }
-    
-    //
+//
+//    func test_9008() {
+//        print(JsonIOCalculator.execute(gameId: 9008, winningScore: 592, widthMax: 17, heightMax: 12))
+//    }
+//
 //    func test_9009() {
 //        print(JsonIOCalculator.execute(gameId: 9009, winningScore: 736, widthMax: 17, heightMax: 12))
 //    }
@@ -205,6 +220,11 @@ final class JsonIOCalculatorTests: XCTestCase {
 //    func test_9101() {
 //        print(JsonIOCalculator.execute(gameId: 9101, winningScore: 734, widthMax: 17, heightMax: 12))
 //    }
+//
+//    func test_9102() {
+//        print(JsonIOCalculator.execute(gameId: 9102, winningScore: 712, widthMax: 17, heightMax: 12))
+//    }
+//
 //    func test_9103() {
 //        print(JsonIOCalculator.execute(gameId: 9103, winningScore: 518, widthMax: 17, heightMax: 12))
 //    }
@@ -229,9 +249,10 @@ final class JsonIOCalculatorTests: XCTestCase {
 //        print(JsonIOCalculator.execute(gameId: 9108, winningScore: 696, widthMax: 17, heightMax: 12))
 //    }
 //    
-////    func test_9109() {
-////        print(JsonIOCalculator.execute(gameId: 9109, winningScore: 636, widthMax: 17, heightMax: 12))
-////    }
+//    func test_9109() {
+//        print(JsonIOCalculator.execute(gameId: 9109, winningScore: 636, widthMax: 17, heightMax: 12))
+//    }
+//
 //    func test_9110() {
 //        print(JsonIOCalculator.execute(gameId: 9110, winningScore: 598, widthMax: 17, heightMax: 12))
 //    }
@@ -255,7 +276,11 @@ final class JsonIOCalculatorTests: XCTestCase {
 //    func test_9203() {
 //        print(JsonIOCalculator.execute(gameId: 9203, winningScore: 548, widthMax: 17, heightMax: 12))
 //    }
-//    
+//
+//    func test_9204() {
+//        print(JsonIOCalculator.execute(gameId: 9204, winningScore: 674, widthMax: 17, heightMax: 12))
+//    }
+//
 //    func test_9205() {
 //        print(JsonIOCalculator.execute(gameId: 9205, winningScore: 506, widthMax: 17, heightMax: 12))
 //    }
@@ -271,7 +296,11 @@ final class JsonIOCalculatorTests: XCTestCase {
 //    func test_9208() {
 //        print(JsonIOCalculator.execute(gameId: 9208, winningScore: 532, widthMax: 17, heightMax: 12))
 //    }
-//    
+//
+//    func test_9209() {
+//        print(JsonIOCalculator.execute(gameId: 9209, winningScore: 608, widthMax: 17, heightMax: 12))
+//    }
+//
 //    func test_9210() {
 //        print(JsonIOCalculator.execute(gameId: 9210, winningScore: 626, widthMax: 17, heightMax: 12))
 //    }
@@ -338,14 +367,19 @@ final class JsonIOCalculatorTests: XCTestCase {
 //        print(JsonIOCalculator.execute(gameId: 9403, winningScore: 710, widthMax: 17, heightMax: 15))
 //    }
 //    
-    func test_9404() {
-        print(JsonIOCalculator.execute(gameId: 9404, winningScore: 740, widthMax: 17, heightMax: 15))
-    }
+//    func test_9404() {
+//        print(JsonIOCalculator.execute(gameId: 9404, winningScore: 740, widthMax: 17, heightMax: 15))
+//    }
 //    
 //    func test_9406() {
 //        print(JsonIOCalculator.execute(gameId: 9406, winningScore: 718, widthMax: 17, heightMax: 15))
 //    }
-//    
+//
+//
+//    func test_9407() {
+//        print(JsonIOCalculator.execute(gameId: 9407, winningScore: 804, widthMax: 17, heightMax: 12))
+//    }
+//
 //    func test_9408() {
 //        print(JsonIOCalculator.execute(gameId: 9408, winningScore: 828, widthMax: 17, heightMax: 15))
 //    }
@@ -389,14 +423,15 @@ final class JsonIOCalculatorTests: XCTestCase {
 //    func test_9506() {
 //        print(JsonIOCalculator.execute(gameId: 9506, winningScore: 706, widthMax: 17, heightMax: 15))
 //    }
-    func test_9507() {
-        print(JsonIOCalculator.execute(gameId: 9507, winningScore: 802, widthMax: 17, heightMax: 15))
-    }
-    
-    func test_9508() {
-        print(JsonIOCalculator.execute(gameId: 9508, winningScore: 778, widthMax: 17, heightMax: 15))
-    }
-    //
+//
+//    func test_9507() {
+//        print(JsonIOCalculator.execute(gameId: 9507, winningScore: 802, widthMax: 17, heightMax: 15))
+//    }
+//
+//    func test_9508() {
+//        print(JsonIOCalculator.execute(gameId: 9508, winningScore: 778, widthMax: 17, heightMax: 15))
+//    }
+//
 //    func test_9509() {
 //        print(JsonIOCalculator.execute(gameId: 9509, winningScore: 762, widthMax: 17, heightMax: 15))
 //    }
@@ -416,142 +451,145 @@ final class JsonIOCalculatorTests: XCTestCase {
 //    func test_9602() {
 //        print(JsonIOCalculator.execute(gameId: 9602, winningScore: 844, widthMax: 17, heightMax: 15))
 //    }
-    func test_9601() {
-        print(JsonIOCalculator.execute(gameId: 9601, winningScore: 800, widthMax: 17, heightMax: 15))
-    }
-    
-    
-    //
+//
+//    func test_9601() {
+//        print(JsonIOCalculator.execute(gameId: 9601, winningScore: 800, widthMax: 17, heightMax: 15))
+//    }
+//
 //    func test_9603() {
 //        print(JsonIOCalculator.execute(gameId: 9603, winningScore: 680, widthMax: 17, heightMax: 15))
 //    }
+//
+//    func test_9604() {
+//        print(JsonIOCalculator.execute(gameId: 9604, winningScore: 720, widthMax: 17, heightMax: 15))
+//    }
+//
+//    func test_9605() {
+//        print(JsonIOCalculator.execute(gameId: 9605, winningScore: 840, widthMax: 17, heightMax: 12))
+//    }
     
-    func test_9604() {
-        print(JsonIOCalculator.execute(gameId: 9604, winningScore: 720, widthMax: 17, heightMax: 15))
-    }
-    
-    func test_JsonLoadingStuff() throws {
-        let filename = "/Users/michaelgeurtjens/Downloads/CrozzleDataFromWinningGames/8710.json"
-        
-        let url = URL(fileURLWithPath: filename)
-
-        do {
-            let data = try Data(contentsOf: url)
-            //let json = try JSONSerialization.jsonObject(with: data, options: [])
-            let decoder = JSONDecoder()
-            
-                do {
-                    let jsonShapes = try decoder.decode([JsonShapeModel].self, from: data)
-                    // first lets work out all the shapes
-                    var shapeNames: [String] = []
-                    for shape in jsonShapes {
-                        if shapeNames.contains(shape.name) == false {
-                            shapeNames.append(shape.name)
-                        }
-                    }
-                    
-                    var text = ""
-                    for shapeName in shapeNames {
-                        switch shapeName {
-                        case "Edge":
-                            var code = ""
-                            code += "        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(\n"
-                            code += "            words: words,\n"
-                            code += "            scoreMin: 0,\n"
-                            code += "            widthMax: widthMax,\n"
-                            code += "            heightMax: heightMax))\n\n"
-                            
-                            text += code
-                        case "Donut3x3":
-                            var code = ""
-                            code += "        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(\n"
-                            code += "            interlockWidth: 2,\n"
-                            code += "            words: words,\n"
-                            code += "            lengths: len,\n"
-                            code += "            scoreMin: 0,\n"
-                            code += "            widthMax: widthMax,\n"
-                            code += "            heightMax: heightMax))\n\n"
-                            
-                            text += code
-                        case "Donut3x4":
-                            var code = ""
-                            code += "        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(\n"
-                            code += "            interlockWidth: 2,\n"
-                            code += "            interlockHeight: 3,\n"
-                            code += "            words: words,\n"
-                            code += "            lengths: len,\n"
-                            code += "            scoreMin: 0,\n"
-                            code += "            widthMax: widthMax,\n"
-                            code += "            heightMax: heightMax))\n\n"
-                            
-                            text += code
-                        case "Donut4x5":
-                            var code = ""
-                            code += "        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(\n"
-                            code += "            interlockWidth: 3,\n"
-                            code += "            interlockHeight: 4,\n"
-                            code += "            words: words,\n"
-                            code += "            lengths: len,\n"
-                            code += "            scoreMin: 0,\n"
-                            code += "            widthMax: widthMax,\n"
-                            code += "            heightMax: heightMax))\n\n"
-                            
-                            text += code
-                        case "OpenDonut4x3_TopRight":
-                            var code = ""
-                            code += "        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(\n"
-                            code += "            interlockWidth: 2,\n"
-                            code += "            interlockHeight: 3,\n"
-                            code += "            words: words,\n"
-                            code += "            lengths: len,\n"
-                            code += "            scoreMin: 0,\n"
-                            code += "            widthMax: widthMax,\n"
-                            code += "            heightMax: heightMax))\n\n"
-                            
-                            text += code
-                        default:
-                            text += "MISSING \(shapeName)"
-                        }
-                        
-                    }
-                    print(text)
-                    
-                    var variableNames: [String] = []
-                    
-                    for shape in jsonShapes {
-                        let words = shape.h + shape.v
-                        
-                        var variableName = ""
-                        var upperWords: [String] = []
-                        
-                        for word in words {
-                            upperWords.append(word.uppercased())
-                            if variableName != "" {
-                                variableName += "_"
-                            }
-                            variableName += word.lowercased()
-                            
-                        }
-                        variableNames.append(variableName)
-                        print("        let \(variableName) = \(shape.name).containing(\(upperWords), from: words)[0]\n")
-                        
-                        
-                    }
-                    print("        let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes:[")
-                    
-                    for variableName in variableNames {
-                        print("            \(variableName),")
-                    }
-                    
-                } catch {
-                    print(error.localizedDescription)
-                }
-            
-        } catch {
-            print("Cant find file")
-        }
-        
-        
-    }
+//    func test_JsonLoadingStuff() throws {
+//        let filename = "/Users/michaelgeurtjens/Downloads/CrozzleDataFromWinningGames/8710.json"
+//        
+//        let url = URL(fileURLWithPath: filename)
+//
+//        do {
+//            let data = try Data(contentsOf: url)
+//            //let json = try JSONSerialization.jsonObject(with: data, options: [])
+//            let decoder = JSONDecoder()
+//            
+//                do {
+//                    let jsonShapes = try decoder.decode([JsonShapeModel].self, from: data)
+//                    // first lets work out all the shapes
+//                    var shapeNames: [String] = []
+//                    for shape in jsonShapes {
+//                        if shapeNames.contains(shape.name) == false {
+//                            shapeNames.append(shape.name)
+//                        }
+//                    }
+//                    
+//                    var text = ""
+//                    for shapeName in shapeNames {
+//                        switch shapeName {
+//                        case "Edge":
+//                            var code = ""
+//                            code += "        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(\n"
+//                            code += "            words: words,\n"
+//                            code += "            scoreMin: 0,\n"
+//                            code += "            widthMax: widthMax,\n"
+//                            code += "            heightMax: heightMax))\n\n"
+//                            
+//                            text += code
+//                        case "Donut3x3":
+//                            var code = ""
+//                            code += "        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(\n"
+//                            code += "            interlockWidth: 2,\n"
+//                            code += "            words: words,\n"
+//                            code += "            lengths: len,\n"
+//                            code += "            scoreMin: 0,\n"
+//                            code += "            widthMax: widthMax,\n"
+//                            code += "            heightMax: heightMax))\n\n"
+//                            
+//                            text += code
+//                        case "Donut3x4":
+//                            var code = ""
+//                            code += "        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(\n"
+//                            code += "            interlockWidth: 2,\n"
+//                            code += "            interlockHeight: 3,\n"
+//                            code += "            words: words,\n"
+//                            code += "            lengths: len,\n"
+//                            code += "            scoreMin: 0,\n"
+//                            code += "            widthMax: widthMax,\n"
+//                            code += "            heightMax: heightMax))\n\n"
+//                            
+//                            text += code
+//                        case "Donut4x5":
+//                            var code = ""
+//                            code += "        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(\n"
+//                            code += "            interlockWidth: 3,\n"
+//                            code += "            interlockHeight: 4,\n"
+//                            code += "            words: words,\n"
+//                            code += "            lengths: len,\n"
+//                            code += "            scoreMin: 0,\n"
+//                            code += "            widthMax: widthMax,\n"
+//                            code += "            heightMax: heightMax))\n\n"
+//                            
+//                            text += code
+//                        case "OpenDonut4x3_TopRight":
+//                            var code = ""
+//                            code += "        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(\n"
+//                            code += "            interlockWidth: 2,\n"
+//                            code += "            interlockHeight: 3,\n"
+//                            code += "            words: words,\n"
+//                            code += "            lengths: len,\n"
+//                            code += "            scoreMin: 0,\n"
+//                            code += "            widthMax: widthMax,\n"
+//                            code += "            heightMax: heightMax))\n\n"
+//                            
+//                            text += code
+//                        default:
+//                            text += "MISSING \(shapeName)"
+//                        }
+//                        
+//                    }
+//                    print(text)
+//                    
+//                    var variableNames: [String] = []
+//                    
+//                    for shape in jsonShapes {
+//                        let words = shape.h + shape.v
+//                        
+//                        var variableName = ""
+//                        var upperWords: [String] = []
+//                        
+//                        for word in words {
+//                            upperWords.append(word.uppercased())
+//                            if variableName != "" {
+//                                variableName += "_"
+//                            }
+//                            variableName += word.lowercased()
+//                            
+//                        }
+//                        variableNames.append(variableName)
+//                        print("        let \(variableName) = \(shape.name).containing(\(upperWords), from: words)[0]\n")
+//                        
+//                        
+//                    }
+//                    print("        let result = MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes:[")
+//                    
+//                    for variableName in variableNames {
+//                        print("            \(variableName),")
+//                    }
+//                    
+//                } catch {
+//                    print(error.localizedDescription)
+//                }
+//            
+//        } catch {
+//            print("Cant find file")
+//        }
+//        
+//        
+//    }
 
 }

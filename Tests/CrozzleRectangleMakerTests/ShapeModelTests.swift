@@ -15,7 +15,7 @@ final class ShapeModelTests: XCTestCase {
         if let game = gameList.getGame(gameId: 8612) {
             
             let edges = EdgeCalculator.Execute(words: game.words, scoreMin: 0, widthMax: 17, heightMax: 15)
-            var shapes = ShapeCalculator.toShapes(edges: edges)
+            let shapes = ShapeCalculator.toShapes(edges: edges)
             
             //shapes.sort() { $0.density > $1.density}
             

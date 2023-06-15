@@ -114,7 +114,7 @@ public struct OuterModel : ShapeProtocol {
     public func ToPlacement() -> [PlacementModel] {
 
         let interlockWidth = wordsVertical.count
-        let interlockHeight = wordsHorizontal.count
+        //let interlockHeight = wordsHorizontal.count
         
         // Get the outerStart
         

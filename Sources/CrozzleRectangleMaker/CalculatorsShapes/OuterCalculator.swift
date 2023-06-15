@@ -15,7 +15,7 @@ public class OuterCalculator {
         let RLR_MO = C2x3_RLR_MO(start: start, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         let RLR_OM = C2x3_RLR_OM(start: start, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
                 
-        var result = LRL_MO + LRL_OM + RLR_MO + RLR_OM
+        let result = LRL_MO + LRL_OM + RLR_MO + RLR_OM
         
         return result
     }

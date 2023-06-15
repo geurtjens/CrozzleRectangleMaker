@@ -6,9 +6,10 @@
 //
 
 import Foundation
+/// Faking that it is calculating the shapes
 public class SpecialShapesCalculator {
     
-    public static func C8703(words: [String]) -> ShapeModel {
+    public static func C8703(words: [String]) -> [ShapeModel] {
         let h = ["JIFFY","LATE","ALWAYS"]
         let v = ["DAILY","FAST","OFT","YEAR"]
         
@@ -31,10 +32,10 @@ public class SpecialShapesCalculator {
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
         let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
-        return shapeWithScore!
+        return [shapeWithScore!]
     }
     
-    public static func C8805(words: [String]) -> ShapeModel {
+    public static func C8805(words: [String]) -> [ShapeModel] {
         let h = ["WOOL","MEAT","TANK","HARVEST"]
         let v = ["EWE","OATS","ROTATION"]
         
@@ -57,10 +58,10 @@ public class SpecialShapesCalculator {
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
         let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
-        return shapeWithScore!
+        return [shapeWithScore!]
     }
     
-    public static func C9002a(words: [String]) -> ShapeModel {
+    public static func C9002a(words: [String]) -> [ShapeModel] {
         let h = ["NEPTUNE","MARS","JUNO"]
         let v = ["REMUS","PAN","TROY","URANUS"]
         
@@ -83,10 +84,10 @@ public class SpecialShapesCalculator {
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
         let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
-        return shapeWithScore!
+        return [shapeWithScore!]
     }
     
-    public static func C9002b(words: [String]) -> ShapeModel {
+    public static func C9002b(words: [String]) -> [ShapeModel] {
         let h = ["OLYMPUS","ROMULUS","JANUS","SATYR"]
         let v = ["URANUS","JASON","MUSES","MEDUSA"]
         
@@ -110,10 +111,10 @@ public class SpecialShapesCalculator {
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
         let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
-        return shapeWithScore!
+        return [shapeWithScore!]
     }
     
-    public static func C9101(words: [String]) -> ShapeModel {
+    public static func C9101(words: [String]) -> [ShapeModel] {
         let h = ["BAT","AMUSEMENT","SUN","HAT"]
         let v = ["BUSH","CASUAL","TENT"]
         
@@ -136,11 +137,11 @@ public class SpecialShapesCalculator {
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
         let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
-        return shapeWithScore!
+        return [shapeWithScore!]
     }
     
     
-    public static func C9102(words: [String]) -> ShapeModel {
+    public static func C9102(words: [String]) -> [ShapeModel] {
         let h = ["SPEED","DOT","CANON","TYPE"]
         let v = ["DATA","SONY","LAPTOP","NEC"]
         
@@ -164,10 +165,10 @@ public class SpecialShapesCalculator {
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
         let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
-        return shapeWithScore!
+        return [shapeWithScore!]
     }
     
-    public static func C9109(words: [String]) -> ShapeModel {
+    public static func C9109(words: [String]) -> [ShapeModel] {
         let h = ["COPYPAPER","ANSWER","POST","TELLER","ORDER"]
         let v = ["PASTE","ENTER","BUZZERS"]
         
@@ -191,10 +192,10 @@ public class SpecialShapesCalculator {
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
         let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
-        return shapeWithScore!
+        return [shapeWithScore!]
     }
     
-    public static func C9204(words: [String]) -> ShapeModel {
+    public static func C9204(words: [String]) -> [ShapeModel] {
         let h = ["RITUAL","SAUCERS","BEANS"]
         let v = ["SHRUB","ICED","TEA","URN","ASSAM"]
         
@@ -218,10 +219,10 @@ public class SpecialShapesCalculator {
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
         let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
-        return shapeWithScore!
+        return [shapeWithScore!]
     }
     
-    public static func C9209(words: [String]) -> ShapeModel {
+    public static func C9209(words: [String]) -> [ShapeModel] {
         let h = ["ALAMO","CORPS","TNT","DIVISIONS"]
         let v = ["ACTION","MONS","FORTIFY"]
         
@@ -244,11 +245,11 @@ public class SpecialShapesCalculator {
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
         let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
-        return shapeWithScore!
+        return [shapeWithScore!]
     }
     
     
-    public static func C9407(words: [String]) -> ShapeModel {
+    public static func C9407(words: [String]) -> [ShapeModel] {
         let h = ["INUIT","SCOTT","WINTER"]
         let v = ["GUST","ICE","STORM"]
         
@@ -270,10 +271,10 @@ public class SpecialShapesCalculator {
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
         let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
-        return shapeWithScore!
+        return [shapeWithScore!]
     }
     
-    public static func C9605(words: [String]) -> ShapeModel {
+    public static func C9605(words: [String]) -> [ShapeModel] {
         let h = ["BAR","TESTIMONY","TREASON","SURTAX","FALSE"]
         let v = ["ASSIZES","SUE","TESTATOR","RENT"]
         
@@ -298,6 +299,6 @@ public class SpecialShapesCalculator {
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
         let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
-        return shapeWithScore!
+        return [shapeWithScore!]
     }
 }
