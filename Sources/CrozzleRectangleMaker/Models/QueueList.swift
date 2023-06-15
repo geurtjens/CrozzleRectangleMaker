@@ -100,10 +100,9 @@ public struct QueueList {
     
     
     public mutating func mergeWithItselfAll() async {
-        
         for i in 0..<self.queues.count {
             if self.queues[i].shapes.count > 0 {
-                print(self.queues[i].shapes[0].ToString(words:self.game.words))
+                //print(self.queues[i].shapes[0].ToString(words:self.game.words))
                 await mergeWithItselfAsync(index:i)
             }
         }
@@ -116,10 +115,20 @@ public struct QueueList {
                 //print(self.queues[i].shapes[0].ToString(words:self.game.words))
                 
                 await mergeTwoAsync(mergeIndex: i, withIndex: index)
-                printBestScore()
+                let bestShape = getBestShape()
+                //print(bestShape)
             }
         }
     }
+    
+    public func size() -> Int {
+        var count = 0
+        for queue in queues {
+            count += queue.shapes.count
+        }
+        return count
+    }
+    
     
     public func printBest() {
         for i in 0..<self.queues.count {
@@ -130,7 +139,7 @@ public struct QueueList {
         }
     }
     
-    public func printBestScore() {
+    public func getBestShape() -> ShapeModel? {
         var bestShapes: [ShapeModel] = []
         for i in 0..<self.queues.count {
             if self.queues[i].shapes.count > 0 {
@@ -141,6 +150,11 @@ public struct QueueList {
         bestShapes.sort() { $0.score > $1.score }
         if bestShapes.count > 0 {
             print(bestShapes[0].ToString(words: self.game.words))
+        }
+        if bestShapes.count == 0 {
+            return nil
+        } else {
+            return bestShapes[0]
         }
     }
     
@@ -162,7 +176,7 @@ public struct QueueList {
         }
     }
     
-    public func getBestShape() -> ShapeModel? {
+    public func getBestShapeByScore() -> ShapeModel? {
         var bestShapes: [ShapeModel] = []
         for i in 0..<self.queues.count {
             if self.queues[i].shapes.count > 0 {

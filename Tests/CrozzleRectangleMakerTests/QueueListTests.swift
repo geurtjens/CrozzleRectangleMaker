@@ -95,35 +95,64 @@ final class QueueListTests: XCTestCase {
         }
     }
     
+   
+    
     func test_MergeWinningShapes_EverythingWithEverything() async {
-        let game = GameList().getGame(gameId: 8612)!
-        
-        //let words = game.words
-        let len = WordCalculator.lengths(words: words)
-        
-        let scoresMin = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        
-        let constraints = ConstraintsModel(
-            scoresMin: scoresMin,
-            wordsMax: 0,
-            wordsToUse: .winningWordsOnly,
-            queueLengthMax: 2000,
-            priorityFunction: .score_area)
-        
-        var queue = QueueList(game: game, constraints: constraints)
-        
-        let (winningShapes, _, _, _) = WinningShapesCalculator.Shapes_8612()
-        queue.add(shapes: winningShapes)
-        
-        
-        
-        for i in 0..<40 {
-            await queue.mergeWithItselfAll()
-            if queue.queues[i].shapes.count > 0 {
-                await queue.mergeEverythingBelowWith(index: i)
-                queue.printBestScore()
+        let gameList = GameList()
+        for game in gameList.games {
+            
+            print("GAME \(game.gameId)")
+            
+            let (winningShapes, words, widthMax, heightMax) = GameList.getShapes(gameId: game.gameId)
+            
+            let scoresMin = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            
+            let constraints = ConstraintsModel(
+                scoresMin: scoresMin,
+                wordsMax: 0,
+                wordsToUse: .winningWordsOnly,
+                queueLengthMax: 2000,
+                priorityFunction: .score_area)
+            
+            var queue = QueueList(game: game, constraints: constraints)
+            queue.add(shapes: winningShapes)
+            
+            let highScore = game.winningScore
+            var maxScore: UInt16 = 0
+            var i = 0
+            while maxScore < highScore && i < 40 {
+                await queue.mergeWithItselfAll()
+                if queue.queues[i].shapes.count > 0 {
+                    await queue.mergeEverythingBelowWith(index: i)
+                    if let bestShape = queue.getBestShape() {
+                        if bestShape.score > maxScore {
+                            maxScore = bestShape.score
+                            print(bestShape.ToString(words: words))
+                        }
+                        if maxScore == highScore {
+                            print("High Score Reached")
+                        }
+                    }
+                }
+                i += 1
             }
         }
+    
+        
+        
+        //let words = game.words
+        //let len = WordCalculator.lengths(words: words)
+        
+        
+        
+        
+        
+        let (winningShapes, _, _, _) = WinningShapesCalculator.Shapes_8612()
+        
+        
+        
+        
+        
         
         
     }
@@ -144,7 +173,7 @@ final class QueueListTests: XCTestCase {
             for i in 0..<40 {
                 if queueList.queues[i].shapes.count > 0 {
                     await queueList.mergeEverythingBelowWith(index: i)
-                    queueList.printBestScore()
+                    queueList.printBest()
                 }
             }
         }
