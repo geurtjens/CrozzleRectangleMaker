@@ -12,6 +12,8 @@ public struct QueueList {
     public let game: GameModel
     public let constraints: ConstraintsModel
     
+    public var recalculateStatisticsWhenAddingToQueue = false
+    
     /// all possible queue sizes that a game can handle, max of `maxQueues`
     public var queues: [QueueModel] = []
     
@@ -56,8 +58,15 @@ public struct QueueList {
             if self.queues[wordCount].shapes.count > constraints.queueLengthMax {
                 self.queues[wordCount].shapes.removeSubrange(constraints.queueLengthMax..<self.queues[wordCount].shapes.count)
             }
-            self.queues[wordCount].gpuShapes = GpuShapeModel(shapes:self.queues[wordCount].shapes, totalWords: self.queues[wordCount].totalWords, stride: self.queues[wordCount].stride)
-            self.queues[wordCount].statistics = StatisticsCalculator.Execute(scores: self.queues[wordCount].gpuShapes.scores)
+            
+            self.queues[wordCount].gpuShapes = GpuShapeModel(
+                shapes:self.queues[wordCount].shapes,
+                totalWords: self.queues[wordCount].totalWords,
+                stride: self.queues[wordCount].stride)
+            
+            if self.recalculateStatisticsWhenAddingToQueue == true {
+                self.queues[wordCount].statistics = StatisticsCalculator.Execute(scores: self.queues[wordCount].gpuShapes.scores)
+            }
         }
     }
     
