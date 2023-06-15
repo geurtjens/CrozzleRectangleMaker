@@ -148,7 +148,7 @@ public struct QueueList {
                 //print(self.queues[i].shapes[0].ToString(words:self.game.words))
                 
                 await mergeTwoAsync(mergeIndex: i, withIndex: index)
-                let bestShape = getBestShape()
+                //let bestShape = getBestShape()
                 //print(bestShape)
             }
         }
@@ -182,7 +182,7 @@ public struct QueueList {
         }
         bestShapes.sort() { $0.score > $1.score }
         if bestShapes.count > 0 {
-            print(bestShapes[0].ToString(words: self.game.words))
+            //print(bestShapes[0].ToString(words: self.game.words))
         }
         if bestShapes.count == 0 {
             return nil

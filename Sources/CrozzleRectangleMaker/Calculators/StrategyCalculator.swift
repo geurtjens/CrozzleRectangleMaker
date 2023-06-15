@@ -8,16 +8,70 @@
 import Foundation
 public class StrategyCalculator {
     
+    public static func BasicStrategy() async {
 
-    
-    
-    
-    private static let widthMax = 17
-    private static let heightMax = 12
+        let gameList = GameList()
+        for game in gameList.games {
+            
+            print("GAME \(game.gameId) with high score of \(game.winningScore)")
+            
+            let (winningShapes, words, _, _) = GameList.getShapes(gameId: game.gameId)
+            
+            let scoresMin = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            
+            let constraints = ConstraintsModel(
+                scoresMin: scoresMin,
+                wordsMax: 0,
+                wordsToUse: .winningWordsOnly,
+                queueLengthMax: 2000,
+                priorityFunction: .score_area)
+            var maxShape: ShapeModel? = nil
+            var queue = QueueList(game: game, constraints: constraints)
+            queue.add(shapes: winningShapes)
+            
+            let highScore = game.winningScore
+            var maxScore: UInt16 = 0
+            var i = 0
+            var count = 0
+            var previousCount = 0
+            //(maxShape, previousCount) = queue.status()
+            await queue.mergeWithItselfAll()
+            while maxScore < highScore && i < 40 {
+                
+                
+                if queue.queues[i].shapes.count > 0 {
+                    await queue.mergeEverythingBelowWith(index: i)
+                    
+                    
+                    if let bestShape = queue.getBestShape() {
+                        if bestShape.score > maxScore {
+                            maxScore = bestShape.score
+                            print(bestShape.ToString(words: words))
+                        }
+                        if maxScore == highScore {
+                            print("High Score Reached")
+                        }
+                    }
+                }
+                i += 1
+            }
+            (maxShape, count) = queue.status()
+            if count == previousCount {
+                break
+            } else {
+                
+                print("GAME \(game.gameId) with high score of \(game.winningScore)")
+                previousCount = count
+            }
+        }
+        
+       
+    }
     
     public static func Create_Fork(edges: [ShapeModel], words: [String]) -> ShapeModel {
         
-        
+        let widthMax = 17
+        let heightMax = 12
         
         let white_family = ShapeCalculator.filterInclude(shapes: edges, containing: ["WHITE","FAMILY"], from: words)[0]
         print(white_family.ToString(words: words))

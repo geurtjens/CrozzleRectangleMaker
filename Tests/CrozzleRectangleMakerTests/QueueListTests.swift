@@ -98,78 +98,7 @@ final class QueueListTests: XCTestCase {
    
     
     func test_MergeWinningShapes_EverythingWithEverything() async {
-        let gameList = GameList()
-        for game in gameList.games {
-            
-            print("GAME \(game.gameId) with high score of \(game.winningScore)")
-            
-            let (winningShapes, words, widthMax, heightMax) = GameList.getShapes(gameId: game.gameId)
-            
-            let scoresMin = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            
-            let constraints = ConstraintsModel(
-                scoresMin: scoresMin,
-                wordsMax: 0,
-                wordsToUse: .winningWordsOnly,
-                queueLengthMax: 2000,
-                priorityFunction: .score_area)
-            var maxShape: ShapeModel? = nil
-            var queue = QueueList(game: game, constraints: constraints)
-            queue.add(shapes: winningShapes)
-            
-            let highScore = game.winningScore
-            var maxScore: UInt16 = 0
-            var i = 0
-            var count = 0
-            var previousCount = 0
-            (maxShape, previousCount) = queue.status()
-            await queue.mergeWithItselfAll()
-            while maxScore < highScore && i < 40 {
-                
-                
-                if queue.queues[i].shapes.count > 0 {
-                    await queue.mergeEverythingBelowWith(index: i)
-                    
-                    
-                    if let bestShape = queue.getBestShape() {
-                        if bestShape.score > maxScore {
-                            maxScore = bestShape.score
-                            print(bestShape.ToString(words: words))
-                        }
-                        if maxScore == highScore {
-                            print("High Score Reached")
-                        }
-                    }
-                }
-                i += 1
-            }
-            (maxShape, count) = queue.status()
-            if count == previousCount {
-                break
-            } else {
-                
-                print("GAME \(game.gameId) with high score of \(game.winningScore)")
-                previousCount = count
-            }
-        }
-    
-        
-        
-        //let words = game.words
-        //let len = WordCalculator.lengths(words: words)
-        
-        
-        
-        
-        
-        let (winningShapes, _, _, _) = WinningShapesCalculator.Shapes_8612()
-        
-        
-        
-        
-        
-        
-        
+        await StrategyCalculator.BasicStrategy()
     }
     func test_MergeEverythingWithEverything() async throws {
         if let game = game {
