@@ -13,7 +13,7 @@ public class StrategyCalculator {
         let gameList = GameList()
         for game in gameList.games {
             
-            print("GAME \(game.gameId) with high score of \(game.winningScore)")
+            
             
             let (winningShapes, words, _, _) = GameList.getShapes(gameId: game.gameId)
             
@@ -34,8 +34,21 @@ public class StrategyCalculator {
             var i = 0
             var count = 0
             var previousCount = 0
-            //(maxShape, previousCount) = queue.status()
+            print("")
+            print("")
+            print("GAME \(game.gameId) with high score of \(game.winningScore)")
+            (maxShape, _) = queue.status()
+            if let maxShape = maxShape {
+                let text = maxShape.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore)
+                print(text)
+            }
+            print("MERGE WITH ITSELF")
             await queue.mergeWithItselfAll()
+            (maxShape, _) = queue.status()
+            if let maxShape = maxShape {
+                let text = maxShape.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore)
+                print(text)
+            }
             while maxScore < highScore && i < 40 {
                 
                 
