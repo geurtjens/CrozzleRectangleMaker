@@ -82,7 +82,7 @@ public class StrategyCalculator {
     }
     
     
-    public static func NextStep(queueLength: Int, priorityFunction: PriorityFunction) async {
+    public static func NextStep(queueLength: Int, priorityFunction: PriorityFunction) async -> ShapeModel {
         
         var queue = Queue_8612(queueLength: queueLength, priorityFunction: priorityFunction)
         let game = queue.game
@@ -137,6 +137,10 @@ public class StrategyCalculator {
             // it shows all tiny variations of the same shape being built.  Quite interesting to see really.
             previousCount = count
         }
+        
+        let bestShapeScore = queue.getBestShape()
+        
+        return bestShapeScore!
     }
     
     

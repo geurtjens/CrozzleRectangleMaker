@@ -96,7 +96,7 @@ final class QueueListTests: XCTestCase {
     }
     
     func test_NextStep() async {
-        await StrategyCalculator.NextStep()
+        await StrategyCalculator.NextStep(queueLength:1000, priorityFunction: .score_area)
     }
     
     func test_MergeWinningShapes_EverythingWithEverything() async {

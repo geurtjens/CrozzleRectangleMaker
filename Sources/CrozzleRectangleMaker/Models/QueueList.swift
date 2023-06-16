@@ -41,6 +41,7 @@ public struct QueueList {
         print("\(count) total")
         if let maxShape = maxShape {
             print("Max Score = \(maxShape.score)")
+            print(maxShape.ToStringExtended(words: game.winningWords, gameId: game.gameId, winningScore: game.winningScore))
         }
         return (maxShape, count)
     }
