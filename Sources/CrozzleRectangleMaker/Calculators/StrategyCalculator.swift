@@ -8,8 +8,83 @@
 import Foundation
 public class StrategyCalculator {
     
-    public static func NextStep() async {
-        var queue = WinningShapesCalculator.Queue_8612()
+    
+    public static func Queue_8612(queueLength: Int, priorityFunction: PriorityFunction = .score_area) -> QueueList {
+        let game = GameList().getGame(gameId: 8612)!
+        
+        let scoresMin = StrategyCalculator.GetScoreMins(gameId: 8612)
+        let constraint = ConstraintsModel(
+            scoresMin: scoresMin,
+            wordsMax: game.winningWords.count,
+            wordsToUse: .winningWordsOnly,
+            queueLengthMax: queueLength,
+            priorityFunction: .score_area)
+        
+        var queue = QueueList(game: game, constraints: constraint)
+        
+        let widthMax = game.maxWidth
+        let heightMax = game.maxHeight
+        let words = game.winningWords
+        let len = WordCalculator.lengths(words: words)
+
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+            words: words,
+            scoreMin: 22,
+            widthMax: widthMax,
+            heightMax: heightMax))
+        
+        queue.add(shapes: edges)
+
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: len,
+            scoreMin: 136,
+            widthMax: widthMax,
+            heightMax: heightMax))
+        
+        queue.add(shapes: rectangle3x4)
+
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: len,
+            scoreMin: 64,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        queue.add(shapes: rectangle3x4_BottomLeft)
+        
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+            interlockWidth: 3,
+            interlockHeight: 4,
+            words: words,
+            lengths: len,
+            scoreMin: 90,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
+        queue.add(shapes: rectangle4x5)
+        
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+            interlockWidth: 2,
+            words: words,
+            lengths: len,
+            scoreMin: 52,
+            widthMax: widthMax,
+            heightMax: heightMax))
+        
+        queue.add(shapes: square3x3)
+        
+        return queue
+    }
+    
+    
+    public static func NextStep(queueLength: Int, priorityFunction: PriorityFunction) async {
+        
+        var queue = Queue_8612(queueLength: queueLength, priorityFunction: priorityFunction)
         let game = queue.game
         let words = game.winningWords
         
