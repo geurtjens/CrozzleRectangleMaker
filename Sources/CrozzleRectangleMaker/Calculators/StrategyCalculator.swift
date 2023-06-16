@@ -8,6 +8,65 @@
 import Foundation
 public class StrategyCalculator {
     
+    public static func NextStep() async {
+        var queue = WinningShapesCalculator.Queue_8612()
+        let game = queue.game
+        let words = game.winningWords
+        
+        var maxShape: ShapeModel? = nil
+        let highScore = game.winningScore
+        var maxScore: UInt16 = 0
+        var i = 0
+        var count = 0
+        var previousCount = 0
+        print("")
+        print("")
+        print("GAME \(game.gameId) with high score of \(game.winningScore)")
+        (maxShape, _) = queue.status()
+        if let maxShape = maxShape {
+            let text = maxShape.ToStringExtended(words: words, gameId: queue.game.gameId, winningScore: queue.game.winningScore)
+            print(text)
+        }
+        print("MERGE WITH ITSELF")
+        await queue.mergeWithItselfAll()
+        (maxShape, _) = queue.status()
+        if let maxShape = maxShape {
+            let text = maxShape.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore)
+            print(text)
+        }
+        while maxScore < highScore && i < 40 {
+            
+            
+            if queue.queues[i].shapes.count > 0 {
+                await queue.mergeEverythingBelowWith(index: i)
+                
+                if let bestShape = queue.getBestShape() {
+                    if bestShape.score > maxScore {
+                        maxScore = bestShape.score
+                        print(bestShape.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore))
+                    }
+                    if maxScore == highScore {
+                        print("High Score Reached")
+                    }
+                }
+            }
+            i += 1
+        }
+        (maxShape, count) = queue.status()
+        if count == previousCount {
+            //break
+        } else {
+            
+            print("GAME \(game.gameId) with high score of \(game.winningScore)")
+            
+            // it shows all tiny variations of the same shape being built.  Quite interesting to see really.
+            previousCount = count
+        }
+    }
+    
+    
+    
+    
     public static func BasicStrategy() async {
 
         var scoresMinDictionary: [(Int,[UInt16])] = []
@@ -26,10 +85,11 @@ public class StrategyCalculator {
                 wordsToUse: .winningWordsOnly,
                 queueLengthMax: 2000,
                 priorityFunction: .score_area)
-            var maxShape: ShapeModel? = nil
+            
             var queue = QueueList(game: game, constraints: constraints)
             queue.add(shapes: winningShapes)
             
+            var maxShape: ShapeModel? = nil
             let highScore = game.winningScore
             var maxScore: UInt16 = 0
             var i = 0
