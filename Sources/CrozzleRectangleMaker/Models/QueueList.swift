@@ -200,6 +200,23 @@ public struct QueueList {
         return result
     }
     
+    public func createScoresMin(winningShape: ShapeModel) -> [UInt16] {
+        var result:[UInt16]=[]
+        
+        for queue in queues {
+            result.append(queue.minScore(winningShape: winningShape, words: self.game.words))
+        }
+        return result
+    }
+    
+    public func printAllShapes(words: [String]) {
+        for queue in queues {
+            if queue.shapes.count > 0 {
+                queue.printAllShapes(words: words)
+            }
+        }
+    }
+    
     /// This words on shape lists that are not already sorted by score
     public func printBestScoreDeep() {
         var bestShapes: [ShapeModel] = []

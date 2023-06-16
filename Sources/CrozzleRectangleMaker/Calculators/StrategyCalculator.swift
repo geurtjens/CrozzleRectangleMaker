@@ -16,6 +16,8 @@ public class StrategyCalculator {
             
             let (winningShapes, words, _, _) = GameList.getShapes(gameId: game.gameId)
             
+            guard let winningShape = GameList.getWinningShape(gameId: game.gameId) else { return  }
+            
             let scoresMin = StrategyCalculator.GetScoreMins(gameId: game.gameId)
             
             let constraints = ConstraintsModel(
@@ -72,8 +74,12 @@ public class StrategyCalculator {
             } else {
                 
                 print("GAME \(game.gameId) with high score of \(game.winningScore)")
+                let scoresMin = queue.createScoresMin(winningShape: winningShape)
+                print(scoresMin)
+                scoresMinDictionary.append((game.gameId,scoresMin))
                 
-                scoresMinDictionary.append((game.gameId,queue.createScoresMin()))
+                //queue.printAllShapes(words: words)
+                // it shows all tiny variations of the same shape being built.  Quite interesting to see really.
                 previousCount = count
             }
         }

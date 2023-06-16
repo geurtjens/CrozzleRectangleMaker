@@ -14,7 +14,7 @@ final class WinningGamesCalculatorTests: XCTestCase {
         let gameList = GameList()
         
         for game in gameList.games {
-            let (shapes, words, widthMax, heightMax) = GameList.getShapes(gameId: game.gameId)
+            let (shapes, words, _, _) = GameList.getShapes(gameId: game.gameId)
             
             if let winningGame = GameList.getWinningShape(gameId: game.gameId) {
                 if winningGame.width > winningGame.height {

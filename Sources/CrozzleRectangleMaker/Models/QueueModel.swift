@@ -80,4 +80,31 @@ public struct QueueModel {
         }
     }
     
+    public func minScore(winningShape: ShapeModel, words: [String]) -> UInt16 {
+        if shapes.count == 0 {
+            return 0
+        }
+ 
+        var min = UInt16(9999)
+        for shape in shapes {
+            
+            if shape.score < min {
+                // Lets see if this shape is in the winning shape
+                if SubsetShapeCalculator.IsSubset(shapeSmall: shape, shapeLarge: winningShape, words:words) {
+                    min = shape.score
+                }
+            }
+        }
+        if min == 9999 {
+            return 0
+        }
+        return min
+    }
+    
+    public func printAllShapes(words: [String]) {
+        print ("\(stride) words queue shapes")
+        for shape in shapes {
+            print(shape.ToString(words: words))
+        }
+    }
 }
