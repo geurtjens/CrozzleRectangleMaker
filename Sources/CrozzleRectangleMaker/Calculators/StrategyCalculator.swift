@@ -30,8 +30,8 @@ public class StrategyCalculator {
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
             words: words,
             scoreMin: 22,
-            widthMax: widthMax,
-            heightMax: heightMax))
+            widthMax: 10,
+            heightMax: 8))
         
         queue.add(shapes: edges)
 
@@ -41,8 +41,8 @@ public class StrategyCalculator {
             words: words,
             lengths: len,
             scoreMin: 136,
-            widthMax: widthMax,
-            heightMax: heightMax))
+            widthMax: 10,
+            heightMax: 7))
         
         queue.add(shapes: rectangle3x4)
 
@@ -52,8 +52,8 @@ public class StrategyCalculator {
             words: words,
             lengths: len,
             scoreMin: 64,
-            widthMax: widthMax,
-            heightMax: heightMax))
+            widthMax: 10,
+            heightMax: 7))
 
         queue.add(shapes: rectangle3x4_BottomLeft)
         
@@ -63,8 +63,8 @@ public class StrategyCalculator {
             words: words,
             lengths: len,
             scoreMin: 90,
-            widthMax: widthMax,
-            heightMax: heightMax))
+            widthMax: 11,
+            heightMax: 8))
 
         queue.add(shapes: rectangle4x5)
         
@@ -73,8 +73,8 @@ public class StrategyCalculator {
             words: words,
             lengths: len,
             scoreMin: 52,
-            widthMax: widthMax,
-            heightMax: heightMax))
+            widthMax: 11,
+            heightMax: 8))
         
         queue.add(shapes: square3x3)
         

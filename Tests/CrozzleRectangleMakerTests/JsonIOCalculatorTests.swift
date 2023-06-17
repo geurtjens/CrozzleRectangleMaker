@@ -61,11 +61,35 @@ final class JsonIOCalculatorTests: XCTestCase {
         for game in gameList.games {
             var constraintShapes = loadConstraintShapes(gameId: game.gameId)
             constraintShapes.sort() { $0.shapeName < $1.shapeName}
+            let groupByName = Dictionary(grouping: constraintShapes) { $0.shapeName }
+            
+            var scoreMin = 9999
+            var widthMax = 0
+            var heightMax = 0
+            var summary: [ConstraintsShapeModel] = []
+            for dictionaryItem in groupByName {
+                for shape in dictionaryItem.value {
+                    if shape.scoreMin < scoreMin {
+                        scoreMin = shape.scoreMin
+                    }
+                    if shape.heightMax > heightMax {
+                        heightMax = shape.heightMax
+                    }
+                    if shape.widthMax > widthMax {
+                        widthMax = shape.widthMax
+                    }
+                }
+                let summaryItem = ConstraintsShapeModel(shapeName:  dictionaryItem.key, interlockWidth:0, interlockHeight:0, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+                summary.append(summaryItem)
+            }
+            
+            
+            
             print("")
             
             // We can do a group by and then we can count the lowest score and biggest width and height
             print(game.gameId)
-            for shape in constraintShapes {
+            for shape in summary {
                 print("shapeName:\"\(shape.shapeName)\", scoreMin: \(shape.scoreMin), widthMax: \(shape.widthMax), heightMax: \(shape.heightMax)")
             }
         }
