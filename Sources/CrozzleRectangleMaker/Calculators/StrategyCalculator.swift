@@ -82,7 +82,7 @@ public class StrategyCalculator {
     }
     
     
-    public static func NextStep(queueLength: Int, priorityFunction: PriorityFunction) async -> ShapeModel {
+    public static func NextStep(queueLength: Int, priorityFunction: PriorityFunction, repeatTimes: Int) async -> ShapeModel {
         
         var queue = Queue_8612(queueLength: queueLength, priorityFunction: priorityFunction)
         let game = queue.game
@@ -102,45 +102,60 @@ public class StrategyCalculator {
             let text = maxShape.ToStringExtended(words: words, gameId: queue.game.gameId, winningScore: queue.game.winningScore)
             print(text)
         }
-        print("MERGE WITH ITSELF")
-        await queue.mergeWithItselfAll()
-        (maxShape, _) = queue.status()
-        if let maxShape = maxShape {
-            let text = maxShape.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore)
-            print(text)
-        }
-        while maxScore < highScore && i < 40 {
+        
+        var repeatCount = 0
+        
+        for repeatCount in 0..<repeatTimes {
             
             
-            if queue.queues[i].shapes.count > 0 {
-                await queue.mergeEverythingBelowWith(index: i)
+            print("MERGE WITH ITSELF")
+            await queue.mergeWithItselfAll()
+            (maxShape, _) = queue.status()
+            if let maxShape = maxShape {
+                let text = maxShape.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore)
+                print(text)
+            }
+            while maxScore < highScore && i < 40  {
                 
-                if let bestShape = queue.getBestShape() {
-                    if bestShape.score > maxScore {
-                        maxScore = bestShape.score
-                        print(bestShape.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore))
-                    }
-                    if maxScore == highScore {
-                        print("High Score Reached")
+                
+                if queue.queues[i].shapes.count > 0 {
+                    await queue.mergeEverythingBelowWith(index: i)
+                    
+                    if let bestShape = queue.getBestShape() {
+                        if bestShape.score > maxScore {
+                            maxScore = bestShape.score
+                            print(bestShape.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore))
+                        }
+                        if maxScore == highScore {
+                            print("High Score Reached")
+                        }
                     }
                 }
+                i += 1
             }
-            i += 1
-        }
-        (maxShape, count) = queue.status()
-        if count == previousCount {
-            //break
-        } else {
+            (maxShape, count) = queue.status()
+            if count == previousCount {
+                //break
+            } else {
+                
+                print("GAME \(game.gameId) with high score of \(game.winningScore)")
+                
+                // it shows all tiny variations of the same shape being built.  Quite interesting to see really.
+                previousCount = count
+            }
             
-            print("GAME \(game.gameId) with high score of \(game.winningScore)")
+            if let bestShapeScore = queue.getBestShape() {
+                if bestShapeScore.score >= highScore {
+                    return bestShapeScore
+                }
+            }
+
             
-            // it shows all tiny variations of the same shape being built.  Quite interesting to see really.
-            previousCount = count
         }
         
         let bestShapeScore = queue.getBestShape()
-        
         return bestShapeScore!
+        
     }
     
     

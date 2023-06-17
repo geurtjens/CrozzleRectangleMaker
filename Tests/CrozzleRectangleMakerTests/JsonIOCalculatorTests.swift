@@ -55,6 +55,120 @@ final class JsonIOCalculatorTests: XCTestCase {
         print(result)
     }
     
+    func test_makeShapeConstraints() {
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            var constraintShapes = loadConstraintShapes(gameId: game.gameId)
+            constraintShapes.sort() { $0.shapeName < $1.shapeName}
+            print("")
+            
+            // We can do a group by and then we can count the lowest score and biggest width and height
+            print(game.gameId)
+            for shape in constraintShapes {
+                print("shapeName:\"\(shape.shapeName)\", scoreMin: \(shape.scoreMin), widthMax: \(shape.widthMax), heightMax: \(shape.heightMax)")
+            }
+        }
+    }
+    
+    func splitName(shapeName: String) -> String {
+        if shapeName == "Edge" {
+            return "edge"
+        } else if shapeName.contains("Cluster") {
+            let numbers = shapeName.replacingOccurrences(of: "Cluster", with: "")
+            let split = numbers.split(separator:"x")
+            let a:Int = Int(String(split[0])) ?? 0
+            let b:Int = Int(String(split[1])) ?? 0
+            
+            if a < b {
+                return "cluster\(a)x\(b)"
+            } else {
+                return "cluster\(b)x\(a)"
+            }
+        } else if shapeName.contains("OpenDonut") {
+            let namesAndStyle = shapeName.replacingOccurrences(of: "OpenDonut", with: "")
+            let styleSplit = namesAndStyle.split(separator:"_")
+            let numbers = styleSplit[0]
+            var style = styleSplit[1]
+            let split = numbers.split(separator:"x")
+            let a:Int = Int(String(split[0])) ?? 0
+            let b:Int = Int(String(split[1])) ?? 0
+            
+            if a < b {
+                return "rectangle\(style)\(a)x\(b)"
+            } else if a == b {
+                
+                if style == "BottomLeft" {
+                    style = "TopRight"
+                }
+                // We have to swap around the style for a square
+                return "square\(style)\(a)x\(b)"
+            } else {
+                return "rectangle\(style)\(b)x\(a)"
+            }
+        } else if shapeName.contains("Donut") {
+            let numbers = shapeName.replacingOccurrences(of: "Donut", with: "")
+            let split = numbers.split(separator:"x")
+            let a:Int = Int(String(split[0])) ?? 0
+            let b:Int = Int(String(split[1])) ?? 0
+            
+            if a == 0 || b == 0 {
+                print(shapeName)
+            }
+            if a < b {
+                return "rectangle\(a)x\(b)"
+            } else if a == b {
+                return "square\(a)x\(b)"
+            } else {
+                return "rectangle\(b)x\(a)"
+            }
+        
+
+        } else if shapeName.contains("Outer") {
+            let numbers = shapeName.replacingOccurrences(of: "Outer", with: "")
+            let split = numbers.split(separator:"x")
+            let a:Int = Int(String(split[0])) ?? 0
+            let b:Int = Int(String(split[1])) ?? 0
+            
+            if a < b {
+                return "outer\(a)x\(b)"
+            } else {
+                return "outer\(b)x\(a)"
+            }
+        } else if shapeName.contains("Pacman") {
+            return shapeName.lowercased()
+        } else if shapeName.contains("Special") {
+            return shapeName.lowercased()
+        }
+        
+        else {
+            return shapeName.lowercased()
+        }
+    }
+    func loadConstraintShapes(gameId: Int) -> [ConstraintsShapeModel] {
+        let jsonShapes = JsonIOCalculator.load(gameId: gameId)
+        var result:[ConstraintsShapeModel] = []
+        for jsonShape in jsonShapes {
+            let name = jsonShape.name
+            let revisedName = splitName(shapeName: name)
+            let width = jsonShape.size.x
+            let height = jsonShape.size.y
+            let score = jsonShape.score
+            let interlockWidth = 0
+            let interlockHeight = 0
+            
+            let constraintShape = ConstraintsShapeModel(shapeName: revisedName,
+                                             interlockWidth: interlockWidth,
+                                             interlockHeight: interlockHeight,
+                                             scoreMin: score,
+                                             widthMax: width,
+                                             heightMax: height)
+            result.append(constraintShape)
+            
+        }
+        return result
+    }
+    
     func test_getWinningGamesTests() {
         let code = JsonIOCalculator.getWinningGameTests()
         print (code)
@@ -65,9 +179,9 @@ final class JsonIOCalculatorTests: XCTestCase {
         print(code)
     }
     
-//    func test_8612() throws {
-//        print(JsonIOCalculator.execute(gameId: 8612, winningScore: 694, widthMax: 17, heightMax: 12))
-//    }
+    func test_8612() throws {
+        print(JsonIOCalculator.execute(gameId: 8612, winningScore: 694, widthMax: 17, heightMax: 12))
+    }
 //    
 //    func test_8702() throws {
 //        print(JsonIOCalculator.execute(gameId: 8702, winningScore: 726, widthMax: 17, heightMax: 12))
