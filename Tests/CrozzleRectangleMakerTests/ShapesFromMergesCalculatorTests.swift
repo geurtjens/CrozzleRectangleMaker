@@ -130,7 +130,7 @@ final class ShapesFromMergesCalculatorTests: XCTestCase {
             
             let result = ShapesFromMergesCalculator.Execute2x3And2x2(words: words, scoreMin: 52, widthMax: 17, heightMax: 12)
             
-            XCTAssertEqual(69, result.count)
+            XCTAssertEqual(66, result.count)
             
             let searchFor = ["NUTS","ZION","EVE","NAZARETH","SING","BELLS"]
             let filtered = ShapeCalculator.filterInclude(shapes: result, containing: searchFor, from: words)

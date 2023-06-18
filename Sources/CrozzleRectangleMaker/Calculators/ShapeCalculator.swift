@@ -89,7 +89,6 @@ public class ShapeCalculator {
     }
     
     
-    
     /// Verify that the shapes text is valid, that is there are no overlaps and no errors like #
     public static func VerifyText(text: String) -> Bool {
 
@@ -117,6 +116,10 @@ public class ShapeCalculator {
                     return false
                 } else if i == 1 && alphabet.contains(previous) && alphabet.contains(current) {
                     return false
+                } else if alphabet.contains(previous) && alphabet.contains(current) && next == " " {
+                    return false
+                } else if i == line.count - 2 && alphabet.contains(current) && alphabet.contains(next) {
+                    return false
                 }
                 previous = current
             }
@@ -133,6 +136,10 @@ public class ShapeCalculator {
                 if previous == " " && alphabet.contains(current) && alphabet.contains(next) {
                     return false
                 } else if i == 1 && alphabet.contains(previous) && alphabet.contains(current) {
+                    return false
+                } else if alphabet.contains(previous) && alphabet.contains(current) && next == " " {
+                    return false
+                } else if i == line.count - 2 && alphabet.contains(current) && alphabet.contains(next) {
                     return false
                 }
                 previous = current

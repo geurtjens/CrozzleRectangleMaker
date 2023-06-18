@@ -103,10 +103,7 @@ public class StrategyCalculator {
             print(text)
         }
         
-        var repeatCount = 0
-        
-        for repeatCount in 0..<repeatTimes {
-            
+        for _ in 0..<repeatTimes {
             
             print("MERGE WITH ITSELF")
             await queue.mergeWithItselfAll()

@@ -455,9 +455,9 @@ final class JsonIOCalculatorTests: XCTestCase {
 //        print(JsonIOCalculator.execute(gameId: 9210, winningScore: 626, widthMax: 17, heightMax: 12))
 //    }
 //    
-//    func test_9211() {
-//        print(JsonIOCalculator.execute(gameId: 9211, winningScore: 602, widthMax: 17, heightMax: 12))
-//    }
+    func test_9211() {
+        print(JsonIOCalculator.execute(gameId: 9211, winningScore: 602, widthMax: 17, heightMax: 12))
+    }
 //    
 //    func test_9212() {
 //        print(JsonIOCalculator.execute(gameId: 9212, winningScore: 576, widthMax: 17, heightMax: 12))

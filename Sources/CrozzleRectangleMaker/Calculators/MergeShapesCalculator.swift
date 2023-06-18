@@ -44,20 +44,21 @@ public class MergeShapesCalculator {
     public static func Merge_Sequence_Of_Shapes(shapes: [ShapeModel], words:[String], widthMax: Int, heightMax: Int) -> ShapeModel {
         
         var currentShape = shapes[0]
-        //print(currentShape.ToString(words: words))
+        print(currentShape.ToString(words: words))
         var results: [ShapeModel] = []
         for i in 1..<shapes.count {
+            
             let mergeShape = shapes[i]
 
             if currentShape.placements.count < mergeShape.placements.count {
                 
-                //print("Merging with")
-                //print(mergeShape.ToString(words: words))
+                print("Merging with")
+                print(mergeShape.ToString(words: words))
                 results = Merge_Two_Shapes(smaller: [currentShape], larger: [mergeShape], words: words, widthMax: widthMax, heightMax: heightMax)
             } else {
                 
-                //print("Merging with")
-                //print(mergeShape.ToString(words: words))
+                print("Merging with")
+                print(mergeShape.ToString(words: words))
                 results = Merge_Two_Shapes(smaller: [mergeShape], larger: [currentShape], words: words, widthMax: widthMax, heightMax: heightMax)
                 
             }
@@ -67,7 +68,7 @@ public class MergeShapesCalculator {
                 print("Out of \(results.count) shapes produced we choose 0, use shapeAndSelectedPosition variant if you want different")
             }
             currentShape = results[0]
-            //print(currentShape.ToString(words: words))
+            print(currentShape.ToString(words: words))
         }
         return currentShape
     }

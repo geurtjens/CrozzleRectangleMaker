@@ -9,6 +9,15 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class ShapeCalculatorTests: XCTestCase {
 
+    func test_VerifyText() {
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            let text = game.winningText()
+            
+            XCTAssertTrue(ShapeCalculator.VerifyText(text: text))
+        }
+    }
     
     func testToCodeResult() throws {
         let placements = [

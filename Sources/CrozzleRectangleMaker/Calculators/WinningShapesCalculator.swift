@@ -996,6 +996,7 @@ public class WinningShapesCalculator {
 
         let widthMax = game.maxWidth
         let heightMax = game.maxHeight
+
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -1030,6 +1031,14 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
+        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+            interlockWidth: 2,
+            words: words,
+            lengths: len,
+            scoreMin: 74,
+            widthMax: widthMax,
+            heightMax: heightMax))
+
         let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
             interlockWidth: 2,
             words: words,
@@ -1045,18 +1054,21 @@ public class WinningShapesCalculator {
         let song_sign = edges.containing(["SONG", "SIGN"], from: words)[0]
         let song_trio_note_tie = square3x3_TopRight.containing(["SONG", "TRIO", "NOTE", "TIE"], from: words)[0]
         let tune_trio_tie_duo = c2x2.containing(["TUNE", "TRIO", "TIE", "DUO"], from: words)[0]
-        let viola_low = edges.containing(["VIOLA", "LOW"], from: words)[0]
-        let slow_low = edges.containing(["SLOW", "LOW"], from: words)[2]
-        let tune_rest = edges.containing(["TUNE", "REST"], from: words)[0]
+        let tune_stop_duo_rest = square3x3_BottomLeft.containing(["TUNE", "STOP", "DUO", "REST"], from: words)[0]
         let strum_stop_rest_tone_harp = c2x3.containing(["STRUM", "STOP", "REST", "TONE", "HARP"], from: words)[0]
         let hit_strum_harp_time = square3x3.containing(["HIT", "STRUM", "HARP", "TIME"], from: words)[0]
-        let stop_slur = edges.containing(["STOP", "SLUR"], from: words)[0]
+        let stop_mute_slur_tone = square3x3.containing(["STOP", "MUTE", "SLUR", "TONE"], from: words)[0]
+        
         let mazurka_basso = edges.containing(["MAZURKA", "BASSO"], from: words)[1]
-        let score_hold_basso_mood = square3x3.containing(["SCORE", "HOLD", "BASSO", "MOOD"], from: words)[0]
+        
         let mute_score_mood_slur_tempo = c2x3.containing(["MUTE", "SCORE", "MOOD", "SLUR", "TEMPO"], from: words)[0]
+        let score_hold_basso_mood = square3x3.containing(["SCORE", "HOLD", "BASSO", "MOOD"], from: words)[0]
         let march_forte_tempo_fret = square3x3.containing(["MARCH", "FORTE", "TEMPO", "FRET"], from: words)[0]
         let march_echo = edges.containing(["MARCH", "ECHO"], from: words)[1]
+        let viola_low = edges.containing(["VIOLA", "LOW"], from: words)[0]
+        let slow_low = edges.containing(["SLOW", "LOW"], from: words)[2]
         
+
         let winningShapes = [
             hymn_mazurka_hum_mezzo,
             mazurka_viola_mezzo_aria,
@@ -1065,17 +1077,17 @@ public class WinningShapesCalculator {
             song_sign,
             song_trio_note_tie,
             tune_trio_tie_duo,
-            viola_low,
-            slow_low,
-            tune_rest,
+            tune_stop_duo_rest,
             strum_stop_rest_tone_harp,
             hit_strum_harp_time,
-            stop_slur,
+            stop_mute_slur_tone,
             mazurka_basso,
-            score_hold_basso_mood,
             mute_score_mood_slur_tempo,
+            score_hold_basso_mood,
             march_forte_tempo_fret,
-            march_echo
+            march_echo,
+            viola_low,
+            slow_low
         ]
         return (winningShapes, words, widthMax, heightMax)
     }
@@ -5935,6 +5947,7 @@ public class WinningShapesCalculator {
 
         let widthMax = game.maxWidth
         let heightMax = game.maxHeight
+
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -5991,28 +6004,30 @@ public class WinningShapesCalculator {
         let flush_laika_saluki_schnauzer = square3x3.containing(["FLUSH", "LAIKA", "SALUKI", "SCHNAUZER"], from: words)[0]
         let crofts_nana_schnauzer_coon = square3x3.containing(["CROFTS", "NANA", "SCHNAUZER", "COON"], from: words)[0]
         let crofts_spaniel_cats_sphynx = c2x2.containing(["CROFTS", "SPANIEL", "CATS", "SPHYNX"], from: words)[0]
-        let skye_sphynx = edges.containing(["SKYE", "SPHYNX"], from: words)[1]
         let skye_manx_asta_sphynx = square3x3.containing(["SKYE", "MANX", "ASTA", "SPHYNX"], from: words)[0]
         let claws_flush_saluki_schnauzer = square3x3.containing(["CLAWS", "FLUSH", "SALUKI", "SCHNAUZER"], from: words)[0]
         let chow_spaniel_cats_whine = square4x4.containing(["CHOW", "SPANIEL", "CATS", "WHINE"], from: words)[0]
+        let boxer_schnauzer = edges.containing(["BOXER", "SCHNAUZER"], from: words)[1]
         let hair_whine = edges.containing(["HAIR", "WHINE"], from: words)[0]
         let spaniel_lassie = edges.containing(["SPANIEL", "LASSIE"], from: words)[0]
         let dogs_macavity_korat_lassie = rectangle3x4_BottomRight.containing(["DOGS", "MACAVITY", "KORAT", "LASSIE"], from: words)[0]
-        let boxer_schnauzer = edges.containing(["BOXER", "SCHNAUZER"], from: words)[1]
+        //let nana_asta = edges.containing(["NANA", "ASTA"], from: words)[0]
+        // let flush_felis = edges.containing(["FLUSH", "FELIS"], from: words)[0]
 
         let winningShapes = [
             laika_spitz_felis_schnauzer,
             flush_laika_saluki_schnauzer,
             crofts_nana_schnauzer_coon,
             crofts_spaniel_cats_sphynx,
-            skye_sphynx,
             skye_manx_asta_sphynx,
             claws_flush_saluki_schnauzer,
             chow_spaniel_cats_whine,
+            boxer_schnauzer,
             hair_whine,
             spaniel_lassie,
-            dogs_macavity_korat_lassie,
-            boxer_schnauzer
+            dogs_macavity_korat_lassie
+            //nana_asta,
+            //flush_felis
         ]
         return (winningShapes, words, widthMax, heightMax)
     }
@@ -7724,16 +7739,16 @@ public class WinningShapesCalculator {
         let plates_rollers_print_rolls = c2x2.containing(["PLATES", "ROLLERS", "PRINT", "ROLLS"], from: words)[0]
         let rollers_sewn_press_balloon = square4x4.containing(["ROLLERS", "SEWN", "PRESS", "BALLOON"], from: words)[0]
         let papyrus_script_papers_pair = rectangle3x4.containing(["PAPYRUS", "SCRIPT", "PAPERS", "PAIR"], from: words)[0]
-        let rollers_text_print_box = rectangle3x4_TopRight.containing(["ROLLERS", "TEXT", "PRINT", "BOX"], from: words)[0]
         let font_plates_rolls_title = square3x3.containing(["FONT", "PLATES", "ROLLS", "TITLE"], from: words)[0]
+        let bed_title = edges.containing(["BED", "TITLE"], from: words)[0]
+        let rollers_text_print_box = rectangle3x4_TopRight.containing(["ROLLERS", "TEXT", "PRINT", "BOX"], from: words)[0]
         let plates_ems = edges.containing(["PLATES", "EMS"], from: words)[1]
         let proofs_stylus = edges.containing(["PROOFS", "STYLUS"], from: words)[0]
         let proofs_pica = edges.containing(["PROOFS", "PICA"], from: words)[0]
         let ream_rollers_quarto_balloon = square3x3.containing(["REAM", "ROLLERS", "QUARTO", "BALLOON"], from: words)[0]
         let script_forme_crown_press = rectangle3x4.containing(["SCRIPT", "FORME", "CROWN", "PRESS"], from: words)[0]
         let ink_crown = edges.containing(["INK", "CROWN"], from: words)[0]
-        let bed_title = edges.containing(["BED", "TITLE"], from: words)[0]
-
+        
         let winningShapes = [
             coster_typography_types_royal,
             typography_quill_stylus_mould,
@@ -7743,15 +7758,15 @@ public class WinningShapesCalculator {
             plates_rollers_print_rolls,
             rollers_sewn_press_balloon,
             papyrus_script_papers_pair,
-            rollers_text_print_box,
             font_plates_rolls_title,
+            bed_title,
+            rollers_text_print_box,
             plates_ems,
             proofs_stylus,
             proofs_pica,
             ream_rollers_quarto_balloon,
             script_forme_crown_press,
-            ink_crown,
-            bed_title
+            ink_crown
         ]
         return (winningShapes, words, widthMax, heightMax)
     }
