@@ -223,6 +223,91 @@ public class PlacementCalculator {
         return UInt8(maxHeight + 2)
     }
     
+    public static func fromTextToPlacements(grid: [String], words: [String]) -> ([PlacementModel],Bool) {
+        let (horizontal, isValid) = fromTextToPlacementsHorizontal(grid: grid, words: words)
+        
+        if isValid == false {
+            return (horizontal, isValid)
+        }
+     
+        let flippedGrid = GridCalculator.rotate(grid: grid)
+        
+        // The vertical has not yet been rotated so cannot use in basic form
+        let (vertical, isValidVertical) = fromTextToPlacementsHorizontal(grid: flippedGrid, words: words)
+        
+        let verticalFlipped = flip(placements: vertical)
+        
+        var placements: [PlacementModel] = horizontal + verticalFlipped
+        
+        
+        return (placements, isValidVertical)
+    }
+    
+    public static func flip(placements: [PlacementModel]) -> [PlacementModel] {
+        
+        var flipped:[PlacementModel] = []
+        for p in placements {
+            flipped.append(PlacementModel(i: p.i, h: !p.h, x: p.y, y: p.x, l: p.l))
+        }
+        return flipped
+    }
+        
+        
+    public static func fromTextToPlacementsHorizontal(grid: [String], words:[String]) -> ([PlacementModel],Bool) {
+        
+        var placements: [PlacementModel] = []
+        
+        let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        
+        for y in 1..<grid.count - 1 {
+            let line = grid[y]
+
+            var word = ""
+            var xPos = 0
+            for x in 1..<line.count {
+                let current = line[x]
+
+                if word == "" {
+                    if line[x - 1] == "." && alphabet.contains(current) && x != line.count - 1 && alphabet.contains(line[x + 1]) {
+                        word += String(current)
+                        xPos = x
+                    }
+                } else {
+                    if alphabet.contains(current) {
+                        word += String(current)
+                    } else if current == "." {
+                        // We have finished the word
+                        let wordId = WordCalculator.extractWordId(search: word, words: words)
+                        if wordId == -1 {
+                            print("\(word) not found in wordlist")
+                            // It is invalid as we cannot find this word
+                            return (placements, false)
+                        } else {
+                            
+                            placements.append(PlacementModel(
+                                i: UInt8(wordId),
+                                h: true,
+                                x: UInt8(xPos),
+                                y: UInt8(y),
+                                l: UInt8(word.count)))
+                            word = ""
+                        }
+                        
+                        
+                    } else if current == "." {
+                        // this is invalid as a word cannot end in a space
+                        return (placements, false)
+                    }
+                }
+            }
+        }
+        
+        
+        return (placements,true)
+        
+    }
+    
+    
     public static func ToCode(fromPlacements placements: [PlacementModel]) -> String {
         var code = ""
         
