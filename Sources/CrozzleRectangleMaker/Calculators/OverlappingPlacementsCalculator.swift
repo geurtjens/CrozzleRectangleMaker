@@ -8,9 +8,12 @@
 import Foundation
 /// Assume both sourcePlacements and searchPlacements which are [PlacementModel] are now facing same direction and have their offsets adjusted before starting this
 public class OverlappingPlacementsCalculator {
+    
+    // We assume that the shapes are in the same x, y, h coordinate system
     public static func isOverlapping(sourcePlacements: [PlacementModel], searchPlacements: [PlacementModel]) -> Bool {
-
+        
         for searchItem in searchPlacements {
+            //print(searchItem)
             if isOverlappingOne(sourcePlacements:sourcePlacements, find:searchItem) {
                 return true
             }
@@ -40,6 +43,7 @@ public class OverlappingPlacementsCalculator {
     public static func isOverlappingOne(sourcePlacements: [PlacementModel], find: PlacementModel) -> Bool {
         for i in 0..<sourcePlacements.count {
             let item = sourcePlacements[i]
+            //print(item)
             if isOverlappingOne(item: item, find: find) {
                 return true
             }

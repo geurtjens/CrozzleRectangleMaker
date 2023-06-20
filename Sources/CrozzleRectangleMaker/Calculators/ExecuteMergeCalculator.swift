@@ -115,7 +115,7 @@ public class ExecuteMergeCalculator {
         var shapeList: [ShapeModel] = []
         for instruction in instructions {
        
-            let potentialShape = MergePlacementCalculator.Execute(source: shapes, search: shapes, instruction: instruction)
+            let potentialShape = MergePlacementCalculator.Execute(source: shapes, search: shapes, instruction: instruction, words: words)
             if let potentialShape = potentialShape {
                 if (potentialShape.width <= widthMax && potentialShape.height <= heightMax) ||
                     (potentialShape.width <= heightMax && potentialShape.height <= widthMax) {
@@ -372,7 +372,7 @@ public class ExecuteMergeCalculator {
         
         for instruction in instructions {
        
-            let potentialShape = MergePlacementCalculator.Execute(source: source, search: search, instruction: instruction)
+            let potentialShape = MergePlacementCalculator.Execute(source: source, search: search, instruction: instruction, words: words)
             if let potentialShape {
                 if (potentialShape.width <= widthMax && potentialShape.height <= heightMax) || (potentialShape.width <= heightMax && potentialShape.height <= widthMax) {
                     

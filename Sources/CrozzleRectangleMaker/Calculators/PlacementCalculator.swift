@@ -237,7 +237,7 @@ public class PlacementCalculator {
         
         let verticalFlipped = flip(placements: vertical)
         
-        var placements: [PlacementModel] = horizontal + verticalFlipped
+        let placements: [PlacementModel] = horizontal + verticalFlipped
         
         
         return (placements, isValidVertical)
@@ -251,8 +251,34 @@ public class PlacementCalculator {
         }
         return flipped
     }
+    
+    public static func findCommonPlacement(sourcePlacements: [PlacementModel], searchPlacements:[PlacementModel]) -> [Int] {
+        var commonPlacements:[Int] = []
+        for source in sourcePlacements {
+            for search in searchPlacements {
+                if source.i == search.i {
+                   commonPlacements.append(Int(source.i))
+                }
+            }
+        }
+        return commonPlacements
+    }
         
-        
+    public static func hasCommonPlacement(sourcePlacements: [PlacementModel], searchPlacements:[PlacementModel]) -> Bool {
+        var commonPlacements:[PlacementModel] = []
+        for source in sourcePlacements {
+            for search in searchPlacements {
+                if source.i == search.i {
+                    if source.h == search.h && source.x == search.x && source.y == search.y && source.l == search.l {
+                        commonPlacements.append(source)
+                    } else {
+                        return false
+                    }
+                }
+            }
+        }
+        return commonPlacements.count > 0
+    }
     public static func fromTextToPlacementsHorizontal(grid: [String], words:[String]) -> ([PlacementModel],Bool) {
         
         var placements: [PlacementModel] = []
@@ -287,7 +313,7 @@ public class PlacementCalculator {
                             placements.append(PlacementModel(
                                 i: UInt8(wordId),
                                 h: true,
-                                x: UInt8(xPos),
+                                x: UInt8(xPos - 1),
                                 y: UInt8(y),
                                 l: UInt8(word.count)))
                             word = ""

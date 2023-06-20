@@ -130,7 +130,7 @@ public class ExecuteMergeWithSpecificNumberOfCommonWordsCalculator {
         var shapeList: [ShapeModel] = []
         
         for instruction in instructions {
-            let potentialShape = MergePlacementCalculator.Execute(source: source, search: search, instruction: instruction)
+            let potentialShape = MergePlacementCalculator.Execute(source: source, search: search, instruction: instruction, words: words)
             if let potentialShape = potentialShape {
                 if (potentialShape.width <= widthMax && potentialShape.height <= heightMax) ||
                     (potentialShape.width <= heightMax && potentialShape.height <= widthMax) {

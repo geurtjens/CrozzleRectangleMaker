@@ -10,6 +10,9 @@ import XCTest
 
 final class PlacementCalculatorTests: XCTestCase {
 
+    
+    
+    
     func test_fromTextToPlacement_Fail() {
         
         let grid = [

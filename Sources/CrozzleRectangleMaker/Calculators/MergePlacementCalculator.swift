@@ -10,9 +10,17 @@ import Foundation
 public class MergePlacementCalculator {
     
     // Create a shape from two `GpuShapeModel` based on the instructions provided
-    public static func Execute(source: GpuShapeModel, search: GpuShapeModel, instruction: MergeInstructionModel) -> ShapeModel? {
+    public static func Execute(source: GpuShapeModel, search: GpuShapeModel, instruction: MergeInstructionModel, words:[String]) -> ShapeModel? {
         
+        // This will flip the placements if they are opposite direction
         let (sourcePlacement, searchPlacement) = GetPlacementsForBothShapes(source: source, search: search, instruction: instruction)
+        
+        let commonPlacements = PlacementCalculator.findCommonPlacement(sourcePlacements: sourcePlacement, searchPlacements: searchPlacement)
+        if commonPlacements.count == 0 {
+            print("Your offset calculator did not work")
+        }
+        
+        
         
         let sourcePos = instruction.sourceShapeId * source.stride + Int(instruction.sourceMatchingWordPosition)
         
@@ -25,6 +33,7 @@ public class MergePlacementCalculator {
         let xSearch = search.x[searchPos]
         let ySearch = search.y[searchPos]
         
+        // By this moment the placements are flipped if they were wrong originally
         let (sourceOffsetX, sourceOffsetY, searchOffsetX, searchOffsetY) = CalculateOffsets(
             xSource: Int(xSource),
             ySource: Int(ySource),
@@ -43,12 +52,22 @@ public class MergePlacementCalculator {
             xOffset: searchOffsetX,
             yOffset: searchOffsetY)
         
-        let isOverlapping = OverlappingPlacementsCalculator.isOverlapping(sourcePlacements: sourceFinal, searchPlacements: searchFinal)
+        
+        // We need to remove the common words from searchFinal
+        var searchNoDuplicates: [PlacementModel] = []
+        for item in searchFinal {
+            if commonPlacements.contains(Int(item.i)) == false {
+                searchNoDuplicates.append(item)
+            }
+        }
+        
+        let isOverlapping = OverlappingPlacementsCalculator.isOverlapping(sourcePlacements: sourceFinal, searchPlacements: searchNoDuplicates)
         if isOverlapping {
             return nil
         }
         
-        var combined = sourceFinal + searchFinal
+        var combined = sourceFinal + searchNoDuplicates
+        
         combined.sort { $0.i < $1.i }
         
         /*
@@ -113,7 +132,7 @@ public class MergePlacementCalculator {
             
             let wordId = search.wordId[idx]
             
-            if words.contains(wordId) == false {
+            //if words.contains(wordId) == false {
                 
                 let h = search.isHorizontal[idx]
                 let x = search.x[idx]
@@ -137,7 +156,7 @@ public class MergePlacementCalculator {
                         l: length)
                     otherPlacements.append(placement)
                 }
-            }
+            //}
         }
         return (placements, otherPlacements)
         
