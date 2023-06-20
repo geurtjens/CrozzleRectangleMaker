@@ -63,14 +63,14 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
            ".TOYS.",
            "   .  "]
         
-        let toys_holly_wrong_coordinate_system = [
-            "  .   ",
-            "  H   ",
-            ".TOYS.",
-            "  L   ",
-            "  L   ",
-            "  Y   ",
-            "  .   "]
+//        let toys_holly_wrong_coordinate_system = [
+//            "  .   ",
+//            "  H   ",
+//            ".TOYS.",
+//            "  L   ",
+//            "  L   ",
+//            "  Y   ",
+//            "  .   "]
         
          
         

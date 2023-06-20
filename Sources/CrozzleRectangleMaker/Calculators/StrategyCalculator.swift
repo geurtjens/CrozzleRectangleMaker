@@ -22,8 +22,8 @@ public class StrategyCalculator {
         
         var queue = QueueList(game: game, constraints: constraint)
         
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        //let widthMax = game.maxWidth
+        //let heightMax = game.maxHeight
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -82,6 +82,12 @@ public class StrategyCalculator {
     }
     
     
+    public static func printDate(_ string: String) {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss.SSSS"
+        print(string + formatter.string(from: date))
+    }
     public static func NextStep(queueLength: Int, priorityFunction: PriorityFunction, repeatTimes: Int) async -> ShapeModel {
         
         var queue = Queue_8612(queueLength: queueLength, priorityFunction: priorityFunction)
@@ -105,8 +111,9 @@ public class StrategyCalculator {
         
         for _ in 0..<repeatTimes {
             
-            print("MERGE WITH ITSELF")
+            printDate("MERGE WITH ITSELF starting")
             await queue.mergeWithItselfAll()
+            printDate("MERGE WITH ITSELF finished")
             (maxShape, _) = queue.status()
             if let maxShape = maxShape {
                 let text = maxShape.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore)
@@ -116,8 +123,10 @@ public class StrategyCalculator {
                 
                 
                 if queue.queues[i].shapes.count > 0 {
+                    printDate("mergeEverythingBelowWith(index: \(i) started")
                     await queue.mergeEverythingBelowWith(index: i)
-                    
+                    printDate("mergeEverythingBelowWith(index: \(i) finished")
+                    (maxShape, _) = queue.status()
                     if let bestShape = queue.getBestShape() {
                         if bestShape.score > maxScore {
                             maxScore = bestShape.score
@@ -146,16 +155,10 @@ public class StrategyCalculator {
                     return bestShapeScore
                 }
             }
-
-            
         }
-        
         let bestShapeScore = queue.getBestShape()
         return bestShapeScore!
-        
     }
-    
-    
     
     
     public static func BasicStrategy() async {
