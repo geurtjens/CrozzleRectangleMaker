@@ -86,7 +86,7 @@ public class StrategyCalculator {
         let date = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss.SSSS"
-        print(string + formatter.string(from: date))
+        print(string + " " + formatter.string(from: date))
     }
     public static func NextStep(queueLength: Int, priorityFunction: PriorityFunction, repeatTimes: Int) async -> ShapeModel {
         
@@ -111,9 +111,9 @@ public class StrategyCalculator {
         
         for _ in 0..<repeatTimes {
             
-            printDate("MERGE WITH ITSELF starting")
+            printDate("mergeWithItselfAll() started at")
             await queue.mergeWithItselfAll()
-            printDate("MERGE WITH ITSELF finished")
+            printDate("mergeWithItselfAll() finished at")
             (maxShape, _) = queue.status()
             if let maxShape = maxShape {
                 let text = maxShape.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore)
@@ -123,9 +123,9 @@ public class StrategyCalculator {
                 
                 
                 if queue.queues[i].shapes.count > 0 {
-                    printDate("mergeEverythingBelowWith(index: \(i) started")
+                    printDate("mergeEverythingBelowWith(index: \(i)) started at")
                     await queue.mergeEverythingBelowWith(index: i)
-                    printDate("mergeEverythingBelowWith(index: \(i) finished")
+                    printDate("mergeEverythingBelowWith(index: \(i)) finished at")
                     (maxShape, _) = queue.status()
                     if let bestShape = queue.getBestShape() {
                         if bestShape.score > maxScore {

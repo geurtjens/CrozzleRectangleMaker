@@ -137,7 +137,13 @@ public struct QueueList {
         for i in 0..<self.queues.count {
             if self.queues[i].shapes.count > 0 {
                 //print(self.queues[i].shapes[0].ToString(words:self.game.words))
+                StrategyCalculator.printDate("mergeWithItselfAsync(index: \(i)) started at")
                 await mergeWithItselfAsync(index:i)
+                StrategyCalculator.printDate("mergeWithItselfAsync(index: \(i)) finished at")
+                let (maxShape, _) = self.status()
+                if (maxShape != nil) {
+                    print(maxShape!.ToString(words: self.game.words))
+                }
             }
         }
     }
