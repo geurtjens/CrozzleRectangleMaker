@@ -220,7 +220,7 @@ public class MergeCalculator {
     
     
     /// find the matching shapes using filters and word indexes
-    public static func matchingShapes(sourceShapes: GpuShapeModel, sourceShapeId: Int, searchableShapes: GpuShapeModel, searchMin: Int, searchMax: Int) -> ([MatchingShapesModel],[Int]) {
+    public static func matchingShapes(sourceShapes: GpuShapeModel, sourceShapeId: Int, searchableShapes: GpuShapeModel, searchWordIndex: [[Int]], searchMin: Int, searchMax: Int) -> ([MatchingShapesModel],[Int]) {
         
         // First let us find shapes that have the same words in them
         
@@ -229,7 +229,7 @@ public class MergeCalculator {
         for i in 0..<sourceShapes.stride {
             let pos = startPos + i
             let wordId = Int(sourceShapes.wordId[pos])
-            let shapesWithThatWordId = searchableShapes.wordIndex[wordId]
+            let shapesWithThatWordId = searchWordIndex[wordId]
             if shapesWithThatWordId.count > 0 {
                 shapesWithWords += shapesWithThatWordId
             }

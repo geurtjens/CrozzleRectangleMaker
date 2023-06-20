@@ -75,21 +75,25 @@ public class MergeShapesCalculator {
     
     public static func Merge_Two_Shapes(smaller: [ShapeModel], larger: [ShapeModel], words:[String], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         
-        var smaller_gpu = GpuShapeModel(shapes:smaller, totalWords: words.count)
-        
-        var larger_gpu = GpuShapeModel(shapes:larger, totalWords: words.count)
+        var (smaller_gpu, smaller_word_index) = GpuShapeModelCalculator.Create(shapes:smaller, totalWords: words.count)
+        var (larger_gpu, larger_word_index) = GpuShapeModelCalculator.Create(shapes:larger, totalWords: words.count)
         
         if smaller_gpu.stride > larger_gpu.stride {
             // we are doing a swap of larger with smaller if smaller is bigger than larger
             let old_larger_gpu = larger_gpu
+            let old_larger_word_index = larger_word_index
             
             larger_gpu = smaller_gpu
+            larger_word_index = smaller_word_index
+            
             smaller_gpu = old_larger_gpu
+            smaller_word_index = old_larger_word_index
         }
         let scoresMin = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         let result = ExecuteMergeCalculator.ExecuteDifferentShapes(
             source: smaller_gpu,
             search: larger_gpu,
+            searchWordIndex: larger_word_index,
             words: words,
             scoresMin: scoresMin,
             widthMax: widthMax,

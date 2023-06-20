@@ -85,9 +85,15 @@ public struct QueueList {
             }
             
             self.queues[wordCount].gpuShapes = GpuShapeModel(
-                shapes:self.queues[wordCount].shapes,
+                        shapes:self.queues[wordCount].shapes,
+                        totalWords: self.queues[wordCount].totalWords,
+                        stride: self.queues[wordCount].stride)
+            
+            self.queues[wordCount].wordIndex = WordIndexCalculator.createWordIndex(
                 totalWords: self.queues[wordCount].totalWords,
-                stride: self.queues[wordCount].stride)
+                stride: self.queues[wordCount].stride,
+                shapeCount: self.queues[wordCount].gpuShapes.count,
+                words: self.queues[wordCount].gpuShapes.wordId)
             
             if self.recalculateStatisticsWhenAddingToQueue == true {
                 self.queues[wordCount].statistics = StatisticsCalculator.Execute(scores: self.queues[wordCount].gpuShapes.scores)
@@ -122,6 +128,7 @@ public struct QueueList {
             
         let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(
                 shapes: self.queues[wordCount].gpuShapes,
+                wordIndex: self.queues[wordCount].wordIndex,
                 words: self.game.words,
                 scoresMin: self.constraints.scoresMin,
                 widthMax: self.game.maxWidth,
@@ -262,6 +269,7 @@ public struct QueueList {
             
         let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(
                 shapes: self.queues[wordCount].gpuShapes,
+                wordIndex: self.queues[wordCount].wordIndex,
                 words: self.game.words,
                 scoresMin: self.constraints.scoresMin,
                 widthMax: self.game.maxWidth,
@@ -289,7 +297,14 @@ public struct QueueList {
         heightMax: Int,
         notTheseWordCounts:[Int]) async {
             
-        let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(shapes: self.queues[wordCount].gpuShapes, words: words, scoresMin: scoresMin, widthMax: widthMax, heightMax: heightMax)
+        let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(
+            shapes: self.queues[wordCount].gpuShapes,
+            wordIndex: self.queues[wordCount].wordIndex,
+            words: words,
+            scoresMin: scoresMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+            
         if shapes.count > 0 {
             var filteredShapes: [ShapeModel] = []
             let dictionary = Dictionary(grouping: shapes, by: { $0.placements.count})
@@ -309,6 +324,7 @@ public struct QueueList {
         let shapes = await ExecuteMergeCalculator.ExecuteDifferentShapesAsync(
             source: self.queues[mergeIndex].gpuShapes,
             search: self.queues[mergeIndex2].gpuShapes,
+            searchWordIndex: self.queues[mergeIndex2].wordIndex,
             words: self.game.words,
             scoresMin: self.constraints.scoresMin,
             widthMax: self.game.maxWidth,
@@ -330,6 +346,7 @@ public struct QueueList {
         let shapes = await ExecuteMergeCalculator.ExecuteDifferentShapesAsync(
             source: self.queues[mergeIndex].gpuShapes,
             search:self.queues[mergeIndex2].gpuShapes,
+            searchWordIndex: self.queues[mergeIndex2].wordIndex,
             words: words,
             scoresMin: scoresMin,
             widthMax: widthMax,
