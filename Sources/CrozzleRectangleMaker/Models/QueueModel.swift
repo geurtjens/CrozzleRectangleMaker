@@ -28,18 +28,28 @@ public struct QueueModel {
     /// breakdown of scores in all the shapes so that we can decide only to use scores in the top 10% of the range of shapes we have selected
     public var statistics: [StatisticsModel] = []
     
+    /// Which words are in which shapes, so if there are 91 words then there will be an index for each so we can quickly find matching shapes.
+    public var wordIndex: [[Int]]
+    
+    
+    
+    
     /// adding a newly formed list of shapes into our collection adding their results to shapes, gpuShapes and updating the statistics
-    public mutating func add(shapes: [ShapeModel]) {
-        self.shapes += shapes
-        self.shapes.sort() {
-            if $0.density == $1.density {
-                return $0.score < $1.score
-            } else {
-                return $0.density > $1.density
-            }
-        }
+    public mutating func add(newShapes: [ShapeModel], constraints: ConstraintsModel, words: [String]) {
+
+        self.shapes = ShapeCalculator.addShapes(oldShapes: self.shapes, newShapes: newShapes, scoreMin: self.scoreMin, constraints: constraints)
+
         self.gpuShapes = GpuShapeModel(shapes: self.shapes, totalWords: self.totalWords, stride: self.stride)
-        self.statistics = StatisticsCalculator.Execute(scores: self.gpuShapes.scores)
+        
+        self.wordIndex = WordIndexCalculator.createWordIndex(
+            totalWords: self.totalWords,
+            stride: self.stride,
+            shapeCount: self.gpuShapes.count,
+            words: self.gpuShapes.wordId)
+        
+        if constraints.recalculateStatisticsWhenAddingToQueue {
+            self.statistics = StatisticsCalculator.Execute(scores: self.gpuShapes.scores)
+        }
     }
     
     /// Changes minimum score of the queue and if the queue already contains shapes that are lower than min socre then they will be removed
@@ -64,6 +74,12 @@ public struct QueueModel {
         let gpuShapes = GpuShapeModel(shapes: shapes, totalWords: totalWords, stride: stride)
         self.gpuShapes = gpuShapes
         self.statistics = StatisticsCalculator.Execute(scores: gpuShapes.scores)
+        
+        self.wordIndex = WordIndexCalculator.createWordIndex(
+            totalWords: totalWords,
+            stride: stride,
+            shapeCount: shapes.count,
+            words: gpuShapes.wordId)
     }
     
     public func minScore() -> UInt16 {

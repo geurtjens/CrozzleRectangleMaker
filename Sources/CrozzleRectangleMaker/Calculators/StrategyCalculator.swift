@@ -554,26 +554,21 @@ public class StrategyCalculator {
         
         let fork = [white_snow, white_family, white_cake]
         
-        let gpuFork = GpuShapeModel(shapes: fork, totalWords: words.count, stride: 2)
+        let (gpuFork, wordIndex) = GpuShapeModelCalculator.Create(shapes: fork, totalWords: words.count, stride: 2)
         
-        let mergeFork = ExecuteMergeCalculator.ExecuteSameShape(shapes: gpuFork, words: words, scoresMin: [0,0,0,0,0,0,0,0,0,0], widthMax: widthMax, heightMax: heightMax)
+        let mergeFork = ExecuteMergeCalculator.ExecuteSameShape(shapes: gpuFork, wordIndex: wordIndex,words: words, scoresMin: [0,0,0,0,0,0,0,0,0,0], widthMax: widthMax, heightMax: heightMax)
         
 //        for item in mergeFork {
 //            print(item.ToString(words: words))
 //        }
         
-        let gpuFork2 = GpuShapeModel(shapes: mergeFork, totalWords: words.count, stride:3)
+        let (gpuFork2,fork2Index) = GpuShapeModelCalculator.Create(shapes: mergeFork, totalWords: words.count, stride:3)
         
-        var mergeFork2 = ExecuteMergeCalculator.ExecuteSameShape(shapes: gpuFork2, words: words, scoresMin: [0,0,0,0,0,0,0,0,0,0], widthMax: widthMax, heightMax: heightMax)
+        var mergeFork2 = ExecuteMergeCalculator.ExecuteSameShape(shapes: gpuFork2, wordIndex: fork2Index, words: words, scoresMin: [0,0,0,0,0,0,0,0,0,0], widthMax: widthMax, heightMax: heightMax)
         
         ShapeCalculator.SortWithWordSequence(shapes: &mergeFork2)
         
-        let _ = RemoveDuplicatesCalculator.findDuplicates(shapes: &mergeFork2)
-        
-        
-        let withoutDuplicates = RemoveDuplicatesCalculator.removeDuplicates(shapes: mergeFork2)
-            
-        
+        let (withoutDuplicates, _) = RemoveDuplicatesCalculator.execute(shapes: mergeFork2)
         
 //        for item in withoutDuplicates {
 //            print(item.ToString(words: words))

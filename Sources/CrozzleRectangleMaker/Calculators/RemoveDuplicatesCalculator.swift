@@ -10,37 +10,62 @@ import Foundation
 public class RemoveDuplicatesCalculator {
     
     /// This provides a new list of shapes that have no duplicates
-    public static func execute(shapes: [ShapeModel]) -> [ShapeModel] {
+    public static func execute(shapes: [ShapeModel]) -> ([ShapeModel], Int) {
         var shapes = shapes
+        
+        // We want to rotate any shapes that are not starting with horizontal
+        
+        for i in 0..<shapes.count {
+            if shapes[i].placements[0].h == false {
+                shapes[i] = shapes[i].Flip()
+            }
+        }
         
         let duplicateCount = findDuplicates(shapes: &shapes)
         if duplicateCount == 0 {
-            return shapes
+            return (shapes,0)
         } else {
-            return removeDuplicates(shapes: shapes)
+            return (removeDuplicates(shapes: shapes), duplicateCount)
         }
     }
     
-    public static func printDuplicateSpread(shapes: [ShapeModel]) {
-        for shape in shapes {
-            if shape.isValid == true {
-                print("true")
+    private static func printDuplicateSpread(shapes: [ShapeModel]) {
+        if shapes.count == 0 {
+            return
+        }
+        var last = shapes[0].isValid
+        if shapes[0].isValid == true {
+            print("0 true  \(shapes[0].wordSequence)")
+        } else {
+            print("0 false \(shapes[0].wordSequence)")
+        }
+        
+        
+        for i in 1..<shapes.count {
+            if last == shapes[i].isValid {
+                print("*********************")
+                print(shapes[i-1].Code())
+                print(shapes[i].Code())
+            }
+            last = shapes[i].isValid
+            if shapes[i].isValid == true {
+                print("\(i) true  \(shapes[i].wordSequence)")
             } else {
-                print("false")
+                print("\(i) false \(shapes[i].wordSequence)")
             }
             
         }
     }
     
     /// Marks duplicates as shapeModel.isValid = false so we can remove them later.  Also returns how many duplicates there are so we dont have to worry about removing what is not there
-    public static func findDuplicates(shapes: inout [ShapeModel]) -> Int {
+    private static func findDuplicates(shapes: inout [ShapeModel]) -> Int {
         
         if shapes.count == 0 {
             return 0
         }
 
         var duplicateCount = 0
-        let wordCount = shapes[0].placements.count
+        
         // first we need to sort to find the duplicates
         ShapeCalculator.SortWithWordSequence(shapes: &shapes)
         
@@ -55,54 +80,15 @@ public class RemoveDuplicatesCalculator {
                 shapes[current].wordSequence == shapes[previous].wordSequence &&
                 shapes[current].width * shapes[current].height == shapes[previous].width * shapes[previous].height)
             {
-                // We most likely have a duplicate
-                var isDuplicate = true
-                
-                // This is not going to work anymore when we flip some shapes.  Oh duplicates is so hard to implement.
-                if shapes[current].placements[0].h == shapes[previous].placements[0].h {
-                    // Our potential duplicate is in the same direction
-                    for i in 0..<wordCount {
-                        if shapes[current].placements[i].x != shapes[previous].placements[i].x {
-                            isDuplicate = false
-                            break
-                        }
-                        if shapes[current].placements[i].y != shapes[previous].placements[i].y {
-                            isDuplicate = false
-                            break
-                        }
-                        if shapes[current].placements[i].h != shapes[previous].placements[i].h {
-                            isDuplicate = false
-                            break
-                        }
-                    }
-                } else {
-                    // They are opposite sides
-                    for i in 0..<wordCount {
-                        if shapes[current].placements[i].x != shapes[previous].placements[i].y {
-                            isDuplicate = false
-                            break
-                        }
-                        if shapes[current].placements[i].y != shapes[previous].placements[i].x {
-                            isDuplicate = false
-                            break
-                        }
-                        if shapes[current].placements[i].h == shapes[previous].placements[i].h {
-                            isDuplicate = false
-                            break
-                        }
-                    }
-                }
-                if isDuplicate {
-                    shapes[current].isValid = false
-                    duplicateCount += 1
-                }
+                shapes[current].isValid = false
+                duplicateCount += 1
             }
         }
         return duplicateCount
     }
     
     /// removes the duplicates once find duplicates has happened but not before
-    public static func removeDuplicates(shapes: [ShapeModel]) -> [ShapeModel] {
+    private static func removeDuplicates(shapes: [ShapeModel]) -> [ShapeModel] {
         return shapes.filter { $0.isValid }
     }
 }

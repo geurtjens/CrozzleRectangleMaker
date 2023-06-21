@@ -30,9 +30,6 @@ public struct GpuShapeModel {
     /// length of each word in the wordlist
     public let length: [UInt8]
     
-    /// Which words are in which shapes, so if there are 91 words then there will be an index for each so we can quickly find matching shapes.
-    public let wordIndex: [[Int]]
-    
     public init(shapes: [ShapeModel], totalWords: Int) {
         let shape = shapes[0]
         let stride = shape.placements.count
@@ -96,12 +93,6 @@ public struct GpuShapeModel {
         self.y = _ys
         self.length = _lengths
         
-        // Lastly we want to know all words
-        self.wordIndex = WordIndexCalculator.createWordIndex(
-            totalWords: totalWords,
-            stride: stride,
-            shapeCount: _shapeCount,
-            words: _wordIds)
     }
     
     public func getItem(shapePosition: Int) -> ([UInt8], [Bool], [UInt8], [UInt8]){

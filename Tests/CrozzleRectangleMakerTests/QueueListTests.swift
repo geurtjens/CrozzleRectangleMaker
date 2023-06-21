@@ -18,21 +18,21 @@ final class QueueListTests: XCTestCase {
                 scoresMin: scoresMin,
                 wordsMax: 0,
                 wordsToUse: .winningWordsOnly,
-                queueLengthMax: 1000,
+                queueLengthMax: 2000,
                 priorityFunction: .score_area)
             var result = QueueList(game: game, constraints: constraints)
             
             //print(scoresMin[2])
-            let words2 = QueueListCalculator.get_2_word_shapes(
+            let edges = QueueListCalculator.get_2_word_shapes(
                 words: result.game.words,
                 scoreMin: scoresMin[2],
                 widthMax: widthMax,
                 heightMax: heightMax,
                 wordsMax: wordsMax)
             
-            XCTAssertEqual(203, words2.count)
+            XCTAssertEqual(203, edges.count)
             
-            result.add(shapes: words2)
+            result.add(shapes: edges)
             
             XCTAssertEqual(203, result.queues[2].shapes.count)
             
