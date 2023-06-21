@@ -22,7 +22,8 @@ public struct QueueList {
         var count = 0
         for i in 0..<self.constraints.maxQueues {
             if queues[i].shapes.count > 0 {
-                print("\(queues[i].shapes.count) shapes with \(i) words")
+                
+                print("\(queues[i].shapes.count) shapes with \(i) words and max score of \(queues[i].shapes[0].score)")
                 count += queues[i].shapes.count
                 
                 for item in queues[i].shapes {
