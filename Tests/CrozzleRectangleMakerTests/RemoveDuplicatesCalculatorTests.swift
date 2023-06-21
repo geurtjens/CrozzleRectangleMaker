@@ -13,22 +13,14 @@ final class RemoveDuplicatesCalculatorTests: XCTestCase {
         
         let rectangles = await RectangleCalculator.Execute(words: words, scoreMin: 104, widthMax: widthMax, heightMax: heightMax)
         
-        var shapes = ShapeCalculator.toShapes(rectangles: rectangles)
+        let shapes = ShapeCalculator.toShapes(rectangles: rectangles)
         
+        let (noDuplicates, duplicateCount) = RemoveDuplicatesCalculator.execute(shapes: shapes)
         
-        ShapeCalculator.SortWithWordSequence(shapes: &shapes)
-        
-        let duplicateCount = RemoveDuplicatesCalculator.findDuplicates(shapes: &shapes)
-        
-        let duplicates = shapes.filter { $0.isValid == false}
-        
-        for duplicate in duplicates {
-            print(duplicate.ToString(words: words))
-        }
         // somehow everything O4x6 makes duplicates and I dont know why
         // There are 296 duplicates from 17144 values when scoreMin: 104 and it takes 60 seconds for this to run
         XCTAssertEqual(0, duplicateCount)
-        XCTAssertEqual(17389, rectangles.count)
+        XCTAssertEqual(17389, noDuplicates.count)
     }
     
     func test_Find_0() throws {
@@ -42,13 +34,13 @@ final class RemoveDuplicatesCalculatorTests: XCTestCase {
         let a = result[0].ToShape()
         let b = result[1].ToShape()
         
-        var shapes = [a, b]
+        let shapes = [a, b]
         
-        let duplicateCount = RemoveDuplicatesCalculator.findDuplicates(shapes: &shapes)
+        let (noDuplicates, duplicateCount) = RemoveDuplicatesCalculator.execute(shapes: shapes)
         
         XCTAssertEqual(0, duplicateCount)
-        XCTAssertTrue(shapes[0].isValid)
-        XCTAssertTrue(shapes[1].isValid)
+        XCTAssertTrue(noDuplicates[0].isValid)
+        XCTAssertTrue(noDuplicates[1].isValid)
     }
     
     
@@ -63,13 +55,13 @@ final class RemoveDuplicatesCalculatorTests: XCTestCase {
         let a = result[0].ToShape()
         let b = result[0].ToShape()
         
-        var shapes = [a, b]
+        let shapes = [a, b]
         
-        let duplicateCount = RemoveDuplicatesCalculator.findDuplicates(shapes: &shapes)
+        let (noDuplicates, duplicateCount) = RemoveDuplicatesCalculator.execute(shapes: shapes)
         
         XCTAssertEqual(1, duplicateCount)
-        XCTAssertTrue(shapes[0].isValid)
-        XCTAssertFalse(shapes[1].isValid)
+        XCTAssertEqual(1, noDuplicates.count)
+        
     }
     
     // We no longer support things being flipped I guess
@@ -115,21 +107,12 @@ final class RemoveDuplicatesCalculatorTests: XCTestCase {
         let d = result[2]
         let e = result[3]
         let f = result[3]
-        var shapes = [a, b, c, d, e, f]
+        let shapes = [a, b, c, d, e, f]
         
-        let duplicateCount = RemoveDuplicatesCalculator.findDuplicates(shapes: &shapes)
+        let (noDuplicates, duplicateCount) = RemoveDuplicatesCalculator.execute(shapes: shapes)
         
         XCTAssertEqual(2, duplicateCount)
-        XCTAssertTrue(shapes[0].isValid)
-        XCTAssertFalse(shapes[1].isValid)
-        XCTAssertTrue(shapes[2].isValid)
-        XCTAssertTrue(shapes[3].isValid)
-        XCTAssertTrue(shapes[4].isValid)
-        XCTAssertFalse(shapes[5].isValid)
-       
-        let noduplicates = shapes.filter { $0.isValid }
-        
-        XCTAssertEqual(4,noduplicates.count)
+        XCTAssertEqual(4,noDuplicates.count)
     }
     
 

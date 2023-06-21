@@ -568,12 +568,7 @@ public class StrategyCalculator {
         
         ShapeCalculator.SortWithWordSequence(shapes: &mergeFork2)
         
-        let _ = RemoveDuplicatesCalculator.findDuplicates(shapes: &mergeFork2)
-        
-        
-        let withoutDuplicates = RemoveDuplicatesCalculator.removeDuplicates(shapes: mergeFork2)
-            
-        
+        let (withoutDuplicates, _) = RemoveDuplicatesCalculator.execute(shapes: mergeFork2)
         
 //        for item in withoutDuplicates {
 //            print(item.ToString(words: words))

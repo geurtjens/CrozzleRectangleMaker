@@ -9,6 +9,34 @@ import Foundation
 /// A variety of functions used with shapes convertion from clusters and edges and ability to flip shapes etc
 public class ShapeCalculator {
     
+    /// This is how the `QueueModel` adds shapes
+    public static func addShapes(oldShapes: [ShapeModel], newShapes: [ShapeModel], scoreMin: Int, constraints: ConstraintsModel) -> [ShapeModel] {
+        
+        let shapesWithCorrectScores = newShapes.filter { $0.score >= scoreMin }
+        
+        let result = oldShapes + shapesWithCorrectScores
+        //self.shapes += shapesWithCorrectScores
+        
+
+        // Its not finding two duplicates
+        var (noDuplicates, duplicateCount) = RemoveDuplicatesCalculator.execute(shapes: result)
+        
+        switch (constraints.priorityFunction) {
+        case .score_area:
+            ShapeCalculator.SortByScoreThenArea(shapes: &noDuplicates)
+        case .density_score:
+            ShapeCalculator.SortByDensityThenScore(shapes: &noDuplicates)
+        }
+        
+        if noDuplicates.count > constraints.queueLengthMax {
+            noDuplicates.removeSubrange(constraints.queueLengthMax..<noDuplicates.count)
+        }
+        return noDuplicates
+    }
+    
+    
+    
+    
     /// conveniently convert all clusters to shapes
     public static func toShape(fromClusters clusters: [ClusterModel]) -> [ShapeModel] {
         var shapes: [ShapeModel] = []

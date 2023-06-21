@@ -31,16 +31,14 @@ public struct QueueModel {
     /// Which words are in which shapes, so if there are 91 words then there will be an index for each so we can quickly find matching shapes.
     public var wordIndex: [[Int]]
     
+    
+    
+    
     /// adding a newly formed list of shapes into our collection adding their results to shapes, gpuShapes and updating the statistics
-    public mutating func add(shapes: [ShapeModel]) {
-        self.shapes += shapes
-        self.shapes.sort() {
-            if $0.density == $1.density {
-                return $0.score < $1.score
-            } else {
-                return $0.density > $1.density
-            }
-        }
+    public mutating func add(newShapes: [ShapeModel], constraints: ConstraintsModel, words: [String]) {
+
+        self.shapes = ShapeCalculator.addShapes(oldShapes: self.shapes, newShapes: newShapes, scoreMin: self.scoreMin, constraints: constraints)
+
         self.gpuShapes = GpuShapeModel(shapes: self.shapes, totalWords: self.totalWords, stride: self.stride)
         
         self.wordIndex = WordIndexCalculator.createWordIndex(
@@ -49,7 +47,9 @@ public struct QueueModel {
             shapeCount: self.gpuShapes.count,
             words: self.gpuShapes.wordId)
         
-        self.statistics = StatisticsCalculator.Execute(scores: self.gpuShapes.scores)
+        if constraints.recalculateStatisticsWhenAddingToQueue {
+            self.statistics = StatisticsCalculator.Execute(scores: self.gpuShapes.scores)
+        }
     }
     
     /// Changes minimum score of the queue and if the queue already contains shapes that are lower than min socre then they will be removed

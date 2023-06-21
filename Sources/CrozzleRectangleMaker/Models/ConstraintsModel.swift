@@ -13,6 +13,8 @@ public struct ConstraintsModel {
     public var queueLengthMax: Int
     public var priorityFunction: PriorityFunction
     public var shapeConstraints: [ConstraintsShapeModel] = []
+    public var recalculateStatisticsWhenAddingToQueue = false
+    public let maxQueues = 40
     
     public init(scoresMin: [Int], wordsMax: Int, wordsToUse: WordsUsedType, queueLengthMax: Int, priorityFunction: PriorityFunction) {
         self.scoresMin = scoresMin
