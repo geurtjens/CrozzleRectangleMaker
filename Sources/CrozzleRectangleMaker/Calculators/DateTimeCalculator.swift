@@ -11,10 +11,15 @@ public class DateTimeCalculator {
         return DispatchTime.now()
     }
     
-    public static func duration(start: DispatchTime, finish: DispatchTime) -> String {
+    public static func seconds(start: DispatchTime, finish: DispatchTime) -> Double {
         let durationNano = finish.uptimeNanoseconds - start.uptimeNanoseconds // <<<<< Difference in nano seconds (UInt64)
         let durationSeconds = Double(durationNano) / 1_000_000_000
-        
+        return durationSeconds
+    }
+    
+    public static func duration(start: DispatchTime, finish: DispatchTime) -> String {
+    
+        let durationSeconds = seconds(start: start, finish:finish)
         if durationSeconds > 10 {
             let durationSecondsInt = Int(durationSeconds)
             

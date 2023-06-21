@@ -204,12 +204,12 @@ public class StrategyCalculator {
                 if queue.queues[i].shapes.count > 0 {
                     printDate("mergeEverythingBelowWith(index: \(i)) started at")
                     
-                    let startNano = DispatchTime.now()
+                    let startNano = DateTimeCalculator.now()
                     await queue.mergeEverythingBelowWith(index: i)
-                    let finishNano = DispatchTime.now()
-                    let durationNano = finishNano.uptimeNanoseconds - startNano.uptimeNanoseconds // <<<<< Difference in nano seconds (UInt64)
-                    let durationSeconds = Double(durationNano) / 1_000_000_000
-                    printDate("mergeEverythingBelowWith(index: \(i)) took \(durationSeconds) seconds and finished at")
+                    let finishNano = DateTimeCalculator.now()
+                    
+                    let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
+                    printDate("mergeEverythingBelowWith(index: \(i)) took \(duration) and finished at")
                     (maxShape, _) = queue.status()
                     if let bestShape = queue.getBestShape() {
                         if bestShape.score > maxScore {

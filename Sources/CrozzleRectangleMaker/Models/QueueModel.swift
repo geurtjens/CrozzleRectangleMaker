@@ -37,36 +37,31 @@ public struct QueueModel {
     /// adding a newly formed list of shapes into our collection adding their results to shapes, gpuShapes and updating the statistics
     public mutating func add(newShapes: [ShapeModel], constraints: ConstraintsModel, words: [String]) {
 
-        let startTime = DispatchTime.now()
+        let startTime = DateTimeCalculator.now()
         self.shapes = ShapeCalculator.addShapes(oldShapes: self.shapes, newShapes: newShapes, scoreMin: self.scoreMin, constraints: constraints)
-        let shapesDone = DispatchTime.now()
+        let shapesDone = DateTimeCalculator.now()
         self.gpuShapes = GpuShapeModel(shapes: self.shapes, totalWords: self.totalWords, stride: self.stride)
-        let gpuShapesDone = DispatchTime.now()
+        let gpuShapesDone = DateTimeCalculator.now()
         self.wordIndex = WordIndexCalculator.createWordIndex(
             totalWords: self.totalWords,
             stride: self.stride,
             shapeCount: self.gpuShapes.count,
             words: self.gpuShapes.wordId)
-        let wordIndexDone = DispatchTime.now()
+        let wordIndexDone = DateTimeCalculator.now()
         if constraints.recalculateStatisticsWhenAddingToQueue {
             self.statistics = StatisticsCalculator.Execute(scores: self.gpuShapes.scores)
         }
         
         let totalNano = wordIndexDone.uptimeNanoseconds - startTime.uptimeNanoseconds
-        let totalSeconds = Double(totalNano) / 1_000_000_000
+        let totalSeconds = DateTimeCalculator.seconds(start: startTime, finish: wordIndexDone)
         
         if totalSeconds > 1 {
+            let totalDuration = DateTimeCalculator.duration(start: startTime, finish: wordIndexDone)
+            let addShapesDuration = DateTimeCalculator.duration(start: startTime, finish: shapesDone)
+            let gpuShapesDuration = DateTimeCalculator.duration(start: shapesDone, finish: gpuShapesDone)
+            let wordIndexDuration = DateTimeCalculator.duration(start: gpuShapesDone, finish: wordIndexDone)
             
-            let addShapesNano = shapesDone.uptimeNanoseconds - startTime.uptimeNanoseconds
-            let gpuShapesNano = gpuShapesDone.uptimeNanoseconds - shapesDone.uptimeNanoseconds
-            let wordIndexNano = wordIndexDone.uptimeNanoseconds - gpuShapesDone.uptimeNanoseconds
-            
-            
-            let addShapesSeconds = Double(addShapesNano) / 1_000_000_000
-            let gpuShapesSeconds = Double(gpuShapesNano) / 1_000_000_000
-            let wordIndexSeconds = Double(wordIndexNano) / 1_000_000_000
-            
-            print("Seconds Total: \(totalSeconds), addShapes: \(addShapesSeconds), gpuShapes: \(gpuShapesSeconds), wordIndex: \(wordIndexSeconds)")
+            print("Total: \(totalDuration), addShapes: \(addShapesDuration), gpuShapes: \(gpuShapesDuration), wordIndex: \(wordIndexDuration)")
         }
     }
     
