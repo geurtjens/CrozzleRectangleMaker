@@ -152,16 +152,16 @@ public struct QueueList {
         for i in 0..<self.queues.count {
             if self.queues[i].shapes.count > 0 {
                 
-                let startNano = DispatchTime.now()
+                let startNano = DateTimeCalculator.now()
                 
                 //print(self.queues[i].shapes[0].ToString(words:self.game.words))
                 StrategyCalculator.printDate("mergeWithItselfAsync(index: \(i)) started at")
                 await mergeWithItselfAsync(index:i)
-                let finishNano = DispatchTime.now()
+                let finishNano = DateTimeCalculator.now()
                 
                 let durationNano = finishNano.uptimeNanoseconds - startNano.uptimeNanoseconds // <<<<< Difference in nano seconds (UInt64)
-                let durationSeconds = Double(durationNano) / 1_000_000_000
-                StrategyCalculator.printDate("mergeWithItselfAsync(index: \(i)) took \(durationSeconds) seconds and finished at")
+                let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
+                StrategyCalculator.printDate("mergeWithItselfAsync(index: \(i)) took \(duration) and finished at")
                 let (_, _) = self.status()
             }
         }
@@ -171,11 +171,7 @@ public struct QueueList {
         
         for i in 0..<index {
             if self.queues[i].shapes.count > 0 {
-                //print(self.queues[i].shapes[0].ToString(words:self.game.words))
-                
                 await mergeTwoAsync(mergeIndex: i, withIndex: index)
-                //let bestShape = getBestShape()
-                //print(bestShape)
             }
         }
     }

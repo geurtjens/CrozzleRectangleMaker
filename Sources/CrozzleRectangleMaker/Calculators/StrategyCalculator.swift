@@ -101,7 +101,7 @@ public class StrategyCalculator {
         var previousCount = 0
         print("")
         print("")
-        print("GAME \(game.gameId) with high score of \(game.winningScore) using word count of \(words.count)")
+        print("GAME \(game.gameId) with high score of \(game.winningScore) using \(words.count) words")
         (maxShape, _) = queue.status()
         if let maxShape = maxShape {
             let text = maxShape.ToStringExtended(words: words, gameId: queue.game.gameId, winningScore: queue.game.winningScore)
@@ -109,10 +109,12 @@ public class StrategyCalculator {
         }
         
         for _ in 0..<repeatTimes {
-            
+            let mergeWithItselfStartNano = DateTimeCalculator.now()
             printDate("mergeWithItselfAll() started at")
             await queue.mergeWithItselfAll()
-            printDate("mergeWithItselfAll() finished at")
+            let mergeWithItselfFinishNano = DateTimeCalculator.now()
+            let mergeWithItselfDuration = DateTimeCalculator.duration(start: mergeWithItselfStartNano, finish: mergeWithItselfFinishNano)
+            printDate("mergeWithItselfAll() took \(mergeWithItselfDuration) and finished at")
             (maxShape, _) = queue.status()
             if let maxShape = maxShape {
                 let text = maxShape.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore)
@@ -122,9 +124,12 @@ public class StrategyCalculator {
                 
                 
                 if queue.queues[i].shapes.count > 0 {
+                    let startNano = DateTimeCalculator.now()
                     printDate("mergeEverythingBelowWith(index: \(i)) started at")
                     await queue.mergeEverythingBelowWith(index: i)
-                    printDate("mergeEverythingBelowWith(index: \(i)) finished at")
+                    let finishNano = DateTimeCalculator.now()
+                    let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
+                    printDate("mergeEverythingBelowWith(index: \(i)) took \(duration) and finished at")
                     (maxShape, _) = queue.status()
                     if let bestShape = queue.getBestShape() {
                         if bestShape.score > maxScore {
