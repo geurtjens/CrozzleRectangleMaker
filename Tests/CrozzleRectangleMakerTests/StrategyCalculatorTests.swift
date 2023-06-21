@@ -10,6 +10,9 @@ import XCTest
 final class StrategyCalculatorTests: XCTestCase {
 
 
+    func test_Next() async {
+        await StrategyCalculator.BasicStrategy()
+    }
     
     /// Lets discover if doing a mergeWithItself on the two word produces the same results or different results
     func test_MergeWithItselfMoreThanOnce() async {
