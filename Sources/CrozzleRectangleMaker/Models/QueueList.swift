@@ -151,14 +151,18 @@ public struct QueueList {
     public mutating func mergeWithItselfAll() async {
         for i in 0..<self.queues.count {
             if self.queues[i].shapes.count > 0 {
+                
+                let startNano = DispatchTime.now()
+                
                 //print(self.queues[i].shapes[0].ToString(words:self.game.words))
                 StrategyCalculator.printDate("mergeWithItselfAsync(index: \(i)) started at")
                 await mergeWithItselfAsync(index:i)
-                StrategyCalculator.printDate("mergeWithItselfAsync(index: \(i)) finished at")
-                let (maxShape, _) = self.status()
-                if (maxShape != nil) {
-                    print(maxShape!.ToString(words: self.game.words))
-                }
+                let finishNano = DispatchTime.now()
+                
+                let durationNano = finishNano.uptimeNanoseconds - startNano.uptimeNanoseconds // <<<<< Difference in nano seconds (UInt64)
+                let durationSeconds = Double(durationNano) / 1_000_000_000
+                StrategyCalculator.printDate("mergeWithItselfAsync(index: \(i)) took \(durationSeconds) seconds and finished at")
+                let (_, _) = self.status()
             }
         }
     }

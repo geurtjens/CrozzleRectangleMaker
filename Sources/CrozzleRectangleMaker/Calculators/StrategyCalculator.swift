@@ -81,11 +81,10 @@ public class StrategyCalculator {
         return queue
     }
     
-    
     public static func printDate(_ string: String) {
         let date = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss.SSSS"
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSS"
         print(string + " " + formatter.string(from: date))
     }
     
@@ -199,8 +198,13 @@ public class StrategyCalculator {
                 
                 if queue.queues[i].shapes.count > 0 {
                     printDate("mergeEverythingBelowWith(index: \(i)) started at")
+                    
+                    let startNano = DispatchTime.now()
                     await queue.mergeEverythingBelowWith(index: i)
-                    printDate("mergeEverythingBelowWith(index: \(i)) finished at")
+                    let finishNano = DispatchTime.now()
+                    let durationNano = finishNano.uptimeNanoseconds - startNano.uptimeNanoseconds // <<<<< Difference in nano seconds (UInt64)
+                    let durationSeconds = Double(durationNano) / 1_000_000_000
+                    printDate("mergeEverythingBelowWith(index: \(i)) took \(durationSeconds) seconds and finished at")
                     (maxShape, _) = queue.status()
                     if let bestShape = queue.getBestShape() {
                         if bestShape.score > maxScore {
