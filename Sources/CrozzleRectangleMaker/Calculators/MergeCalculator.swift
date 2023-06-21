@@ -238,7 +238,7 @@ public class MergeCalculator {
         
         var filtered = shapesWithWords.filter { $0 >= searchMin && $0 <= searchMax}
         
-        //filtered.sort()
+        filtered.sort()
         
         // So now we can work out how many words there are that are matching
         let result = countOfWordsInShapes(sourceShapeId: sourceShapeId, matchingShapes: filtered)
