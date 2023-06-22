@@ -117,6 +117,14 @@ public class ShapeCalculator {
     }
     
     
+    public static func IsAlphabet(_ letter: Character) -> Bool {
+        if letter != " " && letter != "." && letter != "#" {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     /// Verify that the shapes text is valid, that is there are no overlaps and no errors like #
     public static func VerifyText(text: String) -> Bool {
 
@@ -129,7 +137,7 @@ public class ShapeCalculator {
         
         let grid = text.split(separator: "\n")
         
-        let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        
         // Horizontal verification
         var previous: Character = " "
         var current: Character = " "
@@ -140,13 +148,13 @@ public class ShapeCalculator {
                 current = line[i]
                 next = line[i+1]
                 
-                if previous == " " && alphabet.contains(current) && alphabet.contains(next) {
+                if previous == " " && IsAlphabet(current) && IsAlphabet(next) {
                     return false
-                } else if i == 1 && alphabet.contains(previous) && alphabet.contains(current) {
+                } else if i == 1 && IsAlphabet(previous) && IsAlphabet(current) {
                     return false
-                } else if alphabet.contains(previous) && alphabet.contains(current) && next == " " {
+                } else if IsAlphabet(previous) && IsAlphabet(current) && next == " " {
                     return false
-                } else if i == line.count - 2 && alphabet.contains(current) && alphabet.contains(next) {
+                } else if i == line.count - 2 && IsAlphabet(current) && IsAlphabet(next) {
                     return false
                 }
                 previous = current
@@ -161,13 +169,13 @@ public class ShapeCalculator {
                 current = line[i]
                 next = line[i+1]
                 
-                if previous == " " && alphabet.contains(current) && alphabet.contains(next) {
+                if previous == " " && IsAlphabet(current) && IsAlphabet(next) {
                     return false
-                } else if i == 1 && alphabet.contains(previous) && alphabet.contains(current) {
+                } else if i == 1 && IsAlphabet(previous) && IsAlphabet(current) {
                     return false
-                } else if alphabet.contains(previous) && alphabet.contains(current) && next == " " {
+                } else if IsAlphabet(previous) && IsAlphabet(current) && next == " " {
                     return false
-                } else if i == line.count - 2 && alphabet.contains(current) && alphabet.contains(next) {
+                } else if i == line.count - 2 && IsAlphabet(current) && IsAlphabet(next) {
                     return false
                 }
                 previous = current
