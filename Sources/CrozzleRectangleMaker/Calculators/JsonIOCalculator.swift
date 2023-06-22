@@ -25,6 +25,46 @@ public class JsonIOCalculator {
         return code
     }
     
+    /// Found that shapes are being added that do not contribute to the making of the shape and so do not even merge.
+    /// So we can remove these un-necessary shapes if we find that the shape doesnt add extra words
+    public static func removeShapesThatAreNotAddingWords(jsonShapes: [JsonShapeModel]) -> [JsonShapeModel] {
+        var result: [JsonShapeModel] = []
+        
+        var words: [String] = []
+        
+        for jsonShape in jsonShapes {
+            
+            var addsExtraWords = false
+            // Does the shape include any extra words
+            for horizontalWord in jsonShape.h {
+                if words.contains(horizontalWord) == false {
+                    addsExtraWords = true
+                    words.append(horizontalWord)
+                }
+            }
+            for verticalWord in jsonShape.v {
+                if words.contains(verticalWord) == false {
+                    addsExtraWords = true
+                    words.append(verticalWord)
+                }
+            }
+            
+            if addsExtraWords == true {
+                result.append(jsonShape)
+            }
+        }
+        return result
+    }
+    
+    
+    public static func createShapeMakingGuide(gameId: Int) {
+        let possibleShapes = load(gameId: gameId)
+        let jsonShapes = removeShapesThatAreNotAddingWords(jsonShapes: possibleShapes)
+        
+        
+    }
+    
+    
     public static func execute(gameId: Int, winningScore: Int, widthMax: Int, heightMax: Int) -> String {
         var jsonShapes = load(gameId: gameId)
         
