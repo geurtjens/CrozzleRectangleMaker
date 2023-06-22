@@ -259,33 +259,32 @@ public class MergeCalculator {
             return []
         }
         
-        /// Find the count of all unique numbers in matching shapes such that key is the unique number and value is an array containing those numbers
-        let dictionary = Dictionary(grouping: matchingShapes, by: { $0} )
-        
-        /// The size of the result will be the same as the size of the dictionary
         var result:[MatchingShapesModel] = []
-        result.reserveCapacity(dictionary.count)
         
-        for item in dictionary {
-            result.append(MatchingShapesModel(sourceShapeId:sourceShapeId, searchShapeId: item.key, matchingWordCount: UInt8(item.value.count)))
-        }
-        return result
-        
-        
-        
-//        var shapeId = matchingShapes[0]
-//        var matchingWordCount = 1
-//        for i in 1..<matchingShapes.count {
-//            let current = matchingShapes[i]
-//            if current != shapeId {
-//                result.append(MatchingShapesModel(sourceShapeId: sourceShapeId,searchShapeId: shapeId, matchingWordCount: UInt8(matchingWordCount)))
-//                shapeId = current
-//                matchingWordCount = 1
-//            } else {
-//                matchingWordCount += 1
-//            }
+//        let dictionary = Dictionary(grouping: matchingShapes, by: { $0} )
+//
+//        result.reserveCapacity(dictionary.count)
+//
+//        for item in dictionary {
+//            result.append(MatchingShapesModel(sourceShapeId:sourceShapeId, searchShapeId: item.key, matchingWordCount: UInt8(item.value.count)))
 //        }
-//        result.append(MatchingShapesModel(sourceShapeId: sourceShapeId,searchShapeId: shapeId, matchingWordCount: UInt8(matchingWordCount)))
 //        return result
+//
+        
+        
+        var shapeId = matchingShapes[0]
+        var matchingWordCount = 1
+        for i in 1..<matchingShapes.count {
+            let current = matchingShapes[i]
+            if current != shapeId {
+                result.append(MatchingShapesModel(sourceShapeId: sourceShapeId,searchShapeId: shapeId, matchingWordCount: UInt8(matchingWordCount)))
+                shapeId = current
+                matchingWordCount = 1
+            } else {
+                matchingWordCount += 1
+            }
+        }
+        result.append(MatchingShapesModel(sourceShapeId: sourceShapeId,searchShapeId: shapeId, matchingWordCount: UInt8(matchingWordCount)))
+        return result
     }
 }
