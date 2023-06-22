@@ -294,12 +294,12 @@ public class PlacementCalculator {
                 let current = line[x]
 
                 if word == "" {
-                    if line[x - 1] == "." && alphabet.contains(current) && x != line.count - 1 && alphabet.contains(line[x + 1]) {
+                    if line[x - 1] == "." && ShapeCalculator.IsAlphabet(current) && x != line.count - 1 && ShapeCalculator.IsAlphabet(line[x + 1]) {
                         word += String(current)
                         xPos = x
                     }
                 } else {
-                    if alphabet.contains(current) {
+                    if ShapeCalculator.IsAlphabet(current) {
                         word += String(current)
                     } else if current == "." {
                         // We have finished the word

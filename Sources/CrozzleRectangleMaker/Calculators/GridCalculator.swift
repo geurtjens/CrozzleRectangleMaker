@@ -94,11 +94,11 @@ public class GridCalculator {
                         word += String(current)
                     }
                 } else {
-                    if previous == " " && alphabet.contains(current) && alphabet.contains(future) {
+                    if previous == " " && ShapeCalculator.IsAlphabet(current) && ShapeCalculator.IsAlphabet(future) {
                         isWord = true
                         word = String(current)
                     }
-                    else if i == 1 && alphabet.contains(previous) && alphabet.contains(current) && alphabet.contains(future) {
+                    else if i == 1 && ShapeCalculator.IsAlphabet(previous) && ShapeCalculator.IsAlphabet(current) && ShapeCalculator.IsAlphabet(future) {
                         isWord = true
                         word = String(previous) + String(current)
                     }
