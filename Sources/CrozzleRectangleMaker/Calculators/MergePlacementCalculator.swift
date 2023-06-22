@@ -10,28 +10,32 @@ import Foundation
 public class MergePlacementCalculator {
     
     // Create a shape from two `GpuShapeModel` based on the instructions provided
-    public static func Execute(source: GpuShapeModel, search: GpuShapeModel, instruction: MergeInstructionModel, words:[String]) -> ShapeModel? {
+    public static func Execute(sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, instruction: MergeInstructionModel, words:[String]) -> ShapeModel? {
         
         // This will flip the placements if they are opposite direction
-        let (sourcePlacement, searchPlacement) = GetPlacementsForBothShapes(source: source, search: search, instruction: instruction)
+        let (sourcePlacement, searchPlacement) = GetPlacementsForBothShapes(
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
+            instruction: instruction)
         
-        let commonPlacements = PlacementCalculator.findCommonPlacement(sourcePlacements: sourcePlacement, searchPlacements: searchPlacement)
+        let commonPlacements = PlacementCalculator.findCommonPlacement(
+            sourcePlacements: sourcePlacement,
+            searchPlacements: searchPlacement)
+        
         if commonPlacements.count == 0 {
             print("Your offset calculator did not work")
         }
         
+        let sourcePos = instruction.sourceShapeId * sourceShapes.stride + Int(instruction.sourceMatchingWordPosition)
         
-        
-        let sourcePos = instruction.sourceShapeId * source.stride + Int(instruction.sourceMatchingWordPosition)
-        
-        let searchPos = instruction.searchShapeId * search.stride + Int(instruction.searchMatchingWordPosition)
+        let searchPos = instruction.searchShapeId * searchShapes.stride + Int(instruction.searchMatchingWordPosition)
         
         // I think the first word position might be useful
-        let xSource = source.x[sourcePos]
-        let ySource = source.y[sourcePos]
+        let xSource = sourceShapes.x[sourcePos]
+        let ySource = sourceShapes.y[sourcePos]
 
-        let xSearch = search.x[searchPos]
-        let ySearch = search.y[searchPos]
+        let xSearch = searchShapes.x[searchPos]
+        let ySearch = searchShapes.y[searchPos]
         
         // By this moment the placements are flipped if they were wrong originally
         let (sourceOffsetX, sourceOffsetY, searchOffsetX, searchOffsetY) = CalculateOffsets(
@@ -100,44 +104,44 @@ public class MergePlacementCalculator {
     
     
     /// Converting from `GpuShapeModel` to `[PlacementModel]`.  Flip second `[PlacementModel]` if required.  Only add words not in first to second `[PlacementModel]`.
-    public static func GetPlacementsForBothShapes(source: GpuShapeModel, search: GpuShapeModel, instruction: MergeInstructionModel) -> ([PlacementModel], [PlacementModel]) {
+    public static func GetPlacementsForBothShapes(sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, instruction: MergeInstructionModel) -> ([PlacementModel], [PlacementModel]) {
         
-        let sourceStartPos = instruction.sourceShapeId * source.stride
-        let searchStartPos = instruction.searchShapeId * search.stride
+        let sourceStartPos = instruction.sourceShapeId * sourceShapes.stride
+        let searchStartPos = instruction.searchShapeId * searchShapes.stride
         
         var words: [UInt8] = []
         
         var placements:[PlacementModel] = []
-        for i in 0..<source.stride {
+        for i in 0..<sourceShapes.stride {
             
             let idx = sourceStartPos + i
             
-            words.append(source.wordId[idx])
+            words.append(sourceShapes.wordId[idx])
             
             let placement = PlacementModel(
-                i: source.wordId[idx],
-                h: source.isHorizontal[idx],
-                x: source.x[idx],
-                y: source.y[idx],
-                l: source.length[idx])
+                i: sourceShapes.wordId[idx],
+                h: sourceShapes.isHorizontal[idx],
+                x: sourceShapes.x[idx],
+                y: sourceShapes.y[idx],
+                l: sourceShapes.length[idx])
             placements.append(placement)
             
         }
         
         var otherPlacements:[PlacementModel] = []
         
-        for i in 0..<search.stride {
+        for i in 0..<searchShapes.stride {
             
             let idx = searchStartPos + i
             
-            let wordId = search.wordId[idx]
+            let wordId = searchShapes.wordId[idx]
             
             //if words.contains(wordId) == false {
                 
-                let h = search.isHorizontal[idx]
-                let x = search.x[idx]
-                let y = search.y[idx]
-                let length = search.length[idx]
+                let h = searchShapes.isHorizontal[idx]
+                let x = searchShapes.x[idx]
+                let y = searchShapes.y[idx]
+                let length = searchShapes.length[idx]
                 
                 if instruction.flipped {
                     let placement = PlacementModel(

@@ -20,11 +20,11 @@ public class ShapesFromMergesCalculator {
         
         let shapes = ShapeCalculator.toShapes(rectangles: d2x2)
         
-        let (gpuShapes, wordIndex) = GpuShapeModelCalculator.Create(shapes: shapes, totalWords: words.count, stride: 4)
+        let (sourceShapes, wordIndex) = GpuShapeModelCalculator.Create(shapes: shapes, totalWords: words.count, stride: 4)
         
         var merged = ExecuteMergeWithSpecificNumberOfCommonWordsCalculator.ExecuteSameShape(
                 matchingWordCount: 3,
-                gpuShapes: gpuShapes,
+                sourceShapes: sourceShapes,
                 wordIndex: wordIndex,
                 words: words,
                 scoreMin: scoreMin,
@@ -83,8 +83,8 @@ public class ShapesFromMergesCalculator {
       
         var merged = ExecuteMergeWithSpecificNumberOfCommonWordsCalculator.ExecuteTwoShapes(
                 matchingWordCount: 3,
-                gpuSource: gpuSquare2x2,
-                gpuSearch: gpuSearch,
+                sourceShapes: gpuSquare2x2,
+                searchShapes: gpuSearch,
                 searchWordIndex: wordIndex,
                 words: words,
                 scoreMin: scoreMin,
@@ -116,7 +116,7 @@ public class ShapesFromMergesCalculator {
         
         var mergeStart = ExecuteMergeWithSpecificNumberOfCommonWordsCalculator.ExecuteSameShape(
             matchingWordCount: 3,
-            gpuShapes: gpuShapes,
+            sourceShapes: gpuShapes,
             wordIndex: wordIndex,
             words: words,
             scoreMin: scoreMin,
@@ -129,8 +129,8 @@ public class ShapesFromMergesCalculator {
         let gpuMergeStartWordIndex = WordIndexCalculator.createWordIndex(totalWords: words.count, stride: gpuMergeStart.stride, shapeCount: gpuMergeStart.count, words: gpuMergeStart.wordId)
         var merged = ExecuteMergeWithSpecificNumberOfCommonWordsCalculator.ExecuteTwoShapes(
             matchingWordCount: 3,
-            gpuSource: gpuShapes,
-            gpuSearch: gpuMergeStart,
+            sourceShapes: gpuShapes,
+            searchShapes: gpuMergeStart,
             searchWordIndex: gpuMergeStartWordIndex,
             words: words,
             scoreMin: scoreMin,
@@ -177,7 +177,7 @@ public class ShapesFromMergesCalculator {
         
         var merged = ExecuteMergeWithSpecificNumberOfCommonWordsCalculator.ExecuteSameShape(
             matchingWordCount: 2,
-            gpuShapes: gpuOpen2x2,
+            sourceShapes: gpuOpen2x2,
             wordIndex: wordIndex,
             words: words,
             scoreMin: scoreMin,
@@ -219,8 +219,8 @@ public class ShapesFromMergesCalculator {
         
         var merged = ExecuteMergeWithSpecificNumberOfCommonWordsCalculator.ExecuteTwoShapes(
             matchingWordCount: 2,
-            gpuSource: gpuTopLeft,
-            gpuSearch: gpuTopRight,
+            sourceShapes: gpuTopLeft,
+            searchShapes: gpuTopRight,
             searchWordIndex: wordIndex,
             words: words,
             scoreMin: scoreMin,
@@ -262,8 +262,8 @@ public class ShapesFromMergesCalculator {
         
         var merged = ExecuteMergeWithSpecificNumberOfCommonWordsCalculator.ExecuteTwoShapes(
                 matchingWordCount: 1,
-                gpuSource: gpuShapes2x2,
-                gpuSearch: gpuShapes2x3,
+                sourceShapes: gpuShapes2x2,
+                searchShapes: gpuShapes2x3,
                 searchWordIndex: wordIndex,
                 words: words,
                 scoreMin: scoreMin,

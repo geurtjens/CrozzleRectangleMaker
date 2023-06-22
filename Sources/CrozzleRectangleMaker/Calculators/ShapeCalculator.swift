@@ -8,7 +8,7 @@
 import Foundation
 /// A variety of functions used with shapes convertion from clusters and edges and ability to flip shapes etc
 public class ShapeCalculator {
-    
+     
     /// This is how the `QueueModel` adds shapes
     public static func addShapes(oldShapes: [ShapeModel], newShapes: [ShapeModel], scoreMin: Int, constraints: ConstraintsModel) -> [ShapeModel] {
         
@@ -19,7 +19,7 @@ public class ShapeCalculator {
         
 
         // Its not finding two duplicates
-        var (noDuplicates, duplicateCount) = RemoveDuplicatesCalculator.execute(shapes: result)
+        var (noDuplicates, _) = RemoveDuplicatesCalculator.execute(shapes: result)
         
         switch (constraints.priorityFunction) {
         case .score_area:

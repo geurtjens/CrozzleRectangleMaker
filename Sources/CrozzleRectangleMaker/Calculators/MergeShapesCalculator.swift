@@ -91,8 +91,8 @@ public class MergeShapesCalculator {
         }
         let scoresMin = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         let result = ExecuteMergeCalculator.ExecuteDifferentShapes(
-            source: smaller_gpu,
-            search: larger_gpu,
+            sourceShapes: smaller_gpu,
+            searchShapes: larger_gpu,
             searchWordIndex: larger_word_index,
             words: words,
             scoresMin: scoresMin,

@@ -158,9 +158,8 @@ public struct QueueList {
                 StrategyCalculator.printDate("mergeWithItselfAsync(index: \(i)) started at")
                 await mergeWithItselfAsync(index:i)
                 let finishNano = DateTimeCalculator.now()
-                
-                let durationNano = finishNano.uptimeNanoseconds - startNano.uptimeNanoseconds // <<<<< Difference in nano seconds (UInt64)
                 let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
+                
                 StrategyCalculator.printDate("mergeWithItselfAsync(index: \(i)) took \(duration) and finished at")
                 let (_, _) = self.status()
             }

@@ -10,18 +10,18 @@ public class ExecuteMergeWithSpecificNumberOfCommonWordsCalculator {
     
     
     /// The full blown version that can search any subset of two lists of shapes
-    public static func ExecuteSameShape(matchingWordCount: Int, gpuShapes: GpuShapeModel, wordIndex: [[Int]], words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel]
+    public static func ExecuteSameShape(matchingWordCount: Int, sourceShapes: GpuShapeModel, wordIndex: [[Int]], words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel]
     {
     
         var result: [ShapeModel] = []
         
         let scoresMin: [Int] = Array(repeating: scoreMin, count: 40)
         
-        for shapeId in 0..<gpuShapes.count {
+        for shapeId in 0..<sourceShapes.count {
             let matchingShapes = ExecuteSameShapeOnce(
                 matchingWordCount: matchingWordCount,
                 shapeId: shapeId,
-                gpuShapes: gpuShapes,
+                sourceShapes: sourceShapes,
                 wordIndex: wordIndex,
                 words: words,
                 scoresMin: scoresMin,
@@ -34,29 +34,28 @@ public class ExecuteMergeWithSpecificNumberOfCommonWordsCalculator {
     }
     
     
-    public static func ExecuteSameShapeOnce(matchingWordCount: Int, shapeId: Int, gpuShapes: GpuShapeModel, wordIndex: [[Int]],
-                                            words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
+    public static func ExecuteSameShapeOnce(matchingWordCount: Int, shapeId: Int, sourceShapes: GpuShapeModel, wordIndex: [[Int]],words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         
-        let matchingWords: [MatchingShapesModel] = ExecuteMergeCalculator.ExecuteOne(
-            sourceShapes: gpuShapes,
+        let matchingWords: [MatchingShapesModel] = MatchingWordsCalculator.ExecuteOne(
+            sourceShapes: sourceShapes,
             sourceShapeId: shapeId,
             
-            searchShapes: gpuShapes,
+            searchShapes: sourceShapes,
             searchWordIndex: wordIndex,
             searchMin: shapeId + 1,
-            searchMax: gpuShapes.count)
+            searchMax: sourceShapes.count)
         
         let limitedMatchingWords = matchingWords.filter { $0.matchingWordCount == matchingWordCount }
         
-        let instructions = MergeCalculator.getMergeInstructions(
-            source: gpuShapes,
-            search: gpuShapes,
+        let instructions = MatchingWordsCalculator.getMergeInstructions(
+            sourceShapes: sourceShapes,
+            searchShapes: sourceShapes,
             matches: limitedMatchingWords)
         
         let shapeList = ProcessInstructions(
             words: words,
-            source: gpuShapes,
-            search: gpuShapes,
+            sourceShapes: sourceShapes,
+            searchShapes: sourceShapes,
             instructions: instructions,
             scoresMin: scoresMin,
             widthMax: widthMax,
@@ -65,20 +64,20 @@ public class ExecuteMergeWithSpecificNumberOfCommonWordsCalculator {
         return shapeList
     }
     
-    public static func ExecuteTwoShapes(matchingWordCount: Int, gpuSource: GpuShapeModel, gpuSearch: GpuShapeModel, searchWordIndex:[[Int]], words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel]
+    public static func ExecuteTwoShapes(matchingWordCount: Int, sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, searchWordIndex:[[Int]], words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel]
     {
     
         var result: [ShapeModel] = []
         
         let scoresMin: [Int] = Array(repeating: scoreMin, count: 40)
         
-        for shapeId in 0..<gpuSource.count {
+        for shapeId in 0..<sourceShapes.count {
             let matchingShapes = ExecuteTwoShapesOnce(
                 matchingWordCount: matchingWordCount,
                 shapeId: shapeId,
                 
-                gpuSource: gpuSource,
-                gpuSearch: gpuSearch,
+                sourceShapes: sourceShapes,
+                searchShapes: searchShapes,
                 searchWordIndex: searchWordIndex,
                 
                 words: words,
@@ -94,31 +93,31 @@ public class ExecuteMergeWithSpecificNumberOfCommonWordsCalculator {
     public static func ExecuteTwoShapesOnce(
         matchingWordCount: Int,
         shapeId: Int,
-        gpuSource: GpuShapeModel,
-        gpuSearch: GpuShapeModel,
+        sourceShapes: GpuShapeModel,
+        searchShapes: GpuShapeModel,
         searchWordIndex: [[Int]],
         words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         
-        let matchingWords: [MatchingShapesModel] = ExecuteMergeCalculator.ExecuteOne(
-            sourceShapes: gpuSource,
+        let matchingWords: [MatchingShapesModel] = MatchingWordsCalculator.ExecuteOne(
+            sourceShapes: sourceShapes,
             sourceShapeId: shapeId,
             
-            searchShapes: gpuSearch,
+            searchShapes: searchShapes,
             searchWordIndex: searchWordIndex,
             searchMin: 0,
-            searchMax: gpuSearch.count)
+            searchMax: searchShapes.count)
         
         let limitedMatchingWords = matchingWords.filter { $0.matchingWordCount == matchingWordCount }
         
-        let instructions = MergeCalculator.getMergeInstructions(
-            source: gpuSource,
-            search: gpuSearch,
+        let instructions = MatchingWordsCalculator.getMergeInstructions(
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             matches: limitedMatchingWords)
         
         let shapeList = ProcessInstructions(
             words: words,
-            source: gpuSource,
-            search: gpuSearch,
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             instructions: instructions,
             scoresMin: scoresMin,
             widthMax: widthMax,
@@ -128,12 +127,17 @@ public class ExecuteMergeWithSpecificNumberOfCommonWordsCalculator {
     }
     
     
-    public static func ProcessInstructions(words: [String], source: GpuShapeModel, search: GpuShapeModel, instructions: [MergeInstructionModel], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
+    public static func ProcessInstructions(words: [String], sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, instructions: [MergeInstructionModel], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         
         var shapeList: [ShapeModel] = []
         
         for instruction in instructions {
-            let potentialShape = MergePlacementCalculator.Execute(source: source, search: search, instruction: instruction, words: words)
+            let potentialShape = MergePlacementCalculator.Execute(
+                sourceShapes: sourceShapes,
+                searchShapes: searchShapes,
+                instruction: instruction,
+                words: words)
+            
             if let potentialShape = potentialShape {
                 if (potentialShape.width <= widthMax && potentialShape.height <= heightMax) ||
                     (potentialShape.width <= heightMax && potentialShape.height <= widthMax) {

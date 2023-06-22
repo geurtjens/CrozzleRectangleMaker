@@ -52,7 +52,6 @@ public struct QueueModel {
             self.statistics = StatisticsCalculator.Execute(scores: self.gpuShapes.scores)
         }
         
-        let totalNano = wordIndexDone.uptimeNanoseconds - startTime.uptimeNanoseconds
         let totalSeconds = DateTimeCalculator.seconds(start: startTime, finish: wordIndexDone)
         
         if totalSeconds > 1 {
