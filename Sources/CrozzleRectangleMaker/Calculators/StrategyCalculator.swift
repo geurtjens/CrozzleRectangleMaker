@@ -90,6 +90,8 @@ public class StrategyCalculator {
     
     public static func NextStep(words: [String], queueLength: Int, priorityFunction: PriorityFunction, repeatTimes: Int) async -> ShapeModel {
         
+        let startNano = DateTimeCalculator.now()
+        
         var queue = Queue_8612(queueLength: queueLength, priorityFunction: priorityFunction)
         let game = queue.game
         
@@ -161,6 +163,12 @@ public class StrategyCalculator {
             }
         }
         let bestShapeScore = queue.getBestShape()
+        
+        let finishNano = DateTimeCalculator.now()
+               
+       let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
+       print("Duration \(duration)")
+        
         return bestShapeScore!
     }
     
