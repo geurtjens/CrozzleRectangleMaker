@@ -69,7 +69,6 @@ public class GridCalculator {
         return result
     }
     public static func FindWordsInGridOne(grid: [String]) -> [String] {
-        let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
         
         var words: [String] = []
         for line in grid {

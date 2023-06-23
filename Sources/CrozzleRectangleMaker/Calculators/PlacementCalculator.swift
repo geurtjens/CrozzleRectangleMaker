@@ -283,8 +283,6 @@ public class PlacementCalculator {
         
         var placements: [PlacementModel] = []
         
-        let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        
         for y in 1..<grid.count - 1 {
             let line = grid[y]
 

@@ -29,7 +29,7 @@ final class ShapeCalculatorTests: XCTestCase {
                      "   .   .    "
         measure {
             
-            let grid = text.split(separator:"\n")
+            let _ = text.split(separator:"\n")
         }
     }
     
