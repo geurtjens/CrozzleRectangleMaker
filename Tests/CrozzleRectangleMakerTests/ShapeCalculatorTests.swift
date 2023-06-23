@@ -8,7 +8,108 @@
 import XCTest
 @testable import CrozzleRectangleMaker
 final class ShapeCalculatorTests: XCTestCase {
-
+    
+    func test_SplitSpeed() {
+        let text =   "    . .   . \n" +
+                     ".SNOW.TOAST.\n" +
+                     "    H O . R \n" +
+                     ".FAMILY.T E \n" +
+                     "    T.SAUCE.\n" +
+                     "    E . R . \n" +
+                     " .  .PORK.I \n" +
+                     ".NUTS. .E.N \n" +
+                     " A  I .HYMN.\n" +
+                     ".ZION. A.E. \n" +
+                     " A .G.AZURE.\n" +
+                     " R B.. E R  \n" +
+                     ".EVE.JELLY. \n" +
+                     " T L O N .  \n" +
+                     ".HOLLY.U    \n" +
+                     " . S .STAR. \n" +
+                     "   .   .    "
+        measure {
+            
+            let grid = text.split(separator:"\n")
+        }
+    }
+    
+    func test_ReverseSpeed() {
+        let text =   "    . .   . \n" +
+                     ".SNOW.TOAST.\n" +
+                     "    H O . R \n" +
+                     ".FAMILY.T E \n" +
+                     "    T.SAUCE.\n" +
+                     "    E . R . \n" +
+                     " .  .PORK.I \n" +
+                     ".NUTS. .E.N \n" +
+                     " A  I .HYMN.\n" +
+                     ".ZION. A.E. \n" +
+                     " A .G.AZURE.\n" +
+                     " R B.. E R  \n" +
+                     ".EVE.JELLY. \n" +
+                     " T L O N .  \n" +
+                     ".HOLLY.U    \n" +
+                     " . S .STAR. \n" +
+                     "   .   .    "
+        
+        let grid = text.split(separator:"\n")
+        measure {
+            let _ = ShapeCalculator.rotateGrid(grid: grid)
+            
+        }
+    }
+    
+    func test_RotateGridSpeed() {
+        measure {
+            
+            let text =   "    . .   . \n" +
+                         ".SNOW.TOAST.\n" +
+                         "    H O . R \n" +
+                         ".FAMILY.T E \n" +
+                         "    T.SAUCE.\n" +
+                         "    E . R . \n" +
+                         " .  .PORK.I \n" +
+                         ".NUTS. .E.N \n" +
+                         " A  I .HYMN.\n" +
+                         ".ZION. A.E. \n" +
+                         " A .G.AZURE.\n" +
+                         " R B.. E R  \n" +
+                         ".EVE.JELLY. \n" +
+                         " T L O N .  \n" +
+                         ".HOLLY.U    \n" +
+                         " . S .STAR. \n" +
+                         "   .   .    "
+            let grid = text.split(separator:"\n")
+            
+            let _ = ShapeCalculator.rotateGrid(grid: grid)
+        }
+    }
+    func test_VerifyTextSpeed() {
+        measure {
+            
+             
+            let text =   "    . .   . \n" +
+                         ".SNOW.TOAST.\n" +
+                         "    H O . R \n" +
+                         ".FAMILY.T E \n" +
+                         "    T.SAUCE.\n" +
+                         "    E . R . \n" +
+                         " .  .PORK.I \n" +
+                         ".NUTS. .E.N \n" +
+                         " A  I .HYMN.\n" +
+                         ".ZION. A.E. \n" +
+                         " A .G.AZURE.\n" +
+                         " R B.. E R  \n" +
+                         ".EVE.JELLY. \n" +
+                         " T L O N .  \n" +
+                         ".HOLLY.U    \n" +
+                         " . S .STAR. \n" +
+                         "   .   .    "
+            XCTAssertTrue(ShapeCalculator.VerifyText(text: text))
+        }
+    }
+    
+    
     func test_VerifyText() {
         let gameList = GameList()
         
