@@ -18,19 +18,34 @@ public class DateTimeCalculator {
     }
     
     public static func duration(start: DispatchTime, finish: DispatchTime) -> String {
-    
+        
         let durationSeconds = seconds(start: start, finish:finish)
         if durationSeconds > 10 {
             let durationSecondsInt = Int(durationSeconds)
             
             if durationSecondsInt > 60 {
-                let minutes = durationSecondsInt / 60
+                var result = ""
                 let seconds = durationSecondsInt % 60
-                if seconds == 0 {
-                    return "\(minutes) minutes"
-                } else {
-                    return "\(minutes) minutes and \(seconds) seconds"
+                var minutes = durationSecondsInt / 60
+                let hours = minutes / 60
+                if hours > 0 {
+                    minutes = minutes % 60
                 }
+                
+                if hours > 0 {
+                    result += "\(hours) hours "
+                }
+                
+                if minutes > 0 {
+                    result += "\(minutes) minutes "
+                }
+                
+                if seconds > 0 {
+                    result += "\(seconds) seconds"
+                }
+                
+                return result
+                
             } else {
                 return "\(durationSecondsInt) seconds"
             }
