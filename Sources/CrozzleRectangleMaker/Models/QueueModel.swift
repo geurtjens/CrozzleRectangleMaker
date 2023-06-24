@@ -22,6 +22,13 @@ public struct QueueModel {
     /// a list of valid shapes where each shape is made up of `stride` number of words.
     public var shapes: [ShapeModel] = []
     
+    
+    // List of shapes that meet certain heuristics like score or score / area etc and we only merge off what is in here.
+    // secondly we have a flag to say that merging has already been done so we dont merge it more than once.
+    // thirdly when we add new items in here we check that its not already in here so cannot be added twice and that means the flag is not set to finished just yet.
+    // We want the best of each heuristic and add them in but ofcourse each shape is not duplicated in here.
+    public var shapesToSearchOn: [ShapeModel] = []
+    
     /// stores the collection of shapes in the queue in the format of object of arrays which is faster to process
     public var gpuShapes: GpuShapeModel
     
