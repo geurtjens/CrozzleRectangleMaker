@@ -7,6 +7,14 @@
 
 import Foundation
 public class DateTimeCalculator {
+    
+    public static func printDate(_ string: String) {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSS"
+        print(string + " " + formatter.string(from: date))
+    }
+    
     public static func now() -> DispatchTime {
         return DispatchTime.now()
     }

@@ -132,7 +132,7 @@ public struct QueueList {
 //        }
 //    }
     
-    public mutating func mergeWithItselfAsync(index wordCount: Int) async {
+    public func mergeWithItselfAsync(index wordCount: Int) async -> [ShapeModel] {
             
         let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(
                 shapes: self.queues[wordCount].gpuShapes,
@@ -142,9 +142,7 @@ public struct QueueList {
                 widthMax: self.game.maxWidth,
                 heightMax: self.game.maxHeight)
         
-        if shapes.count > 0 {
-            add(shapes: shapes)
-        }
+        return shapes
     }
     
     
@@ -155,12 +153,18 @@ public struct QueueList {
                 let startNano = DateTimeCalculator.now()
                 
                 //print(self.queues[i].shapes[0].ToString(words:self.game.words))
-                StrategyCalculator.printDate("mergeWithItselfAsync(index: \(i)) started at")
-                await mergeWithItselfAsync(index:i)
+                DateTimeCalculator.printDate("mergeWithItselfAsync(index: \(i)) started at")
+                
+                let shapes = await mergeWithItselfAsync(index:i)
+                if shapes.count > 0 {
+                    add(shapes: shapes)
+                }
+
+                
                 let finishNano = DateTimeCalculator.now()
                 let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
                 
-                StrategyCalculator.printDate("mergeWithItselfAsync(index: \(i)) took \(duration) and finished at")
+                DateTimeCalculator.printDate("mergeWithItselfAsync(index: \(i)) created \(shapes.count) shapes, took \(duration) and finished at")
                 let (_, _) = self.status()
             }
         }
@@ -170,7 +174,18 @@ public struct QueueList {
         
         for i in 0..<index {
             if self.queues[i].shapes.count > 0 {
-                await mergeTwoAsync(mergeIndex: i, withIndex: index)
+                
+                let startNano = DateTimeCalculator.now()
+                
+                let shapes = await mergeTwoAsync(mergeIndex: i, withIndex: index)
+                
+                if shapes.count > 0 {
+                    add(shapes: shapes)
+                }
+                let finishNano = DateTimeCalculator.now()
+                
+                let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
+                DateTimeCalculator.printDate("mergeTwoAsync(mergeIndex: \(i), withIndex: \(index)) produced \(shapes.count) shapes took \(duration) and finished at")
             }
         }
     }
@@ -272,7 +287,7 @@ public struct QueueList {
         }
     }
     
-    public mutating func mergeWithItselfAsync(index wordCount: Int, notTheseWordCounts:[Int]) async {
+    public func mergeWithItselfAsync(index wordCount: Int, notTheseWordCounts:[Int]) async -> [ShapeModel] {
             
         let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(
                 shapes: self.queues[wordCount].gpuShapes,
@@ -290,9 +305,11 @@ public struct QueueList {
                     filteredShapes += item.value
                 }
             }
-            
-            add(shapes: shapes)
+        
+            return filteredShapes
+            //add(shapes: shapes)
         }
+        return []
     }
     
     /// Perform the merge on yourself but do not let the `notTheseWordCounts` count of words to be included.  So merge 3 words with 3 words and ignore the 4 word, only include the 5 word shapes
@@ -312,6 +329,7 @@ public struct QueueList {
             widthMax: widthMax,
             heightMax: heightMax)
             
+            
         if shapes.count > 0 {
             var filteredShapes: [ShapeModel] = []
             let dictionary = Dictionary(grouping: shapes, by: { $0.placements.count})
@@ -325,9 +343,9 @@ public struct QueueList {
         }
     }
     
-    public mutating func mergeTwoAsync(
+    public func mergeTwoAsync(
         mergeIndex: Int,
-        withIndex mergeIndex2: Int) async {
+        withIndex mergeIndex2: Int) async -> [ShapeModel] {
         let shapes = await ExecuteMergeCalculator.ExecuteDifferentShapesAsync(
             source: self.queues[mergeIndex].gpuShapes,
             search: self.queues[mergeIndex2].gpuShapes,
@@ -337,9 +355,10 @@ public struct QueueList {
             widthMax: self.game.maxWidth,
             heightMax: self.game.maxHeight)
 
-        if shapes.count > 0 {
-            add(shapes: shapes)
-        }
+        
+            
+        return shapes
+        
     }
     
     public mutating func mergeTwoAsync(

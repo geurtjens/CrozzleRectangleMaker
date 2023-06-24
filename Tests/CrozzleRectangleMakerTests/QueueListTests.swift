@@ -53,10 +53,12 @@ final class QueueListTests: XCTestCase {
             
             // Now merge twice
             
-            await result.mergeWithItselfAsync(index: 2)
+            let shapes = await result.mergeWithItselfAsync(index: 2)
+            result.add(shapes: shapes)
             XCTAssertEqual(1687, result.queues[3].shapes.count)
             
-            await result.mergeWithItselfAsync(index: 2)
+            let shapes2 = await result.mergeWithItselfAsync(index: 2)
+            result.add(shapes: shapes2)
             XCTAssertEqual(1687, result.queues[3].shapes.count)
             
         }
@@ -86,9 +88,10 @@ final class QueueListTests: XCTestCase {
                 
                 result.add(shapes: words2)
                 
-                await result.mergeWithItselfAsync(index: 2)
-                await result.mergeWithItselfAsync(index: 3, notTheseWordCounts: [4])
-                
+                let shapes2 = await result.mergeWithItselfAsync(index: 2)
+                result.add(shapes: shapes2)
+                let shapes3 = await result.mergeWithItselfAsync(index: 3, notTheseWordCounts: [4])
+                result.add(shapes: shapes3)
                 XCTAssertEqual(0, result.queues[4].shapes.count)
                 XCTAssertEqual(78222, result.queues[5].shapes.count)
             }
@@ -153,7 +156,7 @@ final class QueueListTests: XCTestCase {
                     
                     for _ in 0..<10 {
                         let index3 = bestShape2.placements.count
-                        await queueList.mergeTwoAsync(mergeIndex: 2, withIndex: index3)
+                        queueList.add(shapes: await queueList.mergeTwoAsync(mergeIndex: 2, withIndex: index3))
                         queueList.printBest()
                     }
                 }
