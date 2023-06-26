@@ -68,6 +68,112 @@ public class GridCalculator {
         
         return result
     }
+    
+    
+    public static func findInterlocks(grid: [String]) -> [InterlockModel] {
+        
+        if grid.count == 0 {
+            return []
+        }
+        
+        var result: [InterlockModel] = []
+        
+        let positions = findInterlockPositions(grid: grid)
+        
+        for (y,x) in positions {
+            
+            let interlock = getInterlock(grid: grid, y: y, x: x)
+            result.append(interlock)
+        }
+        
+        return result
+    }
+    
+    public static func getInterlock(grid: [String], y: Int, x: Int) -> InterlockModel {
+        
+        let xPos = getHorizontalInterlockPos(grid: grid, y: y, x: x)
+        let yPos = getVerticalInterlockPos(grid: grid, y: y, x: x)
+        
+        let horizontalWord = getHorizontalWord(grid: grid, y: y, x: x - xPos)
+        let verticalWord = getVerticalWord(grid: grid, y: y - yPos, x: x)
+        
+        let interlock = InterlockModel(x: x, y: y, horizontalWord: horizontalWord, verticalWord: verticalWord, horizontalPos: xPos, verticalPos: yPos)
+        
+        return interlock
+        
+        
+    }
+    public static func getHorizontalWord(grid:[String], y: Int, x: Int) -> String {
+        var word = ""
+        
+        var i = 0
+        
+        while grid[y][x + i].isAlphabet() && x + i < grid[y].count {
+            word += String(grid[y][x + i])
+            i += 1
+        }
+        return word
+    }
+    public static func getVerticalWord(grid:[String], y: Int, x: Int) -> String {
+        var word = ""
+        
+        var i = 0
+        
+        while grid[y + i][x].isAlphabet() && y + i < grid.count {
+            word += String(grid[y + i][x])
+            i += 1
+        }
+        return word
+    }
+    public static func getHorizontalInterlockPos(grid:[String], y: Int, x: Int) -> Int {
+        var i = 0
+        while x - i >= 0 {
+            if grid[y][x - i].isAlphabet() == false {
+                return i - 1
+            }
+            i += 1
+        }
+        return -1
+    }
+    
+    public static func getVerticalInterlockPos(grid:[String], y: Int, x: Int) -> Int {
+        var i = 0
+        while y - i >= 0 {
+            if grid[y - i][x].isAlphabet() == false {
+                return i - 1
+            }
+            i += 1
+        }
+        return -1
+    }
+    
+    public static func findInterlockPositions(grid: [String]) -> [(Int,Int)] {
+        var result:[(Int,Int)] = []
+        
+        if grid.count == 0 {
+            return []
+        }
+        
+        let width = grid[0].count
+        let height = grid.count
+        
+        for y in 1..<(height - 1) {
+            for x in 1..<(width - 1) {
+                
+                if grid[y][x].isAlphabet() {
+                    let isHorizontal = (grid[y][x-1].isAlphabet() || grid[y][x+1].isAlphabet())
+                    let isVertical = (grid[y-1][x].isAlphabet() || grid[y+1][x].isAlphabet())
+                    
+                    if isHorizontal && isVertical {
+                        result.append((y,x))
+                    }
+                }
+            }
+        }
+        
+        return result
+    }
+    
     public static func FindWordsInGridOne(grid: [String]) -> [String] {
         
         var words: [String] = []

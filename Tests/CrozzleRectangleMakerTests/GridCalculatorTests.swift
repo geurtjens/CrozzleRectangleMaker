@@ -9,6 +9,86 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class GridCalculatorTests: XCTestCase {
 
+    
+    func test_findInterlockPositions() {
+        let grid = [
+        " . . . . .  . .  ",
+        " S F C.NAZARETH. ",
+        " N A A U I  V O  ",
+        " O M K T O.BELLS.",
+        ".WHITE.SING.. L  ",
+        " . L..P. ...JOY. ",
+        ".TOYS.O . A E .S ",
+        " O .A R.HAZELNUT.",
+        " A.TURKEY.U L  A ",
+        " S  C ..MERRY. R ",
+        ".TREE.INN.E .  . ",
+        " .  .   . .      "]
+        
+        let result = GridCalculator.findInterlockPositions(grid: grid)
+        XCTAssertEqual(29,result.count)
+    }
+    
+    func test_findInterlocks() {
+        let grid = [
+        " . . . . .  . .  ",
+        " S F C.NAZARETH. ",
+        " N A A U I  V O  ",
+        " O M K T O.BELLS.",
+        ".WHITE.SING.. L  ",
+        " . L..P. ...JOY. ",
+        ".TOYS.O . A E .S ",
+        " O .A R.HAZELNUT.",
+        " A.TURKEY.U L  A ",
+        " S  C ..MERRY. R ",
+        ".TREE.INN.E .  . ",
+        " .  .   . .      "]
+        
+        let result = GridCalculator.findInterlocks(grid: grid)
+        XCTAssertEqual(29,result.count)
+        print(result)
+    }
+    
+    func test_getVerticalInterlockPos() {
+        
+        let grid = [
+            " . . . . .  . .  ",
+            " S F C.NAZARETH. ",
+            " N A A U I  V O  ",
+            " O M K T O.BELLS.",
+            ".WHITE.SING.. L  ",
+            " . L..P. ...JOY. ",
+            ".TOYS.O . A E .S ",
+            " O .A R.HAZELNUT.",
+            " A.TURKEY.U L  A ",
+            " S  C ..MERRY. R ",
+            ".TREE.INN.E .  . ",
+            " .  .   . .      "]
+        
+        let a = GridCalculator.getVerticalInterlockPos(grid:grid, y: 3, x: 12)
+        XCTAssertEqual(2, a)
+    }
+
+    func test_getInterlock() {
+        let grid = [
+        " . . . . .  . .  ",
+        " S F C.NAZARETH. ",
+        " N A A U I  V O  ",
+        " O M K T O.BELLS.",
+        ".WHITE.SING.. L  ",
+        " . L..P. ...JOY. ",
+        ".TOYS.O . A E .S ",
+        " O .A R.HAZELNUT.",
+        " A.TURKEY.U L  A ",
+        " S  C ..MERRY. R ",
+        ".TREE.INN.E .  . ",
+        " .  .   . .      "]
+        
+        let result = GridCalculator.getInterlock(grid: grid, y:3, x:12)
+        //XCTAssertEqual(29,result.count)
+        print(result)
+    }
+    
     func test_findWords_9205() throws {
         let gameList = GameList()
         if let game = gameList.getGame(gameId: 9205) {
@@ -18,6 +98,9 @@ final class GridCalculatorTests: XCTestCase {
             print("unfound:\(unfound)")
         }
     }
+    
+    
+    
     
     func test_findWords_8812() throws {
         let gameList = GameList()
