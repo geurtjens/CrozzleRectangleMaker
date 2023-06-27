@@ -37,43 +37,44 @@ final class WordSwapMutationCalculatorTests: XCTestCase {
             
             let shape = placements.toShape(score: 0)
             
+            var gameCount = 0
             for game in gameList.games {
                 
                 let result = getMutation(gameId: sourceGame.gameId, words: game.words)
                 
-                if result.count > 1 || sourceGame.gameId == game.gameId {
-                    for wordList in result {
+                
+                for wordList in result {
+                    
+                    let (text, score) = ShapeCalculator.ToText(shape: shape, words: wordList)
+                    
+                    if text != game.winningText() {
                         
-                        let (text, score) = ShapeCalculator.ToText(shape: shape, words: wordList)
-                        
-                        let difference = Int(game.winningScore) - Int(score)
-                        print("sourceGameId: \(sourceGame.gameId), wordsFromGameId:\(game.gameId), score:\(score), humanScore:\(game.winningScore), diff:\(difference)\n\(text)")
-                        
-                        if score > game.winningScore {
-                            print("Winning Game")
+                        if score == game.winningScore {
+                            
+                            gameCount += 1
+                            
+                            if sourceGame.gameId == game.gameId {
+                                print("\(gameCount). gameId:\(game.gameId), score:\(score), humanScore:\(game.winningScore)\n\(text)")
+                                
+                            }
+//                            else {
+//                                print("\(gameCount). gameId:\(game.gameId), shapeGameId:\(sourceGame.gameId), score:\(score), humanScore:\(game.winningScore)\n\(text)")
+//
+//                            }
+                            
+                            if score > game.winningScore {
+                                print("Winning Game")
+                            }
+//                            if sourceGame.gameId != game.gameId {
+//                                print("Different Words for shape")
+//                            }
                         }
                     }
-                    print("")
+                   
+                    
                 }
             }
             
-            
-            for game in gameList.games {
-                
-                let result = getMutation(gameId: sourceGame.gameId, words: game.words)
-                
-                if sourceGame.gameId != game.gameId {
-                    for wordList in result {
-                        print("Different Words for shape")
-                        let (text, score) = ShapeCalculator.ToText(shape: shape, words: wordList)
-                        print("sourceGameId: \(sourceGame.gameId), wordsFromGameId:\(game.gameId), score:\(score), humanScore:\(game.winningScore)\n\(text)")
-                        
-                        if score > game.winningScore {
-                            print("Winning Game")
-                        }
-                    }
-                }
-            }
            
         }
     }
