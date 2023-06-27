@@ -19,8 +19,9 @@ public class ShapeCalculator {
         
 
         // Its not finding two duplicates
-        var (noDuplicates, _) = RemoveDuplicatesCalculator.execute(shapes: result)
+        var (noDuplicates, duplicateCount) = RemoveDuplicatesCalculator.execute(shapes: result)
         
+        print("Adding \(newShapes.count) shapes to \(oldShapes.count) current shapes encountered \(duplicateCount) duplicates, so \(newShapes.count - duplicateCount) where new")
         switch (constraints.priorityFunction) {
         case .score_area:
             ShapeCalculator.SortByScoreThenArea(shapes: &noDuplicates)

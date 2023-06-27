@@ -49,63 +49,7 @@ public struct QueueList {
             let wordCount = item.key
             let shapes = item.value
             
-            
-            //2744 true  4,5,9,0,8,6,3,0,1
-            //*********************
-            //2745 true  4,5,9,0,8,6,3,0,1
-            //*********************
-            //2746 true  4,5,9,0,8,6,3,0,1
-            //*********************
-            //2747 true  4,5,9,0,8,6,3,0,1
-            //*********************
-            //2748 true  4,7,11,0,6,8,5,1,0
-
             self.queues[wordCount].add(newShapes: shapes, constraints: self.constraints, words: game.words)
-
-//            let filteredShapes = shapes.filter { $0.score >= self.queues[wordCount].scoreMin }
-//
-//            self.queues[wordCount].shapes += filteredShapes
-//
-//            ShapeCalculator.SortWithWordSequence(shapes: &self.queues[wordCount].shapes)
-//
-//            // it should find 203 duplicates but found only 142 duplicates
-//            let duplicates = RemoveDuplicatesCalculator.findDuplicates(shapes: &self.queues[wordCount].shapes)
-//
-//            //RemoveDuplicatesCalculator.printDuplicateSpread(shapes: self.queues[wordCount].shapes)
-//            if duplicates > 0 {
-//                //let duplicateList = self.queues[wordCount].shapes.filter { $0.isValid == false}
-//                //for duplicate in duplicateList {
-//                    //print(ShapeCalculator.ToText(shape:duplicate, words: self.game.words).1)
-//                    //print(ShapeCalculator.ToText(shape:duplicate, words: self.game.words).0)
-//                //}
-//                self.queues[wordCount].shapes = self.queues[wordCount].shapes.filter { $0.isValid}
-//            }
-//
-//            switch (self.constraints.priorityFunction) {
-//            case .score_area:
-//                ShapeCalculator.SortByScoreThenArea(shapes: &self.queues[wordCount].shapes)
-//            case .density_score:
-//                ShapeCalculator.SortByDensityThenScore(shapes: &self.queues[wordCount].shapes)
-//            }
-//
-//            if self.queues[wordCount].shapes.count > constraints.queueLengthMax {
-//                self.queues[wordCount].shapes.removeSubrange(constraints.queueLengthMax..<self.queues[wordCount].shapes.count)
-//            }
-//
-//            self.queues[wordCount].gpuShapes = GpuShapeModel(
-//                        shapes:self.queues[wordCount].shapes,
-//                        totalWords: self.queues[wordCount].totalWords,
-//                        stride: self.queues[wordCount].stride)
-//
-//            self.queues[wordCount].wordIndex = WordIndexCalculator.createWordIndex(
-//                totalWords: self.queues[wordCount].totalWords,
-//                stride: self.queues[wordCount].stride,
-//                shapeCount: self.queues[wordCount].gpuShapes.count,
-//                words: self.queues[wordCount].gpuShapes.wordId)
-//
-//            if self.recalculateStatisticsWhenAddingToQueue == true {
-//                self.queues[wordCount].statistics = StatisticsCalculator.Execute(scores: self.queues[wordCount].gpuShapes.scores)
-//            }
         }
     }
     
@@ -178,6 +122,8 @@ public struct QueueList {
                 let startNano = DateTimeCalculator.now()
                 
                 let shapes = await mergeTwoAsync(mergeIndex: i, withIndex: index)
+                
+                let currentCount = shapes.count
                 
                 if shapes.count > 0 {
                     add(shapes: shapes)
