@@ -2047,7 +2047,7 @@ public struct GameList {
             " A.BAY.CICELY.L  ",
             " .   .    . . .  "]))
 
-        games.append(GameModel(gameId:9601, maxWidth:17, maxHeight:15, winningScore:800, tags:[],
+        games.append(GameModel(gameId:9601, maxWidth:17, maxHeight:15, winningScore:830, tags:[],
         winningWords:[
             "MIZZEN","PRIZE","YAWL","DORY","PUNT","TUG","ARGOSY","WHERRY","TUB","SCOW",
             "FERRY","DUGOUT","TOSHER","ROWBOAT","TRAMP","GALLEY","JUNK","SHIP","SLAVER","TRAWLER",

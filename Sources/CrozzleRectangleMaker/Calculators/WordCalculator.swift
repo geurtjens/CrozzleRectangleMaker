@@ -72,4 +72,12 @@ public class WordCalculator {
         }
         return result;
     }
+    
+    public static func lowercase(words: [String]) -> [String] {
+        var result: [String] = []
+        for word in words {
+            result.append(word.lowercased() + "_")
+        }
+        return result
+    }
 }
