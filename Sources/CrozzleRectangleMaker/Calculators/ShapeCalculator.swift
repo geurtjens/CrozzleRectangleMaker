@@ -21,7 +21,10 @@ public class ShapeCalculator {
         // Its not finding two duplicates
         var (noDuplicates, duplicateCount) = RemoveDuplicatesCalculator.execute(shapes: result)
         
-        print("Adding \(newShapes.count) shapes to \(oldShapes.count) current shapes encountered \(duplicateCount) duplicates, so \(newShapes.count - duplicateCount) where new")
+        if newShapes.count > 0 {
+            let wordCount = newShapes[0].placements.count
+            print("Adding \(newShapes.count) shapes to \(oldShapes.count) existing \(wordCount) word shapes, encountered \(duplicateCount) duplicates, so \(newShapes.count - duplicateCount) where new")
+        }
         switch (constraints.priorityFunction) {
         case .score_area:
             ShapeCalculator.SortByScoreThenArea(shapes: &noDuplicates)
