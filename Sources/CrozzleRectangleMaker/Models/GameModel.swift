@@ -19,17 +19,19 @@ public struct GameModel {
     /// when a shape is rendered as text, its height must be less than or equal to `heightMax` for it to comply with the games size.  Shapes can be flipped so its width x height or height x width
     public let maxHeight: Int
     public let winningScore: Int
+    public let isValid: Bool
     public let tags: [String]
     public let winningWords: [String]
     public let nonWinningWords: [String]
     public let winningGame: [String]
     
-    public init(gameId: Int, maxWidth: Int, maxHeight: Int, winningScore: Int, tags: [String], winningWords: [String], nonWinningWords: [String], winningGame: [String]) {
+    public init(gameId: Int, maxWidth: Int, maxHeight: Int, winningScore: Int, isValid: Bool, tags: [String], winningWords: [String], nonWinningWords: [String], winningGame: [String]) {
         self.gameId = gameId
         
         self.maxWidth = maxWidth
         self.maxHeight = maxHeight
         self.winningScore = winningScore
+        self.isValid = isValid
         self.tags = tags
         self.winningWords = winningWords
         self.nonWinningWords = nonWinningWords
