@@ -23,7 +23,7 @@ public class ShapeCalculator {
         
         if newShapes.count > 0 {
             let wordCount = newShapes[0].placements.count
-            print("Adding \(newShapes.count) shapes to \(oldShapes.count) existing \(wordCount) word shapes, encountered \(duplicateCount) duplicates, so \(newShapes.count - duplicateCount) where new")
+            print("\(wordCount) word queue has \(oldShapes.count), adding \(newShapes.count) shapes, encountered \(duplicateCount) duplicates, so \(newShapes.count - duplicateCount) where new")
         }
         switch (constraints.priorityFunction) {
         case .score_area:
