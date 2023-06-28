@@ -189,7 +189,7 @@ public class ShapeCalculator {
         return true
     }
     
-    public static func VerifyText(text: String) -> Bool {
+    public static func VerifyText3(text: String) -> Bool {
 
         if text == "" {
             return false
@@ -241,6 +241,68 @@ public class ShapeCalculator {
                 } else if IsAlphabet(previous) && IsAlphabet(current) && next == " " {
                     return false
                 } else if i == heightMinusOne - 1 && IsAlphabet(current) && IsAlphabet(next) {
+                    return false
+                }
+                previous = current
+            }
+        }
+        
+        return true
+    }
+    
+    // Removed need to reverse grid
+    public static func VerifyText(text: String) -> Bool {
+
+        if text == "" {
+            return false
+        }
+        if text.contains("#") {
+            return false
+        }
+        
+        let grid = text.split(separator: "\n")
+        
+        let heightMinusOne = grid.count - 1
+        let widthMinusOne = grid[0].count - 1
+        
+        // Horizontal verification
+        var previous: Character = " "
+        var current: Character = " "
+        var next: Character = " "
+        for y in 1..<heightMinusOne {
+            previous = grid[y][0]
+            for x in 1..<widthMinusOne {
+                current = grid[y][x]
+                next = grid[y][x+1]
+                
+                if previous == " " && IsAlphabet(current) && IsAlphabet(next) {
+                    return false
+                } else if x == 1 && IsAlphabet(previous) && IsAlphabet(current) {
+                    return false
+                } else if IsAlphabet(previous) && IsAlphabet(current) && next == " " {
+                    return false
+                } else if x == widthMinusOne - 1 && IsAlphabet(current) && IsAlphabet(next) {
+                    return false
+                }
+                previous = current
+            }
+        }
+        
+        //let reversed = rotateGrid(grid: grid)
+        
+        for y in 0..<widthMinusOne {
+            previous = grid[0][y]
+            for x in 1..<heightMinusOne {
+                current = grid[x][y]
+                next = grid[x+1][y]
+                
+                if previous == " " && IsAlphabet(current) && IsAlphabet(next) {
+                    return false
+                } else if x == 1 && IsAlphabet(previous) && IsAlphabet(current) {
+                    return false
+                } else if IsAlphabet(previous) && IsAlphabet(current) && next == " " {
+                    return false
+                } else if x == heightMinusOne - 1 && IsAlphabet(current) && IsAlphabet(next) {
                     return false
                 }
                 previous = current

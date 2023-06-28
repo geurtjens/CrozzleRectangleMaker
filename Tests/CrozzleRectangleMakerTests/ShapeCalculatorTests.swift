@@ -134,7 +134,30 @@ final class ShapeCalculatorTests: XCTestCase {
         }
     }
     
-    
+    func test_VerifyTextSpeed3() {
+        measure {
+            
+             
+            let text =   "    . .   . \n" +
+                         ".SNOW.TOAST.\n" +
+                         "    H O . R \n" +
+                         ".FAMILY.T E \n" +
+                         "    T.SAUCE.\n" +
+                         "    E . R . \n" +
+                         " .  .PORK.I \n" +
+                         ".NUTS. .E.N \n" +
+                         " A  I .HYMN.\n" +
+                         ".ZION. A.E. \n" +
+                         " A .G.AZURE.\n" +
+                         " R B.. E R  \n" +
+                         ".EVE.JELLY. \n" +
+                         " T L O N .  \n" +
+                         ".HOLLY.U    \n" +
+                         " . S .STAR. \n" +
+                         "   .   .    "
+            XCTAssertTrue(ShapeCalculator.VerifyText3(text: text))
+        }
+    }
     
     func test_VerifyText() {
         let gameList = GameList()
