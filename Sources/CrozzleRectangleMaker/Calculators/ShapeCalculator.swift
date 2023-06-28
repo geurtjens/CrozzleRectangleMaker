@@ -130,7 +130,7 @@ public class ShapeCalculator {
     }
     
     /// Verify that the shapes text is valid, that is there are no overlaps and no errors like #
-    public static func VerifyText(text: String) -> Bool {
+    public static func VerifyText2(text: String) -> Bool {
 
         if text == "" {
             return false
@@ -180,6 +180,67 @@ public class ShapeCalculator {
                 } else if IsAlphabet(previous) && IsAlphabet(current) && next == " " {
                     return false
                 } else if i == line.count - 2 && IsAlphabet(current) && IsAlphabet(next) {
+                    return false
+                }
+                previous = current
+            }
+        }
+        
+        return true
+    }
+    
+    public static func VerifyText(text: String) -> Bool {
+
+        if text == "" {
+            return false
+        }
+        if text.contains("#") {
+            return false
+        }
+        
+        let grid = text.split(separator: "\n")
+        
+        let heightMinusOne = grid.count - 1
+        let widthMinusOne = grid[0].count - 1
+        
+        // Horizontal verification
+        var previous: Character = " "
+        var current: Character = " "
+        var next: Character = " "
+        for y in 1..<heightMinusOne {
+            previous = grid[y][0]
+            for i in 1..<widthMinusOne {
+                current = grid[y][i]
+                next = grid[y][i+1]
+                
+                if previous == " " && IsAlphabet(current) && IsAlphabet(next) {
+                    return false
+                } else if i == 1 && IsAlphabet(previous) && IsAlphabet(current) {
+                    return false
+                } else if IsAlphabet(previous) && IsAlphabet(current) && next == " " {
+                    return false
+                } else if i == widthMinusOne - 1 && IsAlphabet(current) && IsAlphabet(next) {
+                    return false
+                }
+                previous = current
+            }
+        }
+        
+        let reversed = rotateGrid(grid: grid)
+        
+        for y in 0..<widthMinusOne {
+            previous = reversed[y][0]
+            for i in 1..<heightMinusOne {
+                current = reversed[y][i]
+                next = reversed[y][i+1]
+                
+                if previous == " " && IsAlphabet(current) && IsAlphabet(next) {
+                    return false
+                } else if i == 1 && IsAlphabet(previous) && IsAlphabet(current) {
+                    return false
+                } else if IsAlphabet(previous) && IsAlphabet(current) && next == " " {
+                    return false
+                } else if i == heightMinusOne - 1 && IsAlphabet(current) && IsAlphabet(next) {
                     return false
                 }
                 previous = current
