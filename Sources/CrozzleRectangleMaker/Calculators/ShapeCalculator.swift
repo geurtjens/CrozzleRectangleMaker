@@ -251,7 +251,7 @@ public class ShapeCalculator {
     }
     
     // Removed need to reverse grid
-    public static func VerifyText(text: String) -> Bool {
+    public static func VerifyText4(text: String) -> Bool {
 
         if text == "" {
             return false
@@ -311,6 +311,135 @@ public class ShapeCalculator {
         
         return true
     }
+    
+    public static func VerifyText(text: String) -> Bool {
+
+        if text == "" {
+            return false
+        }
+        if text.contains("#") {
+            return false
+        }
+        
+        let grid = text.split(separator: "\n")
+        
+        let heightMinusOne = grid.count - 1
+        let widthMinusOne = grid[0].count - 1
+        
+        // Horizontal verification
+        var previous: Character = " "
+        var current: Character = " "
+        var next: Character = " "
+        for y in 1..<heightMinusOne {
+            previous = grid[y][0]
+            for x in 1..<widthMinusOne {
+                current = grid[y][x]
+                next = grid[y][x+1]
+                if IsAlphabet(current) {
+                    if previous == " " && IsAlphabet(next) {
+                        return false
+                    } else if x == 1 && IsAlphabet(previous) {
+                        return false
+                    } else if IsAlphabet(previous) && next == " " {
+                        return false
+                    } else if x == widthMinusOne - 1 && IsAlphabet(next) {
+                        return false
+                    }
+                }
+                previous = current
+            }
+        }
+        
+        //let reversed = rotateGrid(grid: grid)
+        
+        for y in 1..<widthMinusOne {
+            previous = grid[0][y]
+            for x in 1..<heightMinusOne {
+                current = grid[x][y]
+                next = grid[x+1][y]
+                if IsAlphabet(current) {
+                    if previous == " " && IsAlphabet(next) {
+                        return false
+                    } else if x == 1 && IsAlphabet(previous) {
+                        return false
+                    } else if IsAlphabet(previous) && next == " " {
+                        return false
+                    } else if x == heightMinusOne - 1 && IsAlphabet(next) {
+                        return false
+                    }
+                }
+                previous = current
+            }
+        }
+        
+        return true
+    }
+    
+    
+    public static func VerifyText5(text: String) -> Bool {
+
+        if text == "" {
+            return false
+        }
+        if text.contains("#") {
+            return false
+        }
+        
+        let grid = text.split(separator: "\n")
+        
+        let heightMinusOne = grid.count - 1
+        let widthMinusOne = grid[0].count - 1
+        
+        // Horizontal verification
+        //var previous: Character = " "
+        //var current: Character = " "
+        //var next: Character = " "
+        for y in 1..<heightMinusOne {
+            //previous = grid[y][0]
+            for x in 1..<widthMinusOne {
+                //current = grid[y][x]
+                //next = grid[y][x+1]
+                if IsAlphabet(grid[y][x]) {
+                    if grid[y][x-1] == " " && IsAlphabet(grid[y][x+1]) {
+                        return false
+                    } else if x == 1 && IsAlphabet(grid[y][x-1]) {
+                        return false
+                    } else if IsAlphabet(grid[y][x-1]) && grid[y][x+1] == " " {
+                        return false
+                    } else if x == widthMinusOne - 1 && IsAlphabet(grid[y][x+1]) {
+                        return false
+                    }
+                }
+                //previous = current
+            }
+        }
+        
+        //let reversed = rotateGrid(grid: grid)
+        
+        for y in 1..<widthMinusOne {
+            //previous = grid[0][y]
+            for x in 1..<heightMinusOne {
+                //current = grid[x][y]
+                //next = grid[x+1][y]
+                if IsAlphabet(grid[x][y]) {
+                    if grid[x-1][y] == " " && IsAlphabet(grid[x+1][y]) {
+                        return false
+                    } else if x == 1 && IsAlphabet(grid[x-1][y]) {
+                        return false
+                    } else if IsAlphabet(grid[x-1][y]) && grid[x+1][y] == " " {
+                        return false
+                    } else if x == heightMinusOne - 1 && IsAlphabet(grid[x+1][y]) {
+                        return false
+                    }
+                }
+                //previous = current
+            }
+        }
+        
+        return true
+    }
+    
+    
     
     /// convert `clusters` to `shapes` and then we sort them
     public static func toShapes(clusters: [ClusterModel]) -> [ShapeModel] {
