@@ -36,7 +36,7 @@ public class QueueListCalculator {
         
         result.add(shapes: words2)
         
-        result.add(shapes: await result.mergeWithItselfAsync(index:2, searchMax: result.queues[2].shapes.count - 1))
+        result.add(shapes: await result.mergeWithItselfAsync(index:2))
         
         //print(scoresMin[4])
         let words4 = await QueueListCalculator.get_4_word_shapes(

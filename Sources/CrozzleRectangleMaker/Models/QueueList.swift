@@ -76,12 +76,13 @@ public struct QueueList {
 //        }
 //    }
     
-    public func mergeWithItselfAsync(index wordCount: Int, searchMax: Int) async -> [ShapeModel] {
+    public func mergeWithItselfAsync(index wordCount: Int) async -> [ShapeModel] {
             
         let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(
                 shapes: self.queues[wordCount].gpuShapes,
                 wordIndex: self.queues[wordCount].wordIndex,
-                searchMax: searchMax,
+                sourceMax: self.queues[wordCount].sourceMax,
+                searchMax: self.queues[wordCount].searchMax,
                 words: self.game.words,
                 scoresMin: self.constraints.scoresMin,
                 widthMax: self.game.maxWidth,
@@ -100,8 +101,7 @@ public struct QueueList {
                 //print(self.queues[i].shapes[0].ToString(words:self.game.words))
                 DateTimeCalculator.printDate("mergeWithItselfAsync(index: \(i)) started at")
                 
-                let searchMax = self.queues[i].mergeFrom_LastPosition
-                let shapes = await mergeWithItselfAsync(index:i, searchMax: searchMax)
+                let shapes = await mergeWithItselfAsync(index:i)
                 if shapes.count > 0 {
                     add(shapes: shapes)
                 }
@@ -124,8 +124,6 @@ public struct QueueList {
                 let startNano = DateTimeCalculator.now()
                 
                 let shapes = await mergeTwoAsync(mergeIndex: i, withIndex: index)
-                
-                let currentCount = shapes.count
                 
                 if shapes.count > 0 {
                     add(shapes: shapes)
@@ -235,12 +233,13 @@ public struct QueueList {
         }
     }
     
-    public func mergeWithItselfAsync(index wordCount: Int, searchMax: Int, notTheseWordCounts:[Int]) async -> [ShapeModel] {
+    public func mergeWithItselfAsync(index wordCount: Int, notTheseWordCounts:[Int]) async -> [ShapeModel] {
             
         let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(
                 shapes: self.queues[wordCount].gpuShapes,
                 wordIndex: self.queues[wordCount].wordIndex,
-                searchMax: searchMax,
+                sourceMax: self.queues[wordCount].sourceMax,
+                searchMax: self.queues[wordCount].searchMax,
                 words: self.game.words,
                 scoresMin: self.constraints.scoresMin,
                 widthMax: self.game.maxWidth,
@@ -264,7 +263,6 @@ public struct QueueList {
     /// Perform the merge on yourself but do not let the `notTheseWordCounts` count of words to be included.  So merge 3 words with 3 words and ignore the 4 word, only include the 5 word shapes
     public mutating func mergeWithItselfAsync(
         wordCount: Int,
-        searchMax: Int,
         words: [String],
         scoresMin:[Int],
         widthMax: Int,
@@ -274,7 +272,8 @@ public struct QueueList {
         let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(
             shapes: self.queues[wordCount].gpuShapes,
             wordIndex: self.queues[wordCount].wordIndex,
-            searchMax: self.queues[wordCount].mergeFrom_LastPosition,
+            sourceMax: self.queues[wordCount].sourceMax,
+            searchMax: self.queues[wordCount].searchMax,
             words: words,
             scoresMin: scoresMin,
             widthMax: widthMax,
@@ -301,6 +300,8 @@ public struct QueueList {
             source: self.queues[mergeIndex].gpuShapes,
             search: self.queues[mergeIndex2].gpuShapes,
             searchWordIndex: self.queues[mergeIndex2].wordIndex,
+            sourceMax: self.queues[mergeIndex].sourceMax,
+            searchMax: self.queues[mergeIndex2].searchMax,
             words: self.game.words,
             scoresMin: self.constraints.scoresMin,
             widthMax: self.game.maxWidth,
@@ -324,6 +325,8 @@ public struct QueueList {
             source: self.queues[mergeIndex].gpuShapes,
             search:self.queues[mergeIndex2].gpuShapes,
             searchWordIndex: self.queues[mergeIndex2].wordIndex,
+            sourceMax: self.queues[mergeIndex].sourceMax,
+            searchMax: self.queues[mergeIndex2].searchMax,
             words: words,
             scoresMin: scoresMin,
             widthMax: widthMax,

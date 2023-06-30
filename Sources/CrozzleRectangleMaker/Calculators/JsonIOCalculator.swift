@@ -58,8 +58,8 @@ public class JsonIOCalculator {
     
     
     public static func createShapeMakingGuide(gameId: Int) {
-        let possibleShapes = load(gameId: gameId)
-        let jsonShapes = removeShapesThatAreNotAddingWords(jsonShapes: possibleShapes)
+        //let possibleShapes = load(gameId: gameId)
+        //let jsonShapes = removeShapesThatAreNotAddingWords(jsonShapes: possibleShapes)
         
         
     }
