@@ -114,7 +114,7 @@ public class StatisticsCalculator {
         for i in 0..<statistics.count {
             let statistic = statistics[i]
             if statistic.topPercentage > searchPercentage {
-                return statistics[i].startPosition - 1
+                return statistics[i].startPosition + 1 // This is really the total rather than the absolute so we need to add 1
             }
         }
         return statistics.count

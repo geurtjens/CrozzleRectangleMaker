@@ -94,6 +94,8 @@ public class MergeShapesCalculator {
             sourceShapes: smaller_gpu,
             searchShapes: larger_gpu,
             searchWordIndex: larger_word_index,
+            sourceMax: smaller_gpu.count,
+            searchMax: larger_gpu.count,
             words: words,
             scoresMin: scoresMin,
             widthMax: widthMax,
