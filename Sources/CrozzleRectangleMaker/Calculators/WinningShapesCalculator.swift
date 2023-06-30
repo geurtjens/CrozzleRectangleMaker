@@ -5469,72 +5469,7 @@ public class WinningShapesCalculator {
     }
     
     
-    public static func Shapes_9205() -> ([ShapeModel], [String], Int, Int) {
 
-        let game = GameList().getGame(gameId: 9205)!
-
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
-        let words = game.winningWords
-        let end = WordCalculator.reverse(words: words)
-        let len = WordCalculator.lengths(words: words)
-
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
-           start: words,
-           end: end,
-           len: len,
-           scoreMin: 116,
-           widthMax: widthMax,
-           heightMax: heightMax))
-
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
-            words: words,
-            scoreMin: 22,
-            widthMax: widthMax,
-            heightMax: heightMax))
-
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
-            interlockWidth: 2,
-            interlockHeight: 3,
-            words: words,
-            lengths: len,
-            scoreMin: 98,
-            widthMax: widthMax,
-            heightMax: heightMax))
-
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
-            interlockWidth: 2,
-            words: words,
-            lengths: len,
-            scoreMin: 74,
-            widthMax: widthMax,
-            heightMax: heightMax))
-
-        let cabinet_royalty_henry_attila = square3x3.containing(["CABINET", "ROYALTY", "HENRY", "ATTILA"], from: words)[0]
-        let royalty_dynasty = edges.containing(["ROYALTY", "DYNASTY"], from: words)[4]
-        let louis_majesty_cole_dynasty = rectangle3x4.containing(["LOUIS", "MAJESTY", "COLE", "DYNASTY"], from: words)[0]
-        let cabinet_royalty_oberon_henry = square3x3.containing(["CABINET", "ROYALTY", "OBERON", "HENRY"], from: words)[0]
-        let regent_oberon = edges.containing(["REGENT", "OBERON"], from: words)[3]
-        let regent_arthur_lord_banner_rule_emperor = c2x4.containing(["REGENT", "ARTHUR", "LORD", "BANNER", "RULE", "EMPEROR"], from: words)[0]
-        let rani_arthur_victoria_coronet = square3x3.containing(["RANI", "ARTHUR", "VICTORIA", "CORONET"], from: words)[0]
-        let throne_rani_victoria_coronet = square3x3.containing(["THRONE", "RANI", "VICTORIA", "CORONET"], from: words)[0]
-        let throne_ivan = edges.containing(["THRONE", "IVAN"], from: words)[0]
-        let midas_ivan = edges.containing(["MIDAS", "IVAN"], from: words)[0]
-
-        let winningShapes = [
-            cabinet_royalty_henry_attila,
-            royalty_dynasty,
-            louis_majesty_cole_dynasty,
-            cabinet_royalty_oberon_henry,
-            regent_oberon,
-            regent_arthur_lord_banner_rule_emperor,
-            rani_arthur_victoria_coronet,
-            throne_rani_victoria_coronet,
-            throne_ivan,
-            midas_ivan
-        ]
-        return (winningShapes, words, widthMax, heightMax)
-    }
     
     
     public static func Shapes_9206() -> ([ShapeModel], [String], Int, Int) {

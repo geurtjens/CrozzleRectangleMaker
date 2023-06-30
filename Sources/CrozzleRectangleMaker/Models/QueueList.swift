@@ -76,11 +76,12 @@ public struct QueueList {
 //        }
 //    }
     
-    public func mergeWithItselfAsync(index wordCount: Int) async -> [ShapeModel] {
+    public func mergeWithItselfAsync(index wordCount: Int, searchMax: Int) async -> [ShapeModel] {
             
         let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(
                 shapes: self.queues[wordCount].gpuShapes,
                 wordIndex: self.queues[wordCount].wordIndex,
+                searchMax: searchMax,
                 words: self.game.words,
                 scoresMin: self.constraints.scoresMin,
                 widthMax: self.game.maxWidth,
@@ -99,7 +100,8 @@ public struct QueueList {
                 //print(self.queues[i].shapes[0].ToString(words:self.game.words))
                 DateTimeCalculator.printDate("mergeWithItselfAsync(index: \(i)) started at")
                 
-                let shapes = await mergeWithItselfAsync(index:i)
+                let searchMax = self.queues[i].mergeFrom_LastPosition
+                let shapes = await mergeWithItselfAsync(index:i, searchMax: searchMax)
                 if shapes.count > 0 {
                     add(shapes: shapes)
                 }
@@ -233,11 +235,12 @@ public struct QueueList {
         }
     }
     
-    public func mergeWithItselfAsync(index wordCount: Int, notTheseWordCounts:[Int]) async -> [ShapeModel] {
+    public func mergeWithItselfAsync(index wordCount: Int, searchMax: Int, notTheseWordCounts:[Int]) async -> [ShapeModel] {
             
         let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(
                 shapes: self.queues[wordCount].gpuShapes,
                 wordIndex: self.queues[wordCount].wordIndex,
+                searchMax: searchMax,
                 words: self.game.words,
                 scoresMin: self.constraints.scoresMin,
                 widthMax: self.game.maxWidth,
@@ -261,6 +264,7 @@ public struct QueueList {
     /// Perform the merge on yourself but do not let the `notTheseWordCounts` count of words to be included.  So merge 3 words with 3 words and ignore the 4 word, only include the 5 word shapes
     public mutating func mergeWithItselfAsync(
         wordCount: Int,
+        searchMax: Int,
         words: [String],
         scoresMin:[Int],
         widthMax: Int,
@@ -270,6 +274,7 @@ public struct QueueList {
         let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(
             shapes: self.queues[wordCount].gpuShapes,
             wordIndex: self.queues[wordCount].wordIndex,
+            searchMax: self.queues[wordCount].mergeFrom_LastPosition,
             words: words,
             scoresMin: scoresMin,
             widthMax: widthMax,

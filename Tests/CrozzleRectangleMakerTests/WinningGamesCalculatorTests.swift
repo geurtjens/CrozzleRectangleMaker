@@ -341,11 +341,6 @@ final class WinningGamesCalculatorTests: XCTestCase {
         XCTAssertEqual(674, winningGame.score)
     }
 
-    func test_WinningShape_9205() {
-        let winningGame = WinningGamesCalculator.WinningShape_9205()
-        XCTAssertEqual(506, winningGame.score)
-    }
-
     func test_WinningShape_9206() {
         let winningGame = WinningGamesCalculator.WinningShape_9206()
         XCTAssertEqual(590, winningGame.score)

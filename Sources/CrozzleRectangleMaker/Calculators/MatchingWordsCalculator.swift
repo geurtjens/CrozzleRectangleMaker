@@ -40,14 +40,14 @@ public class MatchingWordsCalculator {
     ///   - sourceShapeId: The location within the source array that we are searching
     ///   - sourceWordIndex: An index containing the location of what shapes contain what word.
     /// - Returns: Details about two shapes in the same set of shapes that we probably merge together
-    public static func GetMergeInstructions(sourceShapes: GpuShapeModel, sourceShapeId: Int, sourceWordIndex:[[Int]]) -> [MergeInstructionModel]{
+    public static func GetMergeInstructions(sourceShapes: GpuShapeModel, sourceShapeId: Int, sourceWordIndex:[[Int]], searchMax: Int) -> [MergeInstructionModel]{
         let matches: [MatchingShapesModel] = ExecuteOne(
             sourceShapes: sourceShapes,
             sourceShapeId: sourceShapeId,
             searchShapes: sourceShapes,
             searchWordIndex: sourceWordIndex,
             searchMin: sourceShapeId+1, // We are searching for everything after the one we are starting with
-            searchMax: sourceShapes.count)
+            searchMax: searchMax)
         
         let instructions = getMergeInstructions(
             sourceShapes: sourceShapes,

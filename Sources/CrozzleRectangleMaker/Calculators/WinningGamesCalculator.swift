@@ -298,11 +298,6 @@ public class WinningGamesCalculator {
         return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
     }
 
-    public static func WinningShape_9205() -> ShapeModel {
-        let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_9205()
-        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
-    }
-
     public static func WinningShape_9206() -> ShapeModel {
         let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_9206()
         return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
