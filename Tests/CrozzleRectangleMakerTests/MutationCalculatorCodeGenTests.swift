@@ -11,7 +11,7 @@ final class MutationCalculatorCodeGenTests: XCTestCase {
 
     func test_execute() {
         let code = MutationCalculatorCodeGen.execute()
-        XCTAssertEqual(2087774,code.count)
+        XCTAssertEqual(2075145,code.count)
         //print(code)
     }
 

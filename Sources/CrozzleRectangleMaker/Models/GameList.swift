@@ -143,8 +143,6 @@ public struct GameList {
             return WinningShapesCalculator.Shapes_9203()
         case 9204:
             return WinningShapesCalculator.Shapes_9204()
-        case 9205:
-            return WinningShapesCalculator.Shapes_9205()
         case 9206:
             return WinningShapesCalculator.Shapes_9206()
         case 9207:

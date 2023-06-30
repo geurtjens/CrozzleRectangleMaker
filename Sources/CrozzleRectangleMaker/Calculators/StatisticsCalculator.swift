@@ -74,7 +74,7 @@ public class StatisticsCalculator {
         if statistics.count == 0 {
             return 0
         }
-        let maxPercentage = topPercentage * 10000
+        let maxPercentage = topPercentage * 10_000
         
         for i in 0..<statistics.count {
             let statistic = statistics[i]
@@ -91,7 +91,7 @@ public class StatisticsCalculator {
         if statistics.count == 0 {
             return 0
         }
-        let maxPercentage = topPercentage * 10000
+        let maxPercentage = topPercentage * 10_000
         
         for i in 0..<statistics.count {
             let statistic = statistics[i]
@@ -101,6 +101,26 @@ public class StatisticsCalculator {
         }
         return statistics.count
     }
+    
+    /// How many shapes are there in the top x% of shapes
+    public static func findLastSearchPosition(percentage: Float, statistics: [StatisticsModel]) -> Int {
+        
+        if statistics.count == 0 {
+            return 0
+        }
+        
+        let searchPercentage = Int(percentage * 10_000)
+        
+        for i in 0..<statistics.count {
+            let statistic = statistics[i]
+            if statistic.topPercentage > searchPercentage {
+                return statistics[i].startPosition - 1
+            }
+        }
+        return statistics.count
+    }
+    
+    
     
     /// When given a list of shapes give the scores for each shape
     public static func getScores(shapes: [ShapeModel]) -> [UInt16] {

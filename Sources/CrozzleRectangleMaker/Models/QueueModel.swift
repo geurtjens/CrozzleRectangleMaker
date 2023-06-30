@@ -38,7 +38,18 @@ public struct QueueModel {
     /// Which words are in which shapes, so if there are 91 words then there will be an index for each so we can quickly find matching shapes.
     public var wordIndex: [[Int]]
     
-    
+    /// Top percent of scores will merge from
+    public var mergeFrom_TopScorePercent: Float = 50.0
+
+    /// Top percent of scores will merge to
+    public var mergeTo_TopScorePercent: Float = 100.0
+
+
+    /// Last position that will be merged from within the total list of shapes
+    public var mergeFrom_LastPosition: Int = 0
+
+    /// Last position that will be merged to within the total list of shapes
+    public var mergeTo_LastPosition: Int = 0
     
     
     /// adding a newly formed list of shapes into our collection adding their results to shapes, gpuShapes and updating the statistics
@@ -55,8 +66,24 @@ public struct QueueModel {
             shapeCount: self.gpuShapes.count,
             words: self.gpuShapes.wordId)
         let wordIndexDone = DateTimeCalculator.now()
-        if constraints.recalculateStatisticsWhenAddingToQueue {
+        
+        /// Calculating where the last position to merge should be for this queue
+        if self.mergeFrom_TopScorePercent < 100.0 || self.mergeTo_TopScorePercent < 100.0 {
             self.statistics = StatisticsCalculator.Execute(scores: self.gpuShapes.scores)
+            if self.mergeFrom_TopScorePercent < 100 {
+                self.mergeFrom_LastPosition = StatisticsCalculator.findLastSearchPosition(percentage: self.mergeFrom_TopScorePercent, statistics: self.statistics)
+            } else {
+                self.mergeFrom_LastPosition = self.gpuShapes.count - 1
+            }
+            if self.mergeTo_TopScorePercent < 100 {
+                self.mergeTo_LastPosition = StatisticsCalculator.findLastSearchPosition(percentage: self.mergeFrom_TopScorePercent, statistics: self.statistics)
+            } else {
+                self.mergeTo_LastPosition = self.gpuShapes.count - 1
+            }
+            
+        } else {
+            self.mergeFrom_LastPosition = self.gpuShapes.count - 1
+            self.mergeTo_LastPosition = self.gpuShapes.count - 1
         }
         
         let totalSeconds = DateTimeCalculator.seconds(start: startTime, finish: wordIndexDone)
