@@ -9,24 +9,33 @@ import Foundation
 /// ability to remove duplicates
 public class RemoveDuplicatesCalculator {
     
-    /// This provides a new list of shapes that have no duplicates
-    public static func execute(shapes: [ShapeModel]) -> ([ShapeModel], Int) {
+    
+    public static func flipIfRequired(shapes: [ShapeModel]) -> ([ShapeModel],Int) {
         var shapes = shapes
         
         // We want to rotate any shapes that are not starting with horizontal
-        
+        var flipCount = 0
         for i in 0..<shapes.count {
             if shapes[i].placements[0].h == false {
                 shapes[i] = shapes[i].Flip()
+                flipCount += 1
             }
         }
+        return (shapes,flipCount)
+    }
+    
+    
+    /// This provides a new list of shapes that have no duplicates
+    public static func execute(shapes: [ShapeModel]) -> ([ShapeModel], Int) {
+        let (flippedShapes, flippedCount) = flipIfRequired(shapes: shapes)
         
-        let duplicateCount = findDuplicates(shapes: &shapes)
-        if duplicateCount == 0 {
-            return (shapes,0)
-        } else {
-            return (removeDuplicates(shapes: shapes), duplicateCount)
+        
+        if flippedCount > 0 {
+            print("RemoveDuplicatesCalculator flipped \(flippedCount) shapes")
         }
+        
+        let (nonDuplicatedShapes, previousDuplicateCount) = findDuplicates(shapes: flippedShapes)
+        return (nonDuplicatedShapes, previousDuplicateCount)
     }
     
     private static func printDuplicateSpread(shapes: [ShapeModel]) {
@@ -58,12 +67,14 @@ public class RemoveDuplicatesCalculator {
     }
     
     /// Marks duplicates as shapeModel.isValid = false so we can remove them later.  Also returns how many duplicates there are so we dont have to worry about removing what is not there
-    private static func findDuplicates(shapes: inout [ShapeModel]) -> Int {
-        
+    private static func findDuplicates(shapes: [ShapeModel]) -> ([ShapeModel],Int) {
+                
         if shapes.count == 0 {
-            return 0
+            return ([],0)
         }
 
+        var shapes = shapes
+        
         var duplicateCount = 0
         
         // first we need to sort to find the duplicates
@@ -84,11 +95,13 @@ public class RemoveDuplicatesCalculator {
                 duplicateCount += 1
             }
         }
-        return duplicateCount
-    }
-    
-    /// removes the duplicates once find duplicates has happened but not before
-    private static func removeDuplicates(shapes: [ShapeModel]) -> [ShapeModel] {
-        return shapes.filter { $0.isValid }
+        
+        if duplicateCount > 0 {
+            shapes = shapes.filter { $0.isValid }
+            return (shapes,duplicateCount)
+        } else {
+            return (shapes, 0)
+        }
+        
     }
 }
