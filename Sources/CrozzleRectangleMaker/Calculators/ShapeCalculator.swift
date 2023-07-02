@@ -14,7 +14,10 @@ public class ShapeCalculator {
         
         let shapesWithCorrectScores = newShapes.filter { $0.score >= scoreMin }
         
-        let result = oldShapes + shapesWithCorrectScores
+        let (noDuplicatesOfShapesWithCorrectScores, duplicatesOfShapesWithCorrectScores) = RemoveDuplicatesCalculator.execute(shapes: shapesWithCorrectScores)
+        
+        
+        let result = oldShapes + noDuplicatesOfShapesWithCorrectScores
         //self.shapes += shapesWithCorrectScores
         
 
@@ -23,7 +26,7 @@ public class ShapeCalculator {
         
         if newShapes.count > 0 {
             let wordCount = newShapes[0].placements.count
-            print("\(wordCount) word queue has \(oldShapes.count), adding \(newShapes.count) shapes, encountered \(duplicateCount) duplicates, so \(newShapes.count - duplicateCount) where new")
+            print("\(wordCount) word queue has \(oldShapes.count), adding \(noDuplicatesOfShapesWithCorrectScores.count) which had \(duplicatesOfShapesWithCorrectScores) duplicates, once merged encountered \(duplicateCount) duplicates, so \(noDuplicatesOfShapesWithCorrectScores.count - duplicateCount) where new")
         }
         switch (constraints.priorityFunction) {
         case .score_area:
