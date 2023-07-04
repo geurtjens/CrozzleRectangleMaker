@@ -21,19 +21,24 @@ public struct QueueList {
     public func status() -> (ShapeModel?, Int) {
         var maxShape: ShapeModel? = nil
         var maxScore: UInt16 = 0
+        var minScore: UInt16 = 999
         var count = 0
         for i in 0..<self.constraints.maxQueues {
             if queues[i].shapes.count > 0 {
                 
-                print("\(queues[i].shapes.count) shapes with \(i) words and max score of \(queues[i].shapes[0].score)")
-                count += queues[i].shapes.count
                 
                 for item in queues[i].shapes {
                     if item.score > maxScore {
                         maxScore = item.score
                         maxShape = item
                     }
+                    if item.score < minScore {
+                        minScore = item.score
+                    }
                 }
+                print("\(queues[i].shapes.count) shapes with \(i) words and scores from \(minScore) to \(maxScore)")
+                count += queues[i].shapes.count
+                
             }
         }
         print("\(count) total")
