@@ -20,19 +20,14 @@ public class QueueListCalculator {
         let words = game.words
         let widthMax = game.maxWidth
         let heightMax = game.maxHeight
-        var wordsMax = constraints.wordsMax
-            
-        if constraints.wordsToUse == .winningWordsOnly {
-            wordsMax = game.winningWords.count
-        }
+        
         
         //print(scoresMin[2])
         let words2 = QueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: constraints.scoresMin[2],
             widthMax: widthMax,
-            heightMax: heightMax,
-            wordsMax: wordsMax)
+            heightMax: heightMax)
         
         result.add(shapes: words2)
         
@@ -43,8 +38,7 @@ public class QueueListCalculator {
             words: words,
             scoreMin: constraints.scoresMin[4],
             widthMax: widthMax,
-            heightMax: heightMax,
-            wordsMax: wordsMax)
+            heightMax: heightMax)
         
         result.add(shapes: words4)
         
@@ -52,8 +46,7 @@ public class QueueListCalculator {
             words: words,
             scoreMin: constraints.scoresMin[5],
             widthMax: widthMax,
-            heightMax: heightMax,
-            wordsMax: wordsMax)
+            heightMax: heightMax)
         
         result.add(shapes: words5)
         
@@ -61,8 +54,7 @@ public class QueueListCalculator {
             words: words,
             scoreMin: constraints.scoresMin[6],
             widthMax: widthMax,
-            heightMax: heightMax,
-            wordsMax: wordsMax)
+            heightMax: heightMax)
         
         result.add(shapes: words6)
         
@@ -70,8 +62,7 @@ public class QueueListCalculator {
             words: words,
             scoreMin: constraints.scoresMin[7],
             widthMax: widthMax,
-            heightMax: heightMax,
-            wordsMax: wordsMax)
+            heightMax: heightMax)
         
         result.add(shapes: words7)
         
@@ -79,8 +70,7 @@ public class QueueListCalculator {
             words: words,
             scoreMin: constraints.scoresMin[8],
             widthMax: widthMax,
-            heightMax: heightMax,
-            wordsMax: wordsMax)
+            heightMax: heightMax)
         
         result.add(shapes: words8)
         

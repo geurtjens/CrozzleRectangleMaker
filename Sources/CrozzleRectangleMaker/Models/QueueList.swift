@@ -9,8 +9,10 @@ import Foundation
 /// contains all shape queues and so is a central repository of all known shapes
 public struct QueueList {
     
-    public let game: GameModel
+    //public let game: GameModel
     public let constraints: ConstraintsModel
+    
+    public let game: GameModel
     
     /// all possible queue sizes that a game can handle, max of `maxQueues`
     public var queues: [QueueModel] = []
@@ -37,7 +39,7 @@ public struct QueueList {
         print("\(count) total")
         if let maxShape = maxShape {
             print("Max Score = \(maxShape.score)")
-            print(maxShape.ToStringExtended(words: game.winningWords, gameId: game.gameId, winningScore: game.winningScore))
+            print(maxShape.ToStringExtended(words: self.constraints.words, gameId: game.gameId, winningScore: game.winningScore))
         }
         return (maxShape, count)
     }
@@ -49,7 +51,7 @@ public struct QueueList {
             let wordCount = item.key
             let shapes = item.value
             
-            self.queues[wordCount].add(newShapes: shapes, constraints: self.constraints, words: game.words)
+            self.queues[wordCount].add(newShapes: shapes, constraints: self.constraints, words: self.constraints.words)
         }
     }
     
@@ -83,7 +85,7 @@ public struct QueueList {
                 wordIndex: self.queues[wordCount].wordIndex,
                 sourceMax: self.queues[wordCount].sourceMax,
                 searchMax: self.queues[wordCount].searchMax,
-                words: self.game.words,
+                words: self.constraints.words,
                 scoresMin: self.constraints.scoresMin,
                 widthMax: self.game.maxWidth,
                 heightMax: self.game.maxHeight)
@@ -149,7 +151,7 @@ public struct QueueList {
         for i in 0..<self.queues.count {
             if self.queues[i].shapes.count > 0 {
                 let shape = self.queues[i].shapes[0]
-                print(shape.ToString(words: self.game.words))
+                print(shape.ToString(words: self.constraints.words))
             }
         }
     }
@@ -186,7 +188,7 @@ public struct QueueList {
         var result:[UInt16]=[]
         
         for queue in queues {
-            result.append(queue.minScore(winningShape: winningShape, words: self.game.words))
+            result.append(queue.minScore(winningShape: winningShape, words: self.constraints.words))
         }
         return result
     }
@@ -213,7 +215,7 @@ public struct QueueList {
         }
         bestShapes.sort() { $0.score > $1.score }
         if bestShapes.count > 0 {
-            print(bestShapes[0].ToString(words: self.game.words))
+            print(bestShapes[0].ToString(words: self.constraints.words))
         }
     }
     
@@ -240,7 +242,7 @@ public struct QueueList {
                 wordIndex: self.queues[wordCount].wordIndex,
                 sourceMax: self.queues[wordCount].sourceMax,
                 searchMax: self.queues[wordCount].searchMax,
-                words: self.game.words,
+                words: self.constraints.words,
                 scoresMin: self.constraints.scoresMin,
                 widthMax: self.game.maxWidth,
                 heightMax: self.game.maxHeight)
@@ -302,7 +304,7 @@ public struct QueueList {
             searchWordIndex: self.queues[mergeIndex2].wordIndex,
             sourceMax: self.queues[mergeIndex].sourceMax,
             searchMax: self.queues[mergeIndex2].searchMax,
-            words: self.game.words,
+            words: self.constraints.words,
             scoresMin: self.constraints.scoresMin,
             widthMax: self.game.maxWidth,
             heightMax: self.game.maxHeight)
@@ -353,6 +355,11 @@ public struct QueueList {
         
         self.game = game
         self.constraints = constraints
+        
+//        if self.game.gameId >= 9401 {
+//            self.constraints.widthMax = self.game.maxWidth
+//            self.constraints.heightMax = self.game.maxHeight
+//        }
         
         for i in 0..<constraints.maxQueues {
             queues.append(QueueModel(shapes:[], stride:i, scoreMin: constraints.scoresMin[i], totalWords: wordCount))

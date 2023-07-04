@@ -7,20 +7,30 @@
 
 import Foundation
 public struct ConstraintsModel {
+    public let words: [String]
     public let scoresMin: [Int]
-    public var wordsMax: Int
-    public var wordsToUse: WordsUsedType
+//    public var widthMax: Int = 17
+//    public var heightMax: Int = 12
     public var queueLengthMax: Int
     public var priorityFunction: PriorityFunction
-    public var shapeConstraints: [ConstraintsShapeModel] = []
+    public var shapeConstraints: [ShapeConstraintModel]
     public var recalculateStatisticsWhenAddingToQueue = false
     public let maxQueues = 40
     
-    public init(scoresMin: [Int], wordsMax: Int, wordsToUse: WordsUsedType, queueLengthMax: Int, priorityFunction: PriorityFunction) {
+    public init(words: [String], scoresMin: [Int], queueLengthMax: Int, priorityFunction: PriorityFunction) {
+        self.words = words
         self.scoresMin = scoresMin
-        self.wordsMax = wordsMax
-        self.wordsToUse = wordsToUse
         self.queueLengthMax = queueLengthMax
         self.priorityFunction = priorityFunction
+        self.shapeConstraints = []
+    }
+    
+    public init(words: [String], shapeConstraints: [ShapeConstraintModel], scoresMin: [Int], queueLengthMax: Int, priorityFunction: PriorityFunction) {
+        self.words = words
+        self.shapeConstraints = shapeConstraints
+        self.scoresMin = scoresMin
+        self.queueLengthMax = queueLengthMax
+        self.priorityFunction = priorityFunction
+        self.shapeConstraints = []
     }
 }

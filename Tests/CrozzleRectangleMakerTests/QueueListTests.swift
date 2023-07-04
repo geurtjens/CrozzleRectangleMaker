@@ -15,9 +15,8 @@ final class QueueListTests: XCTestCase {
             let scoresMin = [0, 10, 28, 38, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             
             let constraints = ConstraintsModel(
+                words: words,
                 scoresMin: scoresMin,
-                wordsMax: 0,
-                wordsToUse: .winningWordsOnly,
                 queueLengthMax: 2000,
                 priorityFunction: .score_area)
             var result = QueueList(game: game, constraints: constraints)
@@ -68,9 +67,8 @@ final class QueueListTests: XCTestCase {
                 let scoresMin = [0, 10, 28, 38, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 
                 let constraints = ConstraintsModel(
+                    words: words,
                     scoresMin: scoresMin,
-                    wordsMax: 0,
-                    wordsToUse: .winningWordsOnly,
                     queueLengthMax: 1000,
                     priorityFunction: .score_area)
                 
@@ -108,9 +106,8 @@ final class QueueListTests: XCTestCase {
             let scoresMin = [0, 10, 28, 38, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             
             let constraints = ConstraintsModel(
+                words: words,
                 scoresMin: scoresMin,
-                wordsMax: 0,
-                wordsToUse: .winningWordsOnly,
                 queueLengthMax: 2000,
                 priorityFunction: .score_area)
             
@@ -131,9 +128,8 @@ final class QueueListTests: XCTestCase {
             let scoresMin = [0, 10, 28, 38, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             
             let constraints = ConstraintsModel(
+                words: words,
                 scoresMin: scoresMin,
-                wordsMax: 0,
-                wordsToUse: .winningWordsOnly,
                 queueLengthMax: 2000,
                 priorityFunction: .score_area)
             
@@ -169,9 +165,8 @@ final class QueueListTests: XCTestCase {
             let scoresMin = [0, 10, 28, 38, 104, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             
             let constraints = ConstraintsModel(
+                words: words,
                 scoresMin: scoresMin,
-                wordsMax: 0,
-                wordsToUse: .winningWordsOnly,
                 queueLengthMax: 25,
                 priorityFunction: .score_area)
             

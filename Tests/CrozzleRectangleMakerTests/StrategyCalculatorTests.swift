@@ -9,6 +9,11 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class StrategyCalculatorTests: XCTestCase {
 
+    func test_shapesFor8612() {
+        let game = GameList().getGame(gameId: 8612)!
+        let queue = StrategyCalculator.shapesFor8612(queueLength: 5000, words: game.winningWords)
+        print(queue.status())
+    }
 
     func test_Next() async {
         await StrategyCalculator.BasicStrategy()
@@ -22,7 +27,7 @@ final class StrategyCalculatorTests: XCTestCase {
         
         let (winningShapes, words, _, _) = GameList.getShapes(gameId: 8612)
         let scoresMin:[Int] = Array(repeating: 0, count: 40)
-        let constraints = ConstraintsModel(scoresMin:scoresMin, wordsMax: words.count, wordsToUse: .winningWordsOnly, queueLengthMax: 1000, priorityFunction: .score_area)
+        let constraints = ConstraintsModel(words: words, scoresMin:scoresMin, queueLengthMax: 1000, priorityFunction: .score_area)
         var queues = QueueList(game: game, constraints: constraints)
         
         queues.add(shapes: winningShapes)

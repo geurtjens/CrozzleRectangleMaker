@@ -9,14 +9,160 @@ import Foundation
 public class StrategyCalculator {
     
     
+    public func stategyAll() async {
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            let words = game.winningWords
+            
+            await StrategyCalculator.TryMergeWithLowerOnly(game: game, words: words, queueLength: 5_000)
+            
+        }
+    }
+    
+    
+    public static func shapesFor8612(queueLength: Int, words: [String]) -> QueueList {
+        let shapeConstraints: [ShapeConstraintModel] = [
+            ShapeConstraintModel(name:"edge", scoreMin: 22, widthMax: 10, heightMax:8),
+            ShapeConstraintModel(name: "rectangle3x4", scoreMin: 136, widthMax: 10, heightMax: 8),
+            ShapeConstraintModel(name: "rectangle3x4_BottomLeft", scoreMin: 64, widthMax: 10, heightMax: 7),
+            ShapeConstraintModel(name: "rectangle4x5", scoreMin: 90, widthMax: 11, heightMax:8),
+            ShapeConstraintModel(name: "square3x3", scoreMin: 52, widthMax:11, heightMax: 8)
+            ]
+        let game = GameList().getGame(gameId: 8612)!
+        
+        let scoresMin = StrategyCalculator.GetScoreMins(gameId: 8612)
+        let constraints = ConstraintsModel(
+            words: words,
+            shapeConstraints: shapeConstraints,
+            scoresMin: scoresMin,
+            
+            queueLengthMax: queueLength,
+            priorityFunction: .score_area)
+        
+        let queueList = QueueList(game: game, constraints: constraints)
+        
+        
+        return queueList
+    }
+    
+    public static func TryMergeWithLowerOnly(game: GameModel, words: [String], queueLength: Int) async {
+       
+            
+        let words = game.winningWords
+        let repeatTimes = 100
+        //let _ = await StrategyCalculator.NextStep(words: game.winningWords, queueLength: 20000, priorityFunction: .score_area, repeatTimes: 5)
+        
+        
+        
+        let startNano = DateTimeCalculator.now()
+            
+        var queue = WinningGameQueueListCalculator.Queue(gameId: game.gameId, words: words, queueLength: queueLength, priorityFunction: .score_area)!
+        
+        //    for i in 5..<30 {
+        //        queue.queues[i].search_TopScorePercent = 2.0
+        //    }
+            
+            
+        var maxShape: ShapeModel? = nil
+        let highScore = game.winningScore
+        var maxScore: UInt16 = 0
+        var i = 0
+        var count = 0
+        var previousCount = 0
+        print("")
+        print("")
+        print("GAME \(game.gameId) with high score of \(game.winningScore) using \(words.count) words")
+        (maxShape, _) = queue.status()
+        if let maxShape = maxShape {
+            let text = maxShape.ToStringExtended(words: words, gameId: queue.game.gameId, winningScore: queue.game.winningScore)
+            print(text)
+        }
+        
+        for _ in 0..<repeatTimes {
+    //        let mergeWithItselfStartNano = DateTimeCalculator.now()
+    //        DateTimeCalculator.printDate("mergeWithItselfAll() started at")
+    //        await queue.mergeWithItselfAll()
+    //        let mergeWithItselfFinishNano = DateTimeCalculator.now()
+    //        let mergeWithItselfDuration = DateTimeCalculator.duration(start: mergeWithItselfStartNano, finish: mergeWithItselfFinishNano)
+    //        DateTimeCalculator.printDate("mergeWithItselfAll() took \(mergeWithItselfDuration) and finished at")
+    //        (maxShape, _) = queue.status()
+            if let maxShape = maxShape {
+                let text = maxShape.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore)
+                print(text)
+            }
+    //        for i in 5..<30 {
+    //            queue.queues[i].search_TopScorePercent = 2.0
+    //        }
+            
+            while maxScore < highScore && i < 40  {
+                
+                
+                if queue.queues[i].shapes.count > 0 {
+                    let startNano = DateTimeCalculator.now()
+                    DateTimeCalculator.printDate("mergeEverythingBelowWith(index: \(i)) started at")
+                    await queue.mergeEverythingBelowWith(index: i)
+                    let finishNano = DateTimeCalculator.now()
+                    let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
+                    DateTimeCalculator.printDate("mergeEverythingBelowWith(index: \(i)) took \(duration) and finished at")
+                    (maxShape, _) = queue.status()
+                    if let bestShape = queue.getBestShape() {
+                        if bestShape.score > maxScore {
+                            maxScore = bestShape.score
+                            print(bestShape.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore))
+                            
+                        }
+                        if maxScore >= highScore {
+                            print("High Score Reached")
+                            let finishNano = DateTimeCalculator.now()
+                                   
+                            let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
+                            print("Duration \(duration)")
+                                
+                            break
+                        }
+                    }
+                }
+                i += 1
+            }
+            (maxShape, count) = queue.status()
+            if count == previousCount {
+                //break
+            } else {
+                
+                print("GAME \(game.gameId) with high score of \(game.winningScore)")
+                
+                // it shows all tiny variations of the same shape being built.  Quite interesting to see really.
+                previousCount = count
+            }
+            
+            let bestShapeScore = queue.getBestShape()
+            if  bestShapeScore != nil && bestShapeScore!.score >= highScore {
+                print(bestShapeScore!.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore))
+                let finishNano = DateTimeCalculator.now()
+                       
+                let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
+                print("Duration \(duration)")
+                    
+                break
+            }
+        }
+        let bestShapeScore = queue.getBestShape()
+        
+        let finishNano = DateTimeCalculator.now()
+               
+       let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
+       print("Duration \(duration)")
+        
+    }
+    
     public static func Queue_8612(queueLength: Int, priorityFunction: PriorityFunction = .score_area) -> QueueList {
         let game = GameList().getGame(gameId: 8612)!
         
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 8612)
         let constraint = ConstraintsModel(
+            words: game.winningWords,
             scoresMin: scoresMin,
-            wordsMax: game.winningWords.count,
-            wordsToUse: .winningWordsOnly,
             queueLengthMax: queueLength,
             priorityFunction: .score_area)
         
@@ -333,9 +479,8 @@ public class StrategyCalculator {
             let scoresMin = StrategyCalculator.GetScoreMins(gameId: game.gameId)
             
             let constraints = ConstraintsModel(
+                words: words,
                 scoresMin: scoresMin,
-                wordsMax: 0,
-                wordsToUse: .winningWordsOnly,
                 queueLengthMax: 2000,
                 priorityFunction: .score_area)
             
