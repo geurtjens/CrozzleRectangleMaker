@@ -9,7 +9,7 @@ import Foundation
 public class StrategyCalculator {
     
     
-    public func stategyAll() async {
+    public static func stategyAll() async {
         let gameList = GameList()
         
         for game in gameList.games {
