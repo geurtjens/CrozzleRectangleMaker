@@ -1,13 +1,6 @@
-//
-//  File.swift
-//  
-//
-//  Created by Michael Geurtjens on 23/6/2023.
-//
 
 import Foundation
 public class WinningGameQueueListCalculator {
-    
     public static func Queue_8612(words: [String], queueLength: Int, priorityFunction: PriorityFunction) -> QueueList {
 
         let game = GameList().getGame(gameId: 8612)!
@@ -295,7 +288,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -303,7 +296,7 @@ public class WinningGameQueueListCalculator {
             scoreMin: 72,
             widthMax: 8,
             heightMax: 8))
-        queue.add(shapes: rectangle3x4_BottomLeft)
+        queue.add(shapes: rectangle3x4_TopRight)
 
         let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
             interlockWidth: 2,
@@ -481,16 +474,6 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
-            interlockWidth: 2,
-            interlockHeight: 4,
-            words: words,
-            lengths: len,
-            scoreMin: 72,
-            widthMax: 11,
-            heightMax: 9))
-        queue.add(shapes: rectangle3x5_BottomLeft)
-
         let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
@@ -506,9 +489,9 @@ public class WinningGameQueueListCalculator {
             interlockHeight: 4,
             words: words,
             lengths: len,
-            scoreMin: 90,
-            widthMax: 9,
-            heightMax: 8))
+            scoreMin: 72,
+            widthMax: 11,
+            heightMax: 9))
         queue.add(shapes: rectangle3x5_TopRight)
 
         let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
@@ -658,8 +641,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -794,16 +775,6 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
-            interlockWidth: 2,
-            interlockHeight: 3,
-            words: words,
-            lengths: len,
-            scoreMin: 60,
-            widthMax: 7,
-            heightMax: 9))
-        queue.add(shapes: rectangle3x4_BottomLeft)
-
         let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
@@ -813,6 +784,16 @@ public class WinningGameQueueListCalculator {
             widthMax: 7,
             heightMax: 10))
         queue.add(shapes: rectangle3x4_BottomRight)
+
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: len,
+            scoreMin: 60,
+            widthMax: 7,
+            heightMax: 9))
+        queue.add(shapes: rectangle3x4_TopRight)
 
         let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
             interlockWidth: 2,
@@ -857,8 +838,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -943,8 +922,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -1140,8 +1117,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -1198,8 +1173,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -1284,8 +1257,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -1372,8 +1343,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -1535,8 +1504,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -1703,8 +1670,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -1752,8 +1717,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -1819,8 +1782,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -1904,8 +1865,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -1971,8 +1930,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -2013,7 +1970,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2021,7 +1978,7 @@ public class WinningGameQueueListCalculator {
             scoreMin: 66,
             widthMax: 8,
             heightMax: 7))
-        queue.add(shapes: rectangle3x4_TopRight)
+        queue.add(shapes: rectangle3x4_BottomLeft)
 
         let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
             interlockWidth: 2,
@@ -2057,8 +2014,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -2125,8 +2080,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -2212,8 +2165,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -2289,8 +2240,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -2346,8 +2295,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -2399,7 +2346,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle4x5)
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2407,7 +2354,7 @@ public class WinningGameQueueListCalculator {
             scoreMin: 90,
             widthMax: 9,
             heightMax: 8))
-        queue.add(shapes: rectangle3x4_BottomLeft)
+        queue.add(shapes: rectangle3x4_TopRight)
 
         let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
             interlockWidth: 2,
@@ -2441,8 +2388,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -2497,8 +2442,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -2549,8 +2492,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -2608,8 +2549,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -2675,8 +2614,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -2752,8 +2689,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -2848,8 +2783,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -2936,8 +2869,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -3022,8 +2953,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -3064,7 +2993,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3072,7 +3001,7 @@ public class WinningGameQueueListCalculator {
             scoreMin: 60,
             widthMax: 8,
             heightMax: 7))
-        queue.add(shapes: rectangle3x4_TopRight)
+        queue.add(shapes: rectangle3x4_BottomLeft)
 
         let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
             interlockWidth: 2,
@@ -3108,8 +3037,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -3185,8 +3112,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -3218,7 +3143,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3226,7 +3151,7 @@ public class WinningGameQueueListCalculator {
             scoreMin: 74,
             widthMax: 11,
             heightMax: 7))
-        queue.add(shapes: rectangle3x4_TopRight)
+        queue.add(shapes: rectangle3x4_BottomLeft)
 
         let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
             interlockWidth: 2,
@@ -3262,8 +3187,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -3338,8 +3261,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -3406,9 +3327,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9102)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -3478,8 +3398,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -3555,8 +3473,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -3621,9 +3537,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9105)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -3698,8 +3613,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -3745,9 +3658,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9107)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -3779,24 +3691,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
-            interlockWidth: 2,
-            interlockHeight: 3,
-            words: words,
-            lengths: len,
-            scoreMin: 108,
-            widthMax: 9,
-            heightMax: 9))
-        queue.add(shapes: rectangle3x4_BottomLeft)
-
         let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
             lengths: len,
             scoreMin: 72,
-            widthMax: 7,
-            heightMax: 7))
+            widthMax: 9,
+            heightMax: 9))
         queue.add(shapes: rectangle3x4_TopRight)
 
         let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
@@ -3840,9 +3742,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9108)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -3914,9 +3815,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9109)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -4003,9 +3903,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9110)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -4067,9 +3966,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9111)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -4125,9 +4023,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9112)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -4180,9 +4077,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9201)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -4235,9 +4131,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9202)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -4294,8 +4189,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -4348,9 +4241,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9204)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -4388,63 +4280,6 @@ public class WinningGameQueueListCalculator {
         return queue
     }
 
-    public static func Queue_9205(words: [String], queueLength: Int, priorityFunction: PriorityFunction) -> QueueList {
-
-        let game = GameList().getGame(gameId: 9205)!
-
-        let len = WordCalculator.lengths(words: words)
-
-        let end = WordCalculator.reverse(words: words)
-
-        let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9205)
-
-        let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
-            queueLengthMax: queueLength,
-            priorityFunction: priorityFunction)
-
-        var queue = QueueList(game: game, constraints: constraint)
-
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
-            start: words,
-            end: end,
-            len: len,
-            scoreMin: 116,
-            widthMax: 12,
-            heightMax: 9))
-        queue.add(shapes: c2x4)
-
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
-            words: words,
-            scoreMin: 22,
-            widthMax: 9,
-            heightMax: 9))
-        queue.add(shapes: edges)
-
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
-            interlockWidth: 2,
-            interlockHeight: 3,
-            words: words,
-            lengths: len,
-            scoreMin: 98,
-            widthMax: 9,
-            heightMax: 9))
-        queue.add(shapes: rectangle3x4)
-
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
-            interlockWidth: 2,
-            words: words,
-            lengths: len,
-            scoreMin: 74,
-            widthMax: 11,
-            heightMax: 10))
-        queue.add(shapes: square3x3)
-
-        return queue
-    }
-
     public static func Queue_9206(words: [String], queueLength: Int, priorityFunction: PriorityFunction) -> QueueList {
 
         let game = GameList().getGame(gameId: 9206)!
@@ -4456,9 +4291,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9206)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -4530,9 +4364,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9207)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -4586,9 +4419,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9208)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -4654,9 +4486,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9209)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -4714,9 +4545,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9210)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -4789,9 +4619,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9211)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -4865,9 +4694,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9212)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -4940,9 +4768,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9301)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -4965,6 +4792,16 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x4)
 
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: len,
+            scoreMin: 128,
+            widthMax: 11,
+            heightMax: 10))
+        queue.add(shapes: rectangle3x4_BottomLeft)
+
         let rectangle4x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
@@ -4974,16 +4811,6 @@ public class WinningGameQueueListCalculator {
             widthMax: 7,
             heightMax: 7))
         queue.add(shapes: rectangle4x5_BottomLeft)
-
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
-            interlockWidth: 2,
-            interlockHeight: 3,
-            words: words,
-            lengths: len,
-            scoreMin: 128,
-            widthMax: 11,
-            heightMax: 10))
-        queue.add(shapes: rectangle3x4_TopRight)
 
         let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
             interlockWidth: 2,
@@ -5006,9 +4833,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9302)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -5055,8 +4881,6 @@ public class WinningGameQueueListCalculator {
         let constraint = ConstraintsModel(
             words: words,
             scoresMin: scoresMin,
-            
-            
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -5149,9 +4973,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9304)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -5243,9 +5066,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9305)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -5308,9 +5130,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9306)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -5374,9 +5195,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9307)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -5440,9 +5260,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9308)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -5506,9 +5325,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9309)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -5580,9 +5398,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9310)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -5635,9 +5452,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9311)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -5712,9 +5528,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9312)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -5767,9 +5582,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9401)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -5816,9 +5630,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9402)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -5909,9 +5722,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9403)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -5944,7 +5756,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle4x6)
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5952,7 +5764,7 @@ public class WinningGameQueueListCalculator {
             scoreMin: 72,
             widthMax: 14,
             heightMax: 8))
-        queue.add(shapes: rectangle3x4_BottomLeft)
+        queue.add(shapes: rectangle3x4_TopRight)
 
         let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
             interlockWidth: 2,
@@ -5993,9 +5805,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9404)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -6028,6 +5839,16 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x5)
 
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: len,
+            scoreMin: 52,
+            widthMax: 9,
+            heightMax: 8))
+        queue.add(shapes: rectangle3x4_BottomLeft)
+
         let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
@@ -6037,16 +5858,6 @@ public class WinningGameQueueListCalculator {
             widthMax: 8,
             heightMax: 13))
         queue.add(shapes: rectangle3x5_TopLeft)
-
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
-            interlockWidth: 2,
-            interlockHeight: 3,
-            words: words,
-            lengths: len,
-            scoreMin: 52,
-            widthMax: 9,
-            heightMax: 8))
-        queue.add(shapes: rectangle3x4_TopRight)
 
         let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
             interlockWidth: 2,
@@ -6069,9 +5880,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9406)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -6145,9 +5955,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9407)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -6235,9 +6044,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9408)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -6309,9 +6117,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9409)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -6334,6 +6141,16 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
+        let rectangle4x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+            interlockWidth: 3,
+            interlockHeight: 4,
+            words: words,
+            lengths: len,
+            scoreMin: 64,
+            widthMax: 12,
+            heightMax: 10))
+        queue.add(shapes: rectangle4x5_BottomLeft)
+
         let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
@@ -6343,16 +6160,6 @@ public class WinningGameQueueListCalculator {
             widthMax: 9,
             heightMax: 8))
         queue.add(shapes: rectangle3x4_TopLeft)
-
-        let rectangle4x5_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
-            interlockWidth: 3,
-            interlockHeight: 4,
-            words: words,
-            lengths: len,
-            scoreMin: 64,
-            widthMax: 12,
-            heightMax: 10))
-        queue.add(shapes: rectangle4x5_TopRight)
 
         let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
             interlockWidth: 2,
@@ -6386,9 +6193,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9410)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -6444,9 +6250,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9411)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -6511,9 +6316,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9412)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -6554,14 +6358,24 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: len,
+            scoreMin: 108,
+            widthMax: 8,
+            heightMax: 8))
+        queue.add(shapes: rectangle3x4_BottomLeft)
+
         let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
             lengths: len,
             scoreMin: 104,
-            widthMax: 8,
-            heightMax: 8))
+            widthMax: 7,
+            heightMax: 6))
         queue.add(shapes: rectangle3x4_TopRight)
 
         let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
@@ -6596,9 +6410,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9501)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -6630,6 +6443,16 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x5)
 
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+            interlockWidth: 2,
+            interlockHeight: 3,
+            words: words,
+            lengths: len,
+            scoreMin: 66,
+            widthMax: 11,
+            heightMax: 8))
+        queue.add(shapes: rectangle3x4_BottomLeft)
+
         let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
@@ -6639,16 +6462,6 @@ public class WinningGameQueueListCalculator {
             widthMax: 7,
             heightMax: 7))
         queue.add(shapes: rectangle3x5_BottomRight)
-
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
-            interlockWidth: 2,
-            interlockHeight: 3,
-            words: words,
-            lengths: len,
-            scoreMin: 66,
-            widthMax: 11,
-            heightMax: 8))
-        queue.add(shapes: rectangle3x4_TopRight)
 
         let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
             interlockWidth: 2,
@@ -6680,9 +6493,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9502)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -6757,9 +6569,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9503)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -6844,9 +6655,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9504)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -6947,9 +6757,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9505)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -7044,9 +6853,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9506)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -7148,9 +6956,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9507)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -7214,9 +7021,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9508)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -7290,9 +7096,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9509)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -7364,9 +7169,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9510)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -7451,9 +7255,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9511)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -7494,7 +7297,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7502,7 +7305,7 @@ public class WinningGameQueueListCalculator {
             scoreMin: 60,
             widthMax: 6,
             heightMax: 12))
-        queue.add(shapes: rectangle3x4_TopRight)
+        queue.add(shapes: rectangle3x4_BottomLeft)
 
         let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
             interlockWidth: 2,
@@ -7554,9 +7357,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9512)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -7621,9 +7423,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9601)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -7687,9 +7488,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9602)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -7760,9 +7560,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9603)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -7817,9 +7616,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9604)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -7890,9 +7688,8 @@ public class WinningGameQueueListCalculator {
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: 9605)
 
         let constraint = ConstraintsModel(
-            words: words, scoresMin: scoresMin,
-            
-            
+            words: words,
+            scoresMin: scoresMin,
             queueLengthMax: queueLength,
             priorityFunction: priorityFunction)
 
@@ -8059,8 +7856,6 @@ public class WinningGameQueueListCalculator {
             return Queue_9203(words: words, queueLength: queueLength, priorityFunction: priorityFunction)
         case 9204:
             return Queue_9204(words: words, queueLength: queueLength, priorityFunction: priorityFunction)
-        case 9205:
-            return Queue_9205(words: words, queueLength: queueLength, priorityFunction: priorityFunction)
         case 9206:
             return Queue_9206(words: words, queueLength: queueLength, priorityFunction: priorityFunction)
         case 9207:

@@ -8,12 +8,24 @@
 import Foundation
 public class ShapeConstraintCodeGen {
     
+    public static func classHeader() -> String {
+        let code =
+        """
+        import Foundation
+        public class WinningGameQueueListCalculator {
+
+        """
+        return code
+    }
+    
     public static func execute(inputs: [(Int,[ShapeConstraintModel])]) -> String {
         
         //let json = makeJson(inputs: inputs)
-        
-        var code = makeGetCode(inputs: inputs)
+        var code = ""
+        code += classHeader()
+        code += makeGetCode(inputs: inputs)
         code += driverCode()
+        code += "}"
         return code
     }
     
@@ -25,7 +37,9 @@ public class ShapeConstraintCodeGen {
             let gameId = input.0
             let shapes = input.1
             
-            result += codeHeader(gameId: gameId)
+            let endText = includeEndDependingOnShapes(shapeConstraints: shapes)
+            
+            result += codeHeader(gameId: gameId,endText: endText)
             
 
             result += codeShapeCalculations(constraints: shapes)
@@ -33,6 +47,25 @@ public class ShapeConstraintCodeGen {
             
         }
         return result
+    }
+    
+    public static func includeEndDependingOnShapes(shapeConstraints: [ShapeConstraintModel]) -> String {
+        var include = false
+        
+        for item in shapeConstraints {
+            let name = item.name
+            if name.contains("cluster") || name.contains("outer") || name.contains("Pacman") {
+                include = true
+            }
+        }
+        
+        if include == true {
+            return "\n\n        let end = WordCalculator.reverse(words: words)\n\n"
+        } else {
+            return "\n\n"
+        }
+        
+        
     }
     
     public static func codeShapeCalculations(constraints: [ShapeConstraintModel]) -> String {
@@ -48,7 +81,7 @@ public class ShapeConstraintCodeGen {
     
     public static func driverCode() -> String {
         var code = ""
-        code += "    public static func Queue(gameId: Int, words: [String], queueLength: Int, priorityFunction: PriorityFunction, wordsToUse: WordsUsedType) -> QueueList {\n\n"
+        code += "    public static func Queue(gameId: Int, words: [String], queueLength: Int, priorityFunction: PriorityFunction) -> QueueList? {\n\n"
 
         code += "        switch gameId {\n"
         let gameList = GameList()
@@ -58,8 +91,10 @@ public class ShapeConstraintCodeGen {
             code += "        case \(gameId):\n"
             code += "            return Queue_\(gameId)(words: words, queueLength: queueLength, priorityFunction: priorityFunction)\n"
         }
-        code += "        }"
-        code += "    }"
+            code += "        default:\n"
+            code += "            return nil\n"
+        code += "        }\n"
+        code += "    }\n"
         return code
     }
     
@@ -155,17 +190,18 @@ public class ShapeConstraintCodeGen {
         return ("", name)
     }
     
-    public static func codeHeader(gameId: Int) -> String {
-        let code =
+    public static func codeHeader(gameId: Int, endText: String) -> String {
+        var code =
         """
-        
-            public static func Queue_\(gameId)(words: [String], queueLength: Int, priorityFunction: PriorityFunction, wordsToUse: WordsUsedType) -> QueueList {
+            public static func Queue_\(gameId)(words: [String], queueLength: Int, priorityFunction: PriorityFunction) -> QueueList {
+
                 let game = GameList().getGame(gameId: \(gameId))!
 
                 let len = WordCalculator.lengths(words: words)
-        
-                let end = WordCalculator.reverse(words: words)
-        
+        """
+        code += endText
+        code +=
+        """
                 let scoresMin = StrategyCalculator.GetScoreMins(gameId: \(gameId))
         
                 let constraint = ConstraintsModel(
@@ -173,9 +209,10 @@ public class ShapeConstraintCodeGen {
                     scoresMin: scoresMin,
                     queueLengthMax: queueLength,
                     priorityFunction: priorityFunction)
-             
+        
                 var queue = QueueList(game: game, constraints: constraint)
 
+        
         """
         return code
     }
@@ -205,7 +242,7 @@ public class ShapeConstraintCodeGen {
     
         let code =
         """
-                  let \(name) = ShapeCalculator.toShapes(clusters: ClusterCalculator.C\(interlockWidth)x\(interlockHeight)(
+                let \(name) = ShapeCalculator.toShapes(clusters: ClusterCalculator.C\(interlockWidth)x\(interlockHeight)(
                     start: words,
                     end: end,
                     len: len,
@@ -297,7 +334,7 @@ public class ShapeConstraintCodeGen {
         let name = "special\(specialId)"
         
         let code = """
-            let \(name) = SpecialShapesCalculator.C\(specialId)(words: words)
+                let \(name) = SpecialShapesCalculator.C\(specialId)(words: words)
         
         """
         return (code, name)

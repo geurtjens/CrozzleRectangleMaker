@@ -204,9 +204,18 @@ public class ShapeConstraintFromJsonCalculator {
                 if style == "BottomLeft" {
                     style = "TopRight"
                 }
+                
                 // We have to swap around the style for a square
                 return "square\(style)\(a)x\(b)"
             } else {
+                
+                // we have to swap styles between TopRight and BottomLeft because the dimensions are opposite
+                if style == "BottomLeft" {
+                    style = "TopRight"
+                } else if style == "TopRight" {
+                    style = "BottomLeft"
+                }
+                
                 return "rectangle\(style)\(b)x\(a)"
             }
         } else if shapeName.contains("Donut") {
