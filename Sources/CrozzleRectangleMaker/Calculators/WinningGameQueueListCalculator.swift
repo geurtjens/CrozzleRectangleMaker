@@ -51,7 +51,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle4x5)
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -59,7 +59,7 @@ public class WinningGameQueueListCalculator {
             scoreMin: 64,
             widthMax: 10,
             heightMax: 7))
-        queue.add(shapes: rectangle3x4_TopRight)
+        queue.add(shapes: rectangle3x4_BottomLeft)
 
         let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
             interlockWidth: 2,

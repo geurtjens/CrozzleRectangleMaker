@@ -9,14 +9,31 @@ import Foundation
 public class StrategyCalculator {
     
     
-    public static func stategyAll() async {
-        let gameList = GameList()
+    public static func gamesThatHaventWonYet() async {
+        let gamesWon = [8705,8712,
+                        8803,8805,8808,8809,8811,8812,
+                        8902,8903,8904,8906,8910,8911,8912,
+                        9004,9005,9007,9008,9009,9012,
+                        9102,9103,9105,9108,9110,9111,9112,
+                        9201,9202,9203,9207,9208,9210,9212,
+                        9302,9303,9306,9307,9308,9309,9310,9311,9312,
+                        9401,9404,9407,9408,
+                        9502]
         
+        
+        let gameList = GameList()
+        var result = ""
         for game in gameList.games {
-            let words = game.winningWords
-            
-            await StrategyCalculator.TryMergeWithLowerOnly(game: game, words: words, queueLength: 5_000)
-            
+            if gamesWon.contains(game.gameId) == false {
+                let words = game.winningWords
+                
+                let queueList = await StrategyCalculator.TryMergeWithLowerOnly(game: game, words: words, queueLength: 5_000)
+                result += "\n"
+                let shape = queueList.getBestShapeByScore()
+                if shape != nil {
+                    result += shape?.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore) ?? ""
+                }
+            }
         }
     }
     
@@ -46,7 +63,7 @@ public class StrategyCalculator {
         return queueList
     }
     
-    public static func TryMergeWithLowerOnly(game: GameModel, words: [String], queueLength: Int) async {
+    public static func TryMergeWithLowerOnly(game: GameModel, words: [String], queueLength: Int) async -> QueueList {
        
             
         let words = game.winningWords
@@ -154,6 +171,7 @@ public class StrategyCalculator {
        let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
        print("Duration \(duration)")
         
+        return queue
     }
     
     public static func Queue_8612(queueLength: Int, priorityFunction: PriorityFunction = .score_area) -> QueueList {

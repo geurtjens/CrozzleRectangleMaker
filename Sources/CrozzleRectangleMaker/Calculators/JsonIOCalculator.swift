@@ -10,20 +10,7 @@ public class JsonIOCalculator {
 
     public static var path = "/Users/michaelgeurtjens/Downloads/CrozzleDataFromWinningGames/"
     
-    public static func getHeaderBlock(gameId: Int) -> String {
-        var code = ""
-        code += "    public static func Shapes_\(gameId)() -> ([ShapeModel], [String], Int, Int) {\n"
-        code += "\n"
-        code += "        let game = GameList().getGame(gameId: \(gameId))!\n"
-        code += "\n"
-        code += "        let widthMax = game.maxWidth\n"
-        code += "        let heightMax = game.maxHeight\n\n"
-        code += "        let words = game.winningWords\n"
-        code += "        let end = WordCalculator.reverse(words: words)\n"
-        code += "        let len = WordCalculator.lengths(words: words)\n"
-        code += "\n"
-        return code
-    }
+    
     
     /// Found that shapes are being added that do not contribute to the making of the shape and so do not even merge.
     /// So we can remove these un-necessary shapes if we find that the shape doesnt add extra words
@@ -69,7 +56,7 @@ public class JsonIOCalculator {
         var jsonShapes = load(gameId: gameId)
         
         changeNameOrientationToLargerHorizontal(jsonShapes: &jsonShapes)
-        let headerBlock = getHeaderBlock(gameId: gameId)
+        let headerBlock = JsonIOCodeGen.getHeaderBlock(gameId: gameId)
         let calculatedBlock = getCalculationBlock(jsonShapes: jsonShapes)
         let shapeFindingBlock = getShapeFindingBlock(jsonShapes: jsonShapes)
         let mergeBlock = getMergeBlock(jsonShapes: jsonShapes)
@@ -86,17 +73,7 @@ public class JsonIOCalculator {
         //code += testCode(gameId: gameId, score: winningScore)
         return code
     }
-    public static func testCode(gameId: Int, score: Int) -> String {
-        var result = ""
-        result += "    func test_Shapes_\(gameId)() {\n"
-        result += "        let result = StrategyCalculator.Shapes_\(gameId)()\n"
-        result += "        XCTAssertNotNil(result)\n"
-        result += "        if let result = result {\n"
-        result += "            XCTAssertEqual(\(score), result.score)\n"
-        result += "        }\n"
-        result += "    }\n\n"
-        return result
-    }
+    
     
 //    public static func convertName(name: String) -> (String, Int, Int) {
 //        if name.contains("Cluster") {
@@ -119,7 +96,7 @@ public class JsonIOCalculator {
         let gameList = GameList()
         var result = ""
         for game in gameList.games {
-            let code = getWinningGame(gameId: game.gameId)
+            let code = JsonIOCodeGen.getWinningGame(gameId: game.gameId)
             result += code
         }
         return result
@@ -129,28 +106,14 @@ public class JsonIOCalculator {
         let gameList = GameList()
         var result = ""
         for game in gameList.games {
-            let code = getWinningGameTest(gameId: game.gameId, score: game.winningScore)
+            let code = JsonIOCodeGen.getWinningGameTest(gameId: game.gameId, score: game.winningScore)
             result += code
         }
         return result
     }
     
-    public static func getWinningGameTest(gameId: Int, score: Int) -> String {
-        var code = ""
-        code += "    func test_WinningShape_\(gameId)() {\n"
-        code += "        let winningGame = WinningGamesCalculator.WinningShape_\(gameId)()\n"
-        code += "        XCTAssertEqual(\(score), winningGame.score)\n"
-        code += "    }\n\n"
-        return code
-    }
-    public static func getWinningGame(gameId: Int) -> String {
-        var result = ""
-        result += "    public static func WinningShape_\(gameId)() -> ShapeModel {\n"
-        result += "        let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_\(gameId)()\n"
-        result += "        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)\n"
-        result += "    }\n\n"
-        return result
-    }
+    
+    
     public static func getMergeBlock(jsonShapes: [JsonShapeModel]) -> String {
 
         var variableNames:[String] = []
@@ -333,56 +296,6 @@ public class JsonIOCalculator {
     }
     
     
-    public static func clusterGen(shapeName: String, minScore: Int) -> String {
-        let size = shapeName.replacingOccurrences(of: "Cluster", with: "")
-        
-        let (width, height, _) = getNumbers(numbers: size)
-        
-        var code = ""
-        code += "        let c\(width)x\(height) = ShapeCalculator.toShapes(clusters: ClusterCalculator.C\(width)x\(height)(\n"
-        code += "           start: words,\n"
-        code += "           end: end,\n"
-        code += "           len: len,\n"
-        code += "           scoreMin: \(minScore),\n"
-        code += "           widthMax: widthMax,\n"
-        code += "           heightMax: heightMax))\n\n"
-        return code
-    }
-    
-    public static func specialGen(shapeName: String, minScore: Int) -> String {
-        let gameId = shapeName.replacingOccurrences(of: "Special", with: "")
-
-        var code = ""
-        code += "        let \(shapeName.lowercased()) = SpecialShapesCalculator.C\(gameId)(words: words)\n\n"
-        return code
-    }
-    
-    public static func outerGen(shapeName: String, minScore: Int) -> String {
-        let size = shapeName.replacingOccurrences(of: "Outer", with: "")
-        
-        let (width, height, _) = getNumbers(numbers: size)
-        
-        var code = ""
-        code += "        let outer\(width)x\(height) = ShapeCalculator.toShapes(outers: OuterCalculator.C\(width)x\(height)(\n"
-        code += "           start: words,\n"
-        code += "           end: end,\n"
-        code += "           len: len,\n"
-        code += "           scoreMin: \(minScore),\n"
-        code += "           widthMax: widthMax,\n"
-        code += "           heightMax: heightMax))\n\n"
-        return code
-    }
-    public static func edgeGen(minScore: Int) -> String {
-        var code = ""
-        code += "        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(\n"
-        code += "            words: words,\n"
-        code += "            scoreMin: \(minScore),\n"
-        code += "            widthMax: widthMax,\n"
-        code += "            heightMax: heightMax))\n\n"
-        
-        return code
-    }
-    
     public static func getNumbers(numbers: String) -> (Int, Int, Bool) {
         let split = numbers.split(separator:"x")
         
@@ -395,124 +308,6 @@ public class JsonIOCalculator {
         } else {
             return (width, height, false)
         }
-        
-        
-    }
-    
-    
-    public static func openDonutGen(name: String, minScore: Int) -> String {
-        
-        let variableName = openDonutName(name: name)
-        
-        let numberAndAngle = name.replacingOccurrences(of: "OpenDonut", with: "")
-        
-        let underscore = numberAndAngle.split(separator:"_")
-        
-        let numbers = underscore[0]
-        var angle = underscore[1]
-        
-        let (width,height,swapped) = getNumbers(numbers: String(numbers))
-        
-        if width == height {
-            if angle == "BottomLeft" {
-                angle = "TopRight"
-            }
-            
-           
-            
-            // We have a square
-            var code = ""
-            code += "        let \(variableName) = ShapeCalculator.toShapes(rectangles:RectangleCalculator.\(angle)Square(\n"
-            code += "            interlockWidth: \(width - 1),\n"
-            code += "            words: words,\n"
-            code += "            lengths: len,\n"
-            code += "            scoreMin: \(minScore),\n"
-            code += "            widthMax: widthMax,\n"
-            code += "            heightMax: heightMax))\n\n"
-            return code
-        } else {
-            
-            if swapped {
-                if angle == "BottomLeft" {
-                    angle = "TopRight"
-                } else if angle == "TopRight" {
-                    angle = "BottomLeft"
-                }
-            }
-            var code = ""
-            code += "        let \(variableName) = ShapeCalculator.toShapes(rectangles:RectangleCalculator.\(angle)Rectangle(\n"
-            code += "            interlockWidth: \(width - 1),\n"
-            code += "            interlockHeight: \(height - 1),\n"
-            code += "            words: words,\n"
-            code += "            lengths: len,\n"
-            code += "            scoreMin: \(minScore),\n"
-            code += "            widthMax: widthMax,\n"
-            code += "            heightMax: heightMax))\n\n"
-            
-            return code
-        }
-    }
-    
-    
-    public static func donutGen(name: String, minScore: Int) -> String {
-        
-        let variableName = donutName(name: name)
-        
-        let numbers = name.replacingOccurrences(of: "Donut", with: "")
-        
-        let (width, height, _) = getNumbers(numbers: String(numbers))
-        
-        if width == height {
-
-            var code = ""
-            code += "        let \(variableName) = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(\n"
-            code += "            interlockWidth: \(width - 1),\n"
-            code += "            words: words,\n"
-            code += "            lengths: len,\n"
-            code += "            scoreMin: \(minScore),\n"
-            code += "            widthMax: widthMax,\n"
-            code += "            heightMax: heightMax))\n\n"
-            return code
-            
-        } else {
-            
-            var code = ""
-            code += "        let \(variableName) = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(\n"
-            code += "            interlockWidth: \(width - 1),\n"
-            code += "            interlockHeight: \(height - 1),\n"
-            code += "            words: words,\n"
-            code += "            lengths: len,\n"
-            code += "            scoreMin: \(minScore),\n"
-            code += "            widthMax: widthMax,\n"
-            code += "            heightMax: heightMax))\n\n"
-            
-            return code
-        }
-    }
-    
-    public static func pacmanGen(name: String, minScore: Int) -> String {
-        
-        let variableName = pacmanName(name: name)
-        
-        let numberAndAngle = name.replacingOccurrences(of: "Pacman", with: "")
-        
-        let underscore = numberAndAngle.split(separator:"_")
-        
-        //let numbers = underscore[0]
-        let angle = underscore[1]
-        
-        //let (width,height) = getNumbers(numbers: String(numbers))
-        
-        var code = ""
-        code += "        let \(variableName) = ShapeCalculator.toShapes(pacmans: PacmanCalculator.\(angle)(\n"
-        code += "            start: words,\n"
-        code += "            end: end,\n"
-        code += "            len: len,\n"
-        code += "            scoreMin: \(minScore),\n"
-        code += "            widthMax: widthMax,\n"
-        code += "            heightMax: heightMax))\n\n"
-        
-        return code
     }
     
     
@@ -533,6 +328,8 @@ public class JsonIOCalculator {
             return shapeName.lowercased()
         }
     }
+    
+    
     public static func clusterName(name: String) -> String {
         let numbers = name.replacingOccurrences(of: "Cluster", with: "")
         
@@ -540,6 +337,8 @@ public class JsonIOCalculator {
         /// In clusters the biggest one is last
         return "c\(width)x\(height)"
     }
+    
+    
     public static func donutName(name: String) -> String {
         let numbers = name.replacingOccurrences(of: "Donut", with: "")
         
@@ -585,20 +384,23 @@ public class JsonIOCalculator {
     
     
     public static func getShapesGen(shapeName: String, minScore: Int) -> String {
+        
+        let variableName = convertShapeName(shapeName: shapeName)
+        
         if shapeName == "Edge" {
-            return edgeGen(minScore: minScore)
+            return JsonIOCodeGen.edgeGen(minScore: minScore)
         } else if shapeName.contains("Cluster") {
-            return clusterGen(shapeName: shapeName, minScore: minScore)
+            return JsonIOCodeGen.clusterGen(shapeName: shapeName, minScore: minScore)
         } else if shapeName.contains("OpenDonut") {
-            return openDonutGen(name: shapeName, minScore: minScore)
+            return JsonIOCodeGen.openDonutGen(name: shapeName, minScore: minScore)
         } else if shapeName.contains("Donut") {
-            return donutGen(name: shapeName, minScore: minScore)
+            return JsonIOCodeGen.donutGen(name: shapeName, minScore: minScore, variableName: variableName)
         } else if shapeName.contains("Pacman") {
-            return pacmanGen(name: shapeName, minScore: minScore)
+            return JsonIOCodeGen.pacmanGen(name: shapeName, minScore: minScore, variableName: variableName)
         } else if shapeName.contains("Outer") {
-            return outerGen(shapeName: shapeName, minScore: minScore)
+            return JsonIOCodeGen.outerGen(shapeName: shapeName, minScore: minScore)
         } else if shapeName.contains("Special") {
-            return specialGen(shapeName: shapeName, minScore: minScore)
+            return JsonIOCodeGen.specialGen(shapeName: shapeName, minScore: minScore)
         }
         switch shapeName {
         case "Special8703":

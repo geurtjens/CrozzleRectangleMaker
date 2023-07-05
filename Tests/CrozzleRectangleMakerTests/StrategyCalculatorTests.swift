@@ -9,6 +9,11 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class StrategyCalculatorTests: XCTestCase {
 
+    
+    func test_gamesThatHaventWonYet() async {
+        await StrategyCalculator.gamesThatHaventWonYet()
+    }
+    
     func test_shapesFor8612() {
         let game = GameList().getGame(gameId: 8612)!
         let queue = StrategyCalculator.shapesFor8612(queueLength: 5000, words: game.winningWords)

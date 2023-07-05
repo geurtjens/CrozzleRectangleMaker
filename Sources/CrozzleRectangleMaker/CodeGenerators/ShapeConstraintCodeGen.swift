@@ -56,7 +56,7 @@ public class ShapeConstraintCodeGen {
             let gameId = game.gameId
             
             code += "        case \(gameId):\n"
-            code += "            return Queue_\(gameId)(words: words, queueLength: queueLength, priorityFunction: priorityFunction, wordsToUse: wordsToUse)\n"
+            code += "            return Queue_\(gameId)(words: words, queueLength: queueLength, priorityFunction: priorityFunction)\n"
         }
         code += "        }"
         code += "    }"
@@ -169,9 +169,8 @@ public class ShapeConstraintCodeGen {
                 let scoresMin = StrategyCalculator.GetScoreMins(gameId: \(gameId))
         
                 let constraint = ConstraintsModel(
+                    words: words,
                     scoresMin: scoresMin,
-                    wordsMax: words.count,
-                    wordsToUse: wordsToUse,
                     queueLengthMax: queueLength,
                     priorityFunction: priorityFunction)
              
@@ -195,6 +194,7 @@ public class ShapeConstraintCodeGen {
                     scoreMin: \(scoreMin),
                     widthMax: \(widthMax),
                     heightMax: \(heightMax)))
+        
         """
         return (code,name)
     }
@@ -212,6 +212,7 @@ public class ShapeConstraintCodeGen {
                     scoreMin: \(scoreMin),
                     widthMax: \(widthMax),
                     heightMax: \(heightMax)))
+        
         """
         return (code, name)
     }
@@ -229,6 +230,7 @@ public class ShapeConstraintCodeGen {
                     scoreMin: \(scoreMin),
                     widthMax: \(widthMax),
                     heightMax: \(heightMax)))
+        
         """
         return (code, name)
     }
@@ -246,6 +248,7 @@ public class ShapeConstraintCodeGen {
                     scoreMin: \(scoreMin),
                     widthMax: \(widthMax),
                     heightMax: \(heightMax)))
+        
         """
         return (code, name)
     }
@@ -265,6 +268,7 @@ public class ShapeConstraintCodeGen {
                     scoreMin: \(scoreMin),
                     widthMax: \(widthMax),
                     heightMax: \(heightMax)))
+        
         """
         return (code, name)
     }
@@ -283,6 +287,7 @@ public class ShapeConstraintCodeGen {
                     scoreMin: \(scoreMin),
                     widthMax: \(widthMax),
                     heightMax: \(heightMax)))
+        
         """
         return (code, name)
     }
@@ -293,6 +298,7 @@ public class ShapeConstraintCodeGen {
         
         let code = """
             let \(name) = SpecialShapesCalculator.C\(specialId)(words: words)
+        
         """
         return (code, name)
     }
@@ -311,6 +317,7 @@ public class ShapeConstraintCodeGen {
                     scoreMin: \(scoreMin),
                     widthMax: \(widthMax),
                     heightMax: \(heightMax)))
+        
         """
         return (code, name)
     }
@@ -327,6 +334,7 @@ public class ShapeConstraintCodeGen {
                     scoreMin: \(scoreMin),
                     widthMax: \(widthMax),
                     heightMax: \(heightMax)))
+        
         """
         return (code, name)
     }
