@@ -7,5 +7,5 @@
 
 import Foundation
 public struct GlobalVariables {
-    public static var verbose = true
+    public static var verbose = false
 }

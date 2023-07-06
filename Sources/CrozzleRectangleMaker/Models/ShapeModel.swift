@@ -94,9 +94,9 @@ public struct ShapeModel {
         let (text, score) = ShapeCalculator.ToText(shape: self, words: words)
         
         if score == winningScore {
-            return "\nMATCHES HUMAN SCORE\nscore:\(score), winningScore:\(winningScore), gameId:\(gameId), width:\(width), height:\(height), words:\(self.placements.count), area:\(area), density:\(density)\n```\n" + text + "\n```\n"
+            return "\nMATCHES HUMAN SCORE - score:\(score), winningScore:\(winningScore), gameId:\(gameId), width:\(width), height:\(height), words:\(self.placements.count), area:\(area), density:\(density)\n```\n" + text + "\n```\n"
         } else if score > winningScore {
-            return "\nWINNING SCORE\nscore:\(score), winningScore:\(winningScore), gameId:\(gameId), width:\(width), height:\(height), words:\(self.placements.count), area:\(area), density:\(density)\n```\n" + text + "\n```\n"
+            return "\nWINNING SCORE - score:\(score), winningScore:\(winningScore), gameId:\(gameId), width:\(width), height:\(height), words:\(self.placements.count), area:\(area), density:\(density)\n```\n" + text + "\n```\n"
         } else {
             
             return "\nscore:\(score), winningScore:\(winningScore), gameId:\(gameId), width:\(width), height:\(height), words:\(self.placements.count), area:\(area), density:\(density)\n```\n" + text + "\n```\n"

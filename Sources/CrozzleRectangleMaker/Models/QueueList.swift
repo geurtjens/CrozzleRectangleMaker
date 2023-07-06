@@ -17,8 +17,9 @@ public struct QueueList {
     /// all possible queue sizes that a game can handle, max of `maxQueues`
     public var queues: [QueueModel] = []
         
+    public var maxScore: UInt16 = 0
     
-    public func status() -> (ShapeModel?, Int) {
+    public mutating func status() -> (ShapeModel?, Int) {
         var maxShape: ShapeModel? = nil
         
         var count = 0
@@ -43,10 +44,13 @@ public struct QueueList {
                 
             }
         }
-        print("\(count) total")
+        //print("\(count) total")
         if let maxShape = maxShape {
-            print("Max Score = \(maxShape.score)")
-            print(maxShape.ToStringExtended(words: self.constraints.words, gameId: game.gameId, winningScore: game.winningScore))
+            //print("Max Score = \(maxShape.score)")
+            if maxShape.score > self.maxScore {
+                print(maxShape.ToStringExtended(words: self.constraints.words, gameId: game.gameId, winningScore: game.winningScore))
+                self.maxScore = maxShape.score
+            }
         }
         return (maxShape, count)
     }
@@ -140,7 +144,9 @@ public struct QueueList {
                 let finishNano = DateTimeCalculator.now()
                 
                 let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
-                DateTimeCalculator.printDate("mergeTwoAsync(mergeIndex: \(i), withIndex: \(index)) produced \(shapes.count) shapes took \(duration) and finished at")
+                if GlobalVariables.verbose {
+                    DateTimeCalculator.printDate("mergeTwoAsync(mergeIndex: \(i), withIndex: \(index)) produced \(shapes.count) shapes took \(duration) and finished at")
+                }
             }
         }
     }
