@@ -87,9 +87,11 @@ public class StrategyCalculator {
         var i = 0
         var count = 0
         var previousCount = 0
-        print("")
-        print("")
-        print("GAME \(game.gameId) with high score of \(game.winningScore) using \(words.count) words")
+        if GlobalVariables.verbose {
+            print("")
+            print("")
+            print("GAME \(game.gameId) with high score of \(game.winningScore) using \(words.count) words")
+        }
         (maxShape, _) = queue.status()
         if let maxShape = maxShape {
             let text = maxShape.ToStringExtended(words: words, gameId: queue.game.gameId, winningScore: queue.game.winningScore)
@@ -146,9 +148,9 @@ public class StrategyCalculator {
             if count == previousCount {
                 //break
             } else {
-                
-                print("GAME \(game.gameId) with high score of \(game.winningScore)")
-                
+                if GlobalVariables.verbose {
+                    print("GAME \(game.gameId) with high score of \(game.winningScore)")
+                }
                 // it shows all tiny variations of the same shape being built.  Quite interesting to see really.
                 previousCount = count
             }

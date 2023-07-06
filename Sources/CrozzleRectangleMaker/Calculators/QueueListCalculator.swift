@@ -22,7 +22,7 @@ public class QueueListCalculator {
         let heightMax = game.maxHeight
         
         
-        //print(scoresMin[2])
+        
         let words2 = QueueListCalculator.get_2_word_shapes(
             words: words,
             scoreMin: constraints.scoresMin[2],
@@ -33,7 +33,7 @@ public class QueueListCalculator {
         
         result.add(shapes: await result.mergeWithItselfAsync(index:2))
         
-        //print(scoresMin[4])
+        
         let words4 = await QueueListCalculator.get_4_word_shapes(
             words: words,
             scoreMin: constraints.scoresMin[4],

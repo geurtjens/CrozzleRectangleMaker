@@ -31,7 +31,9 @@ public class RemoveDuplicatesCalculator {
         
         
         if flippedCount > 0 {
-            print("RemoveDuplicatesCalculator flipped \(flippedCount) shapes")
+            if GlobalVariables.verbose {
+                print("RemoveDuplicatesCalculator flipped \(flippedCount) shapes")
+            }
         }
         
         let (nonDuplicatedShapes, previousDuplicateCount) = findDuplicates(shapes: flippedShapes)

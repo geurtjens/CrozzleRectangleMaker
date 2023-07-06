@@ -26,7 +26,9 @@ public class ShapeCalculator {
         
         if newShapes.count > 0 {
             let wordCount = newShapes[0].placements.count
-            print("\(wordCount) word queue has \(oldShapes.count), adding \(noDuplicatesOfShapesWithCorrectScores.count) after taking out \(duplicatesOfShapesWithCorrectScores) duplicates, once merged encountered \(duplicateCount) duplicates, so \(noDuplicatesOfShapesWithCorrectScores.count - duplicateCount) where new")
+            if GlobalVariables.verbose {
+                print("\(wordCount) word queue has \(oldShapes.count), adding \(noDuplicatesOfShapesWithCorrectScores.count) after taking out \(duplicatesOfShapesWithCorrectScores) duplicates, once merged encountered \(duplicateCount) duplicates, so \(noDuplicatesOfShapesWithCorrectScores.count - duplicateCount) where new")
+            }
         }
         switch (constraints.priorityFunction) {
         case .score_area:

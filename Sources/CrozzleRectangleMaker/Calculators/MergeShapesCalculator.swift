@@ -17,26 +17,35 @@ public class MergeShapesCalculator {
             let index = shapeAndSelectedPosition[i].1
 
             if currentShape.placements.count < mergeShape.placements.count {
-                print(currentShape.ToString(words: words))
-                print("Merging with")
-                print(mergeShape.ToString(words: words))
+                if GlobalVariables.verbose {
+                    print(currentShape.ToString(words: words))
+                    print("Merging with")
+                
+                    print(mergeShape.ToString(words: words))
+                }
                 results = Merge_Two_Shapes(smaller: [currentShape], larger: [mergeShape], words: words, widthMax: widthMax, heightMax: heightMax)
             } else {
-                
-                print("Merging with")
-                print(mergeShape.ToString(words: words))
+                if GlobalVariables.verbose {
+                    print("Merging with")
+                    print(mergeShape.ToString(words: words))
+                }
                 results = Merge_Two_Shapes(smaller: [mergeShape], larger: [currentShape], words: words, widthMax: widthMax, heightMax: heightMax)
                 
             }
-            
-            print("Found \(results.count) results")
+            if GlobalVariables.verbose {
+                print("Found \(results.count) results")
+            }
             if results.count == 1 {
                 currentShape = results[0]
             } else {
-                print("Out of \(results.count) shapes produced we choose \(index)")
+                if GlobalVariables.verbose {
+                    print("Out of \(results.count) shapes produced we choose \(index)")
+                }
                 currentShape = results[index]
             }
-            print(currentShape.ToString(words: words))
+            if GlobalVariables.verbose {
+                print(currentShape.ToString(words: words))
+            }
         }
         return currentShape
     }

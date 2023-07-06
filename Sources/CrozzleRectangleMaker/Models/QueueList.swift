@@ -36,7 +36,9 @@ public struct QueueList {
                         minScore = item.score
                     }
                 }
-                print("\(queues[i].shapes.count) shapes with \(i) words and scores from \(minScore) to \(maxScore)")
+                if GlobalVariables.verbose {
+                    print("\(queues[i].shapes.count) shapes with \(i) words and scores from \(minScore) to \(maxScore)")
+                }
                 count += queues[i].shapes.count
                 
             }

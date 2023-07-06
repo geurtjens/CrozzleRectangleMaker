@@ -178,7 +178,7 @@ public class GridCalculator {
         
         var words: [String] = []
         for line in grid {
-            //print(line)
+            
             var previous = line[0]
             var current = previous
             var future = previous
@@ -188,7 +188,7 @@ public class GridCalculator {
                 previous = line[i - 1]
                 current = line[i]
                 future = line[i + 1]
-                //print("\"\(previous)\(current)\(future)\"")
+                
                 if isWord {
                     if future == " " {
                         word += String(current)
