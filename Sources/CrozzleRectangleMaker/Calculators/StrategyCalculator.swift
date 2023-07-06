@@ -30,9 +30,9 @@ public class StrategyCalculator {
                 let queueList = await StrategyCalculator.TryMergeWithLowerOnly(game: game, words: words, queueLength: 5_000)
                 result += "\n"
                 let shape = queueList.getBestShapeByScore()
-                if shape != nil {
-                    result += shape?.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore) ?? ""
-                }
+//                if shape != nil {
+//                    result += shape?.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore) ?? ""
+//                }
             }
         }
     }
@@ -93,10 +93,10 @@ public class StrategyCalculator {
             print("GAME \(game.gameId) with high score of \(game.winningScore) using \(words.count) words")
         }
         (maxShape, _) = queue.status()
-        if let maxShape = maxShape {
-            let text = maxShape.ToStringExtended(words: words, gameId: queue.game.gameId, winningScore: queue.game.winningScore)
-            print(text)
-        }
+//        if let maxShape = maxShape {
+//            let text = maxShape.ToStringExtended(words: words, gameId: queue.game.gameId, winningScore: queue.game.winningScore)
+//            print(text)
+//        }
         
         for _ in 0..<repeatTimes {
     //        let mergeWithItselfStartNano = DateTimeCalculator.now()
@@ -106,10 +106,10 @@ public class StrategyCalculator {
     //        let mergeWithItselfDuration = DateTimeCalculator.duration(start: mergeWithItselfStartNano, finish: mergeWithItselfFinishNano)
     //        DateTimeCalculator.printDate("mergeWithItselfAll() took \(mergeWithItselfDuration) and finished at")
     //        (maxShape, _) = queue.status()
-            if let maxShape = maxShape {
-                let text = maxShape.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore)
-                print(text)
-            }
+//            if let maxShape = maxShape {
+//                let text = maxShape.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore)
+//                print(text)
+//            }
     //        for i in 5..<30 {
     //            queue.queues[i].search_TopScorePercent = 2.0
     //        }
