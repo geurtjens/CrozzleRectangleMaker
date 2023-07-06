@@ -22,18 +22,18 @@ public class StrategyCalculator {
         
         
         let gameList = GameList()
-        var result = ""
+        //var result = ""
         for game in gameList.games {
-            if gamesWon.contains(game.gameId) == false {
+            //if gamesWon.contains(game.gameId) == false {
                 let words = game.winningWords
                 
                 let queueList = await StrategyCalculator.TryMergeWithLowerOnly(game: game, words: words, queueLength: 5_000)
-                result += "\n"
-                let shape = queueList.getBestShapeByScore()
+                //result += "\n"
+                //let shape = queueList.getBestShapeByScore()
 //                if shape != nil {
 //                    result += shape?.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore) ?? ""
 //                }
-            }
+            //}
         }
     }
     
