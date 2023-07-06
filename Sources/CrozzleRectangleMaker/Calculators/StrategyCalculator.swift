@@ -126,11 +126,11 @@ public class StrategyCalculator {
                     DateTimeCalculator.printDate("mergeEverythingBelowWith(index: \(i)) took \(duration) and finished at")
                     (maxShape, _) = queue.status()
                     if let bestShape = queue.getBestShape() {
-                        if bestShape.score > maxScore {
-                            maxScore = bestShape.score
-                            print(bestShape.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore))
-                            
-                        }
+//                        if bestShape.score > maxScore {
+//                            maxScore = bestShape.score
+//                            print(bestShape.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore))
+//
+//                        }
                         if maxScore >= highScore {
                             print("High Score Reached")
                             let finishNano = DateTimeCalculator.now()

@@ -91,15 +91,21 @@ public struct ShapeModel {
     }
     
     public func ToStringExtended(words: [String], gameId: Int, winningScore: Int) -> String {
-        let (text, score) = ShapeCalculator.ToText(shape: self, words: words)
+        
+        var shape = self
+        if shape.width < shape.height {
+            shape = shape.Flip()
+        }
+        
+        let (text, score) = ShapeCalculator.ToText(shape: shape, words: words)
         
         if score == winningScore {
-            return "\nMATCHES HUMAN SCORE - score:\(score), winningScore:\(winningScore), gameId:\(gameId), width:\(width), height:\(height), words:\(self.placements.count), area:\(area), density:\(density)\n```\n" + text + "\n```\n"
+            return "\nMATCHES HUMAN SCORE - score:\(score), winningScore:\(winningScore), gameId:\(gameId), width:\(shape.width), height:\(shape.height), words:\(shape.placements.count), area:\(shape.area), density:\(shape.density)\n```\n" + text + "\n```\n"
         } else if score > winningScore {
-            return "\nWINNING SCORE - score:\(score), winningScore:\(winningScore), gameId:\(gameId), width:\(width), height:\(height), words:\(self.placements.count), area:\(area), density:\(density)\n```\n" + text + "\n```\n"
+            return "\nWINNING SCORE - score:\(score), winningScore:\(winningScore), gameId:\(gameId), width:\(shape.width), height:\(shape.height), words:\(shape.placements.count), area:\(shape.area), density:\(shape.density)\n```\n" + text + "\n```\n"
         } else {
             
-            return "\nscore:\(score), winningScore:\(winningScore), gameId:\(gameId), width:\(width), height:\(height), words:\(self.placements.count), area:\(area), density:\(density)\n```\n" + text + "\n```\n"
+            return "\nscore:\(score), winningScore:\(winningScore), gameId:\(gameId), width:\(shape.width), height:\(shape.height), words:\(shape.placements.count), area:\(shape.area), density:\(shape.density)\n```\n" + text + "\n```\n"
         }
     }
     
