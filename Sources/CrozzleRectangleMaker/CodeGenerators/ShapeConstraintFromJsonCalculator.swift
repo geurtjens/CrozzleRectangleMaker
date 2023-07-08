@@ -101,6 +101,20 @@ public class ShapeConstraintFromJsonCalculator {
     
     
     
+    public static func validateWidthHeight(shapes: [JsonShapeModel]) -> Bool {
+        for shape in shapes {
+            let grid = shape.grid
+            
+            let height = grid.count
+            let width = grid[0].count
+            
+            if shape.size.x != width || shape.size.y != height {
+                return false
+            }
+        }
+        return true
+    }
+    
     public static func getConstraintsShapeModels() -> [(Int,[ShapeConstraintModel])] {
         let gameList = GameList()
         
@@ -108,40 +122,20 @@ public class ShapeConstraintFromJsonCalculator {
         
         for game in gameList.games {
             
-            let proposedShapes = JsonIOCalculator.load(gameId: game.gameId)
-            let jsonShapes = JsonIOCalculator.removeShapesThatAreNotAddingWords(jsonShapes: proposedShapes)
+            let proposedShapes: [JsonShapeModel] = JsonIOCalculator.load(gameId: game.gameId)
+            
+            /// they are all valid so we dont have to do this calculation at all
+            //let validated = validateWidthHeight(shapes: proposedShapes)
+            
+            
+            let jsonShapes: [JsonShapeModel] = JsonIOCalculator.removeShapesThatAreNotAddingWords(jsonShapes: proposedShapes)
             
             
             
-            var constraintShapes = loadConstraintShapes(jsonShapes: jsonShapes)
-            
-            
-            
+            var constraintShapes: [ShapeConstraintModel] = loadConstraintShapes(jsonShapes: jsonShapes)
             constraintShapes.sort() { $0.name < $1.name}
             
-            let groupByName = Dictionary(grouping: constraintShapes) { $0.name }
-            
-            var summary: [ShapeConstraintModel] = []
-            for dictionaryItem in groupByName {
-                var scoreMin = 9999
-                var widthMax = 0
-                var heightMax = 0
-                for shape in dictionaryItem.value {
-                    if shape.scoreMin < scoreMin {
-                        scoreMin = shape.scoreMin
-                    }
-                    if shape.heightMax > heightMax {
-                        heightMax = shape.heightMax
-                    }
-                    if shape.widthMax > widthMax {
-                        widthMax = shape.widthMax
-                    }
-                }
-                let summaryItem = ShapeConstraintModel(name:  dictionaryItem.key, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
-                summary.append(summaryItem)
-            }
-            
-            summary.sort() { $0.name < $1.name}
+            let summary = calculateSummary(constraintShapes: constraintShapes)
             result.append((game.gameId,summary))
             
             
@@ -151,7 +145,32 @@ public class ShapeConstraintFromJsonCalculator {
         return result
     }
     
-    
+    public static func calculateSummary(constraintShapes: [ShapeConstraintModel]) -> [ShapeConstraintModel] {
+        let groupByName = Dictionary(grouping: constraintShapes) { $0.name }
+        
+        var summary: [ShapeConstraintModel] = []
+        for dictionaryItem in groupByName {
+            var scoreMin = 9999
+            var widthMax = 0
+            var heightMax = 0
+            for shape in dictionaryItem.value {
+                if shape.scoreMin < scoreMin {
+                    scoreMin = shape.scoreMin
+                }
+                if shape.heightMax > heightMax {
+                    heightMax = shape.heightMax
+                }
+                if shape.widthMax > widthMax {
+                    widthMax = shape.widthMax
+                }
+            }
+            let summaryItem = ShapeConstraintModel(name:  dictionaryItem.key, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            summary.append(summaryItem)
+        }
+        
+        summary.sort() { $0.name < $1.name}
+        return summary
+    }
     
     public static func loadConstraintShapes(jsonShapes: [JsonShapeModel]) -> [ShapeConstraintModel] {
         

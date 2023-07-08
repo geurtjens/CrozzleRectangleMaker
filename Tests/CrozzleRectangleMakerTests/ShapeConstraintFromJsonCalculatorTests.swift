@@ -9,7 +9,7 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class ShapeConstraintFromJsonCalculatorTests: XCTestCase {
 
-    func test_DoIt() {
+    func test_executeCode() {
         let code = ShapeConstraintFromJsonCalculator.executeCode()
         print(code)
     }

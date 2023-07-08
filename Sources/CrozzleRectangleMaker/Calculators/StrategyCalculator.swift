@@ -10,7 +10,8 @@ public class StrategyCalculator {
     
     
     public static func gamesThatHaventWonYet() async {
-        let gamesWon = [8705,8712,
+        /// We added extra 8612 and 8710`
+        let gamesWon = [8612,   8705,8710,8712,
                         8803,8805,8808,8809,8811,8812,
                         8902,8903,8904,8906,8910,8911,8912,
                         9004,9005,9007,9008,9009,9012,
