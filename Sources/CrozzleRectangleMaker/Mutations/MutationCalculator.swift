@@ -41,7 +41,7 @@ public class MutationCalculator {
                 resultsForGame += gridTexts
             }
             
-            resultsForGame.sort()
+            resultsForGame.sort() { $0 > $1 }
             
             var textResult = ""
             for i in 0..<resultsForGame.count {
