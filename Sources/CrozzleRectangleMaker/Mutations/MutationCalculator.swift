@@ -70,7 +70,7 @@ public class MutationCalculator {
             let foundWordSequences = LockBreakerCalculator.execute(grid: grid, words: words)
             
             for wordSequence in foundWordSequences {
-                if matchingWordSequence(originalSequence: originalWordSequence, wordSequence: wordSequence) == false {
+                //if matchingWordSequence(originalSequence: originalWordSequence, wordSequence: wordSequence) == false {
                     if shape.height < shape.width {
                         let shapeText = shape.ToMarkFormat(words: wordSequence)
                         result.append(shapeText)
@@ -78,7 +78,7 @@ public class MutationCalculator {
                         let shapeText = shape.Flip().ToMarkFormat(words: wordSequence)
                         result.append(shapeText)
                     }
-                }
+               // }
             }
         }
         return result
