@@ -59,9 +59,9 @@ public class MutationCalculator {
     public static func executeGrid(grid: [String], words: [String]) -> [String] {
         var result: [String] = []
         
-        let (wordSequence, _) = FindPathAndInterlocksCalculator.execute(grid: grid)
+        let (originalWordSequence, _) = FindPathAndInterlocksCalculator.execute(grid: grid)
         
-        if let shape = ShapeCalculator.toShape(fromGrid: grid, words: wordSequence) {
+        if let shape = ShapeCalculator.toShape(fromGrid: grid, words: originalWordSequence) {
             
             
             
@@ -70,16 +70,30 @@ public class MutationCalculator {
             let foundWordSequences = LockBreakerCalculator.execute(grid: grid, words: words)
             
             for wordSequence in foundWordSequences {
-                if shape.height < shape.width {
-                    let shapeText = shape.ToMarkFormat(words: wordSequence)
-                    result.append(shapeText)
-                } else {
-                    let shapeText = shape.Flip().ToMarkFormat(words: wordSequence)
-                    result.append(shapeText)
+                if matchingWordSequence(originalSequence: originalWordSequence, wordSequence: wordSequence) == false {
+                    if shape.height < shape.width {
+                        let shapeText = shape.ToMarkFormat(words: wordSequence)
+                        result.append(shapeText)
+                    } else {
+                        let shapeText = shape.Flip().ToMarkFormat(words: wordSequence)
+                        result.append(shapeText)
+                    }
                 }
-               
             }
         }
         return result
+    }
+    
+    public static func matchingWordSequence(originalSequence: [String], wordSequence: [String]) -> Bool {
+        if originalSequence.count != wordSequence.count {
+            return false
+        }
+        
+        for i in 0..<originalSequence.count {
+            if originalSequence[i] != wordSequence[i] {
+                return false
+            }
+        }
+        return true
     }
 }
