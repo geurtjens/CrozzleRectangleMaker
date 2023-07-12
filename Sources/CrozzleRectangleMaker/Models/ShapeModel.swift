@@ -97,7 +97,7 @@ public struct ShapeModel {
         
         var letterCount = 0
         for letter in compressed {
-            if letter >= "a" && letter <= "z" {
+            if letter != " " {
                 letterCount += 1
             }
         }
