@@ -9,6 +9,84 @@ import Foundation
 public class MutationCalculator {
     
     
+    public static func generateFiles() {
+        let gameIds = [
+            8702, 8703, 8705, 8803, 8804, 8805, 8812, 8902, 8908, 8910,
+            8911, 9001, 9002, 9003, 9008, 9009, 9010, 9012, 9101, 9103,
+            9106, 9110, 9111, 9209, 9302, 9304]
+
+
+        let values = MutationCalculator.execute()
+        
+        for i in 0..<values.count {
+            let value = values[i]
+            let gameId = gameIds[i]
+            
+            let scores = extractScores(text: value)
+            let scoresText = scoreSummaryText(scores: scores)
+            
+            
+            let result = scoresText + "\n" + value
+            
+            saveGame(gameId: gameId, text: result)
+        }
+    }
+    
+    public static func saveGame(gameId: Int, text: String) {
+        let url = getDocumentsDirectory().appendingPathComponent("mutationsFor_\(gameId).txt")
+        
+        do {
+            try text.write(to: url, atomically: true, encoding: .utf8)
+                    
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    public static func scoreSummaryText(scores: [Int]) -> String {
+        
+        
+        let scoresGroupBy = Dictionary(grouping: scores) {$0}
+        
+        var list: [(Int,Int)] = []
+        for item in scoresGroupBy {
+            list.append((item.0,item.1.count))
+        }
+        
+        list.sort() { $0.0 > $1.0}
+
+        var result = ""
+        for item in list {
+            
+            result += "\(item.0) = \(item.1)\n"
+        }
+        
+        return result
+        
+    }
+    
+    public static func extractScores(text: String) -> [Int] {
+        var result: [Int] = []
+        let lines = text.split(separator: "\n")
+        for line in lines {
+            if line.contains(" score=") {
+                let spaceArray = line.split(separator: " ")
+                let scoreText = spaceArray[1].replacingOccurrences(of: "score=", with: "")
+                
+                result.append(Int(scoreText) ?? 0)
+                
+            }
+        }
+        return result
+    }
+    
+    public static func getDocumentsDirectory() -> URL {
+        // find all possible documents directories for this user
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+
+        // just send back the first one, which ought to be the only one
+        return paths[0]
+    }
     
     // We will return a collection of grids for each of marks lists
     public static func execute() -> [String] {
