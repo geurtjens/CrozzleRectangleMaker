@@ -11,7 +11,7 @@ public class MutationCalculator {
     
     
     // We will return a collection of grids for each of marks lists
-    public static func execute() -> [[String]] {
+    public static func execute() -> [String] {
         let gameList = GameList()
         let inputDirectory = "/Users/michaelgeurtjens/Downloads/mintarget/"
         //let outputdirectory = "/Users/michaelgeurtjens/Downloads/mintarget/result/"
@@ -23,7 +23,7 @@ public class MutationCalculator {
             8911, 9001, 9002, 9003, 9008, 9009, 9010, 9012, 9101, 9103,
             9106, 9110, 9111, 9209, 9302, 9304] //, 9401, 9605]
         
-        var result: [[String]] = []
+        var result: [String] = []
         for gameId in gameIds {
             
             let game = gameList.getGame(gameId: gameId)!
@@ -51,7 +51,7 @@ public class MutationCalculator {
                 
             }
             
-            result.append(resultsForGame)
+            result.append(textResult)
         }
         return result
     }
