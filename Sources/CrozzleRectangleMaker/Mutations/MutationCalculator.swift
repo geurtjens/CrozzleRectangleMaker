@@ -71,10 +71,10 @@ public class MutationCalculator {
             
             for wordSequence in foundWordSequences {
                 if shape.height < shape.width {
-                    let shapeText = shape.ToString(words: wordSequence)
+                    let shapeText = shape.ToMarkFormat(words: wordSequence)
                     result.append(shapeText)
                 } else {
-                    let shapeText = shape.Flip().ToString(words: wordSequence)
+                    let shapeText = shape.Flip().ToMarkFormat(words: wordSequence)
                     result.append(shapeText)
                 }
                

@@ -90,6 +90,15 @@ public struct ShapeModel {
         return "score:\(score), width:\(width), height:\(height), words:\(self.placements.count), area:\(area), density:\(density)\n`\n" + text + "\n`\n"
     }
     
+    public func ToMarkFormat(words: [String]) -> String {
+        let (text, score) = ShapeCalculator.ToText(shape: self, words: words)
+        
+        let compressed = GridCalculator.markAmabileFormat(text: text)
+        
+        return "score:\(score), width:\(width-2), height:\(height-2), words:\(self.placements.count) `\n" + compressed + "\n`\n"
+    }
+    
+    
     public func ToStringExtended(words: [String], gameId: Int, winningScore: Int) -> String {
         
         var shape = self
