@@ -47,7 +47,7 @@ public class MutationCalculator {
             for i in 0..<resultsForGame.count {
                 let gridText = resultsForGame[i]
                 
-                textResult += "\(i). gameId: \(gameId), maxScore:\(game.winningScore), \(gridText)\n"
+                textResult += "count=(i). \(gridText)\n"
                 
             }
             
