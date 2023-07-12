@@ -95,7 +95,14 @@ public struct ShapeModel {
         
         let compressed = GridCalculator.markAmabileFormat(text: text)
         
-        return "score:\(score), width:\(width-2), height:\(height-2), words:\(self.placements.count) `\n" + compressed + "\n`\n"
+        var letterCount = 0
+        for letter in compressed {
+            if letter >= "a" && letter <= "z" {
+                letterCount += 1
+            }
+        }
+        
+        return "score=\(score) wordCount:\(self.placements.count) charCount=\(letterCount)\n------------------------\n" + compressed + "\n------------------------\n\n"
     }
     
     
