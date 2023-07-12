@@ -12,7 +12,7 @@ public class MutationCalculatorCodeGen {
         let gameList = GameList()
         var result = ""
         for game in gameList.games {
-            result += code(grid:game.winningGame, gameId: game.gameId)
+            result += code(grid:game.winningGame, gameId: String(game.gameId))
             
         }
         
@@ -26,7 +26,7 @@ public class MutationCalculatorCodeGen {
     }
     
     
-    public static func code(grid: [String], gameId: Int) -> String {
+    public static func code(grid: [String], gameId: String) -> String {
         let (wordSequence, interlocks) = FindPathAndInterlocksCalculator.execute(grid: grid)
         
         let codeB = codeWords(words: wordSequence, gameId: gameId)
@@ -37,30 +37,31 @@ public class MutationCalculatorCodeGen {
     }
     
     public static func codeExecutor() -> String {
-        var code = ""
+        let code = """
         
-        code += "    public static func execute() {\n"
-        code += "        let gameList = GameList()\n"
-        code += "\n"
-        code += "        for sourceGame in gameList.games {\n"
-        code += "\n"
-        code += "            let wordSequence = getWordSequence(gameId: sourceGame.gameId)\n"
-        code += "            let (placements, _) = PlacementCalculator.fromTextToPlacements(grid: sourceGame.winningGame, words: wordSequence)\n"
-        code += "            let shape = placements.toShape(score: 0)\n"
-        code += "            var gameCount = 0\n"
-        code += "\n"
-        code += "            for game in gameList.games {\n"
-        code += "                let result = getMutation(gameId: sourceGame.gameId, words: game.words)\n"
-        code += "                for wordList in result {\n"
-        code += "                    let (text, score) = ShapeCalculator.ToText(shape: shape, words: wordList)\n"
-        code += "                    if text != game.winningText() && score == game.winningScore && sourceGame.gameId == game.gameId {\n"
-        code += "                        gameCount += 1\n"
-        code += "                        print(\"\\(gameCount). gameId:\\(game.gameId), score:\\(score), humanScore:\\(game.winningScore)\\n\\(text)\\n\")\n"
-        code += "                    }\n"
-        code += "                }\n"
-        code += "            }\n"
-        code += "        }\n"
-        code += "    }\n\n\n"
+            public static func execute() {
+                let gameList = GameList()
+        
+                for sourceGame in gameList.games {
+        
+                    let wordSequence = getWordSequence(gameId: sourceGame.gameId)
+                    let (placements, _) = PlacementCalculator.fromTextToPlacements(grid: sourceGame.winningGame, words: wordSequence)
+                    let shape = placements.toShape(score: 0)
+                    var gameCount = 0
+        
+                    for game in gameList.games {
+                        let result = getMutation(gameId: sourceGame.gameId, words: game.words)
+                        for wordList in result {
+                            let (text, score) = ShapeCalculator.ToText(shape: shape, words: wordList)
+                            if text != game.winningText() && score == game.winningScore && sourceGame.gameId == game.gameId {
+                                gameCount += 1
+                                print(\"\\(gameCount). gameId:\\(game.gameId), score:\\(score), humanScore:\\(game.winningScore)\\n\\(text)\\n\")
+                            }
+                        }
+                    }
+                }
+            }
+        """
         return code
        
     }
@@ -75,6 +76,25 @@ public class MutationCalculatorCodeGen {
         
         var code = ""
         code += "    public static func getWordSequence(gameId: Int) -> [String] {\n\n"
+        code += "        switch gameId {\n"
+        code += result
+        code += "        default:\n"
+        code += "            return []\n"
+        code += "        }\n"
+        code += "    }\n\n"
+        
+        return code
+    }
+    
+    public static func codeWordSequenceSwitch(names: [String]) -> String {
+        var result = ""
+        for name in names {
+            result += "        case \"\(name)\":\n"
+            result += "            return MutationCalculator.wordSequence_\(name)()\n"
+        }
+        
+        var code = ""
+        code += "    public static func getWordSequence(gameId: String) -> [String] {\n\n"
         code += "        switch gameId {\n"
         code += result
         code += "        default:\n"
@@ -105,7 +125,27 @@ public class MutationCalculatorCodeGen {
         return code
     }
     
-    public static func codeWords(words: [String], gameId: Int) -> String {
+    
+    public static func codeMutationSwitch(names: [String]) -> String {
+        
+        var result = ""
+        for name in names {
+            result += "        case \"\(name)\":\n"
+            result += "            return MutationCalculator.mutation_\(name)(words: words)\n"
+        }
+        
+        var code = ""
+        code += "    public static func getMutation(gameId: String, words: [String]) -> [[String]] {\n\n"
+        code += "        switch gameId {\n"
+        code += result
+        code += "        default:\n"
+        code += "            return []\n"
+        code += "        }\n"
+        code += "    }\n\n"
+        
+        return code
+    }
+    public static func codeWords(words: [String], gameId: String) -> String {
         
         var codeHeader = ""
         codeHeader += "    public static func wordSequence_\(gameId)() -> [String] {\n"
@@ -135,7 +175,7 @@ public class MutationCalculatorCodeGen {
         }
         return result
     }
-    public static func code(wordSequence: [String], interlocks:[[InterlockModel]], gameId: Int) -> String {
+    public static func code(wordSequence: [String], interlocks:[[InterlockModel]], gameId: String) -> String {
         
        
         

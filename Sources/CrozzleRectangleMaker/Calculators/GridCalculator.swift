@@ -49,6 +49,28 @@ public class GridCalculator {
         
         
     }
+    
+    
+    public static func markAmabileFormat(text: String) -> String {
+        
+        let textChanged = text.lowercased().replacingOccurrences(of: ".", with: "#")
+        
+        let grid = textChanged.split(separator:"\n")
+        var result = ""
+        for y in 1..<(grid.count - 1) {
+            if result != "" {
+                result += "\n"
+            }
+            let line = grid[y]
+            var newLine = ""
+            for x in 1..<(line.count-1) {
+                newLine += String(line[x])
+            }
+            result += newLine
+        }
+        return result
+    }
+    
     public static func rotate(grid: [String]) -> [String] {
         
         if grid.count == 0 {

@@ -43,8 +43,30 @@ public class ShapeCalculator {
         return noDuplicates
     }
     
+    public static func toShapes(fromGrids grids: [[String]], words:[String]) -> [ShapeModel] {
+        var result: [ShapeModel] = []
+        for grid in grids {
+            if let shape = toShape(fromGrid: grid, words: words) {
+                result.append(shape)
+            }
+        }
+        return result
+    }
     
     
+    public static func toShape(fromGrid grid: [String], words:[String]) -> ShapeModel? {
+        let (placements, isValid) = PlacementCalculator.fromTextToPlacements(grid: grid, words: words)
+        
+        if isValid == false {
+            return nil
+        }
+        
+        let placementsShape = placements.toShape(score: 0)
+        
+        let (shape,_) = ShapeCalculator.ToValidShape(shape: placementsShape, words: words)
+        
+        return shape
+    }
     
     /// conveniently convert all clusters to shapes
     public static func toShape(fromClusters clusters: [ClusterModel]) -> [ShapeModel] {

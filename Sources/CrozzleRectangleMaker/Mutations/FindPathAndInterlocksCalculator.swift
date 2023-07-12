@@ -57,9 +57,7 @@ public class FindPathAndInterlocksCalculator {
             todoList = futureToDo
             futureToDo = []
         }
-        
         return (spentWords, result)
-        
     }
     
     
@@ -79,20 +77,6 @@ public class FindPathAndInterlocksCalculator {
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     public static func getWord(interlock: InterlockModel, isHorizontal: Bool) -> String {
         if isHorizontal {
             return interlock.horizontalWord
@@ -100,7 +84,4 @@ public class FindPathAndInterlocksCalculator {
             return interlock.verticalWord
         }
     }
-  
-    
-    
 }

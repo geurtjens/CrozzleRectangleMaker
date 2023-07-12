@@ -17,9 +17,15 @@ public struct InterlockModel : Hashable {
     
     /// word found in horizontal direction
     public let horizontalWord: String
+
+    /// this is the position we find the word in the word sequence
+    public var horizontalWordId: Int = 0
     
     /// word found in vertical direction
     public let verticalWord: String
+    
+    /// this is the position we find the word in the word sequence
+    public var verticalWordId: Int = 0
     
     /// letter in horizontal word that is interlocked
     public let horizontalPos: Int
