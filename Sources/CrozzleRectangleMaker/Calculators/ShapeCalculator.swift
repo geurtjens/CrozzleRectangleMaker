@@ -55,7 +55,7 @@ public class ShapeCalculator {
     
     
     public static func toShape(fromGrid grid: [String], words:[String]) -> ShapeModel? {
-        let (placements, isValid) = PlacementCalculator.fromTextToPlacements(grid: grid, words: words)
+        var (placements, isValid) = PlacementCalculator.fromTextToPlacements(grid: grid, words: words)
         
         if isValid == false {
             return nil
@@ -66,6 +66,17 @@ public class ShapeCalculator {
         let (shape,_) = ShapeCalculator.ToValidShape(shape: placementsShape, words: words)
         
         return shape
+    }
+    
+    public static func toShape(fromPlacements: [PlacementModel], words: [String]) -> ShapeModel {
+        let shape = fromPlacements.toShape(score: 0)
+        
+        let (score, _) = ShapeCalculator.getScoreAndText(shape: shape, words: words)
+        
+        let result = fromPlacements.toShape(score: score)
+        
+        return result
+        
     }
     
     /// conveniently convert all clusters to shapes

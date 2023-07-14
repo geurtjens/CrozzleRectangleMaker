@@ -8,68 +8,130 @@
 import Foundation
 public class ConvertMarksFilesToShapes {
     
-    public static func code(grids:[[String]], name: String) -> String {
+//    public static func code(grids:[[String]], name: String) -> String {
+//
+//        var names: [String] = []
+//        var result = ""
+//        for i in 0..<grids.count {
+//            let grid = grids[i]
+//            let gameId = name + "_" + String(i)
+//
+//            names.append(gameId)
+//            result += MutationCalculatorCodeGen.code(grid:grid, gameId: gameId)
+//
+//        }
+//
+//        let executor = "" //codeExecutor()
+//        result += MutationCalculatorCodeGen.codeWordSequenceSwitch(names: names)
+//        result += MutationCalculatorCodeGen.codeMutationSwitch(names: names)
+//
+//        result = "import Foundation\npublic class MutationCalculator {\n\n\(executor)\n\n\(result)\n}"
+//
+//        return result
+//    }
+    
+//    public static func generateCode(gameId: Int, directory: String, words: [String]) -> String {
+//        //let path = "\(directory)\(gameId).txt"
+//        let grids = extractUniqueGridsFromFile(inputDirectory: directory, gameId: gameId, words: words)
+//        let code = code(grids: grids, name: String(gameId))
+//        return code
+//    }
+    
+    public static func extractGridsFromFiles(inputDirectory: String, gameIds: [Int]) -> [[[String]]] {
         
-        var names: [String] = []
-        var result = ""
-        for i in 0..<grids.count {
-            let grid = grids[i]
-            let gameId = name + "_" + String(i)
-            
-            names.append(gameId)
-            result += MutationCalculatorCodeGen.code(grid:grid, gameId: gameId)
-            
+        var result: [[[String]]] = []
+        for gameId in gameIds {
+                
+            let path = "\(inputDirectory)\(gameId).txt"
+                
+            /// Read a single file containing all of marks solutions for a particular game
+            let gridSolutionFileContents = loadFile(path: path )
+            let grids = extractGrids(gridSolutionFileContents: gridSolutionFileContents)
+            let gridsInLandscape = flipGridsIfRequired(grids: grids)
+            result.append(gridsInLandscape)
+            print("\(gridsInLandscape.count) read from '\(path)'")
         }
-        
-        let executor = "" //codeExecutor()
-        result += MutationCalculatorCodeGen.codeWordSequenceSwitch(names: names)
-        result += MutationCalculatorCodeGen.codeMutationSwitch(names: names)
-        
-        result = "import Foundation\npublic class MutationCalculator {\n\n\(executor)\n\n\(result)\n}"
-        
         return result
     }
     
-    public static func generateCode(gameId: Int, directory: String, words: [String]) -> String {
-        //let path = "\(directory)\(gameId).txt"
-        let grids = execute(inputDirectory: directory, gameId: gameId, words: words)
-        let code = code(grids: grids, name: String(gameId))
-        return code
+    public static func removeDuplicatesFromGrids(gameIds: [Int], gridsCollection: [[[String]]]) -> [[[String]]] {
+        
+        var result:[[[String]]] = []
+        for i in 0..<gridsCollection.count {
+            
+            let duplicatesRemoved = ConvertMarksFilesToShapes.removeDuplicates(grids: gridsCollection[i])
+            
+            let duplicateCount = gridsCollection[i].count - duplicatesRemoved.count
+            
+            let gameId = gameIds[i]
+            
+            print("* \(gameId) created \(duplicatesRemoved.count) unique shapes, removing \(duplicateCount) duplicates.")
+            
+            result.append(duplicatesRemoved)
+            
+        }
+        return result
     }
     
-    public static func execute(inputDirectory: String, gameId: Int, words: [String]) -> [[String]] {
+    public static func convertMarkFormatToMichaelFormatAll(gridsArray: [[[String]]], gameIds:[Int]) -> [[[String]]] {
         
-        let path = "\(inputDirectory)\(gameId).txt"
-        
-        let gridsInDifferentOrientations = extractGrids(path: path)
-        let unboarderedGrids = flipGridsIfRequired(grids: gridsInDifferentOrientations)
-        
-        // lets add the extra spaces at the end
-        let unvalidatedGrids = createBoarders(grids: unboarderedGrids, words: words)
-        
-        let grids = getValidGrids(grids: unvalidatedGrids, words: words)
-        
-        
-        //let duplicates1 = removeDuplicates(grids: grids)
-        
-        
-        
-        
-        // Get the underlying pattern of the grid so we can remove duplicates
-        //let gridAndPattern = getGridAndPattern(grids: grids)
-        
-        let duplicatesRemoved = removeDuplicates(grids: grids)
-        
-        let duplicateCount = grids.count - duplicatesRemoved.count
-        
-        print("* \(gameId) created \(duplicatesRemoved.count) unique shapes, removing \(duplicateCount) duplicates.")
-        
-        //let shapes = ShapeCalculator.toShapes(fromGrids: duplicatesRemoved, words: words)
-        
-        
-        
-        return duplicatesRemoved
+        var result: [[[String]]] = []
+        for i in 0..<gameIds.count {
+            /// We first convert to Michaels shapes and then we can concatinate all of them and remove duplicates from them
+            let gameId = gameIds[i]
+            let grids = gridsArray[i]
+            
+            if let game = GameList().getGame(gameId: gameId) {
+                let wordsInGame = game.words
+                let michaelsGrids = convertMarkFormatToMichaelFormat(grids: grids, wordsInGame: wordsInGame)
+                result.append(michaelsGrids)
+            } else {
+                result.append([])
+            }
+            print("\(gameId) converted from Marks format to Michaels format")
+        }
+        return result
     }
+    
+    
+    public static func convertMarkFormatToMichaelFormat(grids: [[String]], wordsInGame: [String]) -> [[String]] {
+        let unvalidatedGrids = createBoarders(grids: grids, words: wordsInGame)
+        
+        let grids = getValidGrids(grids: unvalidatedGrids, wordsInGame: wordsInGame)
+        return grids
+    }
+    
+//    public static func extractUniqueGridsFromFile(gridSolutionFileContents: String, gameId: Int, words: [String]) -> [[String]] {
+//        
+//        
+//        /// parse the contents of the file, extracting all grids
+//        let gridsInDifferentOrientations = extractGrids(gridSolutionFileContents: gridSolutionFileContents)
+//        
+//        let unboarderedGrids = flipGridsIfRequired(grids: gridsInDifferentOrientations)
+//        
+//        // lets add the extra spaces at the end
+//        
+//        
+//        //let duplicates1 = removeDuplicates(grids: grids)
+//        
+//        
+//        
+//        
+//        // Get the underlying pattern of the grid so we can remove duplicates
+//        //let gridAndPattern = getGridAndPattern(grids: grids)
+//        
+//        let duplicatesRemoved = removeDuplicates(grids: grids)
+//        
+//        let duplicateCount = grids.count - duplicatesRemoved.count
+//        
+//        print("* \(gameId) created \(duplicatesRemoved.count) unique shapes, removing \(duplicateCount) duplicates.")
+//        
+//        //let shapes = ShapeCalculator.toShapes(fromGrids: duplicatesRemoved, words: words)
+//        
+//        
+//        
+//        return duplicatesRemoved
+//    }
     
 //    public static func getGridAndPattern(grids: [[String]]) -> [([String],[String])] {
 //        var result: [([String],[String])] = []
@@ -81,24 +143,24 @@ public class ConvertMarksFilesToShapes {
 //        return result
 //    }
     
-    public static func getValidGrids(grids: [[String]], words: [String]) -> [[String]] {
+    public static func getValidGrids(grids: [[String]], wordsInGame: [String]) -> [[String]] {
         var result: [[String]] = []
         
         for grid in grids {
-            if isValid(grid: grid, words: words) {
+            if isValid(grid: grid, wordsInGame: wordsInGame) {
                 result.append(grid)
             }
         }
         return result
     }
     
-    public static func isValid(grid: [String], words: [String]) -> Bool {
+    public static func isValid(grid: [String], wordsInGame: [String]) -> Bool {
         let (horizontal, vertical, _) = GridCalculator.FindWordsInGrid(grid: grid)
         
         let gridWords = horizontal + vertical
         
         for gridWord in gridWords {
-            if words.contains(gridWord) == false {
+            if wordsInGame.contains(gridWord) == false {
                 return false
             }
         }
@@ -168,6 +230,10 @@ public class ConvertMarksFilesToShapes {
         return result
         
     }
+    
+    
+    
+    
     
     public static func createBoarderHorizontal(grid:[String], words:[String]) -> [String] {
         var result:[String] = []
@@ -272,11 +338,11 @@ public class ConvertMarksFilesToShapes {
         return result
     }
     
-    
-    public static func extractGrids(path: String) -> [[String]] {
-        let text = loadFile(path: path )
+    /// Reads the grids from marks file format
+    public static func extractGrids(gridSolutionFileContents: String) -> [[String]] {
         
-        let lines = text.split(separator: "\n")
+        
+        let lines = gridSolutionFileContents.split(separator: "\n")
         var header = false
         var captureContent = false
         var result: [[String]] = []
@@ -299,13 +365,7 @@ public class ConvertMarksFilesToShapes {
             } else if captureContent {
                 grid.append(String(line))
             }
-            
-            
         }
-                
-        
-        
-        
         return result
     }
     
@@ -366,5 +426,7 @@ public class ConvertMarksFilesToShapes {
             return ""
         }
     }
+    
+   
 
 }

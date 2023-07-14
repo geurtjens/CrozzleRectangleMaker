@@ -37,39 +37,39 @@ final class ConvertMarksFilesToShapesTests: XCTestCase {
     }
     
     
-    func test_code() {
-        let inputDirectory = "/Users/michaelgeurtjens/Downloads/mintarget/"
-        //let outputdirectory = "/Users/michaelgeurtjens/Downloads/mintarget/result/"
-        
-        let gameList = GameList()
-        
-        let gameIds = [
-            8702, 8703, 8705, 8803, 8804, 8805, 8812, 8902, 8908, 8910,
-            8911, 9001, 9002, 9003, 9008, 9009, 9010, 9012, 9101, 9103,
-            9106, 9110, 9111, 9209, 9302, 9304] //, 9401, 9605]
-        
-        var result: [[[String]]] = []
-        for gameId in gameIds {
-            
-            let game = gameList.getGame(gameId: gameId)!
-            
-            let words = game.words
-            
-            let grids = ConvertMarksFilesToShapes.execute(inputDirectory: inputDirectory, gameId: gameId, words: words)
-            
-            result.append(grids)
-        }
-        
-        let sumOfShapes = ConvertMarksFilesToShapes.removeDuplicates(gridsArray: result)
-        
-        // How many grids do we have in total?
-        let totalGrids = countTotalGrids(gridsArray: result)
-        
-        let duplicates = totalGrids - sumOfShapes.count
-        
-        print("Out of \(totalGrids) grids, we found \(duplicates) duplicates, leaving \(sumOfShapes.count) unique shapes")
-        
-    }
+//    func test_code() {
+//        let inputDirectory = "/Users/michaelgeurtjens/Downloads/mintarget/"
+//        //let outputdirectory = "/Users/michaelgeurtjens/Downloads/mintarget/result/"
+//        
+//        let gameList = GameList()
+//        
+//        let gameIds = [
+//            8702, 8703, 8705, 8803, 8804, 8805, 8812, 8902, 8908, 8910,
+//            8911, 9001, 9002, 9003, 9008, 9009, 9010, 9012, 9101, 9103,
+//            9106, 9110, 9111, 9209, 9302, 9304] //, 9401, 9605]
+//        
+//        var result: [[[String]]] = []
+//        for gameId in gameIds {
+//            
+//            let game = gameList.getGame(gameId: gameId)!
+//            
+//            let words = game.words
+//            
+//            let grids = ConvertMarksFilesToShapes.extractUniqueGridsFromFile(inputDirectory: inputDirectory, gameId: gameId, words: words)
+//            
+//            result.append(grids)
+//        }
+//        
+//        let sumOfShapes = ConvertMarksFilesToShapes.removeDuplicates(gridsArray: result)
+//        
+//        // How many grids do we have in total?
+//        let totalGrids = countTotalGrids(gridsArray: result)
+//        
+//        let duplicates = totalGrids - sumOfShapes.count
+//        
+//        print("Out of \(totalGrids) grids, we found \(duplicates) duplicates, leaving \(sumOfShapes.count) unique shapes")
+//        
+//    }
    
     
     public func countTotalGrids(gridsArray:[[[String]]]) -> Int {

@@ -7,7 +7,7 @@
 
 import Foundation
 /// Contains instructions on how to place a word into a grid
-public struct PlacementModel {
+public struct PlacementModel: Codable {
 
     /// word Id which is the position of the word in the given word list
     public let i: UInt8

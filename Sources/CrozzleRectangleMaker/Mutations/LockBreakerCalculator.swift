@@ -9,21 +9,24 @@ import Foundation
 public class LockBreakerCalculator {
     
     
-    public static func execute(grid: [String], words: [String]) -> [[String]] {
+//    public static func execute(grid: [String], words: [String]) -> [[String]] {
+//        let (wordSequence, constraintArray) = getIngredientsForCalculation(words: words, grid: grid)
+//
+//
+//        return execute(words: words, wordSequence: wordSequence, constraintArray: constraintArray)
+//    }
+    
+    public static func execute(words: [String], mutation: MutationModel) -> [[String]] {
+               
+        let wordsPerPosition = setLockParameters(words: words, placements: mutation.placements)
         
-        var result:[[String]] = []
+        if wordsPerPosition.count == 0 {
+            return []
+        }
         
-        let (wordSequence, wordsPerPosition, constraintArray) = getIngredientsForCalculation(words: words, grid: grid)
         
-        // now we want to identify the location of the interlocks in the word sequence
+        let wordCount = mutation.placements.count
         
-        // We want to know an interlock constraint so its really current word id
-        
-        let wordCount = wordSequence.count
-        
-        /// So we have to somehow work on the first one and when we break the lock on first then work on second one
-        ///
-        ///
         var nextPosition: [Int] = Array(repeating: 0, count: wordCount)
         
         var currentWords: [String] = Array(repeating: "", count: wordCount)
@@ -33,10 +36,11 @@ public class LockBreakerCalculator {
         
         var i = 0
         
+        var result:[[String]] = []
+        
         /// if we cannot increase the first word then we have finished processing
         while nextPosition[0] < wordCountOfFirstWordPosition {
-            
-            
+
             let wordPos = nextPosition[i]
             
             let lastValidWordPosition = wordsPerPosition[i].count - 1
@@ -47,7 +51,7 @@ public class LockBreakerCalculator {
                 
                 currentWords[i] = wordToTry // We can also use this for future interlock constraint checks
                 
-                let constraints = constraintArray[i]
+                let constraints = mutation.constraints[i]
                 if wordsHaveDuplicates(existingWords:currentWords, lastPos: i) {
                     // move on to the next word
                     nextPosition[i] += 1
@@ -70,6 +74,7 @@ public class LockBreakerCalculator {
                 } else {
                     // We did not match the criteria so move on to the next word
                     nextPosition[i] += 1
+                    optionalPrint(currentWords)
                 }
             } else {
                 /// Means we have run out of words in this lane so we must go backwards
@@ -81,13 +86,13 @@ public class LockBreakerCalculator {
         }
         
         return result
-        
-        
     }
+    
     
     public static func optionalPrint(_ text: [String]) {
         //print(text)
     }
+    
     
     public static func wordsHaveDuplicates(existingWords: [String], lastPos: Int) -> Bool {
         
@@ -112,9 +117,9 @@ public class LockBreakerCalculator {
             
             //let (letterPos, matchingWordLetterPos, matchingWordId) = findContraint(word: word, interlock: interlock)
             
-            let letter = word[constraint.letterPos]
-            let matchingWord = existingWords[constraint.matchingWordId]
-            let matchingLetter = matchingWord[constraint.matchingLetterPos]
+            let letter = word[constraint.p]
+            let matchingWord = existingWords[constraint.w]
+            let matchingLetter = matchingWord[constraint.q]
             
             if letter != matchingLetter {
                 return false
@@ -126,10 +131,10 @@ public class LockBreakerCalculator {
     
     public static func findContraint(word: String, interlock: InterlockModel) -> CodeBreakerModel? {
         if word == interlock.horizontalWord {
-            return CodeBreakerModel(letterPos: interlock.horizontalPos, matchingLetterPos: interlock.verticalPos, matchingWordId:interlock.verticalWordId)
+            return CodeBreakerModel(p: interlock.horizontalPos, q: interlock.verticalPos, w:interlock.verticalWordId)
             
         } else if word == interlock.verticalWord {
-            return CodeBreakerModel(letterPos: interlock.verticalPos, matchingLetterPos: interlock.horizontalPos, matchingWordId:interlock.horizontalWordId)
+            return CodeBreakerModel(p: interlock.verticalPos, q: interlock.horizontalPos, w:interlock.horizontalWordId)
             
         } else {
             
@@ -193,7 +198,11 @@ public class LockBreakerCalculator {
         return true
     }
     
-    public static func getIngredientsForCalculation(words: [String], grid: [String]) -> ([String], [[String]], [[CodeBreakerModel]]) {
+    //
+    
+    
+    
+    public static func getIngredientsForCalculation(grid: [String]) -> ([String], [[CodeBreakerModel]]) {
         
         /// word sequences and the interlocks for the word sequence at that point which are really constraints to obey
         let (wordSequence, interlocksArray) = FindPathAndInterlocksCalculator.execute(grid: grid)
@@ -202,30 +211,52 @@ public class LockBreakerCalculator {
         
         let codeBreakers = findCodeBreakersInInterlocks(interlocksArray: interlocksWithWordIdArray, wordSequence: wordSequence)
         
-        // now we want the code breaker model
-        
-        
-        
-        /// Give me all words that can be in each position
-        let wordsPerPosition = setLockParameters(words: words, wordSequence: wordSequence)
-        
-        if wordsPerPosition.count == 0 {
-            return ([],[],[])
-        }
-        
-        return (wordSequence, wordsPerPosition, codeBreakers)
+        return (wordSequence, codeBreakers)
  
     }
     
-    
-    //public static func tryEachOption
-    
-    
+    public static func convertInterlocksToXY(interlocksArray: [[InterlockModel]]) -> [(Int, Int)] {
+        var result: [(Int,Int)] = []
+        for interlocks in interlocksArray {
+            for interlock in interlocks {
+                result.append((interlock.x, interlock.y))
+            }
+        }
+        
+        // sort by x and then by y
+        result.sort() {
+            if $0.0 == $1.0 {
+                return $0.1 < $1.1
+            } else {
+                return $0.0 < $1.0
+            }
+        }
+        
+        
+        
+        
+        return result
+    }
     /// Provides us with the list of words that can be in each position in the sequence
     public static func setLockParameters(words: [String], wordSequence sequences: [String]) -> [[String]] {
         var result: [[String]] = []
         for sequence in sequences {
             let length = sequence.count
+            
+            let qualifyingWords = words.filter { $0.count == length}
+            if qualifyingWords.count > 0 {
+                result.append(qualifyingWords)
+            } else {
+                return [] // meaning we cannot do this
+            }
+        }
+        return result
+    }
+    
+    public static func setLockParameters(words: [String], placements: [PlacementModel]) -> [[String]] {
+        var result: [[String]] = []
+        for placement in placements {
+            let length = placement.l
             
             let qualifyingWords = words.filter { $0.count == length}
             if qualifyingWords.count > 0 {

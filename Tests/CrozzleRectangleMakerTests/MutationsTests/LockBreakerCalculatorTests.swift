@@ -40,16 +40,16 @@ final class LockBreakerCalculatorTests: XCTestCase {
         
         
         // Then we calculate difficulties
-        let values = LockBreakerCalculator.execute(grid: grid9605, words: words9605)
-        for value in values {
-            print(value)
-        }
-        
-        // first we test it will go all the way and that happens when we feed it the word sequence that it will calculate for itself
-        let otherValues = LockBreakerCalculator.execute(grid: grid9605, words: wordSequence)
-        for value in otherValues {
-            print(value)
-        }
+//        let values = LockBreakerCalculator.execute(grid: grid9605, words: words9605)
+//        for value in values {
+//            print(value)
+//        }
+//
+//        // first we test it will go all the way and that happens when we feed it the word sequence that it will calculate for itself
+//        let otherValues = LockBreakerCalculator.execute(grid: grid9605, words: wordSequence)
+//        for value in otherValues {
+//            print(value)
+//        }
     }
 
 }

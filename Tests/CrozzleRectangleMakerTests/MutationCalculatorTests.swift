@@ -12,10 +12,34 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class MutationCalculatorTests: XCTestCase {
 
-    func test_execute() {
+    func test_generateFiles() {
 
-        let result = MutationCalculator.execute()
-        XCTAssertEqual(15, result.count)
+        MutationCalculator.generateFiles()
+
     }
 
+    func test_loadMutations() {
+        let mutations = MutationCalculator.loadMutations()
+        XCTAssertEqual(63873,mutations.count)
+    }
+    
+    func test_mutationsAgainstAllWords() {
+        let mutations = MutationCalculator.loadMutations()
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            if game.gameId < 9401 {
+                let words = game.words
+                let gameId = game.gameId * 10
+                
+                MutationCalculator.executeSingleGame(gameId: gameId, mutations: mutations, words: words)
+                print("\(game.gameId) complete")
+            }
+        }
+        XCTAssertEqual(63873,mutations.count)
+    }
+    
 }
+
+
