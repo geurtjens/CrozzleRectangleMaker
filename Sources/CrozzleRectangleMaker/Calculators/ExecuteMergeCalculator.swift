@@ -384,25 +384,38 @@ public class ExecuteMergeCalculator {
     public static func GetShapesFromInstructions(instructions: [MergeInstructionModel], sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, words: [String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         var shapeList: [ShapeModel] = []
         for instruction in instructions {
-       
-            let potentialShape = MergePlacementCalculator.Execute(
-                sourceShapes: sourceShapes,
-                searchShapes: searchShapes,
-                instruction: instruction,
-                words: words)
             
-            if let potentialShape = potentialShape {
-                if (potentialShape.width <= widthMax && potentialShape.height <= heightMax) ||
-                    (potentialShape.width <= heightMax && potentialShape.height <= widthMax) {
-                    let (validShape,_) = ShapeCalculator.ToValidShape(shape: potentialShape, words: words)
+            let (isValidSize, calcWidth, calcHeight) = MergeSizeValidation.execute(instruction: instruction, sourceShapes: sourceShapes, searchShapes: searchShapes,  widthMax: widthMax, heightMax: heightMax) //== true {
+                
+            if isValidSize {
+                
+                let potentialShape = MergePlacementCalculator.Execute(
+                    sourceShapes: sourceShapes,
+                    searchShapes: searchShapes,
+                    instruction: instruction,
+                    words: words)
+                
+                if let potentialShape = potentialShape {
                     
-                    if let validShape = validShape {
-                        // is shape is not nil so it must be a valid shape
-                        let wordCount = validShape.placements.count
-                        let scoreMin = scoresMin[wordCount]
-                        if validShape.score >= scoreMin {
-                            shapeList.append(validShape)
+                    if calcWidth != potentialShape.width || calcHeight != potentialShape.height {
+                        print("potentialShape.width:\(potentialShape.width), potentialShape.height:\(potentialShape.height), calcWidth: \(calcWidth), calcHeight: \(calcHeight)")
+                    }
+                    
+                    if (potentialShape.width <= widthMax && potentialShape.height <= heightMax) ||
+                        (potentialShape.width <= heightMax && potentialShape.height <= widthMax) {
+                        
+                        let (validShape,_) = ShapeCalculator.ToValidShape(shape: potentialShape, words: words)
+                        
+                        if let validShape = validShape {
+                            // is shape is not nil so it must be a valid shape
+                            let wordCount = validShape.placements.count
+                            let scoreMin = scoresMin[wordCount]
+                            if validShape.score >= scoreMin {
+                                shapeList.append(validShape)
+                            }
                         }
+                    } else {
+                        print("We thought it was a valid size but it wasnt")
                     }
                 }
             }

@@ -11,26 +11,15 @@ public class MutationCalculator {
     
     
     public static func generateFiles() {
-        let gameIds = [
+        let gameIds15x10 = [
             8702, 8703, 8705, 8803, 8804, 8805, 8812, 8902, 8908, 8910,
             8911, 9001, 9002, 9003, 9008, 9009, 9010, 9012, 9101, 9103,
-            9106, 9110, 9111, 9209, 9302, 9304]
-
-
-        MutationCalculator.execute()
+            9106, 9110, 9111, 9209, 9302, 9304] //, 9401, 9605]
         
-//        for i in 0..<values.count {
-//            let value = values[i]
-//            let gameId = gameIds[i]
-//
-//            let scores = extractScores(text: value)
-//            let scoresText = scoreSummaryText(scores: scores)
-//
-//
-//            let result = scoresText + "\n" + value
-//
-//            saveGame(gameId: gameId, text: result)
-//        }
+        let gameIds15x13 = [
+            9401, 9406, 9605]
+        
+        MutationCalculator.execute(gameIds: gameIds15x13)
     }
     
     public static func saveGame(gameId: Int, text: String) {
@@ -135,14 +124,11 @@ public class MutationCalculator {
     
     
     // We will return a collection of grids for each of marks lists
-    public static func execute() {
+    public static func execute(gameIds: [Int]) {
         let inputDirectory = "/Users/michaelgeurtjens/Downloads/mintarget/"
         //let outputdirectory = "/Users/michaelgeurtjens/Downloads/mintarget/result/"
         
-        let gameIds = [
-            8702, 8703, 8705, 8803, 8804, 8805, 8812, 8902, 8908, 8910,
-            8911, 9001, 9002, 9003, 9008, 9009, 9010, 9012, 9101, 9103,
-            9106, 9110, 9111, 9209, 9302, 9304] //, 9401, 9605]
+        
         
         //var result: [String] = []
         

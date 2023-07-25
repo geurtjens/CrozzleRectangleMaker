@@ -48,8 +48,38 @@ public class ConvertMarksFilesToShapes {
             let gridSolutionFileContents = loadFile(path: path )
             let grids = extractGrids(gridSolutionFileContents: gridSolutionFileContents)
             let gridsInLandscape = flipGridsIfRequired(grids: grids)
+            
+            
+            let duplicates = countStringDuplicates(gridsInLandscape: gridsInLandscape)
+            
             result.append(gridsInLandscape)
-            print("\(gridsInLandscape.count) read from '\(path)'")
+            print("\(gridsInLandscape.count) read from '\(path)' finding \(duplicates) duplicates")
+        }
+        return result
+    }
+    
+    public static func countStringDuplicates(gridsInLandscape: [[String]]) -> Int {
+        var grids = convertToStrings(gridsInLandscape: gridsInLandscape)
+        var duplicates = 0
+        grids.sort()
+        for i in 1..<grids.count {
+            if grids[i] == grids[i - 1] {
+                duplicates += 1
+            }
+        }
+        return duplicates
+    }
+    public static func convertToStrings(gridsInLandscape: [[String]]) -> [String] {
+        var result: [String] = []
+        for grid in gridsInLandscape {
+            var text = ""
+            for line in grid {
+                if text != "" {
+                    text += "\n"
+                }
+                text += line
+            }
+            result.append(text)
         }
         return result
     }
@@ -92,6 +122,7 @@ public class ConvertMarksFilesToShapes {
         }
         return result
     }
+    
     
     
     public static func convertMarkFormatToMichaelFormat(grids: [[String]], wordsInGame: [String]) -> [[String]] {
@@ -149,6 +180,8 @@ public class ConvertMarksFilesToShapes {
         for grid in grids {
             if isValid(grid: grid, wordsInGame: wordsInGame) {
                 result.append(grid)
+            } else {
+                print("Grid not valid")
             }
         }
         return result

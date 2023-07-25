@@ -37,6 +37,27 @@ public class GridCalculator {
         
     }
         
+    public static func ConvertMarkFormatToMichaelFormat(grid: [String], wordsInGame: [String]) -> [String] {
+        
+        var grid2: [String] = []
+        for line in grid {
+            grid2.append(line.uppercased().replacingOccurrences(of: "#", with: "."))
+        }
+        let withBorders = ConvertMarksFilesToShapes.createBoarder(grid: grid2, words: wordsInGame)
+        
+        return withBorders
+    }
+    
+//    public static func FindScore(grid: [String]) -> Int {
+//        let (horizontal, vertical, _) = FindWordsInGrid(grid: grid)
+//
+//        let wordCount = horizontal.count + vertical.count
+//
+//        let interlocks = findInterlocks(grid: grid)
+//
+//
+//
+//    }
     public static func FindWordsInGrid(grid: [String]) -> ([String],[String],[String]) {
         let horizontal = FindWordsInGridOne(grid: grid)
         
@@ -242,5 +263,16 @@ public class GridCalculator {
         return words
         
         
+    }
+    
+    public static func gridToString(grid:[String]) -> String {
+        var result = ""
+        for line in grid {
+            if result != "" {
+                result += "\n"
+            }
+            result += line
+        }
+        return result
     }
 }
