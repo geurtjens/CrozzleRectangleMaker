@@ -28,7 +28,7 @@ public class StrategyCalculator {
             //if gamesWon.contains(game.gameId) == false {
                 let words = game.winningWords
                 
-                let _ = await StrategyCalculator.TryMergeWithLowerOnly(game: game, words: words, queueLength: 5_000)
+                let queueList = await StrategyCalculator.TryMergeWithLowerOnly(game: game, words: words, queueLength: 5_000)
                 //result += "\n"
                 //let shape = queueList.getBestShapeByScore()
 //                if shape != nil {
@@ -82,7 +82,7 @@ public class StrategyCalculator {
         //    }
             
             
-        var maxShape: ShapeModel?
+        var maxShape: ShapeModel? = nil
         let highScore = game.winningScore
         var maxScore: UInt16 = 0
         var i = 0

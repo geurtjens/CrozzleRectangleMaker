@@ -8,6 +8,8 @@
 import Foundation
 public class MutationCalculator {
     
+    
+    
     public static func generateFiles() {
         let gameIds15x10 = [
             8702, 8703, 8705, 8803, 8804, 8805, 8812, 8902, 8908, 8910,

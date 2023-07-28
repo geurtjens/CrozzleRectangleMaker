@@ -34,12 +34,9 @@ public class ExecuteMergeWithSpecificNumberOfCommonWordsCalculator {
     }
     
     
-    public static func ExecuteSameShapeOnce(
-        matchingWordCount: Int,
-        shapeId: Int, sourceShapes: GpuShapeModel, wordIndex: [[Int]],words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
+    public static func ExecuteSameShapeOnce(matchingWordCount: Int, shapeId: Int, sourceShapes: GpuShapeModel, wordIndex: [[Int]],words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         
-        let matches: [Int] = MatchingWordsCalculator.ExecuteOne(
-            matchingWordCount: matchingWordCount,
+        let matchingWords: [MatchingShapesModel] = MatchingWordsCalculator.ExecuteOne(
             sourceShapes: sourceShapes,
             sourceShapeId: shapeId,
             
@@ -48,11 +45,12 @@ public class ExecuteMergeWithSpecificNumberOfCommonWordsCalculator {
             searchMin: shapeId + 1,
             searchMax: sourceShapes.count)
         
+        let limitedMatchingWords = matchingWords.filter { $0.matchingWordCount == matchingWordCount }
+        
         let instructions = MatchingWordsCalculator.getMergeInstructions(
             sourceShapes: sourceShapes,
-            sourceShapeId: shapeId,
             searchShapes: sourceShapes,
-            matches: matches)
+            matches: limitedMatchingWords)
         
         let shapeList = ProcessInstructions(
             words: words,
@@ -100,20 +98,21 @@ public class ExecuteMergeWithSpecificNumberOfCommonWordsCalculator {
         searchWordIndex: [[Int]],
         words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         
-        let matches: [Int] = MatchingWordsCalculator.ExecuteOne(
-            matchingWordCount: matchingWordCount,
+        let matchingWords: [MatchingShapesModel] = MatchingWordsCalculator.ExecuteOne(
             sourceShapes: sourceShapes,
             sourceShapeId: shapeId,
+            
             searchShapes: searchShapes,
             searchWordIndex: searchWordIndex,
             searchMin: 0,
             searchMax: searchShapes.count)
         
+        let limitedMatchingWords = matchingWords.filter { $0.matchingWordCount == matchingWordCount }
+        
         let instructions = MatchingWordsCalculator.getMergeInstructions(
             sourceShapes: sourceShapes,
-            sourceShapeId: shapeId,
             searchShapes: searchShapes,
-            matches: matches)
+            matches: limitedMatchingWords)
         
         let shapeList = ProcessInstructions(
             words: words,
