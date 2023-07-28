@@ -9,6 +9,16 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class StrategyCalculatorTests: XCTestCase {
 
+    func test_Game9001() async {
+        let gameList = GameList()
+        for game in gameList.games {
+            if game.gameId == 9001 {
+                let words = game.winningWords
+                
+                let _ = await StrategyCalculator.TryMergeWithLowerOnly(game: game, words: words, queueLength: 20_000)
+            }
+        }
+    }
     
     func test_gamesThatHaventWonYet() async {
         await StrategyCalculator.gamesThatHaventWonYet()

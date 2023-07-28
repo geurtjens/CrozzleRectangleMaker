@@ -55,7 +55,7 @@ public class ShapeCalculator {
     
     
     public static func toShape(fromGrid grid: [String], words:[String]) -> ShapeModel? {
-        var (placements, isValid) = PlacementCalculator.fromTextToPlacements(grid: grid, words: words)
+        let (placements, isValid) = PlacementCalculator.fromTextToPlacements(grid: grid, words: words)
         
         if isValid == false {
             return nil
