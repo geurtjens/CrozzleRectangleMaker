@@ -12,9 +12,9 @@ public class ShapeCalculator {
     /// This is how the `QueueModel` adds shapes
     public static func addShapes(oldShapes: [ShapeModel], newShapes: [ShapeModel], scoreMin: Int, constraints: ConstraintsModel) -> [ShapeModel] {
         
-        let shapesWithCorrectScores = newShapes.filter { $0.score >= scoreMin }
+        let newShapes = newShapes.filter { $0.score >= scoreMin }
         
-        let (noDuplicatesOfShapesWithCorrectScores, duplicatesOfShapesWithCorrectScores) = RemoveDuplicatesCalculator.execute(shapes: shapesWithCorrectScores)
+        let (noDuplicatesOfShapesWithCorrectScores, duplicatesOfShapesWithCorrectScores) = RemoveDuplicatesCalculator.execute(shapes: newShapes)
         
         
         let result = oldShapes + noDuplicatesOfShapesWithCorrectScores

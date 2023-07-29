@@ -98,10 +98,10 @@ public class MatchingWordsCalculator {
             }
         }
 
-        var filtered = shapesWithWords.filter { $0 >= searchMin && $0 <= searchMax}
+        shapesWithWords = shapesWithWords.filter { $0 >= searchMin && $0 <= searchMax}
         
-        filtered.sort()
-        return filtered
+        shapesWithWords.sort()
+        return shapesWithWords
     }
     
     /// Search for shapes that have common words with the particular shape that we are trying to merge with
