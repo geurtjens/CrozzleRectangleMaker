@@ -261,15 +261,15 @@ public struct QueueList {
                 heightMax: self.game.maxHeight)
         
         if shapes.count > 0 {
-            var filteredShapes: [ShapeModel] = []
+            var result: [ShapeModel] = []
             let dictionary = Dictionary(grouping: shapes, by: { $0.placements.count})
             for item in dictionary {
                 if notTheseWordCounts.contains(item.key) == false {
-                    filteredShapes += item.value
+                    result += item.value
                 }
             }
         
-            return filteredShapes
+            return result
             //add(shapes: shapes)
         }
         return []
@@ -296,15 +296,15 @@ public struct QueueList {
             
             
         if shapes.count > 0 {
-            var filteredShapes: [ShapeModel] = []
+            var result: [ShapeModel] = []
             let dictionary = Dictionary(grouping: shapes, by: { $0.placements.count})
             for item in dictionary {
                 if notTheseWordCounts.contains(item.key) == false {
-                    filteredShapes += item.value
+                    result += item.value
                 }
             }
             
-            add(shapes: filteredShapes)
+            add(shapes: result)
         }
     }
     
@@ -349,15 +349,15 @@ public struct QueueList {
 
         if shapes.count > 0 {
             
-            var filteredShapes: [ShapeModel] = []
+            var result: [ShapeModel] = []
             let dictionary = Dictionary(grouping: shapes, by: { $0.placements.count})
             for item in dictionary {
                 if notTheseWordCounts.contains(item.key) == false {
-                    filteredShapes += item.value
+                    result += item.value
                 }
             }
             
-            add(shapes: filteredShapes)
+            add(shapes: result)
         }
     }
     
