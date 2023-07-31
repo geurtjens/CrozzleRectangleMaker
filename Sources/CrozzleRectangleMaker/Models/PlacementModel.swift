@@ -16,8 +16,36 @@ public struct PlacementModel: Codable {
     /// y coordinate within the grid that the word should begin
     public let y: UInt8
     /// is Horizontal so this is true if the word is to be placed horizontally else false if vertically
-    public let z: Bool
+    //public let z: Bool
     /// length of the word
-    public let l: UInt8
+    //public let l: UInt8
+    
+    public var z: Bool {
+        return extra >= 32
+    }
+    private let extra: UInt8
+    
+    public var l: UInt8 {
+        if extra >= 32 {
+            return extra - 32
+        } else {
+            return extra
+        }
+    }
+    
+    public init(w: UInt8, x: UInt8, y: UInt8, z: Bool, l: UInt8) {
+        self.w = w
+        self.x = x
+        self.y = y
+        //self.z = z
+        //self.l = l
+        if z == true {
+            extra = 32 + l
+        } else {
+            extra = l
+        }
+        
+    }
+    
     
 }
