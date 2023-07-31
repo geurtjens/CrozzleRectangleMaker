@@ -102,7 +102,7 @@ public class ShapeCalculator {
         var placements:[PlacementModel] = []
         
         for p in shape.placements {
-            let reversed = PlacementModel(i: p.i, h: !p.h, x: p.y, y: p.x, l: UInt8(p.l))
+            let reversed = PlacementModel(w: p.w, x: p.y, y: p.x, z: !p.z, l: UInt8(p.l))
             placements.append(reversed)
         }
         
@@ -124,7 +124,7 @@ public class ShapeCalculator {
             let newShape = ShapeModel(score: score, width: shape.width, height: shape.height, placements: shape.placements)
             
             // our shapes must have first word as horizontal to help with removing duplicates
-            if (newShape.placements[0].h == false) {
+            if (newShape.placements[0].z == false) {
                 let flipped = ShapeCalculator.Flip(shape: newShape)
                 return (flipped, text)
             } else {
@@ -637,14 +637,14 @@ public class ShapeCalculator {
         for placement in shape.placements {
             
             // the word must include the blocking characters at either end of the shape
-            let word = "." + words[Int(placement.i)] + "."
+            let word = "." + words[Int(placement.w)] + "."
             
             var gridPos = 0
 
             for i in 0..<word.count {
                 let letter = word[i]
                 
-                if placement.h {
+                if placement.z {
                     gridPos = Int(placement.x) + i + (Int(placement.y) * widthEOL + 1)
                 } else {
                     gridPos = Int(placement.x) + 1 + (Int(placement.y) + i) * widthEOL
@@ -695,14 +695,14 @@ public class ShapeCalculator {
         for placement in shape.placements {
             
             // the word must include the blocking characters at either end of the shape
-            let word = "." + words[Int(placement.i)] + "."
+            let word = "." + words[Int(placement.w)] + "."
             
             var gridPos = 0
 
             for i in 0..<word.count {
                 let letter = word[i]
                 
-                if placement.h {
+                if placement.z {
                     gridPos = Int(placement.x) + i + (Int(placement.y) * widthEOL + 1)
                 } else {
                     gridPos = Int(placement.x) + 1 + (Int(placement.y) + i) * widthEOL

@@ -108,23 +108,23 @@ final class ClusterCalculatorTests: XCTestCase {
         let up1 = shape.placements[0]
         XCTAssertEqual(3, up1.y)
         XCTAssertEqual(0, up1.x)
-        XCTAssertTrue(up1.h)
+        XCTAssertTrue(up1.z)
         
         let down2 = shape.placements[1]
         XCTAssertEqual(4, down2.y)
         XCTAssertEqual(2, down2.x)
-        XCTAssertTrue(up1.h)
+        XCTAssertTrue(up1.z)
         
         
         let left1 = shape.placements[2]
         XCTAssertEqual(0, left1.y)
         XCTAssertEqual(3, left1.x)
-        XCTAssertFalse(left1.h)
+        XCTAssertFalse(left1.z)
         
         let right2 = shape.placements[3]
         XCTAssertEqual(2, right2.y)
         XCTAssertEqual(4, right2.x)
-        XCTAssertFalse(right2.h)
+        XCTAssertFalse(right2.z)
         
         let text = item.ToText(words: words)
         let textExpected = "   .        \n   Z        \n   I.       \n.SNOW.      \n  .NAZARETH.\n   .L       \n    N       \n    U       \n    T       \n    .       "

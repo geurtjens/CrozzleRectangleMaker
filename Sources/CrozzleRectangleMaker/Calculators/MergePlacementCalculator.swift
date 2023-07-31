@@ -60,7 +60,7 @@ public class MergePlacementCalculator {
         // We need to remove the common words from searchFinal
         var searchNoDuplicates: [PlacementModel] = []
         for item in searchFinal {
-            if commonPlacements.contains(Int(item.i)) == false {
+            if commonPlacements.contains(Int(item.w)) == false {
                 searchNoDuplicates.append(item)
             }
         }
@@ -72,7 +72,7 @@ public class MergePlacementCalculator {
         
         var combined = sourceFinal + searchNoDuplicates
         
-        combined.sort { $0.i < $1.i }
+        combined.sort { $0.w < $1.w }
         
         /*
          .  .
@@ -119,10 +119,10 @@ public class MergePlacementCalculator {
             words.append(sourceShapes.wordId[idx])
             
             let placement = PlacementModel(
-                i: sourceShapes.wordId[idx],
-                h: sourceShapes.isHorizontal[idx],
+                w: sourceShapes.wordId[idx],
                 x: sourceShapes.x[idx],
                 y: sourceShapes.y[idx],
+                z: sourceShapes.isHorizontal[idx],
                 l: sourceShapes.length[idx])
             placements.append(placement)
             
@@ -138,25 +138,25 @@ public class MergePlacementCalculator {
             
             //if words.contains(wordId) == false {
                 
-                let h = searchShapes.isHorizontal[idx]
+                let z = searchShapes.isHorizontal[idx]
                 let x = searchShapes.x[idx]
                 let y = searchShapes.y[idx]
                 let length = searchShapes.length[idx]
                 
                 if instruction.flipped {
                     let placement = PlacementModel(
-                        i: wordId,
-                        h: !h,
+                        w: wordId,
                         x: y,
                         y: x,
+                        z: !z,
                         l: length)
                     otherPlacements.append(placement)
                 } else {
                     let placement = PlacementModel(
-                        i: wordId,
-                        h: h,
+                        w: wordId,
                         x: x,
                         y: y,
+                        z: z,
                         l: length)
                     otherPlacements.append(placement)
                 }
@@ -182,10 +182,10 @@ public class MergePlacementCalculator {
             words.append(search.wordId[idx])
             
             let placement = PlacementModel(
-                i: search.wordId[idx],
-                h: search.isHorizontal[idx],
+                w: search.wordId[idx],
                 x: search.x[idx],
                 y: search.y[idx],
+                z: search.isHorizontal[idx],
                 l: search.length[idx])
             searchPlacements.append(placement)
             
@@ -201,25 +201,25 @@ public class MergePlacementCalculator {
             
             if words.contains(wordId) == false {
                 
-                let h = source.isHorizontal[idx]
                 let x = source.x[idx]
                 let y = source.y[idx]
+                let z = source.isHorizontal[idx]
                 let length = source.length[idx]
                 
                 if instruction.flipped {
                     let placement = PlacementModel(
-                        i: wordId,
-                        h: !h,
+                        w: wordId,
                         x: y,
                         y: x,
+                        z: !z,
                         l: length)
                     sourcePlacements.append(placement)
                 } else {
                     let placement = PlacementModel(
-                        i: wordId,
-                        h: h,
+                        w: wordId,
                         x: x,
                         y: y,
+                        z: z,
                         l: length)
                     sourcePlacements.append(placement)
                 }
@@ -235,10 +235,10 @@ public class MergePlacementCalculator {
         var newPlacements: [PlacementModel] = []
         for j in placements {
             let newPlacement = PlacementModel(
-                i:j.i,
-                h: j.h,
+                w: j.w,
                 x: UInt8(Int(j.x) + Int(xOffset)),
                 y: UInt8(Int(j.y) + Int(yOffset)),
+                z: j.z,
                 l: UInt8(j.l))
             newPlacements.append(newPlacement)
         }

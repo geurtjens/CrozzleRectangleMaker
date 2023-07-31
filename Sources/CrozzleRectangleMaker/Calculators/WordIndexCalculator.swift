@@ -15,7 +15,7 @@ public class WordIndexCalculator {
         var i = 0
         for shapeId in 0..<shapeCount {
             for j in 0..<stride {
-                let wordId = shapes[shapeId].placements[j].i
+                let wordId = shapes[shapeId].placements[j].w
                 
                 result[Int(wordId)].append(shapeId)
                 i += 1

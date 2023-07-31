@@ -17,7 +17,7 @@ public class MergeAlternativeCalculator {
         
         var result:[PlacementModel] = []
         for placement in searchShape.placements {
-            if words.contains(placement.i) == false {
+            if words.contains(placement.w) == false {
                 result.append(placement)
             }
         }

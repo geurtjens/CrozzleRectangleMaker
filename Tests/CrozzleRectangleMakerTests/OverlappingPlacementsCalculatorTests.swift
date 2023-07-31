@@ -99,11 +99,11 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     func test_AnotherError() throws {
         let words = WordData.words_8806()
         
-        let item = PlacementModel(i: 20, h: true, x: 0, y: 7, l: 4)
-        let find = PlacementModel(i: 29, h: true, x: 8, y: 7, l: 3)
+        let item = PlacementModel(w: 20, x: 0, y: 7, z: true, l: 4)
+        let find = PlacementModel(w: 29, x: 8, y: 7, z: true, l: 3)
         
-        print("item:\(words[Int(item.i)])")
-        print("find:\(words[Int(find.i)])")
+        print("item:\(words[Int(item.w)])")
+        print("find:\(words[Int(find.w)])")
         let placements = [item, find]
         let height = PlacementCalculator.height(fromPlacements: placements)
         let width = PlacementCalculator.width(fromPlacements: placements)
@@ -115,8 +115,8 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     }
     func test_ErrorIFound2() throws {
         let words = WordData.words_8806()
-        let item = PlacementModel(i: 69, h: true, x: 8, y: 6, l: 8)
-        let find = PlacementModel(i: 2, h: true, x: 0, y: 6, l: 4)
+        let item = PlacementModel(w: 69, x: 8, y: 6, z: true, l: 8)
+        let find = PlacementModel(w: 2, x: 0, y: 6, z: true, l: 4)
         
         let placements = [find, item]
         
@@ -135,8 +135,8 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     
     func test_ErrorIFound() throws {
         let words = WordData.words_8806()
-        let find = PlacementModel(i: 97, h: true, x: 0, y: 6, l: 7)
-        let item = PlacementModel(i: 5, h: true, x: 0, y: 3, l: 4)
+        let find = PlacementModel(w: 97, x: 0, y: 6, z: true, l: 7)
+        let item = PlacementModel(w: 5, x: 0, y: 3, z: true, l: 4)
         
         let result = OverlappingPlacementsCalculator.isOverlappingOne(item: item, find: find)
         XCTAssertFalse(result)
@@ -300,9 +300,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
          .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: true, x: 1, y: 2, l: length)]
+        let source = [PlacementModel(w: wordId, x: 1, y: 2, z: true, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: true, x: 3, y: 4, l: length)
+        let find = PlacementModel(w: otherWordId, x: 3, y: 4, z: true, l: length)
         
         XCTAssertFalse(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -312,17 +312,17 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     func test_interlockOverlappingHorizontalStart_0_0_0_0() throws {
         
         let horizontal = PlacementModel(
-            i: wordId,
-            h: true,
+            w: wordId,
             x: zero,
             y: zero,
+            z: true,
             l: length)
         
         let vertical = PlacementModel(
-            i:otherWordId,
-            h: false,
+            w:otherWordId,
             x: 0,
             y: zero,
+            z: false,
             l: length)
         
         /*
@@ -339,17 +339,17 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     func test_interlockOverlappingHorizontalStart_0_0_1_0() throws {
         
         let horizontal = PlacementModel(
-            i: wordId,
-            h: true,
+            w: wordId,
             x: zero,
             y: zero,
+            z: true,
             l: length)
        
         let vertical = PlacementModel(
-            i: otherWordId,
-            h: false,
+            w: otherWordId,
             x: 1,
             y: zero,
+            z: false,
             l: length)
         
         /*
@@ -366,17 +366,17 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     func test_interlockOverlappingHorizontalStart_0_0_2_0() throws {
        
         let horizontal = PlacementModel(
-            i:wordId,
-            h:true,
+            w: wordId,
             x: zero,
             y: zero,
+            z: true,
             l: length)
         
         let vertical = PlacementModel(
-            i:otherWordId,
-            h: false,
+            w:otherWordId,
             x: 2,
             y: zero,
+            z: false,
             l: length)
         
         /*
@@ -394,17 +394,17 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     func test_interlockOverlappingHorizontalStart_0_0_3_0() throws {
         
         let horizontal = PlacementModel(
-            i: wordId,
-            h: true,
+            w: wordId,
             x: zero,
             y: zero,
+            z: true,
             l: length)
         
         let vertical = PlacementModel(
-            i:otherWordId,
-            h: false,
+            w: otherWordId,
             x: 3,
             y: zero,
+            z: false,
             l: length)
         
         /*
@@ -422,17 +422,17 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     func test_interlockOverlappingHorizontalStart_0_0_4_0() throws {
         
         let horizontal = PlacementModel(
-            i: wordId,
-            h: true,
+            w: wordId,
             x: zero,
             y: zero,
+            z: true,
             l: length)
         
         let vertical = PlacementModel(
-            i:otherWordId,
-            h: false,
+            w: otherWordId,
             x: 4,
             y: zero,
+            z: false,
             l: length)
         
         /*
@@ -452,17 +452,17 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     func test_interlockOverlappingHorizontalEnd_0_4_0_0() throws {
         
         let horizontal = PlacementModel(
-            i: wordId,
-            h: true,
+            w: wordId,
             x: zero,
             y: four,
+            z: true,
             l: length)
         
         let vertical = PlacementModel(
-            i: otherWordId,
-            h: false,
+            w: otherWordId,
             x: 0,
             y: zero,
+            z: false,
             l: length)
         
         /*
@@ -480,17 +480,17 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     func test_interlockOverlappingHorizontalEnd_0_4_1_0() throws {
         
         let horizontal = PlacementModel(
-            i: wordId,
-            h: true,
+            w: wordId,
             x: zero,
             y: four,
+            z: true,
             l: length)
         
         let vertical = PlacementModel(
-            i: otherWordId,
-            h: false,
+            w: otherWordId,
             x: 1,
             y: zero,
+            z: false,
             l: length)
         
         /*
@@ -508,17 +508,17 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     func test_interlockOverlappingHorizontalEnd_0_4_2_0() throws {
        
         let horizontal = PlacementModel(
-            i: wordId,
-            h: true,
+            w: wordId,
             x: zero,
             y: four,
+            z: true,
             l: length)
         
         let vertical = PlacementModel(
-            i: otherWordId,
-            h: false,
+            w: otherWordId,
             x: 2,
             y: zero,
+            z: false,
             l: length)
         
         /*
@@ -536,17 +536,17 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     func test_interlockOverlappingHorizontalEnd_0_4_3_0() throws {
         
         let horizontal = PlacementModel(
-            i: wordId,
-            h: true,
+            w: wordId,
             x: zero,
             y: four,
+            z: true,
             l: length)
         
         let vertical = PlacementModel(
-            i: otherWordId,
-            h: false,
+            w: otherWordId,
             x: 3,
             y: zero,
+            z: false,
             l: length)
         
         /*
@@ -565,17 +565,17 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     func test_interlockOverlappingHorizontalEnd_0_4_4_0() throws {
         
         let horizontal = PlacementModel(
-            i: wordId,
-            h: true,
+            w: wordId,
             x: zero,
             y: four,
+            z: true,
             l: length)
         
         let vertical = PlacementModel(
-            i: otherWordId,
-            h: false,
+            w: otherWordId,
             x: 4,
             y: zero,
+            z: false,
             l: length)
         
         /*
@@ -596,17 +596,17 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     func test_interlockOverlappingVerticalStart_0_0_0_0() throws {
         
         let horizontal = PlacementModel(
-            i: wordId,
-            h: true,
+            w: wordId,
             x: zero,
             y: 0,
+            z: true,
             l: length)
        
         let vertical = PlacementModel(
-            i: otherWordId,
-            h: false,
+            w: otherWordId,
             x: zero,
             y: zero,
+            z: false,
             l: length)
         
         /*
@@ -623,17 +623,17 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     func test_interlockOverlappingVerticalStart_0_1_0_0() throws {
         
         let horizontal = PlacementModel(
-            i: wordId,
-            h: true,
+            w: wordId,
             x: zero,
             y: 1,
+            z: true,
             l: length)
        
         let vertical = PlacementModel(
-            i: otherWordId,
-            h: false,
+            w: otherWordId,
             x: zero,
             y: zero,
+            z: false,
             l: length)
         
         /*
@@ -651,17 +651,17 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     func test_interlockOverlappingVerticalStart_0_2_0_0() throws {
         
         let horizontal = PlacementModel(
-            i: wordId,
-            h: true,
+            w: wordId,
             x: zero,
             y: 2,
+            z: true,
             l: length)
        
         let vertical = PlacementModel(
-            i: otherWordId,
-            h: false,
+            w: otherWordId,
             x: zero,
             y: zero,
+            z: false,
             l: length)
         
         /*
@@ -678,17 +678,17 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     func test_interlockOverlappingVerticalStart_0_3_0_0() throws {
         
         let horizontal = PlacementModel(
-            i: wordId,
-            h: true,
+            w: wordId,
             x: zero,
             y: 3,
+            z: true,
             l: length)
        
         let vertical = PlacementModel(
-            i: otherWordId,
-            h: false,
+            w: otherWordId,
             x: zero,
             y: zero,
+            z: false,
             l: length)
         
         /*
@@ -705,17 +705,17 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     func test_interlockOverlappingVerticalStart_0_4_0_0() throws {
         
         let horizontal = PlacementModel(
-            i: wordId,
-            h: true,
+            w: wordId,
             x: zero,
             y: 4,
+            z: true,
             l: length)
        
         let vertical = PlacementModel(
-            i: otherWordId,
-            h: false,
+            w: otherWordId,
             x: zero,
             y: zero,
+            z: false,
             l: length)
         
         /*
@@ -736,17 +736,17 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     func test_interlockOverlappingVerticalEnd_0_0_4_0() throws {
         
         let horizontal = PlacementModel(
-            i: wordId,
-            h: true,
+            w: wordId,
             x: zero,
             y: 0,
+            z: true,
             l: length)
        
         let vertical = PlacementModel(
-            i: otherWordId,
-            h: false,
+            w: otherWordId,
             x: four,
             y: zero,
+            z: false,
             l: length)
         
         /*
@@ -763,17 +763,17 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     func test_interlockOverlappingVerticalEnd_0_1_4_0() throws {
         
         let horizontal = PlacementModel(
-            i: wordId,
-            h: true,
+            w: wordId,
             x: zero,
             y: 1,
+            z: true,
             l: length)
        
         let vertical = PlacementModel(
-            i: otherWordId,
-            h: false,
+            w: otherWordId,
             x: four,
             y: zero,
+            z: false,
             l: length)
         
         /*
@@ -791,17 +791,17 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     func test_interlockOverlappingVerticalEnd_0_2_4_0() throws {
         
         let horizontal = PlacementModel(
-            i: wordId,
-            h: true,
+            w: wordId,
             x: zero,
             y: 2,
+            z: true,
             l: length)
        
         let vertical = PlacementModel(
-            i: otherWordId,
-            h: false,
+            w: otherWordId,
             x: four,
             y: zero,
+            z: false,
             l: length)
         
         /*
@@ -818,17 +818,17 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     func test_interlockOverlappingVerticalStart_0_3_4_0() throws {
         
         let horizontal = PlacementModel(
-            i: wordId,
-            h: true,
+            w: wordId,
             x: zero,
             y: 3,
+            z: true,
             l: length)
        
         let vertical = PlacementModel(
-            i: otherWordId,
-            h: false,
+            w: otherWordId,
             x: four,
             y: zero,
+            z: false,
             l: length)
         
         /*
@@ -845,17 +845,17 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
     func test_interlockOverlappingVerticalEnd_0_4_4_0() throws {
         
         let horizontal = PlacementModel(
-            i: wordId,
-            h: true,
+            w: wordId,
             x: zero,
             y: 4,
+            z: true,
             l: length)
        
         let vertical = PlacementModel(
-            i: otherWordId,
-            h: false,
+            w: otherWordId,
             x: four,
             y: zero,
+            z: false,
             l: length)
         
         /*
@@ -884,9 +884,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
          .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: true, x: 0, y: y, l: length)]
+        let source = [PlacementModel(w: wordId, x: 0, y: y, z: true, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: true, x: 5, y: y, l: length)
+        let find = PlacementModel(w: otherWordId, x: 5, y: y, z: true, l: length)
         
         XCTAssertFalse(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -897,9 +897,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
              .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: true, x: 0, y: y, l: length)]
+        let source = [PlacementModel(w: wordId, x: 0, y: y, z: true, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: true, x: 4, y: y, l: length)
+        let find = PlacementModel(w: otherWordId, x: 4, y: y, z: true, l: length)
         
         XCTAssertFalse(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -910,9 +910,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
          .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: true, x: 0, y: y, l: length)]
+        let source = [PlacementModel(w: wordId, x: 0, y: y, z: true, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: true, x: 3, y: y, l: length)
+        let find = PlacementModel(w: otherWordId, x: 3, y: y, z: true, l: length)
         
         XCTAssertTrue(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -923,9 +923,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
            .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: true, x: 0, y: y, l: length)]
+        let source = [PlacementModel(w: wordId, x: 0, y: y, z: true, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: true, x: 2, y: y, l: length)
+        let find = PlacementModel(w: otherWordId, x: 2, y: y, z: true, l: length)
         
         XCTAssertTrue(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -936,9 +936,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
           .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: true, x: 0, y: y, l: length)]
+        let source = [PlacementModel(w: wordId, x: 0, y: y, z: true, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: true, x: 1, y: y, l: length)
+        let find = PlacementModel(w: otherWordId, x: 1, y: y, z: true, l: length)
         
         XCTAssertTrue(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -949,9 +949,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
          .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: true, x: 0, y: y, l: length)]
+        let source = [PlacementModel(w: wordId, x: 0, y: y, z: true, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: true, x: 0, y: y, l: length)
+        let find = PlacementModel(w: otherWordId, x: 0, y: y, z: true, l: length)
         
         XCTAssertTrue(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -962,9 +962,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
          .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: true, x: 1, y: y, l: length)]
+        let source = [PlacementModel(w: wordId, x: 1, y: y, z: true, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: true, x: 0, y: y, l: length)
+        let find = PlacementModel(w: otherWordId, x: 0, y: y, z: true, l: length)
         
         XCTAssertTrue(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -975,9 +975,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
          .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: true, x: 2, y: y, l: length)]
+        let source = [PlacementModel(w: wordId, x: 2, y: y, z: true, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: true, x: 0, y: y, l: length)
+        let find = PlacementModel(w: otherWordId, x: 0, y: y, z: true, l: length)
         
         XCTAssertTrue(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -988,9 +988,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
          .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: true, x: 3, y: y, l: length)]
+        let source = [PlacementModel(w: wordId, x: 3, y: y, z: true, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: true, x: 0, y: y, l: length)
+        let find = PlacementModel(w: otherWordId, x: 0, y: y, z: true, l: length)
         
         XCTAssertTrue(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -1001,9 +1001,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
          .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: true, x: 4, y: y, l: length)]
+        let source = [PlacementModel(w: wordId, x: 4, y: y, z: true, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: true, x: 0, y: y, l: length)
+        let find = PlacementModel(w: otherWordId, x: 0, y: y, z: true, l: length)
         
         XCTAssertFalse(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -1014,9 +1014,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
          .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: true, x: 5, y: y, l: length)]
+        let source = [PlacementModel(w: wordId, x: 5, y: y, z: true, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: true, x: 0, y: y, l: length)
+        let find = PlacementModel(w: otherWordId, x: 0, y: y, z: true, l: length)
         
         XCTAssertFalse(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -1031,9 +1031,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
          .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: false, x: x, y: 0, l: length)]
+        let source = [PlacementModel(w: wordId, x: x, y: 0, z: false, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: false, x: x, y: 5, l: length)
+        let find = PlacementModel(w: otherWordId, x: x, y: 5, z: false, l: length)
         
         XCTAssertFalse(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -1044,9 +1044,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
              .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: false, x: x, y: 0, l: length)]
+        let source = [PlacementModel(w: wordId, x: x, y: 0, z: false, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: false, x: x, y: 4, l: length)
+        let find = PlacementModel(w: otherWordId, x: x, y: 4, z: false, l: length)
         
         XCTAssertFalse(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -1057,9 +1057,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
             .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: false, x: x, y: 0, l: length)]
+        let source = [PlacementModel(w: wordId, x: x, y: 0, z: false, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: false, x: x, y: 3, l: length)
+        let find = PlacementModel(w: otherWordId, x: x, y: 3, z: false, l: length)
         
         XCTAssertTrue(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -1070,9 +1070,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
            .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: false, x: x, y: 0, l: length)]
+        let source = [PlacementModel(w: wordId, x: x, y: 0, z: false, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: false, x: x, y: 2, l: length)
+        let find = PlacementModel(w: otherWordId, x: x, y: 2, z: false, l: length)
         
         XCTAssertTrue(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -1083,9 +1083,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
           .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: false, x: x, y: 0, l: length)]
+        let source = [PlacementModel(w: wordId, x: x, y: 0, z: false, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: false, x: x, y: 1, l: length)
+        let find = PlacementModel(w: otherWordId, x: x, y: 1, z: false, l: length)
         
         XCTAssertTrue(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -1096,9 +1096,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
          .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: false, x: x, y: 0, l: length)]
+        let source = [PlacementModel(w: wordId, x: x, y: 0, z: false, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: false, x: x, y: 0, l: length)
+        let find = PlacementModel(w: otherWordId, x: x, y: 0, z: false, l: length)
         
         XCTAssertTrue(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -1109,9 +1109,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
          .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: false, x: x, y: 1, l: length)]
+        let source = [PlacementModel(w: wordId, x: x, y: 1, z: false, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: false, x: x, y: 0, l: length)
+        let find = PlacementModel(w: otherWordId, x: x, y: 0, z: false, l: length)
         
         XCTAssertTrue(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -1122,9 +1122,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
          .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: false, x: x, y: 2, l: length)]
+        let source = [PlacementModel(w: wordId, x: x, y: 2, z: false, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: false, x: x, y: 0, l: length)
+        let find = PlacementModel(w: otherWordId, x: x, y: 0, z: false, l: length)
         
         XCTAssertTrue(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -1135,9 +1135,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
          .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: false, x: x, y: 3, l: length)]
+        let source = [PlacementModel(w: wordId, x: x, y: 3, z: false, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: false, x: x, y: 0, l: length)
+        let find = PlacementModel(w: otherWordId, x: x, y: 0, z: false, l: length)
         
         XCTAssertTrue(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -1148,9 +1148,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
          .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: false, x: x, y: 4, l: length)]
+        let source = [PlacementModel(w: wordId, x: x, y: 4, z: false, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: false, x: x, y: 0, l: length)
+        let find = PlacementModel(w: otherWordId, x: x, y: 0, z: false, l: length)
         
         XCTAssertFalse(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
@@ -1161,9 +1161,9 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
          .DEF.
          */
         
-        let source = [PlacementModel(i: wordId, h: false, x: x, y: 5, l: length)]
+        let source = [PlacementModel(w: wordId, x: x, y: 5, z: false, l: length)]
         
-        let find = PlacementModel(i: otherWordId, h: false, x: x, y: 0, l: length)
+        let find = PlacementModel(w: otherWordId, x: x, y: 0, z: false, l: length)
         
         XCTAssertFalse(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }

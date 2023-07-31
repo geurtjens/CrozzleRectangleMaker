@@ -16,7 +16,7 @@ public class RemoveDuplicatesCalculator {
         // We want to rotate any shapes that are not starting with horizontal
         var flipCount = 0
         for i in 0..<shapes.count {
-            if shapes[i].placements[0].h == false {
+            if shapes[i].placements[0].z == false {
                 shapes[i] = shapes[i].Flip()
                 flipCount += 1
             }

@@ -7,6 +7,53 @@
 
 import Foundation
 public class MergeSizeValidation {
+    
+    
+    public static func execute( matches: [WordIndexResultModel], sourceShapes: GpuShapeModel, sourceShapeId: Int, searchShapes: GpuShapeModel, searchShapeId: Int, widthMax: Int, heightMax: Int) -> (Bool, Int, Int) {
+        
+        
+        let sourcePos = sourceShapeId * Int(sourceShapes.stride) + Int(matches[0].searchPos)
+        let sourceWidth = Int(sourceShapes.widths[sourceShapeId])
+        let sourceHeight = Int(sourceShapes.heights[sourceShapeId])
+        
+        let searchPos = searchShapeId * Int(searchShapes.stride) + Int(matches[0].searchPos)
+        let searchWidth = Int(searchShapes.widths[searchShapeId])
+        let searchHeight = Int(searchShapes.heights[searchShapeId])
+        
+        return executeWithItems(
+            sourceShapes: sourceShapes,
+            sourceWidth: sourceWidth,
+            sourceHeight: sourceHeight,
+            sourcePos: sourcePos,
+            searchShapes: searchShapes,
+            searchWidth: searchWidth,
+            searchHeight: searchHeight,
+            searchPos: searchPos,
+            widthMax: widthMax,
+            heightMax: heightMax)
+    }
+    
+    public static func executeWithItems(
+        sourceShapes: GpuShapeModel, sourceWidth: Int, sourceHeight: Int, sourcePos: Int,
+        searchShapes: GpuShapeModel, searchWidth: Int, searchHeight: Int, searchPos: Int,
+        widthMax: Int, heightMax: Int) -> (Bool, Int, Int)
+    {
+        let flipped = (sourceShapes.isHorizontal[sourcePos] == searchShapes.isHorizontal[searchPos])
+        
+        let sourceX = sourceShapes.x[sourcePos]
+        let sourceY = sourceShapes.y[sourcePos]
+        let searchX = searchShapes.x[searchPos]
+        let searchY = searchShapes.y[searchPos]
+        
+        let (isValid, width, height) = verifyWidthHeight(width1: Int(sourceWidth), height1: Int(sourceHeight), x1: Int(sourceX), y1: Int(sourceY), width2: Int(searchWidth), height2: Int(searchHeight), x2: Int(searchX), y2: Int(searchY), flipped: flipped, widthMax: widthMax, heightMax: heightMax)
+        
+        if isValid {
+            return (true, width, height)
+        } else {
+            return (false, width, height)
+        }
+    }
+    
     public static func execute(instruction: MergeInstructionModel, sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, widthMax: Int, heightMax: Int) -> (Bool, Int, Int) {
         
         //return true

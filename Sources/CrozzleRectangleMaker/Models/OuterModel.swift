@@ -138,10 +138,10 @@ public struct OuterModel : ShapeProtocol {
             let y = maxUp + i + 1
             let wordId = wordsHorizontal[i]
             if pattern == .leading {
-                let placement = PlacementModel(i: UInt8(wordId), h: true, x: UInt8(maxLeft - length), y: UInt8(y), l: lengthsHorizontal[i])
+                let placement = PlacementModel(w: UInt8(wordId), x: UInt8(maxLeft - length), y: UInt8(y), z: true, l: lengthsHorizontal[i])
                 placements.append(placement)
             } else {
-                let placement = PlacementModel(i: UInt8(wordId), h: true, x: UInt8(maxLeft), y: UInt8(y), l: lengthsHorizontal[i])
+                let placement = PlacementModel(w: UInt8(wordId), x: UInt8(maxLeft), y: UInt8(y), z: true, l: lengthsHorizontal[i])
                 placements.append(placement)
             }
         }
@@ -162,20 +162,20 @@ public struct OuterModel : ShapeProtocol {
         
         if outerLocation == 0 {
             
-            let outerPlacement = PlacementModel(i: w0, h: false, x: UInt8(maxLeft+1), y: 0, l: len0)
-            let middlePlacement = PlacementModel(i: w1, h: false, x: UInt8(maxLeft+2), y: UInt8(maxUp), l: len1)
+            let outerPlacement = PlacementModel(w: w0, x: UInt8(maxLeft+1), y: 0, z: false, l: len0)
+            let middlePlacement = PlacementModel(w: w1, x: UInt8(maxLeft+2), y: UInt8(maxUp), z: false, l: len1)
             
             placements.append(outerPlacement)
             placements.append(middlePlacement)
         } else {
-            let middlePlacement = PlacementModel(i: w0, h: false, x: UInt8(maxLeft+1), y: UInt8(maxUp), l: len0)
-            let outerPlacement = PlacementModel(i: w1, h: false, x: UInt8(maxLeft+2), y: 0, l: len1)
+            let middlePlacement = PlacementModel(w: w0, x: UInt8(maxLeft+1), y: UInt8(maxUp), z: false, l: len0)
+            let outerPlacement = PlacementModel(w: w1, x: UInt8(maxLeft+2), y: 0, z: false, l: len1)
             
             placements.append(middlePlacement)
             placements.append(outerPlacement)
         }
         
-        //placements.sort { $0.i < $1.i}
+        //placements.sort { $0.w < $1.w }
         return placements
     }
 }

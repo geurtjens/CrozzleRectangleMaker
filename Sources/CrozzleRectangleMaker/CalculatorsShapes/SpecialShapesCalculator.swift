@@ -19,14 +19,14 @@ public class SpecialShapesCalculator {
         let vl = WordCalculator.lengths8(words: v)
         
         let placements = [
-            PlacementModel(i: hid[0], h: true, x: 3, y: 3, l: hl[0]),
-            PlacementModel(i: hid[1], h: true, x: 4, y: 4, l: hl[1]),
-            PlacementModel(i: hid[2], h: true, x: 0, y: 5, l: hl[2]),
+            PlacementModel(w: hid[0], x: 3, y: 3, z: true, l: hl[0]),
+            PlacementModel(w: hid[1], x: 4, y: 4, z: true, l: hl[1]),
+            PlacementModel(w: hid[2], x: 0, y: 5, z: true, l: hl[2]),
             
-            PlacementModel(i: vid[0], h: false, x: 5, y: 0, l: vl[0]),
-            PlacementModel(i: vid[1], h: false, x: 6, y: 2, l: vl[1]),
-            PlacementModel(i: vid[2], h: false, x: 7, y: 1, l: vl[2]),
-            PlacementModel(i: vid[3], h: false, x: 8, y: 2, l: vl[3])
+            PlacementModel(w: vid[0], x: 5, y: 0, z: false, l: vl[0]),
+            PlacementModel(w: vid[1], x: 6, y: 2, z: false, l: vl[1]),
+            PlacementModel(w: vid[2], x: 7, y: 1, z: false, l: vl[2]),
+            PlacementModel(w: vid[3], x: 8, y: 2, z: false, l: vl[3])
         ]
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
@@ -45,14 +45,14 @@ public class SpecialShapesCalculator {
         let vl = WordCalculator.lengths8(words: v)
         
         let placements = [
-            PlacementModel(i: hid[0], h: true, x: 4, y: 2, l: hl[0]),
-            PlacementModel(i: hid[1], h: true, x: 3, y: 3, l: hl[1]),
-            PlacementModel(i: hid[2], h: true, x: 5, y: 4, l: hl[2]),
-            PlacementModel(i: hid[3], h: true, x: 0, y: 5, l: hl[3]),
+            PlacementModel(w: hid[0], x: 4, y: 2, z: true, l: hl[0]),
+            PlacementModel(w: hid[1], x: 3, y: 3, z: true, l: hl[1]),
+            PlacementModel(w: hid[2], x: 5, y: 4, z: true, l: hl[2]),
+            PlacementModel(w: hid[3], x: 0, y: 5, z: true, l: hl[3]),
             
-            PlacementModel(i: vid[0], h: false, x: 5, y: 0, l: vl[0]),
-            PlacementModel(i: vid[1], h: false, x: 6, y: 1, l: vl[1]),
-            PlacementModel(i: vid[2], h: false, x: 7, y: 0, l: vl[2])
+            PlacementModel(w: vid[0], x: 5, y: 0, z: false, l: vl[0]),
+            PlacementModel(w: vid[1], x: 6, y: 1, z: false, l: vl[1]),
+            PlacementModel(w: vid[2], x: 7, y: 0, z: false, l: vl[2])
         ]
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
@@ -71,14 +71,14 @@ public class SpecialShapesCalculator {
         let vl = WordCalculator.lengths8(words: v)
         
         let placements = [
-            PlacementModel(i: hid[0], h: true, x: 0, y: 5, l: hl[0]),
-            PlacementModel(i: hid[1], h: true, x: 1, y: 6, l: hl[1]),
-            PlacementModel(i: hid[2], h: true, x: 0, y: 7, l: hl[2]),
+            PlacementModel(w: hid[0], x: 0, y: 5, z: true, l: hl[0]),
+            PlacementModel(w: hid[1], x: 1, y: 6, z: true, l: hl[1]),
+            PlacementModel(w: hid[2], x: 0, y: 7, z: true, l: hl[2]),
             
-            PlacementModel(i: vid[0], h: false, x: 2, y: 3, l: vl[0]),
-            PlacementModel(i: vid[1], h: false, x: 3, y: 4, l: vl[1]),
-            PlacementModel(i: vid[2], h: false, x: 4, y: 4, l: vl[2]),
-            PlacementModel(i: vid[3], h: false, x: 5, y: 0, l: vl[3])
+            PlacementModel(w: vid[0], x: 2, y: 3, z: false, l: vl[0]),
+            PlacementModel(w: vid[1], x: 3, y: 4, z: false, l: vl[1]),
+            PlacementModel(w: vid[2], x: 4, y: 4, z: false, l: vl[2]),
+            PlacementModel(w: vid[3], x: 5, y: 0, z: false, l: vl[3])
         ]
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
@@ -97,15 +97,15 @@ public class SpecialShapesCalculator {
         let vl = WordCalculator.lengths8(words: v)
         
         let placements = [
-            PlacementModel(i: hid[0], h: true, x: 0, y: 3, l: hl[0]),
-            PlacementModel(i: hid[1], h: true, x: 5, y: 4, l: hl[1]),
-            PlacementModel(i: hid[2], h: true, x: 4, y: 5, l: hl[2]),
-            PlacementModel(i: hid[3], h: true, x: 7, y: 6, l: hl[3]),
+            PlacementModel(w: hid[0], x: 0, y: 3, z: true, l: hl[0]),
+            PlacementModel(w: hid[1], x: 5, y: 4, z: true, l: hl[1]),
+            PlacementModel(w: hid[2], x: 4, y: 5, z: true, l: hl[2]),
+            PlacementModel(w: hid[3], x: 7, y: 6, z: true, l: hl[3]),
             
-            PlacementModel(i: vid[0], h: false, x: 6, y: 2, l: vl[0]),
-            PlacementModel(i: vid[1], h: false, x: 7, y: 0, l: vl[1]),
-            PlacementModel(i: vid[2], h: false, x: 8, y: 3, l: vl[2]),
-            PlacementModel(i: vid[3], h: false, x: 9, y: 0, l: vl[3])
+            PlacementModel(w: vid[0], x: 6, y: 2, z: false, l: vl[0]),
+            PlacementModel(w: vid[1], x: 7, y: 0, z: false, l: vl[1]),
+            PlacementModel(w: vid[2], x: 8, y: 3, z: false, l: vl[2]),
+            PlacementModel(w: vid[3], x: 9, y: 0, z: false, l: vl[3])
         ]
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
@@ -124,14 +124,14 @@ public class SpecialShapesCalculator {
         let vl = WordCalculator.lengths8(words: v)
         
         let placements = [
-            PlacementModel(i: hid[0], h: true, x: 2, y: 2, l: hl[0]),
-            PlacementModel(i: hid[1], h: true, x: 0, y: 3, l: hl[1]),
-            PlacementModel(i: hid[2], h: true, x: 2, y: 4, l: hl[2]),
-            PlacementModel(i: hid[3], h: true, x: 2, y: 5, l: hl[3]),
+            PlacementModel(w: hid[0], x: 2, y: 2, z: true, l: hl[0]),
+            PlacementModel(w: hid[1], x: 0, y: 3, z: true, l: hl[1]),
+            PlacementModel(w: hid[2], x: 2, y: 4, z: true, l: hl[2]),
+            PlacementModel(w: hid[3], x: 2, y: 5, z: true, l: hl[3]),
             
-            PlacementModel(i: vid[0], h: false, x: 3, y: 1, l: vl[0]),
-            PlacementModel(i: vid[1], h: false, x: 4, y: 0, l: vl[1]),
-            PlacementModel(i: vid[2], h: false, x: 5, y: 1, l: vl[2])
+            PlacementModel(w: vid[0], x: 3, y: 1, z: false, l: vl[0]),
+            PlacementModel(w: vid[1], x: 4, y: 0, z: false, l: vl[1]),
+            PlacementModel(w: vid[2], x: 5, y: 1, z: false, l: vl[2])
         ]
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
@@ -151,15 +151,15 @@ public class SpecialShapesCalculator {
         let vl = WordCalculator.lengths8(words: v)
         
         let placements = [
-            PlacementModel(i: hid[0], h: true, x: 2, y: 3, l: hl[0]),
-            PlacementModel(i: hid[1], h: true, x: 1, y: 4, l: hl[1]),
-            PlacementModel(i: hid[2], h: true, x: 0, y: 5, l: hl[2]),
-            PlacementModel(i: hid[3], h: true, x: 1, y: 6, l: hl[3]),
+            PlacementModel(w: hid[0], x: 2, y: 3, z: true, l: hl[0]),
+            PlacementModel(w: hid[1], x: 1, y: 4, z: true, l: hl[1]),
+            PlacementModel(w: hid[2], x: 0, y: 5, z: true, l: hl[2]),
+            PlacementModel(w: hid[3], x: 1, y: 6, z: true, l: hl[3]),
             
-            PlacementModel(i: vid[0], h: false, x: 2, y: 3, l: vl[0]),
-            PlacementModel(i: vid[1], h: false, x: 3, y: 2, l: vl[1]),
-            PlacementModel(i: vid[2], h: false, x: 4, y: 0, l: vl[2]),
-            PlacementModel(i: vid[3], h: false, x: 5, y: 4, l: vl[3])
+            PlacementModel(w: vid[0], x: 2, y: 3, z: false, l: vl[0]),
+            PlacementModel(w: vid[1], x: 3, y: 2, z: false, l: vl[1]),
+            PlacementModel(w: vid[2], x: 4, y: 0, z: false, l: vl[2]),
+            PlacementModel(w: vid[3], x: 5, y: 4, z: false, l: vl[3])
         ]
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
@@ -178,15 +178,15 @@ public class SpecialShapesCalculator {
         let vl = WordCalculator.lengths8(words: v)
         
         let placements = [
-            PlacementModel(i: hid[0], h: true, x: 0, y: 6, l: hl[0]),
-            PlacementModel(i: hid[1], h: true, x: 6, y: 7, l: hl[1]),
-            PlacementModel(i: hid[2], h: true, x: 4, y: 8, l: hl[2]),
-            PlacementModel(i: hid[3], h: true, x: 6, y: 9, l: hl[3]),
-            PlacementModel(i: hid[4], h: true, x: 3, y: 10, l: hl[4]),
+            PlacementModel(w: hid[0], x: 0, y: 6, z: true, l: hl[0]),
+            PlacementModel(w: hid[1], x: 6, y: 7, z: true, l: hl[1]),
+            PlacementModel(w: hid[2], x: 4, y: 8, z: true, l: hl[2]),
+            PlacementModel(w: hid[3], x: 6, y: 9, z: true, l: hl[3]),
+            PlacementModel(w: hid[4], x: 3, y: 10, z: true, l: hl[4]),
             
-            PlacementModel(i: vid[0], h: false, x: 7, y: 5, l: vl[0]),
-            PlacementModel(i: vid[1], h: false, x: 8, y: 5, l: vl[1]),
-            PlacementModel(i: vid[2], h: false, x: 9, y: 0, l: vl[2])
+            PlacementModel(w: vid[0], x: 7, y: 5, z: false, l: vl[0]),
+            PlacementModel(w: vid[1], x: 8, y: 5, z: false, l: vl[1]),
+            PlacementModel(w: vid[2], x: 9, y: 0, z: false, l: vl[2])
         ]
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
@@ -205,15 +205,15 @@ public class SpecialShapesCalculator {
         let vl = WordCalculator.lengths8(words: v)
         
         let placements = [
-            PlacementModel(i: hid[0], h: true, x: 2, y: 3, l: hl[0]),
-            PlacementModel(i: hid[1], h: true, x: 0, y: 4, l: hl[1]),
-            PlacementModel(i: hid[2], h: true, x: 2, y: 5, l: hl[2]),
+            PlacementModel(w: hid[0], x: 2, y: 3, z: true, l: hl[0]),
+            PlacementModel(w: hid[1], x: 0, y: 4, z: true, l: hl[1]),
+            PlacementModel(w: hid[2], x: 2, y: 5, z: true, l: hl[2]),
             
-            PlacementModel(i: vid[0], h: false, x: 3, y: 0, l: vl[0]),
-            PlacementModel(i: vid[1], h: false, x: 4, y: 2, l: vl[1]),
-            PlacementModel(i: vid[2], h: false, x: 5, y: 2, l: vl[2]),
-            PlacementModel(i: vid[3], h: false, x: 6, y: 2, l: vl[3]),
-            PlacementModel(i: vid[4], h: false, x: 7, y: 2, l: vl[4])
+            PlacementModel(w: vid[0], x: 3, y: 0, z: false, l: vl[0]),
+            PlacementModel(w: vid[1], x: 4, y: 2, z: false, l: vl[1]),
+            PlacementModel(w: vid[2], x: 5, y: 2, z: false, l: vl[2]),
+            PlacementModel(w: vid[3], x: 6, y: 2, z: false, l: vl[3]),
+            PlacementModel(w: vid[4], x: 7, y: 2, z: false, l: vl[4])
         ]
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
@@ -232,14 +232,14 @@ public class SpecialShapesCalculator {
         let vl = WordCalculator.lengths8(words: v)
         
         let placements = [
-            PlacementModel(i: hid[0], h: true, x: 1, y: 2, l: hl[0]),
-            PlacementModel(i: hid[1], h: true, x: 3, y: 3, l: hl[1]),
-            PlacementModel(i: hid[2], h: true, x: 3, y: 4, l: hl[2]),
-            PlacementModel(i: hid[3], h: true, x: 0, y: 5, l: hl[3]),
+            PlacementModel(w: hid[0], x: 1, y: 2, z: true, l: hl[0]),
+            PlacementModel(w: hid[1], x: 3, y: 3, z: true, l: hl[1]),
+            PlacementModel(w: hid[2], x: 3, y: 4, z: true, l: hl[2]),
+            PlacementModel(w: hid[3], x: 0, y: 5, z: true, l: hl[3]),
             
-            PlacementModel(i: vid[0], h: false, x: 4, y: 1, l: vl[0]),
-            PlacementModel(i: vid[1], h: false, x: 5, y: 1, l: vl[1]),
-            PlacementModel(i: vid[2], h: false, x: 6, y: 0, l: vl[2])
+            PlacementModel(w: vid[0], x: 4, y: 1, z: false, l: vl[0]),
+            PlacementModel(w: vid[1], x: 5, y: 1, z: false, l: vl[1]),
+            PlacementModel(w: vid[2], x: 6, y: 0, z: false, l: vl[2])
         ]
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
@@ -259,13 +259,13 @@ public class SpecialShapesCalculator {
         let vl = WordCalculator.lengths8(words: v)
         
         let placements = [
-            PlacementModel(i: hid[0], h: true, x: 1, y: 2, l: hl[0]),
-            PlacementModel(i: hid[1], h: true, x: 3, y: 3, l: hl[1]),
-            PlacementModel(i: hid[2], h: true, x: 0, y: 4, l: hl[2]),
+            PlacementModel(w: hid[0], x: 1, y: 2, z: true, l: hl[0]),
+            PlacementModel(w: hid[1], x: 3, y: 3, z: true, l: hl[1]),
+            PlacementModel(w: hid[2], x: 0, y: 4, z: true, l: hl[2]),
             
-            PlacementModel(i: vid[0], h: false, x: 4, y: 0, l: vl[0]),
-            PlacementModel(i: vid[1], h: false, x: 5, y: 1, l: vl[1]),
-            PlacementModel(i: vid[2], h: false, x: 6, y: 0, l: vl[2])
+            PlacementModel(w: vid[0], x: 4, y: 0, z: false, l: vl[0]),
+            PlacementModel(w: vid[1], x: 5, y: 1, z: false, l: vl[1]),
+            PlacementModel(w: vid[2], x: 6, y: 0, z: false, l: vl[2])
         ]
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
@@ -284,16 +284,16 @@ public class SpecialShapesCalculator {
         let vl = WordCalculator.lengths8(words: v)
         
         let placements = [
-            PlacementModel(i: hid[0], h: true, x: 4, y: 5, l: hl[0]),
-            PlacementModel(i: hid[1], h: true, x: 5, y: 6, l: hl[1]),
-            PlacementModel(i: hid[2], h: true, x: 0, y: 7, l: hl[2]),
-            PlacementModel(i: hid[3], h: true, x: 3, y: 8, l: hl[3]),
-            PlacementModel(i: hid[4], h: true, x: 0, y: 9, l: hl[4]),
+            PlacementModel(w: hid[0], x: 4, y: 5, z: true, l: hl[0]),
+            PlacementModel(w: hid[1], x: 5, y: 6, z: true, l: hl[1]),
+            PlacementModel(w: hid[2], x: 0, y: 7, z: true, l: hl[2]),
+            PlacementModel(w: hid[3], x: 3, y: 8, z: true, l: hl[3]),
+            PlacementModel(w: hid[4], x: 0, y: 9, z: true, l: hl[4]),
             
-            PlacementModel(i: vid[0], h: false, x: 4, y: 6, l: vl[0]),
-            PlacementModel(i: vid[1], h: false, x: 5, y: 6, l: vl[1]),
-            PlacementModel(i: vid[2], h: false, x: 6, y: 0, l: vl[2]),
-            PlacementModel(i: vid[3], h: false, x: 7, y: 4, l: vl[3])
+            PlacementModel(w: vid[0], x: 4, y: 6, z: false, l: vl[0]),
+            PlacementModel(w: vid[1], x: 5, y: 6, z: false, l: vl[1]),
+            PlacementModel(w: vid[2], x: 6, y: 0, z: false, l: vl[2]),
+            PlacementModel(w: vid[3], x: 7, y: 4, z: false, l: vl[3])
         ]
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)

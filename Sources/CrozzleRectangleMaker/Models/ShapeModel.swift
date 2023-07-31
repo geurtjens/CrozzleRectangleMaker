@@ -46,7 +46,7 @@ public struct ShapeModel {
     public func getWords() -> [UInt8] {
         var result:[UInt8] = []
         for placement in placements {
-            result.append(placement.i)
+            result.append(placement.w)
         }
         return result
     }
@@ -56,7 +56,7 @@ public struct ShapeModel {
             if wordSequence != "" {
                 wordSequence += ","
             }
-            wordSequence += String(placement.i)
+            wordSequence += String(placement.w)
         }
         
         for placement in placements {
@@ -76,7 +76,7 @@ public struct ShapeModel {
             if wordSequence != "" {
                 wordSequence += ","
             }
-            if placement.h == true {
+            if placement.z == true {
                 wordSequence += "1"
             } else {
                 wordSequence += "0"

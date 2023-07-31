@@ -22,12 +22,12 @@ public class OverlappingPlacementsCalculator {
     }
     
     public static func isOverlappingOne(item: PlacementModel, find: PlacementModel) -> Bool {
-        if item.h == find.h {
+        if item.z == find.z {
             
-            if item.h == true && item.y == find.y && columnsAreOverlapping(sourceStart: item.x, sourceLength: item.l, searchStart:find.x, searchLength: find.l) {
+            if item.z == true && item.y == find.y && columnsAreOverlapping(sourceStart: item.x, sourceLength: item.l, searchStart:find.x, searchLength: find.l) {
                 return true
             }
-            if item.h == false && item.x == find.x && columnsAreOverlapping(sourceStart: item.y, sourceLength: item.l, searchStart:find.y, searchLength: find.l) {
+            if item.z == false && item.x == find.x && columnsAreOverlapping(sourceStart: item.y, sourceLength: item.l, searchStart:find.y, searchLength: find.l) {
                 return true
             }
         } else {
@@ -53,13 +53,13 @@ public class OverlappingPlacementsCalculator {
     
     public static func interlockOverlapping(source: PlacementModel, search: PlacementModel) -> Bool {
 
-        if source.h == search.h {
+        if source.z == search.z {
             return false
         }
         
         var horizontal = source
         var vertical = search
-        if horizontal.h == false {
+        if horizontal.z == false {
             swap(&horizontal, &vertical)
         }
         

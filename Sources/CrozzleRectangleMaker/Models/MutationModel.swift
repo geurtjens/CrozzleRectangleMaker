@@ -39,7 +39,7 @@ public struct MutationModel : Codable {
             if result != "" {
                 result += ",\n"
             }
-            result += "    {\"i\":\(placement.i), \"x\":\(placement.x), \"y\":\(placement.y), \"l\":\(placement.l), \"h\":\(placement.h)}"
+            result += "    {\"w\":\(placement.w), \"x\":\(placement.x), \"y\":\(placement.y), \"l\":\(placement.l), \"h\":\(placement.z)}"
         }
         return " [\n" + result + "]"
     }

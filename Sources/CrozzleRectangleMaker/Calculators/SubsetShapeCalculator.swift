@@ -16,7 +16,7 @@ public class SubsetShapeCalculator {
         }
         
         for p in placements {
-            result.append(PlacementModel(i: p.i, h: p.h, x: p.x - negativeOffsetX, y: p.y - negativeOffsetY, l: p.l))
+            result.append(PlacementModel(w: p.w, x: p.x - negativeOffsetX, y: p.y - negativeOffsetY, z: p.z, l: p.l))
         }
         return result
     }
@@ -44,7 +44,7 @@ public class SubsetShapeCalculator {
         let baselinedShape = ShapeModel(score:shapeSmall.score, width: baselined.width(), height:baselined.height(), placements: baselined)
         
         let smallerShapeText = shapeSmall.ToString(words: words)
-        if baselinedShape.placements[0].h == shapeSmall.placements[0].h {
+        if baselinedShape.placements[0].z == shapeSmall.placements[0].z {
             // going in the same direction
             
             let baselinedText = baselinedShape.ToString(words: words)
@@ -86,7 +86,7 @@ public class SubsetShapeCalculator {
 
     
     public static func GetCommonPlacement(wordId: UInt8, placements: [PlacementModel]) -> PlacementModel? {
-        let matching = placements.filter { $0.i == wordId}
+        let matching = placements.filter { $0.w == wordId}
         
         if matching.count == 0 {
             return nil
@@ -101,7 +101,7 @@ public class SubsetShapeCalculator {
         
         var result: [PlacementModel] = []
         for placement in placementsSmall {
-            let matching = GetCommonPlacement(wordId: placement.i, placements: placementsLarge)
+            let matching = GetCommonPlacement(wordId: placement.w, placements: placementsLarge)
             
             guard let matching = matching else {
                 return []

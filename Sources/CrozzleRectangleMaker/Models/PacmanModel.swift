@@ -254,15 +254,15 @@ public struct PacmanModel : ShapeProtocol {
         let y5 = UInt8(maxUp - vLen[2] - 1)
         
         var placements = [
-            PlacementModel(i: UInt8(wordsHorizontal[0]), h: true, x: x0, y: y0, l: hLen[0]),
-            PlacementModel(i: UInt8(wordsHorizontal[1]), h: true, x: x1, y: y1, l: hLen[1]),
-            PlacementModel(i: UInt8(wordsHorizontal[2]), h: true, x: x2, y: y2, l: hLen[2]),
+            PlacementModel(w: UInt8(wordsHorizontal[0]), x: x0, y: y0, z: true, l: hLen[0]),
+            PlacementModel(w: UInt8(wordsHorizontal[1]), x: x1, y: y1, z: true, l: hLen[1]),
+            PlacementModel(w: UInt8(wordsHorizontal[2]), x: x2, y: y2, z: true, l: hLen[2]),
             
-            PlacementModel(i: UInt8(wordsVertical[0]), h: false, x: x3, y: y3, l: vLen[0]),
-            PlacementModel(i: UInt8(wordsVertical[1]), h: false, x: x4, y: y4, l: vLen[1]),
-            PlacementModel(i: UInt8(wordsVertical[2]), h: false, x: x5, y: y5, l: vLen[2])
+            PlacementModel(w: UInt8(wordsVertical[0]), x: x3, y: y3, z: false, l: vLen[0]),
+            PlacementModel(w: UInt8(wordsVertical[1]), x: x4, y: y4, z: false, l: vLen[1]),
+            PlacementModel(w: UInt8(wordsVertical[2]), x: x5, y: y5, z: false, l: vLen[2])
         ]
-        placements.sort() { $0.i < $1.i}
+        placements.sort() { $0.w < $1.w}
         return placements
         
     }
@@ -305,15 +305,15 @@ public struct PacmanModel : ShapeProtocol {
         let y5 = maxUp
         
         var placements = [
-            PlacementModel(i: UInt8(wordsHorizontal[0]), h: true, x: x0, y: y0, l: hLen[0]),
-            PlacementModel(i: UInt8(wordsHorizontal[1]), h: true, x: x1, y: y1, l: hLen[1]),
-            PlacementModel(i: UInt8(wordsHorizontal[2]), h: true, x: x2, y: y2, l: hLen[2]),
+            PlacementModel(w: UInt8(wordsHorizontal[0]), x: x0, y: y0, z: true, l: hLen[0]),
+            PlacementModel(w: UInt8(wordsHorizontal[1]), x: x1, y: y1, z: true, l: hLen[1]),
+            PlacementModel(w: UInt8(wordsHorizontal[2]), x: x2, y: y2, z: true, l: hLen[2]),
             
-            PlacementModel(i: UInt8(wordsVertical[0]), h: false, x: x3, y: y3, l: vLen[0]),
-            PlacementModel(i: UInt8(wordsVertical[1]), h: false, x: x4, y: y4, l: vLen[1]),
-            PlacementModel(i: UInt8(wordsVertical[2]), h: false, x: x5, y: y5, l: vLen[2])
+            PlacementModel(w: UInt8(wordsVertical[0]), x: x3, y: y3, z: false, l: vLen[0]),
+            PlacementModel(w: UInt8(wordsVertical[1]), x: x4, y: y4, z: false, l: vLen[1]),
+            PlacementModel(w: UInt8(wordsVertical[2]), x: x5, y: y5, z: false, l: vLen[2])
         ]
-        placements.sort() { $0.i < $1.i}
+        placements.sort() { $0.w < $1.w}
         return placements
         
  
@@ -358,16 +358,16 @@ public struct PacmanModel : ShapeProtocol {
         let y5 = maxUp + 1
         
         var placements = [
-            PlacementModel(i: UInt8(wordsHorizontal[0]), h: true, x: x0, y: y0, l: hLen[0]),
-            PlacementModel(i: UInt8(wordsHorizontal[1]), h: true, x: x1, y: y1, l: hLen[1]),
-            PlacementModel(i: UInt8(wordsHorizontal[2]), h: true, x: x2, y: y2, l: hLen[2]),
+            PlacementModel(w: UInt8(wordsHorizontal[0]), x: x0, y: y0, z: true, l: hLen[0]),
+            PlacementModel(w: UInt8(wordsHorizontal[1]), x: x1, y: y1, z: true, l: hLen[1]),
+            PlacementModel(w: UInt8(wordsHorizontal[2]), x: x2, y: y2, z: true, l: hLen[2]),
             
-            PlacementModel(i: UInt8(wordsVertical[0]), h: false, x: x3, y: y3, l: vLen[0]),
-            PlacementModel(i: UInt8(wordsVertical[1]), h: false, x: x4, y: y4, l: vLen[1]),
-            PlacementModel(i: UInt8(wordsVertical[2]), h: false, x: x5, y: y5, l: vLen[2])
+            PlacementModel(w: UInt8(wordsVertical[0]), x: x3, y: y3, z: false, l: vLen[0]),
+            PlacementModel(w: UInt8(wordsVertical[1]), x: x4, y: y4, z: false, l: vLen[1]),
+            PlacementModel(w: UInt8(wordsVertical[2]), x: x5, y: y5, z: false, l: vLen[2])
         ]
         
-        placements.sort() { $0.i < $1.i}
+        placements.sort() { $0.w < $1.w}
         return placements
             
     }

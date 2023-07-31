@@ -29,7 +29,7 @@ extension ShapeProtocol {
         
         // We want all shapes to be flipped so the first word in the interlock is always horizontal
         // helps for the duplicate removal
-        if shape.placements[0].h == false {
+        if shape.placements[0].z == false {
             return ShapeCalculator.Flip(shape: shape)
         } else {
             return shape
@@ -57,7 +57,7 @@ extension ShapeProtocol {
         
         for placement in shape.placements {
             
-            let word = "." + words[Int(placement.i)] + "."
+            let word = "." + words[Int(placement.w)] + "."
             
             // Just to create the variables that will be used in the loop
             var gridPos = 0
@@ -66,7 +66,7 @@ extension ShapeProtocol {
             for i in 0..<word.count {
                 let letter = word[i]
                 
-                if placement.h {
+                if placement.z {
                     gridPos = Int(placement.x) + i + (Int(placement.y) * widthEOL + 1)
                 } else {
                     gridPos = Int(placement.x) + 1 + ((Int(placement.y) + i) * widthEOL)
@@ -108,7 +108,7 @@ extension ShapeProtocol {
         
         for placement in shape.placements {
             
-            let word = "." + words[Int(placement.i)] + "."
+            let word = "." + words[Int(placement.w)] + "."
             
             // Just to create the variables that will be used in the loop
             var gridPos = 0
@@ -117,7 +117,7 @@ extension ShapeProtocol {
             for i in 0..<word.count {
                 let letter = word[i]
                 
-                if placement.h == false {
+                if placement.z == false {
                     gridPos = Int(placement.y) + i + (Int(placement.x) * widthEOL + 1)
                 } else {
                     gridPos = Int(placement.y) + 1 + ((Int(placement.x) + i) * widthEOL)

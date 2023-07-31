@@ -18,37 +18,37 @@ public class PlacementCalculator {
         let maxUp = Int(input.rightLetterPos) + 1
         
         let topPlacement = PlacementModel(
-            i: input.top,
-            h: true,
+            w: input.top,
             x: UInt8(maxLeft + 1),
             y: UInt8(maxUp),
+            z: true,
             l: input.topLength
         )
         
         let bottomPlacement = PlacementModel(
-            i: input.bottom,
-            h: true,
+            w: input.bottom,
             x: UInt8(maxLeft - Int(input.bottomLetterPos)),
             y: UInt8(maxUp + Int(input.interlockHeight)),
+            z: true,
             l: input.bottomLength)
         
         let leftPlacement = PlacementModel(
-            i: input.left,
-            h: false,
+            w: input.left,
             x: UInt8(maxLeft + 1),
             y: UInt8(maxUp),
+            z: false,
             l: input.leftLength)
         
         let rightPlacement = PlacementModel(
-            i: input.right,
-            h: false,
+            w: input.right,
             x: UInt8(maxLeft + Int(input.interlockWidth) + 1),
             y: 0,
+            z: false,
             l: input.rightLength)
         
         var placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
         
-        placements.sort { $0.i < $1.i}
+        placements.sort { $0.w < $1.w }
         
         return placements
     }
@@ -62,36 +62,37 @@ public class PlacementCalculator {
         let maxUp = Int(input.leftLetterPos) + 1
         
         let topPlacement = PlacementModel(
-            i: input.top,
-            h: true,
+            w: input.top,
             x: UInt8(maxLeft - Int(input.topLetterPos)),
             y: UInt8(maxUp),
+            z: true,
             l: input.topLength)
         
         let bottomPlacement = PlacementModel(
-            i: input.bottom,
-            h: true,
+            w: input.bottom,
             x: UInt8(maxLeft - Int(input.bottomLetterPos)),
             y: UInt8(maxUp + Int(input.interlockHeight)),
+            z: true,
             l: input.bottomLength)
         
         let leftPlacement = PlacementModel(
-            i: input.left,
-            h: false,
+            w: input.left,
             x: UInt8(maxLeft + 1),
             y: 0,
+            z: false,
             l: input.leftLength)
         
         let rightPlacement = PlacementModel(
-            i: input.right,
-            h: false,
+            w: input.right,
+            
             x: UInt8(maxLeft + Int(input.interlockWidth) + 1),
             y: UInt8(maxUp),
+            z: false,
             l: input.rightLength)
         
         var placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
         
-        placements.sort { $0.i < $1.i}
+        placements.sort { $0.w < $1.w }
         
         return placements
     }
@@ -105,36 +106,36 @@ public class PlacementCalculator {
         let maxUp = Int(max(input.leftLetterPos, input.rightLetterPos))
         
         let topPlacement = PlacementModel(
-            i: input.top,
-            h: true,
-            x: 0, //maxLeft - input.topLetterPos,
+            w: input.top,
+            x: 0,
             y: UInt8(maxUp + 1),
+            z: true,
             l: input.topLength)
         
         let bottomPlacement = PlacementModel(
-            i: input.bottom,
-            h: true,
-            x: UInt8(maxLeft), // - input.bottomLetterPos,
+            w: input.bottom,
+            x: UInt8(maxLeft),
             y: UInt8(maxUp + 1 + Int(input.interlockHeight)),
+            z: true,
             l: input.bottomLength)
         
         let leftPlacement = PlacementModel(
-            i: input.left,
-            h: false,
+            w: input.left,
             x: UInt8(maxLeft),
             y: UInt8(maxUp - Int(input.leftLetterPos)),
+            z: false,
             l: input.leftLength)
         
         let rightPlacement = PlacementModel(
-            i: input.right,
-            h: false,
+            w: input.right,
             x: UInt8(maxLeft + Int(input.interlockWidth)),
             y: UInt8(maxUp - Int(input.rightLetterPos)),
+            z: false,
             l: input.rightLength)
         
         var placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
         
-        placements.sort { $0.i < $1.i}
+        placements.sort { $0.w < $1.w }
         
         return placements
 
@@ -149,36 +150,36 @@ public class PlacementCalculator {
         let maxUp = Int(max(input.leftLetterPos, input.rightLetterPos))
         
         let topPlacement = PlacementModel(
-            i: input.top,
-            h: true,
+            w: input.top,
             x: UInt8(maxLeft - Int(input.topLetterPos)),
             y: UInt8(maxUp + 1),
+            z: true,
             l: input.topLength)
         
         let bottomPlacement = PlacementModel(
-            i: input.bottom,
-            h: true,
+            w: input.bottom,
             x: UInt8(maxLeft - Int(input.bottomLetterPos)),
             y: UInt8(maxUp + 1 + Int(input.interlockHeight)),
+            z: true,
             l: input.bottomLength)
         
         let leftPlacement = PlacementModel(
-            i: input.left,
-            h: false,
+            w: input.left,
             x: UInt8(maxLeft + 1),
             y: UInt8(maxUp - Int(input.leftLetterPos)),
+            z: false,
             l: input.leftLength)
         
         let rightPlacement = PlacementModel(
-            i: input.right,
-            h: false,
+            w: input.right,
             x: UInt8(maxLeft + 1 + Int(input.interlockWidth)),
             y: UInt8(maxUp - Int(input.rightLetterPos)),
+            z: false,
             l: input.rightLength)
         
         var placements = [topPlacement, bottomPlacement, leftPlacement, rightPlacement]
         
-        placements.sort { $0.i < $1.i}
+        placements.sort { $0.w < $1.w }
         
         return placements
     }
@@ -188,7 +189,7 @@ public class PlacementCalculator {
     public static func width(fromPlacements placements: [PlacementModel]) -> UInt8 {
         var maxWidth = 0
         for placement in placements {
-            if placement.h {
+            if placement.z {
                 let end = Int(placement.x + placement.l)
                 if maxWidth < end {
                     maxWidth = end
@@ -208,7 +209,7 @@ public class PlacementCalculator {
     public static func height(fromPlacements placements: [PlacementModel]) -> UInt8 {
         var maxHeight = 0
         for placement in placements {
-            if placement.h == false {
+            if placement.z == false {
                 let end = Int(placement.y + placement.l)
                 if maxHeight < end {
                     maxHeight = end
@@ -247,7 +248,7 @@ public class PlacementCalculator {
         
         var flipped:[PlacementModel] = []
         for p in placements {
-            flipped.append(PlacementModel(i: p.i, h: !p.h, x: p.y, y: p.x, l: p.l))
+            flipped.append(PlacementModel(w: p.w, x: p.y, y: p.x, z: !p.z, l: p.l))
         }
         return flipped
     }
@@ -256,8 +257,8 @@ public class PlacementCalculator {
         var commonPlacements:[Int] = []
         for source in sourcePlacements {
             for search in searchPlacements {
-                if source.i == search.i {
-                   commonPlacements.append(Int(source.i))
+                if source.w == search.w {
+                   commonPlacements.append(Int(source.w))
                 }
             }
         }
@@ -268,8 +269,8 @@ public class PlacementCalculator {
         var commonPlacements:[PlacementModel] = []
         for source in sourcePlacements {
             for search in searchPlacements {
-                if source.i == search.i {
-                    if source.h == search.h && source.x == search.x && source.y == search.y && source.l == search.l {
+                if source.w == search.w {
+                    if source.z == search.z && source.x == search.x && source.y == search.y && source.l == search.l {
                         commonPlacements.append(source)
                     } else {
                         return false
@@ -309,10 +310,10 @@ public class PlacementCalculator {
                         } else {
                             
                             placements.append(PlacementModel(
-                                i: UInt8(wordId),
-                                h: true,
+                                w: UInt8(wordId),
                                 x: UInt8(xPos - 1),
                                 y: UInt8(y),
+                                z: true,
                                 l: UInt8(word.count)))
                             word = ""
                         }
@@ -348,10 +349,10 @@ public class PlacementCalculator {
     
     public static func ToCode(fromPlacement placement: PlacementModel) -> String {
         var horizontal = "true"
-        if placement.h == false {
+        if placement.z == false {
             horizontal = "false"
         }
         
-        return "PlacementModel(i: \(placement.i), h: \(horizontal), x: \(placement.x), y: \(placement.y), l:\(placement.l))"
+        return "PlacementModel(w: \(placement.w), x: \(placement.x), y: \(placement.y), z: \(horizontal), l:\(placement.l))"
     }
 }

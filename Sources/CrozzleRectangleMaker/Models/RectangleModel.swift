@@ -102,13 +102,13 @@ public struct RectangleModel : ShapeProtocol {
         
         let shape = self.ToShape()
         
-        let placements = shape.placements.sorted { $0.i < $1.i }
+        let placements = shape.placements.sorted { $0.w < $1.w }
         
         for placement in placements {
-            result += String(placement.i) + ","
+            result += String(placement.w) + ","
         }
         for placement in placements {
-            if placement.h {
+            if placement.z {
                 result += "1,"
             } else {
                 result += "0,"

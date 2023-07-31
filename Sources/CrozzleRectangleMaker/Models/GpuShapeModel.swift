@@ -65,15 +65,15 @@ public struct GpuShapeModel {
 
             
             var placements = shape.placements
-            placements.sort { $0.i < $1.i}
+            placements.sort { $0.w < $1.w}
             
             for j in 0..<placements.count {
                 let placement:PlacementModel = placements[j]
                 
                 let k = i * stride + j
                 
-                _wordIds[k] = UInt8(placement.i)
-                _isHorizontals[k] = placement.h
+                _wordIds[k] = UInt8(placement.w)
+                _isHorizontals[k] = placement.z
                 _xs[k] = UInt8(placement.x)
                 _ys[k] = UInt8(placement.y)
                 _lengths[k] = UInt8(placement.l)

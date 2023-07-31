@@ -33,17 +33,17 @@ public struct EdgeModel : ShapeProtocol {
     /// Convert the edge into a list of placements, a placement is an instruction of where to put a single word
     public func ToPlacement() -> [PlacementModel] {
         let horizontal = PlacementModel(
-            i:horizontalWordId,
-            h: true,
+            w:horizontalWordId,
             x: 0,
             y: verticalPosition + 1,
+            z: true,
             l: horizontalLength
         )
         let vertical = PlacementModel(
-            i: verticalWordId,
-            h: false,
+            w: verticalWordId,
             x: horizontalPosition + 1,
             y: 0,
+            z: false,
             l: verticalLength
         )
         return [horizontal, vertical]

@@ -279,7 +279,7 @@ public class MutationCalculator {
         let (wordSequence, constraintArray) = LockBreakerCalculator.getIngredientsForCalculation(grid: grid)
         if let shape = ShapeCalculator.toShape(fromGrid: grid, words: wordSequence) {
             var placements = shape.placements
-            placements.sort() { $0.i < $1.i}
+            placements.sort() { $0.w < $1.w}
             
             //return MutationModel(grid: grid, placements: placements, constraints: constraintArray, wordSequence: wordSequence)
             return MutationModel(placements: placements, constraints: constraintArray)

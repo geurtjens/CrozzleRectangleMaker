@@ -162,10 +162,10 @@ public struct ClusterModel : ShapeProtocol {
             let y = maxUp + i + 1
             let wordId = wordsHorizontal[i]
             if pattern == .leading {
-                let placement = PlacementModel(i: UInt8(wordId), h: true, x: UInt8(maxLeft - length), y: UInt8(y), l: lengthsHorizontal[i])
+                let placement = PlacementModel(w: UInt8(wordId), x: UInt8(maxLeft - length), y: UInt8(y), z: true, l: lengthsHorizontal[i])
                 placements.append(placement)
             } else {
-                let placement = PlacementModel(i: UInt8(wordId), h: true, x: UInt8(maxLeft), y: UInt8(y), l: lengthsHorizontal[i])
+                let placement = PlacementModel(w: UInt8(wordId), x: UInt8(maxLeft), y: UInt8(y), z: true, l: lengthsHorizontal[i])
                 placements.append(placement)
             }
         }
@@ -175,15 +175,15 @@ public struct ClusterModel : ShapeProtocol {
             let x = maxLeft + i + 1
             let wordId = wordsVertical[i]
             if pattern == .leading {
-                let placement = PlacementModel(i: UInt8(wordId), h: false, x: UInt8(x), y: UInt8(maxUp - length), l: lengthsVertical[i])
+                let placement = PlacementModel(w: UInt8(wordId), x: UInt8(x), y: UInt8(maxUp - length), z: false, l: lengthsVertical[i])
                 placements.append(placement)
             } else {
                 // y is maxUp - 1 because it needs to add his .
-                let placement = PlacementModel(i: UInt8(wordId), h: false, x: UInt8(x), y: UInt8(maxUp), l: lengthsVertical[i])
+                let placement = PlacementModel(w: UInt8(wordId), x: UInt8(x), y: UInt8(maxUp), z: false, l: lengthsVertical[i])
                 placements.append(placement)
             }
         }
-        placements.sort { $0.i < $1.i}
+        placements.sort { $0.w < $1.w}
         return placements
     }
     
