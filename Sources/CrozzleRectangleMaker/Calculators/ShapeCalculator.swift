@@ -61,6 +61,8 @@ public class ShapeCalculator {
             return nil
         }
         
+        placements.sort() { $0.w < $1.w }
+        
         let placementsShape = placements.toShape(score: 0)
         
         let (shape,_) = ShapeCalculator.ToValidShape(shape: placementsShape, words: words)

@@ -41,6 +41,128 @@ final class PlacementCalculatorTests: XCTestCase {
         XCTAssertEqual(6, placements.count)
     }
     
+    func test_fromTextToPlacementHorizontal_NAZARETH_SING() {
+        
+            let words = [
+                "ZION", "AZURE", "TOYS", "JOY", "HAZELNUT", "NUTS", "NAZARETH", "HYMN", "TURKEY", "SNOW",
+                "MERRY", "TOAST", "STAR", "HOLLY", "JELLY", "FAMILY", "WHITE", "SING", "SAUCE", "PORK",
+                "TREE", "EVE", "INN", "BELLS" ,"CAKE"]
+            let grid = [
+                " . .      ",
+                ".NAZARETH.",
+                " U I      ",
+                " T O      ",
+                ".SING.    ",
+                " . .      "
+            ]
+        
+        let (horizontal, isValid) = PlacementCalculator.fromTextToPlacementsHorizontal(grid: grid, words: words)
+        
+        XCTAssertTrue(isValid)
+        
+        XCTAssertEqual(2, horizontal.count)
+        
+        let a = horizontal[0]
+        let b = horizontal[1]
+        
+        XCTAssertEqual(6, a.w)
+        XCTAssertEqual(0, a.x)
+        XCTAssertEqual(1, a.y)
+        XCTAssertTrue(a.z)
+        
+        XCTAssertEqual(17, b.w)
+        XCTAssertEqual(0, b.x)
+        XCTAssertEqual(4, b.y)
+        XCTAssertTrue(b.z)
+        
+        let searchGrid = [
+            "      . .  ",
+            ".NAZARETH. ",
+            "      V O  ",
+            "    .BELLS.",
+            "      . L  ",
+            "        Y  ",
+            "        .  "
+        ]
+    }
+    
+    func test_fromTextToPlacementHorizontal_NAZARETH_BELLS() {
+        
+        let words = [
+                "ZION", "AZURE", "TOYS", "JOY", "HAZELNUT", "NUTS", "NAZARETH", "HYMN", "TURKEY", "SNOW",
+                "MERRY", "TOAST", "STAR", "HOLLY", "JELLY", "FAMILY", "WHITE", "SING", "SAUCE", "PORK",
+                "TREE", "EVE", "INN", "BELLS" ,"CAKE"]
+        let grid = [
+            "      . .  ",
+            ".NAZARETH. ",
+            "      V O  ",
+            "    .BELLS.",
+            "      . L  ",
+            "        Y  ",
+            "        .  "
+        ]
+        
+        let (horizontal, isValid) = PlacementCalculator.fromTextToPlacementsHorizontal(grid: grid, words: words)
+        
+        XCTAssertTrue(isValid)
+        
+        XCTAssertEqual(2, horizontal.count)
+        
+        let a = horizontal[0]
+        let b = horizontal[1]
+        
+        XCTAssertEqual(6, a.w)
+        XCTAssertEqual(0, a.x)
+        XCTAssertEqual(1, a.y)
+        XCTAssertTrue(a.z)
+        
+        XCTAssertEqual(23, b.w)
+        XCTAssertEqual(4, b.x)
+        XCTAssertEqual(3, b.y)
+        XCTAssertTrue(b.z)
+        
+        
+    }
+    
+    func test_fromTextToPlacementVertical_EVE_HOLLY() {
+        
+        let words = [
+                "ZION", "AZURE", "TOYS", "JOY", "HAZELNUT", "NUTS", "NAZARETH", "HYMN", "TURKEY", "SNOW",
+                "MERRY", "TOAST", "STAR", "HOLLY", "JELLY", "FAMILY", "WHITE", "SING", "SAUCE", "PORK",
+                "TREE", "EVE", "INN", "BELLS" ,"CAKE"]
+        let grid = [
+            "      . .  ",
+            ".NAZARETH. ",
+            "      V O  ",
+            "    .BELLS.",
+            "      . L  ",
+            "        Y  ",
+            "        .  "
+        ]
+        
+        let (verticalPlacements, isValid) = PlacementCalculator.fromTextToPlacementsVertical(grid: grid, words: words)
+        
+        XCTAssertTrue(isValid)
+        
+        XCTAssertEqual(2, verticalPlacements.count)
+        
+        let a = verticalPlacements[0]
+        let b = verticalPlacements[1]
+        
+        XCTAssertEqual(21, a.w)
+        XCTAssertEqual(6, a.x)
+        XCTAssertEqual(0, a.y)
+        XCTAssertFalse(a.z)
+        
+        XCTAssertEqual(13, b.w)
+        XCTAssertEqual(8, b.x)
+        XCTAssertEqual(0, b.y)
+        XCTAssertFalse(b.z)
+        
+        
+    }
+    
+    
     func test_fromTextToPlacements() {
         guard let game = GameList().getGame(gameId: 8612) else {
             return

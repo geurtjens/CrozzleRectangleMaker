@@ -9,34 +9,22 @@ import Foundation
 public class MergeMatchingDistance {
     
     
-    public static func MatchingDistance(matches: [WordIndexResultModel], matchingOrientation: Bool, sourceShapes: GpuShapeModel, sourceShapeId: Int, searchShapes: GpuShapeModel, searchShapeId: Int) -> Bool {
-        
-        let sourceBase = sourceShapeId * sourceShapes.stride
-        let searchBase = searchShapeId * searchShapes.stride
+    public static func MatchingDistance(matches: [WordIndexResultModel], matchingOrientation: Bool, sourceShape: ShapeModel, searchShape: ShapeModel) -> Bool {
 
-        let sourceFirstPos = sourceBase + Int(matches[0].sourcePos)
-        let sourceFirstX = sourceShapes.x[sourceFirstPos]
-        let sourceFirstY = sourceShapes.y[sourceFirstPos]
+        let sourceFirstPlacement = sourceShape.placements[Int(matches[0].sourcePos)]
+        let searchFirstPlacement = searchShape.placements[Int(matches[0].searchPos)]
         
-        let searchFirstPos = searchBase + Int(matches[0].searchPos)
-        let searchFirstX = searchShapes.x[searchFirstPos]
-        let searchFirstY = searchShapes.y[searchFirstPos]
         
         for i in 1..<matches.count {
             
-            let sourceComparePos = sourceBase + Int(matches[i].sourcePos)
-            let sourceCompareX = sourceShapes.x[sourceComparePos]
-            let sourceCompareY = sourceShapes.y[sourceComparePos]
+            let sourcePlacement = sourceShape.placements[Int(matches[i].sourcePos)]
+            let searchPlacement = searchShape.placements[Int(matches[i].searchPos)]
             
-            let searchComparePos = searchBase + Int(matches[i].searchPos)
-            let searchCompareX = searchShapes.x[searchComparePos]
-            let searchCompareY = searchShapes.y[searchComparePos]
-           
-            let distanceSourceX = sourceFirstX - sourceCompareX
-            let distanceSourceY = sourceFirstY - sourceCompareY
+            let distanceSourceX = sourceFirstPlacement.x - sourcePlacement.x
+            let distanceSourceY = sourceFirstPlacement.y - sourcePlacement.y
             
-            let distanceSearchX = searchFirstX - searchCompareX
-            let distanceSearchY = searchFirstY - searchCompareY
+            let distanceSearchX = searchFirstPlacement.x - searchPlacement.x
+            let distanceSearchY = searchFirstPlacement.y - searchPlacement.y
                     
             if matchingOrientation == true && (distanceSourceX != distanceSearchX || distanceSourceY != distanceSearchY) {
                     return false

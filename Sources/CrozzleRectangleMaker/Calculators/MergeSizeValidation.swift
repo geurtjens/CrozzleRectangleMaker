@@ -9,29 +9,36 @@ import Foundation
 public class MergeSizeValidation {
     
     
-    public static func execute( matches: [WordIndexResultModel], sourceShapes: GpuShapeModel, sourceShapeId: Int, searchShapes: GpuShapeModel, searchShapeId: Int, widthMax: Int, heightMax: Int) -> (Bool, Int, Int) {
+    
+    public static func execute(
+        sourceShape: ShapeModel,
+        sourcePos: Int,
+        searchShape: ShapeModel,
+        searchPos: Int,
+        widthMax: Int,
+        heightMax: Int) -> (Bool, Int, Int, Bool)
+    {
         
+        let sourcePlacement = sourceShape.placements[sourcePos]
+        let searchPlacement = searchShape.placements[searchPos]
         
-        let sourcePos = sourceShapeId * Int(sourceShapes.stride) + Int(matches[0].searchPos)
-        let sourceWidth = Int(sourceShapes.widths[sourceShapeId])
-        let sourceHeight = Int(sourceShapes.heights[sourceShapeId])
+        let matchingOrientation = (sourcePlacement.z == searchPlacement.z)
         
-        let searchPos = searchShapeId * Int(searchShapes.stride) + Int(matches[0].searchPos)
-        let searchWidth = Int(searchShapes.widths[searchShapeId])
-        let searchHeight = Int(searchShapes.heights[searchShapeId])
+       
         
-        return executeWithItems(
-            sourceShapes: sourceShapes,
-            sourceWidth: sourceWidth,
-            sourceHeight: sourceHeight,
-            sourcePos: sourcePos,
-            searchShapes: searchShapes,
-            searchWidth: searchWidth,
-            searchHeight: searchHeight,
-            searchPos: searchPos,
-            widthMax: widthMax,
-            heightMax: heightMax)
+        let (isValid, width, height) = verifyWidthHeight(
+            width1: Int(sourceShape.width), height1: Int(sourceShape.height), x1: Int(sourcePlacement.x), y1: Int(sourcePlacement.y),
+            width2: Int(searchShape.width), height2: Int(searchShape.height), x2: Int(searchPlacement.x), y2: Int(searchPlacement.y),
+            flipped: matchingOrientation, widthMax: widthMax, heightMax: heightMax)
+        
+        if isValid {
+            return (true, width, height, matchingOrientation)
+        } else {
+            return (false, width, height, matchingOrientation)
+        }
     }
+    
+    
     
     public static func executeWithItems(
         sourceShapes: GpuShapeModel, sourceWidth: Int, sourceHeight: Int, sourcePos: Int,

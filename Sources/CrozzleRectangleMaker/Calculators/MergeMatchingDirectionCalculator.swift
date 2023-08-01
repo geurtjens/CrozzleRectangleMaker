@@ -8,28 +8,17 @@
 import Foundation
 public class MergeMatchingDirectionCalculator {
     
-    public static func firstIsFlipped(sourceShapes: GpuShapeModel, sourceShapeId: Int, sourcePos: Int, searchShapes: GpuShapeModel, searchShapeId: Int, searchPos: Int) -> Bool {
-        let sourceIndex = sourceShapes.stride * sourceShapeId + sourcePos
-        let searchIndex = searchShapes.stride * searchShapeId + searchPos
-        return sourceShapes.isHorizontal[sourceIndex] == searchShapes.isHorizontal[searchIndex]
+    public static func firstIsFlipped(sourceShape: ShapeModel, sourcePos: Int, searchShape: ShapeModel, searchPos: Int) -> Bool {
+        return sourceShape.placements[sourcePos].z == searchShape.placements[searchPos].z
     }
     
     /// Here is the matching direction calculator that uses the WordIndexResultList
     /// Does the direction of all words in both lists, are they always the same or always opposite.  And which one is it same or opposite
-    public static func MatchingDirection(matches: [WordIndexResultModel], firstIsFlipped: Bool, sourceShapes: GpuShapeModel, sourceShapeId: Int, searchShapes: GpuShapeModel, searchShapeId: Int) -> Bool {
+    public static func MatchingDirection(matches: [WordIndexResultModel], firstIsFlipped: Bool, sourceShape: ShapeModel, searchShape: ShapeModel) -> Bool {
 
-        if matches.count == 1 {
-            return true
-        }
-        
-        // We already know if the first is flipped or not so now all the others must comply
-        let sourceBase = sourceShapeId * Int(sourceShapes.stride)
-        let searchBase = searchShapeId * Int(searchShapes.stride)
-        
         for i in 1..<matches.count {
             
-            let flipped = (sourceShapes.isHorizontal[sourceBase + Int(matches[i].sourcePos)] == searchShapes.isHorizontal[searchBase + Int(matches[i].searchPos)])
-            if flipped != firstIsFlipped {
+            if firstIsFlipped != (sourceShape.placements[Int(matches[i].sourcePos)].z == searchShape.placements[Int(matches[i].searchPos)].z) {
                 return false
             }
         }
