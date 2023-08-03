@@ -8,8 +8,49 @@
 import Foundation
 public class MergeOffsetCalculator {
     
-    
-    
+    /* This is part of the new way*/
+    public static func GetAdjustedPlacement(placement: PlacementModel) -> (Int, Int) {
+        if placement.z {
+            return (Int(placement.x), Int(placement.y - 1))
+        } else {
+            // lets also flip them
+            return (Int(placement.y), Int(placement.x - 1))
+        }
+    }
+    /* this is part of the new way*/
+    public static func GetOffsets(p1: PlacementModel, p2: PlacementModel) -> (UInt8, UInt8, UInt8, UInt8, Bool) {
+        
+        let flipped = p1.z != p2.z
+        
+        // These adjusted when its vertical it gets flipped
+        let (ax1, ay1) = GetAdjustedPlacement(placement: p1)
+        let (ax2, ay2) = GetAdjustedPlacement(placement: p2)
+        
+        
+        var x1: UInt8 = 0
+        var y1: UInt8 = 0
+        
+        var x2: UInt8 = 0
+        var y2: UInt8 = 0
+        
+        
+        
+        if ax1 > ax2 {
+            x2 = UInt8(ax1 - ax2)
+        } else if ax2 > ax1 {
+            x1 = UInt8(ax2 - ax1)
+        }
+        
+        if ay1 > ay2 {
+            y2 = UInt8(ay1 - ay2)
+        } else if ay2 > ay1 {
+            y1 = UInt8(ay2 - ay1)
+        }
+       
+        
+        // How much each should move by to accommodate the other shape
+        return (x1, y1, x2, y2, flipped)
+    }
     
     
     

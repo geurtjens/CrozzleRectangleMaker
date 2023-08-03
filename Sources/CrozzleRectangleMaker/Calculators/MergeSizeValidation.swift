@@ -8,7 +8,12 @@
 import Foundation
 public class MergeSizeValidation {
     
-    
+    public static func orientationIsFlipped(sourcePlacementMatching: PlacementModel, searchPlacementMatching: PlacementModel) -> Bool {
+        assert(sourcePlacementMatching.w == searchPlacementMatching.w, "these should match with same word otherwise something beforehand has gone wrong")
+        
+        let firstIsFlipped = !(sourcePlacementMatching.z == searchPlacementMatching.z)
+        return firstIsFlipped
+    }
     
     public static func execute(
         sourceShape: ShapeModel,
@@ -22,19 +27,19 @@ public class MergeSizeValidation {
         let sourcePlacement = sourceShape.placements[sourcePos]
         let searchPlacement = searchShape.placements[searchPos]
         
-        let matchingOrientation = (sourcePlacement.z == searchPlacement.z)
-        
-       
+        let firstIsFlipped = orientationIsFlipped(
+            sourcePlacementMatching: sourcePlacement,
+            searchPlacementMatching: searchPlacement)
         
         let (isValid, width, height) = verifyWidthHeight(
             width1: Int(sourceShape.width), height1: Int(sourceShape.height), x1: Int(sourcePlacement.x), y1: Int(sourcePlacement.y),
             width2: Int(searchShape.width), height2: Int(searchShape.height), x2: Int(searchPlacement.x), y2: Int(searchPlacement.y),
-            flipped: matchingOrientation, widthMax: widthMax, heightMax: heightMax)
+            flipped: firstIsFlipped, widthMax: widthMax, heightMax: heightMax)
         
         if isValid {
-            return (true, width, height, matchingOrientation)
+            return (true, width, height, firstIsFlipped)
         } else {
-            return (false, width, height, matchingOrientation)
+            return (false, width, height, firstIsFlipped)
         }
     }
     

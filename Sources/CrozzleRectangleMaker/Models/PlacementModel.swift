@@ -21,13 +21,13 @@ public struct PlacementModel: Codable {
     //public let l: UInt8
     
     public var z: Bool {
-        return extra >= 32
+        return extra >= 100
     }
     private let extra: UInt8
     
     public var l: UInt8 {
-        if extra >= 32 {
-            return extra - 32
+        if extra >= 100 {
+            return extra - 100
         } else {
             return extra
         }
@@ -40,7 +40,7 @@ public struct PlacementModel: Codable {
         //self.z = z
         //self.l = l
         if z == true {
-            extra = 32 + l
+            extra = l + 100
         } else {
             extra = l
         }

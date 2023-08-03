@@ -55,14 +55,16 @@ public class WordIndex2Calculator {
     }
     
     public static func findShapesContainingCommonWords(
+        words: [String],
         sourceShape: ShapeModel,
         sourceShapeId: Int,
         searchShapes: [ShapeModel],
         searchWordIndex: [[WordIndexModel]],
         searchMin: Int,
         searchMax: Int,
+        scoresMin: [Int],
         widthMax: Int,
-        heightMax: Int) -> [WordIndexResultList]
+        heightMax: Int) -> [ShapeModel]
     {
         let wordMatchModels = getWordMatchModels(
             sourceShape: sourceShape,
@@ -72,35 +74,39 @@ public class WordIndex2Calculator {
 
         let instructions = getDictionaryGroupBy(sourceShapeId: sourceShapeId, wordMatchModels: wordMatchModels)
         
-        var list: [WordIndexResultList] = []
+        var shapes: [ShapeModel] = []
         for instruction in instructions {
         
-            let matchingResult = createIfValid(
+            let potentialShape = createIfValid(
+                words: words,
                 matches: instruction.matches,
                 sourceShape: sourceShape,
                 searchShape: searchShapes[instruction.searchShapeId],
                 sourceShapeId: sourceShapeId,
                 searchShapeId: instruction.searchShapeId,
+                scoresMin: scoresMin,
                 widthMax: widthMax,
                 heightMax: heightMax)
             
-            if matchingResult != nil {
-                list.append(matchingResult!)
+            if potentialShape != nil {
+                shapes.append(potentialShape!)
             }
         }
 
-        list.sort() { $0.searchShapeId < $1.searchShapeId }
-        return list
+        
+        return shapes
     }
     
     public static func createIfValid(
+        words: [String],
         matches: [WordIndexResultModel],
         sourceShape: ShapeModel,
         searchShape: ShapeModel,
         sourceShapeId: Int,
         searchShapeId: Int,
+        scoresMin: [Int],
         widthMax: Int,
-        heightMax: Int) -> WordIndexResultList?
+        heightMax: Int) -> ShapeModel?
     {
         
         let sourceFirstPos = Int(matches[0].sourcePos)
@@ -138,49 +144,70 @@ public class WordIndex2Calculator {
         if !matchingDistance {
             return nil
         }
-
+        
         let p1 = sourceShape.placements[sourceFirstPos]
         let p2 = searchShape.placements[searchFirstPos]
-
+        
         // get the offsets and then combine the placements and make the shape like we used to
-        let (x1, y1, x2, y2) = GetOffsets(p1: p1, p2: p2)
+        let (x1, y1, x2, y2, isFlipped) = MergeOffsetCalculator.GetOffsets(p1: p1, p2: p2)
         
         
-        let sourceDuplicates = matches.map { $0.sourcePos }
-        
-        // We will remove the items from source as this will always be the smallest number of them
-        
-        
-        // This validation step should be that it makes a valid shape by placing the placements into a grid and seeing what happens
-        
-        return WordIndexResultList(
-            sourceShapeId: sourceShapeId,
-            searchShapeId: searchShapeId,
-            matchingOrientation: firstIsFlipped,
+        let (sourcePlacements, searchPlacements) = extractPlacements(
             matches: matches,
-            width: UInt8(width),
-            height: UInt8(height))
+            sourceShape: sourceShape,
+            searchShape: searchShape,
+            x1: x1, y1: y1, x2: x2, y2: y2, isFlipped: isFlipped)
+        
+        let isOverlapping = OverlappingPlacementsCalculator.isOverlapping(sourcePlacements: sourcePlacements, searchPlacements: searchPlacements)
+        if isOverlapping {
+            return nil
+        }
+        
+        let potentialShape = ShapeModel(score:10, width: UInt8(width), height: UInt8(height), placements: sourcePlacements + searchPlacements)
+        
+        let (validShape,_) = ShapeCalculator.ToValidShape(shape: potentialShape, words: words)
+        
+        if let validShape = validShape {
+            // is shape is not nil so it must be a valid shape
+            let wordCount = validShape.placements.count
+            let scoreMin = scoresMin[wordCount]
+            if validShape.score >= scoreMin {
+                return validShape
+            }
+        }
+        
+        
+        return nil
     }
     
-    public static func GetOffsets(p1: PlacementModel, p2: PlacementModel) -> (UInt8, UInt8, UInt8, UInt8) {
+    
+    public static func extractPlacements(matches: [WordIndexResultModel], sourceShape: ShapeModel, searchShape: ShapeModel, x1: UInt8, y1: UInt8, x2: UInt8, y2: UInt8, isFlipped: Bool) -> ([PlacementModel], [PlacementModel]) {
         
-        var x1: UInt8 = 0
-        var x2: UInt8 = 0
-        var y1: UInt8 = 0
-        var y2: UInt8 = 0
-        
-        if p1.x > p2.x {
-            x2 = UInt8(p1.x - p2.x)
-        } else if p2.x > p1.x {
-            x1 = UInt8(p2.x - p1.x)
+        let sourceDuplicates = matches.map { $0.sourcePos }
+        var sourcePlacements: [PlacementModel] = []
+        for i in 0..<sourceShape.placements.count {
+            if sourceDuplicates.contains(UInt8(i)) == false {
+                let p = sourceShape.placements[i]
+                // Apply placement to the thing
+                
+                sourcePlacements.append(PlacementModel(w: p.w, x: p.x + x1, y: p.y + y1, z: p.z, l: p.l))
+               
+            }
         }
         
-        if p1.y > p2.y {
-            y2 = UInt8(p1.y - p2.y)
-        } else if p2.y > p1.y {
-            y1 = UInt8(p2.y - p1.y)
+        var searchPlacements: [PlacementModel] = []
+        for i in 0..<searchShape.placements.count {
+            let p = searchShape.placements[i]
+            
+            if isFlipped == false {
+                searchPlacements.append(PlacementModel(w: p.w, x: p.x + x2, y: p.y + y2, z: p.z, l: p.l))
+            } else {
+                
+                searchPlacements.append(PlacementModel(w: p.w, x: p.y + y2, y: p.x + x2, z: !p.z, l: p.l))
+            }
         }
         
-        return (x1, y1, x2, y2)
+        return (sourcePlacements, searchPlacements)
     }
+    
 }

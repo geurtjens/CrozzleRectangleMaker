@@ -133,11 +133,11 @@ public class ShapeCalculator {
                 return (newShape, text)
             }
         } else {
-           
             return (nil,text)
         }
-        
     }
+    
+    
     
     /// Given a grid, rotate it so that we can tell if the text is valid in the vertical direction but reuse the horizontal direction validation
     public static func rotateGrid(grid: [Substring]) -> [String] {
