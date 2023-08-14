@@ -23,7 +23,7 @@ public struct LetterIndexModel {
                 
                 let fromEndPos = wordLength - letterPos - 1
                 
-                let letterIndexItem = LetterIndexItemModel(wordId: UInt8(wordId), fromStartPos: UInt8(letterPos), fromEndPos: UInt8(fromEndPos))
+                let letterIndexItem = LetterIndexItemModel(wordId: wordId, fromStartPos: letterPos, fromEndPos: UInt8(fromEndPos))
                 
                 letterArray[letterArrayPos].append(letterIndexItem)
             }
