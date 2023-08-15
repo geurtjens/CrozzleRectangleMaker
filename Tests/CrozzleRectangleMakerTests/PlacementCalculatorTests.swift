@@ -186,7 +186,7 @@ final class PlacementCalculatorTests: XCTestCase {
         XCTAssertFalse(a.z)
         
         XCTAssertEqual(13, b.w)
-        XCTAssertEqual("BELL", words[Int(b.w)])
+        XCTAssertEqual("HOLLY", words[Int(b.w)])
         XCTAssertEqual(8, b.x)
         XCTAssertEqual(0, b.y)
         XCTAssertFalse(b.z)

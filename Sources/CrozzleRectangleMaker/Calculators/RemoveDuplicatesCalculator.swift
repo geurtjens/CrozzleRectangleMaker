@@ -31,7 +31,7 @@ public class RemoveDuplicatesCalculator {
         
         
         if flippedCount > 0 {
-            if GlobalVariables.verbose {
+            if FeatureFlags.verbose {
                 print("RemoveDuplicatesCalculator flipped \(flippedCount) shapes")
             }
         }

@@ -9,7 +9,7 @@ import Foundation
 public class DateTimeCalculator {
     
     public static func printDate(_ string: String) {
-        if GlobalVariables.verbose {
+        if FeatureFlags.verbose {
             let date = Date()
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSS"

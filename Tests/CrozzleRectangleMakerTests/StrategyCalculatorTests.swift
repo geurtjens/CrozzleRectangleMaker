@@ -39,25 +39,55 @@ final class StrategyCalculatorTests: XCTestCase {
         
         // We initially have 15 shapes
         XCTAssertEqual(15,queues.size())
-        XCTAssertEqual(0, queues.queues[3].gpuShapes.count)
+        XCTAssertEqual(0, queues.queues[3].shapes.count)
         
         // Then we merge with itself which produces some queues of 3 words
         await queues.mergeWithItselfAll()
         XCTAssertEqual(83, queues.size())
-        XCTAssertEqual(8, queues.queues[3].gpuShapes.count)
+        XCTAssertEqual(8, queues.queues[3].shapes.count)
         
         // Merge with itself produces the same result the second time
         await queues.mergeWithItselfAll()
         XCTAssertEqual(83, queues.size())
-        XCTAssertEqual(8, queues.queues[3].gpuShapes.count)
+        XCTAssertEqual(8, queues.queues[3].shapes.count)
         
         // Merge with itself produces the same result the third time
         await queues.mergeWithItselfAll()
         XCTAssertEqual(83, queues.size())
-        XCTAssertEqual(8, queues.queues[3].gpuShapes.count)
+        XCTAssertEqual(8, queues.queues[3].shapes.count)
     }
     
-    
+//    func test_MergeWithItselfMoreThanOnce() async {
+//        guard let game = GameList().getGame(gameId: 8612) else {
+//            return
+//        }
+//
+//        let (winningShapes, words, _, _) = GameList.getShapes(gameId: 8612)
+//        let scoresMin:[Int] = Array(repeating: 0, count: 40)
+//        let constraints = ConstraintsModel(words: words, scoresMin:scoresMin, queueLengthMax: 1000, priorityFunction: .score_area)
+//        var queues = QueueList(game: game, constraints: constraints)
+//
+//        queues.add(shapes: winningShapes)
+//
+//        // We initially have 15 shapes
+//        XCTAssertEqual(15,queues.size())
+//        XCTAssertEqual(0, queues.queues[3].gpuShapes.count)
+//
+//        // Then we merge with itself which produces some queues of 3 words
+//        await queues.mergeWithItselfAll()
+//        XCTAssertEqual(83, queues.size())
+//        XCTAssertEqual(8, queues.queues[3].gpuShapes.count)
+//
+//        // Merge with itself produces the same result the second time
+//        await queues.mergeWithItselfAll()
+//        XCTAssertEqual(83, queues.size())
+//        XCTAssertEqual(8, queues.queues[3].gpuShapes.count)
+//
+//        // Merge with itself produces the same result the third time
+//        await queues.mergeWithItselfAll()
+//        XCTAssertEqual(83, queues.size())
+//        XCTAssertEqual(8, queues.queues[3].gpuShapes.count)
+//    }
     
     
 //    func test_Shapes_8703_PacmanVariant4x3() {

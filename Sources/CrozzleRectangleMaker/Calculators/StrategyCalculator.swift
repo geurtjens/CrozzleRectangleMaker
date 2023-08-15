@@ -88,7 +88,7 @@ public class StrategyCalculator {
         var i = 0
         var count = 0
         var previousCount = 0
-        if GlobalVariables.verbose {
+        if FeatureFlags.verbose {
             print("")
             print("")
             print("GAME \(game.gameId) with high score of \(game.winningScore) using \(words.count) words")
@@ -149,7 +149,7 @@ public class StrategyCalculator {
             if count == previousCount {
                 //break
             } else {
-                if GlobalVariables.verbose {
+                if FeatureFlags.verbose {
                     print("GAME \(game.gameId) with high score of \(game.winningScore)")
                 }
                 // it shows all tiny variations of the same shape being built.  Quite interesting to see really.

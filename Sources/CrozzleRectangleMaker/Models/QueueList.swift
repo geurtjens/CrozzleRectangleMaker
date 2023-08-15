@@ -37,7 +37,7 @@ public struct QueueList {
                         minScore = item.score
                     }
                 }
-                if GlobalVariables.verbose {
+                if FeatureFlags.verbose {
                     print("\(queues[i].shapes.count) shapes with \(i) words and scores from \(minScore) to \(maxScore)")
                 }
                 count += queues[i].shapes.count
@@ -90,8 +90,8 @@ public struct QueueList {
 //    }
     
     public func mergeWithItselfAsync(index wordCount: Int) async -> [ShapeModel] {
-            
-        let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(
+        if FeatureFlags.mergeMethod == 1 {
+            return await ExecuteMergeCalculator.ExecuteSameShapeAsync(
                 shapes: self.queues[wordCount].gpuShapes,
                 wordIndex: self.queues[wordCount].wordIndex,
                 sourceMax: self.queues[wordCount].sourceMax,
@@ -100,8 +100,16 @@ public struct QueueList {
                 scoresMin: self.constraints.scoresMin,
                 widthMax: self.game.maxWidth,
                 heightMax: self.game.maxHeight)
-        
-        return shapes
+        } else {
+            return ExecuteMergeCalculator2.ExecuteSameShapeSync(
+                sourceShapes: self.queues[wordCount].shapes,
+                searchIndex: self.queues[wordCount].wordIndex2,
+                searchMax: self.queues[wordCount].searchMax,
+                words: self.constraints.words,
+                scoresMin: self.constraints.scoresMin,
+                widthMax: self.game.maxWidth,
+                heightMax: self.game.maxHeight)
+        }
     }
     
     
@@ -144,7 +152,7 @@ public struct QueueList {
                 let finishNano = DateTimeCalculator.now()
                 
                 let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
-                if GlobalVariables.verbose {
+                if FeatureFlags.verbose {
                     DateTimeCalculator.printDate("mergeTwoAsync(mergeIndex: \(i), withIndex: \(index)) produced \(shapes.count) shapes took \(duration) and finished at")
                 }
             }
@@ -310,22 +318,34 @@ public struct QueueList {
     
     public func mergeTwoAsync(
         mergeIndex: Int,
-        withIndex mergeIndex2: Int) async -> [ShapeModel] {
-        let shapes = await ExecuteMergeCalculator.ExecuteDifferentShapesAsync(
-            source: self.queues[mergeIndex].gpuShapes,
-            search: self.queues[mergeIndex2].gpuShapes,
-            searchWordIndex: self.queues[mergeIndex2].wordIndex,
-            sourceMax: self.queues[mergeIndex].sourceMax,
-            searchMax: self.queues[mergeIndex2].searchMax,
-            words: self.constraints.words,
-            scoresMin: self.constraints.scoresMin,
-            widthMax: self.game.maxWidth,
-            heightMax: self.game.maxHeight)
-
-        
+        withIndex mergeIndex2: Int) async -> [ShapeModel]
+    {
+        if FeatureFlags.mergeMethod == 1 {
             
-        return shapes
-        
+            return await ExecuteMergeCalculator.ExecuteDifferentShapesAsync(
+                source: self.queues[mergeIndex].gpuShapes,
+                search: self.queues[mergeIndex2].gpuShapes,
+                searchWordIndex: self.queues[mergeIndex2].wordIndex,
+                sourceMax: self.queues[mergeIndex].sourceMax,
+                searchMax: self.queues[mergeIndex2].searchMax,
+                words: self.constraints.words,
+                scoresMin: self.constraints.scoresMin,
+                widthMax: self.game.maxWidth,
+                heightMax: self.game.maxHeight)
+        } else {
+            
+            return ExecuteMergeCalculator2.ExecuteDifferentShapesSync(
+                sourceShapes: self.queues[mergeIndex].shapes,
+                searchShapes: self.queues[mergeIndex2].shapes,
+                searchIndex: self.queues[mergeIndex2].wordIndex2,
+                sourceMax: self.queues[mergeIndex].sourceMax,
+                searchMin: 0,
+                searchMax: self.queues[mergeIndex2].searchMax,
+                words: self.constraints.words,
+                scoresMin: self.constraints.scoresMin,
+                widthMax: self.game.maxWidth,
+                heightMax: self.game.maxHeight)
+        }
     }
     
     public mutating func mergeTwoAsync(

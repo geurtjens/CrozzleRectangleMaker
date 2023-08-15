@@ -36,6 +36,18 @@ public struct GpuShapeModel {
         self.init(shapes:shapes, totalWords: totalWords, stride: stride)
     }
     
+    public init () {
+        self.count = 0
+        self.stride = 0
+        self.widths = []
+        self.heights = []
+        self.scores = []
+        self.wordId = []
+        self.isHorizontal = []
+        self.y = []
+        self.x = []
+        self.length = []
+    }
     public init(shapes: [ShapeModel], totalWords: Int, stride: Int) {
         
         if shapes.count > 0 && shapes[0].placements.count != stride {

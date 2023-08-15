@@ -9,7 +9,17 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class OverlappingPlacementsCalculatorTests: XCTestCase {
 
-    
+    func test_ThisOtherThing() throws {
+        let sourcePlacements = [PlacementModel(w: 1, x: 1, y: 1, z: false, l: 5)]
+
+        let searchPlacements = [PlacementModel(w: 0, x: 0, y: 3, z: true, l: 4), PlacementModel(w: 4, x: 1, y: 0, z: false, l: 8)]
+        
+        let isOverlapping = OverlappingPlacementsCalculator.isOverlapping(
+            sourcePlacements: sourcePlacements,
+            searchPlacements: searchPlacements)
+        
+        XCTAssertTrue(isOverlapping)
+    }
     
     func test_BothShapesMustBeInSameCoordinateSystem() {
         // In actual fact the common word must be aligned to the x,y axis and then it will work so our problem is misalignment of common word

@@ -90,6 +90,16 @@ public struct ShapeModel {
         return "score:\(score), width:\(width), height:\(height), words:\(self.placements.count), area:\(area), density:\(density)\n`\n" + text + "\n`\n"
     }
     
+    public func ToText(words: [String]) -> String {
+        let (text, _) = ShapeCalculator.ToText(shape: self, words: words)
+        return text
+    }
+    
+    public func ToTextDebug(words: [String]) -> String {
+        let (text, _) = ShapeCalculator.ToTextDebug(shape: self, words: words)
+        return text
+    }
+    
     public func ToCode(words: [String]) -> String {
         let (text, score) = ShapeCalculator.ToText(shape: self, words: words)
         
@@ -103,7 +113,10 @@ public struct ShapeModel {
             result += "    \"" + line + "\""
         }
         
-        return "//score:\(score), width:\(width), height:\(height), words:\(self.placements.count)\nlet grid = [\n" + result + "]\n\n"
+        var code = "//score:\(score), width:\(width), height:\(height), words:\(self.placements.count)\n"
+        code += "let grid = [\n" + result + "]\n"
+        code += "let shape = ShapeCalculator.toShape(fromGrid: grid, words: words)\n\n"
+        return code
     }
     
     public func ToMarkFormat(words: [String]) -> String {

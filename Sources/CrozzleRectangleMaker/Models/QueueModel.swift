@@ -36,7 +36,10 @@ public struct QueueModel {
     public var statistics: [StatisticsModel] = []
     
     /// Which words are in which shapes, so if there are 91 words then there will be an index for each so we can quickly find matching shapes.
-    public var wordIndex: [[Int]]
+    public var wordIndex: [[Int]] = []
+    
+    
+    public var wordIndex2: [[WordIndexModel]] = []
     
     /// Top percent of scores will merge from
     public var source_TopScorePercent: Float = 100.0
@@ -57,15 +60,24 @@ public struct QueueModel {
         let startTime = DateTimeCalculator.now()
         self.shapes = ShapeCalculator.addShapes(oldShapes: self.shapes, newShapes: newShapes, scoreMin: self.scoreMin, constraints: constraints)
         let shapesDone = DateTimeCalculator.now()
-        self.gpuShapes = GpuShapeModel(shapes: self.shapes, totalWords: self.totalWords, stride: self.stride)
-        let gpuShapesDone = DateTimeCalculator.now()
-        self.wordIndex = WordIndexCalculator.createWordIndex(
-            totalWords: self.totalWords,
-            stride: self.stride,
-            shapeCount: self.gpuShapes.count,
-            words: self.gpuShapes.wordId)
-        let wordIndexDone = DateTimeCalculator.now()
         
+        if FeatureFlags.mergeMethod == 1 {
+            self.gpuShapes = GpuShapeModel(shapes: self.shapes, totalWords: self.totalWords, stride: self.stride)
+        }
+        let gpuShapesDone = DateTimeCalculator.now()
+        
+        if FeatureFlags.mergeMethod == 1 {
+            
+            self.wordIndex = WordIndexCalculator.createWordIndex(
+                totalWords: self.totalWords,
+                stride: self.stride,
+                shapeCount: self.gpuShapes.count,
+                words: self.gpuShapes.wordId)
+            
+        } else {
+            self.wordIndex2 = WordIndex2Calculator.createWordIndex(shapes: self.shapes, totalWords: self.totalWords, stride: self.stride)
+        }
+        let wordIndexDone = DateTimeCalculator.now()
         /// Calculating where the last position to merge should be for this queue
         if self.source_TopScorePercent < 100.0 || self.search_TopScorePercent < 100.0 {
             self.statistics = StatisticsCalculator.Execute(scores: self.gpuShapes.scores)
@@ -81,8 +93,8 @@ public struct QueueModel {
             }
             
         } else {
-            self.sourceMax = self.gpuShapes.count
-            self.searchMax = self.gpuShapes.count
+            self.sourceMax = self.shapes.count
+            self.searchMax = self.shapes.count
         }
         
         let totalSeconds = DateTimeCalculator.seconds(start: startTime, finish: wordIndexDone)
@@ -114,17 +126,25 @@ public struct QueueModel {
         self.stride = stride
         self.scoreMin = scoreMin
         self.shapes = shapes
-        
+        if FeatureFlags.mergeMethod == 1 {
         // The gpu shapes and statistics are derived from shapes
-        let gpuShapes = GpuShapeModel(shapes: shapes, totalWords: totalWords, stride: stride)
-        self.gpuShapes = gpuShapes
-        self.statistics = StatisticsCalculator.Execute(scores: gpuShapes.scores)
+            let gpuShapes = GpuShapeModel(shapes: shapes, totalWords: totalWords, stride: stride)
+            self.gpuShapes = gpuShapes
+            self.statistics = StatisticsCalculator.Execute(scores: gpuShapes.scores)
         
-        self.wordIndex = WordIndexCalculator.createWordIndex(
-            totalWords: totalWords,
-            stride: stride,
-            shapeCount: shapes.count,
-            words: gpuShapes.wordId)
+        
+            self.wordIndex = WordIndexCalculator.createWordIndex(
+                totalWords: totalWords,
+                stride: stride,
+                shapeCount: shapes.count,
+                words: gpuShapes.wordId)
+        } else  {
+            self.wordIndex2 = WordIndex2Calculator.createWordIndex(
+                shapes: shapes,
+                totalWords: totalWords,
+                stride: stride)
+            self.gpuShapes = GpuShapeModel()
+        }
     }
     
     public func minScore() -> UInt16 {

@@ -12,11 +12,11 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class MutationCalculatorTests: XCTestCase {
 
-    func test_generateFiles() {
-
+    func test_generateFiles() throws {
+//
         MutationCalculator.generateFiles()
-
-    }
+//
+   }
 
     func test_loadMutations() {
         let mutations = MutationCalculator.loadMutations()

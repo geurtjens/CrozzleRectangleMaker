@@ -26,7 +26,7 @@ public class ShapeCalculator {
         
         if newShapes.count > 0 {
             let wordCount = newShapes[0].placements.count
-            if GlobalVariables.verbose {
+            if FeatureFlags.verbose {
                 print("\(wordCount) word queue has \(oldShapes.count), adding \(noDuplicatesOfShapesWithCorrectScores.count) after taking out \(duplicatesOfShapesWithCorrectScores) duplicates, once merged encountered \(duplicateCount) duplicates, so \(noDuplicatesOfShapesWithCorrectScores.count - duplicateCount) where new")
             }
         }
@@ -53,6 +53,20 @@ public class ShapeCalculator {
         return result
     }
     
+    
+    public static func toShapeNoFlip(fromGrid grid: [String], words:[String]) -> ShapeModel? {
+        var (placements, isValid) = PlacementCalculator.fromTextToPlacements(grid: grid, words: words)
+        
+        if isValid == false {
+            return nil
+        }
+        
+        let placementsShape = placements.toShape(score: 0)
+        
+        let (shape,_) = ShapeCalculator.ToValidShapeNoFlip(shape: placementsShape, words: words)
+        
+        return shape
+    }
     
     public static func toShape(fromGrid grid: [String], words:[String]) -> ShapeModel? {
         var (placements, isValid) = PlacementCalculator.fromTextToPlacements(grid: grid, words: words)
@@ -137,7 +151,26 @@ public class ShapeCalculator {
         }
     }
     
-    
+    public static func ToValidShapeNoFlip(shape: ShapeModel, words:[String]) -> (ShapeModel?, String) {
+        let (score, text) = getScoreAndText(shape: shape, words: words)
+        
+        if score == 0 {
+            return (nil, "")
+        }
+        // We should also check that the text doesnt have text running in parallel and without the . at each end
+        let textIsVerified = ShapeCalculator.VerifyText(text: text)
+        
+        if textIsVerified {
+            let newShape = ShapeModel(score: score, width: shape.width, height: shape.height, placements: shape.placements)
+            
+            // our shapes must have first word as horizontal to help with removing duplicates
+            
+            return (newShape, text)
+            
+        } else {
+            return (nil,text)
+        }
+    }
     
     /// Given a grid, rotate it so that we can tell if the text is valid in the vertical direction but reuse the horizontal direction validation
     public static func rotateGrid(grid: [Substring]) -> [String] {
@@ -713,6 +746,62 @@ public class ShapeCalculator {
                 if grid[gridPos] != " " && grid[gridPos] != letter {
                     grid[gridPos] = "#"
                     return (String(grid), UInt16(0))
+                } else if grid[gridPos] == " " {
+                    grid[gridPos] = letter
+                } else if grid[gridPos] == letter {
+                    score += ScoreCalculator.score(forLetter: letter)
+                }
+            }
+        }
+        let gridString = String(grid)
+        
+        // Remove the first character as it is a \n
+        let range = gridString.index(after: gridString.startIndex)..<gridString.endIndex
+        let result = String(gridString[range])
+        
+        if result.contains("#") {
+            score = 0
+        } else {
+            score += shape.placements.count * 10
+        }
+        return (result, UInt16(score))
+    }
+    
+    public static func ToTextDebug(shape: ShapeModel, words:[String]) -> (String, UInt16) {
+        
+        var score = 0
+        
+        let widthEOL = Int(shape.width) + 1
+        let height = Int(shape.height)
+        
+        let gridSize = widthEOL * height
+        
+        var grid:[Character] = Array(repeating: " ", count: Int(gridSize))
+        
+        // Place all end of line characters into the space
+        for i in 0..<height {
+            grid[i * widthEOL] = "\n"
+        }
+        
+        for placement in shape.placements {
+            
+            // the word must include the blocking characters at either end of the shape
+            let word = "." + words[Int(placement.w)] + "."
+            
+            var gridPos = 0
+
+            for i in 0..<word.count {
+                let letter = word[i]
+                
+                if placement.z {
+                    gridPos = Int(placement.x) + i + (Int(placement.y) * widthEOL + 1)
+                } else {
+                    gridPos = Int(placement.x) + 1 + (Int(placement.y) + i) * widthEOL
+                }
+                
+                if grid[gridPos] != " " && grid[gridPos] != letter {
+                    grid[gridPos] = "#"
+                    //return (String(grid), UInt16(0))
                 } else if grid[gridPos] == " " {
                     grid[gridPos] = letter
                 } else if grid[gridPos] == letter {
