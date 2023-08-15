@@ -82,7 +82,7 @@ public class MutationCalculator {
         
         //let jsonText = readFile
         
-        let text = readFile(name:"mutations.json")
+        let text = readFile(name: "mutations.json")
         let data = text.data(using: .utf8)
         let mutations = loadMutationsFromData(jsonData: data!)
         return mutations

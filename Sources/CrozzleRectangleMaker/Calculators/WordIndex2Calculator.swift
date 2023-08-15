@@ -54,12 +54,12 @@ public class WordIndex2Calculator {
         return list
     }
     
-    public static func findShapesContainingCommonWords(
+    public static func findMergedShapes(
         words: [String],
         sourceShape: ShapeModel,
         sourceShapeId: Int,
         searchShapes: [ShapeModel],
-        searchWordIndex: [[WordIndexModel]],
+        searchIndex: [[WordIndexModel]],
         searchMin: Int,
         searchMax: Int,
         scoresMin: [Int],
@@ -68,7 +68,7 @@ public class WordIndex2Calculator {
     {
         let wordMatchModels = getWordMatchModels(
             sourceShape: sourceShape,
-            searchIndex: searchWordIndex,
+            searchIndex: searchIndex,
             searchMin: searchMin,
             searchMax: searchMax)
 
@@ -112,7 +112,7 @@ public class WordIndex2Calculator {
         let sourceFirstPos = Int(matches[0].sourcePos)
         let searchFirstPos = Int(matches[0].searchPos)
         
-        let (sizeIsValid, width, height, firstIsFlipped) = MergeSizeValidation.execute(
+        let (sizeIsValid, width, height, firstIsFlipped) = MergeSizeValidation2.execute(
             sourceShape: sourceShape,
             sourcePos: sourceFirstPos,
             searchShape: searchShape,
@@ -145,26 +145,48 @@ public class WordIndex2Calculator {
             return nil
         }
         
-        let p1 = sourceShape.placements[sourceFirstPos]
-        let p2 = searchShape.placements[searchFirstPos]
+        let sourcePlacement = sourceShape.placements[sourceFirstPos]
+        let searchPlacement = searchShape.placements[searchFirstPos]
         
         // get the offsets and then combine the placements and make the shape like we used to
-        let (x1, y1, x2, y2, isFlipped) = MergeOffsetCalculator.GetOffsets(p1: p1, p2: p2)
-        
+        let (sourceOffsetX, sourceOffsetY, searchOffsetX, searchOffsetY, sourceIsFlipped) = MergeOffsetCalculator.GetOffsets(
+            sourcePlacement: sourcePlacement, searchPlacement: searchPlacement)
+        // You have to assume that source is going to be flipped and so you must get searchOffsetX to be moved
         
         let (sourcePlacements, searchPlacements) = extractPlacements(
             matches: matches,
             sourceShape: sourceShape,
             searchShape: searchShape,
-            x1: x1, y1: y1, x2: x2, y2: y2, isFlipped: isFlipped)
+            sourceOffsetX: sourceOffsetX,
+            sourceOffsetY: sourceOffsetY,
+            searchOffsetX: searchOffsetX,
+            searchOffsetY: searchOffsetY,
+            sourceIsFlipped: sourceIsFlipped)
         
         let isOverlapping = OverlappingPlacementsCalculator.isOverlapping(sourcePlacements: sourcePlacements, searchPlacements: searchPlacements)
         if isOverlapping {
             return nil
         }
         
-        let potentialShape = ShapeModel(score:10, width: UInt8(width), height: UInt8(height), placements: sourcePlacements + searchPlacements)
+        // Sometimes it gets the opposite of what it is supposed to be
+        let placements = sourcePlacements + searchPlacements
         
+        if width != placements.width() || height != placements.height() {
+            if width == placements.height() && height == placements.width() {
+                print("switched, width:\(width), placementsWidth:\(placements.width()), height:\(height), placementsHeight:\(placements.height())")
+            } else {
+                print(sourceShape.ToCode(words: words))
+                print(searchShape.ToCode(words: words))
+                print(sourceShape.Flip().ToCode(words: words))
+                print("width:\(width), height:\(height), placementsWidth:\(placements.width()), placementsHeight:\(placements.height())")
+                
+            }
+        }
+        
+        let potentialShape = ShapeModel(score:10, width: UInt8(width), height: UInt8(height), placements: placements)
+        
+        let otherShape = ShapeModel(score: 10, width: placements.width(), height: placements.height(), placements: placements)
+        print(otherShape.ToString(words: words))
         let (validShape,_) = ShapeCalculator.ToValidShape(shape: potentialShape, words: words)
         
         if let validShape = validShape {
@@ -181,31 +203,102 @@ public class WordIndex2Calculator {
     }
     
     
-    public static func extractPlacements(matches: [WordIndexResultModel], sourceShape: ShapeModel, searchShape: ShapeModel, x1: UInt8, y1: UInt8, x2: UInt8, y2: UInt8, isFlipped: Bool) -> ([PlacementModel], [PlacementModel]) {
+    public static func extractPlacements(shape: ShapeModel, positionsDuplicated: [UInt8], flip: Bool, offsetX: UInt8, offsetY: UInt8) -> [PlacementModel] {
+        if flip == true {
+            return extractPlacementsAndFlip(
+                shape: shape,
+                positionsDuplicated: positionsDuplicated,
+                offsetX: offsetX,
+                offsetY: offsetY)
+        } else {
+            return extractPlacements(
+                shape: shape,
+                positionsDuplicated: positionsDuplicated,
+                offsetX: offsetX,
+                offsetY: offsetY)
+        }
+    }
+    
+    
+    public static func extractPlacementsAndFlip(shape: ShapeModel, positionsDuplicated: [UInt8], offsetX: UInt8, offsetY: UInt8) -> [PlacementModel] {
+        var result: [PlacementModel] = []
+        
+        for i in 0..<shape.placements.count {
+            if positionsDuplicated.contains(UInt8(i)) == false {
+                let p = shape.placements[i]
+                result.append(PlacementModel(w: p.w, x: p.y + offsetX, y: p.x + offsetY, z: !p.z, l: p.l))
+                //result.append(PlacementModel(w: p.w, x: p.y + offsetY, y: p.x + offsetX, z: !p.z, l: p.l))
+            }
+        }
+            
+        return result
+    }
+    
+    public static func extractPlacements(shape: ShapeModel, positionsDuplicated: [UInt8], offsetX: UInt8, offsetY: UInt8) -> [PlacementModel] {
+        var result: [PlacementModel] = []
+        
+        for i in 0..<shape.placements.count {
+            if positionsDuplicated.contains(UInt8(i)) == false {
+                let p = shape.placements[i]
+                result.append(PlacementModel(w: p.w, x: p.x + offsetX, y: p.y + offsetY, z: p.z, l: p.l))
+            }
+        }
+        return result
+    }
+    
+    public static func extractPlacements(shape: ShapeModel, flip: Bool, x: UInt8, y: UInt8) -> [PlacementModel] {
+        var result: [PlacementModel] = []
+        if flip == true {
+            for i in 0..<shape.placements.count {
+                let p = shape.placements[i]
+                result.append(PlacementModel(w: p.w, x: p.y + y, y: p.x + x, z: !p.z, l: p.l))
+            }
+            
+        } else {
+            for i in 0..<shape.placements.count {
+                let p = shape.placements[i]
+                result.append(PlacementModel(w: p.w, x: p.x + x, y: p.y + y, z: p.z, l: p.l))
+            }
+        }
+        return result
+    }
+    
+    public static func extractPlacements(shape: ShapeModel, offsetX: UInt8, offsetY: UInt8) -> [PlacementModel] {
+        var result: [PlacementModel] = []
+        
+        for i in 0..<shape.placements.count {
+            let p = shape.placements[i]
+            result.append(PlacementModel(w: p.w, x: p.x + offsetX, y: p.y + offsetY, z: p.z, l: p.l))
+        }
+        
+        return result
+    }
+    
+    public static func extractPlacements(
+        matches: [WordIndexResultModel],
+        sourceShape: ShapeModel,
+        searchShape: ShapeModel,
+        sourceOffsetX: UInt8,
+        sourceOffsetY: UInt8,
+        searchOffsetX: UInt8,
+        searchOffsetY: UInt8,
+        sourceIsFlipped: Bool) -> ([PlacementModel], [PlacementModel])
+    {
         
         let sourceDuplicates = matches.map { $0.sourcePos }
-        var sourcePlacements: [PlacementModel] = []
-        for i in 0..<sourceShape.placements.count {
-            if sourceDuplicates.contains(UInt8(i)) == false {
-                let p = sourceShape.placements[i]
-                // Apply placement to the thing
-                
-                sourcePlacements.append(PlacementModel(w: p.w, x: p.x + x1, y: p.y + y1, z: p.z, l: p.l))
-               
-            }
-        }
         
-        var searchPlacements: [PlacementModel] = []
-        for i in 0..<searchShape.placements.count {
-            let p = searchShape.placements[i]
-            
-            if isFlipped == false {
-                searchPlacements.append(PlacementModel(w: p.w, x: p.x + x2, y: p.y + y2, z: p.z, l: p.l))
-            } else {
-                
-                searchPlacements.append(PlacementModel(w: p.w, x: p.y + y2, y: p.x + x2, z: !p.z, l: p.l))
-            }
-        }
+        let sourcePlacements = extractPlacements(
+            shape: sourceShape,
+            positionsDuplicated: sourceDuplicates,
+            flip: sourceIsFlipped,
+            offsetX: sourceOffsetX,
+            offsetY: sourceOffsetY)
+
+        // We never flip the searchPlacements by convention
+        let searchPlacements = extractPlacements(
+            shape: searchShape,
+            offsetX: searchOffsetX,
+            offsetY: searchOffsetY)
         
         return (sourcePlacements, searchPlacements)
     }

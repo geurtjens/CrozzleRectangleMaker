@@ -1404,6 +1404,7 @@ public class RectangleCalculator {
 //                                                                        return []
 //                                                                    }
 //#endif
+                                                                    //print(donut.ToShape().ToTextDebug(words: words))
                                                                     result.append(donut)
                                                                 }
                                                             }
