@@ -9,9 +9,9 @@ import Foundation
 /// Used to store the exact positions of a particular letter in each of the words of the game
 public struct LetterIndexItemModel {
     /// The position of the word in the sequence
-    let wordId: Int
+    let id: Int
     /// The position of the letter from the start of the word
-    let fromStartPos: Int
+    let start: Int
     /// The position of the letter from the end of the word
-    let fromEndPos: UInt8
+    let end: UInt8
 }

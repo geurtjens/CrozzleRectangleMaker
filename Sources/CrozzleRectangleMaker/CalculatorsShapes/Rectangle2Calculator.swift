@@ -42,52 +42,52 @@ public class Rectangle2Calculator {
                 
                 for _topLetterPos in 0..<(lengths[_top] - interlockWidth) {
                     
-                    let leftWords = letterIndex.find(letter: words[_top][_topLetterPos])
+                    let leftWords = letterIndex.find(words[_top][_topLetterPos])
                 
                     for left in leftWords {
                     
-                        if (left.fromEndPos >= interlockWidth
-                            && left.wordId > _top) {
+                        if (left.end >= interlockWidth
+                            && left.id > _top) {
                         
-                            let bottomWords = letterIndex.find(letter: words[left.wordId][left.fromStartPos + interlockWidth])
+                            let bottomWords = letterIndex.find(words[left.id][left.start + interlockWidth])
                             
                             for bottom in bottomWords {
 
-                                if (bottom.fromEndPos >= interlockWidth &&
-                                    bottom.wordId != left.wordId &&
-                                    bottom.wordId != _top) {
+                                if (bottom.end >= interlockWidth &&
+                                    bottom.id != left.id &&
+                                    bottom.id != _top) {
                                             
-                                    let rightWords = letterIndex.find(letter: words[_top][_topLetterPos + interlockWidth])
+                                    let rightWords = letterIndex.find(words[_top][_topLetterPos + interlockWidth])
                                     
                                     for right in rightWords {
                                                  
-                                        if (right.fromEndPos >= interlockWidth &&
-                                            right.wordId != bottom.wordId &&
-                                            right.wordId != left.wordId &&
-                                            right.wordId != _top) {
+                                        if (right.end >= interlockWidth &&
+                                            right.id != bottom.id &&
+                                            right.id != left.id &&
+                                            right.id != _top) {
                                                             
-                                            if (words[bottom.wordId][bottom.fromStartPos + interlockWidth] == words[right.wordId][right.fromStartPos + interlockWidth]
+                                            if (words[bottom.id][bottom.start + interlockWidth] == words[right.id][right.start + interlockWidth]
                                             ) {
                                                                     
                                                 let score = ScoreCalculator.rectangle(
                                                     topLeft: words[_top][_topLetterPos],
                                                     topRight: words[_top][_topLetterPos + interlockWidth],
-                                                    bottomLeft: words[bottom.wordId][bottom.fromStartPos],
-                                                    bottomRight: words[bottom.wordId][bottom.fromStartPos + interlockWidth])
+                                                    bottomLeft: words[bottom.id][bottom.start],
+                                                    bottomRight: words[bottom.id][bottom.start + interlockWidth])
 
                                                 if (score >= scoreMin) {
 
                                                     let width = CalculateWidth(
                                                         topLength: lengths[_top],
-                                                        bottomLength: lengths[bottom.wordId],
+                                                        bottomLength: lengths[bottom.id],
                                                         topLetterPos: _topLetterPos,
-                                                        bottomLetterPos: bottom.fromStartPos)
+                                                        bottomLetterPos: bottom.start)
                                                     
                                                     let height = CalculateWidth(
-                                                        topLength: lengths[left.wordId],
-                                                        bottomLength: lengths[right.wordId],
-                                                        topLetterPos: left.fromStartPos,
-                                                        bottomLetterPos: right.fromStartPos);
+                                                        topLength: lengths[left.id],
+                                                        bottomLength: lengths[right.id],
+                                                        topLetterPos: left.start,
+                                                        bottomLetterPos: right.start);
                                                     
                                                     if (width <= widthMax && height <= heightMax) ||
                                                         (width <= heightMax && height <= widthMax) {
@@ -99,15 +99,15 @@ public class Rectangle2Calculator {
                                                             top: _top,
                                                             topLetterPos: _topLetterPos,
                                                             topLength: lengths[_top],
-                                                            bottom: bottom.wordId,
-                                                            bottomLetterPos: bottom.fromStartPos,
-                                                            bottomLength: lengths[bottom.wordId],
-                                                            left: left.wordId,
-                                                            leftLetterPos: left.fromStartPos,
-                                                            leftLength: lengths[left.wordId],
-                                                            right: right.wordId,
-                                                            rightLetterPos: right.fromStartPos,
-                                                            rightLength: lengths[right.wordId],
+                                                            bottom: bottom.id,
+                                                            bottomLetterPos: bottom.start,
+                                                            bottomLength: lengths[bottom.id],
+                                                            left: left.id,
+                                                            leftLetterPos: left.start,
+                                                            leftLength: lengths[left.id],
+                                                            right: right.id,
+                                                            rightLetterPos: right.start,
+                                                            rightLength: lengths[right.id],
                                                             interlockWidth: interlockWidth,
                                                             interlockHeight: interlockWidth,
                                                             type: .rectangle)
@@ -147,52 +147,52 @@ public class Rectangle2Calculator {
                 
                 for _topLetterPos in 0..<(lengths[_top] - interlockWidth) {
                     
-                    let leftWords = letterIndex.find(letter: words[_top][_topLetterPos])
+                    let leftWords = letterIndex.find(words[_top][_topLetterPos])
                 
                     for left in leftWords {
                     
-                        if left.fromEndPos >= interlockHeight
-                            && left.wordId != _top {
+                        if left.end >= interlockHeight
+                            && left.id != _top {
                         
-                            let bottomWords = letterIndex.find(letter: words[left.wordId][left.fromStartPos + interlockHeight])
+                            let bottomWords = letterIndex.find(words[left.id][left.start + interlockHeight])
                             
                             for bottom in bottomWords {
 
-                                if bottom.fromEndPos >= interlockWidth &&
-                                    bottom.wordId != left.wordId &&
-                                    bottom.wordId != _top {
+                                if bottom.end >= interlockWidth &&
+                                    bottom.id != left.id &&
+                                    bottom.id != _top {
                                             
-                                    let rightWords = letterIndex.find(letter: words[_top][_topLetterPos + interlockWidth])
+                                    let rightWords = letterIndex.find(words[_top][_topLetterPos + interlockWidth])
                                     
                                     for right in rightWords {
                                                  
-                                        if (right.fromEndPos >= interlockHeight &&
-                                            right.wordId != bottom.wordId &&
-                                            right.wordId != left.wordId &&
-                                            right.wordId != _top) {
+                                        if (right.end >= interlockHeight &&
+                                            right.id != bottom.id &&
+                                            right.id != left.id &&
+                                            right.id != _top) {
                                                                           
-                                            if (words[bottom.wordId][bottom.fromStartPos + interlockWidth] == words[right.wordId][right.fromStartPos + interlockHeight]
+                                            if (words[bottom.id][bottom.start + interlockWidth] == words[right.id][right.start + interlockHeight]
                                             ) {
                                                                     
                                                 let score = ScoreCalculator.rectangle(
                                                     topLeft: words[_top][_topLetterPos],
                                                     topRight: words[_top][_topLetterPos + interlockWidth],
-                                                    bottomLeft: words[bottom.wordId][bottom.fromStartPos],
-                                                    bottomRight: words[bottom.wordId][bottom.fromStartPos + interlockWidth])
+                                                    bottomLeft: words[bottom.id][bottom.start],
+                                                    bottomRight: words[bottom.id][bottom.start + interlockWidth])
 
                                                 if (score >= scoreMin) {
 
                                                     let width = CalculateWidth(
                                                         topLength: lengths[_top],
-                                                        bottomLength: lengths[bottom.wordId],
+                                                        bottomLength: lengths[bottom.id],
                                                         topLetterPos: _topLetterPos,
-                                                        bottomLetterPos: bottom.fromStartPos)
+                                                        bottomLetterPos: bottom.start)
                                                     
                                                     let height = CalculateWidth(
-                                                        topLength: lengths[left.wordId],
-                                                        bottomLength: lengths[right.wordId],
-                                                        topLetterPos: left.fromStartPos,
-                                                        bottomLetterPos: right.fromStartPos);
+                                                        topLength: lengths[left.id],
+                                                        bottomLength: lengths[right.id],
+                                                        topLetterPos: left.start,
+                                                        bottomLetterPos: right.start);
                                                     
                                                     if (width <= widthMax && height <= heightMax) ||
                                                         (width <= heightMax && height <= widthMax) {
@@ -204,15 +204,15 @@ public class Rectangle2Calculator {
                                                             top: _top,
                                                             topLetterPos: _topLetterPos,
                                                             topLength: lengths[_top],
-                                                            bottom: bottom.wordId,
-                                                            bottomLetterPos: bottom.fromStartPos,
-                                                            bottomLength: lengths[bottom.wordId],
-                                                            left: left.wordId,
-                                                            leftLetterPos: left.fromStartPos,
-                                                            leftLength: lengths[left.wordId],
-                                                            right: right.wordId,
-                                                            rightLetterPos: right.fromStartPos,
-                                                            rightLength: lengths[right.wordId],
+                                                            bottom: bottom.id,
+                                                            bottomLetterPos: bottom.start,
+                                                            bottomLength: lengths[bottom.id],
+                                                            left: left.id,
+                                                            leftLetterPos: left.start,
+                                                            leftLength: lengths[left.id],
+                                                            right: right.id,
+                                                            rightLetterPos: right.start,
+                                                            rightLength: lengths[right.id],
                                                             interlockWidth: interlockWidth,
                                                             interlockHeight: interlockHeight,
                                                             type: .rectangle)
@@ -260,53 +260,53 @@ public class Rectangle2Calculator {
 //                let leftInterlock = words[_left][_leftLetterPos]
 //                print("Left word:\(words[_left]), interlock:\(leftInterlock)")
                 
-                let bottomWords = letterIndex.find(letter: words[_left][_leftLetterPos])
+                let bottomWords = letterIndex.find(words[_left][_leftLetterPos])
                 
                 for bottom in bottomWords {
                 
-                    if (bottom.fromEndPos >= interlockWidth &&
-                        bottom.wordId != _left) {
+                    if (bottom.end >= interlockWidth &&
+                        bottom.id != _left) {
                         
 //                        let bottomInterlock = words[bottom.wordId][bottom.fromStartPos + interlockWidth]
 //                        print("Bottom word:\(words[bottom.wordId]), interlock:\(bottomInterlock)")
                         
-                        let rightWords = letterIndex.find(letter: words[bottom.wordId][bottom.fromStartPos + interlockWidth])
+                        let rightWords = letterIndex.find(words[bottom.id][bottom.start + interlockWidth])
 
                         for right in rightWords {
 
-                            if (right.fromStartPos >= interlockHeight &&
-                                right.wordId != bottom.wordId &&
-                                right.wordId != _left) {
+                            if (right.start >= interlockHeight &&
+                                right.id != bottom.id &&
+                                right.id != _left) {
                                 
 //                                let rightInterlock = words[right.wordId][right.fromStartPos - interlockHeight]
 //                                print("right word:\(words[right.wordId]), interlock:\(rightInterlock)")
                                 
-                                let topWords = letterIndex.find(letter: words[right.wordId][right.fromStartPos - interlockHeight])
+                                let topWords = letterIndex.find(words[right.id][right.start - interlockHeight])
 
                                 for top in topWords {
                                     
-                                    if (top.fromStartPos == interlockWidth - 1 &&
-                                        top.wordId != right.wordId &&
-                                        top.wordId != bottom.wordId &&
-                                        top.wordId != _left) {
+                                    if (top.start == interlockWidth - 1 &&
+                                        top.id != right.id &&
+                                        top.id != bottom.id &&
+                                        top.id != _left) {
                                         
                                         //print("top word:\(words[top.wordId])")
                                         
                                         let score = ScoreCalculator.topLeft(
-                                            topRight: words[top.wordId][top.fromStartPos],
-                                            bottomLeft: words[bottom.wordId][bottom.fromStartPos],
-                                            bottomRight: words[bottom.wordId][bottom.fromStartPos + interlockWidth])
+                                            topRight: words[top.id][top.start],
+                                            bottomLeft: words[bottom.id][bottom.start],
+                                            bottomRight: words[bottom.id][bottom.start + interlockWidth])
                                         
                                         if score >= scoreMin {
 
                                             let width = CalculateWidthIndented(
-                                                letterPos: bottom.fromStartPos,
-                                                wordLength: lengths[bottom.wordId],
-                                                indentedWordLength: lengths[top.wordId])
+                                                letterPos: bottom.start,
+                                                wordLength: lengths[bottom.id],
+                                                indentedWordLength: lengths[top.id])
                                             
                                             let height = CalculateWidthIndented(
-                                                letterPos: right.fromStartPos - interlockHeight,
-                                                wordLength: lengths[right.wordId],
+                                                letterPos: right.start - interlockHeight,
+                                                wordLength: lengths[right.id],
                                                 indentedWordLength: lengths[_left])
 
                                             if (width <= widthMax && height <= heightMax) ||
@@ -316,18 +316,18 @@ public class Rectangle2Calculator {
                                                     score: score,
                                                     width: width,
                                                     height: height,
-                                                    top: top.wordId,
-                                                    topLetterPos: top.fromStartPos,
-                                                    topLength: lengths[top.wordId],
-                                                    bottom: bottom.wordId,
-                                                    bottomLetterPos: bottom.fromStartPos,
-                                                    bottomLength: lengths[bottom.wordId],
+                                                    top: top.id,
+                                                    topLetterPos: top.start,
+                                                    topLength: lengths[top.id],
+                                                    bottom: bottom.id,
+                                                    bottomLetterPos: bottom.start,
+                                                    bottomLength: lengths[bottom.id],
                                                     left: _left,
                                                     leftLetterPos: _leftLetterPos,
                                                     leftLength: lengths[_left],
-                                                    right: right.wordId,
-                                                    rightLetterPos: right.fromStartPos - interlockHeight,
-                                                    rightLength: lengths[right.wordId],
+                                                    right: right.id,
+                                                    rightLetterPos: right.start - interlockHeight,
+                                                    rightLength: lengths[right.id],
                                                     interlockWidth: interlockWidth,
                                                     interlockHeight: interlockHeight,
                                                     type: .topLeft)
@@ -368,55 +368,54 @@ public class Rectangle2Calculator {
 //                let leftInterlock = words[_left][_leftLetterPos]
 //                print("Left word:\(words[_left]), interlock:\(leftInterlock)")
                 
-                let bottomWords = letterIndex.find(letter: words[_left][_leftLetterPos])
+                let bottomWords = letterIndex.find(words[_left][_leftLetterPos])
                 
                 for bottom in bottomWords {
                 
-                    if (bottom.fromEndPos >= interlockWidth &&
-                        bottom.wordId != _left) {
+                    if (bottom.end >= interlockWidth &&
+                        bottom.id != _left) {
                         
 //                        let bottomInterlock = words[bottom.wordId][bottom.fromStartPos + interlockWidth]
 //                        print("Bottom word:\(words[bottom.wordId]), interlock:\(bottomInterlock)")
                         
-                        let rightWords = letterIndex.find(letter: words[bottom.wordId][bottom.fromStartPos + interlockWidth])
+                        let rightWords = letterIndex.find(words[bottom.id][bottom.start + interlockWidth])
 
                         for right in rightWords {
 
-                            if (right.fromStartPos >= interlockWidth &&
-                                right.wordId != bottom.wordId &&
-                                right.wordId != _left) {
+                            if (right.start >= interlockWidth &&
+                                right.id != bottom.id &&
+                                right.id != _left) {
                                 
 //                                let rightInterlock = words[right.wordId][right.fromStartPos - interlockHeight]
 //                                print("right word:\(words[right.wordId]), interlock:\(rightInterlock)")
                                 
-                                let topWords = letterIndex.find(letter: words[right.wordId][right.fromStartPos - interlockWidth])
+                                let topWords = letterIndex.find(words[right.id][right.start - interlockWidth])
 
                                 for top in topWords {
                                     
-                                    if (top.fromStartPos == interlockWidth - 1 &&
-                                        top.wordId != right.wordId &&
-                                        top.wordId != bottom.wordId &&
-                                        top.wordId != _left &&
-                                        top.wordId > _left // This is the phrase that stops duplicates on a square
+                                    if (top.start == interlockWidth - 1 &&
+                                        top.id != right.id &&
+                                        top.id != bottom.id &&
+                                        top.id > _left // This is the phrase that stops duplicates on a square
                                     ) {
                                         
                                         //print("top word:\(words[top.wordId])")
                                         
                                         let score = ScoreCalculator.topLeft(
-                                            topRight: words[top.wordId][top.fromStartPos],
-                                            bottomLeft: words[bottom.wordId][bottom.fromStartPos],
-                                            bottomRight: words[bottom.wordId][bottom.fromStartPos + interlockWidth])
+                                            topRight: words[top.id][top.start],
+                                            bottomLeft: words[bottom.id][bottom.start],
+                                            bottomRight: words[bottom.id][bottom.start + interlockWidth])
                                         
                                         if score >= scoreMin {
 
                                             let width = CalculateWidthIndented(
-                                                letterPos: bottom.fromStartPos,
-                                                wordLength: lengths[bottom.wordId],
-                                                indentedWordLength: lengths[top.wordId])
+                                                letterPos: bottom.start,
+                                                wordLength: lengths[bottom.id],
+                                                indentedWordLength: lengths[top.id])
                                             
                                             let height = CalculateWidthIndented(
-                                                letterPos: right.fromStartPos - interlockWidth,
-                                                wordLength: lengths[right.wordId],
+                                                letterPos: right.start - interlockWidth,
+                                                wordLength: lengths[right.id],
                                                 indentedWordLength: lengths[_left])
 
                                             if (width <= widthMax && height <= heightMax) ||
@@ -426,18 +425,18 @@ public class Rectangle2Calculator {
                                                     score: score,
                                                     width: width,
                                                     height: height,
-                                                    top: top.wordId,
-                                                    topLetterPos: top.fromStartPos,
-                                                    topLength: lengths[top.wordId],
-                                                    bottom: bottom.wordId,
-                                                    bottomLetterPos: bottom.fromStartPos,
-                                                    bottomLength: lengths[bottom.wordId],
+                                                    top: top.id,
+                                                    topLetterPos: top.start,
+                                                    topLength: lengths[top.id],
+                                                    bottom: bottom.id,
+                                                    bottomLetterPos: bottom.start,
+                                                    bottomLength: lengths[bottom.id],
                                                     left: _left,
                                                     leftLetterPos: _leftLetterPos,
                                                     leftLength: lengths[_left],
-                                                    right: right.wordId,
-                                                    rightLetterPos: right.fromStartPos - interlockWidth,
-                                                    rightLength: lengths[right.wordId],
+                                                    right: right.id,
+                                                    rightLetterPos: right.start - interlockWidth,
+                                                    rightLength: lengths[right.id],
                                                     interlockWidth: interlockWidth,
                                                     interlockHeight: interlockWidth,
                                                     type: .topLeft)
@@ -490,55 +489,55 @@ public class Rectangle2Calculator {
 //                print("top word:\(words[_top]), interlock:\(topInterlock)")
 
                 
-                let leftWords = letterIndex.find(letter: words[_top][_topLetterPos])
+                let leftWords = letterIndex.find(words[_top][_topLetterPos])
                 
                 for left in leftWords {
                     
-                    if (left.fromEndPos >= interlockHeight &&
-                        left.wordId != _top) {
+                    if (left.end >= interlockHeight &&
+                        left.id != _top) {
                         
 //                        let leftInterlock = words[left.wordId][left.fromStartPos + interlockHeight]
 //                        print("left word:\(words[left.wordId]), interlock:\(leftInterlock)")
                     
-                        let bottomWords = letterIndex.find(letter: words[left.wordId][left.fromStartPos + interlockHeight])
+                        let bottomWords = letterIndex.find(words[left.id][left.start + interlockHeight])
                         
                         for bottom in bottomWords {
                         
-                            if (bottom.fromEndPos >= interlockWidth &&
-                                bottom.wordId != left.wordId &&
-                                bottom.wordId != _top) {
+                            if (bottom.end >= interlockWidth &&
+                                bottom.id != left.id &&
+                                bottom.id != _top) {
                                 
 //                                let bottomInterlock = words[bottom.wordId][bottom.fromStartPos + interlockWidth]
 //                                print("Bottom word:\(words[bottom.wordId]), interlock:\(bottomInterlock)")
                         
-                                let rightWords = letterIndex.find(letter: words[bottom.wordId][bottom.fromStartPos + interlockWidth])
+                                let rightWords = letterIndex.find(words[bottom.id][bottom.start + interlockWidth])
 
                                 for right in rightWords {
 
-                                    if (right.fromStartPos == interlockHeight - 1 &&
-                                        right.wordId != bottom.wordId &&
-                                        right.wordId != left.wordId &&
-                                        right.wordId != _top) {
+                                    if (right.start == interlockHeight - 1 &&
+                                        right.id != bottom.id &&
+                                        right.id != left.id &&
+                                        right.id != _top) {
                                         
                                         //print("right word: \(words[right.wordId])")
                                       
                                         let score = ScoreCalculator.topRight(
                                                 topLeft: words[_top][_topLetterPos],
-                                                bottomLeft: words[bottom.wordId][bottom.fromStartPos],
-                                                bottomRight: words[bottom.wordId][bottom.fromStartPos + interlockWidth])
+                                                bottomLeft: words[bottom.id][bottom.start],
+                                                bottomRight: words[bottom.id][bottom.start + interlockWidth])
 
                                         if score >= scoreMin {
 
                                             let width = CalculateWidth(
                                                 topLength: lengths[_top],
-                                                bottomLength: lengths[bottom.wordId],
+                                                bottomLength: lengths[bottom.id],
                                                 topLetterPos: _topLetterPos,
-                                                bottomLetterPos: bottom.fromStartPos)
+                                                bottomLetterPos: bottom.start)
                                             
                                             let height = CalculateWidthIndented(
-                                                letterPos: left.fromStartPos,
-                                                wordLength: lengths[left.wordId],
-                                                indentedWordLength: lengths[right.wordId])
+                                                letterPos: left.start,
+                                                wordLength: lengths[left.id],
+                                                indentedWordLength: lengths[right.id])
 
                                             if (width <= widthMax && height <= heightMax) ||
                                                 (width <= heightMax && height <= widthMax) {
@@ -550,15 +549,15 @@ public class Rectangle2Calculator {
                                                     top: _top,
                                                     topLetterPos: _topLetterPos,
                                                     topLength: lengths[_top],
-                                                    bottom: bottom.wordId,
-                                                    bottomLetterPos: bottom.fromStartPos,
-                                                    bottomLength: lengths[bottom.wordId],
-                                                    left: left.wordId,
-                                                    leftLetterPos: left.fromStartPos,
-                                                    leftLength: lengths[left.wordId],
-                                                    right: right.wordId,
-                                                    rightLetterPos: right.fromStartPos,
-                                                    rightLength: lengths[right.wordId],
+                                                    bottom: bottom.id,
+                                                    bottomLetterPos: bottom.start,
+                                                    bottomLength: lengths[bottom.id],
+                                                    left: left.id,
+                                                    leftLetterPos: left.start,
+                                                    leftLength: lengths[left.id],
+                                                    right: right.id,
+                                                    rightLetterPos: right.start,
+                                                    rightLength: lengths[right.id],
                                                     interlockWidth: interlockWidth,
                                                     interlockHeight: interlockHeight,
                                                     type:.topRight)
@@ -605,55 +604,55 @@ public class Rectangle2Calculator {
 //                let rightInterlock = words[_right][_rightLetterPos]
 //                print("right word:\(words[_right]), interlock:\(rightInterlock)")
                  
-                let topWords = letterIndex.find(letter: words[_right][_rightLetterPos])
+                let topWords = letterIndex.find(words[_right][_rightLetterPos])
                 
                 for top in topWords {
 //                    print("top word: \(words[top.wordId])")
-                    if (top.fromStartPos >= interlockWidth &&
-                        top.wordId != _right) {
+                    if (top.start >= interlockWidth &&
+                        top.id != _right) {
                         
 //                        let topInterlock = words[top.wordId][top.fromStartPos - interlockWidth]
 //                        print("top word: \(words[top.wordId]), interlock:\(topInterlock)")
 
-                        let leftWords = letterIndex.find(letter: words[top.wordId][top.fromStartPos - interlockWidth])
+                        let leftWords = letterIndex.find(words[top.id][top.start - interlockWidth])
                         
                         for left in leftWords {
 //                            print("left word: \(words[left.wordId])")
-                            if (left.fromEndPos >= interlockHeight &&
-                                left.wordId != top.wordId &&
-                                left.wordId != _right) {
+                            if (left.end >= interlockHeight &&
+                                left.id != top.id &&
+                                left.id != _right) {
                                 
 //                                let leftInterlock = words[left.wordId][left.fromStartPos + interlockHeight]
 //                                print("left word:\(words[left.wordId]), interlock:\(leftInterlock)")
 
                             
-                                let bottomWords = letterIndex.find(letter: words[left.wordId][left.fromStartPos + interlockHeight])
+                                let bottomWords = letterIndex.find(words[left.id][left.start + interlockHeight])
                                 
                                 for bottom in bottomWords {
                                     
 //                                    print("bottom word:\(words[bottom.wordId])")
-                                    if (bottom.fromEndPos == interlockWidth - 1 &&
-                                        bottom.wordId != left.wordId &&
-                                        bottom.wordId != top.wordId &&
-                                        bottom.wordId != _right) {
+                                    if (bottom.end == interlockWidth - 1 &&
+                                        bottom.id != left.id &&
+                                        bottom.id != top.id &&
+                                        bottom.id != _right) {
                                     
                                         let score = ScoreCalculator.bottomRight(
-                                            topLeft: words[left.wordId][left.fromStartPos],
-                                            topRight: words[top.wordId][top.fromStartPos],
-                                            bottomLeft: words[bottom.wordId][bottom.fromStartPos])
+                                            topLeft: words[left.id][left.start],
+                                            topRight: words[top.id][top.start],
+                                            bottomLeft: words[bottom.id][bottom.start])
 
                                         if score >= scoreMin {
 
                                             let width = CalculateWidth(
-                                                topLength: lengths[top.wordId],
-                                                bottomLength: lengths[bottom.wordId],
-                                                topLetterPos: top.fromStartPos - interlockWidth,
-                                                bottomLetterPos: bottom.fromStartPos)
+                                                topLength: lengths[top.id],
+                                                bottomLength: lengths[bottom.id],
+                                                topLetterPos: top.start - interlockWidth,
+                                                bottomLetterPos: bottom.start)
                                             
                                             let height = CalculateWidth(
-                                                topLength: lengths[left.wordId],
+                                                topLength: lengths[left.id],
                                                 bottomLength: lengths[_right],
-                                                topLetterPos: left.fromStartPos,
+                                                topLetterPos: left.start,
                                                 bottomLetterPos: _rightLetterPos)
 
                                             if (width <= widthMax && height <= heightMax) ||
@@ -663,15 +662,15 @@ public class Rectangle2Calculator {
                                                     score: score,
                                                     width: width,
                                                     height: height,
-                                                    top: top.wordId,
-                                                    topLetterPos: top.fromStartPos - interlockWidth,
-                                                    topLength: lengths[top.wordId],
-                                                    bottom: bottom.wordId,
-                                                    bottomLetterPos: bottom.fromStartPos,
-                                                    bottomLength: lengths[bottom.wordId],
-                                                    left: left.wordId,
-                                                    leftLetterPos: left.fromStartPos,
-                                                    leftLength: lengths[left.wordId],
+                                                    top: top.id,
+                                                    topLetterPos: top.start - interlockWidth,
+                                                    topLength: lengths[top.id],
+                                                    bottom: bottom.id,
+                                                    bottomLetterPos: bottom.start,
+                                                    bottomLength: lengths[bottom.id],
+                                                    left: left.id,
+                                                    leftLetterPos: left.start,
+                                                    leftLength: lengths[left.id],
                                                     right: _right,
                                                     rightLetterPos: _rightLetterPos,
                                                     rightLength: lengths[_right],
@@ -715,57 +714,56 @@ public class Rectangle2Calculator {
 //                let rightInterlock = words[_right][_rightLetterPos]
 //                print("right word:\(words[_right]), interlock:\(rightInterlock)")
                  
-                let topWords = letterIndex.find(letter: words[_right][_rightLetterPos])
+                let topWords = letterIndex.find(words[_right][_rightLetterPos])
                 
                 for top in topWords {
 //                    print("top word: \(words[top.wordId])")
-                    if (top.fromStartPos >= interlockWidth &&
-                        top.wordId != _right) {
+                    if (top.start >= interlockWidth &&
+                        top.id != _right) {
                         
 //                        let topInterlock = words[top.wordId][top.fromStartPos - interlockWidth]
 //                        print("top word: \(words[top.wordId]), interlock:\(topInterlock)")
 
-                        let leftWords = letterIndex.find(letter: words[top.wordId][top.fromStartPos - interlockWidth])
+                        let leftWords = letterIndex.find(words[top.id][top.start - interlockWidth])
                         
                         for left in leftWords {
 //                            print("left word: \(words[left.wordId])")
-                            if (left.fromEndPos >= interlockWidth &&
-                                left.wordId != top.wordId &&
-                                left.wordId != _right &&
-                                left.wordId > top.wordId
+                            if (left.end >= interlockWidth &&
+                                left.id > top.id &&
+                                left.id != _right
                             ) {
                                 
 //                                let leftInterlock = words[left.wordId][left.fromStartPos + interlockHeight]
 //                                print("left word:\(words[left.wordId]), interlock:\(leftInterlock)")
 
                             
-                                let bottomWords = letterIndex.find(letter: words[left.wordId][left.fromStartPos + interlockWidth])
+                                let bottomWords = letterIndex.find(words[left.id][left.start + interlockWidth])
                                 
                                 for bottom in bottomWords {
                                     
 //                                    print("bottom word:\(words[bottom.wordId])")
-                                    if (bottom.fromEndPos == interlockWidth - 1 &&
-                                        bottom.wordId != left.wordId &&
-                                        bottom.wordId != top.wordId &&
-                                        bottom.wordId != _right) {
+                                    if (bottom.end == interlockWidth - 1 &&
+                                        bottom.id != left.id &&
+                                        bottom.id != top.id &&
+                                        bottom.id != _right) {
                                     
                                         let score = ScoreCalculator.bottomRight(
-                                            topLeft: words[left.wordId][left.fromStartPos],
-                                            topRight: words[top.wordId][top.fromStartPos],
-                                            bottomLeft: words[bottom.wordId][bottom.fromStartPos])
+                                            topLeft: words[left.id][left.start],
+                                            topRight: words[top.id][top.start],
+                                            bottomLeft: words[bottom.id][bottom.start])
 
                                         if score >= scoreMin {
 
                                             let width = CalculateWidth(
-                                                topLength: lengths[top.wordId],
-                                                bottomLength: lengths[bottom.wordId],
-                                                topLetterPos: top.fromStartPos - interlockWidth,
-                                                bottomLetterPos: bottom.fromStartPos)
+                                                topLength: lengths[top.id],
+                                                bottomLength: lengths[bottom.id],
+                                                topLetterPos: top.start - interlockWidth,
+                                                bottomLetterPos: bottom.start)
                                             
                                             let height = CalculateWidth(
-                                                topLength: lengths[left.wordId],
+                                                topLength: lengths[left.id],
                                                 bottomLength: lengths[_right],
-                                                topLetterPos: left.fromStartPos,
+                                                topLetterPos: left.start,
                                                 bottomLetterPos: _rightLetterPos)
 
                                             if (width <= widthMax && height <= heightMax) ||
@@ -775,15 +773,15 @@ public class Rectangle2Calculator {
                                                     score: score,
                                                     width: width,
                                                     height: height,
-                                                    top: top.wordId,
-                                                    topLetterPos: top.fromStartPos - interlockWidth,
-                                                    topLength: lengths[top.wordId],
-                                                    bottom: bottom.wordId,
-                                                    bottomLetterPos: bottom.fromStartPos,
-                                                    bottomLength: lengths[bottom.wordId],
-                                                    left: left.wordId,
-                                                    leftLetterPos: left.fromStartPos,
-                                                    leftLength: lengths[left.wordId],
+                                                    top: top.id,
+                                                    topLetterPos: top.start - interlockWidth,
+                                                    topLength: lengths[top.id],
+                                                    bottom: bottom.id,
+                                                    bottomLetterPos: bottom.start,
+                                                    bottomLength: lengths[bottom.id],
+                                                    left: left.id,
+                                                    leftLetterPos: left.start,
+                                                    leftLength: lengths[left.id],
                                                     right: _right,
                                                     rightLetterPos: _rightLetterPos,
                                                     rightLength: lengths[_right],
@@ -808,9 +806,6 @@ public class Rectangle2Calculator {
     
     
     public static func BottomLeftRectangle(interlockWidth: Int, interlockHeight: Int, letterIndex: LetterIndexModel, words: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [RectangleModel] {
-        
-        return TopRightRectangle(interlockWidth: interlockHeight, interlockHeight: interlockWidth, letterIndex: letterIndex, words: words, lengths: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
-        
         /*
             .
             H
@@ -824,114 +819,105 @@ public class Rectangle2Calculator {
         */
         var result: [RectangleModel] = [];
 
-//        if (interlockHeight <= interlockWidth) {
-//            return result;
-//        }
-//
-//        let wordCount = (wordsMax == 0) ? words.count : wordsMax
-//
-//        for _bottom in 0..<wordCount {
-//
-//            if lengths[_bottom] >= interlockWidth {
-//
-//                let _bottomLetterPos = interlockWidth - 1
-//
-//                for _right in 0..<wordCount {
-//
-//                    if lengths[_right] >= interlockHeight && _right != _bottom {
-//
-//                        for _rightLetterPos in 0..<(lengths[_right] - interlockHeight) {
-//
-//                            if words[_bottom][_bottomLetterPos] == words[_right][_rightLetterPos + interlockHeight] {
-//
-//                                for _top in 0..<wordCount {
-//
-//                                    if lengths[_top] >= interlockWidth && _top != _right && _top != _bottom {
-//
-//                                        for _topLetterPos in 0..<(lengths[_top] - interlockWidth) {
-//
-//                                            if words[_top][_topLetterPos + interlockWidth] == words[_right][_rightLetterPos] {
-//
-//                                                for _left in 0..<wordCount {
-//
-//                                                    if lengths[_left] >= interlockHeight && _left != _top && _left != _right && _left != _bottom {
-//
-//                                                        let _leftLetterPos = lengths[_left] - interlockHeight
-//
-//                                                        if words[_top][_topLetterPos] == words[_left][_leftLetterPos] {
-//
-//                                                            let score = ScoreCalculator.bottomRight(
-//                                                                topLeft: words[_top][_topLetterPos],
-//                                                                topRight: words[_top][_topLetterPos + interlockWidth],
-//                                                                bottomLeft: words[_bottom][_bottomLetterPos])
-//
-//                                                            if score >= scoreMin {
-//
-//                                                                let width = CalculateWidthIndented(
-//                                                                    letterPos: _topLetterPos,
-//                                                                    wordLength: lengths[_top],
-//                                                                    indentedWordLength: lengths[_bottom])
-//
-//                                                                let height = CalculateWidth(
-//                                                                    topLength: lengths[_left],
-//                                                                    bottomLength: lengths[_right],
-//                                                                    topLetterPos: _leftLetterPos,
-//                                                                    bottomLetterPos: _rightLetterPos)
-//
-//
-//                                                                if (width <= widthMax && height <= heightMax) || (width <= heightMax && height <= widthMax) {
-//
-//                                                                    let donut = RectangleModel(
-//                                                                        score: score,
-//                                                                        width: width,
-//                                                                        height: height,
-//                                                                        top: _top,
-//                                                                        topLetterPos: _topLetterPos,
-//                                                                        topLength: lengths[_top],
-//                                                                        bottom: _bottom,
-//                                                                        bottomLetterPos: _bottomLetterPos,
-//                                                                        bottomLength: lengths[_bottom],
-//                                                                        left: _left,
-//                                                                        leftLetterPos: _leftLetterPos,
-//                                                                        leftLength: lengths[_left],
-//                                                                        right: _right,
-//                                                                        rightLetterPos: _rightLetterPos,
-//                                                                        rightLength: lengths[_right],
-//                                                                        interlockWidth: interlockWidth,
-//                                                                        interlockHeight: interlockHeight,
-//                                                                        type: .bottomLeft)
-////#if DEBUG
-////                                                                    if _left == _right || _left == _top || _left == _bottom || _top == _right || _top == _bottom || _right == _bottom {
-////                                                                        print("error occurred as words are matching")
-////                                                                        return []
-////                                                                    }
-////                                                                    let text = donut.ToText(words: words)
-////
-////                                                                    if text.contains("#") {
-////                                                                        print("error # detected in \n\(text)")
-////                                                                        return []
-////                                                                    }
-////#endif
-//                                                                    result.append(donut)
-//                                                                }
-//                                                            }
-//                                                        }
-//                                                    }
-//                                                }
-//                                            }
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
+        if (interlockHeight <= interlockWidth) {
+            return result;
+        }
+        
+        let wordCount = words.count
+
+        for _bottom in 0..<wordCount {
+            
+            if lengths[_bottom] >= interlockWidth {
+                
+                let _bottomLetterPos = interlockWidth - 1
+        
+                //print("bottom word:\(words[_bottom]), interlock:\(words[_bottom][_bottomLetterPos])")
+                
+                let rightWords = letterIndex.find(words[_bottom][_bottomLetterPos])
+                
+                for right in rightWords {
+            
+                    if (right.start >= interlockHeight &&
+                        right.id != _bottom) {
+            
+                        //print("right word:\(words[right.id]), interlock:\(words[right.id][right.start - interlockHeight])")
+
+                        let topWords = letterIndex.find(words[right.id][right.start - interlockHeight])
+                        
+                        for top in topWords {
+                            
+                            if (top.start >= interlockWidth &&
+                                top.id != right.id &&
+                                top.id != _bottom) {
+                                
+                                //print("top word:\(words[top.id]), interlock:\(words[top.id][top.start - interlockWidth])")
+
+                                let leftWords = letterIndex.find(words[top.id][top.start - interlockWidth])
+                                
+                                for left in leftWords {
+                                    
+                                    if (left.end == interlockHeight - 1 &&
+                                        left.id != top.id &&
+                                        left.id != right.id &&
+                                        left.id != _bottom) {
+                                        
+                                        //print("left word:\(words[left.id])")
+
+                                        let score = ScoreCalculator.bottomRight(
+                                            topLeft: words[top.id][top.start - interlockWidth],
+                                            topRight: words[top.id][top.start],
+                                            bottomLeft: words[_bottom][_bottomLetterPos])
+
+                                        if score >= scoreMin {
+                                            
+                                            let width = CalculateWidthIndented(
+                                                letterPos: top.start - interlockWidth,
+                                                wordLength: lengths[top.id],
+                                                indentedWordLength: lengths[_bottom])
+                                            
+                                            let height = CalculateWidth(
+                                                topLength: lengths[left.id],
+                                                bottomLength: lengths[right.id],
+                                                topLetterPos: left.start,
+                                                bottomLetterPos: right.start - interlockHeight)
+                                            
+                                            
+                                            if (width <= widthMax && height <= heightMax) || (width <= heightMax && height <= widthMax) {
+                                                
+                                                let donut = RectangleModel(
+                                                    score: score,
+                                                    width: width,
+                                                    height: height,
+                                                    top: top.id,
+                                                    topLetterPos: top.start - interlockWidth,
+                                                    topLength: lengths[top.id],
+                                                    bottom: _bottom,
+                                                    bottomLetterPos: _bottomLetterPos,
+                                                    bottomLength: lengths[_bottom],
+                                                    left: left.id,
+                                                    leftLetterPos: left.start,
+                                                    leftLength: lengths[left.id],
+                                                    right: right.id,
+                                                    rightLetterPos: right.start - interlockHeight,
+                                                    rightLength: lengths[right.id],
+                                                    interlockWidth: interlockWidth,
+                                                    interlockHeight: interlockHeight,
+                                                    type: .bottomLeft)
+                                                
+                                                //print(donut.ToShape().ToTextDebug(words: words))
+                                                result.append(donut)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         return result;
     }
-    
-    
     
     
     public static func Execute(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) async -> [RectangleModel] {

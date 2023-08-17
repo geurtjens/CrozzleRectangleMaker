@@ -20,33 +20,33 @@ final class LetterIndexModelTests: XCTestCase {
         /// THEN there should be an entry for each of the 26 letters of the alphabet
         XCTAssertEqual(26,sut.index.count)
         
-        let A = sut.find(letter: "A")
-        let B = sut.find(letter: "B")
-        let C = sut.find(letter: "C")
-        let D = sut.find(letter: "D")
-        let E = sut.find(letter: "E")
-        let F = sut.find(letter: "F")
-        let G = sut.find(letter: "G")
-        let H = sut.find(letter: "H")
-        let I = sut.find(letter: "I")
-        let J = sut.find(letter: "J")
-        let K = sut.find(letter: "K")
-        let L = sut.find(letter: "L")
-        let M = sut.find(letter: "M")
+        let A = sut.find("A")
+        let B = sut.find("B")
+        let C = sut.find("C")
+        let D = sut.find("D")
+        let E = sut.find("E")
+        let F = sut.find("F")
+        let G = sut.find("G")
+        let H = sut.find("H")
+        let I = sut.find("I")
+        let J = sut.find("J")
+        let K = sut.find("K")
+        let L = sut.find("L")
+        let M = sut.find("M")
         
-        let N = sut.find(letter: "N")
-        let O = sut.find(letter: "O")
-        let P = sut.find(letter: "P")
-        let Q = sut.find(letter: "Q")
-        let R = sut.find(letter: "R")
-        let S = sut.find(letter: "S")
-        let T = sut.find(letter: "T")
-        let U = sut.find(letter: "U")
-        let V = sut.find(letter: "V")
-        let W = sut.find(letter: "W")
-        let X = sut.find(letter: "X")
-        let Y = sut.find(letter: "Y")
-        let Z = sut.find(letter: "Z")
+        let N = sut.find("N")
+        let O = sut.find("O")
+        let P = sut.find("P")
+        let Q = sut.find("Q")
+        let R = sut.find("R")
+        let S = sut.find("S")
+        let T = sut.find("T")
+        let U = sut.find("U")
+        let V = sut.find("V")
+        let W = sut.find("W")
+        let X = sut.find("X")
+        let Y = sut.find("Y")
+        let Z = sut.find("Z")
         
         /// AND letter `A` appears `3` time
         XCTAssertEqual(3, A.count)
@@ -89,50 +89,50 @@ final class LetterIndexModelTests: XCTestCase {
         
         /// AND letter `A` in `aND` is from word `0`, at position `0` from start and `2` from end
         let A0 = A[0]
-        XCTAssertEqual(0, A0.wordId)
-        XCTAssertEqual(0, A0.fromStartPos)
-        XCTAssertEqual(2, A0.fromEndPos)
+        XCTAssertEqual(0, A0.id)
+        XCTAssertEqual(0, A0.start)
+        XCTAssertEqual(2, A0.end)
         
         /// AND letter `N` in `AnD` is from word `0`, at position `1` from start and `1` from end
         let N0 = N[0]
-        XCTAssertEqual(0, N0.wordId)
-        XCTAssertEqual(1, N0.fromStartPos)
-        XCTAssertEqual(1, N0.fromEndPos)
+        XCTAssertEqual(0, N0.id)
+        XCTAssertEqual(1, N0.start)
+        XCTAssertEqual(1, N0.end)
         
         /// AND letter `D` in `ANd` is from word `0`, at position `1` from start and `0` from  end
         let D0 = D[0]
-        XCTAssertEqual(0, D0.wordId)
-        XCTAssertEqual(2, D0.fromStartPos)
-        XCTAssertEqual(0, D0.fromEndPos)
+        XCTAssertEqual(0, D0.id)
+        XCTAssertEqual(2, D0.start)
+        XCTAssertEqual(0, D0.end)
         
         /// AND letter `A` in `aGAIN` is from word `1`, at position `0` from start and `4` from end
         let A1 = A[1]
-        XCTAssertEqual(1, A1.wordId)
-        XCTAssertEqual(0, A1.fromStartPos)
-        XCTAssertEqual(4, A1.fromEndPos)
+        XCTAssertEqual(1, A1.id)
+        XCTAssertEqual(0, A1.start)
+        XCTAssertEqual(4, A1.end)
         
         /// AND letter `G` in `AgAIN` is from word 1, at position 0 and from the end is position
         let G0 = G[0]
-        XCTAssertEqual(1, G0.wordId)
-        XCTAssertEqual(1, G0.fromStartPos)
-        XCTAssertEqual(3, G0.fromEndPos)
+        XCTAssertEqual(1, G0.id)
+        XCTAssertEqual(1, G0.start)
+        XCTAssertEqual(3, G0.end)
         
         /// AND letter `A` in `AGaIN` is from word `1`, at postion `2` from start and `2` from end
         let A2 = A[2]
-        XCTAssertEqual(1, A2.wordId)
-        XCTAssertEqual(2, A2.fromStartPos)
-        XCTAssertEqual(2, A2.fromEndPos)
+        XCTAssertEqual(1, A2.id)
+        XCTAssertEqual(2, A2.start)
+        XCTAssertEqual(2, A2.end)
         
         /// AND letter `I` in `AGAiN` is from word 1, at position 0 and from the end is position
         let I0 = I[0]
-        XCTAssertEqual(1, I0.wordId)
-        XCTAssertEqual(3, I0.fromStartPos)
-        XCTAssertEqual(1, I0.fromEndPos)
+        XCTAssertEqual(1, I0.id)
+        XCTAssertEqual(3, I0.start)
+        XCTAssertEqual(1, I0.end)
 
         /// AND letter `N` in `AGAIn` is from word 1, at position 4 from the start and 0 from the end
         let N1 = N[1]
-        XCTAssertEqual(1, N1.wordId)
-        XCTAssertEqual(4, N1.fromStartPos)
-        XCTAssertEqual(0, N1.fromEndPos)
+        XCTAssertEqual(1, N1.id)
+        XCTAssertEqual(4, N1.start)
+        XCTAssertEqual(0, N1.end)
     }
 }

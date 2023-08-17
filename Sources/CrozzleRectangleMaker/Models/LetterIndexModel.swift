@@ -23,7 +23,7 @@ public struct LetterIndexModel {
                 
                 let fromEndPos = wordLength - letterPos - 1
                 
-                let letterIndexItem = LetterIndexItemModel(wordId: wordId, fromStartPos: letterPos, fromEndPos: UInt8(fromEndPos))
+                let letterIndexItem = LetterIndexItemModel(id: wordId, start: letterPos, end: UInt8(fromEndPos))
                 
                 letterArray[letterArrayPos].append(letterIndexItem)
             }
@@ -31,7 +31,7 @@ public struct LetterIndexModel {
         self.index = letterArray
     }
     
-    public func find(letter: Character) -> [LetterIndexItemModel] {
+    public func find(_ letter: Character) -> [LetterIndexItemModel] {
         let letterPos = Int(letter.asciiValue! - 65)
         
         return self.index[letterPos]
