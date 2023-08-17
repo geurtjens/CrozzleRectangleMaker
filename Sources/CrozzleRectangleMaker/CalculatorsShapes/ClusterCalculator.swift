@@ -409,10 +409,10 @@ public class ClusterCalculator {
                                         
                                         if cluster.isValid(scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax) {
                         
-                                            let text = cluster.ToText(words:start)
-                                            if text.contains("#") == false {
+                                            //let text = cluster.ToText(words:start)
+                                            //if text.contains("#") == false {
                                                 result.append(cluster)
-                                            }
+                                            //}
                                         }
                                     }
                                 }
@@ -476,18 +476,7 @@ public class ClusterCalculator {
                                         )
                                         
                                         if cluster.isValid(scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax) {
-                                            //print("left1:\(start[left1]), right2:\(start[right2]), up1:\(start[up1]), down2:\(start[down2])")
-                                            //                                             let text = cluster.ToText(words:start)
-                                            //
-                                            //                                             textList.append(text)
-                                            //                                             let textReversed = cluster.ToTextFlipped(words: start)
-                                            //                                             textList.append(textReversed)
-                                            let text = cluster.ToText(words:start)
-                                            //print(text)
-                                            if text.contains("#") == false {
-                                                result.append(cluster)
-                                            }
-                                            
+                                            result.append(cluster)
                                         }
                                     }
                                 }

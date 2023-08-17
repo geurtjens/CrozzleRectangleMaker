@@ -10,8 +10,6 @@ import XCTest
 final class ClusterCalculatorTests: XCTestCase {
 
     
-    
-    
     func test_Execute_8612() throws {
         let words = WordData.words_8612()
         let result = ClusterCalculator.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
