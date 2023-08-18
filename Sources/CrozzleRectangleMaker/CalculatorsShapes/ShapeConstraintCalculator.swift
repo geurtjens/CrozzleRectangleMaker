@@ -225,7 +225,7 @@ public class ShapeConstraintCalculator {
         case "BottomRight":
             
             return ShapeCalculator.toShapes(pacmans: PacmanCalculator.BottomRight(
-                start: words,
+                words: words,
                 end: end,
                 len: len,
                 scoreMin: scoreMin,
@@ -233,7 +233,7 @@ public class ShapeConstraintCalculator {
                 heightMax: heightMax))
         case "TopLeft":
             return ShapeCalculator.toShapes(pacmans: PacmanCalculator.TopLeft(
-                start: words,
+                words: words,
                 end: end,
                 len: len,
                 scoreMin: scoreMin,
@@ -241,7 +241,7 @@ public class ShapeConstraintCalculator {
                 heightMax: heightMax))
         case "TopRight":
             return ShapeCalculator.toShapes(pacmans: PacmanCalculator.TopRight(
-                start: words,
+                words: words,
                 end: end,
                 len: len,
                 scoreMin: scoreMin,
@@ -299,7 +299,7 @@ public class ShapeConstraintCalculator {
             switch interlockHeight {
             case 2:
                 return ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-                    start: words,
+                    words: words,
                     end: reversedWords,
                     len: len,
                     scoreMin: scoreMin,
@@ -307,7 +307,7 @@ public class ShapeConstraintCalculator {
                     heightMax: heightMax))
             case 3:
                 return ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-                    start: words,
+                    words: words,
                     end: reversedWords,
                     len: len,
                     scoreMin: scoreMin,
@@ -315,7 +315,7 @@ public class ShapeConstraintCalculator {
                     heightMax: heightMax))
             case 4:
                 return ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
-                    start: words,
+                    words: words,
                     end: reversedWords,
                     len: len,
                     scoreMin: scoreMin,
@@ -323,7 +323,7 @@ public class ShapeConstraintCalculator {
                     heightMax: heightMax))
             case 5:
                 return ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x5(
-                    start: words,
+                    words: words,
                     end: reversedWords,
                     len: len,
                     scoreMin: scoreMin,
@@ -331,7 +331,7 @@ public class ShapeConstraintCalculator {
                     heightMax: heightMax))
             case 6:
                 return ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x6(
-                    start: words,
+                    words: words,
                     end: reversedWords,
                     len: len,
                     scoreMin: scoreMin,
@@ -344,7 +344,7 @@ public class ShapeConstraintCalculator {
             switch interlockHeight {
             case 3:
                 return ShapeCalculator.toShapes(clusters: ClusterCalculator.C3x3(
-                    start: words,
+                    words: words,
                     end: reversedWords,
                     len: len,
                     scoreMin: scoreMin,
@@ -352,7 +352,7 @@ public class ShapeConstraintCalculator {
                     heightMax: heightMax))
             case 4:
                 return ShapeCalculator.toShapes(clusters: ClusterCalculator.C3x4(
-                    start: words,
+                    words: words,
                     end: reversedWords,
                     len: len,
                     scoreMin: scoreMin,
@@ -360,7 +360,7 @@ public class ShapeConstraintCalculator {
                     heightMax: heightMax))
             case 5:
                 return ShapeCalculator.toShapes(clusters: ClusterCalculator.C3x5(
-                    start: words,
+                    words: words,
                     end: reversedWords,
                     len: len,
                     scoreMin: scoreMin,
@@ -379,7 +379,7 @@ public class ShapeConstraintCalculator {
         
         if interlockWidth == 2 && interlockHeight == 3 {
             return ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
-                start: words,
+                words: words,
                 end: reversedWords,
                 len: len,
                 scoreMin: scoreMin,
@@ -387,7 +387,7 @@ public class ShapeConstraintCalculator {
                 heightMax: heightMax))
         } else if interlockWidth == 2 && interlockHeight == 4 {
             return ShapeCalculator.toShapes(outers: OuterCalculator.C2x4(
-                start: words,
+                words: words,
                 end: reversedWords,
                 len: len,
                 scoreMin: scoreMin,

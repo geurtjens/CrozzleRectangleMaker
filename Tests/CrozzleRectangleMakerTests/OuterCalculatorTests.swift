@@ -13,7 +13,7 @@ final class OuterCalculatorTests: XCTestCase {
         let words = ["ZSA","LIZA","CAINE","SIDNEY","ALAN"]
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
-        let result = OuterCalculator.C2x3_LRL_MO(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
+        let result = OuterCalculator.C2x3_LRL_MO(words: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
         XCTAssertEqual(10, result[0].width)
         XCTAssertEqual(7, result[0].height)
@@ -29,7 +29,7 @@ final class OuterCalculatorTests: XCTestCase {
         let words = ["NOVAK","OMAR","MEL","STEVE","AL"]
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
-        let result = OuterCalculator.C2x3_RLR_OM(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
+        let result = OuterCalculator.C2x3_RLR_OM(words: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
         XCTAssertEqual(9, result[0].width)
         XCTAssertEqual(7, result[0].height)
@@ -45,7 +45,7 @@ final class OuterCalculatorTests: XCTestCase {
         let words = ["PLYWOOD","TOYS","SAW","WAX","BOW"]
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
-        let result = OuterCalculator.C2x3_LRL_OM(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
+        let result = OuterCalculator.C2x3_LRL_OM(words: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
         XCTAssertEqual(7, result[0].width)
         XCTAssertEqual(9, result[0].height)
@@ -61,7 +61,7 @@ final class OuterCalculatorTests: XCTestCase {
         let words = ["VET","VICAR","CRITIC","VALET","TILER"]
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
-        let result = OuterCalculator.C2x3_RLR_MO(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
+        let result = OuterCalculator.C2x3_RLR_MO(words: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
         XCTAssertEqual(10, result[0].width)
         XCTAssertEqual(8, result[0].height)
@@ -77,7 +77,7 @@ final class OuterCalculatorTests: XCTestCase {
         let words = ["YAM","YACCA","EUCALYPTUS","CORAL","MYALL"]
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
-        let result = OuterCalculator.C2x3_RLR_MO(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
+        let result = OuterCalculator.C2x3_RLR_MO(words: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
         XCTAssertEqual(10, result[0].width)
         XCTAssertEqual(12, result[0].height)
@@ -93,7 +93,7 @@ final class OuterCalculatorTests: XCTestCase {
         let words = ["ACT","VAN","GYMNAST","CAGE","ARTISTS"]
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
-        let result = OuterCalculator.C2x3_LRL_MO(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
+        let result = OuterCalculator.C2x3_LRL_MO(words: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
         XCTAssertEqual(11, result[0].width)
         XCTAssertEqual(9, result[0].height)
@@ -109,7 +109,7 @@ final class OuterCalculatorTests: XCTestCase {
         let words = ["SLIVOVITZ","SPAIN","NOG","VODKA","GROG"]
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
-        let result = OuterCalculator.C2x3_LRL_OM(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
+        let result = OuterCalculator.C2x3_LRL_OM(words: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
         XCTAssertEqual(10, result[0].width)
         XCTAssertEqual(11, result[0].height)
@@ -125,7 +125,7 @@ final class OuterCalculatorTests: XCTestCase {
         let words = ["ARGOSY","FERRY","YAWL","GALLEY","SCOW","SLAVER"]
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
-        let result = OuterCalculator.C2x4_LRLR_OM(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
+        let result = OuterCalculator.C2x4_LRLR_OM(words: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
         XCTAssertEqual(11, result[0].width)
         XCTAssertEqual(8, result[0].height)
@@ -141,7 +141,7 @@ final class OuterCalculatorTests: XCTestCase {
         let words = ["FERRY", "GALLEY", "SCOW", "SLAVER", "ARGOSY", "YAWL"]
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
-        let result = OuterCalculator.C2x4_LRLR_OM(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
+        let result = OuterCalculator.C2x4_LRLR_OM(words: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
         XCTAssertEqual(11, result[0].width)
         XCTAssertEqual(8, result[0].height)
@@ -157,7 +157,7 @@ final class OuterCalculatorTests: XCTestCase {
         let words = ["FERRY", "GALLEY", "SCOW", "SLAVER", "ARGOSY", "YAWL"]
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
-        let result = OuterCalculator.C2x4(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
+        let result = OuterCalculator.C2x4(words: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
         XCTAssertEqual(11, result[0].width)
         XCTAssertEqual(8, result[0].height)
@@ -173,7 +173,7 @@ final class OuterCalculatorTests: XCTestCase {
         let words = ["PLAN","PAGODA","WALL","GALLERY","ALETTE","MEZZANINE"]
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
-        let result = OuterCalculator.C2x4_RLRL_MO(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
+        let result = OuterCalculator.C2x4_RLRL_MO(words: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
         XCTAssertEqual(15, result[0].width)
         XCTAssertEqual(9, result[0].height)
@@ -198,7 +198,7 @@ final class OuterCalculatorTests: XCTestCase {
         let words = ["ABCDEF","BCD","CDEF","ACD","DEF","AEF"]
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
-        let result = OuterCalculator.C2x4_RLRL_OM(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
+        let result = OuterCalculator.C2x4_RLRL_OM(words: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
         XCTAssertEqual(6, result[0].width)
         XCTAssertEqual(8, result[0].height)
@@ -223,7 +223,7 @@ final class OuterCalculatorTests: XCTestCase {
         let words = ["CAEA","BCD","ADCFEF","ACD","DEF","AEF"]
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
-        let result = OuterCalculator.C2x4_LRLR_MO(start: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
+        let result = OuterCalculator.C2x4_LRLR_MO(words: words, end: end, len: len, scoreMin: 0, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, result.count)
         XCTAssertEqual(6, result[0].width)
         XCTAssertEqual(8, result[0].height)

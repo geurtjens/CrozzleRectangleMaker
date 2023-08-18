@@ -21,7 +21,7 @@ public struct PacmanModel : ShapeProtocol {
     public let width: UInt8
     public let height: UInt8
     
-    public init(pacmanType: PacmanType, wordsHorizontal: [Int], wordsVertical: [Int], patternHorizontal: [ClusterPosition], patternVertical: [ClusterPosition], start: [String], end: [String], len:[Int]) {
+    public init(pacmanType: PacmanType, wordsHorizontal: [Int], wordsVertical: [Int], patternHorizontal: [ClusterPosition], patternVertical: [ClusterPosition], words: [String], end: [String], len:[Int]) {
         self.pacmanType = pacmanType
         self.wordsHorizontal = wordsHorizontal
         self.wordsVertical = wordsVertical
@@ -42,7 +42,7 @@ public struct PacmanModel : ShapeProtocol {
         self.score = PacmanModel.scoreCalculator(
             type: pacmanType,
             wordsHorizontal: wordsHorizontal,
-            start: start,
+            start: words,
             end: end)
         
         self.width = PacmanModel.widthCalculator(

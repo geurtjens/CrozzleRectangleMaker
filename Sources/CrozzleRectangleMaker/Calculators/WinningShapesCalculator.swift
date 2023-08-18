@@ -117,7 +117,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 106,
@@ -131,7 +131,7 @@ public class WinningShapesCalculator {
             heightMax: heightMax))
 
         let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.BottomRight(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: 144,
@@ -224,7 +224,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 70,
@@ -232,7 +232,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 102,
@@ -330,7 +330,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 104,
@@ -430,7 +430,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 84,
@@ -438,7 +438,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 102,
@@ -452,7 +452,7 @@ public class WinningShapesCalculator {
             heightMax: heightMax))
 
         let pacman3x3_TopLeft = ShapeCalculator.toShapes(pacmans: PacmanCalculator.TopLeft(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: 132,
@@ -552,7 +552,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 82,
@@ -560,7 +560,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 118,
@@ -568,7 +568,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x5 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x5(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 204,
@@ -684,7 +684,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 108,
@@ -692,7 +692,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 118,
@@ -797,7 +797,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 74,
@@ -805,7 +805,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 148,
@@ -900,7 +900,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 88,
@@ -914,7 +914,7 @@ public class WinningShapesCalculator {
             heightMax: heightMax))
 
         let pacman3x3_TopRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.TopRight(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: 136,
@@ -1002,7 +1002,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 84,
@@ -1010,7 +1010,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 108,
@@ -1105,7 +1105,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 74,
@@ -1194,7 +1194,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 62,
@@ -1202,7 +1202,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 108,
@@ -1294,7 +1294,7 @@ public class WinningShapesCalculator {
             heightMax: heightMax))
 
         let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 90,
@@ -1368,7 +1368,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 68,
@@ -1376,7 +1376,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c3x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C3x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 190,
@@ -1477,7 +1477,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 104,
@@ -1582,7 +1582,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 66,
@@ -1660,7 +1660,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 82,
@@ -1668,7 +1668,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 142,
@@ -1778,7 +1778,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 86,
@@ -1792,7 +1792,7 @@ public class WinningShapesCalculator {
             heightMax: heightMax))
 
         let pacman3x3_TopRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.TopRight(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: 152,
@@ -1888,7 +1888,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 154,
@@ -2047,7 +2047,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 126,
@@ -2055,7 +2055,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 168,
@@ -2133,7 +2133,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 84,
@@ -2141,7 +2141,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 160,
@@ -2237,7 +2237,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 66,
@@ -2245,7 +2245,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 106,
@@ -2253,7 +2253,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 132,
@@ -2340,7 +2340,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 66,
@@ -2348,7 +2348,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 162,
@@ -2442,7 +2442,7 @@ public class WinningShapesCalculator {
             heightMax: heightMax))
 
         let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 140,
@@ -2450,7 +2450,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.BottomRight(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: 180,
@@ -2546,7 +2546,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 94,
@@ -2634,7 +2634,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 132,
@@ -2735,7 +2735,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c3x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C3x4(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 186,
@@ -2749,7 +2749,7 @@ public class WinningShapesCalculator {
             heightMax: heightMax))
 
         let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 108,
@@ -2823,7 +2823,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c3x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C3x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 142,
@@ -2837,7 +2837,7 @@ public class WinningShapesCalculator {
             heightMax: heightMax))
 
         let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.BottomRight(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: 138,
@@ -2902,7 +2902,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 86,
@@ -3226,7 +3226,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 54,
@@ -3309,7 +3309,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 90,
@@ -3317,7 +3317,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 102,
@@ -3395,7 +3395,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 84,
@@ -3403,7 +3403,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 136,
@@ -3508,7 +3508,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 134,
@@ -3612,7 +3612,7 @@ public class WinningShapesCalculator {
             heightMax: heightMax))
 
         let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 130,
@@ -3706,7 +3706,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 82,
@@ -3714,7 +3714,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 150,
@@ -3807,7 +3807,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 100,
@@ -3815,7 +3815,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c3x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C3x4(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 170,
@@ -3902,7 +3902,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 104,
@@ -3994,7 +3994,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 78,
@@ -4084,7 +4084,7 @@ public class WinningShapesCalculator {
 //        let len = WordCalculator.lengths(words: words)
 //
 //        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-//           start: words,
+//           words: words,
 //           end: end,
 //           len: len,
 //           scoreMin: 82,
@@ -4092,7 +4092,7 @@ public class WinningShapesCalculator {
 //           heightMax: heightMax))
 //
 //        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
-//           start: words,
+//           words: words,
 //           end: end,
 //           len: len,
 //           scoreMin: 168,
@@ -4100,7 +4100,7 @@ public class WinningShapesCalculator {
 //           heightMax: heightMax))
 //
 //        let c3x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C3x4(
-//           start: words,
+//           words: words,
 //           end: end,
 //           len: len,
 //           scoreMin: 186,
@@ -4178,7 +4178,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 82,
@@ -4186,7 +4186,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 168,
@@ -4269,7 +4269,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 136,
@@ -4356,7 +4356,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 82,
@@ -4443,7 +4443,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 128,
@@ -4527,7 +4527,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 116,
@@ -4673,7 +4673,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 110,
@@ -4779,7 +4779,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 132,
@@ -4971,7 +4971,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 84,
@@ -5116,7 +5116,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 86,
@@ -5334,7 +5334,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 166,
@@ -5483,7 +5483,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 102,
@@ -5731,7 +5731,7 @@ public class WinningShapesCalculator {
             heightMax: heightMax))
 
         let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.BottomRight(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: 124,
@@ -5797,7 +5797,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 100,
@@ -5888,7 +5888,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 96,
@@ -5979,7 +5979,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 82,
@@ -6219,7 +6219,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 98,
@@ -6327,7 +6327,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 130,
@@ -6335,7 +6335,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 132,
@@ -6343,7 +6343,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 122,
@@ -6431,7 +6431,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 104,
@@ -6676,7 +6676,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 68,
@@ -6755,7 +6755,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 68,
@@ -6990,7 +6990,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 112,
@@ -7134,7 +7134,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 102,
@@ -7619,7 +7619,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 76,
@@ -7816,7 +7816,7 @@ public class WinningShapesCalculator {
             heightMax: heightMax))
 
         let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.BottomRight(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: 152,
@@ -7889,7 +7889,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 116,
@@ -7978,7 +7978,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 104,
@@ -7986,7 +7986,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 86,
@@ -8093,7 +8093,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x6 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x6(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 222,
@@ -8299,7 +8299,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 70,
@@ -8410,7 +8410,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 70,
@@ -8418,7 +8418,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 110,
@@ -8533,7 +8533,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 98,
@@ -8653,7 +8653,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 88,
@@ -8661,7 +8661,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 142,
@@ -8776,7 +8776,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 62,
@@ -8790,7 +8790,7 @@ public class WinningShapesCalculator {
             heightMax: heightMax))
 
         let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 96,
@@ -8875,7 +8875,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 78,
@@ -8883,7 +8883,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 148,
@@ -8897,7 +8897,7 @@ public class WinningShapesCalculator {
             heightMax: heightMax))
 
         let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 98,
@@ -8976,7 +8976,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 64,
@@ -9181,7 +9181,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 62,
@@ -9195,7 +9195,7 @@ public class WinningShapesCalculator {
             heightMax: heightMax))
 
         let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.BottomRight(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: 138,
@@ -9299,7 +9299,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 82,
@@ -9390,7 +9390,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 84,
@@ -9404,7 +9404,7 @@ public class WinningShapesCalculator {
             heightMax: heightMax))
 
         let outer2x4 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x4(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 0,
@@ -9484,7 +9484,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 74,
@@ -9492,7 +9492,7 @@ public class WinningShapesCalculator {
            heightMax: heightMax))
 
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 110,
@@ -9666,7 +9666,7 @@ public class WinningShapesCalculator {
         let len = WordCalculator.lengths(words: words)
 
         let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 74,
@@ -9680,7 +9680,7 @@ public class WinningShapesCalculator {
             heightMax: heightMax))
 
         let outer2x4 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x4(
-           start: words,
+           words: words,
            end: end,
            len: len,
            scoreMin: 94,

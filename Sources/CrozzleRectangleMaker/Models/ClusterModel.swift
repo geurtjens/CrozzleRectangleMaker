@@ -22,7 +22,7 @@ public struct ClusterModel : ShapeProtocol {
     public let width: UInt8
     public let height: UInt8
     
-    public init(wordsHorizontal: [Int], wordsVertical: [Int], patternHorizontal: [ClusterPosition], patternVertical: [ClusterPosition], start: [String], end: [String], len:[Int]) {
+    public init(wordsHorizontal: [Int], wordsVertical: [Int], patternHorizontal: [ClusterPosition], patternVertical: [ClusterPosition], words: [String], end: [String], len:[Int]) {
         self.wordsHorizontal = wordsHorizontal
         self.wordsVertical = wordsVertical
         self.patternHorizontal = patternHorizontal
@@ -41,7 +41,7 @@ public struct ClusterModel : ShapeProtocol {
         self.lengthsVertical = _lengthsVertical
         self.score = ClusterModel.scoreCalculator(wordsHorizontal: wordsHorizontal,
                                      patternHorizontal: patternHorizontal,
-                                     start: start,
+                                     words: words,
                                      end: end,
                                      horizontalWordCount: wordsHorizontal.count,
                                      verticalWordCount: wordsVertical.count)
@@ -108,7 +108,7 @@ public struct ClusterModel : ShapeProtocol {
         return UInt8(width)
     }
     
-    public static func scoreCalculator(wordsHorizontal: [Int],patternHorizontal: [ClusterPosition], start: [String], end: [String], horizontalWordCount: Int, verticalWordCount: Int) -> UInt16 {
+    public static func scoreCalculator(wordsHorizontal: [Int],patternHorizontal: [ClusterPosition], words: [String], end: [String], horizontalWordCount: Int, verticalWordCount: Int) -> UInt16 {
         
         var score = (horizontalWordCount + verticalWordCount) * 10
         
@@ -120,7 +120,7 @@ public struct ClusterModel : ShapeProtocol {
                 }
             case .trailing:
                 for j in 0..<verticalWordCount {
-                    score += ScoreCalculator.score(forLetter: start[wordsHorizontal[i]][j])
+                    score += ScoreCalculator.score(forLetter: words[wordsHorizontal[i]][j])
                 }
             case .middle:
                 for j in 0..<verticalWordCount {

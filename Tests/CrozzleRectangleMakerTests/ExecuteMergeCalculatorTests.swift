@@ -270,7 +270,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         let len = WordCalculator.lengths(words: words)
         print("calculating 2x2 starting at \(Date.now)")
         let c2x2 = ClusterCalculator.C2x2(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: scoreMin,
@@ -285,7 +285,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         
         
         let c2x3 = ClusterCalculator.C2x3(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: scoreMin,
@@ -339,7 +339,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         let len = WordCalculator.lengths(words: words)
         
         let c2x2 = ClusterCalculator.C2x2(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: scoreMin,
@@ -350,7 +350,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         let c2x2Shapes = ShapeCalculator.toShape(fromClusters: c2x2)
 
         let c2x3 = ClusterCalculator.C2x3(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: scoreMin,
@@ -399,7 +399,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         let len = WordCalculator.lengths(words: words)
         
         let c2x2 = ClusterCalculator.C2x2(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: scoreMin,
@@ -413,7 +413,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         print(C2x2Text)
         
         let c2x3 = ClusterCalculator.C2x3(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: scoreMin,

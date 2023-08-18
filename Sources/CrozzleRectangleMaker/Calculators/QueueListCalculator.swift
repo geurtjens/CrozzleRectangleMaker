@@ -108,7 +108,7 @@ public class QueueListCalculator {
         let len = WordCalculator.lengths(words: words)
         
         let c2x2 = ClusterCalculator.C2x2(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: scoreMin,
@@ -135,7 +135,7 @@ public class QueueListCalculator {
         let len = WordCalculator.lengths(words: words)
         
         let c2x3 = ClusterCalculator.C2x3(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: scoreMin,
@@ -156,7 +156,7 @@ public class QueueListCalculator {
         let len = WordCalculator.lengths(words: words)
         
         let c2x4 = ClusterCalculator.C2x4(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: scoreMin,
@@ -165,7 +165,7 @@ public class QueueListCalculator {
             wordsMax: wordsMax)
         
         let c3x3 = ClusterCalculator.C3x3(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: scoreMin,
@@ -174,7 +174,7 @@ public class QueueListCalculator {
             wordsMax: wordsMax)
         
         let pacman3x3_bottomRight = PacmanCalculator.BottomRight(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: scoreMin,
@@ -182,7 +182,7 @@ public class QueueListCalculator {
             heightMax: heightMax)
         
         let pacman3x3_topLeft = PacmanCalculator.TopLeft(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: scoreMin,
@@ -190,7 +190,7 @@ public class QueueListCalculator {
             heightMax: heightMax)
         
         let pacman3x3_topRight = PacmanCalculator.TopRight(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: scoreMin,
@@ -218,7 +218,7 @@ public class QueueListCalculator {
         let len = WordCalculator.lengths(words: words)
         
         let c2x5 = ClusterCalculator.C2x5(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: scoreMin,
@@ -227,7 +227,7 @@ public class QueueListCalculator {
             wordsMax: wordsMax)
         
         let c3x4 = ClusterCalculator.C3x4(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: scoreMin,
@@ -250,7 +250,7 @@ public class QueueListCalculator {
         let len = WordCalculator.lengths(words: words)
         
         let c2x6 = ClusterCalculator.C2x6(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: scoreMin,
@@ -259,7 +259,7 @@ public class QueueListCalculator {
             wordsMax: wordsMax)
         
         let c3x5 = ClusterCalculator.C3x5(
-            start: words,
+            words: words,
             end: end,
             len: len,
             scoreMin: scoreMin,

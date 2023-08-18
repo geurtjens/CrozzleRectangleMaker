@@ -30,14 +30,177 @@ final class Cluster2CalculatorTests: XCTestCase {
         // 256+446+97
         XCTAssertEqual(799, newResults.count)
         
-        let oldResults = ClusterCalculator.C2x2(start: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let oldResults = ClusterCalculator.C2x2(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(799, oldResults.count)
         
         XCTAssertEqual(oldResults.count, newResults.count)
         //print(newResults[0].ToText(words:words))
         //compareShapes(oldResults: oldResults, newResults: newResults, words: words)
+        
+//        for newResult in newResults {
+//            print(newResult.ToText(words: words))
+//        }
     }
+    
+    func test_C2x3() {
+        let words = WordData.words_8612()
+        
+        let letterIndex = LetterIndexModel(words: words)
+        
+        let lengths = WordCalculator.lengths(words: words)
+        
+        let end = WordCalculator.reverse(words: words)
+        
+        let newResults = Cluster2Calculator.C2x3(
+            letterIndex: letterIndex,
+            words:words,
+            end:end,
+            len: lengths,
+            scoreMin:scoreMin,
+            widthMax:widthMax,
+            heightMax:heightMax)
+        
+        XCTAssertEqual(292, newResults.count)
+        
+        let oldResults = ClusterCalculator.C2x3(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        
+        XCTAssertEqual(292, oldResults.count)
+        
+        XCTAssertEqual(oldResults.count, newResults.count)
+        //print(newResults[0].ToText(words:words))
+        //compareShapes(oldResults: oldResults, newResults: newResults, words: words)
+        
+//        for newResult in newResults {
+//            print(newResult.ToText(words: words))
+//        }
+    }
+
+    func test_PERF_C2x3_OLD() {
+        measure {
+            let words = WordData.words_8612()
+            
+            let lengths = WordCalculator.lengths(words: words)
+            
+            let end = WordCalculator.reverse(words: words)
+            
+            let oldResults = ClusterCalculator.C2x3(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(292, oldResults.count)
+            
+            /// Time took 0.425 seconds
+        }
+    }
+    
+    func test_PERF_C2x3_NEW() {
+        measure {
+            let words = WordData.words_8612()
+            
+            let letterIndex = LetterIndexModel(words: words)
+            
+            let lengths = WordCalculator.lengths(words: words)
+            
+            let end = WordCalculator.reverse(words: words)
+            
+            let newResults = Cluster2Calculator.C2x3(
+                letterIndex: letterIndex,
+                words:words,
+                end:end,
+                len: lengths,
+                scoreMin:scoreMin,
+                widthMax:widthMax,
+                heightMax:heightMax)
+            
+            XCTAssertEqual(292, newResults.count)
+            
+            /// Time took `0.057 seconds` which is `7.4x` faster than existing `0.425 seconds`
+        }
+    }
+    
+    func test_C2x3_LRL_DU() {
+        let words = WordData.words_8612()
+        
+        let lengths = WordCalculator.lengths(words: words)
+        
+        let end = WordCalculator.reverse(words: words)
+        
+        let letterIndex = LetterIndexModel(words: words)
+
+        let newResults = Cluster2Calculator.C2x3_LRL_DU(letterIndex: letterIndex, words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        
+        XCTAssertEqual(64, newResults.count)
+        
+        let oldResults = ClusterCalculator.C2x3_LRL_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+
+        XCTAssertEqual(64, oldResults.count)
+//        for result in newResults {
+//            print(result.ToShape().ToText(words: words))
+//        }
+    }
+    
+    func test_C2x3_LRL_UD() {
+        let words = WordData.words_8612()
+        
+        let lengths = WordCalculator.lengths(words: words)
+        
+        let end = WordCalculator.reverse(words: words)
+        
+        let letterIndex = LetterIndexModel(words: words)
+
+        let newResults = Cluster2Calculator.C2x3_LRL_UD(letterIndex: letterIndex, words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        
+        XCTAssertEqual(152, newResults.count)
+        
+        let oldResults = ClusterCalculator.C2x3_LRL_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+
+        XCTAssertEqual(152, oldResults.count)
+//        for result in newResults {
+//            print(result.ToText(words: words))
+//        }
+    }
+    
+    func test_C2x3_RLR_DU() {
+        let words = WordData.words_8612()
+        
+        let lengths = WordCalculator.lengths(words: words)
+        
+        let end = WordCalculator.reverse(words: words)
+        
+        let letterIndex = LetterIndexModel(words: words)
+
+        let newResults = Cluster2Calculator.C2x3_RLR_DU(letterIndex: letterIndex, words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        
+        XCTAssertEqual(56, newResults.count)
+        
+        let oldResults = ClusterCalculator.C2x3_RLR_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+
+        XCTAssertEqual(56, oldResults.count)
+//        for result in newResults {
+//            print(result.ToText(words: words))
+//        }
+    }
+    
+    func test_C2x3_RLR_UD() {
+        let words = WordData.words_8612()
+        
+        let lengths = WordCalculator.lengths(words: words)
+        
+        let end = WordCalculator.reverse(words: words)
+        
+        let letterIndex = LetterIndexModel(words: words)
+
+        let newResults = Cluster2Calculator.C2x3_RLR_UD(letterIndex: letterIndex, words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        
+        XCTAssertEqual(20, newResults.count)
+        
+        let oldResults = ClusterCalculator.C2x3_RLR_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+
+        XCTAssertEqual(20, oldResults.count)
+        for result in newResults {
+            print(result.ToText(words: words))
+        }
+    }
+    
     
     func test_PERF_C2x2_Old() {
         measure {
@@ -47,7 +210,7 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let end = WordCalculator.reverse(words: words)
 
-            let oldResults = ClusterCalculator.C2x2(start: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculator.C2x2(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             // 256+446+97
             XCTAssertEqual(799, oldResults.count)
             
@@ -166,7 +329,7 @@ final class Cluster2CalculatorTests: XCTestCase {
         
         XCTAssertEqual(256, newResults.count)
         
-        let oldResults = ClusterCalculator.C2x2_LR_UD (start: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let oldResults = ClusterCalculator.C2x2_LR_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(256, oldResults.count)
         
@@ -195,7 +358,7 @@ final class Cluster2CalculatorTests: XCTestCase {
         
         XCTAssertEqual(446, newResults.count)
         
-        let oldResults = ClusterCalculator.C2x2_RL_DU (start: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let oldResults = ClusterCalculator.C2x2_RL_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(446, oldResults.count)
         
@@ -224,7 +387,7 @@ final class Cluster2CalculatorTests: XCTestCase {
         
         XCTAssertEqual(97, newResults.count)
         
-        let oldResults = ClusterCalculator.C2x2_RL_UD(start: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let oldResults = ClusterCalculator.C2x2_RL_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(97, oldResults.count)
         
@@ -241,7 +404,7 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let end = WordCalculator.reverse(words: words)
             
-            let oldResults = ClusterCalculator.C2x2_RL_UD(start: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculator.C2x2_RL_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(97, oldResults.count)
             
@@ -282,7 +445,7 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let end = WordCalculator.reverse(words: words)
             
-            let oldResults = ClusterCalculator.C2x2_RL_DU (start: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculator.C2x2_RL_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(446, oldResults.count)
             
@@ -350,7 +513,7 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let end = WordCalculator.reverse(words: words)
             
-            let oldResults = ClusterCalculator.C2x2_LR_UD (start: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculator.C2x2_LR_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(256, oldResults.count)
             /// 0.070 seconds

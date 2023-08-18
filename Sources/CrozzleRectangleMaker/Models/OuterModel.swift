@@ -21,7 +21,7 @@ public struct OuterModel : ShapeProtocol {
     public let width: UInt8
     public let height: UInt8
     
-    public init(wordsHorizontal: [Int], wordsVertical: [Int], patternHorizontal: [ClusterPosition], patternVertical: [ClusterPosition], start: [String], end: [String], len:[Int], outerPos:[Int]) {
+    public init(wordsHorizontal: [Int], wordsVertical: [Int], patternHorizontal: [ClusterPosition], patternVertical: [ClusterPosition], words: [String], end: [String], len:[Int], outerPos:[Int]) {
         self.outerPos = outerPos
         self.wordsHorizontal = wordsHorizontal
         self.wordsVertical = wordsVertical
@@ -62,8 +62,8 @@ public struct OuterModel : ShapeProtocol {
             outerStart = outerPos[1]
         }
         
-        let middleWord = start[wordsVertical[middleLocation]]
-        let outerWord = start[wordsVertical[outerLocation]]
+        let middleWord = words[wordsVertical[middleLocation]]
+        let outerWord = words[wordsVertical[outerLocation]]
         
         var score = (wordsHorizontal.count + wordsVertical.count) * 10
         

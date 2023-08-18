@@ -11,12 +11,12 @@ final class PacmanCalculatorTests: XCTestCase {
 
     func test_bottomRight_Single() throws {
         
-        let start = ["BULL", "SOLD", "UNITS", "TRUST", "LOSS", "SELL"]
-        let end = WordCalculator.reverse(words: start)
-        let len = WordCalculator.lengths(words: start)
+        let words = ["BULL", "SOLD", "UNITS", "TRUST", "LOSS", "SELL"]
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
         
         let result = PacmanCalculator.BottomRight(
-            start: start,
+            words: words,
             end: end,
             len: len,
             scoreMin: scoreMin,
@@ -60,7 +60,7 @@ final class PacmanCalculatorTests: XCTestCase {
         XCTAssertEqual(2, shape.placements[4].y)
         XCTAssertEqual(0, shape.placements[5].y)
         
-        let (text, _) = ShapeCalculator.ToText(shape: shape, words: start)
+        let (text, _) = ShapeCalculator.ToText(shape: shape, words: words)
         
         XCTAssertEqual(144, shape.score)
         
@@ -84,12 +84,12 @@ final class PacmanCalculatorTests: XCTestCase {
     }
     func test_topLeft_Single() throws {
         
-        let start = ["TRUST", "TRUSTEE", "ASSETS", "TAX", "NOTES", "RESERVE"]
-        let end = WordCalculator.reverse(words: start)
-        let len = WordCalculator.lengths(words: start)
+        let words = ["TRUST", "TRUSTEE", "ASSETS", "TAX", "NOTES", "RESERVE"]
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
         
         let result = PacmanCalculator.TopLeft(
-            start: start,
+            words: words,
             end: end,
             len: len,
             scoreMin: scoreMin,
@@ -136,7 +136,7 @@ final class PacmanCalculatorTests: XCTestCase {
         XCTAssertEqual(0, shape.placements[4].y)
         XCTAssertEqual(2, shape.placements[5].y)
         
-        let (text, _) = ShapeCalculator.ToText(shape: shape, words: start)
+        let (text, _) = ShapeCalculator.ToText(shape: shape, words: words)
         
         XCTAssertEqual(138, shape.score)
         
@@ -150,12 +150,12 @@ final class PacmanCalculatorTests: XCTestCase {
        
         let gamesList = GameList()
         if let game = gamesList.getGame(gameId: 8702) {
-            let start = game.words
-            let end = WordCalculator.reverse(words: start)
-            let len = WordCalculator.lengths(words: start)
+            let words = game.words
+            let end = WordCalculator.reverse(words: words)
+            let len = WordCalculator.lengths(words: words)
             
             let result = PacmanCalculator.BottomRight(
-                start: start,
+                words: words,
                 end: end,
                 len: len,
                 scoreMin: scoreMin,
@@ -178,12 +178,12 @@ final class PacmanCalculatorTests: XCTestCase {
        
         let gamesList = GameList()
         if let game = gamesList.getGame(gameId: 8702) {
-            let start = game.words
-            let end = WordCalculator.reverse(words: start)
-            let len = WordCalculator.lengths(words: start)
+            let words = game.words
+            let end = WordCalculator.reverse(words: words)
+            let len = WordCalculator.lengths(words: words)
             
             let result = PacmanCalculator.TopRight(
-                start: start,
+                words: words,
                 end: end,
                 len: len,
                 scoreMin: scoreMin,
@@ -206,12 +206,12 @@ final class PacmanCalculatorTests: XCTestCase {
        
         let gamesList = GameList()
         if let game = gamesList.getGame(gameId: 8702) {
-            let start = game.words
-            let end = WordCalculator.reverse(words: start)
-            let len = WordCalculator.lengths(words: start)
+            let words = game.words
+            let end = WordCalculator.reverse(words: words)
+            let len = WordCalculator.lengths(words: words)
             
             let result = PacmanCalculator.TopLeft(
-                start: start,
+                words: words,
                 end: end,
                 len: len,
                 scoreMin: scoreMin,
@@ -233,12 +233,12 @@ final class PacmanCalculatorTests: XCTestCase {
     
     func test_topRight_Single() throws {
         
-        let start = ["PARITY", "RESERVE", "DEBENTURE", "TRUST", "BUYER", "SELL"]
-        let end = WordCalculator.reverse(words: start)
-        let len = WordCalculator.lengths(words: start)
+        let words = ["PARITY", "RESERVE", "DEBENTURE", "TRUST", "BUYER", "SELL"]
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
         
         let result = PacmanCalculator.TopRight(
-            start: start,
+            words: words,
             end: end,
             len: len,
             scoreMin: scoreMin,
@@ -272,7 +272,7 @@ final class PacmanCalculatorTests: XCTestCase {
         XCTAssertEqual(0, shape.placements[4].y)
         XCTAssertEqual(3, shape.placements[5].y)
         
-        let (text, _) = ShapeCalculator.ToText(shape: shape, words: start)
+        let (text, _) = ShapeCalculator.ToText(shape: shape, words: words)
         
         XCTAssertEqual(160, shape.score)
         
