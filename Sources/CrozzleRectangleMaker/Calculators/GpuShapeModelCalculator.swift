@@ -41,7 +41,7 @@ public class GpuShapeModelCalculator {
         
         
         
-        var score = 0
+        //var score = 0
         
         let widthEOL = width + 1
         
@@ -61,14 +61,14 @@ public class GpuShapeModelCalculator {
         let sourceBasePos = sourceShapeId * Int(sourceShapes.stride)
         let searchBasePos = searchShapeId * Int(searchShapes.stride)
         
-        let sourceStartPos = sourceBasePos + Int(matches[0].sourcePos)
-        let searchStartPos = searchBasePos + Int(matches[0].searchPos)
+//        let sourceStartPos = sourceBasePos + Int(matches[0].sourcePos)
+//        let searchStartPos = searchBasePos + Int(matches[0].searchPos)
         
-        let sourceStartX = sourceShapes.x[sourceStartPos]
-        let sourceStartY = sourceShapes.y[sourceStartPos]
-        
-        let searchStartX = searchShapes.x[searchStartPos]
-        let searchStartY = searchShapes.y[searchStartPos]
+//        let sourceStartX = sourceShapes.x[sourceStartPos]
+//        let sourceStartY = sourceShapes.y[sourceStartPos]
+//
+//        let searchStartX = searchShapes.x[searchStartPos]
+//        let searchStartY = searchShapes.y[searchStartPos]
         
         
         

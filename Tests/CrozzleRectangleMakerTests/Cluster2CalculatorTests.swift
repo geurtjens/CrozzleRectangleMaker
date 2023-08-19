@@ -9,72 +9,582 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class Cluster2CalculatorTests: XCTestCase {
     
-    func test_C2x2() {
+    func test_execute() {
         let words = WordData.words_8612()
         
-        let letterIndex = LetterIndexModel(words: words)
+        let newResults = Cluster2Calculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
-        let lengths = WordCalculator.lengths(words: words)
+        XCTAssertEqual(1149, newResults.count)
         
-        let end = WordCalculator.reverse(words: words)
+        let oldResults = ClusterCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
-        let newResults = Cluster2Calculator.C2x2(
-            letterIndex: letterIndex,
-            words:words,
-            end:end,
-            len: lengths,
-            scoreMin:scoreMin,
-            widthMax:widthMax,
-            heightMax:heightMax)
-        
-        // 256+446+97
-        XCTAssertEqual(799, newResults.count)
-        
-        let oldResults = ClusterCalculator.C2x2(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
-        
-        XCTAssertEqual(799, oldResults.count)
-        
-        XCTAssertEqual(oldResults.count, newResults.count)
-        //print(newResults[0].ToText(words:words))
-        //compareShapes(oldResults: oldResults, newResults: newResults, words: words)
-        
-//        for newResult in newResults {
-//            print(newResult.ToText(words: words))
-//        }
+        XCTAssertEqual(1149, oldResults.count)
     }
     
-    func test_C2x3() {
-        let words = WordData.words_8612()
+    func test_PERF_execute_OLD() {
+        let options = XCTMeasureOptions()
+        options.iterationCount = 1
         
-        let letterIndex = LetterIndexModel(words: words)
-        
-        let lengths = WordCalculator.lengths(words: words)
-        
-        let end = WordCalculator.reverse(words: words)
-        
-        let newResults = Cluster2Calculator.C2x3(
-            letterIndex: letterIndex,
-            words:words,
-            end:end,
-            len: lengths,
-            scoreMin:scoreMin,
-            widthMax:widthMax,
-            heightMax:heightMax)
-        
-        XCTAssertEqual(292, newResults.count)
-        
-        let oldResults = ClusterCalculator.C2x3(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
-        
-        XCTAssertEqual(292, oldResults.count)
-        
-        XCTAssertEqual(oldResults.count, newResults.count)
-        //print(newResults[0].ToText(words:words))
-        //compareShapes(oldResults: oldResults, newResults: newResults, words: words)
-        
-//        for newResult in newResults {
-//            print(newResult.ToText(words: words))
-//        }
+        measure(metrics: [XCTClockMetric()], options: options) {
+            let gameList = GameList()
+            
+            for game in gameList.games {
+                let words = game.words
+                
+                let oldResults = ClusterCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+                print("Execute: \(game.gameId) old: \(oldResults.count)")
+            }
+        }
     }
+    
+    func test_PERF_execute_NEW() {
+        let options = XCTMeasureOptions()
+        options.iterationCount = 1
+        
+        measure(metrics: [XCTClockMetric()], options: options) {
+            let gameList = GameList()
+            
+            for game in gameList.games {
+                let words = game.words
+                
+                let newResults = Cluster2Calculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+                
+                print("Execute: \(game.gameId) new: \(newResults.count)")
+            }
+        }
+    }
+    
+    func test_ExecuteAll() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            
+            let words = game.words
+            
+            let newResults = Cluster2Calculator.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            
+            let oldResults = ClusterCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+            
+            print("Execute: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+        }
+    }
+    
+    func test_C2x2() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            
+            let (words, letterIndex, lengths, end) = getData(words: game.words)
+            
+            let newResults = Cluster2Calculator.C2x2(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            
+            let oldResults = ClusterCalculator.C2x2(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+            
+            print("C2x2: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+        }
+    }
+    
+    
+    
+    func test_C2x3() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            
+            let (words, letterIndex, lengths, end) = getData(words: game.words)
+            
+            let newResults = Cluster2Calculator.C2x3(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            
+            let oldResults = ClusterCalculator.C2x3(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+             
+            print("C2x3: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+        }
+    }
+    
+    func test_C2x4() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            
+            let (words, letterIndex, lengths, end) = getData(words: game.words)
+        
+            let newResults = Cluster2Calculator.C2x4(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            
+            let oldResults = ClusterCalculator.C2x4(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+            
+            print("C2x4: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    func test_C2x5_LRLRL_DU() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+  
+            let (words, letterIndex, lengths, end) = getData(words: game.words)
+            
+            let newResults = Cluster2Calculator.C2x5_LRLRL_DU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            
+            let oldResults = ClusterCalculator.C2x5_LRLRL_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+            print("C2x5_LRLRL_DU: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+        }
+    }
+    
+    func test_C2x5_LRLRL_UD() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+  
+            let (words, letterIndex, lengths, end) = getData(words: game.words)
+            
+            let newResults = Cluster2Calculator.C2x5_LRLRL_UD(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            
+            let oldResults = ClusterCalculator.C2x5_LRLRL_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+            print("C2x5_LRLRL_UD: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+        }
+    }
+    
+    func test_C2x5_RLRLR_DU() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+  
+            let (words, letterIndex, lengths, end) = getData(words: game.words)
+            
+            let newResults = Cluster2Calculator.C2x5_RLRLR_DU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            
+            let oldResults = ClusterCalculator.C2x5_RLRLR_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+            print("C2x5_RLRLR_DU: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+        }
+    }
+    
+    func test_C2x5_RLRLR_UD() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+  
+            let (words, letterIndex, lengths, end) = getData(words: game.words)
+            
+            let newResults = Cluster2Calculator.C2x5_RLRLR_UD(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            
+            let oldResults = ClusterCalculator.C2x5_RLRLR_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+            print("C2x5_RLRLR_UD: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+        }
+    }
+    
+    func test_C2x5() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+  
+            let (words, letterIndex, lengths, end) = getData(words: game.words)
+            
+            let newResults = Cluster2Calculator.C2x5(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            
+            let oldResults = ClusterCalculator.C2x5(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+            print("C2x5: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+        }
+    }
+    
+    
+    
+    
+    
+    func test_C2x6_LRLRLR_DU_Example() {
+        
+  /*
+          .
+         .H
+   .PICASSO.
+        .CLARET.
+      .DRAB.
+        .RED.
+.BOTTICELLI.
+        .ENAMEL.
+         T.
+         .
+    */
+        // down1,left1,up2,right2,left3,right4,left5,right6
+        
+        let example = ["SCARLET","PICASSO","HOLBEIN","CLARET","DRAB","RED","BOTTICELLI","ENAMEL"]
+        
+        let (words, letterIndex, lengths, end) = getData(words: example)
+        
+        let newResults = Cluster2Calculator.C2x6_LRLRLR_DU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+        
+        XCTAssertEqual(1, newResults.count)
+        
+        let oldResults = ClusterCalculator.C2x6_LRLRLR_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        
+        XCTAssertEqual(1, oldResults.count)
+    }
+    
+    
+    
+    
+    func test_C2x6_LRLRLR_DU() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            
+            let (words, letterIndex, lengths, end) = getData(words: game.words)
+            
+            let newResults = Cluster2Calculator.C2x6_LRLRLR_DU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            
+            let oldResults = ClusterCalculator.C2x6_LRLRLR_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+            
+            print("C2x6_LRLRLR_DU: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+            //print(oldResults[0].ToShape().ToText(words: words))
+        }
+    }
+    
+    func test_C2x6_LRLRLR_UD() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            
+            let (words, letterIndex, lengths, end) = getData(words: game.words)
+        
+            let newResults = Cluster2Calculator.C2x6_LRLRLR_UD(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            
+            let oldResults = ClusterCalculator.C2x6_LRLRLR_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+
+            print("C2x6_LRLRLR_UD: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+        }
+    }
+    
+    func test_C2x6_RLRLRL_DU() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            
+            let (words, letterIndex, lengths, end) = getData(words: game.words)
+        
+            let newResults = Cluster2Calculator.C2x6_RLRLRL_DU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            
+            let oldResults = ClusterCalculator.C2x6_RLRLRL_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+
+            print("C2x6_RLRLRL_DU: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+        }
+    }
+    
+    func test_C2x6_RLRLRL_UD() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            
+            let (words, letterIndex, lengths, end) = getData(words: game.words)
+        
+            let newResults = Cluster2Calculator.C2x6_RLRLRL_UD(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            
+            let oldResults = ClusterCalculator.C2x6_RLRLRL_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+
+            print("C2x6_RLRLRL_UD: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+        }
+    }
+    
+    func test_C2x6() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            
+            let (words, letterIndex, lengths, end) = getData(words: game.words)
+        
+            let newResults = Cluster2Calculator.C2x6(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            
+            let oldResults = ClusterCalculator.C2x6(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+
+            print("C2x6: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+        }
+    }
+    
+    
+    func test_C3x3() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            
+            let (words, letterIndex, lengths, end) = getData(words: game.words)
+        
+            let newResults = Cluster2Calculator.C3x3(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            
+            let oldResults = ClusterCalculator.C3x3(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+            print("C3x3: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+        }
+    }
+    
+    func test_C3x4() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            
+            let (words, letterIndex, lengths, end) = getData(words: game.words)
+        
+            let newResults = Cluster2Calculator.C3x4(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            
+            let oldResults = ClusterCalculator.C3x4(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+       
+            print("C3x4: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+        }
+    }
+    
+    func test_C3x5() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            
+            let (words, letterIndex, lengths, end) = getData(words: game.words)
+        
+            let newResults = Cluster2Calculator.C3x5(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            
+            let oldResults = ClusterCalculator.C3x5(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+            print("C3x5: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+        }
+    }
+    
+    func test_C3x4_Example() {
+        
+        
+ /*
+        ...
+       .TAP.
+ .CALENDULA.
+       .BONSAI.
+     .TREES.
+        R.Y
+        . .
+*/
+        // down1, right1, up2, left2, down3, right3, left4
+        
+        // This is the sequence of words but I think it ignores
+        let exampleWords = ["TUBER","TAP","ALOE","CALENDULA","PANSY","BONSAI","TREES"]
+        let (words, letterIndex, lengths, end) = getData(words: exampleWords)
+        
+        let newResults = Cluster2Calculator.C3x4_RLRL_DUD(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+        
+        let oldResults = ClusterCalculator.C3x4_RLRL_DUD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+                
+        //print(oldResults[0].ToShape().ToText(words: words))
+        //print(oldResults[0].ToShape().Flip().ToText(words: words))
+        
+                XCTAssertEqual(oldResults.count, newResults.count)
+                
+                //print("3x4: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+    }
+    
+    func test_C3x4_LRLR_DUD() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            
+            let (words, letterIndex, lengths, end) = getData(words: game.words)
+        
+            let newResults = Cluster2Calculator.C3x4_LRLR_DUD(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            
+            let oldResults = ClusterCalculator.C3x4_LRLR_DUD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+       
+            print("C3x4_LRLR_DUD: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+        }
+    }
+    
+    func test_C3x4_LRLR_UDU_Example() {
+        /*
+         .
+         R
+         O
+       ..S
+    .SNIPE.
+      .BELLBIRD.
+.COCKATIEL.
+      .SWAN.
+       .I.
+        T
+        .
+         */
+        //up1,left1,down2,right2,up3,left3,right4
+        let list = ["IBIS","SNIPE","PEEWIT","BELLBIRD","ROSELLA","COCKATIEL","SWAN"]
+        
+        let (words, letterIndex, lengths, end) = getData(words: list)
+        
+        let newResults = Cluster2Calculator.C3x4_LRLR_UDU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+        XCTAssertEqual(1, newResults.count)
+    }
+    
+    func test_C3x4_LRLR_UDU() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            
+            let (words, letterIndex, lengths, end) = getData(words: game.words)
+        
+            let newResults = Cluster2Calculator.C3x4_LRLR_UDU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            
+            let oldResults = ClusterCalculator.C3x4_LRLR_UDU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+       
+            print("C3x4_LRLR_UDU: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+            
+            if oldResults.count != newResults.count {
+                print(oldResults[0].ToShape().ToText(words: words))
+                print(oldResults[0].ToShape().Flip().ToText(words: words))
+            }
+        }
+    }
+    
+    func test_C3x4_RLRL_DUD() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            
+            let (words, letterIndex, lengths, end) = getData(words: game.words)
+        
+            let newResults = Cluster2Calculator.C3x4_RLRL_DUD(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            
+            let oldResults = ClusterCalculator.C3x4_RLRL_DUD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+       
+            print("C3x4_RLRL_DUD: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+
+            
+        }
+    }
+    
+    func test_C3x4_RLRL_UDU() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            
+            let (words, letterIndex, lengths, end) = getData(words: game.words)
+        
+            let newResults = Cluster2Calculator.C3x4_RLRL_UDU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            
+            let oldResults = ClusterCalculator.C3x4_RLRL_UDU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+       
+            print("C3x4_RLRL_UDU: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+        }
+    }
+    
+    
+
+    
+    
+    func test_C3x5_9106_Example() {
+        
+        /*
+         . .
+         H.C
+       .SETH.
+        .CHARON.
+    .JUPITER.
+        .OSIRIS.
+       .ARES.
+         .U.
+          S
+          .
+         */
+        let inputWords = ["HECTOR","SETH","THESEUS","CHARON","CHARIS","JUPITER","OSIRIS","ARES"]
+        let (words, letterIndex, lengths, end) = getData(words: inputWords)
+        
+        let newResults = Cluster2Calculator.C3x5_LRLRL_UDU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+        XCTAssertEqual(1, newResults.count)
+        let oldResults = ClusterCalculator.C3x5_LRLRL_UDU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        XCTAssertEqual(1, oldResults.count)
+        XCTAssertEqual(oldResults.count, newResults.count)
+    }
+    
+    func test_C3x5_9106() {
+        
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            if game.gameId == 9106 {
+                
+                let (words, letterIndex, lengths, end) = getData(words: game.words)
+                
+                let newResults = Cluster2Calculator.C3x5(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+                
+                let oldResults = ClusterCalculator.C3x5(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+                
+                XCTAssertEqual(oldResults.count, newResults.count)
+                print("3x5: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+                compareShapes(oldResults: oldResults, newResults: newResults, words: words)
+            }
+        }
+    }
+    
+    
 
     func test_PERF_C2x3_OLD() {
         measure {
@@ -569,4 +1079,21 @@ final class Cluster2CalculatorTests: XCTestCase {
     let scoreMin = 0
     let widthMax = 17
     let heightMax = 12
+    
+    func getData() -> ([String], LetterIndexModel, [Int], [String]) {
+        let words = WordData.words_8612()
+        let letterIndex = LetterIndexModel(words: words)
+        let lengths = WordCalculator.lengths(words: words)
+        let end = WordCalculator.reverse(words: words)
+        
+        return (words, letterIndex, lengths, end)
+    }
+        
+    func getData(words: [String]) -> ([String], LetterIndexModel, [Int], [String]) {
+        let letterIndex = LetterIndexModel(words: words)
+        let lengths = WordCalculator.lengths(words: words)
+        let end = WordCalculator.reverse(words: words)
+        
+        return (words, letterIndex, lengths, end)
+    }
 }

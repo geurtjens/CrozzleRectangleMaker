@@ -28,7 +28,7 @@ public class StrategyCalculator {
             //if gamesWon.contains(game.gameId) == false {
                 let words = game.winningWords
                 
-                let queueList = await StrategyCalculator.TryMergeWithLowerOnly(game: game, words: words, queueLength: 5_000)
+                let _ = await StrategyCalculator.TryMergeWithLowerOnly(game: game, words: words, queueLength: 5_000)
                 //result += "\n"
                 //let shape = queueList.getBestShapeByScore()
 //                if shape != nil {
@@ -167,7 +167,7 @@ public class StrategyCalculator {
                 break
             }
         }
-        let bestShapeScore = queue.getBestShape()
+        let _ = queue.getBestShape()
         
         let finishNano = DateTimeCalculator.now()
                
