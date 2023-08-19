@@ -16,6 +16,46 @@ final class RectangleCalculatorTests: XCTestCase {
         XCTAssertEqual(4457026, result.count)
     }
     
+    func test_ExecuteAll() async {
+        let gameList = GameList()
+        for game in gameList.games {
+            let words = game.words
+            
+            let newResults = await Rectangle2Calculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            let oldResults = await Rectangle2Calculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            XCTAssertEqual(oldResults.count, newResults.count)
+            
+            print("Execute: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
+        }
+    }
+    
+    func test_ExecuteAll_Old() async {
+        /// We want to only test old so we can see how long it takes
+        let gameList = GameList()
+        for game in gameList.games {
+            let words = game.words
+            
+            let oldResults = await Rectangle2Calculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            print("Execute: \(game.gameId), old: \(oldResults.count)")
+        }
+    }
+    
+    func test_ExecuteAll_New() async {
+        /// We want to calculate new to see how long it takes and then compare with old
+        let gameList = GameList()
+        for game in gameList.games {
+            let words = game.words
+            
+            let newResults = await Rectangle2Calculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            print("Execute: \(game.gameId), new: \(newResults.count)")
+        }
+    }
+    
+    
+    
     func test_AsyncOld() async {
         let words = ["ZION","AZURE","TOYS","JOY","HAZELNUT","NUTS","NAZARETH","HYMN","TURKEY","SNOW","MERRY","TOAST","STAR","HOLLY","JELLY","FAMILY","WHITE","SING","SAUCE","PORK","TREE","EVE","INN","BELLS","CAKE","GLAZE","PARTYHATS","TWENTYFIFTH","WALNUT","PEANUTS","PRESENTS","FRUIT","NUTMEG","CUSTARD","CHRISTMAS","MISTLETOE","GIFTS","SANTACLAUS","FESTIVE","RAISINS","LIGHTS","WREATH","HOLIDAY","WISEMEN","CRANBERRY","OPENHOUSE","SILENTNIGHT","STOCKING","PUNCH","WINE","SHOPPING","PLUMPUDDING","WRAPPING","NEIGHBOURS","GREETINGS","DECORATIONS","ALMONDS","LANTERN","KRISSKRINGLE","SPICE","GOODWILL","BONBON","CHURCH","FRIENDS","PARCELS","CINNAMON","NICHOLAS","MINCEPIES","CHERRIES","SLEIGH","ALMOND","MANGER","RIBBON","CHOCOLATE","MIXEDPEEL","DRINK","CANDLES","FOOD","GINGER","BETHLEHEM","CAROL","REINDEER","GOODCHEER","CREAM","CORDIAL","CHILDREN","ICECREAM","CHICKEN","CARD","DECEMBER","PEACE"]
         

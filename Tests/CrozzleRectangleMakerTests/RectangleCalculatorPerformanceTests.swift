@@ -22,6 +22,8 @@ final class RectangleCalculatorPerformanceTests: XCTestCase {
     }
     
     
+    
+    
     func test_Performance_Serial_New()  {
         let options = XCTMeasureOptions()
         options.iterationCount = 2 /* Tweak this value on a test-by-test basis */

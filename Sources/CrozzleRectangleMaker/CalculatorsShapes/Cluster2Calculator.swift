@@ -455,7 +455,7 @@ public class Cluster2Calculator {
                 
                 for right1 in right1Words {
                     
-                    if (right1.start == 0 && // Its the starting word that is matching
+                    if (right1.start == 0 &&
                         len[right1.id] >= interlockWidth &&
                         right1.id != _down1) {
                         
@@ -465,7 +465,7 @@ public class Cluster2Calculator {
                         
                         for up2 in up2Words {
                             
-                            if (up2.end == 1 && // Interlocks with second last letter from the end of up2
+                            if (up2.end == 1 &&
                                 len[up2.id] >= interlockHeight &&
                                 up2.id != right1.id &&
                                 up2.id != _down1) {
@@ -477,8 +477,8 @@ public class Cluster2Calculator {
                                 // This is where I put the (up2+1)
                                 for left2 in left2Words {
                                     
-                                    if (left2.id > up2.id && // To avoid duplicates we assure that left is higher than up
-                                        left2.end == 0 &&
+                                    if (left2.end == 0 &&
+                                        left2.id > up2.id && // To avoid duplicates we assure that left is higher than up
                                         len[left2.id] >= interlockWidth &&
                                         end[left2.id][1] == words[_down1][1] &&
                                         left2.id != up2.id &&
@@ -529,7 +529,7 @@ public class Cluster2Calculator {
                 
                 for right1 in right1Words {
                     
-                    if (right1.start == 0 && /// Interlocks with first letter of right1
+                    if (right1.start == 0 &&
                         len[right1.id] >= interlockWidth &&
                         right1.id != _up1) {
                         
@@ -936,7 +936,6 @@ public class Cluster2Calculator {
 
                         if (left1.end == 1 &&
                             len[left1.id] >= interlockWidth &&
-                            left1.end == 1 && //end[left1.id][1] == words[_down1][0] &&
                             left1.id != _down1) {
                             
                             //print("left1:\(words[left1.id]), interlock: \(end[left1.id][0])")
@@ -946,7 +945,6 @@ public class Cluster2Calculator {
 
                                 if (up2.end == 3 &&
                                     len[up2.id] >= interlockHeight &&
-                                    up2.end == 3 && //end[up2.id][3] == end[left1.id][0] &&
                                     up2.id != left1.id &&
                                     up2.id != _down1) {
                                     
@@ -958,7 +956,6 @@ public class Cluster2Calculator {
                                         if (right2.start == 1 &&
                                             len[right2.id] >= interlockWidth &&
                                             words[right2.id][0] == words[_down1][1] &&
-                                            right2.start == 1 && //words[right2.id][1] == end[up2.id][2] &&
                                             right2.id != up2.id &&
                                             right2.id != left1.id &&
                                             right2.id != _down1) {
@@ -971,7 +968,6 @@ public class Cluster2Calculator {
                                                 if (left3.end == 0 &&
                                                     len[left3.id] >= interlockWidth &&
                                                     end[left3.id][1] == words[_down1][2] &&
-                                                    left3.end == 0 && //end[left3.id][0] == end[up2.id][1] &&
                                                     left3.id != right2.id &&
                                                     left3.id != up2.id &&
                                                     left3.id != left1.id &&
@@ -985,7 +981,6 @@ public class Cluster2Calculator {
                                                         if (right4.start == 1 &&
                                                             len[right4.id] >= interlockWidth &&
                                                             words[right4.id][0] == words[_down1][3] &&
-                                                            right4.start == 1 && //words[right4.id][1] == end[up2.id][0] &&
                                                             right4.id != left3.id &&
                                                             right4.id != right2.id &&
                                                             right4.id != up2.id &&
@@ -1039,7 +1034,6 @@ public class Cluster2Calculator {
 
                         if (left1.end == 1 &&
                             len[left1.id] >= interlockWidth &&
-                            left1.end == 1 && //end[left1.id][1] == end[_up1][3] &&
                             left1.id != _up1) {
                             
                             //print("left1:\(words[left1.id]), interlock: \(end[left1.id][0])")
@@ -1049,7 +1043,6 @@ public class Cluster2Calculator {
 
                                 if (down2.start == 0 &&
                                     len[down2.id] >= interlockHeight &&
-                                    down2.start == 0 && //words[down2.id][0] == end[left1.id][0] &&
                                     down2.id != left1.id &&
                                     down2.id != _up1) {
                                     
@@ -1061,7 +1054,6 @@ public class Cluster2Calculator {
                                         if (right2.start == 1 &&
                                             len[right2.id] >= interlockWidth &&
                                             words[right2.id][0] == end[_up1][2] &&
-                                            right2.start == 1 && //words[right2.id][1] == words[down2.id][1] &&
                                             right2.id != down2.id &&
                                             right2.id != left1.id &&
                                             right2.id != _up1) {
@@ -1074,7 +1066,6 @@ public class Cluster2Calculator {
                                                 if (left3.end == 0 &&
                                                     len[left3.id] >= interlockWidth &&
                                                     end[left3.id][1] == end[_up1][1] &&
-                                                    left3.end == 0 && //end[left3.id][0] == words[down2.id][2] &&
                                                     left3.id != right2.id &&
                                                     left3.id != down2.id &&
                                                     left3.id != left1.id &&
@@ -1088,7 +1079,6 @@ public class Cluster2Calculator {
                                                         if (right4.start == 1 &&
                                                             len[right4.id] >= interlockWidth &&
                                                             words[right4.id][0] == end[_up1][0] &&
-                                                            right4.start == 1 && //words[right4.id][1] == words[down2.id][3] &&
                                                             right4.id != left3.id &&
                                                             right4.id != right2.id &&
                                                             right4.id != down2.id &&
@@ -1142,7 +1132,6 @@ public class Cluster2Calculator {
 
                         if (right1.start == 0 &&
                             len[right1.id] >= interlockWidth &&
-                            right1.start == 0 && //words[right1.id][0] == words[_down1][0] &&
                             right1.id != _down1) {
                             
                             //print("right1:\(words[right1.id]), interlock: \(words[right1.id][1])")
@@ -1152,7 +1141,6 @@ public class Cluster2Calculator {
 
                                 if (up2.end == 3 &&
                                     len[up2.id] >= interlockHeight &&
-                                    up2.end == 3 && //end[up2.id][3] == words[right1.id][1] &&
                                     up2.id != right1.id &&
                                     up2.id != _down1) {
                                     
@@ -1164,7 +1152,6 @@ public class Cluster2Calculator {
                                         if (left2.end == 0 &&
                                             len[left2.id] >= interlockWidth &&
                                             end[left2.id][1] == words[_down1][1] &&
-                                            left2.end == 0 && //end[left2.id][0] == end[up2.id][2] &&
                                             left2.id != up2.id &&
                                             left2.id != right1.id &&
                                             left2.id != _down1) {
@@ -1177,7 +1164,6 @@ public class Cluster2Calculator {
                                                 if (right3.start == 1 &&
                                                     len[right3.id] >= interlockWidth &&
                                                     words[right3.id][0] == words[_down1][2] &&
-                                                    right3.start == 1 && //words[right3.id][1] == end[up2.id][1] &&
                                                     right3.id != left2.id &&
                                                     right3.id != up2.id &&
                                                     right3.id != right1.id &&
@@ -1191,7 +1177,6 @@ public class Cluster2Calculator {
                                                         if (left4.end == 0 &&
                                                             len[left4.id] >= interlockWidth &&
                                                             end[left4.id][1] == words[_down1][3] &&
-                                                            left4.end == 0 && //end[left4.id][0] == end[up2.id][0] &&
                                                             left4.id != right3.id &&
                                                             left4.id != left2.id &&
                                                             left4.id != up2.id &&
@@ -1246,7 +1231,6 @@ public class Cluster2Calculator {
 
                         if (right1.start == 0 &&
                             len[right1.id] >= interlockWidth &&
-                            right1.start == 0 && //words[right1.id][0] == end[_up1][3] &&
                             right1.id != _up1) {
                             
                             //print("right1:\(words[right1.id]), interlock: \(words[right1.id][1])")
@@ -1254,8 +1238,8 @@ public class Cluster2Calculator {
 
                             for down2 in down2Words {
 
-                                if (len[down2.id] >= interlockHeight &&
-                                    down2.start == 0 && //words[down2.id][0] == words[right1.id][1] &&
+                                if (down2.start == 0 && //words[down2.id][0] == words[right1.id][1] &&
+                                    len[down2.id] >= interlockHeight &&
                                     down2.id != right1.id &&
                                     down2.id != _up1) {
                                     
@@ -1264,9 +1248,9 @@ public class Cluster2Calculator {
 
                                     for left2 in left2Words {
 
-                                        if (len[left2.id] >= interlockWidth &&
+                                        if (left2.end == 0 && //end[left2.id][0] == words[down2.id][1] &&
+                                            len[left2.id] >= interlockWidth &&
                                             end[left2.id][1] == end[_up1][2] &&
-                                            left2.end == 0 && //end[left2.id][0] == words[down2.id][1] &&
                                             left2.id != down2.id &&
                                             left2.id != right1.id &&
                                             left2.id != _up1) {
@@ -1276,9 +1260,9 @@ public class Cluster2Calculator {
 
                                             for right3 in right3Words {
 
-                                                if (len[right3.id] >= interlockWidth &&
+                                                if (right3.start == 1 && //words[right3.id][1] == words[down2.id][2] &&
+                                                    len[right3.id] >= interlockWidth &&
                                                     words[right3.id][0] == end[_up1][1] &&
-                                                    right3.start == 1 && //words[right3.id][1] == words[down2.id][2] &&
                                                     right3.id != left2.id &&
                                                     right3.id != down2.id &&
                                                     right3.id != right1.id &&
@@ -1289,9 +1273,9 @@ public class Cluster2Calculator {
 
                                                     for left4 in left4Words {
 
-                                                        if (len[left4.id] >= interlockWidth &&
+                                                        if (left4.end == 0 && //end[left4.id][0] == words[down2.id][3] &&
+                                                            len[left4.id] >= interlockWidth &&
                                                             end[left4.id][1] == end[_up1][0] &&
-                                                            left4.end == 0 && //end[left4.id][0] == words[down2.id][3] &&
                                                             left4.id != right3.id &&
                                                             left4.id != left2.id &&
                                                             left4.id != down2.id &&
@@ -1344,8 +1328,8 @@ public class Cluster2Calculator {
 
                     for left1 in left1Words {
 
-                        if (len[left1.id] >= interlockWidth &&
-                            left1.end == 1 && //end[left1.id][1] == words[_down1][0] &&
+                        if (left1.end == 1 && //end[left1.id][1] == words[_down1][0] &&
+                            len[left1.id] >= interlockWidth &&
                             left1.id != _down1) {
                             
                             //print("left1:\(words[left1.id]), interlock: \(end[left1.id][0])")
@@ -1353,8 +1337,8 @@ public class Cluster2Calculator {
 
                             for up2 in up2Words {
 
-                                if (len[up2.id] >= interlockHeight &&
-                                    up2.end == 4 && //end[up2.id][4] == end[left1.id][0] &&
+                                if (up2.end == 4 && //end[up2.id][4] == end[left1.id][0] &&
+                                    len[up2.id] >= interlockHeight &&
                                     up2.id != left1.id &&
                                     up2.id != _down1) {
                                     
@@ -1363,9 +1347,9 @@ public class Cluster2Calculator {
 
                                     for right2 in right2Words {
 
-                                        if (len[right2.id] >= interlockWidth &&
+                                        if (right2.start == 1 && //words[right2.id][1] == end[up2.id][3] &&
+                                            len[right2.id] >= interlockWidth &&
                                             words[right2.id][0] == words[_down1][1] &&
-                                            right2.start == 1 && //words[right2.id][1] == end[up2.id][3] &&
                                             right2.id != up2.id &&
                                             right2.id != left1.id &&
                                             right2.id != _down1) {
@@ -1375,9 +1359,9 @@ public class Cluster2Calculator {
 
                                             for left3 in left3Words {
 
-                                                if (len[left3.id] >= interlockWidth &&
+                                                if (left3.end == 0 && //end[left3.id][0] == end[up2.id][2] &&
+                                                    len[left3.id] >= interlockWidth &&
                                                     end[left3.id][1] == words[_down1][2] &&
-                                                    left3.end == 0 && //end[left3.id][0] == end[up2.id][2] &&
                                                     left3.id != right2.id &&
                                                     left3.id != up2.id &&
                                                     left3.id != left1.id &&
@@ -1388,9 +1372,9 @@ public class Cluster2Calculator {
 
                                                     for right4 in right4Words {
 
-                                                        if (len[right4.id] >= interlockWidth &&
+                                                        if (right4.start == 1 && //words[right4.id][1] == end[up2.id][1] &&
+                                                            len[right4.id] >= interlockWidth &&
                                                             words[right4.id][0] == words[_down1][3] &&
-                                                            right4.start == 1 && //words[right4.id][1] == end[up2.id][1] &&
                                                             right4.id != left3.id &&
                                                             right4.id != right2.id &&
                                                             right4.id != up2.id &&
@@ -1402,9 +1386,9 @@ public class Cluster2Calculator {
 
                                                             for left5 in left5Words {
 
-                                                                if (len[left5.id] >= interlockWidth &&
+                                                                if (left5.end == 0 && //end[left5.id][0] == end[up2.id][0] &&
+                                                                    len[left5.id] >= interlockWidth &&
                                                                     end[left5.id][1] == words[_down1][4] &&
-                                                                    left5.end == 0 && //end[left5.id][0] == end[up2.id][0] &&
                                                                     left5.id != right4.id &&
                                                                     left5.id != left3.id &&
                                                                     left5.id != right2.id &&
@@ -1459,8 +1443,8 @@ public class Cluster2Calculator {
 
                     for left1 in left1Words {
 
-                        if (len[left1.id] >= interlockWidth &&
-                            left1.end == 1 && //end[left1.id][1] == end[_up1][4] &&
+                        if (left1.end == 1 && //end[left1.id][1] == end[_up1][4] &&
+                            len[left1.id] >= interlockWidth &&
                             left1.id != _up1) {
                             
                             //print("left1:\(words[left1.id]), interlock: \(end[left1.id][0])")
@@ -1468,8 +1452,8 @@ public class Cluster2Calculator {
 
                             for down2 in down2Words {
 
-                                if (len[down2.id] >= interlockHeight &&
-                                    down2.start == 0 && //words[down2.id][0] == end[left1.id][0] &&
+                                if (down2.start == 0 && //words[down2.id][0] == end[left1.id][0] &&
+                                    len[down2.id] >= interlockHeight &&
                                     down2.id != left1.id &&
                                     down2.id != _up1) {
                                     
@@ -1478,9 +1462,9 @@ public class Cluster2Calculator {
 
                                     for right2 in right2Words {
 
-                                        if (len[right2.id] >= interlockWidth &&
+                                        if (right2.start == 1 && //words[right2.id][1] == words[down2.id][1] &&
+                                            len[right2.id] >= interlockWidth &&
                                             words[right2.id][0] == end[_up1][3] &&
-                                            right2.start == 1 && //words[right2.id][1] == words[down2.id][1] &&
                                             right2.id != down2.id &&
                                             right2.id != left1.id &&
                                             right2.id != _up1) {
@@ -1490,9 +1474,9 @@ public class Cluster2Calculator {
 
                                             for left3 in left3Words {
 
-                                                if (len[left3.id] >= interlockWidth &&
+                                                if (left3.end == 0 && //end[left3.id][0] == words[down2.id][2] &&
+                                                    len[left3.id] >= interlockWidth &&
                                                     end[left3.id][1] == end[_up1][2] &&
-                                                    left3.end == 0 && //end[left3.id][0] == words[down2.id][2] &&
                                                     left3.id != right2.id &&
                                                     left3.id != down2.id &&
                                                     left3.id != left1.id &&
@@ -1503,9 +1487,9 @@ public class Cluster2Calculator {
 
                                                     for right4 in right4Words {
 
-                                                        if (len[right4.id] >= interlockWidth &&
+                                                        if (right4.start == 1 && //words[right4.id][1] == words[down2.id][3] &&
+                                                            len[right4.id] >= interlockWidth &&
                                                             words[right4.id][0] == end[_up1][1] &&
-                                                            right4.start == 1 && //words[right4.id][1] == words[down2.id][3] &&
                                                             right4.id != left3.id &&
                                                             right4.id != right2.id &&
                                                             right4.id != down2.id &&
@@ -1517,9 +1501,9 @@ public class Cluster2Calculator {
 
                                                             for left5 in left5Words {
 
-                                                                if (len[left5.id] >= interlockWidth &&
+                                                                if (left5.end == 0 && //end[left5.id][0] == words[down2.id][4] &&
+                                                                    len[left5.id] >= interlockWidth &&
                                                                     end[left5.id][1] == end[_up1][0] &&
-                                                                    left5.end == 0 && //end[left5.id][0] == words[down2.id][4] &&
                                                                     left5.id != right4.id &&
                                                                     left5.id != left3.id &&
                                                                     left5.id != right2.id &&
@@ -1574,8 +1558,8 @@ public class Cluster2Calculator {
 
                     for right1 in right1Words {
 
-                        if (len[right1.id] >= interlockWidth &&
-                            right1.start == 0 && //words[right1.id][0] == words[_down1][0] &&
+                        if (right1.start == 0 && //words[right1.id][0] == words[_down1][0] &&
+                            len[right1.id] >= interlockWidth &&
                             right1.id != _down1) {
                             
                             //print("right1:\(words[right1.id]), interlock: \(words[right1.id][1])")
@@ -1583,8 +1567,8 @@ public class Cluster2Calculator {
 
                             for up2 in up2Words {
 
-                                if (len[up2.id] >= interlockHeight &&
-                                    up2.end == 4 && //end[up2.id][4] == words[right1.id][1] &&
+                                if (up2.end == 4 && //end[up2.id][4] == words[right1.id][1] &&
+                                    len[up2.id] >= interlockHeight &&
                                     up2.id != right1.id &&
                                     up2.id != _down1) {
                                     
@@ -1593,9 +1577,9 @@ public class Cluster2Calculator {
 
                                     for left2 in left2Words {
 
-                                        if (len[left2.id] >= interlockWidth &&
+                                        if (left2.end == 0 && //end[left2.id][0] == end[up2.id][3] &&
+                                            len[left2.id] >= interlockWidth &&
                                             end[left2.id][1] == words[_down1][1] &&
-                                            left2.end == 0 && //end[left2.id][0] == end[up2.id][3] &&
                                             left2.id != up2.id &&
                                             left2.id != right1.id &&
                                             left2.id != _down1) {
@@ -1605,9 +1589,9 @@ public class Cluster2Calculator {
 
                                             for right3 in right3Words {
 
-                                                if (len[right3.id] >= interlockWidth &&
+                                                if (right3.start == 1 && //words[right3.id][1] == end[up2.id][2] &&
+                                                    len[right3.id] >= interlockWidth &&
                                                     words[right3.id][0] == words[_down1][2] &&
-                                                    right3.start == 1 && //words[right3.id][1] == end[up2.id][2] &&
                                                     right3.id != left2.id &&
                                                     right3.id != up2.id &&
                                                     right3.id != right1.id &&
@@ -1618,9 +1602,9 @@ public class Cluster2Calculator {
 
                                                     for left4 in left4Words {
 
-                                                        if (len[left4.id] >= interlockWidth &&
+                                                        if (left4.end == 0 && //end[left4.id][0] == end[up2.id][1] &&
+                                                            len[left4.id] >= interlockWidth &&
                                                             end[left4.id][1] == words[_down1][3] &&
-                                                            left4.end == 0 && //end[left4.id][0] == end[up2.id][1] &&
                                                             left4.id != right3.id &&
                                                             left4.id != left2.id &&
                                                             left4.id != up2.id &&
@@ -1632,9 +1616,9 @@ public class Cluster2Calculator {
 
                                                             for right5 in right5Words {
 
-                                                                if (len[right5.id] >= interlockWidth &&
+                                                                if (right5.start == 1 && //words[right5.id][1] == end[up2.id][0] &&
+                                                                    len[right5.id] >= interlockWidth &&
                                                                     words[right5.id][0] == words[_down1][4] &&
-                                                                    right5.start == 1 && //words[right5.id][1] == end[up2.id][0] &&
                                                                     right5.id != left4.id &&
                                                                     right5.id != right3.id &&
                                                                     right5.id != left2.id &&
@@ -1690,8 +1674,8 @@ public class Cluster2Calculator {
 
                     for right1 in right1Words {
 
-                        if (len[right1.id] >= interlockWidth &&
-                            right1.start == 0 && //words[right1.id][0] == end[_up1][4] &&
+                        if (right1.start == 0 && //words[right1.id][0] == end[_up1][4] &&
+                            len[right1.id] >= interlockWidth &&
                             right1.id != _up1) {
                             
                             //print("right1:\(words[right1.id]), interlock: \(words[right1.id][1])")
@@ -1699,8 +1683,8 @@ public class Cluster2Calculator {
 
                             for down2 in down2Words {
 
-                                if (len[down2.id] >= interlockHeight &&
-                                    down2.start == 0 && //words[down2.id][0] == words[right1.id][1] &&
+                                if (down2.start == 0 && //words[down2.id][0] == words[right1.id][1] &&
+                                    len[down2.id] >= interlockHeight &&
                                     down2.id != right1.id &&
                                     down2.id != _up1) {
                                     
@@ -1709,9 +1693,9 @@ public class Cluster2Calculator {
 
                                     for left2 in left2Words {
 
-                                        if (len[left2.id] >= interlockWidth &&
+                                        if (left2.end == 0 && //end[left2.id][0] == words[down2.id][1] &&
+                                            len[left2.id] >= interlockWidth &&
                                             end[left2.id][1] == end[_up1][3] &&
-                                            left2.end == 0 && //end[left2.id][0] == words[down2.id][1] &&
                                             left2.id != down2.id &&
                                             left2.id != right1.id &&
                                             left2.id != _up1) {
@@ -1721,9 +1705,9 @@ public class Cluster2Calculator {
 
                                             for right3 in right3Words {
 
-                                                if (len[right3.id] >= interlockWidth &&
+                                                if (right3.start == 1 && //words[right3.id][1] == words[down2.id][2] &&
+                                                    len[right3.id] >= interlockWidth &&
                                                     words[right3.id][0] == end[_up1][2] &&
-                                                    right3.start == 1 && //words[right3.id][1] == words[down2.id][2] &&
                                                     right3.id != left2.id &&
                                                     right3.id != down2.id &&
                                                     right3.id != right1.id &&
@@ -1734,9 +1718,9 @@ public class Cluster2Calculator {
 
                                                     for left4 in left4Words {
 
-                                                        if (len[left4.id] >= interlockWidth &&
+                                                        if (left4.end == 0 && //end[left4.id][0] == words[down2.id][3] &&
+                                                            len[left4.id] >= interlockWidth &&
                                                             end[left4.id][1] == end[_up1][1] &&
-                                                            left4.end == 0 && //end[left4.id][0] == words[down2.id][3] &&
                                                             left4.id != right3.id &&
                                                             left4.id != left2.id &&
                                                             left4.id != down2.id &&
@@ -1748,9 +1732,9 @@ public class Cluster2Calculator {
 
                                                             for right5 in right5Words {
 
-                                                                if (len[right5.id] >= interlockWidth &&
+                                                                if (right5.start == 1 && //words[right5.id][1] == words[down2.id][4] &&
+                                                                    len[right5.id] >= interlockWidth &&
                                                                     words[right5.id][0] == end[_up1][0] &&
-                                                                    right5.start == 1 && //words[right5.id][1] == words[down2.id][4] &&
                                                                     right5.id != left4.id &&
                                                                     right5.id != right3.id &&
                                                                     right5.id != left2.id &&
@@ -1806,8 +1790,8 @@ public class Cluster2Calculator {
 
                     for left1 in left1Words {
 
-                        if (len[left1.id] >= interlockWidth &&
-                            left1.end == 1 && //end[left1.id][1] == words[_down1][0] &&
+                        if (left1.end == 1 && //end[left1.id][1] == words[_down1][0] &&
+                            len[left1.id] >= interlockWidth &&
                             left1.id != _down1) {
                             
                             //print("left1:\(words[left1.id]), interlock: \(end[left1.id][0])")
@@ -1815,9 +1799,9 @@ public class Cluster2Calculator {
 
                             for up2 in up2Words {
 
-                                if (len[up2.id] >= interlockHeight &&
+                                if (up2.id != left1.id &&
+                                    len[up2.id] >= interlockHeight &&
                                     up2.end == 5 && //end[up2.id][5] == end[left1.id][0] &&
-                                    up2.id != left1.id &&
                                     up2.id != _down1) {
                                     
                                     //print("up2:\(words[up2.id]), interlock: \(end[up2.id][4])")
@@ -1825,9 +1809,9 @@ public class Cluster2Calculator {
 
                                     for right2 in right2Words {
 
-                                        if (len[right2.id] >= interlockWidth &&
+                                        if (right2.start == 1 && //words[right2.id][1] == end[up2.id][4] &&
+                                            len[right2.id] >= interlockWidth &&
                                             words[right2.id][0] == words[_down1][1] &&
-                                            right2.start == 1 && //words[right2.id][1] == end[up2.id][4] &&
                                             right2.id != up2.id &&
                                             right2.id != left1.id &&
                                             right2.id != _down1) {
@@ -1838,9 +1822,9 @@ public class Cluster2Calculator {
 
                                             for left3 in left3Words {
 
-                                                if (len[left3.id] >= interlockWidth &&
+                                                if (left3.end == 0 && //end[left3.id][0] == end[up2.id][3] &&
+                                                    len[left3.id] >= interlockWidth &&
                                                     end[left3.id][1] == words[_down1][2] &&
-                                                    left3.end == 0 && //end[left3.id][0] == end[up2.id][3] &&
                                                     left3.id != right2.id &&
                                                     left3.id != up2.id &&
                                                     left3.id != left1.id &&
@@ -1852,9 +1836,9 @@ public class Cluster2Calculator {
 
                                                     for right4 in right4Words {
 
-                                                        if (len[right4.id] >= interlockWidth &&
+                                                        if (right4.start == 1 && //words[right4.id][1] == end[up2.id][2] &&
+                                                            len[right4.id] >= interlockWidth &&
                                                             words[right4.id][0] == words[_down1][3] &&
-                                                            right4.start == 1 && //words[right4.id][1] == end[up2.id][2] &&
                                                             right4.id != left3.id &&
                                                             right4.id != right2.id &&
                                                             right4.id != up2.id &&
@@ -1867,9 +1851,9 @@ public class Cluster2Calculator {
 
                                                             for left5 in left5Words {
 
-                                                                if (len[left5.id] >= interlockWidth &&
+                                                                if (left5.end == 0 && //end[left5.id][0] == end[up2.id][1] &&
+                                                                    len[left5.id] >= interlockWidth &&
                                                                     end[left5.id][1] == words[_down1][4] &&
-                                                                    left5.end == 0 && //end[left5.id][0] == end[up2.id][1] &&
                                                                     left5.id != right4.id &&
                                                                     left5.id != left3.id &&
                                                                     left5.id != right2.id &&
@@ -1883,9 +1867,9 @@ public class Cluster2Calculator {
 
                                                                     for right6 in right6Words {
 
-                                                                        if (len[right6.id] >= interlockWidth &&
+                                                                        if (right6.start == 1 && //words[right6.id][1] == end[up2.id][0] &&
+                                                                            len[right6.id] >= interlockWidth &&
                                                                             words[right6.id][0] == words[_down1][5] &&
-                                                                            right6.start == 1 && //words[right6.id][1] == end[up2.id][0] &&
                                                                             right6.id != left5.id &&
                                                                             right6.id != right4.id &&
                                                                             right6.id != left3.id &&
@@ -1943,8 +1927,8 @@ public class Cluster2Calculator {
 
                     for left1 in left1Words {
 
-                        if (len[left1.id] >= interlockWidth &&
-                            left1.end == 1 && //end[left1.id][1] == end[_up1][5] &&
+                        if (left1.end == 1 && //end[left1.id][1] == end[_up1][5] &&
+                            len[left1.id] >= interlockWidth &&
                             left1.id != _up1) {
                             
                             //print("left1:\(words[left1.id]), interlock: \(end[left1.id][0])")
@@ -1952,8 +1936,8 @@ public class Cluster2Calculator {
 
                             for down2 in down2Words {
 
-                                if (len[down2.id] >= interlockHeight &&
-                                    down2.start == 0 && //words[down2.id][0] == end[left1.id][0] &&
+                                if (down2.start == 0 && //words[down2.id][0] == end[left1.id][0] &&
+                                    len[down2.id] >= interlockHeight &&
                                     down2.id != left1.id &&
                                     down2.id != _up1) {
                                     
@@ -1962,9 +1946,9 @@ public class Cluster2Calculator {
 
                                     for right2 in right2Words {
 
-                                        if (len[right2.id] >= interlockWidth &&
+                                        if (right2.start == 1 && //words[right2.id][1] == words[down2.id][1] &&
+                                            len[right2.id] >= interlockWidth &&
                                             words[right2.id][0] == end[_up1][4] &&
-                                            right2.start == 1 && //words[right2.id][1] == words[down2.id][1] &&
                                             right2.id != down2.id &&
                                             right2.id != left1.id &&
                                             right2.id != _up1) {
@@ -1974,9 +1958,9 @@ public class Cluster2Calculator {
 
                                             for left3 in left3Words {
 
-                                                if (len[left3.id] >= interlockWidth &&
+                                                if (left3.end == 0 && //end[left3.id][0] == words[down2.id][2] &&
+                                                    len[left3.id] >= interlockWidth &&
                                                     end[left3.id][1] == end[_up1][3] &&
-                                                    left3.end == 0 && //end[left3.id][0] == words[down2.id][2] &&
                                                     left3.id != right2.id &&
                                                     left3.id != down2.id &&
                                                     left3.id != left1.id &&
@@ -1987,9 +1971,9 @@ public class Cluster2Calculator {
 
                                                     for right4 in right4Words {
 
-                                                        if (len[right4.id] >= interlockWidth &&
+                                                        if (right4.start == 1 && //words[right4.id][1] == words[down2.id][3] &&
+                                                            len[right4.id] >= interlockWidth &&
                                                             words[right4.id][0] == end[_up1][2] &&
-                                                            right4.start == 1 && //words[right4.id][1] == words[down2.id][3] &&
                                                             right4.id != left3.id &&
                                                             right4.id != right2.id &&
                                                             right4.id != down2.id &&
@@ -2001,9 +1985,9 @@ public class Cluster2Calculator {
 
                                                             for left5 in left5Words {
 
-                                                                if (len[left5.id] >= interlockWidth &&
+                                                                if (left5.end == 0 && //end[left5.id][0] == words[down2.id][4] &&
+                                                                    len[left5.id] >= interlockWidth &&
                                                                     end[left5.id][1] == end[_up1][1] &&
-                                                                    left5.end == 0 && //end[left5.id][0] == words[down2.id][4] &&
                                                                     left5.id != right4.id &&
                                                                     left5.id != left3.id &&
                                                                     left5.id != right2.id &&
@@ -2016,9 +2000,9 @@ public class Cluster2Calculator {
 
                                                                     for right6 in right6Words {
 
-                                                                        if (len[right6.id] >= interlockWidth &&
+                                                                        if (right6.start == 1 && //words[right6.id][1] == words[down2.id][5] &&
+                                                                            len[right6.id] >= interlockWidth &&
                                                                             words[right6.id][0] == end[_up1][0] &&
-                                                                            right6.start == 1 && //words[right6.id][1] == words[down2.id][5] &&
                                                                             right6.id != left5.id &&
                                                                             right6.id != right4.id &&
                                                                             right6.id != left3.id &&
@@ -2077,8 +2061,8 @@ public class Cluster2Calculator {
 
                     for right1 in right1Words {
 
-                        if (len[right1.id] >= interlockWidth &&
-                            right1.start == 0 && //words[right1.id][0] == words[_down1][0] &&
+                        if (right1.start == 0 && //words[right1.id][0] == words[_down1][0] &&
+                            len[right1.id] >= interlockWidth &&
                             right1.id != _down1) {
                             
                             //print("right1:\(words[right1.id]), interlock: \(words[right1.id][1])")
@@ -2086,9 +2070,9 @@ public class Cluster2Calculator {
 
                             for up2 in up2Words {
 
-                                if (len[up2.id] >= interlockHeight &&
+                                if (up2.id != right1.id &&
+                                    len[up2.id] >= interlockHeight &&
                                     up2.end == 5 && //end[up2.id][5] == words[right1.id][1] &&
-                                    up2.id != right1.id &&
                                     up2.id != _down1) {
                                     
                                     //print("up2:\(words[up2.id]), interlock: \(end[up2.id][4])")
@@ -2096,9 +2080,9 @@ public class Cluster2Calculator {
 
                                     for left2 in left2Words {
 
-                                        if (len[left2.id] >= interlockWidth &&
+                                        if (left2.end == 0 && //end[left2.id][0] == end[up2.id][4] &&
+                                            len[left2.id] >= interlockWidth &&
                                             end[left2.id][1] == words[_down1][1] &&
-                                            left2.end == 0 && //end[left2.id][0] == end[up2.id][4] &&
                                             left2.id != up2.id &&
                                             left2.id != right1.id &&
                                             left2.id != _down1) {
@@ -2108,9 +2092,9 @@ public class Cluster2Calculator {
 
                                             for right3 in right3Words {
 
-                                                if (len[right3.id] >= interlockWidth &&
+                                                if (right3.start == 1 && //words[right3.id][1] == end[up2.id][3] &&
+                                                    len[right3.id] >= interlockWidth &&
                                                     words[right3.id][0] == words[_down1][2] &&
-                                                    right3.start == 1 && //words[right3.id][1] == end[up2.id][3] &&
                                                     right3.id != left2.id &&
                                                     right3.id != up2.id &&
                                                     right3.id != right1.id &&
@@ -2121,9 +2105,9 @@ public class Cluster2Calculator {
 
                                                     for left4 in left4Words {
 
-                                                        if (len[left4.id] >= interlockWidth &&
+                                                        if (left4.end == 0 && //end[left4.id][0] == end[up2.id][2] &&
+                                                            len[left4.id] >= interlockWidth &&
                                                             end[left4.id][1] == words[_down1][3] &&
-                                                            left4.end == 0 && //end[left4.id][0] == end[up2.id][2] &&
                                                             left4.id != right3.id &&
                                                             left4.id != left2.id &&
                                                             left4.id != up2.id &&
@@ -2135,9 +2119,9 @@ public class Cluster2Calculator {
 
                                                             for right5 in right5Words {
 
-                                                                if (len[right5.id] >= interlockWidth &&
+                                                                if (right5.start == 1 && //words[right5.id][1] == end[up2.id][1] &&
+                                                                    len[right5.id] >= interlockWidth &&
                                                                     words[right5.id][0] == words[_down1][4] &&
-                                                                    right5.start == 1 && //words[right5.id][1] == end[up2.id][1] &&
                                                                     right5.id != left4.id &&
                                                                     right5.id != right3.id &&
                                                                     right5.id != left2.id &&
@@ -2150,9 +2134,9 @@ public class Cluster2Calculator {
 
                                                                     for left6 in left6Words {
 
-                                                                        if (len[left6.id] >= interlockWidth &&
+                                                                        if (left6.end == 0 && //end[left6.id][0] == end[up2.id][0] &&
+                                                                            len[left6.id] >= interlockWidth &&
                                                                             end[left6.id][1] == words[_down1][5] &&
-                                                                            left6.end == 0 && //end[left6.id][0] == end[up2.id][0] &&
                                                                             left6.id != right5.id &&
                                                                             left6.id != left4.id &&
                                                                             left6.id != right3.id &&
@@ -2210,8 +2194,8 @@ public class Cluster2Calculator {
 
                     for right1 in right1Words {
 
-                        if (len[right1.id] >= interlockWidth &&
-                            right1.start == 0 && //words[right1.id][0] == end[_up1][5] &&
+                        if (right1.start == 0 && //words[right1.id][0] == end[_up1][5] &&
+                            len[right1.id] >= interlockWidth &&
                             right1.id != _up1) {
                             
                             //print("right1:\(words[right1.id]), interlock: \(words[right1.id][1])")
@@ -2219,8 +2203,8 @@ public class Cluster2Calculator {
 
                             for down2 in down2Words {
 
-                                if (len[down2.id] >= interlockHeight &&
-                                    down2.start == 0 && //words[down2.id][0] == words[right1.id][1] &&
+                                if (down2.start == 0 && //words[down2.id][0] == words[right1.id][1] &&
+                                    len[down2.id] >= interlockHeight &&
                                     down2.id != right1.id &&
                                     down2.id != _up1) {
                                     
@@ -2229,9 +2213,9 @@ public class Cluster2Calculator {
 
                                     for left2 in left2Words {
 
-                                        if (len[left2.id] >= interlockWidth &&
+                                        if (left2.end == 0 && //end[left2.id][0] == words[down2.id][1] &&
+                                            len[left2.id] >= interlockWidth &&
                                             end[left2.id][1] == end[_up1][4] &&
-                                            left2.end == 0 && //end[left2.id][0] == words[down2.id][1] &&
                                             left2.id != down2.id &&
                                             left2.id != right1.id &&
                                             left2.id != _up1) {
@@ -2241,9 +2225,9 @@ public class Cluster2Calculator {
 
                                             for right3 in right3Words {
 
-                                                if (len[right3.id] >= interlockWidth &&
+                                                if (right3.start == 1 && //words[right3.id][1] == words[down2.id][2] &&
+                                                    len[right3.id] >= interlockWidth &&
                                                     words[right3.id][0] == end[_up1][3] &&
-                                                    right3.start == 1 && //words[right3.id][1] == words[down2.id][2] &&
                                                     right3.id != left2.id &&
                                                     right3.id != down2.id &&
                                                     right3.id != right1.id &&
@@ -2254,9 +2238,9 @@ public class Cluster2Calculator {
 
                                                     for left4 in left4Words {
 
-                                                        if (len[left4.id] >= interlockWidth &&
+                                                        if (left4.end == 0 && //end[left4.id][0] == words[down2.id][3] &&
+                                                            len[left4.id] >= interlockWidth &&
                                                             end[left4.id][1] == end[_up1][2] &&
-                                                            left4.end == 0 && //end[left4.id][0] == words[down2.id][3] &&
                                                             left4.id != right3.id &&
                                                             left4.id != left2.id &&
                                                             left4.id != down2.id &&
@@ -2268,9 +2252,9 @@ public class Cluster2Calculator {
 
                                                             for right5 in right5Words {
 
-                                                                if (len[right5.id] >= interlockWidth &&
+                                                                if (right5.start == 1 && //words[right5.id][1] == words[down2.id][4] &&
+                                                                    len[right5.id] >= interlockWidth &&
                                                                     words[right5.id][0] == end[_up1][1] &&
-                                                                    right5.start == 1 && //words[right5.id][1] == words[down2.id][4] &&
                                                                     right5.id != left4.id &&
                                                                     right5.id != right3.id &&
                                                                     right5.id != left2.id &&
@@ -2283,9 +2267,9 @@ public class Cluster2Calculator {
 
                                                                     for left6 in left6Words {
 
-                                                                        if (len[left6.id] >= interlockWidth &&
+                                                                        if (left6.end == 0 && //end[left6.id][0] == words[down2.id][5] &&
+                                                                            len[left6.id] >= interlockWidth &&
                                                                             end[left6.id][1] == end[_up1][0] &&
-                                                                            left6.end == 0 && //end[left6.id][0] == words[down2.id][5] &&
                                                                             left6.id != right5.id &&
                                                                             left6.id != left4.id &&
                                                                             left6.id != right3.id &&
@@ -2346,8 +2330,8 @@ public class Cluster2Calculator {
 
                     for left1 in left1Words {
 
-                        if (len[left1.id] >= interlockWidth &&
-                            left1.end == 2 && //end[left1.id][2] == end[_up1][2] &&
+                        if (left1.end == 2 && //end[left1.id][2] == end[_up1][2] &&
+                            len[left1.id] >= interlockWidth &&
                             left1.id > _up1) {
                             
                             //print("left1:\(words[left1.id]), interlock: \(end[left1.id][1])")
@@ -2355,8 +2339,8 @@ public class Cluster2Calculator {
 
                             for down2 in down2Words {
 
-                                if (len[down2.id] >= interlockHeight &&
-                                    down2.start == 0 && //words[down2.id][0] == end[left1.id][1] &&
+                                if (down2.start == 0 && //words[down2.id][0] == end[left1.id][1] &&
+                                    len[down2.id] >= interlockHeight &&
                                     down2.id != left1.id &&
                                     down2.id != _up1) {
                                     
@@ -2365,9 +2349,9 @@ public class Cluster2Calculator {
 
                                     for right2 in right2Words {
 
-                                        if (len[right2.id] >= interlockWidth &&
+                                        if (right2.start == 1 && //words[right2.id][1] == words[down2.id][1] &&
+                                            len[right2.id] >= interlockWidth &&
                                             words[right2.id][0] == end[_up1][1] &&
-                                            right2.start == 1 && //words[right2.id][1] == words[down2.id][1] &&
                                             right2.id != down2.id &&
                                             right2.id != left1.id &&
                                             right2.id != _up1) {
@@ -2377,9 +2361,9 @@ public class Cluster2Calculator {
 
                                             for up3 in up3Words {
 
-                                                if (len[up3.id] >= interlockHeight &&
+                                                if (up3.end == 1 && //end[up3.id][1] == words[right2.id][2] &&
+                                                    len[up3.id] >= interlockHeight &&
                                                     end[up3.id][2] == end[left1.id][0] &&
-                                                    up3.end == 1 && //end[up3.id][1] == words[right2.id][2] &&
                                                     up3.id != right2.id &&
                                                     up3.id != down2.id &&
                                                     up3.id != left1.id &&
@@ -2390,10 +2374,10 @@ public class Cluster2Calculator {
 
                                                     for left3 in left3Words {
 
-                                                        if (len[left3.id] >= interlockWidth &&
+                                                        if (left3.end == 0 && //end[left3.id][0] == end[up3.id][0] &&
+                                                            len[left3.id] >= interlockWidth &&
                                                             end[left3.id][2] == end[_up1][0] &&
                                                             end[left3.id][1] == words[down2.id][2] &&
-                                                            left3.end == 0 && //end[left3.id][0] == end[up3.id][0] &&
                                                             left3.id != up3.id &&
                                                             left3.id != right2.id &&
                                                             left3.id != down2.id &&
@@ -2445,8 +2429,8 @@ public class Cluster2Calculator {
 
                     for right1 in right1Words {
 
-                        if (len[right1.id] >= interlockWidth &&
-                            right1.start == 0 && //words[right1.id][0] == words[_down1][0] &&
+                        if (right1.start == 0 && //words[right1.id][0] == words[_down1][0] &&
+                            len[right1.id] >= interlockWidth &&
                             right1.id > _down1) {
                             
                             //print("right1:\(words[right1.id]), interlock: \(words[right1.id][1])")
@@ -2454,8 +2438,8 @@ public class Cluster2Calculator {
 
                             for up2 in up2Words {
 
-                                if (len[up2.id] >= interlockHeight &&
-                                    up2.end == 2 && //end[up2.id][2] == words[right1.id][1] &&
+                                if (up2.end == 2 && //end[up2.id][2] == words[right1.id][1] &&
+                                    len[up2.id] >= interlockHeight &&
                                     up2.id != right1.id &&
                                     up2.id != _down1) {
                                     
@@ -2464,9 +2448,9 @@ public class Cluster2Calculator {
 
                                     for left2 in left2Words {
 
-                                        if (len[left2.id] >= interlockWidth &&
+                                        if (left2.end == 1 && //end[left2.id][1] == end[up2.id][1] &&
+                                            len[left2.id] >= interlockWidth &&
                                             end[left2.id][2] == words[_down1][1] &&
-                                            left2.end == 1 && //end[left2.id][1] == end[up2.id][1] &&
                                             left2.id != up2.id &&
                                             left2.id != right1.id &&
                                             left2.id != _down1) {
@@ -2476,9 +2460,9 @@ public class Cluster2Calculator {
 
                                             for down3 in down3Words {
 
-                                                if (len[down3.id] >= interlockHeight &&
+                                                if (down3.start == 1 && //words[down3.id][1] == end[left2.id][0] &&
+                                                    len[down3.id] >= interlockHeight &&
                                                     words[down3.id][0] == words[right1.id][2] &&
-                                                    down3.start == 1 && //words[down3.id][1] == end[left2.id][0] &&
                                                     down3.id != left2.id &&
                                                     down3.id != up2.id &&
                                                     down3.id != right1.id &&
@@ -2489,10 +2473,10 @@ public class Cluster2Calculator {
 
                                                     for right3 in right3Words {
 
-                                                        if (len[right3.id] >= interlockWidth &&
+                                                        if (right3.start == 2 && //words[right3.id][2] == words[down3.id][2] &&
+                                                            len[right3.id] >= interlockWidth &&
                                                             words[right3.id][0] == words[_down1][2] &&
                                                             words[right3.id][1] == end[up2.id][0] &&
-                                                            right3.start == 2 && //words[right3.id][2] == words[down3.id][2] &&
                                                             right3.id != down3.id &&
                                                             right3.id != left2.id &&
                                                             right3.id != up2.id &&
@@ -2545,8 +2529,8 @@ public class Cluster2Calculator {
 
                     for right1 in right1Words {
 
-                        if (len[right1.id] >= interlockWidth &&
-                            right1.start == 0 && //words[right1.id][0] == end[_up1][2] &&
+                        if (right1.start == 0 && //words[right1.id][0] == end[_up1][2] &&
+                            len[right1.id] >= interlockWidth &&
                             right1.id != _up1) {
                             
                             //print("right1:\(words[right1.id]), interlock: \(words[right1.id][1])")
@@ -2554,8 +2538,8 @@ public class Cluster2Calculator {
 
                             for down2 in down2Words {
 
-                                if (len[down2.id] >= interlockHeight &&
-                                    down2.start == 0 && //words[down2.id][0] == words[right1.id][1] &&
+                                if (down2.start == 0 && //words[down2.id][0] == words[right1.id][1] &&
+                                    len[down2.id] >= interlockHeight &&
                                     down2.id != right1.id &&
                                     down2.id != _up1) {
                                     
@@ -2564,9 +2548,9 @@ public class Cluster2Calculator {
 
                                     for left2 in left2Words {
 
-                                        if (len[left2.id] >= interlockWidth &&
+                                        if (left2.end == 1 && //end[left2.id][1] == words[down2.id][1] &&
+                                            len[left2.id] >= interlockWidth &&
                                             end[left2.id][2] == end[_up1][1] &&
-                                            left2.end == 1 && //end[left2.id][1] == words[down2.id][1] &&
                                             left2.id != down2.id &&
                                             left2.id != right1.id &&
                                             left2.id != _up1) {
@@ -2576,9 +2560,9 @@ public class Cluster2Calculator {
 
                                             for up3 in up3Words {
 
-                                                if (len[up3.id] >= interlockHeight &&
+                                                if (up3.end == 1 && //end[up3.id][1] == end[left2.id][0] &&
+                                                    len[up3.id] >= interlockHeight &&
                                                     end[up3.id][2] == words[right1.id][2] &&
-                                                    up3.end == 1 && //end[up3.id][1] == end[left2.id][0] &&
                                                     up3.id != left2.id &&
                                                     up3.id != down2.id &&
                                                     up3.id != right1.id &&
@@ -2589,10 +2573,10 @@ public class Cluster2Calculator {
 
                                                     for right3 in right3Words {
 
-                                                        if (len[right3.id] >= interlockWidth &&
+                                                        if (right3.start == 2 && //words[right3.id][2] == end[up3.id][0] &&
+                                                            len[right3.id] >= interlockWidth &&
                                                             words[right3.id][0] == end[_up1][0] &&
                                                             words[right3.id][1] == words[down2.id][2] &&
-                                                            right3.start == 2 && //words[right3.id][2] == end[up3.id][0] &&
                                                             right3.id != up3.id &&
                                                             right3.id != left2.id &&
                                                             right3.id != down2.id &&
@@ -2646,8 +2630,8 @@ public class Cluster2Calculator {
 
                     for left1 in left1Words {
 
-                        if (len[left1.id] >= interlockWidth &&
-                            left1.end == 2 && //end[left1.id][2] == words[_down1][0] &&
+                        if (left1.end == 2 && //end[left1.id][2] == words[_down1][0] &&
+                            len[left1.id] >= interlockWidth &&
                             left1.id != _down1) {
                             
                             //print("left1:\(words[left1.id]), interlock: \(end[left1.id][1])")
@@ -2655,8 +2639,8 @@ public class Cluster2Calculator {
 
                             for up2 in up2Words {
 
-                                if (len[up2.id] >= interlockHeight &&
-                                    up2.end == 3 && //end[up2.id][3] == end[left1.id][1] &&
+                                if (up2.end == 3 && //end[up2.id][3] == end[left1.id][1] &&
+                                    len[up2.id] >= interlockHeight &&
                                     up2.id != left1.id &&
                                     up2.id != _down1) {
                                     
@@ -2665,9 +2649,9 @@ public class Cluster2Calculator {
 
                                     for right2 in right2Words {
 
-                                        if (len[right2.id] >= interlockWidth &&
+                                        if (right2.start == 1 && //words[right2.id][1] == end[up2.id][2] &&
+                                            len[right2.id] >= interlockWidth &&
                                             words[right2.id][0] == words[_down1][1] &&
-                                            right2.start == 1 && //words[right2.id][1] == end[up2.id][2] &&
                                             right2.id != up2.id &&
                                             right2.id != left1.id &&
                                             right2.id != _down1) {
@@ -2677,9 +2661,9 @@ public class Cluster2Calculator {
 
                                             for down3 in down3Words {
 
-                                                if (len[down3.id] >= interlockHeight &&
+                                                if (down3.start == 1 && //words[down3.id][1] == words[right2.id][2] &&
+                                                    len[down3.id] >= interlockHeight &&
                                                     words[down3.id][0] == end[left1.id][0] &&
-                                                    down3.start == 1 && //words[down3.id][1] == words[right2.id][2] &&
                                                     down3.id != right2.id &&
                                                     down3.id != up2.id &&
                                                     down3.id != left1.id &&
@@ -2690,10 +2674,10 @@ public class Cluster2Calculator {
 
                                                     for left3 in left3Words {
 
-                                                        if (len[left3.id] >= interlockWidth &&
+                                                        if (left3.end == 0 && //end[left3.id][0] == words[down3.id][2] &&
+                                                            len[left3.id] >= interlockWidth &&
                                                             end[left3.id][2] == words[_down1][2] &&
                                                             end[left3.id][1] == end[up2.id][1] &&
-                                                            left3.end == 0 && //end[left3.id][0] == words[down3.id][2] &&
                                                             left3.id != down3.id &&
                                                             left3.id != right2.id &&
                                                             left3.id != up2.id &&
@@ -2705,10 +2689,10 @@ public class Cluster2Calculator {
 
                                                             for right4 in right4Words {
 
-                                                                if (len[right4.id] >= interlockWidth &&
+                                                                if (right4.start == 2 && //words[right4.id][2] == words[down3.id][3] &&
+                                                                    len[right4.id] >= interlockWidth &&
                                                                     words[right4.id][0] == words[_down1][3] &&
                                                                     words[right4.id][1] == end[up2.id][0] &&
-                                                                    right4.start == 2 && //words[right4.id][2] == words[down3.id][3] &&
                                                                     right4.id != left3.id &&
                                                                     right4.id != down3.id &&
                                                                     right4.id != right2.id &&
@@ -2763,8 +2747,8 @@ public class Cluster2Calculator {
 
                     for right1 in right1Words {
 
-                        if (len[right1.id] >= interlockWidth &&
-                            right1.start == 0 && //words[right1.id][0] == words[_down1][0] &&
+                        if (right1.start == 0 && //words[right1.id][0] == words[_down1][0] &&
+                            len[right1.id] >= interlockWidth &&
                             right1.id != _down1) {
                             
                             //print("right1:\(words[right1.id]), interlock: \(words[right1.id][1])")
@@ -2772,8 +2756,8 @@ public class Cluster2Calculator {
 
                             for up2 in up2Words {
 
-                                if (len[up2.id] >= interlockHeight &&
-                                    up2.end == 3 && //end[up2.id][3] == words[right1.id][1] &&
+                                if (up2.end == 3 && //end[up2.id][3] == words[right1.id][1] &&
+                                    len[up2.id] >= interlockHeight &&
                                     up2.id != right1.id &&
                                     up2.id != _down1) {
                                     
@@ -2782,9 +2766,9 @@ public class Cluster2Calculator {
 
                                     for left2 in left2Words {
 
-                                        if (len[left2.id] >= interlockWidth &&
+                                        if (left2.end == 1 && //end[left2.id][1] == end[up2.id][2] &&
+                                            len[left2.id] >= interlockWidth &&
                                             end[left2.id][2] == words[_down1][1] &&
-                                            left2.end == 1 && //end[left2.id][1] == end[up2.id][2] &&
                                             left2.id != up2.id &&
                                             left2.id != right1.id &&
                                             left2.id != _down1) {
@@ -2793,10 +2777,10 @@ public class Cluster2Calculator {
                                             let down3Words = letterIndex.find(end[left2.id][0])
 
                                             for down3 in down3Words {
-                                                //print("down:\(words[down3.id])")
-                                                if (len[down3.id] >= interlockHeight &&
+                                                
+                                                if (down3.start == 1 && //words[down3.id][1] == end[left2.id][0] &&
+                                                    len[down3.id] >= interlockHeight &&
                                                     words[down3.id][0] == words[right1.id][2] &&
-                                                    down3.start == 1 && //words[down3.id][1] == end[left2.id][0] &&
                                                     down3.id != left2.id &&
                                                     down3.id != up2.id &&
                                                     down3.id != right1.id &&
@@ -2807,10 +2791,10 @@ public class Cluster2Calculator {
 
                                                     for right3 in right3Words {
 
-                                                        if (len[right3.id] >= interlockWidth &&
+                                                        if (right3.start == 2 && //words[right3.id][2] == words[down3.id][2] &&
+                                                            len[right3.id] >= interlockWidth &&
                                                             words[right3.id][0] == words[_down1][2] &&
                                                             words[right3.id][1] == end[up2.id][1] &&
-                                                            right3.start == 2 && //words[right3.id][2] == words[down3.id][2] &&
                                                             right3.id != down3.id &&
                                                             right3.id != left2.id &&
                                                             right3.id != up2.id &&
@@ -2823,10 +2807,10 @@ public class Cluster2Calculator {
 
                                                             for left4 in left4Words {
 
-                                                                if (len[left4.id] >= interlockWidth &&
+                                                                if (left4.end == 0 && //end[left4.id][0] == words[down3.id][3] &&
+                                                                    len[left4.id] >= interlockWidth &&
                                                                     end[left4.id][2] == words[_down1][3] &&
                                                                     end[left4.id][1] == end[up2.id][0] &&
-                                                                    left4.end == 0 && //end[left4.id][0] == words[down3.id][3] &&
                                                                     left4.id != right3.id &&
                                                                     left4.id != down3.id &&
                                                                     left4.id != left2.id &&
@@ -2882,8 +2866,8 @@ public class Cluster2Calculator {
 
                     for left1 in left1Words {
 
-                        if (len[left1.id] >= interlockWidth &&
-                            left1.end == 2 && //end[left1.id][2] == end[_up1][3] &&
+                        if (left1.end == 2 && //end[left1.id][2] == end[_up1][3] &&
+                            len[left1.id] >= interlockWidth &&
                             left1.id != _up1) {
                             
                             //print("left1:\(words[left1.id]), interlock: \(end[left1.id][1])")
@@ -2891,8 +2875,8 @@ public class Cluster2Calculator {
 
                             for down2 in down2Words {
 
-                                if (len[down2.id] >= interlockHeight &&
-                                    down2.start == 0 && //words[down2.id][0] == end[left1.id][1] &&
+                                if (down2.start == 0 && //words[down2.id][0] == end[left1.id][1] &&
+                                    len[down2.id] >= interlockHeight &&
                                     down2.id != left1.id &&
                                     down2.id != _up1) {
                                     
@@ -2901,9 +2885,9 @@ public class Cluster2Calculator {
 
                                     for right2 in right2Words {
 
-                                        if (len[right2.id] >= interlockWidth &&
+                                        if (right2.start == 1 && //words[right2.id][1] == words[down2.id][1] &&
+                                            len[right2.id] >= interlockWidth &&
                                             words[right2.id][0] == end[_up1][2] &&
-                                            right2.start == 1 && //words[right2.id][1] == words[down2.id][1] &&
                                             right2.id != down2.id &&
                                             right2.id != left1.id &&
                                             right2.id != _up1) {
@@ -2913,9 +2897,9 @@ public class Cluster2Calculator {
 
                                             for up3 in up3Words {
 
-                                                if (len[up3.id] >= interlockHeight &&
+                                                if (up3.end == 2 && //end[up3.id][2] == words[right2.id][2] &&
+                                                    len[up3.id] >= interlockHeight &&
                                                     end[up3.id][3] == end[left1.id][0] &&
-                                                    up3.end == 2 && //end[up3.id][2] == words[right2.id][2] &&
                                                     up3.id != right2.id &&
                                                     up3.id != down2.id &&
                                                     up3.id != left1.id &&
@@ -2926,10 +2910,10 @@ public class Cluster2Calculator {
 
                                                     for left3 in left3Words {
 
-                                                        if (len[left3.id] >= interlockWidth &&
+                                                        if (left3.end == 0 && //end[left3.id][0] == end[up3.id][1] &&
+                                                            len[left3.id] >= interlockWidth &&
                                                             end[left3.id][2] == end[_up1][1] &&
                                                             end[left3.id][1] == words[down2.id][2] &&
-                                                            left3.end == 0 && //end[left3.id][0] == end[up3.id][1] &&
                                                             left3.id != up3.id &&
                                                             left3.id != right2.id &&
                                                             left3.id != down2.id &&
@@ -2941,10 +2925,10 @@ public class Cluster2Calculator {
 
                                                             for right4 in right4Words {
 
-                                                                if (len[right4.id] >= interlockWidth &&
+                                                                if (right4.start == 2 && //words[right4.id][2] == end[up3.id][0] &&
+                                                                    len[right4.id] >= interlockWidth &&
                                                                     words[right4.id][0] == end[_up1][0] &&
                                                                     words[right4.id][1] == words[down2.id][3] &&
-                                                                    right4.start == 2 && //words[right4.id][2] == end[up3.id][0] &&
                                                                     right4.id != left3.id &&
                                                                     right4.id != up3.id &&
                                                                     right4.id != right2.id &&
@@ -2999,8 +2983,8 @@ public class Cluster2Calculator {
 
                     for right1 in right1Words {
 
-                        if (len[right1.id] >= interlockWidth &&
-                            right1.start == 0 && //words[right1.id][0] == end[_up1][3] &&
+                        if (right1.start == 0 && //words[right1.id][0] == end[_up1][3] &&
+                            len[right1.id] >= interlockWidth &&
                             right1.id != _up1) {
                             
                             //print("right1:\(words[right1.id]), interlock: \(words[right1.id][1])")
@@ -3008,8 +2992,8 @@ public class Cluster2Calculator {
 
                             for down2 in down2Words {
 
-                                if (len[down2.id] >= interlockHeight &&
-                                    down2.start == 0 && //words[down2.id][0] == words[right1.id][1] &&
+                                if (down2.start == 0 && //words[down2.id][0] == words[right1.id][1] &&
+                                    len[down2.id] >= interlockHeight &&
                                     down2.id != right1.id &&
                                     down2.id != _up1) {
                                     
@@ -3018,9 +3002,9 @@ public class Cluster2Calculator {
 
                                     for left2 in left2Words {
 
-                                        if (len[left2.id] >= interlockWidth &&
+                                        if (left2.end == 1 && //end[left2.id][1] == words[down2.id][1] &&
+                                            len[left2.id] >= interlockWidth &&
                                             end[left2.id][2] == end[_up1][2] &&
-                                            left2.end == 1 && //end[left2.id][1] == words[down2.id][1] &&
                                             left2.id != down2.id &&
                                             left2.id != right1.id &&
                                             left2.id != _up1) {
@@ -3030,9 +3014,9 @@ public class Cluster2Calculator {
 
                                             for up3 in up3Words {
 
-                                                if (len[up3.id] >= interlockHeight &&
+                                                if (up3.end == 2 && //end[up3.id][2] == end[left2.id][0] &&
+                                                    len[up3.id] >= interlockHeight &&
                                                     end[up3.id][3] == words[right1.id][2] &&
-                                                    up3.end == 2 && //end[up3.id][2] == end[left2.id][0] &&
                                                     up3.id != left2.id &&
                                                     up3.id != down2.id &&
                                                     up3.id != right1.id &&
@@ -3043,10 +3027,10 @@ public class Cluster2Calculator {
 
                                                     for right3 in right3Words {
 
-                                                        if (len[right3.id] >= interlockWidth &&
+                                                        if (right3.start == 2 && //words[right3.id][2] == end[up3.id][1] &&
+                                                            len[right3.id] >= interlockWidth &&
                                                             words[right3.id][0] == end[_up1][1] &&
                                                             words[right3.id][1] == words[down2.id][2] &&
-                                                            right3.start == 2 && //words[right3.id][2] == end[up3.id][1] &&
                                                             right3.id != up3.id &&
                                                             right3.id != left2.id &&
                                                             right3.id != down2.id &&
@@ -3058,11 +3042,10 @@ public class Cluster2Calculator {
 
                                                             for left4 in left4Words {
 
-                                                                if (len[left4.id] >= interlockWidth &&
+                                                                if (left4.end == 0 && //end[left4.id][0] == end[up3.id][0] &&
+                                                                    len[left4.id] >= interlockWidth &&
                                                                     end[left4.id][2] == end[_up1][0] &&
                                                                     end[left4.id][1] == words[down2.id][3] &&
-                                                                    //this seems wrong to not be connected to the word
-                                                                    left4.end == 0 && //end[left4.id][0] == end[up3.id][0] &&  /// THIS SEEMS WRONG AS THE OTHER WORD IS NOT CONNECTED TO IT
                                                                     left4.id != right3.id &&
                                                                     left4.id != up3.id &&
                                                                     left4.id != left2.id &&
@@ -3117,8 +3100,8 @@ public class Cluster2Calculator {
 
                     for left1 in left1Words {
 
-                        if (len[left1.id] >= interlockWidth &&
-                            left1.end == 2 && //end[left1.id][2] == words[_down1][0] &&
+                        if (left1.end == 2 && //end[left1.id][2] == words[_down1][0] &&
+                            len[left1.id] >= interlockWidth &&
                             left1.id != _down1) {
                             
                             //print("left1:\(words[left1.id]), interlock: \(end[left1.id][1])")
@@ -3126,8 +3109,8 @@ public class Cluster2Calculator {
 
                             for up2 in up2Words {
 
-                                if (len[up2.id] >= interlockHeight &&
-                                    up2.end == 4 && //end[up2.id][4] == end[left1.id][1] &&
+                                if (up2.end == 4 && //end[up2.id][4] == end[left1.id][1] &&
+                                    len[up2.id] >= interlockHeight &&
                                     up2.id != left1.id &&
                                     up2.id != _down1) {
                                     
@@ -3136,9 +3119,9 @@ public class Cluster2Calculator {
 
                                     for right2 in right2Words {
 
-                                        if (len[right2.id] >= interlockWidth &&
+                                        if (right2.start == 1 && //words[right2.id][1] == end[up2.id][3] &&
+                                            len[right2.id] >= interlockWidth &&
                                             words[right2.id][0] == words[_down1][1] &&
-                                            right2.start == 1 && //words[right2.id][1] == end[up2.id][3] &&
                                             right2.id != up2.id &&
                                             right2.id != left1.id &&
                                             right2.id != _down1) {
@@ -3148,9 +3131,9 @@ public class Cluster2Calculator {
 
                                             for down3 in down3Words {
 
-                                                if (len[down3.id] >= interlockHeight &&
+                                                if (down3.start == 1 && //words[down3.id][1] == words[right2.id][2] &&
+                                                    len[down3.id] >= interlockHeight &&
                                                     words[down3.id][0] == end[left1.id][0] &&
-                                                    down3.start == 1 && //words[down3.id][1] == words[right2.id][2] &&
                                                     down3.id != right2.id &&
                                                     down3.id != up2.id &&
                                                     down3.id != left1.id &&
@@ -3161,10 +3144,10 @@ public class Cluster2Calculator {
 
                                                     for left3 in left3Words {
 
-                                                        if (len[left3.id] >= interlockWidth &&
+                                                        if (left3.end == 0 && //end[left3.id][0] == words[down3.id][2] &&
+                                                            len[left3.id] >= interlockWidth &&
                                                             end[left3.id][2] == words[_down1][2] &&
                                                             end[left3.id][1] == end[up2.id][2] &&
-                                                            left3.end == 0 && //end[left3.id][0] == words[down3.id][2] &&
                                                             left3.id != down3.id &&
                                                             left3.id != right2.id &&
                                                             left3.id != up2.id &&
@@ -3176,10 +3159,10 @@ public class Cluster2Calculator {
 
                                                             for right4 in right4Words {
 
-                                                                if (len[right4.id] >= interlockWidth &&
+                                                                if (right4.start == 2 && //words[right4.id][2] == words[down3.id][3] &&
+                                                                    len[right4.id] >= interlockWidth &&
                                                                     words[right4.id][0] == words[_down1][3] &&
                                                                     words[right4.id][1] == end[up2.id][1] &&
-                                                                    right4.start == 2 && //words[right4.id][2] == words[down3.id][3] &&
                                                                     right4.id != left3.id &&
                                                                     right4.id != down3.id &&
                                                                     right4.id != right2.id &&
@@ -3192,10 +3175,10 @@ public class Cluster2Calculator {
 
                                                                     for left5 in left5Words {
 
-                                                                        if (len[left5.id] >= interlockWidth &&
+                                                                        if (left5.end == 0 && //end[left5.id][0] == words[down3.id][4] &&
+                                                                            len[left5.id] >= interlockWidth &&
                                                                             end[left5.id][2] == words[_down1][4] &&
                                                                             end[left5.id][1] == end[up2.id][0] &&
-                                                                            left5.end == 0 && //end[left5.id][0] == words[down3.id][4] &&
                                                                             left5.id != right4.id &&
                                                                             left5.id != left3.id &&
                                                                             left5.id != down3.id &&
@@ -3253,8 +3236,8 @@ public class Cluster2Calculator {
 
                     for left1 in left1Words {
 
-                        if (len[left1.id] >= interlockWidth &&
-                            left1.end == 2 && //end[left1.id][2] == end[_up1][4] &&
+                        if (left1.end == 2 && //end[left1.id][2] == end[_up1][4] &&
+                            len[left1.id] >= interlockWidth &&
                             left1.id != _up1) {
                             
                             //print("left1:\(words[left1.id]), interlock: \(end[left1.id][1])")
@@ -3262,8 +3245,8 @@ public class Cluster2Calculator {
 
                             for down2 in down2Words {
 
-                                if (len[down2.id] >= interlockHeight &&
-                                    down2.start == 0 && //words[down2.id][0] == end[left1.id][1] &&
+                                if (down2.start == 0 && //words[down2.id][0] == end[left1.id][1] &&
+                                    len[down2.id] >= interlockHeight &&
                                     down2.id != left1.id &&
                                     down2.id != _up1) {
                                     
@@ -3272,9 +3255,9 @@ public class Cluster2Calculator {
 
                                     for right2 in right2Words {
 
-                                        if (len[right2.id] >= interlockWidth &&
+                                        if (right2.start == 1 && //words[right2.id][1] == words[down2.id][1] &&
+                                            len[right2.id] >= interlockWidth &&
                                             words[right2.id][0] == end[_up1][3] &&
-                                            right2.start == 1 && //words[right2.id][1] == words[down2.id][1] &&
                                             right2.id != down2.id &&
                                             right2.id != left1.id &&
                                             right2.id != _up1) {
@@ -3284,9 +3267,9 @@ public class Cluster2Calculator {
 
                                             for up3 in up3Words {
 
-                                                if (len[up3.id] >= interlockHeight &&
+                                                if (up3.end == 3 && //end[up3.id][3] == words[right2.id][2] &&
+                                                    len[up3.id] >= interlockHeight &&
                                                     end[up3.id][4] == end[left1.id][0] &&
-                                                    up3.end == 3 && //end[up3.id][3] == words[right2.id][2] &&
                                                     up3.id != right2.id &&
                                                     up3.id != down2.id &&
                                                     up3.id != left1.id &&
@@ -3297,10 +3280,10 @@ public class Cluster2Calculator {
 
                                                     for left3 in left3Words {
 
-                                                        if (len[left3.id] >= interlockWidth &&
+                                                        if (left3.end == 0 && //end[left3.id][0] == end[up3.id][2] &&
+                                                            len[left3.id] >= interlockWidth &&
                                                             end[left3.id][2] == end[_up1][2] &&
                                                             end[left3.id][1] == words[down2.id][2] &&
-                                                            left3.end == 0 && //end[left3.id][0] == end[up3.id][2] &&
                                                             left3.id != up3.id &&
                                                             left3.id != right2.id &&
                                                             left3.id != down2.id &&
@@ -3312,10 +3295,10 @@ public class Cluster2Calculator {
 
                                                             for right4 in right4Words {
 
-                                                                if (len[right4.id] >= interlockWidth &&
+                                                                if (right4.start == 2 && //words[right4.id][2] == end[up3.id][1] &&
+                                                                    len[right4.id] >= interlockWidth &&
                                                                     words[right4.id][0] == end[_up1][1] &&
                                                                     words[right4.id][1] == words[down2.id][3] &&
-                                                                    right4.start == 2 && //words[right4.id][2] == end[up3.id][1] &&
                                                                     right4.id != left3.id &&
                                                                     right4.id != up3.id &&
                                                                     right4.id != right2.id &&
@@ -3328,10 +3311,10 @@ public class Cluster2Calculator {
 
                                                                     for left5 in left5Words {
 
-                                                                        if (len[left5.id] >= interlockWidth &&
+                                                                        if (left5.end == 0 && //end[left5.id][0] == end[up3.id][0] &&
+                                                                            len[left5.id] >= interlockWidth &&
                                                                             end[left5.id][2] == end[_up1][0] &&
                                                                             end[left5.id][1] == words[down2.id][4] &&
-                                                                            left5.end == 0 && //end[left5.id][0] == end[up3.id][0] &&
                                                                             left5.id != right4.id &&
                                                                             left5.id != left3.id &&
                                                                             left5.id != up3.id &&
@@ -3389,8 +3372,8 @@ public class Cluster2Calculator {
 
                     for right1 in right1Words {
 
-                        if (len[right1.id] >= interlockWidth &&
-                            right1.start == 0 && //words[right1.id][0] == words[_down1][0] &&
+                        if (right1.start == 0 && //words[right1.id][0] == words[_down1][0] &&
+                            len[right1.id] >= interlockWidth &&
                             right1.id != _down1) {
                             
                             //print("right1:\(words[right1.id]), interlock: \(words[right1.id][1])")
@@ -3398,8 +3381,8 @@ public class Cluster2Calculator {
 
                             for up2 in up2Words {
 
-                                if (len[up2.id] >= interlockHeight &&
-                                    up2.end == 4 && //end[up2.id][4] == words[right1.id][1] &&
+                                if (up2.end == 4 && //end[up2.id][4] == words[right1.id][1] &&
+                                    len[up2.id] >= interlockHeight &&
                                     up2.id != right1.id &&
                                     up2.id != _down1) {
                                     
@@ -3408,9 +3391,9 @@ public class Cluster2Calculator {
 
                                     for left2 in left2Words {
 
-                                        if (len[left2.id] >= interlockWidth &&
+                                        if (left2.end == 1 && //end[left2.id][1] == end[up2.id][3] &&
+                                            len[left2.id] >= interlockWidth &&
                                             end[left2.id][2] == words[_down1][1] &&
-                                            left2.end == 1 && //end[left2.id][1] == end[up2.id][3] &&
                                             left2.id != up2.id &&
                                             left2.id != right1.id &&
                                             left2.id != _down1) {
@@ -3420,9 +3403,9 @@ public class Cluster2Calculator {
 
                                             for down3 in down3Words {
 
-                                                if (len[down3.id] >= interlockHeight &&
+                                                if (down3.start == 1 && //words[down3.id][1] == end[left2.id][0] &&
+                                                    len[down3.id] >= interlockHeight &&
                                                     words[down3.id][0] == words[right1.id][2] &&
-                                                    down3.start == 1 && //words[down3.id][1] == end[left2.id][0] &&
                                                     down3.id != left2.id &&
                                                     down3.id != up2.id &&
                                                     down3.id != right1.id &&
@@ -3433,10 +3416,10 @@ public class Cluster2Calculator {
 
                                                     for right3 in right3Words {
 
-                                                        if (len[right3.id] >= interlockWidth &&
+                                                        if (right3.start == 2 && //words[right3.id][2] == words[down3.id][2] &&
+                                                            len[right3.id] >= interlockWidth &&
                                                             words[right3.id][0] == words[_down1][2] &&
                                                             words[right3.id][1] == end[up2.id][2] &&
-                                                            right3.start == 2 && //words[right3.id][2] == words[down3.id][2] &&
                                                             right3.id != down3.id &&
                                                             right3.id != left2.id &&
                                                             right3.id != up2.id &&
@@ -3448,10 +3431,10 @@ public class Cluster2Calculator {
 
                                                             for left4 in left4Words {
 
-                                                                if (len[left4.id] >= interlockWidth &&
+                                                                if (left4.end == 0 && //end[left4.id][0] == words[down3.id][3] &&
+                                                                    len[left4.id] >= interlockWidth &&
                                                                     end[left4.id][2] == words[_down1][3] &&
                                                                     end[left4.id][1] == end[up2.id][1] &&
-                                                                    left4.end == 0 && //end[left4.id][0] == words[down3.id][3] &&
                                                                     left4.id != right3.id &&
                                                                     left4.id != down3.id &&
                                                                     left4.id != left2.id &&
@@ -3464,10 +3447,10 @@ public class Cluster2Calculator {
 
                                                                     for right5 in right5Words {
 
-                                                                        if (len[right5.id] >= interlockWidth &&
+                                                                        if (right5.start == 2 && //words[right5.id][2] == words[down3.id][4] &&
+                                                                            len[right5.id] >= interlockWidth &&
                                                                             words[right5.id][0] == words[_down1][4] &&
                                                                             words[right5.id][1] == end[up2.id][0] &&
-                                                                            words[right5.id][2] == words[down3.id][4] &&
                                                                             right5.id != left4.id &&
                                                                             right5.id != right3.id &&
                                                                             right5.id != down3.id &&
@@ -3525,8 +3508,8 @@ public class Cluster2Calculator {
 
                     for right1 in right1Words {
 
-                        if (len[right1.id] >= interlockWidth &&
-                            right1.start == 0 && //words[right1.id][0] == end[_up1][4] &&
+                        if (right1.start == 0 && //words[right1.id][0] == end[_up1][4] &&
+                            len[right1.id] >= interlockWidth &&
                             right1.id != _up1) {
                             
                             //print("right1:\(words[right1.id]), interlock: \(words[right1.id][1])")
@@ -3534,8 +3517,8 @@ public class Cluster2Calculator {
 
                             for down2 in down2Words {
 
-                                if (len[down2.id] >= interlockHeight &&
-                                    down2.start == 0 && //words[down2.id][0] == words[right1.id][1] &&
+                                if (down2.start == 0 && //words[down2.id][0] == words[right1.id][1] &&
+                                    len[down2.id] >= interlockHeight &&
                                     down2.id != right1.id &&
                                     down2.id != _up1) {
                                     
@@ -3544,9 +3527,9 @@ public class Cluster2Calculator {
 
                                     for left2 in left2Words {
 
-                                        if (len[left2.id] >= interlockWidth &&
+                                        if (left2.end == 1 && //end[left2.id][1] == words[down2.id][1] &&
+                                            len[left2.id] >= interlockWidth &&
                                             end[left2.id][2] == end[_up1][3] &&
-                                            left2.end == 1 && //end[left2.id][1] == words[down2.id][1] &&
                                             left2.id != down2.id &&
                                             left2.id != right1.id &&
                                             left2.id != _up1) {
@@ -3556,9 +3539,9 @@ public class Cluster2Calculator {
 
                                             for up3 in up3Words {
 
-                                                if (len[up3.id] >= interlockHeight &&
+                                                if (up3.end == 3 && //end[up3.id][3] == end[left2.id][0] &&
+                                                    len[up3.id] >= interlockHeight &&
                                                     end[up3.id][4] == words[right1.id][2] &&
-                                                    up3.end == 3 && //end[up3.id][3] == end[left2.id][0] &&
                                                     up3.id != left2.id &&
                                                     up3.id != down2.id &&
                                                     up3.id != right1.id &&
@@ -3569,10 +3552,10 @@ public class Cluster2Calculator {
 
                                                     for right3 in right3Words {
 
-                                                        if (len[right3.id] >= interlockWidth &&
+                                                        if (right3.start == 2 && //words[right3.id][2] == end[up3.id][2] &&
+                                                            len[right3.id] >= interlockWidth &&
                                                             words[right3.id][0] == end[_up1][2] &&
                                                             words[right3.id][1] == words[down2.id][2] &&
-                                                            right3.start == 2 && //words[right3.id][2] == end[up3.id][2] &&
                                                             right3.id != up3.id &&
                                                             right3.id != left2.id &&
                                                             right3.id != down2.id &&
@@ -3584,10 +3567,10 @@ public class Cluster2Calculator {
 
                                                             for left4 in left4Words {
 
-                                                                if (len[left4.id] >= interlockWidth &&
+                                                                if (left4.end == 0 && //end[left4.id][0] == end[up3.id][1] &&
+                                                                    len[left4.id] >= interlockWidth &&
                                                                     end[left4.id][2] == end[_up1][1] &&
                                                                     end[left4.id][1] == words[down2.id][3] &&
-                                                                    left4.end == 0 && //end[left4.id][0] == end[up3.id][1] &&
                                                                     left4.id != right3.id &&
                                                                     left4.id != up3.id &&
                                                                     left4.id != left2.id &&
@@ -3600,10 +3583,10 @@ public class Cluster2Calculator {
 
                                                                     for right5 in right5Words {
 
-                                                                        if (len[right5.id] >= interlockWidth &&
+                                                                        if (right5.start == 2 && //words[right5.id][2] == end[up3.id][0] &&
+                                                                            len[right5.id] >= interlockWidth &&
                                                                             words[right5.id][0] == end[_up1][0] &&
                                                                             words[right5.id][1] == words[down2.id][4] &&
-                                                                            right5.start == 2 && //words[right5.id][2] == end[up3.id][0] &&
                                                                             right5.id != left4.id &&
                                                                             right5.id != right3.id &&
                                                                             right5.id != up3.id &&
@@ -3645,18 +3628,4 @@ public class Cluster2Calculator {
             return result
         }
 
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

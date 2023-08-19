@@ -32,7 +32,9 @@ final class Cluster2CalculatorTests: XCTestCase {
                 let words = game.words
                 
                 let oldResults = ClusterCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
-                print("Execute: \(game.gameId) old: \(oldResults.count)")
+                
+                let shapes = ShapeCalculator.toShapes(clusters: oldResults)
+                print("Execute: \(game.gameId) old: \(shapes.count)")
             }
         }
     }
@@ -48,8 +50,8 @@ final class Cluster2CalculatorTests: XCTestCase {
                 let words = game.words
                 
                 let newResults = Cluster2Calculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
-                
-                print("Execute: \(game.gameId) new: \(newResults.count)")
+                let shapes = ShapeCalculator.toShapes(clusters: newResults)
+                print("Execute: \(game.gameId) new: \(shapes.count)")
             }
         }
     }
