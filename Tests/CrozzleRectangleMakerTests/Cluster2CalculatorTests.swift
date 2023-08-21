@@ -21,6 +21,16 @@ final class Cluster2CalculatorTests: XCTestCase {
         XCTAssertEqual(1149, oldResults.count)
     }
     
+    func test_PERFexecute() {
+        measure {
+            let words = WordData.words_8612()
+            
+            let newResults = Cluster2Calculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            
+            XCTAssertEqual(1149, newResults.count)
+        }
+    }
+    
     func test_PERF_execute_OLD() {
         let options = XCTMeasureOptions()
         options.iterationCount = 1
@@ -34,24 +44,25 @@ final class Cluster2CalculatorTests: XCTestCase {
                 let oldResults = ClusterCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
                 
                 let shapes = ShapeCalculator.toShapes(clusters: oldResults)
-                print("Execute: \(game.gameId) old: \(shapes.count)")
+                print("ClusterCalculator.Execute: \(game.gameId) old: \(shapes.count)")
             }
         }
     }
     
     func test_PERF_execute_NEW() {
         let options = XCTMeasureOptions()
-        options.iterationCount = 1
+        //options.iterationCount = 1
         
-        measure(metrics: [XCTClockMetric()], options: options) {
+        //measure(metrics: [XCTClockMetric()], options: options) {
+        measure {
             let gameList = GameList()
             
             for game in gameList.games {
                 let words = game.words
                 
                 let newResults = Cluster2Calculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
-                let shapes = ShapeCalculator.toShapes(clusters: newResults)
-                print("Execute: \(game.gameId) new: \(shapes.count)")
+                //let shapes = ShapeCalculator.toShapes(clusters: newResults)
+                print("ClusterCalculator2.Execute: \(game.gameId) new: \(newResults.count)")
             }
         }
     }
