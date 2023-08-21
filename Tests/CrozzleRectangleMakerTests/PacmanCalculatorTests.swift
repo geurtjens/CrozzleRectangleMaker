@@ -317,7 +317,7 @@ final class PacmanCalculatorTests: XCTestCase {
         }
     }
     
-    func test_PERF_ComparisonNewest() {
+    func test_PERF_ComparisonNewUInt8() {
         let options = XCTMeasureOptions()
         options.iterationCount = 2 /* Tweak this value on a test-by-test basis */
 
@@ -331,6 +331,33 @@ final class PacmanCalculatorTests: XCTestCase {
                 let letterIndex = LetterIndexModel(words: words)
                 
                 let newResults = Pacman4Calculator.Execute(
+                    letterIndex: letterIndex,
+                    words: words,
+                    end: end,
+                    len: len,
+                    scoreMin: scoreMin,
+                    widthMax: widthMax,
+                    heightMax: heightMax)
+                
+                print("PacmanCalculator.Execute game: \(game.gameId), new:\(newResults.count)")
+            }
+        }
+    }
+    
+    func test_PERF_ComparisonNewInt() {
+        let options = XCTMeasureOptions()
+        options.iterationCount = 2 /* Tweak this value on a test-by-test basis */
+
+        measure(metrics: [XCTClockMetric()], options: options) {
+            let gameList = GameList()
+        
+            for game in gameList.games {
+                let words = game.words
+                let end = WordCalculator.reverse(words: words)
+                let len = WordCalculator.lengths(words: words)
+                let letterIndex = LetterIndexModel(words: words)
+                
+                let newResults = Pacman5Calculator.Execute(
                     letterIndex: letterIndex,
                     words: words,
                     end: end,
