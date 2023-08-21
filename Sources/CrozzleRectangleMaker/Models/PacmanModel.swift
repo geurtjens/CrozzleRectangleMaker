@@ -339,7 +339,7 @@ public struct PacmanModel : ShapeProtocol {
                 . .
          */
         
-        print(hLen)
+        //print(hLen)
         // The difference between the maximum length leading and the length of the word
         let x0 = UInt8(maxLeft - hLen[0] - 1) // Plus one because the size of the top must include the last . as its a pacman placement
         let x1 = maxLeft - interlockWidth

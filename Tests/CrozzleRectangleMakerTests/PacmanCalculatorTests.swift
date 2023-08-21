@@ -231,11 +231,325 @@ final class PacmanCalculatorTests: XCTestCase {
         }
     }
     
-    func test_topRight_Single() throws {
+    func test_Comparison() {
+        let gameList = GameList()
         
-        let words = ["PARITY", "RESERVE", "DEBENTURE", "TRUST", "BUYER", "SELL"]
+        for game in gameList.games {
+            let words = game.words
+            let end = WordCalculator.reverse(words: words)
+            let len = WordCalculator.lengths(words: words)
+            let letterIndex = LetterIndexModel(words: words)
+            
+            let oldResults = PacmanCalculator.Execute(
+                words: words,
+                end: end,
+                len: len,
+                scoreMin: scoreMin,
+                widthMax: widthMax,
+                heightMax: heightMax)
+            
+            let newResults = Pacman2Calculator.Execute(
+                letterIndex: letterIndex,
+                words: words,
+                end: end,
+                len: len,
+                scoreMin: scoreMin,
+                widthMax: widthMax,
+                heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+            
+            print("PacmanCalculator.Execute game: \(game.gameId), old:\(oldResults.count), new:\(newResults.count)")
+        }
+    }
+    
+    func test_PERF_ComparisonOLD() {
+        let options = XCTMeasureOptions()
+        options.iterationCount = 2 /* Tweak this value on a test-by-test basis */
+
+        measure(metrics: [XCTClockMetric()], options: options) {
+        let gameList = GameList()
+        
+            for game in gameList.games {
+                let words = game.words
+                let end = WordCalculator.reverse(words: words)
+                let len = WordCalculator.lengths(words: words)
+                //let letterIndex = LetterIndexModel(words: words)
+                
+                let oldResults = PacmanCalculator.Execute(
+                    words: words,
+                    end: end,
+                    len: len,
+                    scoreMin: scoreMin,
+                    widthMax: widthMax,
+                    heightMax: heightMax)
+                
+                
+                print("PacmanCalculator.Execute game: \(game.gameId), old:\(oldResults.count)")
+            }
+        }
+    }
+    
+    func test_PERF_ComparisonNEW() {
+        let options = XCTMeasureOptions()
+        options.iterationCount = 2 /* Tweak this value on a test-by-test basis */
+
+        measure(metrics: [XCTClockMetric()], options: options) {
+            let gameList = GameList()
+        
+            for game in gameList.games {
+                let words = game.words
+                let end = WordCalculator.reverse(words: words)
+                let len = WordCalculator.lengths(words: words)
+                let letterIndex = LetterIndexModel(words: words)
+                
+                let newResults = Pacman2Calculator.Execute(
+                    letterIndex: letterIndex,
+                    words: words,
+                    end: end,
+                    len: len,
+                    scoreMin: scoreMin,
+                    widthMax: widthMax,
+                    heightMax: heightMax)
+                
+                print("PacmanCalculator.Execute game: \(game.gameId), new:\(newResults.count)")
+            }
+        }
+    }
+    
+    func test_PERF_ComparisonNewest() {
+        let options = XCTMeasureOptions()
+        options.iterationCount = 2 /* Tweak this value on a test-by-test basis */
+
+        measure(metrics: [XCTClockMetric()], options: options) {
+            let gameList = GameList()
+        
+            for game in gameList.games {
+                let words = game.words
+                let end = WordCalculator.reverse(words: words)
+                let len = WordCalculator.lengths(words: words)
+                let letterIndex = LetterIndexModel(words: words)
+                
+                let newResults = Pacman4Calculator.Execute(
+                    letterIndex: letterIndex,
+                    words: words,
+                    end: end,
+                    len: len,
+                    scoreMin: scoreMin,
+                    widthMax: widthMax,
+                    heightMax: heightMax)
+                
+                print("PacmanCalculator.Execute game: \(game.gameId), new:\(newResults.count)")
+            }
+        }
+    }
+    
+    
+    func test_ComparisonTopLeft() {
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            let words = game.words
+            let end = WordCalculator.reverse(words: words)
+            let len = WordCalculator.lengths(words: words)
+            let letterIndex = LetterIndexModel(words: words)
+            
+            let oldResults = PacmanCalculator.TopLeft(
+                words: words,
+                end: end,
+                len: len,
+                scoreMin: scoreMin,
+                widthMax: widthMax,
+                heightMax: heightMax)
+            
+            let newResults = Pacman2Calculator.TopLeft(
+                letterIndex: letterIndex,
+                words: words,
+                end: end,
+                len: len,
+                scoreMin: scoreMin,
+                widthMax: widthMax,
+                heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+            
+            print("PacmanCalculator.TopLeft game: \(game.gameId), old:\(oldResults.count), new:\(newResults.count)")
+        }
+    }
+    func test_TopRightExample() {
+        // CHIME is duplicated on the old shape so its an existing error
+       /*
+        C .
+        H M
+        I.O
+       .MONTHLY.
+  .MOVEMENT.
+        .CHIME.
+         E.
+         .
+        */
+        
+        let words = ["MONTHLY","MOVEMENT","CHIME","CHIME","ONCE","MONTH"]
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
+        let letterIndex = LetterIndexModel(words: words)
+        
+        let oldResults = PacmanCalculator.TopRight(
+            words: words,
+            end: end,
+            len: len,
+            scoreMin: scoreMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        let newResults = Pacman2Calculator.TopRight(
+            letterIndex: letterIndex,
+            words: words,
+            end: end,
+            len: len,
+            scoreMin: scoreMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+    }
+    func test_ComparisonTopRight() {
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            let words = game.words
+            let end = WordCalculator.reverse(words: words)
+            let len = WordCalculator.lengths(words: words)
+            let letterIndex = LetterIndexModel(words: words)
+            
+            let oldResults = PacmanCalculator.TopRight(
+                words: words,
+                end: end,
+                len: len,
+                scoreMin: scoreMin,
+                widthMax: widthMax,
+                heightMax: heightMax)
+            
+            let newResults = Pacman2Calculator.TopRight(
+                letterIndex: letterIndex,
+                words: words,
+                end: end,
+                len: len,
+                scoreMin: scoreMin,
+                widthMax: widthMax,
+                heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+            
+            print("PacmanCalculator.TopRight game: \(game.gameId), old:\(oldResults.count), new:\(newResults.count)")
+            if oldResults.count != newResults.count {
+                compareShapes(oldResults: oldResults, newResults: newResults, words: words);
+            }
+        }
+    }
+    
+    func compareShapes(oldResults: [PacmanModel], newResults: [PacmanModel], words: [String]) {
+        
+        
+        
+        var oldShapes:[String] = []
+        for oldResult in oldResults {
+            var oldShape = oldResult.ToShape()
+            if oldShape.width < oldShape.height {
+                oldShape = oldShape.Flip()
+            }
+            
+            let text = oldShape.ToTextDebug(words: words)
+            oldShapes.append(text)
+        }
+        
+        var newShapes:[String] = []
+        for newResult in newResults {
+            var newShape = newResult.ToShape()
+            if newShape.width < newShape.height {
+                newShape = newShape.Flip()
+            }
+            let text = newShape.ToTextDebug(words: words)
+            newShapes.append(text)
+        }
+        
+        for oldResult in oldResults {
+            
+            let oldShape = oldResult.ToShape().ToTextDebug(words: words)
+            let oldShapeFlipped = oldResult.ToShape().Flip().ToTextDebug(words: words)
+            
+            XCTAssertNotEqual(oldShape, oldShapeFlipped)
+            
+            if newShapes.contains(oldShape) == false && newShapes.contains(oldShapeFlipped) == false {
+                print(oldShape)
+                print(oldShapeFlipped)
+            }
+        }
+        
+        
+        // How many are in new and not in old
+        print("NEW but not in OLD")
+        for newShape in newShapes {
+            if oldShapes.contains(newShape) == false {
+                print(newShape)
+            }
+        }
+    }
+    
+    func test_ComparisonBottomRight() {
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            let words = game.words
+            let end = WordCalculator.reverse(words: words)
+            let len = WordCalculator.lengths(words: words)
+            let letterIndex = LetterIndexModel(words: words)
+            
+            let oldResults = PacmanCalculator.BottomRight(
+                words: words,
+                end: end,
+                len: len,
+                scoreMin: scoreMin,
+                widthMax: widthMax,
+                heightMax: heightMax)
+            
+            let newResults = Pacman2Calculator.BottomRight(
+                letterIndex: letterIndex,
+                words: words,
+                end: end,
+                len: len,
+                scoreMin: scoreMin,
+                widthMax: widthMax,
+                heightMax: heightMax)
+            
+            XCTAssertEqual(oldResults.count, newResults.count)
+            
+            print("PacmanCalculator.TopLeft game: \(game.gameId), old:\(oldResults.count), new:\(newResults.count)")
+        }
+    }
+    
+    func test_topRight_Single() throws {
+      /*
+        .
+        B
+       .U
+  .PARITY.
+      .REsERVE.
+.DEBENTURE.
+       S.L
+       T L
+       . .
+       
+       */
+        let words = ["PARITY", "TRUST", "BUYER", "RESERVE", "SELL", "DEBENTURE"]
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+        
+        let oldResults = PacmanCalculator.TopRight(
+            words: words,
+            end: end,
+            len: len,
+            scoreMin: scoreMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
         
         let result = PacmanCalculator.TopRight(
             words: words,
@@ -246,6 +560,11 @@ final class PacmanCalculatorTests: XCTestCase {
             heightMax: heightMax)
         
         XCTAssertEqual(1, result.count)
+        let letterIndex = LetterIndexModel(words: words)
+        
+        let newResults = Pacman2Calculator.TopRight(letterIndex: letterIndex, words: words, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        XCTAssertEqual(1, newResults.count)
+        
         
         let resultFirst = result[0]
         
@@ -279,7 +598,7 @@ final class PacmanCalculatorTests: XCTestCase {
         let expectedText = "        .      \n        B      \n       .U      \n  .PARITY.     \n      .RESERVE.\n.DEBENTURE.    \n       S.L     \n       T L     \n       . .     "
         
         XCTAssertEqual(expectedText, text)
-        //print(text)
+        print(text)
         /*
                  .
                  B

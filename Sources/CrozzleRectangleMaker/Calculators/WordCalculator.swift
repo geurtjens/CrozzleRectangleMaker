@@ -65,6 +65,24 @@ public class WordCalculator {
         }
         return result;
     }
+    
+    
+    public static func WordsToUInt8(words: [String])-> [[UInt8]] {
+        var result: [[UInt8]] = []
+        for word in words {
+            result.append(WordToUInt8(word: word))
+        }
+        return result;
+    }
+    
+    public static func WordToUInt8(word: String)-> [UInt8] {
+        var result: [UInt8] = []
+        for letter in word {
+            result.append(letter.asciiValue!)
+        }
+        return result;
+    }
+    
     public static func lengths8(words: [String]) -> [UInt8] {
         var result: [UInt8] = []
         for word in words {

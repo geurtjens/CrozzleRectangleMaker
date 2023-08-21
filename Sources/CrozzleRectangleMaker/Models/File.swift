@@ -2,11 +2,11 @@
 //  File.swift
 //  
 //
-//  Created by Michael Geurtjens on 14/8/2023.
+//  Created by Michael Geurtjens on 22/8/2023.
 //
 
 import Foundation
-public struct LetterIndexModel {
+public struct LetterIndex2Model {
     
     public let index: [[LetterIndexItemModel]]
     
@@ -36,9 +36,12 @@ public struct LetterIndexModel {
         
         return self.index[letterPos]
     }
+    
     public func find2(_ letter: UInt8) -> [LetterIndexItemModel] {
         let letterPos = Int(letter - 65)
         
         return self.index[letterPos]
     }
 }
+    
+

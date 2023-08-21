@@ -8,7 +8,14 @@
 import Foundation
 class PacmanCalculator {
     
-    
+    static func Execute(words: [String], end: [String], len: [Int],
+                        scoreMin: Int, widthMax: Int, heightMax: Int) ->[PacmanModel] {
+        let topRight = TopRight(words: words, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let bottomRight = BottomRight(words: words, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let topLeft = TopLeft(words: words, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        
+        return topRight + bottomRight + topLeft
+    }
     
     // flips to bottom left so does not need to worry about duplicates.  Visually inspected
     
@@ -33,6 +40,7 @@ class PacmanCalculator {
 
         for _left1 in 0..<wordCount {
 
+            //print("left1:\(words[_left1])")
             if len[_left1] >= interlockWidth {
 
                 for _down1 in 0..<wordCount {
@@ -44,26 +52,37 @@ class PacmanCalculator {
                         for _up2 in 0..<wordCount {
                             
                             if (len[_up2] >= interlockHeight &&
-                                _up2 != _down1 && _up2 != _left1 &&
+                                _up2 != _down1 &&
+                                _up2 != _left1 &&
                                 end[_up2][2] == end[_left1][0]) {
                                  
                                 for _right2 in 0..<wordCount {
                                        
                                     if (len[_right2] >= interlockWidth &&
-                                        _right2 != _down1 && _right2 != _up2 && _right2 != _left1 &&
+                                        _right2 != _up2 &&
+                                        _right2 != _down1 &&
+                                        _right2 != _left1 &&
                                         words[_right2][0] == words[_down1][1] &&
                                         words[_right2][1] == end[_up2][1]) {
                                             
                                         for _down3 in 0..<wordCount {
                                                     
                                             if (len[_down3] >= interlockHeight &&
-                                                _down3 != _down1 && _down3 != _up2 && _down1 != _left1 && _right2 != _down3 &&
+                                                _down3 != _right2 &&
+                                                _down3 != _up2 &&
+                                                _down3 != _down1 &&
+                                                _down3 != _left1 &&
                                                 words[_down3][0] == words[_right2][2]) {
 
                                                 for _left3 in 0..<wordCount {
                                                                 
                                                     if (len[_left3] >= interlockWidth &&
-                                                        _left3 != _down1 && _left3 != _up2 && _left3 != _down3 && _left3 != _left1 && _left3 != _right2 &&
+                                                        _left3 != _down3 &&
+                                                        _left3 != _right2 &&
+                                                        _left3 != _up2 &&
+                                                        _left3 != _down1 &&
+                                                        _left3 != _left1 &&
+                                                        
                                                         end[_left3][2] == words[_down1][2] &&
                                                         end[_left3][1] == end[_up2][0] &&
                                                         end[_left3][0] == words[_down3][1]) {
