@@ -43,7 +43,7 @@ final class RectangleCalculatorTests: XCTestCase {
     }
     
     func test_ExecuteAllGames_New() async {
-        await Rectangle2Calculator.ExecuteAllGames(scoreMin: 0)
+        await Rectangle2Calculator.ExecuteAllGamesInParallel(scoreMin: 0)
     }
     
     

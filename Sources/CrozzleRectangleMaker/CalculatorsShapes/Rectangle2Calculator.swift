@@ -8,7 +8,7 @@
 import Foundation
 public class Rectangle2Calculator {
     
-    public static func ExecuteAllGames(scoreMin: Int) async {
+    public static func ExecuteAllGamesInParallel(scoreMin: Int) async {
        
         let startTime = DateTimeCalculator.now()
         var count = 0
@@ -17,6 +17,26 @@ public class Rectangle2Calculator {
         for game in gameList.games {
             
             let newResults = await Rectangle2Calculator.Execute(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
+            
+            print("Rectangle2Calculator.Execute: \(game.gameId), count: \(newResults.count)")
+            
+            count += newResults.count
+        }
+        let finishTime = DateTimeCalculator.now()
+        let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
+        
+        print("\(count) records found in \(duration)")
+    }
+    
+    public static func ExecuteAllGamesInSerial(scoreMin: Int) {
+       
+        let startTime = DateTimeCalculator.now()
+        var count = 0
+        /// We want to calculate new to see how long it takes and then compare with old
+        let gameList = GameList()
+        for game in gameList.games {
+            
+            let newResults = Rectangle2Calculator.ExecuteSerial(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
             
             print("Rectangle2Calculator.Execute: \(game.gameId), count: \(newResults.count)")
             
