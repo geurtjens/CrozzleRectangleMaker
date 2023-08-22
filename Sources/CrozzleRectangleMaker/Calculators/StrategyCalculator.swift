@@ -158,7 +158,7 @@ public class StrategyCalculator {
             
             let bestShapeScore = queue.getBestShape()
             if  bestShapeScore != nil && bestShapeScore!.score >= highScore {
-                print(bestShapeScore!.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore))
+                //print(bestShapeScore!.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore))
                 let finishNano = DateTimeCalculator.now()
                        
                 let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
