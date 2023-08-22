@@ -8,6 +8,27 @@
 import Foundation
 public class Cluster2Calculator {
     
+    
+    public static func ExecuteAllSerial(scoreMin: Int) {
+        let startTime = DateTimeCalculator.now()
+        var count = 0
+        /// We want to calculate new to see how long it takes and then compare with old
+        let gameList = GameList()
+        for game in gameList.games {
+            
+            let clusters = Execute(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
+            
+            print("Custer2Calculator.Execute: \(game.gameId), count: \(clusters.count)")
+            
+            count += clusters.count
+        }
+        let finishTime = DateTimeCalculator.now()
+        let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
+        
+        print("\(count) records found in \(duration)")
+    }
+    
+    
     public static func Execute(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
         
         let letterIndex = LetterIndexModel(words: words)
