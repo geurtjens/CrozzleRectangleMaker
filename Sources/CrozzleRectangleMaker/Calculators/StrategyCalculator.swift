@@ -136,8 +136,8 @@ public class StrategyCalculator {
                             print("High Score Reached")
                             let finishNano = DateTimeCalculator.now()
                                    
-                            let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
-                            print("Duration \(duration)")
+                            //let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
+                            //print("Duration \(duration)")
                                 
                             break
                         }
@@ -161,8 +161,8 @@ public class StrategyCalculator {
                 //print(bestShapeScore!.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore))
                 let finishNano = DateTimeCalculator.now()
                        
-                let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
-                print("Duration \(duration)")
+//                let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
+//                print("Duration \(duration)")
                     
                 break
             }
