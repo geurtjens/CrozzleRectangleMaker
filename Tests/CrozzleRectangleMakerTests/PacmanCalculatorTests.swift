@@ -338,30 +338,33 @@ final class PacmanCalculatorTests: XCTestCase {
         }
     }
     
-    func test_PERF_ComparisonNewInt() {
+    func test_Pacman5Calculator_ExecuteAllGamesInSerial() {
+        let totalCount = Pacman5Calculator.ExecuteAllGamesInSerial(scoreMin: 0)
+        XCTAssertEqual(60864, totalCount)
+    }
+    
+    func test_Pacman5Calculator_ExecuteAll_TopLeft() {
+        let totalCount = Pacman5Calculator.ExecuteAll_TopLeft(scoreMin: 0)
+        XCTAssertEqual(7853, totalCount)
+    }
+    
+    func test_Pacman5Calculator_ExecuteAll_TopRight() {
+        let totalCount = Pacman5Calculator.ExecuteAll_TopRight(scoreMin: 0)
+        XCTAssertEqual(14918, totalCount)
+    }
+    
+    func test_Pacman5Calculator_ExecuteAll_BottomRight() {
+        let totalCount = Pacman5Calculator.ExecuteAll_BottomRight(scoreMin: 0)
+        XCTAssertEqual(38093, totalCount)
+    }
+    
+    func test_PERF_Pacman5Calculator_ExecuteAllGamesInSerial() {
         let options = XCTMeasureOptions()
         options.iterationCount = 2 /* Tweak this value on a test-by-test basis */
 
         measure(metrics: [XCTClockMetric()], options: options) {
-            let gameList = GameList()
-        
-            for game in gameList.games {
-                let words = game.words
-                let end = WordCalculator.reverse(words: words)
-                let len = WordCalculator.lengths(words: words)
-                let letterIndex = LetterIndexModel(words: words)
-                
-                let newResults = Pacman5Calculator.Execute(
-                    letterIndex: letterIndex,
-                    words: words,
-                    end: end,
-                    len: len,
-                    scoreMin: scoreMin,
-                    widthMax: widthMax,
-                    heightMax: heightMax)
-                
-                print("PacmanCalculator.Execute game: \(game.gameId), new:\(newResults.count)")
-            }
+            let totalCount = Pacman5Calculator.ExecuteAllGamesInSerial(scoreMin: 0)
+            XCTAssertEqual(60864, totalCount)
         }
     }
     

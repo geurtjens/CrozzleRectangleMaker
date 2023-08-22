@@ -8,12 +8,124 @@
 import Foundation
 class Pacman5Calculator {
     
+    
+    public static func ExecuteAllGamesInSerial(scoreMin: Int) -> Int {
+       
+        let startTime = DateTimeCalculator.now()
+        var count = 0
+        /// We want to calculate new to see how long it takes and then compare with old
+        let gameList = GameList()
+        for game in gameList.games {
+            
+            let newResults = ExecuteSerial(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
+            
+            print("Pacman5Calculator.ExecuteSerial: \(game.gameId), count: \(newResults.count)")
+            
+            count += newResults.count
+        }
+        let finishTime = DateTimeCalculator.now()
+        let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
+        
+        print("\(count) records found in \(duration)")
+        return count
+    }
+    
+    public static func ExecuteAll_TopLeft(scoreMin: Int) -> Int {
+       
+        let startTime = DateTimeCalculator.now()
+        var count = 0
+        /// We want to calculate new to see how long it takes and then compare with old
+        let gameList = GameList()
+        for game in gameList.games {
+            let words = game.words
+            let len = WordCalculator.lengths(words: words)
+            let letterIndex = LetterIndexModel(words: words)
+            let end = WordCalculator.reverse(words: words)
+            let words2 = WordCalculator.WordsToInt(words: words)
+            let end2 = WordCalculator.WordsToInt(words: end)
+            
+            let newResults = TopLeft(letterIndex: letterIndex, words: words2, end: end2, words2: words, end2: end, len: len, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
+            
+            print("Pacman5Calculator.TopLeft: \(game.gameId), count: \(newResults.count)")
+            
+            count += newResults.count
+        }
+        let finishTime = DateTimeCalculator.now()
+        let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
+        
+        print("\(count) records found in \(duration)")
+        return count
+    }
+    
+    
+    
+    public static func ExecuteAll_TopRight(scoreMin: Int) -> Int {
+       
+        let startTime = DateTimeCalculator.now()
+        var count = 0
+        /// We want to calculate new to see how long it takes and then compare with old
+        let gameList = GameList()
+        for game in gameList.games {
+            let words = game.words
+            let len = WordCalculator.lengths(words: words)
+            let letterIndex = LetterIndexModel(words: words)
+            let end = WordCalculator.reverse(words: words)
+            let words2 = WordCalculator.WordsToInt(words: words)
+            let end2 = WordCalculator.WordsToInt(words: end)
+            
+            let newResults = TopRight(letterIndex: letterIndex, words: words2, end: end2, words2: words, end2: end, len: len, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
+            
+            print("Pacman5Calculator.TopRight: \(game.gameId), count: \(newResults.count)")
+            
+            count += newResults.count
+        }
+        let finishTime = DateTimeCalculator.now()
+        let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
+        
+        print("\(count) records found in \(duration)")
+        return count
+    }
+    
+    public static func ExecuteAll_BottomRight(scoreMin: Int) -> Int {
+       
+        let startTime = DateTimeCalculator.now()
+        var count = 0
+        /// We want to calculate new to see how long it takes and then compare with old
+        let gameList = GameList()
+        for game in gameList.games {
+            let words = game.words
+            let len = WordCalculator.lengths(words: words)
+            let letterIndex = LetterIndexModel(words: words)
+            let end = WordCalculator.reverse(words: words)
+            let words2 = WordCalculator.WordsToInt(words: words)
+            let end2 = WordCalculator.WordsToInt(words: end)
+            
+            let newResults = BottomRight(letterIndex: letterIndex, words: words2, end: end2, words2: words, end2: end, len: len, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
+            
+            print("Pacman5Calculator.TopLeft: \(game.gameId), count: \(newResults.count)")
+            
+            count += newResults.count
+        }
+        let finishTime = DateTimeCalculator.now()
+        let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
+        
+        print("\(count) records found in \(duration)")
+        return count
+    }
+    
     // Its like Pacman4Calculator but uses Int rather than UInt8
     
     // flips to bottom left so does not need to worry about duplicates.  Visually inspected
     
-    static func Execute(letterIndex: LetterIndexModel, words: [String], end: [String], len: [Int],
-                        scoreMin: Int, widthMax: Int, heightMax: Int) ->[PacmanModel] {
+    static func ExecuteSerial(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [PacmanModel] {
+        
+        let letterIndex = LetterIndexModel(words: words)
+        
+        let len = WordCalculator.lengths(words: words)
+        
+        let end = WordCalculator.reverse(words: words)
+        
+        
         let uWords = WordCalculator.WordsToInt(words: words)
         let uEnd = WordCalculator.WordsToInt(words: end)
         
