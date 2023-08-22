@@ -249,10 +249,7 @@ final class PacmanCalculatorTests: XCTestCase {
                 heightMax: heightMax)
             
             let newResults = Pacman2Calculator.Execute(
-                letterIndex: letterIndex,
                 words: words,
-                end: end,
-                len: len,
                 scoreMin: scoreMin,
                 widthMax: widthMax,
                 heightMax: heightMax)
@@ -304,10 +301,7 @@ final class PacmanCalculatorTests: XCTestCase {
                 let letterIndex = LetterIndexModel(words: words)
                 
                 let newResults = Pacman2Calculator.Execute(
-                    letterIndex: letterIndex,
                     words: words,
-                    end: end,
-                    len: len,
                     scoreMin: scoreMin,
                     widthMax: widthMax,
                     heightMax: heightMax)
@@ -369,6 +363,32 @@ final class PacmanCalculatorTests: XCTestCase {
                 print("PacmanCalculator.Execute game: \(game.gameId), new:\(newResults.count)")
             }
         }
+    }
+    
+    func test_CountAll() {
+        
+        let gameList = GameList()
+        var result = 0
+        for game in gameList.games {
+            let words = game.words
+            let end = WordCalculator.reverse(words: words)
+            let len = WordCalculator.lengths(words: words)
+            let letterIndex = LetterIndexModel(words: words)
+            
+            let newResults = Pacman2Calculator.BottomRight(
+                letterIndex: letterIndex,
+                words: words,
+                end: end,
+                len: len,
+                scoreMin: scoreMin,
+                widthMax: widthMax,
+                heightMax: heightMax)
+            
+            result += newResults.count
+            print("PacmanCalculator.Execute game: \(game.gameId), new:\(newResults.count)")
+        
+        }
+        print("Total = \(result)")
     }
     
     

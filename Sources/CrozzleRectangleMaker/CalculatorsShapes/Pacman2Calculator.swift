@@ -7,10 +7,28 @@
 
 import Foundation
 public class Pacman2Calculator {
-    // flips to bottom left so does not need to worry about duplicates.  Visually inspected
     
-    static func Execute(letterIndex: LetterIndexModel, words: [String], end: [String], len: [Int],
-                        scoreMin: Int, widthMax: Int, heightMax: Int) ->[PacmanModel] {
+    public static func ExecuteAllGames(scoreMin: Int) async {
+       
+        var count = 0
+        /// We want to calculate new to see how long it takes and then compare with old
+        let gameList = GameList()
+        for game in gameList.games {
+            let words = game.words
+            
+            let newResults = Execute(words: words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
+            count += newResults.count
+            print("Rectangle2Calculator.Execute: \(game.gameId), count: \(newResults.count)")
+        }
+        print(count)
+    }
+    
+    static func Execute(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [PacmanModel] {
+        
+        let end = WordCalculator.reverse(words: words)
+        let letterIndex = LetterIndexModel(words: words)
+        let len = WordCalculator.lengths(words: words)
+        
         let topRight = TopRight(letterIndex: letterIndex, words: words, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         let bottomRight = BottomRight(letterIndex: letterIndex, words: words, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         let topLeft = TopLeft(letterIndex: letterIndex, words: words, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)

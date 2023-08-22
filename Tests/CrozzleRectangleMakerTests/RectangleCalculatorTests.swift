@@ -42,16 +42,8 @@ final class RectangleCalculatorTests: XCTestCase {
         }
     }
     
-    func test_ExecuteAll_New() async {
-        /// We want to calculate new to see how long it takes and then compare with old
-        let gameList = GameList()
-        for game in gameList.games {
-            let words = game.words
-            
-            let newResults = await Rectangle2Calculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
-            
-            print("Execute: \(game.gameId), new: \(newResults.count)")
-        }
+    func test_ExecuteAllGames_New() async {
+        await Rectangle2Calculator.ExecuteAllGames(scoreMin: 0)
     }
     
     
