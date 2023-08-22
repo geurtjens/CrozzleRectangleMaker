@@ -275,7 +275,7 @@ public class Rectangle5Calculator {
         return result;
     }
     
-    public static func TopLeftRectangle(interlockWidth: Int, interlockHeight: Int, letterIndex: LetterIndexModel, words: [[Int]], words2: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [RectangleModel] {
+    public static func TopLeftRectangle(interlockWidth: Int, interlockHeight: Int, letterIndex: LetterIndexModel, words: [[Int]], words2: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [RectangleModel] {
         /*
               .AZURE
               S I
@@ -387,7 +387,7 @@ public class Rectangle5Calculator {
     }
 
     
-    public static func TopLeftSquare(interlockWidth: Int, letterIndex: LetterIndexModel, words: [[Int]], words2: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [RectangleModel] {
+    public static func TopLeftSquare(interlockWidth: Int, letterIndex: LetterIndexModel, words: [[Int]], words2: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [RectangleModel] {
         /*
               .AZURE
               S I

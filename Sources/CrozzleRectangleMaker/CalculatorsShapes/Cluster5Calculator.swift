@@ -62,7 +62,7 @@ public class Cluster5Calculator {
     }
     
     
-    public static func C2x2(letterIndex: LetterIndexModel, words: [[Int]], end: [[Int]], words2: [String], end2: [String],  len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
+    public static func C2x2(letterIndex: LetterIndexModel, words: [[Int]], end: [[Int]], words2: [String], end2: [String],  len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
         let C2x2_LR_UD = C2x2_LR_UD(
             letterIndex: letterIndex,
             words: words,
@@ -205,7 +205,7 @@ public class Cluster5Calculator {
     }
     
     
-    public static func C2x5(letterIndex: LetterIndexModel, words: [[Int]], end: [[Int]], words2: [String], end2: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
+    public static func C2x5(letterIndex: LetterIndexModel, words: [[Int]], end: [[Int]], words2: [String], end2: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
         
         let C2x5_LRLRL_DU = C2x5_LRLRL_DU(
             letterIndex: letterIndex,
@@ -257,7 +257,7 @@ public class Cluster5Calculator {
     }
     
     
-    public static func C2x6(letterIndex: LetterIndexModel, words: [[Int]], end: [[Int]], words2: [String], end2: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
+    public static func C2x6(letterIndex: LetterIndexModel, words: [[Int]], end: [[Int]], words2: [String], end2: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
         
         let C2x6_LRLRLR_DU = C2x6_LRLRLR_DU(
             letterIndex: letterIndex,
@@ -309,7 +309,7 @@ public class Cluster5Calculator {
     }
     
     
-    public static func C3x3(letterIndex: LetterIndexModel, words: [[Int]], end: [[Int]], words2: [String], end2: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
+    public static func C3x3(letterIndex: LetterIndexModel, words: [[Int]], end: [[Int]], words2: [String], end2: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
         let C3x3_LRL_UDU = C3x3_LRL_UDU(
             letterIndex: letterIndex,
             words: words,
@@ -349,7 +349,7 @@ public class Cluster5Calculator {
     }
     
     
-    public static func C3x4(letterIndex: LetterIndexModel, words: [[Int]], end: [[Int]], words2: [String], end2: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
+    public static func C3x4(letterIndex: LetterIndexModel, words: [[Int]], end: [[Int]], words2: [String], end2: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
         
         let C3x4_LRLR_DUD = C3x4_LRLR_DUD(
             letterIndex: letterIndex,
@@ -401,7 +401,7 @@ public class Cluster5Calculator {
     }
     
     
-    public static func C3x5(letterIndex: LetterIndexModel, words: [[Int]], end: [[Int]], words2: [String], end2: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
+    public static func C3x5(letterIndex: LetterIndexModel, words: [[Int]], end: [[Int]], words2: [String], end2: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
         
         let C3x5_LRLRL_DUD = C3x5_LRLRL_DUD(
             letterIndex: letterIndex,
@@ -839,7 +839,7 @@ public class Cluster5Calculator {
     }
 
     
-    public static func C2x3_RLR_DU(letterIndex: LetterIndexModel, words: [[Int]], end: [[Int]], words2: [String], end2: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ClusterModel] {
+    public static func C2x3_RLR_DU(letterIndex: LetterIndexModel, words: [[Int]], end: [[Int]], words2: [String], end2: [String], len: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ClusterModel] {
 
         let wordCount = words.count
         let interlockWidth = 2

@@ -19,7 +19,7 @@ public class ClusterCalculator {
             
             let clusters = Execute(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
             
-            print("CusterCalculator.Execute: \(game.gameId), count: \(clusters.count)")
+            print("ClusterCalculator.Execute: \(game.gameId), count: \(clusters.count)")
             
             count += clusters.count
         }
