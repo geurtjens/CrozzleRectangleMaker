@@ -2,12 +2,11 @@
 //  File.swift
 //  
 //
-//  Created by Michael Geurtjens on 14/8/2023.
+//  Created by Michael Geurtjens on 22/8/2023.
 //
 
 import Foundation
-public class Rectangle2Calculator {
-    
+public class Rectangle5Calculator {
     public static func ExecuteAllGamesInParallel(scoreMin: Int) async {
        
         let startTime = DateTimeCalculator.now()
@@ -18,7 +17,7 @@ public class Rectangle2Calculator {
             
             let newResults = await Execute(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
             
-            print("Rectangle2Calculator.ExecuteParallel: \(game.gameId), count: \(newResults.count)")
+            print("Rectangle5Calculator.ExecuteParallel: \(game.gameId), count: \(newResults.count)")
             
             count += newResults.count
         }
@@ -38,7 +37,7 @@ public class Rectangle2Calculator {
             
             let newResults = ExecuteSerial(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
             
-            print("Rectangle2Calculator.ExecuteSerial: \(game.gameId), count: \(newResults.count)")
+            print("Rectangle5Calculator.ExecuteSerial: \(game.gameId), count: \(newResults.count)")
             
             count += newResults.count
         }
@@ -71,7 +70,7 @@ public class Rectangle2Calculator {
     }
     
     
-    public static func Square(interlockWidth: Int, letterIndex: LetterIndexModel, words: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [RectangleModel] {
+    public static func Square(interlockWidth: Int, letterIndex: LetterIndexModel, words: [[Int]], words2: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [RectangleModel] {
 
         var result: [RectangleModel] = [];
 
@@ -83,14 +82,14 @@ public class Rectangle2Calculator {
                 
                 for _topLetterPos in 0..<(lengths[_top] - interlockWidth) {
                     
-                    let leftWords = letterIndex.find(words[_top][_topLetterPos])
+                    let leftWords = letterIndex.find3(words[_top][_topLetterPos])
                 
                     for left in leftWords {
                     
                         if (left.end >= interlockWidth
                             && left.id > _top) {
                         
-                            let bottomWords = letterIndex.find(words[left.id][left.start + interlockWidth])
+                            let bottomWords = letterIndex.find3(words[left.id][left.start + interlockWidth])
                             
                             for bottom in bottomWords {
 
@@ -98,7 +97,7 @@ public class Rectangle2Calculator {
                                     bottom.id != left.id &&
                                     bottom.id != _top) {
                                             
-                                    let rightWords = letterIndex.find(words[_top][_topLetterPos + interlockWidth])
+                                    let rightWords = letterIndex.find3(words[_top][_topLetterPos + interlockWidth])
                                     
                                     for right in rightWords {
                                                  
@@ -111,10 +110,10 @@ public class Rectangle2Calculator {
                                             ) {
                                                                     
                                                 let score = ScoreCalculator.rectangle(
-                                                    topLeft: words[_top][_topLetterPos],
-                                                    topRight: words[_top][_topLetterPos + interlockWidth],
-                                                    bottomLeft: words[bottom.id][bottom.start],
-                                                    bottomRight: words[bottom.id][bottom.start + interlockWidth])
+                                                    topLeft: words2[_top][_topLetterPos],
+                                                    topRight: words2[_top][_topLetterPos + interlockWidth],
+                                                    bottomLeft: words2[bottom.id][bottom.start],
+                                                    bottomRight: words2[bottom.id][bottom.start + interlockWidth])
 
                                                 if (score >= scoreMin) {
 
@@ -172,7 +171,7 @@ public class Rectangle2Calculator {
     }
     
     
-    public static func Rectangle(interlockWidth: Int, interlockHeight: Int, letterIndex: LetterIndexModel, words: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [RectangleModel] {
+    public static func Rectangle(interlockWidth: Int, interlockHeight: Int, letterIndex: LetterIndexModel, words: [[Int]], words2: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [RectangleModel] {
 
         var result: [RectangleModel] = [];
 
@@ -188,14 +187,14 @@ public class Rectangle2Calculator {
                 
                 for _topLetterPos in 0..<(lengths[_top] - interlockWidth) {
                     
-                    let leftWords = letterIndex.find(words[_top][_topLetterPos])
+                    let leftWords = letterIndex.find3(words[_top][_topLetterPos])
                 
                     for left in leftWords {
                     
                         if left.end >= interlockHeight
                             && left.id != _top {
                         
-                            let bottomWords = letterIndex.find(words[left.id][left.start + interlockHeight])
+                            let bottomWords = letterIndex.find3(words[left.id][left.start + interlockHeight])
                             
                             for bottom in bottomWords {
 
@@ -203,7 +202,7 @@ public class Rectangle2Calculator {
                                     bottom.id != left.id &&
                                     bottom.id != _top {
                                             
-                                    let rightWords = letterIndex.find(words[_top][_topLetterPos + interlockWidth])
+                                    let rightWords = letterIndex.find3(words[_top][_topLetterPos + interlockWidth])
                                     
                                     for right in rightWords {
                                                  
@@ -216,10 +215,10 @@ public class Rectangle2Calculator {
                                             ) {
                                                                     
                                                 let score = ScoreCalculator.rectangle(
-                                                    topLeft: words[_top][_topLetterPos],
-                                                    topRight: words[_top][_topLetterPos + interlockWidth],
-                                                    bottomLeft: words[bottom.id][bottom.start],
-                                                    bottomRight: words[bottom.id][bottom.start + interlockWidth])
+                                                    topLeft: words2[_top][_topLetterPos],
+                                                    topRight: words2[_top][_topLetterPos + interlockWidth],
+                                                    bottomLeft: words2[bottom.id][bottom.start],
+                                                    bottomRight: words2[bottom.id][bottom.start + interlockWidth])
 
                                                 if (score >= scoreMin) {
 
@@ -276,7 +275,7 @@ public class Rectangle2Calculator {
         return result;
     }
     
-    public static func TopLeftRectangle(interlockWidth: Int, interlockHeight: Int, letterIndex: LetterIndexModel, words: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [RectangleModel] {
+    public static func TopLeftRectangle(interlockWidth: Int, interlockHeight: Int, letterIndex: LetterIndexModel, words: [[Int]], words2: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [RectangleModel] {
         /*
               .AZURE
               S I
@@ -301,7 +300,7 @@ public class Rectangle2Calculator {
 //                let leftInterlock = words[_left][_leftLetterPos]
 //                print("Left word:\(words[_left]), interlock:\(leftInterlock)")
                 
-                let bottomWords = letterIndex.find(words[_left][_leftLetterPos])
+                let bottomWords = letterIndex.find3(words[_left][_leftLetterPos])
                 
                 for bottom in bottomWords {
                 
@@ -311,7 +310,7 @@ public class Rectangle2Calculator {
 //                        let bottomInterlock = words[bottom.wordId][bottom.fromStartPos + interlockWidth]
 //                        print("Bottom word:\(words[bottom.wordId]), interlock:\(bottomInterlock)")
                         
-                        let rightWords = letterIndex.find(words[bottom.id][bottom.start + interlockWidth])
+                        let rightWords = letterIndex.find3(words[bottom.id][bottom.start + interlockWidth])
 
                         for right in rightWords {
 
@@ -322,7 +321,7 @@ public class Rectangle2Calculator {
 //                                let rightInterlock = words[right.wordId][right.fromStartPos - interlockHeight]
 //                                print("right word:\(words[right.wordId]), interlock:\(rightInterlock)")
                                 
-                                let topWords = letterIndex.find(words[right.id][right.start - interlockHeight])
+                                let topWords = letterIndex.find3(words[right.id][right.start - interlockHeight])
 
                                 for top in topWords {
                                     
@@ -334,9 +333,9 @@ public class Rectangle2Calculator {
                                         //print("top word:\(words[top.wordId])")
                                         
                                         let score = ScoreCalculator.topLeft(
-                                            topRight: words[top.id][top.start],
-                                            bottomLeft: words[bottom.id][bottom.start],
-                                            bottomRight: words[bottom.id][bottom.start + interlockWidth])
+                                            topRight: words2[top.id][top.start],
+                                            bottomLeft: words2[bottom.id][bottom.start],
+                                            bottomRight: words2[bottom.id][bottom.start + interlockWidth])
                                         
                                         if score >= scoreMin {
 
@@ -388,7 +387,7 @@ public class Rectangle2Calculator {
     }
 
     
-    public static func TopLeftSquare(interlockWidth: Int, letterIndex: LetterIndexModel, words: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [RectangleModel] {
+    public static func TopLeftSquare(interlockWidth: Int, letterIndex: LetterIndexModel, words: [[Int]], words2: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [RectangleModel] {
         /*
               .AZURE
               S I
@@ -409,7 +408,7 @@ public class Rectangle2Calculator {
 //                let leftInterlock = words[_left][_leftLetterPos]
 //                print("Left word:\(words[_left]), interlock:\(leftInterlock)")
                 
-                let bottomWords = letterIndex.find(words[_left][_leftLetterPos])
+                let bottomWords = letterIndex.find3(words[_left][_leftLetterPos])
                 
                 for bottom in bottomWords {
                 
@@ -419,7 +418,7 @@ public class Rectangle2Calculator {
 //                        let bottomInterlock = words[bottom.wordId][bottom.fromStartPos + interlockWidth]
 //                        print("Bottom word:\(words[bottom.wordId]), interlock:\(bottomInterlock)")
                         
-                        let rightWords = letterIndex.find(words[bottom.id][bottom.start + interlockWidth])
+                        let rightWords = letterIndex.find3(words[bottom.id][bottom.start + interlockWidth])
 
                         for right in rightWords {
 
@@ -430,7 +429,7 @@ public class Rectangle2Calculator {
 //                                let rightInterlock = words[right.wordId][right.fromStartPos - interlockHeight]
 //                                print("right word:\(words[right.wordId]), interlock:\(rightInterlock)")
                                 
-                                let topWords = letterIndex.find(words[right.id][right.start - interlockWidth])
+                                let topWords = letterIndex.find3(words[right.id][right.start - interlockWidth])
 
                                 for top in topWords {
                                     
@@ -443,9 +442,9 @@ public class Rectangle2Calculator {
                                         //print("top word:\(words[top.wordId])")
                                         
                                         let score = ScoreCalculator.topLeft(
-                                            topRight: words[top.id][top.start],
-                                            bottomLeft: words[bottom.id][bottom.start],
-                                            bottomRight: words[bottom.id][bottom.start + interlockWidth])
+                                            topRight: words2[top.id][top.start],
+                                            bottomLeft: words2[bottom.id][bottom.start],
+                                            bottomRight: words2[bottom.id][bottom.start + interlockWidth])
                                         
                                         if score >= scoreMin {
 
@@ -496,13 +495,13 @@ public class Rectangle2Calculator {
         return result;
     }
     
-    public static func TopRightSquare(interlockWidth: Int, letterIndex: LetterIndexModel, words: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [RectangleModel] {
+    public static func TopRightSquare(interlockWidth: Int, letterIndex: LetterIndexModel, words: [[Int]], words2: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [RectangleModel] {
         
         /// The square is exactly same as rectangle because when it is flipped it becomes another shape?
-        return TopRightRectangle(interlockWidth: interlockWidth, interlockHeight: interlockWidth, letterIndex: letterIndex, words: words, lengths: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        return TopRightRectangle(interlockWidth: interlockWidth, interlockHeight: interlockWidth, letterIndex: letterIndex, words: words, words2: words2, lengths: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
     }
     
-    public static func TopRightRectangle(interlockWidth: Int, interlockHeight: Int, letterIndex: LetterIndexModel, words: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [RectangleModel] {
+    public static func TopRightRectangle(interlockWidth: Int, interlockHeight: Int, letterIndex: LetterIndexModel, words: [[Int]], words2: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [RectangleModel] {
         /*
            H
          TOYS.
@@ -530,7 +529,7 @@ public class Rectangle2Calculator {
 //                print("top word:\(words[_top]), interlock:\(topInterlock)")
 
                 
-                let leftWords = letterIndex.find(words[_top][_topLetterPos])
+                let leftWords = letterIndex.find3(words[_top][_topLetterPos])
                 
                 for left in leftWords {
                     
@@ -540,7 +539,7 @@ public class Rectangle2Calculator {
 //                        let leftInterlock = words[left.wordId][left.fromStartPos + interlockHeight]
 //                        print("left word:\(words[left.wordId]), interlock:\(leftInterlock)")
                     
-                        let bottomWords = letterIndex.find(words[left.id][left.start + interlockHeight])
+                        let bottomWords = letterIndex.find3(words[left.id][left.start + interlockHeight])
                         
                         for bottom in bottomWords {
                         
@@ -551,7 +550,7 @@ public class Rectangle2Calculator {
 //                                let bottomInterlock = words[bottom.wordId][bottom.fromStartPos + interlockWidth]
 //                                print("Bottom word:\(words[bottom.wordId]), interlock:\(bottomInterlock)")
                         
-                                let rightWords = letterIndex.find(words[bottom.id][bottom.start + interlockWidth])
+                                let rightWords = letterIndex.find3(words[bottom.id][bottom.start + interlockWidth])
 
                                 for right in rightWords {
 
@@ -563,9 +562,9 @@ public class Rectangle2Calculator {
                                         //print("right word: \(words[right.wordId])")
                                       
                                         let score = ScoreCalculator.topRight(
-                                                topLeft: words[_top][_topLetterPos],
-                                                bottomLeft: words[bottom.id][bottom.start],
-                                                bottomRight: words[bottom.id][bottom.start + interlockWidth])
+                                                topLeft: words2[_top][_topLetterPos],
+                                                bottomLeft: words2[bottom.id][bottom.start],
+                                                bottomRight: words2[bottom.id][bottom.start + interlockWidth])
 
                                         if score >= scoreMin {
 
@@ -620,7 +619,7 @@ public class Rectangle2Calculator {
     }
     
     
-    public static func BottomRightRectangle(interlockWidth: Int, interlockHeight: Int, letterIndex: LetterIndexModel, words: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [RectangleModel] {
+    public static func BottomRightRectangle(interlockWidth: Int, interlockHeight: Int, letterIndex: LetterIndexModel, words: [[Int]], words2: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [RectangleModel] {
         /*
             T
           Z R
@@ -645,7 +644,7 @@ public class Rectangle2Calculator {
 //                let rightInterlock = words[_right][_rightLetterPos]
 //                print("right word:\(words[_right]), interlock:\(rightInterlock)")
                  
-                let topWords = letterIndex.find(words[_right][_rightLetterPos])
+                let topWords = letterIndex.find3(words[_right][_rightLetterPos])
                 
                 for top in topWords {
 //                    print("top word: \(words[top.wordId])")
@@ -655,7 +654,7 @@ public class Rectangle2Calculator {
 //                        let topInterlock = words[top.wordId][top.fromStartPos - interlockWidth]
 //                        print("top word: \(words[top.wordId]), interlock:\(topInterlock)")
 
-                        let leftWords = letterIndex.find(words[top.id][top.start - interlockWidth])
+                        let leftWords = letterIndex.find3(words[top.id][top.start - interlockWidth])
                         
                         for left in leftWords {
 //                            print("left word: \(words[left.wordId])")
@@ -667,7 +666,7 @@ public class Rectangle2Calculator {
 //                                print("left word:\(words[left.wordId]), interlock:\(leftInterlock)")
 
                             
-                                let bottomWords = letterIndex.find(words[left.id][left.start + interlockHeight])
+                                let bottomWords = letterIndex.find3(words[left.id][left.start + interlockHeight])
                                 
                                 for bottom in bottomWords {
                                     
@@ -678,9 +677,9 @@ public class Rectangle2Calculator {
                                         bottom.id != _right) {
                                     
                                         let score = ScoreCalculator.bottomRight(
-                                            topLeft: words[left.id][left.start],
-                                            topRight: words[top.id][top.start],
-                                            bottomLeft: words[bottom.id][bottom.start])
+                                            topLeft: words2[left.id][left.start],
+                                            topRight: words2[top.id][top.start],
+                                            bottomLeft: words2[bottom.id][bottom.start])
 
                                         if score >= scoreMin {
 
@@ -734,7 +733,7 @@ public class Rectangle2Calculator {
         return result;
     }
     
-    public static func BottomRightSquare(interlockWidth: Int, letterIndex: LetterIndexModel, words: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [RectangleModel] {
+    public static func BottomRightSquare(interlockWidth: Int, letterIndex: LetterIndexModel, words: [[Int]], words2: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [RectangleModel] {
         /*
             T
           Z R
@@ -755,7 +754,7 @@ public class Rectangle2Calculator {
 //                let rightInterlock = words[_right][_rightLetterPos]
 //                print("right word:\(words[_right]), interlock:\(rightInterlock)")
                  
-                let topWords = letterIndex.find(words[_right][_rightLetterPos])
+                let topWords = letterIndex.find3(words[_right][_rightLetterPos])
                 
                 for top in topWords {
 //                    print("top word: \(words[top.wordId])")
@@ -765,7 +764,7 @@ public class Rectangle2Calculator {
 //                        let topInterlock = words[top.wordId][top.fromStartPos - interlockWidth]
 //                        print("top word: \(words[top.wordId]), interlock:\(topInterlock)")
 
-                        let leftWords = letterIndex.find(words[top.id][top.start - interlockWidth])
+                        let leftWords = letterIndex.find3(words[top.id][top.start - interlockWidth])
                         
                         for left in leftWords {
 //                            print("left word: \(words[left.wordId])")
@@ -778,7 +777,7 @@ public class Rectangle2Calculator {
 //                                print("left word:\(words[left.wordId]), interlock:\(leftInterlock)")
 
                             
-                                let bottomWords = letterIndex.find(words[left.id][left.start + interlockWidth])
+                                let bottomWords = letterIndex.find3(words[left.id][left.start + interlockWidth])
                                 
                                 for bottom in bottomWords {
                                     
@@ -789,9 +788,9 @@ public class Rectangle2Calculator {
                                         bottom.id != _right) {
                                     
                                         let score = ScoreCalculator.bottomRight(
-                                            topLeft: words[left.id][left.start],
-                                            topRight: words[top.id][top.start],
-                                            bottomLeft: words[bottom.id][bottom.start])
+                                            topLeft: words2[left.id][left.start],
+                                            topRight: words2[top.id][top.start],
+                                            bottomLeft: words2[bottom.id][bottom.start])
 
                                         if score >= scoreMin {
 
@@ -846,7 +845,7 @@ public class Rectangle2Calculator {
     }
     
     
-    public static func BottomLeftRectangle(interlockWidth: Int, interlockHeight: Int, letterIndex: LetterIndexModel, words: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [RectangleModel] {
+    public static func BottomLeftRectangle(interlockWidth: Int, interlockHeight: Int, letterIndex: LetterIndexModel, words: [[Int]], words2: [String], lengths: [Int], scoreMin: Int, widthMax: Int, heightMax: Int) -> [RectangleModel] {
         /*
             .
             H
@@ -874,7 +873,7 @@ public class Rectangle2Calculator {
         
                 //print("bottom word:\(words[_bottom]), interlock:\(words[_bottom][_bottomLetterPos])")
                 
-                let rightWords = letterIndex.find(words[_bottom][_bottomLetterPos])
+                let rightWords = letterIndex.find3(words[_bottom][_bottomLetterPos])
                 
                 for right in rightWords {
             
@@ -883,7 +882,7 @@ public class Rectangle2Calculator {
             
                         //print("right word:\(words[right.id]), interlock:\(words[right.id][right.start - interlockHeight])")
 
-                        let topWords = letterIndex.find(words[right.id][right.start - interlockHeight])
+                        let topWords = letterIndex.find3(words[right.id][right.start - interlockHeight])
                         
                         for top in topWords {
                             
@@ -893,7 +892,7 @@ public class Rectangle2Calculator {
                                 
                                 //print("top word:\(words[top.id]), interlock:\(words[top.id][top.start - interlockWidth])")
 
-                                let leftWords = letterIndex.find(words[top.id][top.start - interlockWidth])
+                                let leftWords = letterIndex.find3(words[top.id][top.start - interlockWidth])
                                 
                                 for left in leftWords {
                                     
@@ -905,9 +904,9 @@ public class Rectangle2Calculator {
                                         //print("left word:\(words[left.id])")
 
                                         let score = ScoreCalculator.bottomRight(
-                                            topLeft: words[top.id][top.start - interlockWidth],
-                                            topRight: words[top.id][top.start],
-                                            bottomLeft: words[_bottom][_bottomLetterPos])
+                                            topLeft: words2[top.id][top.start - interlockWidth],
+                                            topRight: words2[top.id][top.start],
+                                            bottomLeft: words2[_bottom][_bottomLetterPos])
 
                                         if score >= scoreMin {
                                             
@@ -966,11 +965,14 @@ public class Rectangle2Calculator {
         let lengths = WordCalculator.lengths(words: words)
         
         let letterIndex = LetterIndexModel(words: words)
+        
+        let wordsInt = WordCalculator.WordsToInt(words: words)
             
         async let d3x3 = Square(
             interlockWidth: 2,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -980,7 +982,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 3,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -990,7 +993,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1000,7 +1004,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1009,7 +1014,8 @@ public class Rectangle2Calculator {
         async let d4x4 = Square(
             interlockWidth: 3,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1019,7 +1025,8 @@ public class Rectangle2Calculator {
             interlockWidth: 3,
             interlockHeight: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1029,7 +1036,8 @@ public class Rectangle2Calculator {
             interlockWidth: 3,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1038,7 +1046,8 @@ public class Rectangle2Calculator {
         async let d5x5 = Square(
             interlockWidth: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1048,7 +1057,8 @@ public class Rectangle2Calculator {
             interlockWidth: 4,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1057,7 +1067,8 @@ public class Rectangle2Calculator {
         async let d6x6 = Square(
             interlockWidth: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1066,7 +1077,8 @@ public class Rectangle2Calculator {
         async let o3x3_BottomRight = BottomRightSquare(
             interlockWidth: 2,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1075,7 +1087,8 @@ public class Rectangle2Calculator {
         async let o3x3_TopLeft = TopLeftSquare(
             interlockWidth: 2,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1084,7 +1097,8 @@ public class Rectangle2Calculator {
         async let o3x3_TopRight = TopRightSquare(
             interlockWidth: 2,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1094,7 +1108,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 3,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1104,7 +1119,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 3,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1114,7 +1130,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 3,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1124,7 +1141,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 3,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1134,7 +1152,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1144,7 +1163,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1154,7 +1174,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1164,7 +1185,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1174,7 +1196,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1184,7 +1207,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1194,7 +1218,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1204,7 +1229,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1213,7 +1239,8 @@ public class Rectangle2Calculator {
         async let o4x4_BottomRight = BottomRightSquare(
             interlockWidth: 3,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1222,7 +1249,8 @@ public class Rectangle2Calculator {
         async let o4x4_TopLeft = TopLeftSquare(
             interlockWidth: 3,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1231,7 +1259,8 @@ public class Rectangle2Calculator {
         async let o4x4_TopRight = TopRightSquare(
             interlockWidth: 3,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1241,7 +1270,8 @@ public class Rectangle2Calculator {
             interlockWidth: 3,
             interlockHeight: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1251,7 +1281,8 @@ public class Rectangle2Calculator {
             interlockWidth: 3,
             interlockHeight: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1261,7 +1292,8 @@ public class Rectangle2Calculator {
             interlockWidth: 3,
             interlockHeight: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1271,7 +1303,8 @@ public class Rectangle2Calculator {
             interlockWidth: 3,
             interlockHeight: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1281,7 +1314,8 @@ public class Rectangle2Calculator {
             interlockWidth: 3,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1291,7 +1325,8 @@ public class Rectangle2Calculator {
             interlockWidth: 3,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1301,7 +1336,8 @@ public class Rectangle2Calculator {
             interlockWidth: 3,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1311,7 +1347,8 @@ public class Rectangle2Calculator {
             interlockWidth: 3,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1320,7 +1357,8 @@ public class Rectangle2Calculator {
         async let o5x5_BottomRight = BottomRightSquare(
             interlockWidth: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1329,7 +1367,8 @@ public class Rectangle2Calculator {
         async let o5x5_TopLeft = TopLeftSquare(
             interlockWidth: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1338,7 +1377,8 @@ public class Rectangle2Calculator {
         async let o5x5_TopRight = TopRightSquare(
             interlockWidth: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1348,7 +1388,8 @@ public class Rectangle2Calculator {
             interlockWidth: 4,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1358,7 +1399,8 @@ public class Rectangle2Calculator {
             interlockWidth: 4,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1368,7 +1410,8 @@ public class Rectangle2Calculator {
             interlockWidth: 4,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1378,7 +1421,8 @@ public class Rectangle2Calculator {
             interlockWidth: 4,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1387,7 +1431,8 @@ public class Rectangle2Calculator {
         async let o6x6_BottomRight = BottomRightSquare(
             interlockWidth: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1396,7 +1441,8 @@ public class Rectangle2Calculator {
         async let o6x6_TopLeft = TopLeftSquare(
             interlockWidth: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1405,7 +1451,8 @@ public class Rectangle2Calculator {
         async let o6x6_TopRight = TopRightSquare(
             interlockWidth: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1450,10 +1497,13 @@ public class Rectangle2Calculator {
             
         let letterIndex = LetterIndexModel(words: words)
         
+        let wordsInt = WordCalculator.WordsToInt(words: words)
+        
         let d3x3 = Square(
             interlockWidth: 2,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1465,7 +1515,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 3,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1477,7 +1528,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1489,7 +1541,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1500,7 +1553,8 @@ public class Rectangle2Calculator {
         let d4x4 = Square(
             interlockWidth: 3,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1512,7 +1566,8 @@ public class Rectangle2Calculator {
             interlockWidth: 3,
             interlockHeight: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1524,7 +1579,8 @@ public class Rectangle2Calculator {
             interlockWidth: 3,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1535,7 +1591,8 @@ public class Rectangle2Calculator {
         let d5x5 = Square(
             interlockWidth: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1547,7 +1604,8 @@ public class Rectangle2Calculator {
             interlockWidth: 4,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1558,7 +1616,8 @@ public class Rectangle2Calculator {
         let d6x6 = Square(
             interlockWidth: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1569,7 +1628,8 @@ public class Rectangle2Calculator {
         let o3x3_BottomRight = BottomRightSquare(
             interlockWidth: 2,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1580,7 +1640,8 @@ public class Rectangle2Calculator {
         let o3x3_TopLeft = TopLeftSquare(
             interlockWidth: 2,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1591,7 +1652,8 @@ public class Rectangle2Calculator {
         let o3x3_TopRight = TopRightSquare(
             interlockWidth: 2,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1603,7 +1665,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 3,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1615,7 +1678,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 3,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1627,7 +1691,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 3,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1639,7 +1704,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 3,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1651,7 +1717,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1663,7 +1730,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1675,7 +1743,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1687,7 +1756,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1699,7 +1769,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1711,7 +1782,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1723,7 +1795,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1735,7 +1808,8 @@ public class Rectangle2Calculator {
             interlockWidth: 2,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1746,7 +1820,8 @@ public class Rectangle2Calculator {
         let o4x4_BottomRight = BottomRightSquare(
             interlockWidth: 3,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1757,7 +1832,8 @@ public class Rectangle2Calculator {
         let o4x4_TopLeft = TopLeftSquare(
             interlockWidth: 3,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1768,7 +1844,8 @@ public class Rectangle2Calculator {
         let o4x4_TopRight = TopRightSquare(
             interlockWidth: 3,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1780,7 +1857,8 @@ public class Rectangle2Calculator {
             interlockWidth: 3,
             interlockHeight: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1792,7 +1870,8 @@ public class Rectangle2Calculator {
             interlockWidth: 3,
             interlockHeight: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1804,7 +1883,8 @@ public class Rectangle2Calculator {
             interlockWidth: 3,
             interlockHeight: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1816,7 +1896,8 @@ public class Rectangle2Calculator {
             interlockWidth: 3,
             interlockHeight: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1828,7 +1909,8 @@ public class Rectangle2Calculator {
             interlockWidth: 3,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1840,7 +1922,8 @@ public class Rectangle2Calculator {
             interlockWidth: 3,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1852,7 +1935,8 @@ public class Rectangle2Calculator {
             interlockWidth: 3,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1864,7 +1948,8 @@ public class Rectangle2Calculator {
             interlockWidth: 3,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1875,7 +1960,8 @@ public class Rectangle2Calculator {
         let o5x5_BottomRight = BottomRightSquare(
             interlockWidth: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1886,7 +1972,8 @@ public class Rectangle2Calculator {
         let o5x5_TopLeft = TopLeftSquare(
             interlockWidth: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1897,7 +1984,8 @@ public class Rectangle2Calculator {
         let o5x5_TopRight = TopRightSquare(
             interlockWidth: 4,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1909,7 +1997,8 @@ public class Rectangle2Calculator {
             interlockWidth: 4,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1921,7 +2010,8 @@ public class Rectangle2Calculator {
             interlockWidth: 4,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1933,7 +2023,8 @@ public class Rectangle2Calculator {
             interlockWidth: 4,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1945,7 +2036,8 @@ public class Rectangle2Calculator {
             interlockWidth: 4,
             interlockHeight: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1956,7 +2048,8 @@ public class Rectangle2Calculator {
         let o6x6_BottomRight = BottomRightSquare(
             interlockWidth: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1967,7 +2060,8 @@ public class Rectangle2Calculator {
         let o6x6_TopLeft = TopLeftSquare(
             interlockWidth: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1978,7 +2072,8 @@ public class Rectangle2Calculator {
         let o6x6_TopRight = TopRightSquare(
             interlockWidth: 5,
             letterIndex: letterIndex,
-            words: words,
+            words: wordsInt,
+            words2: words,
             lengths: lengths,
             scoreMin: scoreMin,
             widthMax: widthMax,
