@@ -242,11 +242,11 @@ public class GridCalculator {
                         word += String(current)
                     }
                 } else {
-                    if previous == " " && ShapeCalculator.IsAlphabet(current) && ShapeCalculator.IsAlphabet(future) {
+                    if previous == " " && ShapeToTextConverter.IsAlphabet(current) && ShapeToTextConverter.IsAlphabet(future) {
                         isWord = true
                         word = String(current)
                     }
-                    else if i == 1 && ShapeCalculator.IsAlphabet(previous) && ShapeCalculator.IsAlphabet(current) && ShapeCalculator.IsAlphabet(future) {
+                    else if i == 1 && ShapeToTextConverter.IsAlphabet(previous) && ShapeToTextConverter.IsAlphabet(current) && ShapeToTextConverter.IsAlphabet(future) {
                         isWord = true
                         word = String(previous) + String(current)
                     }

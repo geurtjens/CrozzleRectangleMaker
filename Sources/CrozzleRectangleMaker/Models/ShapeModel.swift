@@ -50,6 +50,20 @@ public struct ShapeModel {
         }
         return result
     }
+    
+    public func getGridSize() -> Int {
+        let widthEOL = Int(self.width) + 1
+        let height = Int(self.height)
+        
+        let gridSize = widthEOL * height
+        return gridSize
+    }
+    
+    public func getGridArray() -> [Int] {
+        let SPACE = 32
+        var grid:[Int] = Array(repeating: 32, count: getGridSize())
+        return grid
+    }
     public static func getWordSequence(placements: [PlacementModel]) -> String {
         var wordSequence = ""
         for placement in placements {
@@ -169,7 +183,7 @@ public struct ShapeModel {
             shape = ShapeCalculator.Flip(shape: shape)
         }
         
-        let (_,text) = ShapeCalculator.getScoreAndText(shape: shape, words: words)
+        let (_,text) = ShapeToTextConverter.getScoreAndText(shape: shape, words: words)
         
         let grid = text.split(separator:"\n")
         

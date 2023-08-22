@@ -404,7 +404,7 @@ public class ExecuteMergeCalculator {
                     if (potentialShape.width <= widthMax && potentialShape.height <= heightMax) ||
                         (potentialShape.width <= heightMax && potentialShape.height <= widthMax) {
                         
-                        let (validShape,_) = ShapeCalculator.ToValidShape(shape: potentialShape, words: words)
+                        let (validShape,_) = ShapeToTextConverter.ToValidShape(shape: potentialShape, words: words)
                         
                         if let validShape = validShape {
                             // is shape is not nil so it must be a valid shape

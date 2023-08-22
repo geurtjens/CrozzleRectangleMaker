@@ -31,6 +31,24 @@ public class ScoreCalculator {
         }
     }
     
+    public static func score(forInt letter: Int) -> Int {
+        if letter >= 65 && letter <= 70 {
+            return 2
+        } else if letter >= 71 && letter <= 76 {
+            return 4
+        } else if letter >= 77 && letter <= 82 {
+            return 8
+        } else if letter >= 83 && letter <= 88 {
+            return 16
+        } else if letter == 89 {
+            return 32
+        } else if letter == 90 {
+            return 64
+        } else {
+            return 0
+        }
+    }
+    
     /// convenience method for calculating the score of the `rectangle` shape
     public static func rectangle(topLeft: Character, topRight: Character, bottomLeft: Character, bottomRight: Character ) -> Int {
         let score = score(forLetter:topLeft) + score(forLetter:topRight) + score(forLetter:bottomLeft) + score(forLetter:bottomRight) + 40

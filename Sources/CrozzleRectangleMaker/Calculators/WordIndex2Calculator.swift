@@ -187,7 +187,7 @@ public class WordIndex2Calculator {
         
         let otherShape = ShapeModel(score: 10, width: placements.width(), height: placements.height(), placements: placements)
         print(otherShape.ToString(words: words))
-        let (validShape,_) = ShapeCalculator.ToValidShape(shape: potentialShape, words: words)
+        let (validShape,_) = ShapeToTextConverter.ToValidShape(shape: potentialShape, words: words)
         
         if let validShape = validShape {
             // is shape is not nil so it must be a valid shape

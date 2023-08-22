@@ -919,6 +919,150 @@ final class Cluster2CalculatorTests: XCTestCase {
         //compareShapes(oldResults: oldResults, newResults: newResults, words: words)
     }
     
+    func test_GetBigShape() throws {
+        let words = WordData.words_8612()
+        
+        let letterIndex = LetterIndexModel(words: words)
+        
+        let lengths = WordCalculator.lengths(words: words)
+        
+        let end = WordCalculator.reverse(words: words)
+        
+        let newResults = Cluster2Calculator.C3x3(
+            letterIndex: letterIndex,
+            words:words,
+            end:end,
+            len: lengths,
+            scoreMin:scoreMin,
+            widthMax:widthMax,
+            heightMax:heightMax)
+        
+        let shape = newResults[0].ToShape()
+        
+        print(shape.ToCode(words: words))
+        
+    }
+    
+//    func test_OtherStuff() {
+//
+//        let words = ["WHITE","CREAM","REINDEER","SPICE","TREE","GOODCHEER"]
+//
+//        let grid = [
+//            "        .   ",
+//            "        G   ",
+//            "        O   ",
+//            "        O   ",
+//            "      . D   ",
+//            "      S C   ",
+//            "      P.H   ",
+//            "   .WHITE.  ",
+//            "     .CREAM.",
+//            ".REINDEER.  ",
+//            "      .E.   ",
+//            "       .    "]
+//        let shape = ShapeCalculator.toShape(fromGrid: grid, words: words)!
+//
+//
+//
+//
+//        let wordsInt = WordCalculator.WordsToInt(words: words)
+//        for i in 0..<100 {
+//            let (score1, shapeWithNumbers) = ShapeCalculator.getScoreAndText2(shape: shape, words2: wordsInt)
+//            //let (score2, shapeWithText) = ShapeCalculator.getScoreAndText(shape: shape, words: words)
+//            //XCTAssertEqual(score1,score2)
+//            XCTAssertEqual(0,score1)
+//        }
+//
+//    }
+    func test_PERF_GetScoreAndText() {
+        measure {
+            let words = ["WHITE","CREAM","REINDEER","SPICE","TREE","GOODCHEER"]
+            
+            let grid = [
+                "        .   ",
+                "        G   ",
+                "        O   ",
+                "        O   ",
+                "      . D   ",
+                "      S C   ",
+                "      P.H   ",
+                "   .WHITE.  ",
+                "     .CREAM.",
+                ".REINDEER.  ",
+                "      .E.   ",
+                "       .    "]
+            let shape = ShapeCalculator.toShape(fromGrid: grid, words: words)!
+            
+            //let wordsInt = WordCalculator.WordsToInt(words: words)
+            for _ in 0..<30_000 {
+                //let (score1, shapeWithNumbers) = ShapeCalculator.getScoreAndText2(shape: shape, words2: wordsInt)
+                let (score2, _) = ShapeToTextConverter.getScoreAndText(shape: shape, words: words)
+                XCTAssertEqual(106,score2)
+            }
+            /// Average time is `0.859` seconds per 30,000
+        }
+    }
+    func test_PERF_GetScoreAndText2() {
+        measure {
+            let words = ["WHITE","CREAM","REINDEER","SPICE","TREE","GOODCHEER"]
+            
+            let grid = [
+                "        .   ",
+                "        G   ",
+                "        O   ",
+                "        O   ",
+                "      . D   ",
+                "      S C   ",
+                "      P.H   ",
+                "   .WHITE.  ",
+                "     .CREAM.",
+                ".REINDEER.  ",
+                "      .E.   ",
+                "       .    "]
+            let shape = ShapeCalculator.toShape(fromGrid: grid, words: words)!
+
+            let wordsInt = WordCalculator.WordsToInt(words: words)
+            for _ in 0..<30_000 {
+                let (score1, _) = ShapeCalculator.getScoreAndText2(shape: shape, words2: wordsInt)
+                //let (score2, shapeWithText) = ShapeCalculator.getScoreAndText(shape: shape, words: words)
+                XCTAssertEqual(score1,106)
+            }
+            /// average 0.641 per 30,000 which is 1.34 times faster.  And this is a fundamental operation so should be big impact.
+        }
+    }
+    
+    func test_PERF_GetScoreAndText3() {
+        measure {
+            let words = ["WHITE","CREAM","REINDEER","SPICE","TREE","GOODCHEER"]
+            
+            let grid = [
+                "        .   ",
+                "        G   ",
+                "        O   ",
+                "        O   ",
+                "      . D   ",
+                "      S C   ",
+                "      P.H   ",
+                "   .WHITE.  ",
+                "     .CREAM.",
+                ".REINDEER.  ",
+                "      .E.   ",
+                "       .    "]
+            let shape = ShapeCalculator.toShape(fromGrid: grid, words: words)!
+
+            var gridText = shape.getGridArray()
+            
+            let wordsInt = WordCalculator.WordsToInt(words: words)
+            for _ in 0..<30_000 {
+                /// This method is much slower
+                let (score1, _) = ShapeCalculator.getScoreAndText3(shape: shape, words2: wordsInt, grid: &gridText)
+                //let (score2, shapeWithText) = ShapeCalculator.getScoreAndText(shape: shape, words: words)
+                XCTAssertEqual(score1,106)
+            }
+            /// average 0.641 per 30,000 which is 1.34 times faster.  And this is a fundamental operation so should be big impact.
+        }
+    }
+    
     func test_PERF_C2x2_RL_UD_OLD() throws {
         measure {
             let words = WordData.words_8612()

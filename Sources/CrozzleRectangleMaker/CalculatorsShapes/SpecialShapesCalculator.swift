@@ -31,7 +31,7 @@ public class SpecialShapesCalculator {
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
-        let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
+        let (shapeWithScore, _) = ShapeToTextConverter.ToValidShape(shape: shape, words: words)
         return [shapeWithScore!]
     }
     
@@ -57,7 +57,7 @@ public class SpecialShapesCalculator {
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
-        let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
+        let (shapeWithScore, _) = ShapeToTextConverter.ToValidShape(shape: shape, words: words)
         return [shapeWithScore!]
     }
     
@@ -83,7 +83,7 @@ public class SpecialShapesCalculator {
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
-        let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
+        let (shapeWithScore, _) = ShapeToTextConverter.ToValidShape(shape: shape, words: words)
         return [shapeWithScore!]
     }
     
@@ -110,7 +110,7 @@ public class SpecialShapesCalculator {
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
-        let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
+        let (shapeWithScore, _) = ShapeToTextConverter.ToValidShape(shape: shape, words: words)
         return [shapeWithScore!]
     }
     
@@ -136,7 +136,7 @@ public class SpecialShapesCalculator {
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
-        let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
+        let (shapeWithScore, _) = ShapeToTextConverter.ToValidShape(shape: shape, words: words)
         return [shapeWithScore!]
     }
     
@@ -164,7 +164,7 @@ public class SpecialShapesCalculator {
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
-        let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
+        let (shapeWithScore, _) = ShapeToTextConverter.ToValidShape(shape: shape, words: words)
         return [shapeWithScore!]
     }
     
@@ -191,7 +191,7 @@ public class SpecialShapesCalculator {
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
-        let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
+        let (shapeWithScore, _) = ShapeToTextConverter.ToValidShape(shape: shape, words: words)
         return [shapeWithScore!]
     }
     
@@ -218,7 +218,7 @@ public class SpecialShapesCalculator {
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
-        let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
+        let (shapeWithScore, _) = ShapeToTextConverter.ToValidShape(shape: shape, words: words)
         return [shapeWithScore!]
     }
     
@@ -244,7 +244,7 @@ public class SpecialShapesCalculator {
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
-        let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
+        let (shapeWithScore, _) = ShapeToTextConverter.ToValidShape(shape: shape, words: words)
         return [shapeWithScore!]
     }
     
@@ -270,7 +270,7 @@ public class SpecialShapesCalculator {
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
-        let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
+        let (shapeWithScore, _) = ShapeToTextConverter.ToValidShape(shape: shape, words: words)
         return [shapeWithScore!]
     }
     
@@ -298,7 +298,7 @@ public class SpecialShapesCalculator {
         
         let shape = ShapeModel(score: 0, width: placements.width(), height: placements.height(), placements: placements)
         //print(shape.ToString(words: words))
-        let (shapeWithScore, _) = ShapeCalculator.ToValidShape(shape: shape, words: words)
+        let (shapeWithScore, _) = ShapeToTextConverter.ToValidShape(shape: shape, words: words)
         return [shapeWithScore!]
     }
 }

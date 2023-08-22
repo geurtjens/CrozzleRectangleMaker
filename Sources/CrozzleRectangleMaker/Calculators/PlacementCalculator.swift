@@ -299,12 +299,12 @@ public class PlacementCalculator {
                 let current = line[x]
 
                 if word == "" {
-                    if line[x - 1] == "." && ShapeCalculator.IsAlphabet(current) && x != width - 1 && ShapeCalculator.IsAlphabet(line[x + 1]) {
+                    if line[x - 1] == "." && ShapeToTextConverter.IsAlphabet(current) && x != width - 1 && ShapeToTextConverter.IsAlphabet(line[x + 1]) {
                         word += String(current)
                         xPos = x - 1
                     }
                 } else {
-                    if ShapeCalculator.IsAlphabet(current) {
+                    if ShapeToTextConverter.IsAlphabet(current) {
                         word += String(current)
                     } else if current == "." {
                         // We have finished the word
@@ -359,12 +359,12 @@ public class PlacementCalculator {
                 let current = grid[y][x]
 
                 if word == "" {
-                    if grid[y - 1][x] == "." && ShapeCalculator.IsAlphabet(current) && y != height - 1 && ShapeCalculator.IsAlphabet(grid[y + 1][x]) {
+                    if grid[y - 1][x] == "." && ShapeToTextConverter.IsAlphabet(current) && y != height - 1 && ShapeToTextConverter.IsAlphabet(grid[y + 1][x]) {
                         word += String(current)
                         yPos = y - 1
                     }
                 } else {
-                    if ShapeCalculator.IsAlphabet(current) {
+                    if ShapeToTextConverter.IsAlphabet(current) {
                         word += String(current)
                     } else if current == "." {
                         // We have finished the word
