@@ -8,6 +8,19 @@
 import Foundation
 class ShapeToText2Converter {
     
+    public static func ToString(grid:[Int]) -> String {
+        var result = ""
+        for i in 0..<grid.count {
+            if grid[i] == 10 {
+                result += "\n"
+            } else {
+                let letter: Character = Character(UnicodeScalar(grid[i])!)
+                result += String(letter)
+            }
+        }
+        return result
+    }
+    
     /// convert the shape to a valid shape or return null.  We might preprocess a shape but not yet know its valid so we use this to make sure
     public static func ToValidShape(shape: ShapeModel, words:[[Int]]) -> ShapeModel? {
         let (score, grid) = getScoreAndText(shape: shape, words: words)
@@ -38,7 +51,7 @@ class ShapeToText2Converter {
     public static func getScoreAndText(shape: ShapeModel, words:[[Int]]) -> (UInt16, [Int]) {
         
         let SPACE: Int = 32
-        let EOL: Int = 13
+        let LF: Int = 10
         let DOT: Int = 46
         let BLOCK: Int = 35
         
@@ -54,7 +67,7 @@ class ShapeToText2Converter {
         
         // Place all end of line characters into the space
         for i in 0..<height {
-            grid[i * widthEOL] = EOL // Means end of line
+            grid[i * widthEOL] = LF // Means end of line
         }
         
         for placement in shape.placements {
@@ -94,6 +107,9 @@ class ShapeToText2Converter {
         //} else {
             score += shape.placements.count * 10
         //}
+        
+        grid.remove(at: 0)
+        
         return (UInt16(score), grid)
     }
     
@@ -165,8 +181,12 @@ class ShapeToText2Converter {
     
     
     public static func V( _ x: Int, _ y: Int, _ grid:[Int], _ widthEOL: Int) -> Int {
-        
-        let gridPos = x + (y * widthEOL + 1)
+        if y == 0 {
+            return grid[x]
+        } else {
+            
+        }
+        let gridPos = x + (y * widthEOL)
         return grid[gridPos]
     }
     

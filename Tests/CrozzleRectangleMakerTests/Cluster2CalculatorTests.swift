@@ -1031,7 +1031,7 @@ final class Cluster2CalculatorTests: XCTestCase {
         }
     }
     
-    func test_PERF_GetScoreAndText3() {
+    func test_PERF_ShapeToText2Converter_ToValidShape() {
         measure {
             let words = ["WHITE","CREAM","REINDEER","SPICE","TREE","GOODCHEER"]
             
@@ -1062,6 +1062,81 @@ final class Cluster2CalculatorTests: XCTestCase {
             }
             /// average 0.760 per 10,000 whereas the old way was 1.360 which is 1.8x faster
         }
+    }
+    
+    func test_ShapeToText2Converter_ToValidShape() {
+
+        let DOT = 46
+        let G = 71
+        
+            let words = ["WHITE","CREAM","REINDEER","SPICE","TREE","GOODCHEER"]
+            
+            let input = [
+                "        .   ",
+                "        G   ",
+                "        O   ",
+                "        O   ",
+                "      . D   ",
+                "      S C   ",
+                "      P.H   ",
+                "   .WHITE.  ",
+                "     .CREAM.",
+                ".REINDEER.  ",
+                "      .E.   ",
+                "       .    "]
+        
+        let wordsInt = WordCalculator.WordsToInt(words: words)
+        let shape = ShapeCalculator.toShape(fromGrid: input, words: words)!
+        print(shape.ToText(words: words))
+        XCTAssertEqual(12, shape.width)
+        XCTAssertEqual(12, shape.height)
+        
+        let (score, grid) = ShapeToText2Converter.getScoreAndText(shape: shape, words: wordsInt)
+        XCTAssertEqual(DOT, grid[8])
+        XCTAssertEqual(71, grid[21])
+        
+        let text2 = ShapeToText2Converter.ToString(grid: grid)
+        
+        print(text2)
+            
+        XCTAssertEqual(106, score)
+        // Its a 12 x 12 with 11 end of lines
+        let expectedSize = 12 * 12 + 11
+        XCTAssertEqual(expectedSize, grid.count)
+
+        //let textIsVerified = ShapeToText2Converter.VerifyGrid(grid: grid, width: Int(shape.width), height: Int(shape.height))
+        
+        
+        
+        var text3 = ""
+        let widthEOL = shape.width + 1
+        
+        let value = ShapeToText2Converter.V(Int(0), Int(1), grid, Int(widthEOL))
+        
+        
+        for y in 0..<shape.height {
+            for x in 0..<shape.width {
+                let value = ShapeToText2Converter.V(Int(x), Int(y), grid, Int(widthEOL))
+                
+                    let letter = Character(UnicodeScalar(value)!)
+                    text3 += String(letter)
+                
+               
+            }
+            text3 += "\n"
+        }
+        print(text3)
+        
+            
+        //XCTAssertTrue(textIsVerified)
+                /// This method is much slower
+                //let newShape = ShapeToText2Converter.ToValidShape(shape: shape, words: wordsInt)!
+                //getScoreAndText3(shape: shape, words2: wordsInt, grid: &gridText)
+                //let (score2, shapeWithText) = ShapeCalculator.getScoreAndText(shape: shape, words: words)
+                //XCTAssertEqual(newShape.score,106)
+            
+            /// average 0.760 per 10,000 whereas the old way was 1.360 which is 1.8x faster
+
     }
     
     func test_PERF_C2x2_RL_UD_OLD() throws {
