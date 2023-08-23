@@ -1022,12 +1022,12 @@ final class Cluster2CalculatorTests: XCTestCase {
             let shape = ShapeCalculator.toShape(fromGrid: grid, words: words)!
 
             let wordsInt = WordCalculator.WordsToInt(words: words)
-            for _ in 0..<30_000 {
-                let (score1, _) = ShapeCalculator.getScoreAndText2(shape: shape, words2: wordsInt)
+            for _ in 0..<10_000 {
+                let (newShape, _) = ShapeToTextConverter.ToValidShape(shape: shape, words: words)
                 //let (score2, shapeWithText) = ShapeCalculator.getScoreAndText(shape: shape, words: words)
-                XCTAssertEqual(score1,106)
+                XCTAssertEqual(newShape!.score,106)
             }
-            /// average 0.641 per 30,000 which is 1.34 times faster.  And this is a fundamental operation so should be big impact.
+            /// average 1.360 seconds to process 10_000
         }
     }
     
@@ -1053,13 +1053,14 @@ final class Cluster2CalculatorTests: XCTestCase {
             var gridText = shape.getGridArray()
             
             let wordsInt = WordCalculator.WordsToInt(words: words)
-            for _ in 0..<30_000 {
+            for _ in 0..<10_000 {
                 /// This method is much slower
-                let (score1, _) = ShapeCalculator.getScoreAndText3(shape: shape, words2: wordsInt, grid: &gridText)
+                let newShape = ShapeToText2Converter.ToValidShape(shape: shape, words: wordsInt)!
+                //getScoreAndText3(shape: shape, words2: wordsInt, grid: &gridText)
                 //let (score2, shapeWithText) = ShapeCalculator.getScoreAndText(shape: shape, words: words)
-                XCTAssertEqual(score1,106)
+                XCTAssertEqual(newShape.score,106)
             }
-            /// average 0.641 per 30,000 which is 1.34 times faster.  And this is a fundamental operation so should be big impact.
+            /// average 0.760 per 10,000 whereas the old way was 1.360 which is 1.8x faster
         }
     }
     

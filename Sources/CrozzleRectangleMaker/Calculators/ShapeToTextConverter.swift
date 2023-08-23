@@ -110,6 +110,8 @@ public class ShapeToTextConverter {
     }
     
     
+    
+    
     public static func VerifyText(text: String) -> Bool {
 
         if text == "" {
@@ -179,6 +181,10 @@ public class ShapeToTextConverter {
         } else {
             return false
         }
+    }
+    
+    public static func IsAlpha(_ letter: Int) -> Bool {
+        return (letter >= 65 && letter <= 90)
     }
     
 //    public static func VerifyText(textInt: [Int]) -> Bool {

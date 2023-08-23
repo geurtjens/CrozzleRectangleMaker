@@ -383,6 +383,9 @@ public class ExecuteMergeCalculator {
     
     public static func GetShapesFromInstructions(instructions: [MergeInstructionModel], sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, words: [String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         var shapeList: [ShapeModel] = []
+        
+        let words2 = WordCalculator.WordsToInt(words: words)
+        
         for instruction in instructions {
             
             let (isValidSize, calcWidth, calcHeight) = MergeSizeValidation.execute(instruction: instruction, sourceShapes: sourceShapes, searchShapes: searchShapes,  widthMax: widthMax, heightMax: heightMax) //== true {
@@ -404,7 +407,7 @@ public class ExecuteMergeCalculator {
                     if (potentialShape.width <= widthMax && potentialShape.height <= heightMax) ||
                         (potentialShape.width <= heightMax && potentialShape.height <= widthMax) {
                         
-                        let (validShape,_) = ShapeToTextConverter.ToValidShape(shape: potentialShape, words: words)
+                        let validShape = ShapeToText2Converter.ToValidShape(shape: potentialShape, words: words2)
                         
                         if let validShape = validShape {
                             // is shape is not nil so it must be a valid shape

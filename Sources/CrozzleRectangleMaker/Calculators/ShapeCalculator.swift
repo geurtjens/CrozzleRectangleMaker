@@ -298,67 +298,7 @@ public class ShapeCalculator {
     
     
     
-    public static func getScoreAndText2(shape: ShapeModel, words2:[[Int]]) -> (UInt16, [Int]) {
-        
-        let SPACE: Int = 32
-        let EOL: Int = 13
-        let DOT: Int = 46
-        let BLOCK: Int = 35
-        
-        var score = 0
-        
-        let widthEOL = Int(shape.width) + 1
-        let height = Int(shape.height)
-        
-        let gridSize = widthEOL * height
-        
-        var grid:[Int] = Array(repeating: SPACE, count: Int(gridSize))
-        
-        
-        // Place all end of line characters into the space
-        for i in 0..<height {
-            grid[i * widthEOL] = EOL // Means end of line
-        }
-        
-        for placement in shape.placements {
-            
-            // the word must include the blocking characters at either end of the shape
-            let word = [DOT] + words2[Int(placement.w)] + [DOT]
-            
-            var gridPos = 0
-
-            for i in 0..<word.count {
-                let letter = word[i]
-                
-                if placement.z {
-                    gridPos = Int(placement.x) + i + (Int(placement.y) * widthEOL + 1)
-                } else {
-                    gridPos = Int(placement.x) + 1 + (Int(placement.y) + i) * widthEOL
-                }
-                
-                if grid[gridPos] != SPACE && grid[gridPos] != letter {
-                    grid[gridPos] = BLOCK
-                    return (UInt16(0),[])
-                } else if grid[gridPos] == SPACE {
-                    grid[gridPos] = letter
-                } else if grid[gridPos] == letter {
-                    score += ScoreCalculator.score(forInt: letter)
-                }
-            }
-        }
-        //let gridString = String(grid)
-        
-        // Remove the first character as it is a \n
-        //let range = gridString.index(after: gridString.startIndex)..<gridString.endIndex
-        //let result = String(gridString[range])
-        
-        //if result.contains("#") {
-        //    score = 0
-        //} else {
-            score += shape.placements.count * 10
-        //}
-        return (UInt16(score), grid)
-    }
+    
     public static func getScoreAndText3(shape: ShapeModel, words2:[[Int]], grid: inout [Int]) -> (UInt16, [Int]) {
         
         let SPACE: Int = 32
