@@ -105,59 +105,59 @@ final class ShapeCalculatorTests: XCTestCase {
                          ".HOLLY.U    \n" +
                          " . S .STAR. \n" +
                          "   .   .    "
-            XCTAssertTrue(ShapeCalculator.VerifyText(text: text))
+            XCTAssertTrue(ShapeToTextConverter.VerifyText(text: text))
         }
     }
     
-    func test_VerifyTextSpeed2() {
-        measure {
-            
-             
-            let text =   "    . .   . \n" +
-                         ".SNOW.TOAST.\n" +
-                         "    H O . R \n" +
-                         ".FAMILY.T E \n" +
-                         "    T.SAUCE.\n" +
-                         "    E . R . \n" +
-                         " .  .PORK.I \n" +
-                         ".NUTS. .E.N \n" +
-                         " A  I .HYMN.\n" +
-                         ".ZION. A.E. \n" +
-                         " A .G.AZURE.\n" +
-                         " R B.. E R  \n" +
-                         ".EVE.JELLY. \n" +
-                         " T L O N .  \n" +
-                         ".HOLLY.U    \n" +
-                         " . S .STAR. \n" +
-                         "   .   .    "
-            XCTAssertTrue(ShapeCalculator.VerifyText2(text: text))
-        }
-    }
+//    func test_VerifyTextSpeed2() {
+//        measure {
+//            
+//             
+//            let text =   "    . .   . \n" +
+//                         ".SNOW.TOAST.\n" +
+//                         "    H O . R \n" +
+//                         ".FAMILY.T E \n" +
+//                         "    T.SAUCE.\n" +
+//                         "    E . R . \n" +
+//                         " .  .PORK.I \n" +
+//                         ".NUTS. .E.N \n" +
+//                         " A  I .HYMN.\n" +
+//                         ".ZION. A.E. \n" +
+//                         " A .G.AZURE.\n" +
+//                         " R B.. E R  \n" +
+//                         ".EVE.JELLY. \n" +
+//                         " T L O N .  \n" +
+//                         ".HOLLY.U    \n" +
+//                         " . S .STAR. \n" +
+//                         "   .   .    "
+//            XCTAssertTrue(ShapeToTextConverter.VerifyText2(text: text))
+//        }
+//    }
     
-    func test_VerifyTextSpeed3() {
-        measure {
-            
-             
-            let text =   "    . .   . \n" +
-                         ".SNOW.TOAST.\n" +
-                         "    H O . R \n" +
-                         ".FAMILY.T E \n" +
-                         "    T.SAUCE.\n" +
-                         "    E . R . \n" +
-                         " .  .PORK.I \n" +
-                         ".NUTS. .E.N \n" +
-                         " A  I .HYMN.\n" +
-                         ".ZION. A.E. \n" +
-                         " A .G.AZURE.\n" +
-                         " R B.. E R  \n" +
-                         ".EVE.JELLY. \n" +
-                         " T L O N .  \n" +
-                         ".HOLLY.U    \n" +
-                         " . S .STAR. \n" +
-                         "   .   .    "
-            XCTAssertTrue(ShapeCalculator.VerifyText3(text: text))
-        }
-    }
+//    func test_VerifyTextSpeed3() {
+//        measure {
+//
+//
+//            let text =   "    . .   . \n" +
+//                         ".SNOW.TOAST.\n" +
+//                         "    H O . R \n" +
+//                         ".FAMILY.T E \n" +
+//                         "    T.SAUCE.\n" +
+//                         "    E . R . \n" +
+//                         " .  .PORK.I \n" +
+//                         ".NUTS. .E.N \n" +
+//                         " A  I .HYMN.\n" +
+//                         ".ZION. A.E. \n" +
+//                         " A .G.AZURE.\n" +
+//                         " R B.. E R  \n" +
+//                         ".EVE.JELLY. \n" +
+//                         " T L O N .  \n" +
+//                         ".HOLLY.U    \n" +
+//                         " . S .STAR. \n" +
+//                         "   .   .    "
+//            XCTAssertTrue(ShapeToTextConverter.VerifyText3(text: text))
+//        }
+//    }
     func test_VerifyTextSpeed4() {
         measure {
             
@@ -179,7 +179,7 @@ final class ShapeCalculatorTests: XCTestCase {
                          ".HOLLY.U    \n" +
                          " . S .STAR. \n" +
                          "   .   .    "
-            XCTAssertTrue(ShapeCalculator.VerifyText4(text: text))
+            XCTAssertTrue(ShapeToTextConverter.VerifyText4(text: text))
         }
     }
     
@@ -204,7 +204,7 @@ final class ShapeCalculatorTests: XCTestCase {
                          ".HOLLY.U    \n" +
                          " . S .STAR. \n" +
                          "   .   .    "
-            XCTAssertTrue(ShapeCalculator.VerifyText5(text: text))
+            XCTAssertTrue(ShapeToTextConverter.VerifyText5(text: text))
         }
     }
     
@@ -214,7 +214,7 @@ final class ShapeCalculatorTests: XCTestCase {
         for game in gameList.games {
             let text = game.winningText()
             
-            XCTAssertTrue(ShapeCalculator.VerifyText(text: text))
+            XCTAssertTrue(ShapeToTextConverter.VerifyText(text: text))
         }
     }
     
@@ -257,7 +257,7 @@ final class ShapeCalculatorTests: XCTestCase {
         let input = "   ..     \n.STAY.    \n  .HAWSER.\n .BOW.    \n.GUY.     \n  O.      \n  Y       \n  .       "
         print(input)
         
-        let isVerified = ShapeCalculator.VerifyText(text: input)
+        let isVerified = ShapeToTextConverter.VerifyText(text: input)
         XCTAssertTrue(isVerified)
     }
 }

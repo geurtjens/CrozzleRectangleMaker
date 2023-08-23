@@ -9,6 +9,13 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class OuterCalculatorTests: XCTestCase {
 
+    
+    func test_OuterCompare() {
+        let outer1Count = OuterCalculator.ExecuteAllSerial(scoreMin: 0)
+        let outer2Count = Outer2Calculator.ExecuteAllSerial(scoreMin: 0)
+        XCTAssertEqual(outer1Count, outer2Count)
+    }
+    
     func test_C2x3_LRL_MO_8807() {
         let words = ["ZSA","LIZA","CAINE","SIDNEY","ALAN"]
         let end = WordCalculator.reverse(words: words)

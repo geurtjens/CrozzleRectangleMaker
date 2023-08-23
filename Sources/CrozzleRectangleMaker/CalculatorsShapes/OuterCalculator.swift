@@ -8,6 +8,37 @@
 import Foundation
 public class OuterCalculator {
     
+    public static func ExecuteAllSerial(scoreMin: Int) -> Int {
+        let startTime = DateTimeCalculator.now()
+        var count = 0
+        /// We want to calculate new to see how long it takes and then compare with old
+        let gameList = GameList()
+        for game in gameList.games {
+            
+            let clusters = Execute(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
+            
+            print("OuterCalculator.Execute: \(game.gameId), count: \(clusters.count)")
+            
+            count += clusters.count
+        }
+        let finishTime = DateTimeCalculator.now()
+        let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
+        
+        print("\(count) records found in \(duration)")
+        return count
+    }
+    
+    public static func Execute(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [OuterModel] {
+        
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+        let c2x3 = C2x3(words: words, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let c2x4 = C2x4(words: words, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        
+        let result = c2x3 + c2x4
+        return result
+    }
+    
     public static func C2x3(words: [String], end: [String], len:[Int], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [OuterModel] {
         
         let LRL_MO = C2x3_LRL_MO(words: words, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
@@ -56,7 +87,7 @@ public class OuterCalculator {
                                 outer2 != left1 &&
                                 outer2 != middle1) {
                                 
-                                for outerPos2 in 1..<(len[outer2]-2) {
+                                for outerPos2 in 1..<(len[outer2]-interlockHeight) {
                                     
                                     if words[outer2][outerPos2 + 0] == end[left1][0] {
                                 
@@ -118,7 +149,7 @@ public class OuterCalculator {
             
             if (len[outer1] >= interlockHeight + 2) {
                                 
-                for outerPos1 in 1..<(len[outer1] - 2) {
+                for outerPos1 in 1..<(len[outer1] - interlockHeight) {
                     
                     for left1 in 0..<wordCount {
                     
@@ -191,7 +222,7 @@ public class OuterCalculator {
 
              if (len[outer1] >= interlockHeight + 2) {
 
-                 for outerPos1 in 1..<(len[outer1]-2) {
+                 for outerPos1 in 1..<(len[outer1]-interlockHeight) {
                      
                      for right1 in 0..<wordCount {
                          
@@ -275,7 +306,7 @@ public class OuterCalculator {
                                  outer2 != right1 &&
                                  outer2 != middle1) {
                                      
-                                 for outerPos2 in 1..<(len[outer2] - 2) {
+                                 for outerPos2 in 1..<(len[outer2] - interlockHeight) {
                                      
                                      if words[outer2][outerPos2 + 0] == words[right1][1] {
                                      
@@ -350,7 +381,7 @@ public class OuterCalculator {
                                  outer2 != right1 &&
                                  outer2 != middle1) {
                                  
-                                 for outerPos2 in 1..<(len[outer2] - 2) {
+                                 for outerPos2 in 1..<(len[outer2] - interlockHeight) {
                                      
                                      if words[outer2][outerPos2 + 0] == words[right1][1] {
                                          
@@ -427,7 +458,7 @@ public class OuterCalculator {
 
              if (len[outer1] >= interlockHeight + 2) {
 
-                 for outerPos1 in 1..<(len[outer1] - 2) {
+                 for outerPos1 in 1..<(len[outer1] - interlockHeight) {
                  
                      for right1 in 0..<wordCount {
                          
@@ -514,7 +545,7 @@ public class OuterCalculator {
             
             if (len[outer1] >= interlockHeight + 2) {
                                 
-                for outerPos1 in 1..<(len[outer1] - 2) {
+                for outerPos1 in 1..<(len[outer1] - interlockHeight) {
                     
                     for left1 in 0..<wordCount {
                     
@@ -612,7 +643,7 @@ public class OuterCalculator {
                                     outer2 != left1 &&
                                     outer2 != middle1) {
                                        
-                                    for outerPos2 in 1..<(len[outer2] - 2) {
+                                    for outerPos2 in 1..<(len[outer2] - interlockHeight) {
                                         if (words[outer2][outerPos2 + 0] == end[left1][0]) {
                                             
                                         for right2 in 0..<wordCount {
