@@ -180,7 +180,7 @@ class ShapeToText2Converter {
     
     
     
-    public static func V( _ x: Int, _ y: Int, _ grid:[Int], _ widthEOL: Int) -> Int {
+    public static func V(_ y: Int, _ x: Int, _ grid:[Int], _ widthEOL: Int) -> Int {
         if y == 0 {
             return grid[x]
         } else {
