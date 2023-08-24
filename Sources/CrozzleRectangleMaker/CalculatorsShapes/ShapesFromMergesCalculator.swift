@@ -10,7 +10,7 @@ public class ShapesFromMergesCalculator {
     
     public static func Ladder2x2x2(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel] {
         let len = WordCalculator.lengths(words: words)
-        let d2x2 = RectangleCalculator.Square(
+        let d2x2 = RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -40,7 +40,7 @@ public class ShapesFromMergesCalculator {
         
         let len = WordCalculator.lengths(words: words)
         
-        let square2x2 = RectangleCalculator.Square(
+        let square2x2 = RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -54,21 +54,21 @@ public class ShapesFromMergesCalculator {
         
         
         
-        let squareBottomRight2x2 = RectangleCalculator.BottomRightSquare(
+        let squareBottomRight2x2 = RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
             scoreMin: scoreMin,
             widthMax: widthMax, heightMax: heightMax)
         
-        let squareTopLeft2x2 = RectangleCalculator.TopLeftSquare(
+        let squareTopLeft2x2 = RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
             scoreMin: scoreMin,
             widthMax: widthMax, heightMax: heightMax)
         
-        let squareTopRight2x2 = RectangleCalculator.TopRightSquare(
+        let squareTopRight2x2 = RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -102,7 +102,7 @@ public class ShapesFromMergesCalculator {
         
         let len = WordCalculator.lengths(words: words)
         
-        let square2x2 = RectangleCalculator.Square(
+        let square2x2 = RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -148,21 +148,21 @@ public class ShapesFromMergesCalculator {
         
         let len = WordCalculator.lengths(words: words)
         
-        let squareBottomRight2x2 = RectangleCalculator.BottomRightSquare(
+        let squareBottomRight2x2 = RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
             scoreMin: scoreMin,
             widthMax: widthMax, heightMax: heightMax)
         
-        let squareTopLeft2x2 = RectangleCalculator.TopLeftSquare(
+        let squareTopLeft2x2 = RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
             scoreMin: scoreMin,
             widthMax: widthMax, heightMax: heightMax)
         
-        let squareTopRight2x2 = RectangleCalculator.TopRightSquare(
+        let squareTopRight2x2 = RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -193,14 +193,14 @@ public class ShapesFromMergesCalculator {
         
         let len = WordCalculator.lengths(words: words)
         
-        let squareTopLeft2x2 = RectangleCalculator.TopLeftSquare(
+        let squareTopLeft2x2 = RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
             scoreMin: scoreMin,
             widthMax: widthMax, heightMax: heightMax)
         
-        let squareTopRight2x2 = RectangleCalculator.TopRightSquare(
+        let squareTopRight2x2 = RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -233,7 +233,7 @@ public class ShapesFromMergesCalculator {
     }
     public static func Execute2x3And2x2(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel] {
         let len = WordCalculator.lengths(words: words)
-        let d2x2 = RectangleCalculator.Square(
+        let d2x2 = RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -245,7 +245,7 @@ public class ShapesFromMergesCalculator {
         
         let gpuShapes2x2 = GpuShapeModel(shapes: shapes2x2, totalWords: words.count, stride: 4)
         
-        let d2x3 = RectangleCalculator.Rectangle(
+        let d2x3 = RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,

@@ -11,7 +11,7 @@ final class RemoveDuplicatesCalculatorTests: XCTestCase {
 
     func test_DuplicatesInRectangle() async throws {
         
-        let rectangles = await RectangleCalculator.Execute(words: words, scoreMin: 104, widthMax: widthMax, heightMax: heightMax)
+        let rectangles = await RectangleCalculatorV1.Execute(words: words, scoreMin: 104, widthMax: widthMax, heightMax: heightMax)
         
         let shapes = ShapeCalculator.toShapes(rectangles: rectangles)
         
@@ -25,7 +25,7 @@ final class RemoveDuplicatesCalculatorTests: XCTestCase {
     
     func test_Find_0() throws {
         
-        let result = EdgeCalculator.Execute(
+        let result = EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -46,7 +46,7 @@ final class RemoveDuplicatesCalculatorTests: XCTestCase {
     
     func test_Find_1() throws {
         
-        let result = EdgeCalculator.Execute(
+        let result = EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -67,7 +67,7 @@ final class RemoveDuplicatesCalculatorTests: XCTestCase {
     // We no longer support things being flipped I guess
 //    func test_Find_1_Flipped() throws {
 //        
-//        let result = EdgeCalculator.Execute(
+//        let result = EdgeCalculatorV1.Execute(
 //            words: words,
 //            scoreMin: scoreMin,
 //            widthMax: widthMax,
@@ -90,7 +90,7 @@ final class RemoveDuplicatesCalculatorTests: XCTestCase {
     
     func test_Find_2() throws {
         
-        let edges = EdgeCalculator.Execute(
+        let edges = EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,

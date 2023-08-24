@@ -6,7 +6,36 @@
 //
 
 import Foundation
-public class Rectangle2Calculator {
+public class RectangleCalculatorV2 {
+    
+    
+    public static func ExecuteAllSerial(scoreMin: Int) -> Int  {
+        
+        let gameList = GameList()
+        
+        let startTime = DateTimeCalculator.now()
+        var count = 0
+        
+        for game in gameList.games {
+
+            var result = ExecuteSerial(
+                words: game.words,
+                scoreMin: scoreMin,
+                widthMax: game.maxWidth,
+                heightMax: game.maxHeight)
+            
+            print("RectangleCalculatorV1.Execute: \(game.gameId), count: \(result.count)")
+            
+            count += result.count
+        }
+        let finishTime = DateTimeCalculator.now()
+        let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
+        
+        print("\(count) records found in \(duration)")
+        return count
+        
+    }
+    
     
     public static func ExecuteAllGamesInParallel(scoreMin: Int) async {
        
@@ -18,7 +47,7 @@ public class Rectangle2Calculator {
             
             let newResults = await Execute(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
             
-            print("Rectangle2Calculator.ExecuteParallel: \(game.gameId), count: \(newResults.count)")
+            print("RectangleCalculatorV2.ExecuteParallel: \(game.gameId), count: \(newResults.count)")
             
             count += newResults.count
         }
@@ -38,7 +67,7 @@ public class Rectangle2Calculator {
             
             let newResults = ExecuteSerial(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
             
-            print("Rectangle2Calculator.ExecuteSerial: \(game.gameId), count: \(newResults.count)")
+            print("RectangleCalculatorV2.ExecuteSerial: \(game.gameId), count: \(newResults.count)")
             
             count += newResults.count
         }

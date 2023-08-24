@@ -1,5 +1,5 @@
 //
-//  RectangleCalculatorPerformanceTests.swift
+//  RectangleCalculatorV1PerformanceTests.swift
 //  
 //
 //  Created by Michael Geurtjens on 16/8/2023.
@@ -7,7 +7,7 @@
 
 import XCTest
 @testable import CrozzleRectangleMaker
-final class RectangleCalculatorPerformanceTests: XCTestCase {
+final class RectangleCalculatorV1PerformanceTests: XCTestCase {
 
     
     // By default, it returns [XCTClockMetric()]
@@ -29,7 +29,7 @@ final class RectangleCalculatorPerformanceTests: XCTestCase {
         options.iterationCount = 2 /* Tweak this value on a test-by-test basis */
         //measure(metrics: [XCTCPUMetric(), XCTMemoryMetric()]) {
         measure(metrics: [XCTMemoryMetric(),XCTClockMetric()], options: options) {
-            let result = Rectangle2Calculator.ExecuteSerial(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let result = RectangleCalculatorV2.ExecuteSerial(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(4_457_026, result.count)
             
@@ -43,7 +43,7 @@ final class RectangleCalculatorPerformanceTests: XCTestCase {
         
         measure(metrics: [XCTMemoryMetric(),XCTClockMetric()]) {
                         
-            let result = RectangleCalculator.ExecuteSerial(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let result = RectangleCalculatorV1.ExecuteSerial(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             XCTAssertEqual(4_457_026, result.count)
             
             /// It takes approximately `151.881` seconds running in serial
@@ -57,7 +57,7 @@ final class RectangleCalculatorPerformanceTests: XCTestCase {
             let lengths = WordCalculator.lengths(words: words)
             
             // WHEN we calculate `BottomRightRectangle` without using index
-            let oldResults = RectangleCalculator.BottomRightRectangle(interlockWidth: 2, interlockHeight: 3, words: words, lengths: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = RectangleCalculatorV1.BottomRightRectangle(interlockWidth: 2, interlockHeight: 3, words: words, lengths: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             /// THEN we get `206_706` records returned
             XCTAssertEqual(206_706, oldResults.count)
@@ -75,7 +75,7 @@ final class RectangleCalculatorPerformanceTests: XCTestCase {
             let index = LetterIndexModel(words: words)
             
             /// WHEN we calculate `BottomRightRectangle` using `index`
-            let newResults = Rectangle2Calculator.BottomRightRectangle(interlockWidth: 2, interlockHeight: 3, letterIndex: index, words: words, lengths: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let newResults = RectangleCalculatorV2.BottomRightRectangle(interlockWidth: 2, interlockHeight: 3, letterIndex: index, words: words, lengths: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             /// THEN we get `206_706` records returned
             XCTAssertEqual(206_706, newResults.count)
@@ -92,7 +92,7 @@ final class RectangleCalculatorPerformanceTests: XCTestCase {
             let lengths = WordCalculator.lengths(words: words)
             
             // WHEN we calculate `TopRightRectangle` without using index
-            let oldResults = RectangleCalculator.TopRightRectangle(interlockWidth: 2, interlockHeight: 3, words: words, lengths: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = RectangleCalculatorV1.TopRightRectangle(interlockWidth: 2, interlockHeight: 3, words: words, lengths: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             /// THEN we get `203487` records returned
             XCTAssertEqual(203487, oldResults.count)
@@ -112,7 +112,7 @@ final class RectangleCalculatorPerformanceTests: XCTestCase {
             
             /// WHEN we calculate `TopRightRectangle` using `index`
             /// You have to choose a matching direction because this will flip to another kind of shape otherwise as topRight is flipped to bottomLeft
-            let newResults = Rectangle2Calculator.TopRightRectangle(interlockWidth: 2, interlockHeight: 3, letterIndex: index, words: words, lengths: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let newResults = RectangleCalculatorV2.TopRightRectangle(interlockWidth: 2, interlockHeight: 3, letterIndex: index, words: words, lengths: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             /// THEN we get `203487` records returned
             XCTAssertEqual(203487, newResults.count)
@@ -131,7 +131,7 @@ final class RectangleCalculatorPerformanceTests: XCTestCase {
             let lengths = WordCalculator.lengths(words: words)
             
             // WHEN we calculate `Square` without using index
-            let oldResult = RectangleCalculator.TopLeftRectangle(interlockWidth: 2, interlockHeight: 3, words: words, lengths: lengths, scoreMin: 0, widthMax:   17, heightMax: 12)
+            let oldResult = RectangleCalculatorV1.TopLeftRectangle(interlockWidth: 2, interlockHeight: 3, words: words, lengths: lengths, scoreMin: 0, widthMax:   17, heightMax: 12)
             
             /// THEN we get `352` records returned
             XCTAssertEqual(220148, oldResult.count)
@@ -154,7 +154,7 @@ final class RectangleCalculatorPerformanceTests: XCTestCase {
             let index = LetterIndexModel(words: words)
             
             /// WHEN we calculate `TopLeftRectangle` using `index`
-            let result = Rectangle2Calculator.TopLeftRectangle(interlockWidth: 2, interlockHeight: 3, letterIndex: index, words: words, lengths: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let result = RectangleCalculatorV2.TopLeftRectangle(interlockWidth: 2, interlockHeight: 3, letterIndex: index, words: words, lengths: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             /// THEN we get `220148` records returned
             XCTAssertEqual(220148, result.count)
@@ -177,7 +177,7 @@ final class RectangleCalculatorPerformanceTests: XCTestCase {
             let index = LetterIndexModel(words: words)
             
             /// WHEN we calculate `Rectangle`s using the `index`
-            let result = Rectangle2Calculator.Rectangle(interlockWidth: 2, interlockHeight: 3, letterIndex: index, words: words, lengths: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let result = RectangleCalculatorV2.Rectangle(interlockWidth: 2, interlockHeight: 3, letterIndex: index, words: words, lengths: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             /// THEN we get 201,499 records returned
             XCTAssertEqual(201_499, result.count)
@@ -204,7 +204,7 @@ final class RectangleCalculatorPerformanceTests: XCTestCase {
             let index = LetterIndexModel(words: words)
             
             /// WHEN we calculate `Square`s using the `index`
-            let result = Rectangle2Calculator.Square(interlockWidth: 2, letterIndex: index, words: words, lengths: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let result = RectangleCalculatorV2.Square(interlockWidth: 2, letterIndex: index, words: words, lengths: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             /// THEN we get `174,370` records returned
             XCTAssertEqual(174_370, result.count)
@@ -224,7 +224,7 @@ final class RectangleCalculatorPerformanceTests: XCTestCase {
             let lengths = WordCalculator.lengths(words: words)
             
             /// WHEN we calculate `Square`s without using index
-            let result = RectangleCalculator.Square(interlockWidth: 2, words: words, lengths: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let result = RectangleCalculatorV1.Square(interlockWidth: 2, words: words, lengths: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             /// THEN we get `174,370` records returned
             XCTAssertEqual(174_370, result.count)

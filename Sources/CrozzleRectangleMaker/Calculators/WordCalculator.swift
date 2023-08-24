@@ -49,6 +49,26 @@ public class WordCalculator {
         return reversedWords
     }
     
+    public static func reverse(wordsInt words:[[Int]]) -> [[Int]] {
+        var reversedWords:[[Int]] = []
+        for word in words {
+            reversedWords.append(reverse(wordInt: word))
+        }
+        return reversedWords
+    }
+    
+    public static func reverse(wordInt word: [Int]) -> [Int] {
+        var result:[Int] = []
+        
+        let n: Int = word.count;
+        
+        for i in stride(from: n - 1, to: 0, by: -1) {
+            result.append(word[i])
+        }
+        
+        return result;
+    }
+    
     public static func removeLastWords(words: [String], countMax: Int) -> [String] {
         var result: [String] = []
         
@@ -59,6 +79,14 @@ public class WordCalculator {
     }
     /// Calculates the lengths of each word in the list
     public static func lengths(words: [String]) -> [Int] {
+        var result: [Int] = []
+        for word in words {
+            result.append(word.count)
+        }
+        return result;
+    }
+    
+    public static func lengths(int words: [[Int]]) -> [Int] {
         var result: [Int] = []
         for word in words {
             result.append(word.count)

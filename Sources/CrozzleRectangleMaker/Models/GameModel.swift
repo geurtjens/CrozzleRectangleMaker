@@ -44,6 +44,9 @@ public struct GameModel {
         
     }
     
+    public func wordsInt() -> [[Int]] {
+        return WordCalculator.WordsToInt(words: self.words)
+    }
     public func winningText() -> String {
         var text = ""
         for line in winningGame {

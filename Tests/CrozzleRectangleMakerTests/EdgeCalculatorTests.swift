@@ -1,5 +1,5 @@
 //
-//  EdgeCalculatorTests.swift
+//  EdgeCalculatorV1Tests.swift
 //  
 //
 //  Created by Michael Geurtjens on 23/5/2023.
@@ -7,11 +7,11 @@
 
 import XCTest
 @testable import CrozzleRectangleMaker
-final class EdgeCalculatorTests: XCTestCase {
+final class EdgeCalculatorV1Tests: XCTestCase {
 
     func test_8612() throws {
         
-        let result = EdgeCalculator.Execute(
+        let result = EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,

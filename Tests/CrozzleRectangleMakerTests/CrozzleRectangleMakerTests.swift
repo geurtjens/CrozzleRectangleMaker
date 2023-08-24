@@ -1,11 +1,11 @@
 import XCTest
 @testable import CrozzleRectangleMaker
 
-final class RectangleCalculator8612Tests: XCTestCase {
+final class RectangleCalculatorV18612Tests: XCTestCase {
     
     func test_D3x3() throws {
         
-        let result = RectangleCalculator.Square(
+        let result = RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: lengths,
@@ -23,7 +23,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_D3x4() {
         
-        let result = RectangleCalculator.Rectangle(
+        let result = RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -41,7 +41,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_D3x5() {
         
-        let result = RectangleCalculator.Rectangle(
+        let result = RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -59,7 +59,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_D3x6() {
         
-        let result = RectangleCalculator.Rectangle(
+        let result = RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -77,7 +77,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_D4x4() throws {
         
-        let result = RectangleCalculator.Square(
+        let result = RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: lengths,
@@ -94,7 +94,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_D4x5() {
         
-        let result = RectangleCalculator.Rectangle(
+        let result = RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -112,7 +112,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_D4x6() {
         
-        let result = RectangleCalculator.Rectangle(
+        let result = RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -130,7 +130,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_D5x5() throws {
         
-        let result = RectangleCalculator.Square(
+        let result = RectangleCalculatorV1.Square(
             interlockWidth: 4,
             words: words,
             lengths: lengths,
@@ -147,7 +147,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_D5x6() {
         
-        let result = RectangleCalculator.Rectangle(
+        let result = RectangleCalculatorV1.Rectangle(
             interlockWidth: 4,
             interlockHeight: 5,
             words: words,
@@ -165,7 +165,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_D6x6() throws {
         
-        let result = RectangleCalculator.Square(
+        let result = RectangleCalculatorV1.Square(
             interlockWidth: 5,
             words: words,
             lengths: lengths,
@@ -182,7 +182,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O3x3_BottomRight() throws {
         
-        let result = RectangleCalculator.BottomRightSquare(
+        let result = RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: lengths,
@@ -199,7 +199,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O3x3_TopLeft() throws {
         
-        let result = RectangleCalculator.TopLeftSquare(
+        let result = RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: lengths,
@@ -216,7 +216,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O3x3_TopRight() throws {
         
-        let result = RectangleCalculator.TopRightSquare(
+        let result = RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: lengths,
@@ -233,7 +233,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O3x4_BottomLeft() throws {
         
-        let result = RectangleCalculator.BottomLeftRectangle(
+        let result = RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -251,7 +251,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O3x4_BottomRight() throws {
         
-        let result = RectangleCalculator.BottomRightRectangle(
+        let result = RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -269,7 +269,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O3x4_TopLeft() throws {
         
-        let result = RectangleCalculator.TopLeftRectangle(
+        let result = RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -287,7 +287,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O3x4_TopRight() throws {
         
-        let result = RectangleCalculator.TopRightRectangle(
+        let result = RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -305,7 +305,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O3x5_BottomLeft() throws {
         
-        let result = RectangleCalculator.BottomLeftRectangle(
+        let result = RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -323,7 +323,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O3x5_BottomRight() throws {
         
-        let result = RectangleCalculator.BottomRightRectangle(
+        let result = RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -341,7 +341,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O3x5_TopLeft() throws {
         
-        let result = RectangleCalculator.TopLeftRectangle(
+        let result = RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -359,7 +359,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O3x5_TopRight() throws {
         
-        let result = RectangleCalculator.TopRightRectangle(
+        let result = RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -377,7 +377,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O3x6_BottomLeft() throws {
         
-        let result = RectangleCalculator.BottomLeftRectangle(
+        let result = RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -395,7 +395,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O3x6_BottomRight() throws {
         
-        let result = RectangleCalculator.BottomRightRectangle(
+        let result = RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -413,7 +413,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O3x6_TopLeft() throws {
         
-        let result = RectangleCalculator.TopLeftRectangle(
+        let result = RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -431,7 +431,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O3x6_TopRight() throws {
         
-        let result = RectangleCalculator.TopRightRectangle(
+        let result = RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -449,7 +449,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O4x4_BottomRight() throws {
         
-        let result = RectangleCalculator.BottomRightSquare(
+        let result = RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 3,
             words: words,
             lengths: lengths,
@@ -466,7 +466,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O4x4_TopLeft() throws {
         
-        let result = RectangleCalculator.TopLeftSquare(
+        let result = RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 3,
             words: words,
             lengths: lengths,
@@ -483,7 +483,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O4x4_TopRight() throws {
         
-        let result = RectangleCalculator.TopRightSquare(
+        let result = RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 3,
             words: words,
             lengths: lengths,
@@ -500,7 +500,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O4x5_BottomLeft() throws {
         
-        let result = RectangleCalculator.BottomLeftRectangle(
+        let result = RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -518,7 +518,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O4x5_BottomRight() throws {
         
-        let result = RectangleCalculator.BottomRightRectangle(
+        let result = RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -536,7 +536,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O4x5_TopLeft() throws {
         
-        let result = RectangleCalculator.TopLeftRectangle(
+        let result = RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -554,7 +554,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O4x5_TopRight() throws {
         
-        let result = RectangleCalculator.TopRightRectangle(
+        let result = RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -572,7 +572,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O4x6_BottomLeft() throws {
         
-        let result = RectangleCalculator.BottomLeftRectangle(
+        let result = RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -590,7 +590,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O4x6_BottomRight() throws {
         
-        let result = RectangleCalculator.BottomRightRectangle(
+        let result = RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -608,7 +608,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O4x6_TopLeft() throws {
         
-        let result = RectangleCalculator.TopLeftRectangle(
+        let result = RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -626,7 +626,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O4x6_TopRight() throws {
         
-        let result = RectangleCalculator.TopRightRectangle(
+        let result = RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -644,7 +644,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O5x5_BottomRight() throws {
         
-        let result = RectangleCalculator.BottomRightSquare(
+        let result = RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 4,
             words: words,
             lengths: lengths,
@@ -661,7 +661,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O5x5_TopLeft() throws {
         
-        let result = RectangleCalculator.TopLeftSquare(
+        let result = RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 4,
             words: words,
             lengths: lengths,
@@ -678,7 +678,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O5x5_TopRight() throws {
         
-        let result = RectangleCalculator.TopRightSquare(
+        let result = RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 4,
             words: words,
             lengths: lengths,
@@ -695,7 +695,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O5x6_BottomLeft() throws {
         
-        let result = RectangleCalculator.BottomLeftRectangle(
+        let result = RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 4,
             interlockHeight: 5,
             words: words,
@@ -713,7 +713,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O5x6_BottomRight() throws {
         
-        let result = RectangleCalculator.BottomRightRectangle(
+        let result = RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 4, interlockHeight: 5,
             words: words,
             lengths: lengths,
@@ -731,7 +731,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O5x6_TopLeft() throws {
         
-        let result = RectangleCalculator.TopLeftRectangle(
+        let result = RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 4,
             interlockHeight: 5,
             words: words,
@@ -749,7 +749,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O5x6_TopRight() throws {
         
-        let result = RectangleCalculator.TopRightRectangle(
+        let result = RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 4,
             interlockHeight: 5,
             words: words,
@@ -767,7 +767,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O6x6_BottomRight() throws {
         
-        let result = RectangleCalculator.BottomRightSquare(
+        let result = RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 5,
             words: words,
             lengths: lengths,
@@ -784,7 +784,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O6x6_TopLeft() throws {
         
-        let result = RectangleCalculator.TopLeftSquare(
+        let result = RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 5,
             words: words,
             lengths: lengths,
@@ -801,7 +801,7 @@ final class RectangleCalculator8612Tests: XCTestCase {
     
     func test_O6x6_TopRight() throws {
         
-        let result = RectangleCalculator.TopRightSquare(
+        let result = RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 5,
             words: words,
             lengths: lengths,

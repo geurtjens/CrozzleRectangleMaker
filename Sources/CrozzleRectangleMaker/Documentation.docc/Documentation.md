@@ -34,11 +34,11 @@ Contains various groupings of components
 
 ### Shape Making Calculators
 
-- ``EdgeCalculator``
+- ``EdgeCalculatorV1``
 
 - ``ClusterCalculator``
 
-- ``RectangleCalculator``
+- ``RectangleCalculatorV1``
 
 ### Merging Functionality
 

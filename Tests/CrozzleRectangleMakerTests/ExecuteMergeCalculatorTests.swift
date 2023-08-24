@@ -20,7 +20,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
          R   .
          .
          */
-        var edges = EdgeCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        var edges = EdgeCalculatorV1.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         edges.sort {
             if $0.score == $1.score {
@@ -73,7 +73,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
          .
          */
         
-        var edges = EdgeCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        var edges = EdgeCalculatorV1.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         edges.sort {
             if $0.score == $1.score {
@@ -220,7 +220,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
     
     func test_Edges() throws {
         
-        var edges = EdgeCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax, wordsMax: wordsMax)
+        var edges = EdgeCalculatorV1.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax, wordsMax: wordsMax)
         
         edges.sort {
             if $0.score == $1.score {
@@ -275,7 +275,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
         print("calculating 2x2 starting at \(Date.now)")
-        let c2x2 = ClusterCalculator.C2x2(
+        let c2x2 = ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -290,7 +290,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         print("\(c2x2.count) c2x2 found finishing at \(Date.now)")
         
         
-        let c2x3 = ClusterCalculator.C2x3(
+        let c2x3 = ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -345,7 +345,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
         
-        let c2x2 = ClusterCalculator.C2x2(
+        let c2x2 = ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -356,7 +356,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         
         let c2x2Shapes = ShapeCalculator.toShape(fromClusters: c2x2)
 
-        let c2x3 = ClusterCalculator.C2x3(
+        let c2x3 = ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -406,7 +406,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
         
-        let c2x2 = ClusterCalculator.C2x2(
+        let c2x2 = ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -420,7 +420,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         print("Shape A score: \(C2x2Score)")
         print(C2x2Text)
         
-        let c2x3 = ClusterCalculator.C2x3(
+        let c2x3 = ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -471,7 +471,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         let words = [ "AZURE", "GLAZE", "WISEMEN", "NUTMEG", "SILENTNIGHT", "SNOW" ]
         let lengths = WordCalculator.lengths(words: words)
         
-        let items = RectangleCalculator.BottomLeftRectangle(
+        let items = RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -519,7 +519,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         let words = [ "AZURE", "GLAZE", "WISEMEN", "NUTMEG", "SILENTNIGHT", "SNOW" ]
         let lengths = WordCalculator.lengths(words: words)
         
-        let items = RectangleCalculator.BottomLeftRectangle(
+        let items = RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,

@@ -1,12 +1,12 @@
 //
-//  OuterCalculator.swift
+//  OuterCalculatorV1.swift
 //  
 //
 //  Created by Michael Geurtjens on 14/6/2023.
 //
 
 import Foundation
-public class OuterCalculator {
+public class OuterCalculatorV1 {
     
     public static func ExecuteAllSerial(scoreMin: Int) -> Int {
         let startTime = DateTimeCalculator.now()
@@ -17,7 +17,7 @@ public class OuterCalculator {
             
             let clusters = Execute(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
             
-            print("OuterCalculator.Execute: \(game.gameId), count: \(clusters.count)")
+            print("OuterCalculatorV1.Execute: \(game.gameId), count: \(clusters.count)")
             
             count += clusters.count
         }

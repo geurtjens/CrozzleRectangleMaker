@@ -17,14 +17,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 8,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -34,7 +34,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 6))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -44,7 +44,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle4x5)
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -54,7 +54,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x4_BottomLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -84,7 +84,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.BottomRight(
+        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV1.BottomRight(
             words: words,
             end: end,
             len: len,
@@ -93,7 +93,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: pacman3x3_BottomRight)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -102,14 +102,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 7,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -118,7 +118,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: square3x3)
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -127,7 +127,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 6))
         queue.add(shapes: square4x4)
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -136,7 +136,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: square3x3_TopLeft)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -166,7 +166,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -175,7 +175,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: c2x2)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -184,14 +184,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 6,
             heightMax: 7))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -204,7 +204,7 @@ public class WinningGameQueueListCalculator {
         let special8703 = SpecialShapesCalculator.C8703(words: words)
         queue.add(shapes: special8703)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -213,7 +213,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: square3x3)
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -222,7 +222,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: square3x3_BottomRight)
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -252,7 +252,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -261,14 +261,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 8,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -278,7 +278,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -288,7 +288,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -298,7 +298,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4_TopRight)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -307,7 +307,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: square3x3)
 
-        let square4x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square4x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -337,7 +337,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -346,7 +346,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: c2x2)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -355,7 +355,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: c2x3)
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
             words: words,
             end: end,
             len: len,
@@ -364,14 +364,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: c2x4)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: 9,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -381,7 +381,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 6))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -391,7 +391,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4_TopLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -400,7 +400,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: square3x3)
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -430,7 +430,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let pacman3x3_TopLeft = ShapeCalculator.toShapes(pacmans: PacmanCalculator.TopLeft(
+        let pacman3x3_TopLeft = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV1.TopLeft(
             words: words,
             end: end,
             len: len,
@@ -439,7 +439,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: pacman3x3_TopLeft)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -448,7 +448,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: c2x2)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -457,14 +457,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 6,
             heightMax: 6))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -474,7 +474,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -484,7 +484,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x5_TopLeft)
 
-        let rectangle3x5_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x5_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -494,7 +494,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x5_TopRight)
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -503,7 +503,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: square4x4)
 
-        let square5x5_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square5x5_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 4,
             words: words,
             lengths: len,
@@ -533,7 +533,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -542,7 +542,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: c2x2)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -551,7 +551,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: c2x3)
 
-        let c2x5 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x5(
+        let c2x5 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x5(
             words: words,
             end: end,
             len: len,
@@ -560,14 +560,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: c2x5)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 7))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -577,7 +577,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -587,7 +587,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -597,7 +597,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x4_TopLeft)
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -607,7 +607,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4_TopRight)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -616,7 +616,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -646,7 +646,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -655,7 +655,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: c2x2)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -664,14 +664,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: 7,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -681,7 +681,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -691,7 +691,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -701,7 +701,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle4x5)
 
-        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -711,7 +711,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x4_BottomRight)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -720,7 +720,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -750,7 +750,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -759,7 +759,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: c2x2)
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
             words: words,
             end: end,
             len: len,
@@ -768,14 +768,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: c2x4)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: 8,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -785,7 +785,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x4_BottomRight)
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -795,7 +795,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4_TopRight)
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -804,7 +804,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: square3x3_TopLeft)
 
-        let square4x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square4x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -813,7 +813,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: square4x4_TopLeft)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -843,7 +843,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let pacman3x3_TopRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.TopRight(
+        let pacman3x3_TopRight = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV1.TopRight(
             words: words,
             end: end,
             len: len,
@@ -852,7 +852,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: pacman3x3_TopRight)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -861,14 +861,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: 8,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -878,7 +878,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x6_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x6_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -888,7 +888,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x6_BottomLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -897,7 +897,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -927,7 +927,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -936,7 +936,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 6))
         queue.add(shapes: c2x2)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -945,14 +945,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 7))
         queue.add(shapes: edges)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -961,7 +961,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -991,7 +991,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -1000,7 +1000,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 7,
@@ -1010,7 +1010,7 @@ public class WinningGameQueueListCalculator {
         let special8805 = SpecialShapesCalculator.C8805(words: words)
         queue.add(shapes: special8805)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1019,7 +1019,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: square3x3)
 
-        let square4x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square4x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -1028,7 +1028,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: square4x4_TopRight)
 
-        let square5x5_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square5x5_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 4,
             words: words,
             lengths: len,
@@ -1058,7 +1058,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -1067,7 +1067,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 6))
         queue.add(shapes: c2x2)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -1076,14 +1076,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 10,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1092,7 +1092,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1122,14 +1122,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 7))
         queue.add(shapes: edges)
 
-        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
+        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -1138,7 +1138,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: outer2x3)
 
-        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -1148,7 +1148,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: rectangle3x5_TopLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1178,7 +1178,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -1187,7 +1187,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: c2x2)
 
-        let c3x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C3x3(
+        let c3x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C3x3(
             words: words,
             end: end,
             len: len,
@@ -1196,14 +1196,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: c3x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: 8,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -1213,7 +1213,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -1223,7 +1223,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4_TopLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1232,7 +1232,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: square3x3)
 
-        let square4x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square4x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -1262,7 +1262,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -1271,14 +1271,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -1288,7 +1288,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -1298,7 +1298,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x5_BottomRight)
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -1308,7 +1308,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle3x4_TopLeft)
 
-        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -1318,7 +1318,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x5_TopLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1348,7 +1348,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -1357,14 +1357,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: 9,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -1374,7 +1374,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1404,7 +1404,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -1413,7 +1413,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: c2x2)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -1422,14 +1422,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: 8,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -1439,7 +1439,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -1449,7 +1449,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -1459,7 +1459,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle4x5)
 
-        let rectangle3x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -1469,7 +1469,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle3x5_BottomLeft)
 
-        let rectangle4x6_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle4x6_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -1479,7 +1479,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle4x6_TopRight)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1509,7 +1509,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let pacman3x3_TopRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.TopRight(
+        let pacman3x3_TopRight = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV1.TopRight(
             words: words,
             end: end,
             len: len,
@@ -1518,7 +1518,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: pacman3x3_TopRight)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -1527,14 +1527,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: 7,
             heightMax: 7))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -1544,7 +1544,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -1554,7 +1554,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4_TopLeft)
 
-        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -1564,7 +1564,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x5_TopLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1573,7 +1573,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1603,7 +1603,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -1612,14 +1612,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: 8,
             heightMax: 7))
         queue.add(shapes: edges)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -1629,7 +1629,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x5)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1638,7 +1638,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1647,7 +1647,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: square3x3_TopLeft)
 
-        let square5x5_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square5x5_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 4,
             words: words,
             lengths: len,
@@ -1675,14 +1675,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: 10,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -1692,7 +1692,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1722,7 +1722,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -1731,7 +1731,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: c2x3)
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
             words: words,
             end: end,
             len: len,
@@ -1740,14 +1740,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: c2x4)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 8,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -1757,7 +1757,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4_BottomLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1787,7 +1787,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -1796,7 +1796,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: c2x3)
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
             words: words,
             end: end,
             len: len,
@@ -1805,14 +1805,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: c2x4)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 8,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -1822,7 +1822,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1831,7 +1831,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: square3x3_BottomRight)
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1840,7 +1840,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: square3x3_TopLeft)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1870,7 +1870,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -1879,7 +1879,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: c2x2)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -1888,14 +1888,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 8,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -1905,7 +1905,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1935,7 +1935,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.BottomRight(
+        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV1.BottomRight(
             words: words,
             end: end,
             len: len,
@@ -1944,14 +1944,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: pacman3x3_BottomRight)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: 8,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
+        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -1960,7 +1960,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: outer2x3)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -1970,7 +1970,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -1980,7 +1980,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x4_BottomLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1989,7 +1989,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2019,7 +2019,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -2028,14 +2028,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 10))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2045,7 +2045,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x6_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x6_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -2055,7 +2055,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x6_TopRight)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2085,7 +2085,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -2094,14 +2094,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 8,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2111,7 +2111,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -2121,7 +2121,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2131,7 +2131,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4_TopLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2140,7 +2140,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2170,7 +2170,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c3x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C3x4(
+        let c3x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C3x4(
             words: words,
             end: end,
             len: len,
@@ -2179,14 +2179,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: c3x4)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: 8,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
+        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -2195,7 +2195,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: outer2x3)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2205,7 +2205,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -2215,7 +2215,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle3x6)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2245,7 +2245,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.BottomRight(
+        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV1.BottomRight(
             words: words,
             end: end,
             len: len,
@@ -2254,7 +2254,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: pacman3x3_BottomRight)
 
-        let c3x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C3x3(
+        let c3x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C3x3(
             words: words,
             end: end,
             len: len,
@@ -2263,14 +2263,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: c3x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2300,7 +2300,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -2309,14 +2309,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: 8,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2326,7 +2326,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -2336,7 +2336,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -2346,7 +2346,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle4x5)
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2356,7 +2356,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4_TopRight)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2365,7 +2365,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: square3x3)
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -2393,14 +2393,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -2410,7 +2410,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle4x5)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2419,7 +2419,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2447,7 +2447,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
@@ -2460,7 +2460,7 @@ public class WinningGameQueueListCalculator {
         let special9002b = SpecialShapesCalculator.C9002b(words: words)
         queue.add(shapes: special9002b)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2469,7 +2469,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: square3x3)
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -2497,14 +2497,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2514,7 +2514,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -2524,7 +2524,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x5)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2554,7 +2554,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -2563,14 +2563,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 10))
         queue.add(shapes: edges)
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2580,7 +2580,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4_BottomLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2589,7 +2589,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: square3x3)
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -2619,7 +2619,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -2628,7 +2628,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: c2x2)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -2637,14 +2637,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 8,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2654,7 +2654,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2664,7 +2664,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4_TopRight)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2694,7 +2694,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -2703,7 +2703,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: c2x2)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -2712,14 +2712,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 10,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2729,7 +2729,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -2739,7 +2739,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -2749,7 +2749,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x5_BottomRight)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2758,7 +2758,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2788,7 +2788,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -2797,14 +2797,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 36,
             widthMax: 9,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -2814,7 +2814,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle3x7 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x7 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 6,
             words: words,
@@ -2824,7 +2824,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x7)
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2834,7 +2834,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x4_BottomLeft)
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2844,7 +2844,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 6))
         queue.add(shapes: rectangle3x4_TopRight)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2874,14 +2874,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 12,
             heightMax: 10))
         queue.add(shapes: edges)
 
-        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
+        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -2890,7 +2890,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: outer2x3)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2900,7 +2900,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -2910,7 +2910,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle4x5)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2919,7 +2919,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: square3x3)
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2928,7 +2928,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: square3x3_BottomRight)
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2958,7 +2958,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -2967,7 +2967,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: c2x2)
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
             words: words,
             end: end,
             len: len,
@@ -2976,14 +2976,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: c2x4)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 8,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2993,7 +2993,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3003,7 +3003,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x4_BottomLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3012,7 +3012,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: square3x3)
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -3042,7 +3042,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -3051,7 +3051,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: c2x3)
 
-        let c3x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C3x4(
+        let c3x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C3x4(
             words: words,
             end: end,
             len: len,
@@ -3060,14 +3060,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: c3x4)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: 7,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3077,7 +3077,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -3087,7 +3087,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x5_BottomRight)
 
-        let square4x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square4x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -3117,7 +3117,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -3126,14 +3126,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: 8,
             heightMax: 10))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3143,7 +3143,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3153,7 +3153,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x4_BottomLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3162,7 +3162,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3192,7 +3192,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -3201,14 +3201,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 8,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3218,7 +3218,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x4)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3227,7 +3227,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3236,7 +3236,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: square3x3_TopLeft)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3266,7 +3266,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -3275,7 +3275,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: c2x2)
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
             words: words,
             end: end,
             len: len,
@@ -3284,14 +3284,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: c2x4)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 11,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3304,7 +3304,7 @@ public class WinningGameQueueListCalculator {
         let special9101 = SpecialShapesCalculator.C9101(words: words)
         queue.add(shapes: special9101)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3334,7 +3334,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -3343,14 +3343,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 8,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -3360,7 +3360,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x6)
 
-        let rectangle3x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -3373,7 +3373,7 @@ public class WinningGameQueueListCalculator {
         let special9102 = SpecialShapesCalculator.C9102(words: words)
         queue.add(shapes: special9102)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3403,7 +3403,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -3412,14 +3412,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 10,
             heightMax: 7))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3429,7 +3429,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 6))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3439,7 +3439,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x4_BottomLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3448,7 +3448,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: square3x3)
 
-        let square4x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square4x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -3478,7 +3478,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
             words: words,
             end: end,
             len: len,
@@ -3487,14 +3487,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: c2x4)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 8,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3504,7 +3504,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -3514,7 +3514,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 6))
         queue.add(shapes: rectangle3x6)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3544,7 +3544,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
             words: words,
             end: end,
             len: len,
@@ -3553,14 +3553,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: c2x4)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: 9,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3570,7 +3570,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -3580,7 +3580,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle4x5)
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3590,7 +3590,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x4_TopLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3618,14 +3618,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: 9,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3635,7 +3635,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x4)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3665,7 +3665,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -3674,14 +3674,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 8,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3691,7 +3691,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3701,7 +3701,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4_TopRight)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3710,7 +3710,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 6))
         queue.add(shapes: square3x3)
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -3719,7 +3719,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: square4x4)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3749,7 +3749,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -3758,14 +3758,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 7,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3775,7 +3775,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -3785,7 +3785,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle4x5)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3794,7 +3794,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3822,14 +3822,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: 10,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3839,7 +3839,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -3849,7 +3849,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3862,7 +3862,7 @@ public class WinningGameQueueListCalculator {
         let special9109 = SpecialShapesCalculator.C9109(words: words)
         queue.add(shapes: special9109)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3871,7 +3871,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: square3x3)
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -3880,7 +3880,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 6))
         queue.add(shapes: square4x4)
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3910,7 +3910,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -3919,14 +3919,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 7))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3936,7 +3936,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x4)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3945,7 +3945,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: square3x3)
 
-        let square4x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square4x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -3973,14 +3973,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: 8,
             heightMax: 10))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3990,7 +3990,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -4000,7 +4000,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x5)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4030,7 +4030,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -4039,14 +4039,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: 10,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4056,7 +4056,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x4)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4084,14 +4084,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 11,
             heightMax: 12))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4101,7 +4101,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: rectangle3x4)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4110,7 +4110,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4138,14 +4138,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: 9,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4155,7 +4155,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4164,7 +4164,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4194,7 +4194,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
             words: words,
             end: end,
             len: len,
@@ -4203,14 +4203,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: c2x4)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4220,7 +4220,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4248,14 +4248,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 8,
             heightMax: 10))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4268,7 +4268,7 @@ public class WinningGameQueueListCalculator {
         let special9204 = SpecialShapesCalculator.C9204(words: words)
         queue.add(shapes: special9204)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4298,7 +4298,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -4307,14 +4307,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 8,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -4324,7 +4324,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4334,7 +4334,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4_BottomRight)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4343,7 +4343,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: square3x3)
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4371,14 +4371,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 36,
             widthMax: 9,
             heightMax: 11))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4388,7 +4388,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4398,7 +4398,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4_BottomRight)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4426,14 +4426,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: 11,
             heightMax: 12))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4443,7 +4443,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -4453,7 +4453,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle5x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle5x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 4,
             interlockHeight: 5,
             words: words,
@@ -4463,7 +4463,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: rectangle5x6)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4493,7 +4493,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.BottomRight(
+        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV1.BottomRight(
             words: words,
             end: end,
             len: len,
@@ -4502,14 +4502,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: pacman3x3_BottomRight)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 11,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4522,7 +4522,7 @@ public class WinningGameQueueListCalculator {
         let special9209 = SpecialShapesCalculator.C9209(words: words)
         queue.add(shapes: special9209)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4552,7 +4552,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -4561,14 +4561,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 12,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -4578,7 +4578,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x5)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4587,7 +4587,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: square3x3)
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4596,7 +4596,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: square3x3_BottomRight)
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4626,7 +4626,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -4635,14 +4635,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 11))
         queue.add(shapes: edges)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -4652,7 +4652,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4662,7 +4662,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4_BottomRight)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4671,7 +4671,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: square3x3)
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -4701,7 +4701,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -4710,14 +4710,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 8,
             heightMax: 10))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4727,7 +4727,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -4737,7 +4737,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle4x5)
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4747,7 +4747,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4_TopRight)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4775,14 +4775,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 10))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4792,7 +4792,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4802,7 +4802,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x4_BottomLeft)
 
-        let rectangle4x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle4x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -4812,7 +4812,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle4x5_BottomLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4840,14 +4840,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 10,
             heightMax: 11))
         queue.add(shapes: edges)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4856,7 +4856,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: square3x3)
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4886,7 +4886,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -4895,14 +4895,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4912,7 +4912,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -4922,7 +4922,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4932,7 +4932,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x4_TopLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4941,7 +4941,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: square3x3)
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -4950,7 +4950,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: square4x4)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4980,7 +4980,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -4989,7 +4989,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: c2x2)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -4998,7 +4998,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: c2x3)
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
             words: words,
             end: end,
             len: len,
@@ -5007,14 +5007,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: c2x4)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 8,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -5024,7 +5024,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5034,7 +5034,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4_BottomRight)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5043,7 +5043,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5073,7 +5073,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -5082,14 +5082,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 8,
             heightMax: 10))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5099,7 +5099,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -5109,7 +5109,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x6)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5137,14 +5137,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 11))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5154,7 +5154,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -5164,7 +5164,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle3x6)
 
-        let rectangle5x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle5x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 4,
             interlockHeight: 5,
             words: words,
@@ -5174,7 +5174,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle5x6)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5202,14 +5202,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 10,
             heightMax: 11))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5219,7 +5219,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5228,7 +5228,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5237,7 +5237,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: square3x3_TopLeft)
 
-        let square5x5_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square5x5_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 4,
             words: words,
             lengths: len,
@@ -5267,7 +5267,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -5276,14 +5276,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: 11,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5293,7 +5293,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4_BottomRight)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5302,7 +5302,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: square3x3)
 
-        let square5x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square5x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 4,
             words: words,
             lengths: len,
@@ -5332,7 +5332,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -5341,14 +5341,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: 11,
             heightMax: 7))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5358,7 +5358,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -5368,7 +5368,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle4x5)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5377,7 +5377,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5405,14 +5405,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 36,
             widthMax: 13,
             heightMax: 12))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5422,7 +5422,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x4)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5431,7 +5431,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5459,14 +5459,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 11,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5476,7 +5476,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -5486,7 +5486,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 6))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5496,7 +5496,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4_TopLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5505,7 +5505,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: square3x3)
 
-        let square4x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square4x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -5535,7 +5535,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -5544,14 +5544,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 11,
             heightMax: 10))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5561,7 +5561,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4)
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -5589,14 +5589,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 10,
             heightMax: 10))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5606,7 +5606,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -5637,7 +5637,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -5646,14 +5646,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 15))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 13,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5663,7 +5663,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -5673,7 +5673,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5683,7 +5683,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4_BottomLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5692,7 +5692,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: square3x3)
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -5701,7 +5701,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: square4x4)
 
-        let square5x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square5x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 4,
             words: words,
             lengths: len,
@@ -5729,14 +5729,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5746,7 +5746,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle4x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -5756,7 +5756,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle4x6)
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5766,7 +5766,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4_TopRight)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5775,7 +5775,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: square3x3)
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -5784,7 +5784,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: square4x4)
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5812,14 +5812,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: 8,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5829,7 +5829,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -5839,7 +5839,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5849,7 +5849,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4_BottomLeft)
 
-        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -5859,7 +5859,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 13))
         queue.add(shapes: rectangle3x5_TopLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5887,14 +5887,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: 9,
             heightMax: 11))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5904,7 +5904,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x7 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x7 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 6,
             words: words,
@@ -5914,7 +5914,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle3x7)
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -5924,7 +5924,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle4x5)
 
-        let rectangle5x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle5x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 4,
             interlockHeight: 5,
             words: words,
@@ -5934,7 +5934,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle5x6)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5962,14 +5962,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 8,
             heightMax: 10))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5979,7 +5979,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -5989,7 +5989,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x6)
 
-        let rectangle4x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -5999,7 +5999,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle4x6)
 
-        let rectangle4x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle4x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -6012,7 +6012,7 @@ public class WinningGameQueueListCalculator {
         let special9407 = SpecialShapesCalculator.C9407(words: words)
         queue.add(shapes: special9407)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6021,7 +6021,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: square3x3)
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -6051,7 +6051,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -6060,14 +6060,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 8,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6077,7 +6077,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6087,7 +6087,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x4_TopRight)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6096,7 +6096,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: square3x3)
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -6124,14 +6124,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 10))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6141,7 +6141,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle4x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle4x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -6151,7 +6151,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle4x5_BottomLeft)
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6161,7 +6161,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4_TopLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6170,7 +6170,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6200,7 +6200,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.BottomRight(
+        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV1.BottomRight(
             words: words,
             end: end,
             len: len,
@@ -6209,14 +6209,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 13))
         queue.add(shapes: pacman3x3_BottomRight)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 10,
             heightMax: 10))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6226,7 +6226,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -6257,7 +6257,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
             words: words,
             end: end,
             len: len,
@@ -6266,14 +6266,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: c2x4)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 10,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6283,7 +6283,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -6293,7 +6293,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x5)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6323,7 +6323,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -6332,7 +6332,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: c2x2)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -6341,14 +6341,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6358,7 +6358,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6368,7 +6368,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4_BottomLeft)
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6378,7 +6378,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 6))
         queue.add(shapes: rectangle3x4_TopRight)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6387,7 +6387,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: square3x3)
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -6417,7 +6417,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x6 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x6(
+        let c2x6 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x6(
             words: words,
             end: end,
             len: len,
@@ -6426,14 +6426,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: c2x6)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 11,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -6443,7 +6443,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6453,7 +6453,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4_BottomLeft)
 
-        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -6463,7 +6463,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x5_BottomRight)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6472,7 +6472,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6500,14 +6500,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 11,
             heightMax: 10))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6517,7 +6517,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -6527,7 +6527,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -6537,7 +6537,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x6)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6546,7 +6546,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: square3x3)
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6576,7 +6576,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -6585,14 +6585,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 10,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6602,7 +6602,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -6612,7 +6612,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x6)
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -6622,7 +6622,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle4x5)
 
-        let rectangle4x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle4x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -6632,7 +6632,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle4x5_BottomRight)
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6662,7 +6662,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -6671,7 +6671,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: c2x2)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -6680,14 +6680,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 12,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6697,7 +6697,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -6707,7 +6707,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle4x5)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6716,7 +6716,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: square3x3)
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -6725,7 +6725,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: square4x4)
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6734,7 +6734,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: square3x3_TopLeft)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6764,7 +6764,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -6773,14 +6773,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6790,7 +6790,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle4x7_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle4x7_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 6,
             words: words,
@@ -6800,7 +6800,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle4x7_BottomLeft)
 
-        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -6810,7 +6810,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x5_BottomRight)
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6820,7 +6820,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle3x4_TopLeft)
 
-        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -6830,7 +6830,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x5_TopLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6860,7 +6860,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -6869,7 +6869,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: c2x2)
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
             words: words,
             end: end,
             len: len,
@@ -6878,14 +6878,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 14))
         queue.add(shapes: c2x4)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 10))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6895,7 +6895,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6905,7 +6905,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x4_BottomRight)
 
-        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -6915,7 +6915,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle3x5_BottomRight)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6924,7 +6924,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: square3x3)
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -6933,7 +6933,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: square4x4)
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6963,7 +6963,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -6972,14 +6972,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 13))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 13))
         queue.add(shapes: edges)
 
-        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
+        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -6988,7 +6988,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: outer2x3)
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -6998,7 +6998,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 6))
         queue.add(shapes: rectangle4x5)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7028,7 +7028,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -7037,7 +7037,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: c2x2)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -7046,14 +7046,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 14))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 11,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
+        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -7062,7 +7062,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: outer2x3)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7072,7 +7072,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -7103,7 +7103,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -7112,14 +7112,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 13))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 8,
             heightMax: 10))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7129,7 +7129,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -7139,7 +7139,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x5)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7148,7 +7148,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7176,14 +7176,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 10))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7193,7 +7193,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -7203,7 +7203,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle3x5)
 
-        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -7213,7 +7213,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x6)
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -7223,7 +7223,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: rectangle4x5)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7232,7 +7232,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: square3x3)
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7262,7 +7262,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.BottomRight(
+        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV1.BottomRight(
             words: words,
             end: end,
             len: len,
@@ -7271,7 +7271,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: pacman3x3_BottomRight)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -7280,14 +7280,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 11,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7297,7 +7297,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7307,7 +7307,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 12))
         queue.add(shapes: rectangle3x4_BottomLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7316,7 +7316,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 7))
         queue.add(shapes: square3x3)
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -7325,7 +7325,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: square4x4)
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7334,7 +7334,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: square3x3_BottomRight)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7364,7 +7364,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -7373,14 +7373,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: 11,
             heightMax: 10))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7390,7 +7390,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -7400,7 +7400,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle3x6)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7430,7 +7430,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -7439,14 +7439,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 6))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let outer2x4 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x4(
+        let outer2x4 = ShapeCalculator.toShapes(outers: OuterCalculatorV1.C2x4(
             words: words,
             end: end,
             len: len,
@@ -7455,7 +7455,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: outer2x4)
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -7465,7 +7465,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: rectangle4x5)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7495,7 +7495,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -7504,7 +7504,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: c2x2)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -7513,14 +7513,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 9))
         queue.add(shapes: c2x3)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: 11,
             heightMax: 10))
         queue.add(shapes: edges)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -7530,7 +7530,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x5)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7539,7 +7539,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: square3x3)
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7567,14 +7567,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -7584,7 +7584,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x5)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7593,7 +7593,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: square3x3)
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7623,7 +7623,7 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -7632,14 +7632,14 @@ public class WinningGameQueueListCalculator {
             heightMax: 13))
         queue.add(shapes: c2x2)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 11,
             heightMax: 11))
         queue.add(shapes: edges)
 
-        let outer2x4 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x4(
+        let outer2x4 = ShapeCalculator.toShapes(outers: OuterCalculatorV1.C2x4(
             words: words,
             end: end,
             len: len,
@@ -7648,7 +7648,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 15))
         queue.add(shapes: outer2x4)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7658,7 +7658,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 11))
         queue.add(shapes: rectangle3x4)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7667,7 +7667,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 13))
         queue.add(shapes: square3x3)
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -7695,14 +7695,14 @@ public class WinningGameQueueListCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: 9,
             heightMax: 9))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7712,7 +7712,7 @@ public class WinningGameQueueListCalculator {
             heightMax: 10))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -7725,7 +7725,7 @@ public class WinningGameQueueListCalculator {
         let special9605 = SpecialShapesCalculator.C9605(words: words)
         queue.add(shapes: special9605)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,

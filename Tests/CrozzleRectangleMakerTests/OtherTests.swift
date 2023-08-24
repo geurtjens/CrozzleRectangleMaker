@@ -11,7 +11,7 @@ final class OtherTests: XCTestCase {
     
     func test_Execute() async throws {
         
-        let result = await RectangleCalculator.Execute(
+        let result = await RectangleCalculatorV1.Execute(
             words: words,
             scoreMin: 104,
             widthMax: widthMax,
@@ -25,7 +25,7 @@ final class OtherTests: XCTestCase {
     
     func test_ExecuteSortByScoreAndArea() async throws {
         
-        let result = await RectangleCalculator.ExecuteAndSortByScoreAndArea(
+        let result = await RectangleCalculatorV1.ExecuteAndSortByScoreAndArea(
             words: words,
             scoreMin: 104,
             widthMax: widthMax,
@@ -43,7 +43,7 @@ final class OtherTests: XCTestCase {
     
     func test_ExecuteSerial() throws {
         
-        let result = RectangleCalculator.ExecuteSerial(
+        let result = RectangleCalculatorV1.ExecuteSerial(
             words: words,
             scoreMin: 104,
             widthMax: widthMax,
@@ -57,7 +57,7 @@ final class OtherTests: XCTestCase {
     
     func test_ExecuteSortByScoreAndAreaAndSaveToCSV() async throws {
         
-        let result = await RectangleCalculator.ExecuteAndSortByScoreAndArea(
+        let result = await RectangleCalculatorV1.ExecuteAndSortByScoreAndArea(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -71,7 +71,7 @@ final class OtherTests: XCTestCase {
     
     func test_BottomRight4x6_Repeats() throws {
         
-        let result = RectangleCalculator.BottomRightRectangle(
+        let result = RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -99,7 +99,7 @@ final class OtherTests: XCTestCase {
     
     func test_BottomRight3x5() throws {
         
-        let o4x6_BottomLeft = RectangleCalculator.BottomLeftRectangle(
+        let o4x6_BottomLeft = RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -109,7 +109,7 @@ final class OtherTests: XCTestCase {
             heightMax: heightMax,
             wordsMax: wordsMax)
         
-        let o4x6_BottomRight = RectangleCalculator.BottomRightRectangle(
+        let o4x6_BottomRight = RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -119,7 +119,7 @@ final class OtherTests: XCTestCase {
             heightMax: heightMax,
             wordsMax: wordsMax)
 
-        let o4x6_TopLeft = RectangleCalculator.TopLeftRectangle(
+        let o4x6_TopLeft = RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -129,7 +129,7 @@ final class OtherTests: XCTestCase {
             heightMax: heightMax,
             wordsMax: wordsMax)
         
-        let o4x6_TopRight = RectangleCalculator.TopRightRectangle(
+        let o4x6_TopRight = RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -173,7 +173,7 @@ final class OtherTests: XCTestCase {
 
     func test_ToTextFlipped() throws {
         
-        let result = RectangleCalculator.Square(
+        let result = RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: lengths,

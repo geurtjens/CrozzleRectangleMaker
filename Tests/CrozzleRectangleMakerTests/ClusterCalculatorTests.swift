@@ -9,10 +9,18 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class ClusterCalculatorTests: XCTestCase {
 
-    
+    func test_Compare() {
+        let count3 = ClusterCalculatorV3.ExecuteAllSerial(scoreMin: 0)
+        let count2 = ClusterCalculatorV2.ExecuteAllSerial(scoreMin: 0)
+        XCTAssertEqual(count2, count3)
+        
+        let count1 = ClusterCalculatorV1.ExecuteAllSerial(scoreMin: 0)
+        XCTAssertEqual(count2, count1)
+        
+    }
     func test_Execute_8612() throws {
         let words = WordData.words_8612()
-        let result = ClusterCalculator.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+        let result = ClusterCalculatorV1.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
         
         XCTAssertEqual(1149,result.count)
         XCTAssertEqual(146, result[0].score)
@@ -22,7 +30,7 @@ final class ClusterCalculatorTests: XCTestCase {
     
     func test_Execute_8702() throws {
         let words = WordData.words_8702()
-        let result = ClusterCalculator.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+        let result = ClusterCalculatorV1.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
         
         XCTAssertEqual(7853,result.count)
         XCTAssertEqual(164, result[0].score)
@@ -32,7 +40,7 @@ final class ClusterCalculatorTests: XCTestCase {
     
     func test_Execute_8705() throws {
         let words = WordData.words_8705()
-        let result = ClusterCalculator.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+        let result = ClusterCalculatorV1.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
         
         XCTAssertEqual(13596,result.count)
         XCTAssertEqual(172, result[0].score)
@@ -42,7 +50,7 @@ final class ClusterCalculatorTests: XCTestCase {
     
     func test_Execute_8710() throws {
         let words = WordData.words_8710()
-        let result = ClusterCalculator.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+        let result = ClusterCalculatorV1.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
         
         XCTAssertEqual(15269,result.count)
         XCTAssertEqual(172, result[0].score)
@@ -52,7 +60,7 @@ final class ClusterCalculatorTests: XCTestCase {
     
     func test_Execute_8711() throws {
         let words = WordData.words_8711()
-        let result = ClusterCalculator.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+        let result = ClusterCalculatorV1.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
         
         XCTAssertEqual(24231,result.count)
         XCTAssertEqual(204, result[0].score)
@@ -62,7 +70,7 @@ final class ClusterCalculatorTests: XCTestCase {
     
     func test_Execute_8802() throws {
         let words = WordData.words_8802()
-        let result = ClusterCalculator.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+        let result = ClusterCalculatorV1.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
         
         XCTAssertEqual(9802,result.count)
         XCTAssertEqual(180, result[0].score)
@@ -72,7 +80,7 @@ final class ClusterCalculatorTests: XCTestCase {
     
     func test_Execute_8803() throws {
         let words = WordData.words_8803()
-        let result = ClusterCalculator.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+        let result = ClusterCalculatorV1.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
         
         XCTAssertEqual(11750,result.count)
         XCTAssertEqual(178, result[0].score)
@@ -82,7 +90,7 @@ final class ClusterCalculatorTests: XCTestCase {
     
     func test_Execute_8804() throws {
         let words = WordData.words_8804()
-        let result = ClusterCalculator.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+        let result = ClusterCalculatorV1.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
         
         XCTAssertEqual(24757,result.count)
         XCTAssertEqual(168, result[0].score)
@@ -95,7 +103,7 @@ final class ClusterCalculatorTests: XCTestCase {
         let reversed = WordCalculator.reverse(words: words)
         let lengths = WordCalculator.lengths(words: words)
         
-        let result = ClusterCalculator.C2x2_LR_UD(words: words, end: reversed, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C2x2_LR_UD(words: words, end: reversed, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(1, result.count)
         
@@ -147,7 +155,7 @@ final class ClusterCalculatorTests: XCTestCase {
     
     
     func testC2x2_LR_UD() throws {
-        let result = ClusterCalculator.C2x2_LR_UD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C2x2_LR_UD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(256, result.count)
         
@@ -157,7 +165,7 @@ final class ClusterCalculatorTests: XCTestCase {
 
     
     func testC2x2_RL_DU() throws {
-        let result = ClusterCalculator.C2x2_RL_DU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C2x2_RL_DU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(446, result.count)
         
@@ -181,7 +189,7 @@ final class ClusterCalculatorTests: XCTestCase {
     
     
     func testC2x2_RL_UD() throws {
-        let result = ClusterCalculator.C2x2_RL_UD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C2x2_RL_UD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(97, result.count)
         
@@ -191,7 +199,7 @@ final class ClusterCalculatorTests: XCTestCase {
     
     
     func testC2x3_LRL_DU() throws {
-        let result = ClusterCalculator.C2x3_LRL_DU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C2x3_LRL_DU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(64, result.count)
         
@@ -201,7 +209,7 @@ final class ClusterCalculatorTests: XCTestCase {
     
     
     func testC2x3_LRL_UD() throws {
-        let result = ClusterCalculator.C2x3_LRL_UD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C2x3_LRL_UD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(152, result.count)
         
@@ -211,7 +219,7 @@ final class ClusterCalculatorTests: XCTestCase {
     
     
     func testC2x3_RLR_DU() throws {
-        let result = ClusterCalculator.C2x3_RLR_DU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C2x3_RLR_DU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(56, result.count)
         
@@ -221,7 +229,7 @@ final class ClusterCalculatorTests: XCTestCase {
     
     
     func testC2x3_RLR_UD() throws {
-        let result = ClusterCalculator.C2x3_RLR_UD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C2x3_RLR_UD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(20, result.count)
         
@@ -234,7 +242,7 @@ final class ClusterCalculatorTests: XCTestCase {
         let words = WordData.words_8804()
         let reversedWords = WordCalculator.reverse(words: words)
         let lengths = WordCalculator.lengths(words: words)
-        let result = ClusterCalculator.C2x4_RLRL_DU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C2x4_RLRL_DU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
 
         XCTAssertEqual(1468, result.count)
         
@@ -247,7 +255,7 @@ final class ClusterCalculatorTests: XCTestCase {
         let words = WordData.words_8804()
         let reversedWords = WordCalculator.reverse(words: words)
         let lengths = WordCalculator.lengths(words: words)
-        let result = ClusterCalculator.C2x4_RLRL_UD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C2x4_RLRL_UD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(699, result.count)
         
@@ -260,7 +268,7 @@ final class ClusterCalculatorTests: XCTestCase {
         let words = WordData.words_8804()
         let reversedWords = WordCalculator.reverse(words: words)
         let lengths = WordCalculator.lengths(words: words)
-        let result = ClusterCalculator.C2x4_LRLR_DU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C2x4_LRLR_DU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(473, result.count)
         
@@ -273,7 +281,7 @@ final class ClusterCalculatorTests: XCTestCase {
         let words = WordData.words_8804()
         let reversedWords = WordCalculator.reverse(words: words)
         let lengths = WordCalculator.lengths(words: words)
-        let result = ClusterCalculator.C2x4_LRLR_UD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C2x4_LRLR_UD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(580, result.count)
         
@@ -286,7 +294,7 @@ final class ClusterCalculatorTests: XCTestCase {
         let words = WordData.words_8804()
         let reversedWords = WordCalculator.reverse(words: words)
         let lengths = WordCalculator.lengths(words: words)
-        let result = ClusterCalculator.C2x5_RLRLR_DU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C2x5_RLRLR_DU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
                 
         XCTAssertEqual(171, result.count)
         
@@ -299,7 +307,7 @@ final class ClusterCalculatorTests: XCTestCase {
         let words = WordData.words_8804()
         let reversedWords = WordCalculator.reverse(words: words)
         let lengths = WordCalculator.lengths(words: words)
-        let result = ClusterCalculator.C2x5_RLRLR_UD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C2x5_RLRLR_UD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(130, result.count)
         
@@ -313,7 +321,7 @@ final class ClusterCalculatorTests: XCTestCase {
         let words = WordData.words_8804()
         let reversedWords = WordCalculator.reverse(words: words)
         let lengths = WordCalculator.lengths(words: words)
-        let result = ClusterCalculator.C2x5_LRLRL_DU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C2x5_LRLRL_DU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(133, result.count)
         
@@ -326,7 +334,7 @@ final class ClusterCalculatorTests: XCTestCase {
         let words = WordData.words_8804()
         let reversedWords = WordCalculator.reverse(words: words)
         let lengths = WordCalculator.lengths(words: words)
-        let result = ClusterCalculator.C2x5_LRLRL_UD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C2x5_LRLRL_UD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(117, result.count)
         
@@ -339,7 +347,7 @@ final class ClusterCalculatorTests: XCTestCase {
         let words = WordData.words_8804()
         let reversedWords = WordCalculator.reverse(words: words)
         let lengths = WordCalculator.lengths(words: words)
-        let result = ClusterCalculator.C2x6_LRLRLR_DU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C2x6_LRLRLR_DU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(12, result.count)
         
@@ -349,7 +357,7 @@ final class ClusterCalculatorTests: XCTestCase {
     
     
     func testC2x6_LRLRLR_UD() throws {
-        let result = ClusterCalculator.C2x6_LRLRLR_UD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C2x6_LRLRLR_UD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(0, result.count)
     }
@@ -359,7 +367,7 @@ final class ClusterCalculatorTests: XCTestCase {
         let words = WordData.words_8802()
         let reversedWords = WordCalculator.reverse(words: words)
         let lengths = WordCalculator.lengths(words: words)
-        let result = ClusterCalculator.C2x6_RLRLRL_DU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C2x6_RLRLRL_DU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(288, result.count)
         
@@ -372,14 +380,14 @@ final class ClusterCalculatorTests: XCTestCase {
         let words = WordData.words_8802()
         let reversedWords = WordCalculator.reverse(words: words)
         let lengths = WordCalculator.lengths(words: words)
-        let result = ClusterCalculator.C2x6_RLRLRL_UD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C2x6_RLRLRL_UD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(0, result.count)
     }
     
 
     func testC3x3_LRL_UDU() throws {
-        let result = ClusterCalculator.C3x3_LRL_UDU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C3x3_LRL_UDU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(4, result.count)
         
@@ -389,7 +397,7 @@ final class ClusterCalculatorTests: XCTestCase {
     
     
     func testC3x3_RLR_DUD() throws {
-        let result = ClusterCalculator.C3x3_RLR_DUD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C3x3_RLR_DUD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
 
         XCTAssertEqual(5, result.count)
         
@@ -403,7 +411,7 @@ final class ClusterCalculatorTests: XCTestCase {
         let words = WordData.words_8702()
         let reversedWords = WordCalculator.reverse(words: words)
         let lengths = WordCalculator.lengths(words: words)
-        let result = ClusterCalculator.C3x3_RLR_UDU(words: words, end: reversedWords, len: lengths,scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C3x3_RLR_UDU(words: words, end: reversedWords, len: lengths,scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(2, result.count)
         
@@ -417,7 +425,7 @@ final class ClusterCalculatorTests: XCTestCase {
         
         let reversedWords = WordCalculator.reverse(words: words)
         let lengths = WordCalculator.lengths(words: words)
-        let result = ClusterCalculator.C3x4_RLRL_DUD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C3x4_RLRL_DUD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(1, result.count)
         
@@ -431,7 +439,7 @@ final class ClusterCalculatorTests: XCTestCase {
         
         let reversedWords = WordCalculator.reverse(words: words)
         let lengths = WordCalculator.lengths(words: words)
-        let result = ClusterCalculator.C3x4_RLRL_DUD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C3x4_RLRL_DUD(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
 
         XCTAssertEqual(1, result.count)
         
@@ -445,7 +453,7 @@ final class ClusterCalculatorTests: XCTestCase {
         
         let reversedWords = WordCalculator.reverse(words: words)
         let lengths = WordCalculator.lengths(words: words)
-        let result = ClusterCalculator.C3x4_LRLR_UDU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C3x4_LRLR_UDU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(4, result.count)
         
@@ -459,7 +467,7 @@ final class ClusterCalculatorTests: XCTestCase {
         
         let reversedWords = WordCalculator.reverse(words: words)
         let lengths = WordCalculator.lengths(words: words)
-        let result = ClusterCalculator.C3x4_RLRL_UDU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = ClusterCalculatorV1.C3x4_RLRL_UDU(words: words, end: reversedWords, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(2, result.count)
         

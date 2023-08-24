@@ -12,11 +12,11 @@ final class Cluster2CalculatorTests: XCTestCase {
     func test_execute() {
         let words = WordData.words_8612()
         
-        let newResults = Cluster2Calculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let newResults = ClusterCalculatorV2.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(1149, newResults.count)
         
-        let oldResults = ClusterCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let oldResults = ClusterCalculatorV1.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(1149, oldResults.count)
     }
@@ -25,7 +25,7 @@ final class Cluster2CalculatorTests: XCTestCase {
         measure {
             let words = WordData.words_8612()
             
-            let newResults = Cluster2Calculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let newResults = ClusterCalculatorV2.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(1149, newResults.count)
         }
@@ -41,7 +41,7 @@ final class Cluster2CalculatorTests: XCTestCase {
             for game in gameList.games {
                 let words = game.words
                 
-                let oldResults = ClusterCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+                let oldResults = ClusterCalculatorV1.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
                 
                 let shapes = ShapeCalculator.toShapes(clusters: oldResults)
                 print("ClusterCalculator.Execute: \(game.gameId) old: \(shapes.count)")
@@ -60,7 +60,7 @@ final class Cluster2CalculatorTests: XCTestCase {
             for game in gameList.games {
                 let words = game.words
                 
-                let newResults = Cluster2Calculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+                let newResults = ClusterCalculatorV2.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
                 //let shapes = ShapeCalculator.toShapes(clusters: newResults)
                 print("ClusterCalculator2.Execute: \(game.gameId) new: \(newResults.count)")
             }
@@ -75,9 +75,9 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let words = game.words
             
-            let newResults = Cluster2Calculator.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let newResults = ClusterCalculatorV2.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
-            let oldResults = ClusterCalculator.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(oldResults.count, newResults.count)
             
@@ -93,9 +93,9 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let (words, letterIndex, lengths, end) = getData(words: game.words)
             
-            let newResults = Cluster2Calculator.C2x2(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let newResults = ClusterCalculatorV2.C2x2(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
-            let oldResults = ClusterCalculator.C2x2(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C2x2(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(oldResults.count, newResults.count)
             
@@ -113,9 +113,9 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let (words, letterIndex, lengths, end) = getData(words: game.words)
             
-            let newResults = Cluster2Calculator.C2x3(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let newResults = ClusterCalculatorV2.C2x3(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
-            let oldResults = ClusterCalculator.C2x3(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C2x3(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(oldResults.count, newResults.count)
              
@@ -131,9 +131,9 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let (words, letterIndex, lengths, end) = getData(words: game.words)
         
-            let newResults = Cluster2Calculator.C2x4(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let newResults = ClusterCalculatorV2.C2x4(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
-            let oldResults = ClusterCalculator.C2x4(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C2x4(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(oldResults.count, newResults.count)
             
@@ -160,9 +160,9 @@ final class Cluster2CalculatorTests: XCTestCase {
   
             let (words, letterIndex, lengths, end) = getData(words: game.words)
             
-            let newResults = Cluster2Calculator.C2x5_LRLRL_DU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let newResults = ClusterCalculatorV2.C2x5_LRLRL_DU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
-            let oldResults = ClusterCalculator.C2x5_LRLRL_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C2x5_LRLRL_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(oldResults.count, newResults.count)
             print("C2x5_LRLRL_DU: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
@@ -177,9 +177,9 @@ final class Cluster2CalculatorTests: XCTestCase {
   
             let (words, letterIndex, lengths, end) = getData(words: game.words)
             
-            let newResults = Cluster2Calculator.C2x5_LRLRL_UD(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let newResults = ClusterCalculatorV2.C2x5_LRLRL_UD(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
-            let oldResults = ClusterCalculator.C2x5_LRLRL_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C2x5_LRLRL_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(oldResults.count, newResults.count)
             print("C2x5_LRLRL_UD: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
@@ -194,9 +194,9 @@ final class Cluster2CalculatorTests: XCTestCase {
   
             let (words, letterIndex, lengths, end) = getData(words: game.words)
             
-            let newResults = Cluster2Calculator.C2x5_RLRLR_DU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let newResults = ClusterCalculatorV2.C2x5_RLRLR_DU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
-            let oldResults = ClusterCalculator.C2x5_RLRLR_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C2x5_RLRLR_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(oldResults.count, newResults.count)
             print("C2x5_RLRLR_DU: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
@@ -211,9 +211,9 @@ final class Cluster2CalculatorTests: XCTestCase {
   
             let (words, letterIndex, lengths, end) = getData(words: game.words)
             
-            let newResults = Cluster2Calculator.C2x5_RLRLR_UD(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let newResults = ClusterCalculatorV2.C2x5_RLRLR_UD(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
-            let oldResults = ClusterCalculator.C2x5_RLRLR_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C2x5_RLRLR_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(oldResults.count, newResults.count)
             print("C2x5_RLRLR_UD: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
@@ -228,9 +228,9 @@ final class Cluster2CalculatorTests: XCTestCase {
   
             let (words, letterIndex, lengths, end) = getData(words: game.words)
             
-            let newResults = Cluster2Calculator.C2x5(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let newResults = ClusterCalculatorV2.C2x5(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
-            let oldResults = ClusterCalculator.C2x5(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C2x5(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(oldResults.count, newResults.count)
             print("C2x5: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
@@ -261,11 +261,11 @@ final class Cluster2CalculatorTests: XCTestCase {
         
         let (words, letterIndex, lengths, end) = getData(words: example)
         
-        let newResults = Cluster2Calculator.C2x6_LRLRLR_DU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+        let newResults = ClusterCalculatorV2.C2x6_LRLRLR_DU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
         
         XCTAssertEqual(1, newResults.count)
         
-        let oldResults = ClusterCalculator.C2x6_LRLRLR_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let oldResults = ClusterCalculatorV1.C2x6_LRLRLR_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(1, oldResults.count)
     }
@@ -281,9 +281,9 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let (words, letterIndex, lengths, end) = getData(words: game.words)
             
-            let newResults = Cluster2Calculator.C2x6_LRLRLR_DU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let newResults = ClusterCalculatorV2.C2x6_LRLRLR_DU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
-            let oldResults = ClusterCalculator.C2x6_LRLRLR_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C2x6_LRLRLR_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(oldResults.count, newResults.count)
             
@@ -300,9 +300,9 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let (words, letterIndex, lengths, end) = getData(words: game.words)
         
-            let newResults = Cluster2Calculator.C2x6_LRLRLR_UD(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let newResults = ClusterCalculatorV2.C2x6_LRLRLR_UD(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
-            let oldResults = ClusterCalculator.C2x6_LRLRLR_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C2x6_LRLRLR_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(oldResults.count, newResults.count)
 
@@ -318,9 +318,9 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let (words, letterIndex, lengths, end) = getData(words: game.words)
         
-            let newResults = Cluster2Calculator.C2x6_RLRLRL_DU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let newResults = ClusterCalculatorV2.C2x6_RLRLRL_DU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
-            let oldResults = ClusterCalculator.C2x6_RLRLRL_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C2x6_RLRLRL_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(oldResults.count, newResults.count)
 
@@ -336,9 +336,9 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let (words, letterIndex, lengths, end) = getData(words: game.words)
         
-            let newResults = Cluster2Calculator.C2x6_RLRLRL_UD(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let newResults = ClusterCalculatorV2.C2x6_RLRLRL_UD(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
-            let oldResults = ClusterCalculator.C2x6_RLRLRL_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C2x6_RLRLRL_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(oldResults.count, newResults.count)
 
@@ -354,9 +354,9 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let (words, letterIndex, lengths, end) = getData(words: game.words)
         
-            let newResults = Cluster2Calculator.C2x6(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let newResults = ClusterCalculatorV2.C2x6(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
-            let oldResults = ClusterCalculator.C2x6(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C2x6(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(oldResults.count, newResults.count)
 
@@ -373,9 +373,9 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let (words, letterIndex, lengths, end) = getData(words: game.words)
         
-            let newResults = Cluster2Calculator.C3x3(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let newResults = ClusterCalculatorV2.C3x3(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
-            let oldResults = ClusterCalculator.C3x3(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C3x3(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(oldResults.count, newResults.count)
             print("C3x3: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
@@ -390,9 +390,9 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let (words, letterIndex, lengths, end) = getData(words: game.words)
         
-            let newResults = Cluster2Calculator.C3x4(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let newResults = ClusterCalculatorV2.C3x4(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
-            let oldResults = ClusterCalculator.C3x4(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C3x4(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(oldResults.count, newResults.count)
        
@@ -408,9 +408,9 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let (words, letterIndex, lengths, end) = getData(words: game.words)
         
-            let newResults = Cluster2Calculator.C3x5(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let newResults = ClusterCalculatorV2.C3x5(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
-            let oldResults = ClusterCalculator.C3x5(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C3x5(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(oldResults.count, newResults.count)
             print("C3x5: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
@@ -435,9 +435,9 @@ final class Cluster2CalculatorTests: XCTestCase {
         let exampleWords = ["TUBER","TAP","ALOE","CALENDULA","PANSY","BONSAI","TREES"]
         let (words, letterIndex, lengths, end) = getData(words: exampleWords)
         
-        let newResults = Cluster2Calculator.C3x4_RLRL_DUD(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+        let newResults = ClusterCalculatorV2.C3x4_RLRL_DUD(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
         
-        let oldResults = ClusterCalculator.C3x4_RLRL_DUD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let oldResults = ClusterCalculatorV1.C3x4_RLRL_DUD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
                 
         //print(oldResults[0].ToShape().ToText(words: words))
         //print(oldResults[0].ToShape().Flip().ToText(words: words))
@@ -455,9 +455,9 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let (words, letterIndex, lengths, end) = getData(words: game.words)
         
-            let newResults = Cluster2Calculator.C3x4_LRLR_DUD(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let newResults = ClusterCalculatorV2.C3x4_LRLR_DUD(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
-            let oldResults = ClusterCalculator.C3x4_LRLR_DUD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C3x4_LRLR_DUD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(oldResults.count, newResults.count)
        
@@ -484,7 +484,7 @@ final class Cluster2CalculatorTests: XCTestCase {
         
         let (words, letterIndex, lengths, end) = getData(words: list)
         
-        let newResults = Cluster2Calculator.C3x4_LRLR_UDU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+        let newResults = ClusterCalculatorV2.C3x4_LRLR_UDU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
         XCTAssertEqual(1, newResults.count)
     }
     
@@ -496,9 +496,9 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let (words, letterIndex, lengths, end) = getData(words: game.words)
         
-            let newResults = Cluster2Calculator.C3x4_LRLR_UDU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let newResults = ClusterCalculatorV2.C3x4_LRLR_UDU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
-            let oldResults = ClusterCalculator.C3x4_LRLR_UDU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C3x4_LRLR_UDU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(oldResults.count, newResults.count)
        
@@ -519,9 +519,9 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let (words, letterIndex, lengths, end) = getData(words: game.words)
         
-            let newResults = Cluster2Calculator.C3x4_RLRL_DUD(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let newResults = ClusterCalculatorV2.C3x4_RLRL_DUD(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
-            let oldResults = ClusterCalculator.C3x4_RLRL_DUD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C3x4_RLRL_DUD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(oldResults.count, newResults.count)
        
@@ -539,9 +539,9 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let (words, letterIndex, lengths, end) = getData(words: game.words)
         
-            let newResults = Cluster2Calculator.C3x4_RLRL_UDU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let newResults = ClusterCalculatorV2.C3x4_RLRL_UDU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
-            let oldResults = ClusterCalculator.C3x4_RLRL_UDU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C3x4_RLRL_UDU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(oldResults.count, newResults.count)
        
@@ -570,9 +570,9 @@ final class Cluster2CalculatorTests: XCTestCase {
         let inputWords = ["HECTOR","SETH","THESEUS","CHARON","CHARIS","JUPITER","OSIRIS","ARES"]
         let (words, letterIndex, lengths, end) = getData(words: inputWords)
         
-        let newResults = Cluster2Calculator.C3x5_LRLRL_UDU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+        let newResults = ClusterCalculatorV2.C3x5_LRLRL_UDU(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
         XCTAssertEqual(1, newResults.count)
-        let oldResults = ClusterCalculator.C3x5_LRLRL_UDU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let oldResults = ClusterCalculatorV1.C3x5_LRLRL_UDU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         XCTAssertEqual(1, oldResults.count)
         XCTAssertEqual(oldResults.count, newResults.count)
     }
@@ -586,9 +586,9 @@ final class Cluster2CalculatorTests: XCTestCase {
                 
                 let (words, letterIndex, lengths, end) = getData(words: game.words)
                 
-                let newResults = Cluster2Calculator.C3x5(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+                let newResults = ClusterCalculatorV2.C3x5(letterIndex: letterIndex,words:words,end:end,len: lengths,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
                 
-                let oldResults = ClusterCalculator.C3x5(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+                let oldResults = ClusterCalculatorV1.C3x5(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
                 
                 XCTAssertEqual(oldResults.count, newResults.count)
                 print("3x5: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
@@ -607,7 +607,7 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let end = WordCalculator.reverse(words: words)
             
-            let oldResults = ClusterCalculator.C2x3(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C2x3(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(292, oldResults.count)
             
@@ -625,7 +625,7 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let end = WordCalculator.reverse(words: words)
             
-            let newResults = Cluster2Calculator.C2x3(
+            let newResults = ClusterCalculatorV2.C2x3(
                 letterIndex: letterIndex,
                 words:words,
                 end:end,
@@ -649,11 +649,11 @@ final class Cluster2CalculatorTests: XCTestCase {
         
         let letterIndex = LetterIndexModel(words: words)
 
-        let newResults = Cluster2Calculator.C2x3_LRL_DU(letterIndex: letterIndex, words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let newResults = ClusterCalculatorV2.C2x3_LRL_DU(letterIndex: letterIndex, words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(64, newResults.count)
         
-        let oldResults = ClusterCalculator.C2x3_LRL_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let oldResults = ClusterCalculatorV1.C2x3_LRL_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
 
         XCTAssertEqual(64, oldResults.count)
 //        for result in newResults {
@@ -670,11 +670,11 @@ final class Cluster2CalculatorTests: XCTestCase {
         
         let letterIndex = LetterIndexModel(words: words)
 
-        let newResults = Cluster2Calculator.C2x3_LRL_UD(letterIndex: letterIndex, words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let newResults = ClusterCalculatorV2.C2x3_LRL_UD(letterIndex: letterIndex, words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(152, newResults.count)
         
-        let oldResults = ClusterCalculator.C2x3_LRL_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let oldResults = ClusterCalculatorV1.C2x3_LRL_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
 
         XCTAssertEqual(152, oldResults.count)
 //        for result in newResults {
@@ -691,11 +691,11 @@ final class Cluster2CalculatorTests: XCTestCase {
         
         let letterIndex = LetterIndexModel(words: words)
 
-        let newResults = Cluster2Calculator.C2x3_RLR_DU(letterIndex: letterIndex, words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let newResults = ClusterCalculatorV2.C2x3_RLR_DU(letterIndex: letterIndex, words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(56, newResults.count)
         
-        let oldResults = ClusterCalculator.C2x3_RLR_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let oldResults = ClusterCalculatorV1.C2x3_RLR_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
 
         XCTAssertEqual(56, oldResults.count)
 //        for result in newResults {
@@ -712,11 +712,11 @@ final class Cluster2CalculatorTests: XCTestCase {
         
         let letterIndex = LetterIndexModel(words: words)
 
-        let newResults = Cluster2Calculator.C2x3_RLR_UD(letterIndex: letterIndex, words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let newResults = ClusterCalculatorV2.C2x3_RLR_UD(letterIndex: letterIndex, words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(20, newResults.count)
         
-        let oldResults = ClusterCalculator.C2x3_RLR_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let oldResults = ClusterCalculatorV1.C2x3_RLR_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
 
         XCTAssertEqual(20, oldResults.count)
         for result in newResults {
@@ -733,7 +733,7 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let end = WordCalculator.reverse(words: words)
 
-            let oldResults = ClusterCalculator.C2x2(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C2x2(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             // 256+446+97
             XCTAssertEqual(799, oldResults.count)
             
@@ -751,7 +751,7 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let end = WordCalculator.reverse(words: words)
             
-            let newResults = Cluster2Calculator.C2x2(
+            let newResults = ClusterCalculatorV2.C2x2(
                 letterIndex: letterIndex,
                 words:words,
                 end:end,
@@ -786,7 +786,7 @@ final class Cluster2CalculatorTests: XCTestCase {
         
         let end = WordCalculator.reverse(words: words)
         
-        let newResults = Cluster2Calculator.C2x2_RL_DU(
+        let newResults = ClusterCalculatorV2.C2x2_RL_DU(
             letterIndex: letterIndex,
             words:words,
             end:end,
@@ -819,7 +819,7 @@ final class Cluster2CalculatorTests: XCTestCase {
         
         let end = WordCalculator.reverse(words: words)
         
-        let newResults = Cluster2Calculator.C2x2_LR_UD(
+        let newResults = ClusterCalculatorV2.C2x2_LR_UD(
             letterIndex: letterIndex,
             words:words,
             end:end,
@@ -841,7 +841,7 @@ final class Cluster2CalculatorTests: XCTestCase {
         
         let end = WordCalculator.reverse(words: words)
         
-        let newResults = Cluster2Calculator.C2x2_LR_UD(
+        let newResults = ClusterCalculatorV2.C2x2_LR_UD(
             letterIndex: letterIndex,
             words:words,
             end:end,
@@ -852,7 +852,7 @@ final class Cluster2CalculatorTests: XCTestCase {
         
         XCTAssertEqual(256, newResults.count)
         
-        let oldResults = ClusterCalculator.C2x2_LR_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let oldResults = ClusterCalculatorV1.C2x2_LR_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(256, oldResults.count)
         
@@ -870,7 +870,7 @@ final class Cluster2CalculatorTests: XCTestCase {
         
         let end = WordCalculator.reverse(words: words)
         
-        let newResults = Cluster2Calculator.C2x2_RL_DU(
+        let newResults = ClusterCalculatorV2.C2x2_RL_DU(
             letterIndex: letterIndex,
             words:words,
             end:end,
@@ -881,7 +881,7 @@ final class Cluster2CalculatorTests: XCTestCase {
         
         XCTAssertEqual(446, newResults.count)
         
-        let oldResults = ClusterCalculator.C2x2_RL_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let oldResults = ClusterCalculatorV1.C2x2_RL_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(446, oldResults.count)
         
@@ -899,7 +899,7 @@ final class Cluster2CalculatorTests: XCTestCase {
         
         let end = WordCalculator.reverse(words: words)
         
-        let newResults = Cluster2Calculator.C2x2_RL_UD(
+        let newResults = ClusterCalculatorV2.C2x2_RL_UD(
             letterIndex: letterIndex,
             words:words,
             end:end,
@@ -910,7 +910,7 @@ final class Cluster2CalculatorTests: XCTestCase {
         
         XCTAssertEqual(97, newResults.count)
         
-        let oldResults = ClusterCalculator.C2x2_RL_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let oldResults = ClusterCalculatorV1.C2x2_RL_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         XCTAssertEqual(97, oldResults.count)
         
@@ -928,7 +928,7 @@ final class Cluster2CalculatorTests: XCTestCase {
         
         let end = WordCalculator.reverse(words: words)
         
-        let newResults = Cluster2Calculator.C3x3(
+        let newResults = ClusterCalculatorV2.C3x3(
             letterIndex: letterIndex,
             words:words,
             end:end,
@@ -1147,7 +1147,7 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let end = WordCalculator.reverse(words: words)
             
-            let oldResults = ClusterCalculator.C2x2_RL_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C2x2_RL_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(97, oldResults.count)
             
@@ -1165,7 +1165,7 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let end = WordCalculator.reverse(words: words)
             
-            let newResults = Cluster2Calculator.C2x2_RL_UD(
+            let newResults = ClusterCalculatorV2.C2x2_RL_UD(
                 letterIndex: letterIndex,
                 words:words,
                 end:end,
@@ -1188,7 +1188,7 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let end = WordCalculator.reverse(words: words)
             
-            let oldResults = ClusterCalculator.C2x2_RL_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C2x2_RL_DU(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(446, oldResults.count)
             
@@ -1206,7 +1206,7 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let end = WordCalculator.reverse(words: words)
             
-            let newResults = Cluster2Calculator.C2x2_RL_DU(
+            let newResults = ClusterCalculatorV2.C2x2_RL_DU(
                 letterIndex: letterIndex,
                 words:words,
                 end:end,
@@ -1233,7 +1233,7 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let end = WordCalculator.reverse(words: words)
             //startMeasuring()
-            let newResults = Cluster2Calculator.C2x2_LR_UD(
+            let newResults = ClusterCalculatorV2.C2x2_LR_UD(
                 letterIndex: letterIndex,
                 words:words,
                 end:end,
@@ -1256,7 +1256,7 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             let end = WordCalculator.reverse(words: words)
             
-            let oldResults = ClusterCalculator.C2x2_LR_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+            let oldResults = ClusterCalculatorV1.C2x2_LR_UD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
             
             XCTAssertEqual(256, oldResults.count)
             /// 0.070 seconds

@@ -510,7 +510,7 @@ final class JsonIOCalculatorTests: XCTestCase {
 //                        switch shapeName {
 //                        case "Edge":
 //                            var code = ""
-//                            code += "        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(\n"
+//                            code += "        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(\n"
 //                            code += "            words: words,\n"
 //                            code += "            scoreMin: 0,\n"
 //                            code += "            widthMax: widthMax,\n"
@@ -519,7 +519,7 @@ final class JsonIOCalculatorTests: XCTestCase {
 //                            text += code
 //                        case "Donut3x3":
 //                            var code = ""
-//                            code += "        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(\n"
+//                            code += "        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(\n"
 //                            code += "            interlockWidth: 2,\n"
 //                            code += "            words: words,\n"
 //                            code += "            lengths: len,\n"
@@ -530,7 +530,7 @@ final class JsonIOCalculatorTests: XCTestCase {
 //                            text += code
 //                        case "Donut3x4":
 //                            var code = ""
-//                            code += "        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(\n"
+//                            code += "        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(\n"
 //                            code += "            interlockWidth: 2,\n"
 //                            code += "            interlockHeight: 3,\n"
 //                            code += "            words: words,\n"
@@ -542,7 +542,7 @@ final class JsonIOCalculatorTests: XCTestCase {
 //                            text += code
 //                        case "Donut4x5":
 //                            var code = ""
-//                            code += "        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(\n"
+//                            code += "        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(\n"
 //                            code += "            interlockWidth: 3,\n"
 //                            code += "            interlockHeight: 4,\n"
 //                            code += "            words: words,\n"
@@ -554,7 +554,7 @@ final class JsonIOCalculatorTests: XCTestCase {
 //                            text += code
 //                        case "OpenDonut4x3_TopRight":
 //                            var code = ""
-//                            code += "        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(\n"
+//                            code += "        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(\n"
 //                            code += "            interlockWidth: 2,\n"
 //                            code += "            interlockHeight: 3,\n"
 //                            code += "            words: words,\n"

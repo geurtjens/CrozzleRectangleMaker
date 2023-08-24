@@ -1,21 +1,51 @@
 //
-//  PacmanCalculator.swift
+//  PacmanCalculatorV1.swift
 //  
 //
 //  Created by Michael Geurtjens on 6/6/2023.
 //
 
 import Foundation
-class PacmanCalculator {
+class PacmanCalculatorV1 {
     
-    static func Execute(words: [String], end: [String], len: [Int],
-                        scoreMin: Int, widthMax: Int, heightMax: Int) ->[PacmanModel] {
+    
+    public static func ExecuteAllSerial(scoreMin: Int) -> Int  {
+        
+        let gameList = GameList()
+        
+        let startTime = DateTimeCalculator.now()
+        var count = 0
+        
+        for game in gameList.games {
+
+            var result = Execute(
+                words: game.words,
+                scoreMin: scoreMin,
+                widthMax: game.maxWidth,
+                heightMax: game.maxHeight)
+            
+            print("PacmanCalculatorV1.ExecuteSerial: \(game.gameId), count: \(result.count)")
+            
+            count += result.count
+        }
+        let finishTime = DateTimeCalculator.now()
+        let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
+        
+        print("\(count) records found in \(duration)")
+        return count
+    }
+    
+    static func Execute(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [PacmanModel] {
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+        
         let topRight = TopRight(words: words, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         let bottomRight = BottomRight(words: words, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         let topLeft = TopLeft(words: words, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         return topRight + bottomRight + topLeft
     }
+    
     
     // flips to bottom left so does not need to worry about duplicates.  Visually inspected
     

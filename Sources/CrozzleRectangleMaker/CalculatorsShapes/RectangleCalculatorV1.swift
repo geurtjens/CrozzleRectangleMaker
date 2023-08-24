@@ -1,5 +1,5 @@
 //
-//  RectangleCalculator.swift
+//  RectangleCalculatorV1.swift
 //  
 //
 //  Created by Michael Geurtjens on 17/5/2023.
@@ -7,7 +7,35 @@
 
 import Foundation
 /// Calculates all rectangle shapes from the words list and according to the constraints of score, width and height
-public class RectangleCalculator {
+public class RectangleCalculatorV1 {
+    
+    
+    public static func ExecuteAllSerial(scoreMin: Int) -> Int  {
+        
+        let gameList = GameList()
+        
+        let startTime = DateTimeCalculator.now()
+        var count = 0
+        
+        for game in gameList.games {
+
+            var result = ExecuteSerial(
+                words: game.words,
+                scoreMin: scoreMin,
+                widthMax: game.maxWidth,
+                heightMax: game.maxHeight)
+            
+            print("RectangleCalculatorV1.ExecuteSerial: \(game.gameId), count: \(result.count)")
+            
+            count += result.count
+        }
+        let finishTime = DateTimeCalculator.now()
+        let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
+        
+        print("\(count) records found in \(duration)")
+        return count
+        
+    }
     
     /// Creates all possible rectangles and then sorts them by score and then area
     public static func ExecuteAndSortByScoreAndArea(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) async -> [RectangleModel]  {

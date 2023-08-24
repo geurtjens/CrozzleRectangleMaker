@@ -82,7 +82,7 @@ public class QueueListCalculator {
     /// get 2 word shapes which is really only edges of which there are 10,000 or so
     public static func get_2_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) -> [ShapeModel] {
         
-        let edges = EdgeCalculator.Execute(
+        let edges = EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -97,7 +97,7 @@ public class QueueListCalculator {
     
     /// get all four word shapes which includes 2x2 and all rectangle shapes.  Concerning rectangle shapes there are many of these, millions of these
     public static func get_4_word_shapes(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int, wordsMax: Int = 0) async -> [ShapeModel] {
-        let rectangles = await RectangleCalculator.Execute(
+        let rectangles = await RectangleCalculatorV1.Execute(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -107,7 +107,7 @@ public class QueueListCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
         
-        let c2x2 = ClusterCalculator.C2x2(
+        let c2x2 = ClusterCalculatorV1.C2x2(
             words: words,
             end: end,
             len: len,
@@ -134,7 +134,7 @@ public class QueueListCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
         
-        let c2x3 = ClusterCalculator.C2x3(
+        let c2x3 = ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
             len: len,
@@ -155,7 +155,7 @@ public class QueueListCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
         
-        let c2x4 = ClusterCalculator.C2x4(
+        let c2x4 = ClusterCalculatorV1.C2x4(
             words: words,
             end: end,
             len: len,
@@ -164,7 +164,7 @@ public class QueueListCalculator {
             heightMax: heightMax,
             wordsMax: wordsMax)
         
-        let c3x3 = ClusterCalculator.C3x3(
+        let c3x3 = ClusterCalculatorV1.C3x3(
             words: words,
             end: end,
             len: len,
@@ -173,7 +173,7 @@ public class QueueListCalculator {
             heightMax: heightMax,
             wordsMax: wordsMax)
         
-        let pacman3x3_bottomRight = PacmanCalculator.BottomRight(
+        let pacman3x3_bottomRight = PacmanCalculatorV1.BottomRight(
             words: words,
             end: end,
             len: len,
@@ -181,7 +181,7 @@ public class QueueListCalculator {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        let pacman3x3_topLeft = PacmanCalculator.TopLeft(
+        let pacman3x3_topLeft = PacmanCalculatorV1.TopLeft(
             words: words,
             end: end,
             len: len,
@@ -189,7 +189,7 @@ public class QueueListCalculator {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        let pacman3x3_topRight = PacmanCalculator.TopRight(
+        let pacman3x3_topRight = PacmanCalculatorV1.TopRight(
             words: words,
             end: end,
             len: len,
@@ -217,7 +217,7 @@ public class QueueListCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
         
-        let c2x5 = ClusterCalculator.C2x5(
+        let c2x5 = ClusterCalculatorV1.C2x5(
             words: words,
             end: end,
             len: len,
@@ -226,7 +226,7 @@ public class QueueListCalculator {
             heightMax: heightMax,
             wordsMax: wordsMax)
         
-        let c3x4 = ClusterCalculator.C3x4(
+        let c3x4 = ClusterCalculatorV1.C3x4(
             words: words,
             end: end,
             len: len,
@@ -249,7 +249,7 @@ public class QueueListCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
         
-        let c2x6 = ClusterCalculator.C2x6(
+        let c2x6 = ClusterCalculatorV1.C2x6(
             words: words,
             end: end,
             len: len,
@@ -258,7 +258,7 @@ public class QueueListCalculator {
             heightMax: heightMax,
             wordsMax: wordsMax)
         
-        let c3x5 = ClusterCalculator.C3x5(
+        let c3x5 = ClusterCalculatorV1.C3x5(
             words: words,
             end: end,
             len: len,

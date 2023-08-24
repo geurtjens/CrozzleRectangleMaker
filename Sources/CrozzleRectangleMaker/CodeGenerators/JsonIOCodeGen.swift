@@ -92,7 +92,7 @@ public class JsonIOCodeGen {
         
         let code =
         """
-                let outer\(width)x\(height) = ShapeCalculator.toShapes(outers: OuterCalculator.C\(width)x\(height)(
+                let outer\(width)x\(height) = ShapeCalculator.toShapes(outers: OuterCalculatorV1.C\(width)x\(height)(
                    start: words,
                    end: end,
                    len: len,
@@ -107,7 +107,7 @@ public class JsonIOCodeGen {
     public static func edgeGen(minScore: Int) -> String {
         let code =
         """
-                let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+                let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
                     words: words,
                     scoreMin: \(minScore),
                     widthMax: widthMax,
@@ -132,7 +132,7 @@ public class JsonIOCodeGen {
         
         let code =
         """
-                let \(variableName) = ShapeCalculator.toShapes(pacmans: PacmanCalculator.\(angle)(
+                let \(variableName) = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV1.\(angle)(
                     start: words,
                     end: end,
                     len: len,
@@ -157,7 +157,7 @@ public class JsonIOCodeGen {
 
             let code =
             """
-                    let \(variableName) = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+                    let \(variableName) = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
                         interlockWidth: \(width - 1),
                         words: words,
                         lengths: len,
@@ -172,7 +172,7 @@ public class JsonIOCodeGen {
             
             let code =
             """
-                    let \(variableName) = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+                    let \(variableName) = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
                         interlockWidth: \(width - 1),
                         interlockHeight: \(height - 1),
                         words: words,
@@ -209,7 +209,7 @@ public class JsonIOCodeGen {
             // We have a square
             let code =
             """
-                    let \(variableName) = ShapeCalculator.toShapes(rectangles:RectangleCalculator.\(angle)Square(
+                    let \(variableName) = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.\(angle)Square(
                         interlockWidth: \(width - 1),
                         words: words,
                         lengths: len,
@@ -230,7 +230,7 @@ public class JsonIOCodeGen {
             }
             let code =
             """
-                    let \(variableName) = ShapeCalculator.toShapes(rectangles:RectangleCalculator.\(angle)Rectangle(
+                    let \(variableName) = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.\(angle)Rectangle(
                         interlockWidth: \(width - 1),
                         interlockHeight: \(height - 1),
                         words: words,

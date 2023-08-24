@@ -1,5 +1,5 @@
 //
-//  PacmanCalculatorTests.swift
+//  PacmanCalculatorV1Tests.swift
 //  
 //
 //  Created by Michael Geurtjens on 6/6/2023.
@@ -7,7 +7,7 @@
 
 import XCTest
 @testable import CrozzleRectangleMaker
-final class PacmanCalculatorTests: XCTestCase {
+final class PacmanCalculatorV1Tests: XCTestCase {
 
     func test_bottomRight_Single() throws {
         
@@ -15,7 +15,7 @@ final class PacmanCalculatorTests: XCTestCase {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
         
-        let result = PacmanCalculator.BottomRight(
+        let result = PacmanCalculatorV1.BottomRight(
             words: words,
             end: end,
             len: len,
@@ -88,7 +88,7 @@ final class PacmanCalculatorTests: XCTestCase {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
         
-        let result = PacmanCalculator.TopLeft(
+        let result = PacmanCalculatorV1.TopLeft(
             words: words,
             end: end,
             len: len,
@@ -154,7 +154,7 @@ final class PacmanCalculatorTests: XCTestCase {
             let end = WordCalculator.reverse(words: words)
             let len = WordCalculator.lengths(words: words)
             
-            let result = PacmanCalculator.BottomRight(
+            let result = PacmanCalculatorV1.BottomRight(
                 words: words,
                 end: end,
                 len: len,
@@ -182,7 +182,7 @@ final class PacmanCalculatorTests: XCTestCase {
             let end = WordCalculator.reverse(words: words)
             let len = WordCalculator.lengths(words: words)
             
-            let result = PacmanCalculator.TopRight(
+            let result = PacmanCalculatorV1.TopRight(
                 words: words,
                 end: end,
                 len: len,
@@ -210,7 +210,7 @@ final class PacmanCalculatorTests: XCTestCase {
             let end = WordCalculator.reverse(words: words)
             let len = WordCalculator.lengths(words: words)
             
-            let result = PacmanCalculator.TopLeft(
+            let result = PacmanCalculatorV1.TopLeft(
                 words: words,
                 end: end,
                 len: len,
@@ -240,7 +240,7 @@ final class PacmanCalculatorTests: XCTestCase {
             let len = WordCalculator.lengths(words: words)
             let letterIndex = LetterIndexModel(words: words)
             
-            let oldResults = PacmanCalculator.Execute(
+            let oldResults = PacmanCalculatorV1.Execute(
                 words: words,
                 end: end,
                 len: len,
@@ -248,7 +248,7 @@ final class PacmanCalculatorTests: XCTestCase {
                 widthMax: widthMax,
                 heightMax: heightMax)
             
-            let newResults = Pacman2Calculator.Execute(
+            let newResults = PacmanCalculatorV2.Execute(
                 words: words,
                 scoreMin: scoreMin,
                 widthMax: widthMax,
@@ -256,7 +256,7 @@ final class PacmanCalculatorTests: XCTestCase {
             
             XCTAssertEqual(oldResults.count, newResults.count)
             
-            print("PacmanCalculator.Execute game: \(game.gameId), old:\(oldResults.count), new:\(newResults.count)")
+            print("PacmanCalculatorV1.Execute game: \(game.gameId), old:\(oldResults.count), new:\(newResults.count)")
         }
     }
     
@@ -273,7 +273,7 @@ final class PacmanCalculatorTests: XCTestCase {
                 let len = WordCalculator.lengths(words: words)
                 //let letterIndex = LetterIndexModel(words: words)
                 
-                let oldResults = PacmanCalculator.Execute(
+                let oldResults = PacmanCalculatorV1.Execute(
                     words: words,
                     end: end,
                     len: len,
@@ -282,7 +282,7 @@ final class PacmanCalculatorTests: XCTestCase {
                     heightMax: heightMax)
                 
                 
-                print("PacmanCalculator.Execute game: \(game.gameId), old:\(oldResults.count)")
+                print("PacmanCalculatorV1.Execute game: \(game.gameId), old:\(oldResults.count)")
             }
         }
     }
@@ -300,13 +300,13 @@ final class PacmanCalculatorTests: XCTestCase {
                 let len = WordCalculator.lengths(words: words)
                 let letterIndex = LetterIndexModel(words: words)
                 
-                let newResults = Pacman2Calculator.Execute(
+                let newResults = PacmanCalculatorV2.Execute(
                     words: words,
                     scoreMin: scoreMin,
                     widthMax: widthMax,
                     heightMax: heightMax)
                 
-                print("PacmanCalculator.Execute game: \(game.gameId), new:\(newResults.count)")
+                print("PacmanCalculatorV1.Execute game: \(game.gameId), new:\(newResults.count)")
             }
         }
     }
@@ -324,7 +324,7 @@ final class PacmanCalculatorTests: XCTestCase {
                 let len = WordCalculator.lengths(words: words)
                 let letterIndex = LetterIndexModel(words: words)
                 
-                let newResults = Pacman4Calculator.Execute(
+                let newResults = PacmanCalculatorV4.Execute(
                     letterIndex: letterIndex,
                     words: words,
                     end: end,
@@ -333,37 +333,37 @@ final class PacmanCalculatorTests: XCTestCase {
                     widthMax: widthMax,
                     heightMax: heightMax)
                 
-                print("PacmanCalculator.Execute game: \(game.gameId), new:\(newResults.count)")
+                print("PacmanCalculatorV1.Execute game: \(game.gameId), new:\(newResults.count)")
             }
         }
     }
     
-    func test_Pacman5Calculator_ExecuteAllGamesInSerial() {
-        let totalCount = Pacman5Calculator.ExecuteAllGamesInSerial(scoreMin: 0)
+    func test_PacmanCalculatorV3_ExecuteAllGamesInSerial() {
+        let totalCount = PacmanCalculatorV3.ExecuteAllGamesInSerial(scoreMin: 0)
         XCTAssertEqual(60864, totalCount)
     }
     
-    func test_Pacman5Calculator_ExecuteAll_TopLeft() {
-        let totalCount = Pacman5Calculator.ExecuteAll_TopLeft(scoreMin: 0)
+    func test_PacmanCalculatorV3_ExecuteAll_TopLeft() {
+        let totalCount = PacmanCalculatorV3.ExecuteAll_TopLeft(scoreMin: 0)
         XCTAssertEqual(7853, totalCount)
     }
     
-    func test_Pacman5Calculator_ExecuteAll_TopRight() {
-        let totalCount = Pacman5Calculator.ExecuteAll_TopRight(scoreMin: 0)
+    func test_PacmanCalculatorV3_ExecuteAll_TopRight() {
+        let totalCount = PacmanCalculatorV3.ExecuteAll_TopRight(scoreMin: 0)
         XCTAssertEqual(14918, totalCount)
     }
     
-    func test_Pacman5Calculator_ExecuteAll_BottomRight() {
-        let totalCount = Pacman5Calculator.ExecuteAll_BottomRight(scoreMin: 0)
+    func test_PacmanCalculatorV3_ExecuteAll_BottomRight() {
+        let totalCount = PacmanCalculatorV3.ExecuteAll_BottomRight(scoreMin: 0)
         XCTAssertEqual(38093, totalCount)
     }
     
-    func test_PERF_Pacman5Calculator_ExecuteAllGamesInSerial() {
+    func test_PERF_PacmanCalculatorV3_ExecuteAllGamesInSerial() {
         let options = XCTMeasureOptions()
         options.iterationCount = 2 /* Tweak this value on a test-by-test basis */
 
         measure(metrics: [XCTClockMetric()], options: options) {
-            let totalCount = Pacman5Calculator.ExecuteAllGamesInSerial(scoreMin: 0)
+            let totalCount = PacmanCalculatorV3.ExecuteAllGamesInSerial(scoreMin: 0)
             XCTAssertEqual(60864, totalCount)
         }
     }
@@ -378,7 +378,7 @@ final class PacmanCalculatorTests: XCTestCase {
             let len = WordCalculator.lengths(words: words)
             let letterIndex = LetterIndexModel(words: words)
             
-            let newResults = Pacman2Calculator.BottomRight(
+            let newResults = PacmanCalculatorV2.BottomRight(
                 letterIndex: letterIndex,
                 words: words,
                 end: end,
@@ -388,7 +388,7 @@ final class PacmanCalculatorTests: XCTestCase {
                 heightMax: heightMax)
             
             result += newResults.count
-            print("PacmanCalculator.Execute game: \(game.gameId), new:\(newResults.count)")
+            print("PacmanCalculatorV1.Execute game: \(game.gameId), new:\(newResults.count)")
         
         }
         print("Total = \(result)")
@@ -404,7 +404,7 @@ final class PacmanCalculatorTests: XCTestCase {
             let len = WordCalculator.lengths(words: words)
             let letterIndex = LetterIndexModel(words: words)
             
-            let oldResults = PacmanCalculator.TopLeft(
+            let oldResults = PacmanCalculatorV1.TopLeft(
                 words: words,
                 end: end,
                 len: len,
@@ -412,7 +412,7 @@ final class PacmanCalculatorTests: XCTestCase {
                 widthMax: widthMax,
                 heightMax: heightMax)
             
-            let newResults = Pacman2Calculator.TopLeft(
+            let newResults = PacmanCalculatorV2.TopLeft(
                 letterIndex: letterIndex,
                 words: words,
                 end: end,
@@ -423,7 +423,7 @@ final class PacmanCalculatorTests: XCTestCase {
             
             XCTAssertEqual(oldResults.count, newResults.count)
             
-            print("PacmanCalculator.TopLeft game: \(game.gameId), old:\(oldResults.count), new:\(newResults.count)")
+            print("PacmanCalculatorV1.TopLeft game: \(game.gameId), old:\(oldResults.count), new:\(newResults.count)")
         }
     }
     func test_TopRightExample() {
@@ -444,7 +444,7 @@ final class PacmanCalculatorTests: XCTestCase {
         let len = WordCalculator.lengths(words: words)
         let letterIndex = LetterIndexModel(words: words)
         
-        let oldResults = PacmanCalculator.TopRight(
+        let oldResults = PacmanCalculatorV1.TopRight(
             words: words,
             end: end,
             len: len,
@@ -452,7 +452,7 @@ final class PacmanCalculatorTests: XCTestCase {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        let newResults = Pacman2Calculator.TopRight(
+        let newResults = PacmanCalculatorV2.TopRight(
             letterIndex: letterIndex,
             words: words,
             end: end,
@@ -470,7 +470,7 @@ final class PacmanCalculatorTests: XCTestCase {
             let len = WordCalculator.lengths(words: words)
             let letterIndex = LetterIndexModel(words: words)
             
-            let oldResults = PacmanCalculator.TopRight(
+            let oldResults = PacmanCalculatorV1.TopRight(
                 words: words,
                 end: end,
                 len: len,
@@ -478,7 +478,7 @@ final class PacmanCalculatorTests: XCTestCase {
                 widthMax: widthMax,
                 heightMax: heightMax)
             
-            let newResults = Pacman2Calculator.TopRight(
+            let newResults = PacmanCalculatorV2.TopRight(
                 letterIndex: letterIndex,
                 words: words,
                 end: end,
@@ -489,7 +489,7 @@ final class PacmanCalculatorTests: XCTestCase {
             
             XCTAssertEqual(oldResults.count, newResults.count)
             
-            print("PacmanCalculator.TopRight game: \(game.gameId), old:\(oldResults.count), new:\(newResults.count)")
+            print("PacmanCalculatorV1.TopRight game: \(game.gameId), old:\(oldResults.count), new:\(newResults.count)")
             if oldResults.count != newResults.count {
                 compareShapes(oldResults: oldResults, newResults: newResults, words: words);
             }
@@ -553,7 +553,7 @@ final class PacmanCalculatorTests: XCTestCase {
             let len = WordCalculator.lengths(words: words)
             let letterIndex = LetterIndexModel(words: words)
             
-            let oldResults = PacmanCalculator.BottomRight(
+            let oldResults = PacmanCalculatorV1.BottomRight(
                 words: words,
                 end: end,
                 len: len,
@@ -561,7 +561,7 @@ final class PacmanCalculatorTests: XCTestCase {
                 widthMax: widthMax,
                 heightMax: heightMax)
             
-            let newResults = Pacman2Calculator.BottomRight(
+            let newResults = PacmanCalculatorV2.BottomRight(
                 letterIndex: letterIndex,
                 words: words,
                 end: end,
@@ -572,7 +572,7 @@ final class PacmanCalculatorTests: XCTestCase {
             
             XCTAssertEqual(oldResults.count, newResults.count)
             
-            print("PacmanCalculator.TopLeft game: \(game.gameId), old:\(oldResults.count), new:\(newResults.count)")
+            print("PacmanCalculatorV1.TopLeft game: \(game.gameId), old:\(oldResults.count), new:\(newResults.count)")
         }
     }
     
@@ -593,7 +593,7 @@ final class PacmanCalculatorTests: XCTestCase {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
         
-        let oldResults = PacmanCalculator.TopRight(
+        let oldResults = PacmanCalculatorV1.TopRight(
             words: words,
             end: end,
             len: len,
@@ -601,7 +601,7 @@ final class PacmanCalculatorTests: XCTestCase {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        let result = PacmanCalculator.TopRight(
+        let result = PacmanCalculatorV1.TopRight(
             words: words,
             end: end,
             len: len,
@@ -612,7 +612,7 @@ final class PacmanCalculatorTests: XCTestCase {
         XCTAssertEqual(1, result.count)
         let letterIndex = LetterIndexModel(words: words)
         
-        let newResults = Pacman2Calculator.TopRight(letterIndex: letterIndex, words: words, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let newResults = PacmanCalculatorV2.TopRight(letterIndex: letterIndex, words: words, end: end, len: len, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         XCTAssertEqual(1, newResults.count)
         
         

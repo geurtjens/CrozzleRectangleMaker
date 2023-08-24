@@ -34,7 +34,7 @@ final class ClusterCalculatorPerformanceTests: XCTestCase {
             let words = WordData.words_8612()
             
             /// WHEN we search for all cluster shapes
-            let result = ClusterCalculator.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let result = ClusterCalculatorV1.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
             /// THEN we get 1,149 shapes
             XCTAssertEqual(1149, result.count)
@@ -61,7 +61,7 @@ final class ClusterCalculatorPerformanceTests: XCTestCase {
             let words = WordData.words_8612()
             
             /// WHEN we search for all cluster shapes
-            let result = ClusterCalculator.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
+            let result = ClusterCalculatorV1.Execute(words:words,scoreMin:scoreMin,widthMax:widthMax,heightMax:heightMax)
             
             /// THEN we get 1,149 shapes
             XCTAssertEqual(1149, result.count)

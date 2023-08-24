@@ -28,13 +28,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -43,7 +43,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -52,7 +52,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -61,7 +61,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -116,7 +116,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -124,13 +124,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.BottomRight(
+        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV1.BottomRight(
             words: words,
             end: end,
             len: len,
@@ -138,7 +138,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -146,7 +146,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -154,7 +154,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -162,7 +162,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -223,7 +223,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -231,7 +231,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -239,13 +239,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-//        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+//        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
 //            interlockWidth: 2,
 //            interlockHeight: 3,
 //            words: words,
@@ -256,7 +256,7 @@ public class WinningShapesCalculator {
 
         let special8703 = SpecialShapesCalculator.C8703(words: words)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -264,7 +264,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -272,7 +272,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -329,7 +329,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -337,13 +337,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -352,7 +352,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -361,7 +361,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -370,7 +370,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -378,7 +378,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square4x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -429,7 +429,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -437,7 +437,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -445,13 +445,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let pacman3x3_TopLeft = ShapeCalculator.toShapes(pacmans: PacmanCalculator.TopLeft(
+        let pacman3x3_TopLeft = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV1.TopLeft(
             words: words,
             end: end,
             len: len,
@@ -459,7 +459,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -468,7 +468,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -477,7 +477,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x5_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -486,7 +486,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -494,7 +494,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square5x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square5x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 4,
             words: words,
             lengths: len,
@@ -551,7 +551,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -559,7 +559,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -567,7 +567,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x5 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x5(
+        let c2x5 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x5(
            words: words,
            end: end,
            len: len,
@@ -575,13 +575,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -590,7 +590,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -599,7 +599,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -608,7 +608,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -617,7 +617,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -625,7 +625,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -683,7 +683,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -691,7 +691,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -699,13 +699,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -714,7 +714,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -723,7 +723,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -732,7 +732,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -741,7 +741,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -749,7 +749,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -796,7 +796,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -804,7 +804,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
            words: words,
            end: end,
            len: len,
@@ -812,13 +812,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -827,7 +827,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -836,7 +836,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -844,7 +844,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -852,7 +852,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square4x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -899,7 +899,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -907,13 +907,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let pacman3x3_TopRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.TopRight(
+        let pacman3x3_TopRight = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV1.TopRight(
             words: words,
             end: end,
             len: len,
@@ -921,7 +921,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -930,7 +930,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x6_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x6_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -939,7 +939,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -947,7 +947,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1001,7 +1001,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -1009,7 +1009,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -1017,13 +1017,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1031,7 +1031,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1039,7 +1039,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1104,7 +1104,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -1112,7 +1112,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
@@ -1120,7 +1120,7 @@ public class WinningShapesCalculator {
 
         let special8805 = SpecialShapesCalculator.C8805(words: words)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1128,7 +1128,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square4x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -1136,7 +1136,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square5x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square5x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 4,
             words: words,
             lengths: len,
@@ -1193,7 +1193,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -1201,7 +1201,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -1209,13 +1209,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1223,7 +1223,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1287,13 +1287,13 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
+        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -1301,7 +1301,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -1310,7 +1310,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1367,7 +1367,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -1375,7 +1375,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c3x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C3x3(
+        let c3x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C3x3(
            words: words,
            end: end,
            len: len,
@@ -1383,13 +1383,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -1398,7 +1398,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -1407,7 +1407,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1415,7 +1415,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square4x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -1423,7 +1423,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square4x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -1476,7 +1476,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -1484,13 +1484,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -1499,7 +1499,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -1508,7 +1508,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -1517,7 +1517,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -1526,7 +1526,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1581,7 +1581,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -1589,13 +1589,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -1604,7 +1604,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1659,7 +1659,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -1667,7 +1667,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -1675,13 +1675,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -1690,7 +1690,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -1699,7 +1699,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -1708,7 +1708,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -1717,7 +1717,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x6_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle4x6_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -1726,7 +1726,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1777,7 +1777,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -1785,13 +1785,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let pacman3x3_TopRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.TopRight(
+        let pacman3x3_TopRight = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV1.TopRight(
             words: words,
             end: end,
             len: len,
@@ -1799,7 +1799,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -1808,7 +1808,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -1817,7 +1817,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -1826,7 +1826,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1834,7 +1834,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1887,7 +1887,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -1895,13 +1895,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -1910,7 +1910,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1918,7 +1918,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -1926,7 +1926,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square5x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square5x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 4,
             words: words,
             lengths: len,
@@ -1980,13 +1980,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -1995,7 +1995,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2046,7 +2046,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -2054,7 +2054,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
            words: words,
            end: end,
            len: len,
@@ -2062,13 +2062,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2077,7 +2077,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2132,7 +2132,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -2140,7 +2140,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
            words: words,
            end: end,
            len: len,
@@ -2148,13 +2148,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2163,7 +2163,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2171,7 +2171,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2179,7 +2179,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2236,7 +2236,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -2244,7 +2244,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -2252,7 +2252,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
            words: words,
            end: end,
            len: len,
@@ -2260,13 +2260,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2275,7 +2275,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2284,7 +2284,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2292,7 +2292,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2339,7 +2339,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -2347,7 +2347,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -2355,13 +2355,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2370,7 +2370,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2435,13 +2435,13 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
+        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -2449,7 +2449,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.BottomRight(
+        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV1.BottomRight(
             words: words,
             end: end,
             len: len,
@@ -2457,7 +2457,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2466,7 +2466,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2475,7 +2475,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2483,7 +2483,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2545,7 +2545,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -2553,13 +2553,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2568,7 +2568,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x6_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x6_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -2577,7 +2577,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2633,7 +2633,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -2641,13 +2641,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2656,7 +2656,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2665,7 +2665,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -2674,7 +2674,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2682,7 +2682,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2734,7 +2734,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c3x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C3x4(
+        let c3x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C3x4(
            words: words,
            end: end,
            len: len,
@@ -2742,13 +2742,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
+        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -2756,7 +2756,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2765,7 +2765,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -2774,7 +2774,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2822,7 +2822,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c3x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C3x3(
+        let c3x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C3x3(
            words: words,
            end: end,
            len: len,
@@ -2830,13 +2830,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.BottomRight(
+        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV1.BottomRight(
             words: words,
             end: end,
             len: len,
@@ -2844,7 +2844,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2901,7 +2901,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -2909,13 +2909,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2924,7 +2924,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -2933,7 +2933,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -2942,7 +2942,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -2951,7 +2951,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -2959,7 +2959,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -3007,13 +3007,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -3022,7 +3022,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3030,7 +3030,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3085,7 +3085,7 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
@@ -3095,7 +3095,7 @@ public class WinningShapesCalculator {
 
         let special9002b = SpecialShapesCalculator.C9002b(words: words)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3103,7 +3103,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -3146,13 +3146,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3161,7 +3161,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -3170,7 +3170,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3225,7 +3225,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -3233,13 +3233,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3248,7 +3248,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3256,7 +3256,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -3308,7 +3308,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -3316,7 +3316,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -3324,13 +3324,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3339,7 +3339,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3348,7 +3348,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3394,7 +3394,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -3402,7 +3402,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -3410,13 +3410,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3425,7 +3425,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -3434,7 +3434,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -3443,7 +3443,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3451,7 +3451,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3507,7 +3507,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -3515,13 +3515,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 36,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3530,7 +3530,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3539,7 +3539,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -3548,7 +3548,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x7 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x7 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 6,
             words: words,
@@ -3557,7 +3557,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3605,13 +3605,13 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
+        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -3619,7 +3619,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3628,7 +3628,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -3637,7 +3637,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3645,7 +3645,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3653,7 +3653,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3705,7 +3705,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -3713,7 +3713,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
            words: words,
            end: end,
            len: len,
@@ -3721,13 +3721,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3736,7 +3736,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3745,7 +3745,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3753,7 +3753,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -3806,7 +3806,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -3814,7 +3814,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c3x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C3x4(
+        let c3x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C3x4(
            words: words,
            end: end,
            len: len,
@@ -3822,13 +3822,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3837,7 +3837,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -3846,7 +3846,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square4x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -3901,7 +3901,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -3909,13 +3909,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3924,7 +3924,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -3933,7 +3933,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3941,7 +3941,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -3993,7 +3993,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -4001,13 +4001,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4016,7 +4016,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4024,7 +4024,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4032,7 +4032,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4107,13 +4107,13 @@ public class WinningShapesCalculator {
 //           widthMax: widthMax,
 //           heightMax: heightMax))
 //
-//        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+//        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
 //            words: words,
 //            scoreMin: 22,
 //            widthMax: widthMax,
 //            heightMax: heightMax))
 //
-//        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+//        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
 //            interlockWidth: 2,
 //            interlockHeight: 3,
 //            words: words,
@@ -4122,7 +4122,7 @@ public class WinningShapesCalculator {
 //            widthMax: widthMax,
 //            heightMax: heightMax))
 //
-//        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+//        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
 //            interlockWidth: 2,
 //            words: words,
 //            lengths: len,
@@ -4177,7 +4177,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -4185,7 +4185,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
            words: words,
            end: end,
            len: len,
@@ -4193,13 +4193,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4210,7 +4210,7 @@ public class WinningShapesCalculator {
 
         let special9101 = SpecialShapesCalculator.C9101(words: words)
 
-        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4268,7 +4268,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -4276,13 +4276,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -4291,7 +4291,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -4302,7 +4302,7 @@ public class WinningShapesCalculator {
 
         let special9102 = SpecialShapesCalculator.C9102(words: words)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4355,7 +4355,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -4363,13 +4363,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4378,7 +4378,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4387,7 +4387,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4395,7 +4395,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square4x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -4442,7 +4442,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
            words: words,
            end: end,
            len: len,
@@ -4450,13 +4450,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4465,7 +4465,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -4474,7 +4474,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4526,7 +4526,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
            words: words,
            end: end,
            len: len,
@@ -4534,13 +4534,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4549,7 +4549,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4558,7 +4558,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -4567,7 +4567,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4608,13 +4608,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4623,7 +4623,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4672,7 +4672,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -4680,13 +4680,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4695,7 +4695,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4704,7 +4704,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4712,7 +4712,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4720,7 +4720,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -4778,7 +4778,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -4786,13 +4786,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4801,7 +4801,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -4810,7 +4810,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4818,7 +4818,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4866,13 +4866,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4881,7 +4881,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4890,7 +4890,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -4901,7 +4901,7 @@ public class WinningShapesCalculator {
 
         let special9109 = SpecialShapesCalculator.C9109(words: words)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4909,7 +4909,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -4917,7 +4917,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -4970,7 +4970,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -4978,13 +4978,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -4993,7 +4993,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5001,7 +5001,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square4x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -5047,13 +5047,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5062,7 +5062,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -5071,7 +5071,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5115,7 +5115,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -5123,13 +5123,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5138,7 +5138,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5188,13 +5188,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5203,7 +5203,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5211,7 +5211,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5256,13 +5256,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5271,7 +5271,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5279,7 +5279,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5333,7 +5333,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
            words: words,
            end: end,
            len: len,
@@ -5341,13 +5341,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5356,7 +5356,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5407,13 +5407,13 @@ public class WinningShapesCalculator {
         //let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5424,7 +5424,7 @@ public class WinningShapesCalculator {
 
         let special9204 = SpecialShapesCalculator.C9204(words: words)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5482,7 +5482,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -5490,13 +5490,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5505,7 +5505,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -5514,7 +5514,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5522,7 +5522,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5571,13 +5571,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 36,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5586,7 +5586,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5595,7 +5595,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5642,13 +5642,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5657,7 +5657,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -5666,7 +5666,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle5x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle5x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 4,
             interlockHeight: 5,
             words: words,
@@ -5675,7 +5675,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5724,13 +5724,13 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.BottomRight(
+        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV1.BottomRight(
             words: words,
             end: end,
             len: len,
@@ -5738,7 +5738,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5749,7 +5749,7 @@ public class WinningShapesCalculator {
 
         let special9209 = SpecialShapesCalculator.C9209(words: words)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5796,7 +5796,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -5804,13 +5804,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -5819,7 +5819,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5827,7 +5827,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5835,7 +5835,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5887,7 +5887,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -5895,13 +5895,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -5910,7 +5910,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -5919,7 +5919,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -5927,7 +5927,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -5978,7 +5978,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -5986,13 +5986,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6001,7 +6001,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6010,7 +6010,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -6019,7 +6019,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6069,13 +6069,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6084,7 +6084,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6093,7 +6093,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle4x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -6102,7 +6102,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6157,13 +6157,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6171,7 +6171,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6218,7 +6218,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -6226,13 +6226,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6241,7 +6241,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6250,7 +6250,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -6259,7 +6259,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6267,7 +6267,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6275,7 +6275,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -6326,7 +6326,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -6334,7 +6334,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -6342,7 +6342,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
            words: words,
            end: end,
            len: len,
@@ -6350,13 +6350,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6365,7 +6365,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -6374,7 +6374,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6382,7 +6382,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6430,7 +6430,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -6438,13 +6438,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6453,7 +6453,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -6462,7 +6462,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6519,13 +6519,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6534,7 +6534,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -6543,7 +6543,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle5x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle5x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 4,
             interlockHeight: 5,
             words: words,
@@ -6552,7 +6552,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6595,13 +6595,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6610,7 +6610,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6618,7 +6618,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6626,7 +6626,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square5x5_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square5x5_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 4,
             words: words,
             lengths: len,
@@ -6675,7 +6675,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -6683,13 +6683,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6698,7 +6698,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6706,7 +6706,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square5x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square5x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 4,
             words: words,
             lengths: len,
@@ -6754,7 +6754,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -6762,13 +6762,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6777,7 +6777,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -6786,7 +6786,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6794,7 +6794,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6841,13 +6841,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 36,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6856,7 +6856,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6864,7 +6864,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6903,13 +6903,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6918,7 +6918,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -6927,7 +6927,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -6936,7 +6936,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -6944,7 +6944,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square4x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -6989,7 +6989,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -6997,13 +6997,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7012,7 +7012,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -7058,13 +7058,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7073,7 +7073,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -7133,7 +7133,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -7141,13 +7141,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7156,7 +7156,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7165,7 +7165,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -7174,7 +7174,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7182,7 +7182,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -7190,7 +7190,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square5x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square5x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 4,
             words: words,
             lengths: len,
@@ -7237,13 +7237,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7252,7 +7252,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -7261,7 +7261,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7269,7 +7269,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7320,13 +7320,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7335,7 +7335,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7344,7 +7344,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -7353,7 +7353,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -7362,7 +7362,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7423,13 +7423,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7438,7 +7438,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x7 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x7 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 6,
             words: words,
@@ -7447,7 +7447,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -7456,7 +7456,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle5x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle5x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 4,
             interlockHeight: 5,
             words: words,
@@ -7465,7 +7465,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7514,13 +7514,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7529,7 +7529,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -7538,7 +7538,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle4x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -7547,7 +7547,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 5,
             words: words,
@@ -7558,7 +7558,7 @@ public class WinningShapesCalculator {
 
         let special9407 = SpecialShapesCalculator.C9407(words: words)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7566,7 +7566,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -7618,7 +7618,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -7626,13 +7626,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7641,7 +7641,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7650,7 +7650,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7658,7 +7658,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -7716,13 +7716,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7731,7 +7731,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7740,7 +7740,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle4x5_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -7749,7 +7749,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7757,7 +7757,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7809,13 +7809,13 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.BottomRight(
+        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV1.BottomRight(
             words: words,
             end: end,
             len: len,
@@ -7823,7 +7823,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7832,7 +7832,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -7888,7 +7888,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
            words: words,
            end: end,
            len: len,
@@ -7896,13 +7896,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -7911,7 +7911,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -7920,7 +7920,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -7977,7 +7977,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -7985,7 +7985,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -7993,13 +7993,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -8008,7 +8008,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -8017,7 +8017,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightRectangle(
+        let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -8026,7 +8026,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -8034,7 +8034,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -8092,7 +8092,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x6 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x6(
+        let c2x6 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x6(
            words: words,
            end: end,
            len: len,
@@ -8100,13 +8100,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -8115,7 +8115,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -8124,7 +8124,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -8133,7 +8133,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -8141,7 +8141,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -8198,13 +8198,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -8213,7 +8213,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -8222,7 +8222,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -8231,7 +8231,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -8239,7 +8239,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -8298,7 +8298,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -8306,13 +8306,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -8321,7 +8321,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -8330,7 +8330,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -8339,7 +8339,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle4x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -8348,7 +8348,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -8409,7 +8409,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -8417,7 +8417,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -8425,13 +8425,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -8440,7 +8440,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -8449,7 +8449,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -8457,7 +8457,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -8465,7 +8465,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -8473,7 +8473,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -8532,7 +8532,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -8540,13 +8540,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -8555,7 +8555,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -8564,7 +8564,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -8573,7 +8573,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -8582,7 +8582,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x7_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle4x7_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 3,
             interlockHeight: 6,
             words: words,
@@ -8591,7 +8591,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -8652,7 +8652,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -8660,7 +8660,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x4(
+        let c2x4 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x4(
            words: words,
            end: end,
            len: len,
@@ -8668,13 +8668,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -8683,7 +8683,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x4_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -8692,7 +8692,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightRectangle(
+        let rectangle3x5_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -8701,7 +8701,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -8709,7 +8709,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftSquare(
+        let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -8717,7 +8717,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -8775,7 +8775,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -8783,13 +8783,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
+        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -8797,7 +8797,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -8806,7 +8806,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -8874,7 +8874,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -8882,7 +8882,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -8890,13 +8890,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x3(
+        let outer2x3 = ShapeCalculator.toShapes(outers: OuterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -8904,7 +8904,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -8913,7 +8913,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -8975,7 +8975,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -8983,13 +8983,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -8998,7 +8998,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -9007,7 +9007,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -9015,7 +9015,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -9077,13 +9077,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -9092,7 +9092,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -9101,7 +9101,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -9110,7 +9110,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -9119,7 +9119,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -9127,7 +9127,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -9180,7 +9180,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -9188,13 +9188,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculator.BottomRight(
+        let pacman3x3_BottomRight = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV1.BottomRight(
             words: words,
             end: end,
             len: len,
@@ -9202,7 +9202,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -9211,7 +9211,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -9220,7 +9220,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -9228,7 +9228,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -9236,7 +9236,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -9244,7 +9244,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -9298,7 +9298,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -9306,13 +9306,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 28,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -9321,7 +9321,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x6 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 5,
             words: words,
@@ -9330,7 +9330,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -9389,7 +9389,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -9397,13 +9397,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let outer2x4 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x4(
+        let outer2x4 = ShapeCalculator.toShapes(outers: OuterCalculatorV1.C2x4(
            words: words,
            end: end,
            len: len,
@@ -9415,7 +9415,7 @@ public class WinningShapesCalculator {
             print(item.ToString(words: words))
         }
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
             words: words,
@@ -9424,7 +9424,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -9483,7 +9483,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -9491,7 +9491,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x3(
+        let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
            words: words,
            end: end,
            len: len,
@@ -9499,13 +9499,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -9514,7 +9514,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -9522,7 +9522,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculator.BottomRightSquare(
+        let square3x3_BottomRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -9590,13 +9590,13 @@ public class WinningShapesCalculator {
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -9605,7 +9605,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -9613,7 +9613,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopRightSquare(
+        let square3x3_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightSquare(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -9666,7 +9666,7 @@ public class WinningShapesCalculator {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculator.C2x2(
+        let c2x2 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x2(
            words: words,
            end: end,
            len: len,
@@ -9674,13 +9674,13 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let outer2x4 = ShapeCalculator.toShapes(outers: OuterCalculator.C2x4(
+        let outer2x4 = ShapeCalculator.toShapes(outers: OuterCalculatorV1.C2x4(
            words: words,
            end: end,
            len: len,
@@ -9688,7 +9688,7 @@ public class WinningShapesCalculator {
            widthMax: widthMax,
            heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -9697,7 +9697,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,
@@ -9705,7 +9705,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square4x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 3,
             words: words,
             lengths: len,
@@ -9762,13 +9762,13 @@ public class WinningShapesCalculator {
         //let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
-        let edges = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+        let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 24,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
             words: words,
@@ -9777,7 +9777,7 @@ public class WinningShapesCalculator {
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculator.TopLeftRectangle(
+        let rectangle3x5_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 4,
             words: words,
@@ -9788,7 +9788,7 @@ public class WinningShapesCalculator {
 
         let special9605 = SpecialShapesCalculator.C9605(words: words)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
             lengths: len,

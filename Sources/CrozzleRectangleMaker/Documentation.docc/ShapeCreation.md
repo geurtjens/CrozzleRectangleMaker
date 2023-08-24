@@ -73,6 +73,6 @@ So we can only process winning words as we know how many winning words there are
 
 - ``ClusterCalculator``
 
-- ``EdgeCalculator``
+- ``EdgeCalculatorV1``
 
-- ``RectangleCalculator``
+- ``RectangleCalculatorV1``

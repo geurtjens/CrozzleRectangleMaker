@@ -223,7 +223,7 @@ public class ShapeConstraintCodeGen {
         
         let code =
         """
-                let \(name) = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Rectangle(
+                let \(name) = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
                     interlockWidth: \(interlockWidth - 1),
                     interlockHeight: \(interlockHeight - 1),
                     words: words,
@@ -260,7 +260,7 @@ public class ShapeConstraintCodeGen {
     
         let code =
         """
-                let \(name) = ShapeCalculator.toShapes(outers: OuterCalculator.C\(interlockWidth)x\(interlockHeight)(
+                let \(name) = ShapeCalculator.toShapes(outers: OuterCalculatorV1.C\(interlockWidth)x\(interlockHeight)(
                     start: words,
                     end: end,
                     len: len,
@@ -278,7 +278,7 @@ public class ShapeConstraintCodeGen {
     
         let code =
         """
-                let \(name) = ShapeCalculator.toShapes(pacmans: PacmanCalculator.\(corner)(
+                let \(name) = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV1.\(corner)(
                     start: words,
                     end: end,
                     len: len,
@@ -297,7 +297,7 @@ public class ShapeConstraintCodeGen {
         
         let code =
         """
-                let \(name) = ShapeCalculator.toShapes(rectangles:RectangleCalculator.\(corner)Rectangle(
+                let \(name) = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.\(corner)Rectangle(
                     interlockWidth: \(interlockWidth - 1),
                     interlockHeight: \(interlockHeight - 1),
                     words: words,
@@ -317,7 +317,7 @@ public class ShapeConstraintCodeGen {
         
         let code =
         """
-                let \(name) = ShapeCalculator.toShapes(rectangles:RectangleCalculator.Square(
+                let \(name) = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
                     interlockWidth: \(interlockWidth - 1),
                     words: words,
                     lengths: len,
@@ -347,7 +347,7 @@ public class ShapeConstraintCodeGen {
         
         let code =
         """
-                let \(name) = ShapeCalculator.toShapes(rectangles:RectangleCalculator.\(corner)Square(
+                let \(name) = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.\(corner)Square(
                     interlockWidth: \(interlockWidth - 1),
                     words: words,
                     lengths: len,
@@ -366,7 +366,7 @@ public class ShapeConstraintCodeGen {
         
         let code =
         """
-                let \(name) = ShapeCalculator.toShapes(edges: EdgeCalculator.Execute(
+                let \(name) = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
                     words: words,
                     scoreMin: \(scoreMin),
                     widthMax: \(widthMax),
