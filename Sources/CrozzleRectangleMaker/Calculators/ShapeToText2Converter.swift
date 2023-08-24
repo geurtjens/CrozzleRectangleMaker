@@ -29,9 +29,9 @@ class ShapeToText2Converter {
             return nil
         }
         // We should also check that the text doesnt have text running in parallel and without the . at each end
-        let textIsVerified = VerifyGrid(grid: grid, width: Int(shape.width), height: Int(shape.height))
-        
-        if textIsVerified {
+//        let textIsVerified = VerifyGrid(grid: grid, width: Int(shape.width), height: Int(shape.height))
+//
+//        if textIsVerified {
             
             let wordCount = getWordCount(grid:grid, width: Int(shape.width), height: Int(shape.height))
             
@@ -48,9 +48,9 @@ class ShapeToText2Converter {
             } else {
                 return newShape
             }
-        } else {
-            return nil
-        }
+//        } else {
+//            return nil
+//        }
     }
     
     
