@@ -171,8 +171,8 @@ public class Outer2Calculator {
                     let left1Words = letterIndex.find(words[_outer1][outerPos1])
                     for left1 in left1Words {
                     
-                        if (left1.end == 1 &&//end[left1][1] == words[_outer1][outerPos1 + 0] &&len[left1] >= interlockWidth &&
-                            
+                        if (left1.end == 1 &&//end[left1][1] == words[_outer1][outerPos1 + 0] &&
+                            len[left1.id] >= interlockWidth &&
                             left1.id != _outer1) {
                         
                             let middle2Words = letterIndex.find(end[left1.id][0])
@@ -397,8 +397,8 @@ public class Outer2Calculator {
 
              if (len[_middle1] == interlockHeight) {
        
-                 let rightWords = letterIndex.find(words[_middle1][0])
-                 for right1 in rightWords {
+                 let right1Words = letterIndex.find(words[_middle1][0])
+                 for right1 in right1Words {
                          
                      if (right1.start == 0 && //words[right1.id][0] == words[_middle1][0] &&
                          len[right1.id] >= interlockWidth &&
