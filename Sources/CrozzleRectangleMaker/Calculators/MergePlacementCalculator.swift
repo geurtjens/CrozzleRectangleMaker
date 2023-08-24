@@ -65,11 +65,10 @@ public class MergePlacementCalculator {
             }
         }
         
-        // We are going to retire the isOverlapping because the word count does the same thing
-//        let isOverlapping = OverlappingPlacementsCalculator.isOverlapping(sourcePlacements: sourceFinal, searchPlacements: searchNoDuplicates)
-//        if isOverlapping {
-//            return nil
-//        }
+        let isOverlapping = OverlappingPlacementsCalculator.isOverlapping(sourcePlacements: sourceFinal, searchPlacements: searchNoDuplicates)
+        if isOverlapping {
+            return nil
+        }
         
         var combined = sourceFinal + searchNoDuplicates
         
