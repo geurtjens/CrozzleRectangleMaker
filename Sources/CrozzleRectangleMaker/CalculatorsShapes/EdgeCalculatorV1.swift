@@ -8,7 +8,7 @@
 import Foundation
 /// calculates all instances when one word can interlock with another word
 public class EdgeCalculatorV1 {
-    public static func ExecuteAllSerial(scoreMin: Int) -> Int {
+    public static func ExecuteAllSerial(scoreMin: Int, includeBreakdown: Bool = true) -> Int {
         let startTime = DateTimeCalculator.now()
         var count = 0
         /// We want to calculate new to see how long it takes and then compare with old
@@ -17,14 +17,16 @@ public class EdgeCalculatorV1 {
             
             let clusters = Execute(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
             
-            print("EdgeCalculatorV1.Execute: \(game.gameId), count: \(clusters.count)")
+            if includeBreakdown {
+                print("EdgeCalculatorV1.Execute: \(game.gameId), count: \(clusters.count)")
+            }
             
             count += clusters.count
         }
         let finishTime = DateTimeCalculator.now()
         let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
         
-        print("\(count) records found in \(duration)")
+        print("EdgeCalculatorV1.Execute \(count) records found in \(duration)")
         return count
     }
     /// Finds all edges found within an array of words

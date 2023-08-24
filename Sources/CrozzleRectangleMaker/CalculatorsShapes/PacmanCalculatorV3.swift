@@ -6,10 +6,10 @@
 //
 
 import Foundation
-class PacmanCalculatorV3 {
+public class PacmanCalculatorV3 {
     
     
-    public static func ExecuteAllSerial(scoreMin: Int) -> Int  {
+    public static func ExecuteAllSerial(scoreMin: Int, includeBreakdown: Bool = true) -> Int  {
         
         let gameList = GameList()
         
@@ -18,20 +18,21 @@ class PacmanCalculatorV3 {
         
         for game in gameList.games {
 
-            var result = ExecuteSerial(
+            let result = ExecuteSerial(
                 words: game.words,
                 scoreMin: scoreMin,
                 widthMax: game.maxWidth,
                 heightMax: game.maxHeight)
             
-            print("PacmanCalculatorV3.ExecuteSerial: \(game.gameId), count: \(result.count)")
-            
+            if includeBreakdown {
+                print("PacmanCalculatorV3.Execute: \(game.gameId), count: \(result.count)")
+            }
             count += result.count
         }
         let finishTime = DateTimeCalculator.now()
         let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
         
-        print("\(count) records found in \(duration)")
+        print("PacmanCalculatorV3.Execute: \(count) records found in \(duration)")
         return count
     }
     

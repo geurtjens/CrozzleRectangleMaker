@@ -236,27 +236,14 @@ final class PacmanCalculatorV1Tests: XCTestCase {
         
         for game in gameList.games {
             let words = game.words
-            let end = WordCalculator.reverse(words: words)
-            let len = WordCalculator.lengths(words: words)
-            let letterIndex = LetterIndexModel(words: words)
+           
+            let oldResults = PacmanCalculatorV1.ExecuteAllSerial(scoreMin: 0)
             
-            let oldResults = PacmanCalculatorV1.Execute(
-                words: words,
-                end: end,
-                len: len,
-                scoreMin: scoreMin,
-                widthMax: widthMax,
-                heightMax: heightMax)
+            let newResults = PacmanCalculatorV2.ExecuteAllSerial(scoreMin: 0)
             
-            let newResults = PacmanCalculatorV2.Execute(
-                words: words,
-                scoreMin: scoreMin,
-                widthMax: widthMax,
-                heightMax: heightMax)
+            XCTAssertEqual(oldResults, newResults)
             
-            XCTAssertEqual(oldResults.count, newResults.count)
-            
-            print("PacmanCalculatorV1.Execute game: \(game.gameId), old:\(oldResults.count), new:\(newResults.count)")
+            print("PacmanCalculatorV1.Execute game: \(game.gameId), old:\(oldResults), new:\(newResults)")
         }
     }
     
@@ -269,20 +256,11 @@ final class PacmanCalculatorV1Tests: XCTestCase {
         
             for game in gameList.games {
                 let words = game.words
-                let end = WordCalculator.reverse(words: words)
-                let len = WordCalculator.lengths(words: words)
-                //let letterIndex = LetterIndexModel(words: words)
+               
                 
-                let oldResults = PacmanCalculatorV1.Execute(
-                    words: words,
-                    end: end,
-                    len: len,
-                    scoreMin: scoreMin,
-                    widthMax: widthMax,
-                    heightMax: heightMax)
+                let oldResults = PacmanCalculatorV1.ExecuteAllSerial(scoreMin: 0)
                 
-                
-                print("PacmanCalculatorV1.Execute game: \(game.gameId), old:\(oldResults.count)")
+                print("PacmanCalculatorV1.Execute game: \(game.gameId), old:\(oldResults)")
             }
         }
     }
@@ -339,7 +317,7 @@ final class PacmanCalculatorV1Tests: XCTestCase {
     }
     
     func test_PacmanCalculatorV3_ExecuteAllGamesInSerial() {
-        let totalCount = PacmanCalculatorV3.ExecuteAllGamesInSerial(scoreMin: 0)
+        let totalCount = PacmanCalculatorV3.ExecuteAllSerial(scoreMin: 0)
         XCTAssertEqual(60864, totalCount)
     }
     
@@ -363,7 +341,7 @@ final class PacmanCalculatorV1Tests: XCTestCase {
         options.iterationCount = 2 /* Tweak this value on a test-by-test basis */
 
         measure(metrics: [XCTClockMetric()], options: options) {
-            let totalCount = PacmanCalculatorV3.ExecuteAllGamesInSerial(scoreMin: 0)
+            let totalCount = PacmanCalculatorV3.ExecuteAllSerial(scoreMin: 0)
             XCTAssertEqual(60864, totalCount)
         }
     }

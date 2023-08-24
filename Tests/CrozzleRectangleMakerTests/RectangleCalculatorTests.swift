@@ -55,11 +55,11 @@ final class RectangleCalculatorV1Tests: XCTestCase {
     }
     
     func test_RectangleCalculatorV2_ExecuteParallel() async {
-        await RectangleCalculatorV2.ExecuteAllGamesInParallel(scoreMin: 0)
+        await RectangleCalculatorV2.ExecuteAllParallel(scoreMin: 0)
     }
     
     func test_RectangleCalculatorV3_ExecuteParallel() async {
-        await RectangleCalculatorV3.ExecuteAllGamesInParallel(scoreMin: 0)
+        await RectangleCalculatorV3.ExecuteAllParallel(scoreMin: 0)
     }
     
     func test_AsyncOld() async {

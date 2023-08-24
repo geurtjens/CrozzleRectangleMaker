@@ -10,7 +10,7 @@ import Foundation
 /// calculates all clusters which are shapes that have a block of interlocks in the middle of the structure
 public class ClusterCalculatorV1 {
     
-    public static func ExecuteAllSerial(scoreMin: Int) -> Int {
+    public static func ExecuteAllSerial(scoreMin: Int, includeBreakdown: Bool = true) -> Int {
         let startTime = DateTimeCalculator.now()
         var count = 0
         /// We want to calculate new to see how long it takes and then compare with old
@@ -19,14 +19,16 @@ public class ClusterCalculatorV1 {
             
             let clusters = Execute(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
             
-            print("ClusterCalculatorV1.Execute: \(game.gameId), count: \(clusters.count)")
+            if includeBreakdown {
+                print("ClusterCalculatorV1.Execute: \(game.gameId), count: \(clusters.count)")
+            }
             
             count += clusters.count
         }
         let finishTime = DateTimeCalculator.now()
         let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
         
-        print("\(count) records found in \(duration)")
+        print("ClusterCalculatorV1.Execute: \(count) records found in \(duration)")
         return count
     }
     

@@ -8,7 +8,7 @@
 import Foundation
 public class PacmanCalculatorV2 {
     
-    public static func ExecuteAllSerial(scoreMin: Int) -> Int  {
+    public static func ExecuteAllSerial(scoreMin: Int, includeBreakdown: Bool = true) -> Int  {
         
         let gameList = GameList()
         
@@ -17,20 +17,21 @@ public class PacmanCalculatorV2 {
         
         for game in gameList.games {
 
-            var result = Execute(
+            let result = Execute(
                 words: game.words,
                 scoreMin: scoreMin,
                 widthMax: game.maxWidth,
                 heightMax: game.maxHeight)
             
-            print("PacmanCalculatorV2.ExecuteSerial: \(game.gameId), count: \(result.count)")
-            
+            if includeBreakdown {
+                print("PacmanCalculatorV2.Execute: \(game.gameId), count: \(result.count)")
+            }
             count += result.count
         }
         let finishTime = DateTimeCalculator.now()
         let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
         
-        print("\(count) records found in \(duration)")
+        print("PacmanCalculatorV2.Execute: \(count) records found in \(duration)")
         return count
     }
     

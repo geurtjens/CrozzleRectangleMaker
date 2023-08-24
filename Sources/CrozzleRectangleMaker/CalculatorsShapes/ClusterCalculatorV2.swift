@@ -9,7 +9,7 @@ import Foundation
 public class ClusterCalculatorV2 {
     
     
-    public static func ExecuteAllSerial(scoreMin: Int) -> Int {
+    public static func ExecuteAllSerial(scoreMin: Int, includeBreakdown: Bool = true) -> Int {
         let startTime = DateTimeCalculator.now()
         var count = 0
         /// We want to calculate new to see how long it takes and then compare with old
@@ -18,14 +18,16 @@ public class ClusterCalculatorV2 {
             
             let clusters = Execute(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
             
-            print("CusterCalculatorV2.Execute: \(game.gameId), count: \(clusters.count)")
+            if includeBreakdown {
+                print("CusterCalculatorV2.Execute: \(game.gameId), count: \(clusters.count)")
+            }
             
             count += clusters.count
         }
         let finishTime = DateTimeCalculator.now()
         let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
         
-        print("\(count) records found in \(duration)")
+        print("ClusterCalculatorV2.Execute: \(count) records found in \(duration)")
         return count
     }
     

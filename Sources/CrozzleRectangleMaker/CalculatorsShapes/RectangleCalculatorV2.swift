@@ -8,36 +8,7 @@
 import Foundation
 public class RectangleCalculatorV2 {
     
-    
-    public static func ExecuteAllSerial(scoreMin: Int) -> Int  {
-        
-        let gameList = GameList()
-        
-        let startTime = DateTimeCalculator.now()
-        var count = 0
-        
-        for game in gameList.games {
-
-            var result = ExecuteSerial(
-                words: game.words,
-                scoreMin: scoreMin,
-                widthMax: game.maxWidth,
-                heightMax: game.maxHeight)
-            
-            print("RectangleCalculatorV1.Execute: \(game.gameId), count: \(result.count)")
-            
-            count += result.count
-        }
-        let finishTime = DateTimeCalculator.now()
-        let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
-        
-        print("\(count) records found in \(duration)")
-        return count
-        
-    }
-    
-    
-    public static func ExecuteAllGamesInParallel(scoreMin: Int) async {
+    public static func ExecuteAllParallel(scoreMin: Int, includeBreakdown: Bool = true) async {
        
         let startTime = DateTimeCalculator.now()
         var count = 0
@@ -46,35 +17,44 @@ public class RectangleCalculatorV2 {
         for game in gameList.games {
             
             let newResults = await Execute(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
-            
-            print("RectangleCalculatorV2.ExecuteParallel: \(game.gameId), count: \(newResults.count)")
-            
+            if includeBreakdown {
+                print("RectangleCalculatorV2.ExecuteParallel: \(game.gameId), count: \(newResults.count)")
+            }
             count += newResults.count
         }
         let finishTime = DateTimeCalculator.now()
         let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
         
-        print("\(count) records found in \(duration)")
+        print("RectangleCalculatorV2.ExecuteParallel: \(count) records found in \(duration)")
     }
     
-    public static func ExecuteAllGamesInSerial(scoreMin: Int) {
-       
+    
+    public static func ExecuteAllSerial(scoreMin: Int, includeBreakdown: Bool = true) -> Int  {
+        
+        let gameList = GameList()
+        
         let startTime = DateTimeCalculator.now()
         var count = 0
-        /// We want to calculate new to see how long it takes and then compare with old
-        let gameList = GameList()
+        
         for game in gameList.games {
+
+            let result = ExecuteSerial(
+                words: game.words,
+                scoreMin: scoreMin,
+                widthMax: game.maxWidth,
+                heightMax: game.maxHeight)
             
-            let newResults = ExecuteSerial(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
-            
-            print("RectangleCalculatorV2.ExecuteSerial: \(game.gameId), count: \(newResults.count)")
-            
-            count += newResults.count
+            if includeBreakdown {
+                print("RectangleCalculatorV2.ExecuteSerial: \(game.gameId), count: \(result.count)")
+            }
+            count += result.count
         }
         let finishTime = DateTimeCalculator.now()
         let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
         
-        print("\(count) records found in \(duration)")
+        print("RectangleCalculatorV2.ExecuteSerial: \(count) records found in \(duration)")
+        return count
+        
     }
     
     

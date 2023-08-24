@@ -9,8 +9,28 @@ import Foundation
 /// Calculates all rectangle shapes from the words list and according to the constraints of score, width and height
 public class RectangleCalculatorV1 {
     
+    public static func ExecuteAllParallel(scoreMin: Int, includeBreakdown: Bool = true) async {
+       
+        let startTime = DateTimeCalculator.now()
+        var count = 0
+        /// We want to calculate new to see how long it takes and then compare with old
+        let gameList = GameList()
+        for game in gameList.games {
+            
+            let newResults = await Execute(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
+            
+            if includeBreakdown {
+                print("RectangleCalculatorV1.ExecuteParallel: \(game.gameId), count: \(newResults.count)")
+            }
+            count += newResults.count
+        }
+        let finishTime = DateTimeCalculator.now()
+        let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
+        
+        print("RectangleCalculatorV1.ExecuteParallel: \(count) records found in \(duration)")
+    }
     
-    public static func ExecuteAllSerial(scoreMin: Int) -> Int  {
+    public static func ExecuteAllSerial(scoreMin: Int, includeBreakdown: Bool = true) -> Int  {
         
         let gameList = GameList()
         
@@ -19,20 +39,22 @@ public class RectangleCalculatorV1 {
         
         for game in gameList.games {
 
-            var result = ExecuteSerial(
+            let result = ExecuteSerial(
                 words: game.words,
                 scoreMin: scoreMin,
                 widthMax: game.maxWidth,
                 heightMax: game.maxHeight)
             
-            print("RectangleCalculatorV1.ExecuteSerial: \(game.gameId), count: \(result.count)")
+            if includeBreakdown {
+                print("RectangleCalculatorV1.ExecuteSerial: \(game.gameId), count: \(result.count)")
+            }
             
             count += result.count
         }
         let finishTime = DateTimeCalculator.now()
         let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
         
-        print("\(count) records found in \(duration)")
+        print("RectangleCalculatorV1.ExecuteSerial: \(count) records found in \(duration)")
         return count
         
     }
