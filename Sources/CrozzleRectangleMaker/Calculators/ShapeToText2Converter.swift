@@ -22,8 +22,8 @@ class ShapeToText2Converter {
     }
     
     /// convert the shape to a valid shape or return null.  We might preprocess a shape but not yet know its valid so we use this to make sure
-    public static func ToValidShape(shape: ShapeModel, words:[[Int]]) -> ShapeModel? {
-        let (score, grid) = getScoreAndText(shape: shape, words: words)
+    public static func ToValidShape(shape: ShapeModel, wordsInt: [[Int]]) -> ShapeModel? {
+        let (score, grid) = getScoreAndText(shape: shape, words: wordsInt)
         
         if score == 0 {
             return nil

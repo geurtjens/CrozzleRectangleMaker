@@ -45,6 +45,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
             wordIndex: wordIndex,
             searchMax: gpuShapes.count,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -97,6 +98,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
             wordIndex: wordIndex,
             searchMax: gpuShapes.count,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -139,6 +141,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
             wordIndex: wordIndex,
             searchMax: gpuShapes.count,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -166,6 +169,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
             sourceMax: gpuShapes.count,
             searchMax: gpuShapes.count,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -199,6 +203,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
             wordIndex: wordIndex,
             searchMax: gpuShapes.count,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -241,6 +246,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
             wordIndex: wordIndex,
             searchMax: gpuShapes.count,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -311,6 +317,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
             sourceMax: c2x2Gpu.count,
             searchMax: c2x3Gpu.count,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -371,6 +378,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
             sourceMax: source.count,
             searchMax: search.count,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -437,6 +445,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
             sourceMax: source.count,
             searchMax: search.count,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -495,6 +504,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
             wordIndex: wordIndex,
             searchMax: gpuShapes.count,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -537,6 +547,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
             wordIndex: wordIndex,
             searchMax: gpuShapes.count,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -564,6 +575,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
             sourceMax: gpuShapes.count,
             searchMax: gpuShapes.count,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -589,13 +601,14 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         let (gpuShapes, wordIndex) = GpuShapeModelCalculator.Create(shapes: shapes, totalWords:words.count, stride: 4)
         print("gpuShapes finished at \(Date.now)")
         let scoresMin:[Int] = Array(repeating: 0, count: 20)
-        
+        let wordsInt = WordCalculator.WordsToInt(words: words)
         let mergedShapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(
             shapes:gpuShapes,
             wordIndex: wordIndex,
             sourceMax: gpuShapes.count,
             searchMax: gpuShapes.count,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -610,13 +623,22 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
     
     /// standard values for all tests
     let wordsMax = WordData.winningWordsCount_8612
+    var wordsInt: [[Int]]
     let widthMax = 17
     let heightMax = 12
     let scoreMin = 0
     var words:[String] = []
     var lengths: [Int] = []
-    override func setUpWithError() throws {
+    override init() {
+        
         words = WordData.words_8612()
+        wordsInt = WordCalculator.WordsToInt(words: words)
         lengths = WordCalculator.lengths(words: words)
+        super.init()
     }
+//    override func setUpWithError() throws {
+//        words = WordData.words_8612()
+//        wordsInt = WordCalculator.WordsToInt(words: words)
+//        lengths = WordCalculator.lengths(words: words)
+//    }
 }

@@ -794,7 +794,7 @@ public class StrategyCalculator {
         
         let widthMax = 17
         let heightMax = 12
-        
+        let wordsInt = WordCalculator.WordsToInt(words: words)
         let white_family = ShapeCalculator.filterInclude(shapes: edges, containing: ["WHITE","FAMILY"], from: words)[0]
         print(white_family.ToString(words: words))
         
@@ -808,7 +808,7 @@ public class StrategyCalculator {
         
         let (gpuFork, wordIndex) = GpuShapeModelCalculator.Create(shapes: fork, totalWords: words.count, stride: 2)
         
-        let mergeFork = ExecuteMergeCalculator.ExecuteSameShape(sourceShapes: gpuFork, wordIndex: wordIndex,searchMax: gpuFork.count, words: words, scoresMin: [0,0,0,0,0,0,0,0,0,0], widthMax: widthMax, heightMax: heightMax)
+        let mergeFork = ExecuteMergeCalculator.ExecuteSameShape(sourceShapes: gpuFork, wordIndex: wordIndex,searchMax: gpuFork.count, words: words, wordsInt: wordsInt,scoresMin: [0,0,0,0,0,0,0,0,0,0], widthMax: widthMax, heightMax: heightMax)
         
 //        for item in mergeFork {
 //            print(item.ToString(words: words))
@@ -816,7 +816,7 @@ public class StrategyCalculator {
         
         let (gpuFork2,fork2Index) = GpuShapeModelCalculator.Create(shapes: mergeFork, totalWords: words.count, stride:3)
         
-        var mergeFork2 = ExecuteMergeCalculator.ExecuteSameShape(sourceShapes: gpuFork2, wordIndex: fork2Index, searchMax: gpuFork2.count, words: words, scoresMin: [0,0,0,0,0,0,0,0,0,0], widthMax: widthMax, heightMax: heightMax)
+        var mergeFork2 = ExecuteMergeCalculator.ExecuteSameShape(sourceShapes: gpuFork2, wordIndex: fork2Index, searchMax: gpuFork2.count, words: words, wordsInt: wordsInt, scoresMin: [0,0,0,0,0,0,0,0,0,0], widthMax: widthMax, heightMax: heightMax)
         
         ShapeCalculator.SortWithWordSequence(shapes: &mergeFork2)
         

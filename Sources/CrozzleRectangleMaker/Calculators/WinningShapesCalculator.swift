@@ -9577,7 +9577,8 @@ public class WinningShapesCalculator {
     
     public static func WinningShape_9602() -> ShapeModel {
         let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_9602()
-        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
+        let wordsInt = WordCalculator.WordsToInt(words: words)
+        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax)
     }
     
     public static func Shapes_9603() -> ([ShapeModel], [String], Int, Int) {

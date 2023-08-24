@@ -11,7 +11,7 @@ import Foundation
 public class ExecuteMergeCalculator {
     
     // Execute same shape requires that we avoid repeats and so we go through each one
-    public static func ExecuteSameShapeAsync(shapes: GpuShapeModel, wordIndex: [[Int]], sourceMax: Int, searchMax: Int, words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) async -> [ShapeModel] {
+    public static func ExecuteSameShapeAsync(shapes: GpuShapeModel, wordIndex: [[Int]], sourceMax: Int, searchMax: Int, words:[String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) async -> [ShapeModel] {
         
         // Rather than having a loop and running one at a time we have these async things that process all going up 10 at a time
         
@@ -22,6 +22,7 @@ public class ExecuteMergeCalculator {
             sourceMax: sourceMax,
             searchMax: searchMax,
             words: words,
+            wordsInt: wordsInt,
             scoresMin:scoresMin,
             widthMax: widthMax, heightMax: heightMax)
         
@@ -32,6 +33,7 @@ public class ExecuteMergeCalculator {
             sourceMax: sourceMax,
             searchMax: searchMax,
             words: words,
+            wordsInt: wordsInt,
             scoresMin:scoresMin,
             widthMax: widthMax, heightMax: heightMax)
         
@@ -42,6 +44,7 @@ public class ExecuteMergeCalculator {
             sourceMax: sourceMax,
             searchMax: searchMax,
             words: words,
+            wordsInt: wordsInt,
             scoresMin:scoresMin,
             widthMax: widthMax, heightMax: heightMax)
         
@@ -52,6 +55,7 @@ public class ExecuteMergeCalculator {
             sourceMax: sourceMax,
             searchMax: searchMax,
             words: words,
+            wordsInt: wordsInt,
             scoresMin:scoresMin,
             widthMax: widthMax, heightMax: heightMax)
         
@@ -62,6 +66,7 @@ public class ExecuteMergeCalculator {
             sourceMax: sourceMax,
             searchMax: searchMax,
             words: words,
+            wordsInt: wordsInt,
             scoresMin:scoresMin,
             widthMax: widthMax, heightMax: heightMax)
         
@@ -72,6 +77,7 @@ public class ExecuteMergeCalculator {
             sourceMax: sourceMax,
             searchMax: searchMax,
             words: words,
+            wordsInt: wordsInt,
             scoresMin:scoresMin,
             widthMax: widthMax, heightMax: heightMax)
         
@@ -82,6 +88,7 @@ public class ExecuteMergeCalculator {
             sourceMax: sourceMax,
             searchMax: searchMax,
             words: words,
+            wordsInt: wordsInt,
             scoresMin:scoresMin,
             widthMax: widthMax, heightMax: heightMax)
         
@@ -92,6 +99,7 @@ public class ExecuteMergeCalculator {
             sourceMax: sourceMax,
             searchMax: searchMax,
             words: words,
+            wordsInt: wordsInt,
             scoresMin:scoresMin,
             widthMax: widthMax, heightMax: heightMax)
         
@@ -102,6 +110,7 @@ public class ExecuteMergeCalculator {
             sourceMax: sourceMax,
             searchMax: searchMax,
             words: words,
+            wordsInt: wordsInt,
             scoresMin:scoresMin,
             widthMax: widthMax, heightMax: heightMax)
         
@@ -112,6 +121,7 @@ public class ExecuteMergeCalculator {
             sourceMax: sourceMax,
             searchMax: searchMax,
             words: words,
+            wordsInt: wordsInt,
             scoresMin:scoresMin,
             widthMax: widthMax, heightMax: heightMax)
         
@@ -119,7 +129,7 @@ public class ExecuteMergeCalculator {
         return await a0 + a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9
     }
     
-    public static func ExecuteDifferentShapesAsync(source: GpuShapeModel, search: GpuShapeModel, searchWordIndex: [[Int]], sourceMax: Int, searchMax: Int, words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) async -> [ShapeModel] {
+    public static func ExecuteDifferentShapesAsync(source: GpuShapeModel, search: GpuShapeModel, searchWordIndex: [[Int]], sourceMax: Int, searchMax: Int, words:[String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) async -> [ShapeModel] {
 
         // Rather than having a loop and running one at a time we have these async things that process all going up 10 at a time
         
@@ -131,6 +141,7 @@ public class ExecuteMergeCalculator {
             sourceMax: sourceMax,
             searchMax: searchMax,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -143,6 +154,7 @@ public class ExecuteMergeCalculator {
             sourceMax: sourceMax,
             searchMax: searchMax,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -155,6 +167,7 @@ public class ExecuteMergeCalculator {
             sourceMax: sourceMax,
             searchMax: searchMax,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -167,6 +180,7 @@ public class ExecuteMergeCalculator {
             sourceMax: sourceMax,
             searchMax: searchMax,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -179,6 +193,7 @@ public class ExecuteMergeCalculator {
             sourceMax: sourceMax,
             searchMax: searchMax,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -191,6 +206,7 @@ public class ExecuteMergeCalculator {
             sourceMax: sourceMax,
             searchMax: searchMax,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -203,6 +219,7 @@ public class ExecuteMergeCalculator {
             sourceMax: sourceMax,
             searchMax: searchMax,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -215,6 +232,7 @@ public class ExecuteMergeCalculator {
             sourceMax: sourceMax,
             searchMax: searchMax,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -227,6 +245,7 @@ public class ExecuteMergeCalculator {
             sourceMax: sourceMax,
             searchMax: searchMax,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -239,6 +258,7 @@ public class ExecuteMergeCalculator {
             sourceMax: sourceMax,
             searchMax: searchMax,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -250,7 +270,7 @@ public class ExecuteMergeCalculator {
     
     
     
-    public static func ExecuteSameShapeOneAsync(zeroToNine: Int, sourceShapes: GpuShapeModel, wordIndex: [[Int]], sourceMax: Int, searchMax:Int, words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
+    public static func ExecuteSameShapeOneAsync(zeroToNine: Int, sourceShapes: GpuShapeModel, wordIndex: [[Int]], sourceMax: Int, searchMax:Int, words:[String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         var result:[ShapeModel] = []
         
         // The difference is that each cpu works on 0,10,20 .. or 1, 11, 21 and so we divide the task
@@ -261,6 +281,7 @@ public class ExecuteMergeCalculator {
                 wordIndex: wordIndex,
                 searchMax: searchMax,
                 words: words,
+                wordsInt: wordsInt,
                 scoresMin: scoresMin,
                 widthMax: widthMax,
                 heightMax: heightMax)
@@ -271,7 +292,7 @@ public class ExecuteMergeCalculator {
     }
     
 
-    public static func ExecuteDifferentShapesAsyncOne(zeroToNine: Int, sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, wordIndex: [[Int]], sourceMax: Int, searchMax: Int, words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
+    public static func ExecuteDifferentShapesAsyncOne(zeroToNine: Int, sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, wordIndex: [[Int]], sourceMax: Int, searchMax: Int, words:[String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         var result: [ShapeModel] = []
         
         for shapeId in stride(from: zeroToNine, to: sourceMax, by: 10) {
@@ -282,6 +303,7 @@ public class ExecuteMergeCalculator {
                 searchWordIndex: wordIndex,
                 searchMax: searchMax,
                 words: words,
+                wordsInt: wordsInt,
                 scoresMin:scoresMin,
                 widthMax: widthMax,
                 heightMax: heightMax)
@@ -293,7 +315,7 @@ public class ExecuteMergeCalculator {
     
     
     // NonAsync version of merging shapes together.  So it runs on only one core.
-    public static func ExecuteSameShape(sourceShapes: GpuShapeModel, wordIndex: [[Int]], searchMax: Int, words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
+    public static func ExecuteSameShape(sourceShapes: GpuShapeModel, wordIndex: [[Int]], searchMax: Int, words:[String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         var result: [ShapeModel] = []
         
         for shapeId in 0..<sourceShapes.count {
@@ -303,6 +325,7 @@ public class ExecuteMergeCalculator {
                 wordIndex: wordIndex,
                 searchMax: searchMax,
                 words: words,
+                wordsInt: wordsInt,
                 scoresMin: scoresMin,
                 widthMax: widthMax,
                 heightMax: heightMax)
@@ -313,7 +336,7 @@ public class ExecuteMergeCalculator {
     }
     
     
-    public static func ExecuteDifferentShapes(sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, searchWordIndex: [[Int]], sourceMax: Int, searchMax: Int, words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
+    public static func ExecuteDifferentShapes(sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, searchWordIndex: [[Int]], sourceMax: Int, searchMax: Int, words:[String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         var result: [ShapeModel] = []
         
         for shapeId in 0..<sourceMax {
@@ -323,7 +346,9 @@ public class ExecuteMergeCalculator {
                 searchShapes: searchShapes,
                 searchWordIndex: searchWordIndex,
                 searchMax: searchMax,
-                words: words, scoresMin:scoresMin,
+                words: words,
+                wordsInt: wordsInt,
+                scoresMin:scoresMin,
                 widthMax: widthMax,
                 heightMax: heightMax)
             
@@ -336,7 +361,7 @@ public class ExecuteMergeCalculator {
     
     
     
-    public static func ExecuteSameShapeOnce(shapeId: Int, sourceShapes: GpuShapeModel, wordIndex: [[Int]], searchMax: Int, words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
+    public static func ExecuteSameShapeOnce(shapeId: Int, sourceShapes: GpuShapeModel, wordIndex: [[Int]], searchMax: Int, words:[String], wordsInt:[[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         
         let instructions = MatchingWordsCalculator.GetMergeInstructions(
             sourceShapes: sourceShapes,
@@ -349,6 +374,7 @@ public class ExecuteMergeCalculator {
             sourceShapes: sourceShapes,
             searchShapes: sourceShapes,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -358,7 +384,7 @@ public class ExecuteMergeCalculator {
     }
     
     
-    public static func ExecuteDifferentShapesOne(sourceShapes: GpuShapeModel, sourceShapeId: Int, searchShapes: GpuShapeModel, searchWordIndex:[[Int]], searchMax: Int, words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
+    public static func ExecuteDifferentShapesOne(sourceShapes: GpuShapeModel, sourceShapeId: Int, searchShapes: GpuShapeModel, searchWordIndex:[[Int]], searchMax: Int, words:[String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         
         let instructions = MatchingWordsCalculator.GetMergeInstructions(
             sourceShapes: sourceShapes,
@@ -373,6 +399,7 @@ public class ExecuteMergeCalculator {
             sourceShapes: sourceShapes,
             searchShapes: searchShapes,
             words: words,
+            wordsInt: wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -381,10 +408,8 @@ public class ExecuteMergeCalculator {
     }
     
     
-    public static func GetShapesFromInstructions(instructions: [MergeInstructionModel], sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, words: [String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
+    public static func GetShapesFromInstructions(instructions: [MergeInstructionModel], sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, words: [String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         var shapeList: [ShapeModel] = []
-        
-        let words2 = WordCalculator.WordsToInt(words: words)
         
         for instruction in instructions {
             
@@ -407,7 +432,7 @@ public class ExecuteMergeCalculator {
                     if (potentialShape.width <= widthMax && potentialShape.height <= heightMax) ||
                         (potentialShape.width <= heightMax && potentialShape.height <= widthMax) {
                         
-                        let validShape = ShapeToText2Converter.ToValidShape(shape: potentialShape, words: words2)
+                        let validShape = ShapeToText2Converter.ToValidShape(shape: potentialShape, wordsInt: wordsInt)
                         
                         if let validShape = validShape {
                             // is shape is not nil so it must be a valid shape

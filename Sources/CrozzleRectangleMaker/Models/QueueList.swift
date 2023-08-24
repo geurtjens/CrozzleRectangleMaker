@@ -19,6 +19,8 @@ public struct QueueList {
         
     public var maxScore: UInt16 = 0
     
+    public var wordsInt: [[Int]]
+    
     public mutating func status() -> (ShapeModel?, Int) {
         var maxShape: ShapeModel? = nil
         
@@ -97,6 +99,7 @@ public struct QueueList {
                 sourceMax: self.queues[wordCount].sourceMax,
                 searchMax: self.queues[wordCount].searchMax,
                 words: self.constraints.words,
+                wordsInt: self.wordsInt,
                 scoresMin: self.constraints.scoresMin,
                 widthMax: self.game.maxWidth,
                 heightMax: self.game.maxHeight)
@@ -264,6 +267,7 @@ public struct QueueList {
                 sourceMax: self.queues[wordCount].sourceMax,
                 searchMax: self.queues[wordCount].searchMax,
                 words: self.constraints.words,
+                wordsInt: self.wordsInt,
                 scoresMin: self.constraints.scoresMin,
                 widthMax: self.game.maxWidth,
                 heightMax: self.game.maxHeight)
@@ -298,6 +302,7 @@ public struct QueueList {
             sourceMax: self.queues[wordCount].sourceMax,
             searchMax: self.queues[wordCount].searchMax,
             words: words,
+            wordsInt: self.wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -329,6 +334,7 @@ public struct QueueList {
                 sourceMax: self.queues[mergeIndex].sourceMax,
                 searchMax: self.queues[mergeIndex2].searchMax,
                 words: self.constraints.words,
+                wordsInt: self.wordsInt,
                 scoresMin: self.constraints.scoresMin,
                 widthMax: self.game.maxWidth,
                 heightMax: self.game.maxHeight)
@@ -352,6 +358,7 @@ public struct QueueList {
         mergeIndex: Int,
         withIndex mergeIndex2: Int,
         words: [String],
+        wordsInt: [[Int]],
         scoresMin:[Int],
         widthMax: Int,
         heightMax: Int,
@@ -363,6 +370,7 @@ public struct QueueList {
             sourceMax: self.queues[mergeIndex].sourceMax,
             searchMax: self.queues[mergeIndex2].searchMax,
             words: words,
+            wordsInt: self.wordsInt,
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -388,6 +396,7 @@ public struct QueueList {
         
         self.game = game
         self.constraints = constraints
+        self.wordsInt = WordCalculator.WordsToInt(words: game.words)
         
 //        if self.game.gameId >= 9401 {
 //            self.constraints.widthMax = self.game.maxWidth

@@ -21,8 +21,8 @@ public struct GameList {
         if shapes.count == 0 {
             return nil
         }
-
-        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, widthMax: widthMax, heightMax: heightMax)
+        let wordsInt = WordCalculator.WordsToInt(words: words)
+        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax)
     }
     
     public static func getShapes(gameId: Int) -> ([ShapeModel],[String],Int,Int) {

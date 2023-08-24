@@ -67,7 +67,8 @@ final class MergeShapesCalculatorTests: XCTestCase {
         let nazareth_bells_eve_holly_shape = nazareth_bells_eve_holly_placements.toShape(score:52)
         //print(nazareth_bells_eve_holly_shape.ToString(words: words))
         
-        let shapes = MergeShapesCalculator.Merge_Two_Shapes(smaller: [nazareth_bells_eve_holly_shape], larger:[nuts_zion_nazareth_sing_shape] , words: words, widthMax: 17, heightMax: 12)
+        let wordsInt = WordCalculator.WordsToInt(words: words)
+        let shapes = MergeShapesCalculator.Merge_Two_Shapes(smaller: [nazareth_bells_eve_holly_shape], larger:[nuts_zion_nazareth_sing_shape] , words: words, wordsInt: wordsInt, widthMax: 17, heightMax: 12)
         XCTAssertEqual(1, shapes.count)
         let shape = shapes[0]
         let (text, _) = ShapeCalculator.ToText(shape: shape, words: words)
