@@ -1055,7 +1055,7 @@ final class Cluster2CalculatorTests: XCTestCase {
             let wordsInt = WordCalculator.WordsToInt(words: words)
             for _ in 0..<10_000 {
                 /// This method is much slower
-                let newShape = ShapeToText2Converter.ToValidShape(shape: shape, wordsInt: wordsInt)!
+                let newShape = ShapeToText2Converter.ToValidShape(shape: shape, wordsInt: wordsInt, words: words)!
                 //getScoreAndText3(shape: shape, words2: wordsInt, grid: &gridText)
                 //let (score2, shapeWithText) = ShapeCalculator.getScoreAndText(shape: shape, words: words)
                 XCTAssertEqual(newShape.score,106)

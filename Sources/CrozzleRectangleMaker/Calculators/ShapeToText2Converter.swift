@@ -22,7 +22,7 @@ class ShapeToText2Converter {
     }
     
     /// convert the shape to a valid shape or return null.  We might preprocess a shape but not yet know its valid so we use this to make sure
-    public static func ToValidShape(shape: ShapeModel, wordsInt: [[Int]]) -> ShapeModel? {
+    public static func ToValidShape(shape: ShapeModel, wordsInt: [[Int]], words: [String]) -> ShapeModel? {
         let (score, grid) = getScoreAndText(shape: shape, words: wordsInt)
         
         if score == 0 {
@@ -32,6 +32,13 @@ class ShapeToText2Converter {
         let textIsVerified = VerifyGrid(grid: grid, width: Int(shape.width), height: Int(shape.height))
         
         if textIsVerified {
+            
+            let wordCount = getWordCount(grid:grid, width: Int(shape.width), height: Int(shape.height))
+            
+            if wordCount != shape.placements.count {
+                return nil
+            }
+            
             let newShape = ShapeModel(score: score, width: shape.width, height: shape.height, placements: shape.placements)
             
             // our shapes must have first word as horizontal to help with removing duplicates
@@ -178,6 +185,65 @@ class ShapeToText2Converter {
         return true
     }
     
+    public static func IsAlpha(_ letter: Int) -> Bool {
+        return (letter >= 65 && letter <= 90)
+    }
+    public static func getWordCount(grid: [Int], width: Int, height: Int) -> Int {
+
+        // If we have 2 or more alpha in a row then this is a word
+        var wordCount = 0
+        
+        let heightMinusOne = height - 1
+        let widthMinusOne = width - 1
+        let widthEOL = width + 1
+        // Horizontal verification
+        
+        var current: Int = 0
+        var letterCount: Int = 0
+        
+        for y in 1..<heightMinusOne {
+            if letterCount > 1 {
+                wordCount += 1
+            }
+            letterCount = 0
+            for x in 1..<widthMinusOne {
+                current = V(y, x, grid, widthEOL)
+                
+                if IsAlpha(current) {
+                    letterCount += 1
+                } else {
+                    if letterCount > 1 {
+                        wordCount += 1
+                    }
+                    letterCount = 0
+                }
+            }
+        }
+        
+        for y in 1..<widthMinusOne {
+            if letterCount > 1 {
+                wordCount += 1
+            }
+            letterCount = 0
+            for x in 1..<heightMinusOne {
+                current = V(x, y, grid, widthEOL)
+                if IsAlpha(current) {
+                    letterCount += 1
+                } else {
+                    if letterCount > 1 {
+                        wordCount += 1
+                    }
+                    letterCount = 0
+                }
+            }
+        }
+        
+        if letterCount > 1 {
+            wordCount += 1
+        }
+        
+        return wordCount
+    }
     
     
     public static func V(_ y: Int, _ x: Int, _ grid:[Int], _ widthEOL: Int) -> Int {
@@ -190,9 +256,7 @@ class ShapeToText2Converter {
         return grid[gridPos]
     }
     
-    public static func IsAlpha(_ letter: Int) -> Bool {
-        return (letter >= 65 && letter <= 90)
-    }
+    
    
 
 }
