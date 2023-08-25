@@ -281,9 +281,12 @@ public class ShapeCalculator {
     /// sort shapes by score, area and then also word sequence.  Useful for finding duplicates
     public static func SortWithWordSequence(shapes: inout [ShapeModel]) {
         
+        
+        
         for i in 0..<shapes.count {
-            if shapes[i].wordSequence == "" {
+            if shapes[i].seqCalculated == false {
                 shapes[i].wordSequence = ShapeModel.getWordSequence(placements: shapes[i].placements)
+                shapes[i].seqCalculated = true
             }
         }
         
