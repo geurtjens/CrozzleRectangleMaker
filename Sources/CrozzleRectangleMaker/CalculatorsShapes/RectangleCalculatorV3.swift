@@ -1520,7 +1520,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("d3x3 \(d3x3.count)")
+        //print("d3x3 \(d3x3.count)")
             
         let d3x4 = Rectangle(
             interlockWidth: 2,
@@ -1533,7 +1533,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
             
-        print("d3x4 \(d3x4.count)")
+        //print("d3x4 \(d3x4.count)")
         
         let d3x5 = Rectangle(
             interlockWidth: 2,
@@ -1546,7 +1546,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
             
-        print("d3x5 \(d3x5.count)")
+        //print("d3x5 \(d3x5.count)")
         
         let d3x6 = Rectangle(
             interlockWidth: 2,
@@ -1559,7 +1559,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("d3x6 \(d3x6.count)")
+        //print("d3x6 \(d3x6.count)")
         
         let d4x4 = Square(
             interlockWidth: 3,
@@ -1571,7 +1571,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
             
-        print("d4x4 \(d4x4.count)")
+        //print("d4x4 \(d4x4.count)")
         
         let d4x5 = Rectangle(
             interlockWidth: 3,
@@ -1584,7 +1584,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
             
-        print("d4x5 \(d4x5.count)")
+        //print("d4x5 \(d4x5.count)")
         
         let d4x6 = Rectangle(
             interlockWidth: 3,
@@ -1597,7 +1597,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("d4x6 \(d4x6.count)")
+        //print("d4x6 \(d4x6.count)")
         
         let d5x5 = Square(
             interlockWidth: 4,
@@ -1609,7 +1609,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
             
-        print("d5x5 \(d5x5.count)")
+        //print("d5x5 \(d5x5.count)")
         
         let d5x6 = Rectangle(
             interlockWidth: 4,
@@ -1622,7 +1622,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("d5x6 \(d5x6.count)")
+        //print("d5x6 \(d5x6.count)")
         
         let d6x6 = Square(
             interlockWidth: 5,
@@ -1634,7 +1634,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
             
-        print("d6x6 \(d6x6.count)")
+        //print("d6x6 \(d6x6.count)")
         
         let o3x3_BottomRight = BottomRightSquare(
             interlockWidth: 2,
@@ -1646,7 +1646,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o3x3_BottomRight \(o3x3_BottomRight.count)")
+        //print("o3x3_BottomRight \(o3x3_BottomRight.count)")
         
         let o3x3_TopLeft = TopLeftSquare(
             interlockWidth: 2,
@@ -1658,7 +1658,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o3x3_TopLeft \(o3x3_TopLeft.count)")
+        //print("o3x3_TopLeft \(o3x3_TopLeft.count)")
         
         let o3x3_TopRight = TopRightSquare(
             interlockWidth: 2,
@@ -1670,7 +1670,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
             
-        print("o3x3_TopRight \(o3x3_TopRight.count)")
+        //print("o3x3_TopRight \(o3x3_TopRight.count)")
         
         let o3x4_BottomLeft = BottomLeftRectangle(
             interlockWidth: 2,
@@ -1683,7 +1683,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o3x4_BottomLeft \(o3x4_BottomLeft.count)")
+        //print("o3x4_BottomLeft \(o3x4_BottomLeft.count)")
         
         let o3x4_BottomRight = BottomRightRectangle(
             interlockWidth: 2,
@@ -1696,7 +1696,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
                      
-        print("o3x4_BottomRight \(o3x4_BottomRight.count)")
+        //print("o3x4_BottomRight \(o3x4_BottomRight.count)")
         
         let o3x4_TopLeft = TopLeftRectangle(
             interlockWidth: 2,
@@ -1709,7 +1709,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
             
-        print("o3x4_TopLeft \(o3x4_TopLeft.count)")
+        //print("o3x4_TopLeft \(o3x4_TopLeft.count)")
         
         let o3x4_TopRight = TopRightRectangle(
             interlockWidth: 2,
@@ -1722,7 +1722,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
 
-        print("o3x4_TopRight \(o3x4_TopRight.count)")
+        //print("o3x4_TopRight \(o3x4_TopRight.count)")
         
         let o3x5_BottomLeft = BottomLeftRectangle(
             interlockWidth: 2,
@@ -1735,7 +1735,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
             
-        print("o3x5_BottomLeft \(o3x5_BottomLeft.count)")
+        //print("o3x5_BottomLeft \(o3x5_BottomLeft.count)")
         
         let o3x5_BottomRight = BottomRightRectangle(
             interlockWidth: 2,
@@ -1748,7 +1748,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o3x5_BottomRight \(o3x5_BottomRight.count)")
+        //print("o3x5_BottomRight \(o3x5_BottomRight.count)")
         
         let o3x5_TopLeft = TopLeftRectangle(
             interlockWidth: 2,
@@ -1761,7 +1761,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
                        
-        print("o3x5_TopLeft \(o3x5_TopLeft.count)")
+        //print("o3x5_TopLeft \(o3x5_TopLeft.count)")
         
         let o3x5_TopRight = TopRightRectangle(
             interlockWidth: 2,
@@ -1774,7 +1774,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
 
-        print("o3x5_TopRight \(o3x5_TopRight.count)")
+        //print("o3x5_TopRight \(o3x5_TopRight.count)")
         
         let o3x6_BottomLeft = BottomLeftRectangle(
             interlockWidth: 2,
@@ -1787,7 +1787,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o3x6_BottomLeft \(o3x6_BottomLeft.count)")
+        //print("o3x6_BottomLeft \(o3x6_BottomLeft.count)")
         
         let o3x6_BottomRight = BottomRightRectangle(
             interlockWidth: 2,
@@ -1800,7 +1800,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o3x6_BottomRight \(o3x6_BottomRight.count)")
+        //print("o3x6_BottomRight \(o3x6_BottomRight.count)")
 
         let o3x6_TopLeft = TopLeftRectangle(
             interlockWidth: 2,
@@ -1813,7 +1813,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
             
-        print("o3x6_TopLeft \(o3x6_TopLeft.count)")
+        //print("o3x6_TopLeft \(o3x6_TopLeft.count)")
         
         let o3x6_TopRight = TopRightRectangle(
             interlockWidth: 2,
@@ -1826,7 +1826,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o3x6_TopRight \(o3x6_TopRight.count)")
+        //print("o3x6_TopRight \(o3x6_TopRight.count)")
         
         let o4x4_BottomRight = BottomRightSquare(
             interlockWidth: 3,
@@ -1838,7 +1838,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o4x4_BottomRight \(o4x4_BottomRight.count)")
+        //print("o4x4_BottomRight \(o4x4_BottomRight.count)")
         
         let o4x4_TopLeft = TopLeftSquare(
             interlockWidth: 3,
@@ -1850,7 +1850,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o4x4_TopLeft \(o4x4_TopLeft.count)")
+        //print("o4x4_TopLeft \(o4x4_TopLeft.count)")
         
         let o4x4_TopRight = TopRightSquare(
             interlockWidth: 3,
@@ -1862,7 +1862,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o4x4_TopRight \(o4x4_TopRight.count)")
+        //print("o4x4_TopRight \(o4x4_TopRight.count)")
         
         let o4x5_BottomLeft = BottomLeftRectangle(
             interlockWidth: 3,
@@ -1875,7 +1875,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o4x5_BottomLeft \(o4x5_BottomLeft.count)")
+        //print("o4x5_BottomLeft \(o4x5_BottomLeft.count)")
         
         let o4x5_BottomRight = BottomRightRectangle(
             interlockWidth: 3,
@@ -1888,7 +1888,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o4x5_BottomRight \(o4x5_BottomRight.count)")
+        //print("o4x5_BottomRight \(o4x5_BottomRight.count)")
         
         let o4x5_TopLeft = TopLeftRectangle(
             interlockWidth: 3,
@@ -1901,7 +1901,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
 
-        print("o4x5_TopLeft \(o4x5_TopLeft.count)")
+        //print("o4x5_TopLeft \(o4x5_TopLeft.count)")
         
         let o4x5_TopRight = TopRightRectangle(
             interlockWidth: 3,
@@ -1914,7 +1914,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
 
-        print("o4x5_TopRight \(o4x5_TopRight.count)")
+        //print("o4x5_TopRight \(o4x5_TopRight.count)")
         
         let o4x6_BottomLeft = BottomLeftRectangle(
             interlockWidth: 3,
@@ -1927,7 +1927,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o4x6_BottomLeft \(o4x6_BottomLeft.count)")
+        //print("o4x6_BottomLeft \(o4x6_BottomLeft.count)")
         
         let o4x6_BottomRight = BottomRightRectangle(
             interlockWidth: 3,
@@ -1940,7 +1940,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
 
-        print("o4x6_BottomRight \(o4x6_BottomRight.count)")
+        //print("o4x6_BottomRight \(o4x6_BottomRight.count)")
         
         let o4x6_TopLeft = TopLeftRectangle(
             interlockWidth: 3,
@@ -1953,7 +1953,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o4x6_TopLeft \(o4x6_TopLeft.count)")
+        //print("o4x6_TopLeft \(o4x6_TopLeft.count)")
         
         let o4x6_TopRight = TopRightRectangle(
             interlockWidth: 3,
@@ -1966,7 +1966,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o4x6_TopRight \(o4x6_TopRight.count)")
+        //print("o4x6_TopRight \(o4x6_TopRight.count)")
         
         let o5x5_BottomRight = BottomRightSquare(
             interlockWidth: 4,
@@ -1978,7 +1978,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o5x5_BottomRight \(o5x5_BottomRight.count)")
+        //print("o5x5_BottomRight \(o5x5_BottomRight.count)")
         
         let o5x5_TopLeft = TopLeftSquare(
             interlockWidth: 4,
@@ -1990,7 +1990,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o5x5_TopLeft \(o5x5_TopLeft.count)")
+        //print("o5x5_TopLeft \(o5x5_TopLeft.count)")
         
         let o5x5_TopRight = TopRightSquare(
             interlockWidth: 4,
@@ -2002,7 +2002,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o5x5_TopRight \(o5x5_TopRight.count)")
+        //print("o5x5_TopRight \(o5x5_TopRight.count)")
         
         let o5x6_BottomLeft = BottomLeftRectangle(
             interlockWidth: 4,
@@ -2015,7 +2015,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o5x6_BottomLeft \(o5x6_BottomLeft.count)")
+        //print("o5x6_BottomLeft \(o5x6_BottomLeft.count)")
         
         let o5x6_BottomRight = BottomRightRectangle(
             interlockWidth: 4,
@@ -2028,7 +2028,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o5x6_BottomRight \(o5x6_BottomRight.count)")
+        //print("o5x6_BottomRight \(o5x6_BottomRight.count)")
         
         let o5x6_TopLeft = TopLeftRectangle(
             interlockWidth: 4,
@@ -2041,7 +2041,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o5x6_TopLeft \(o5x6_TopLeft.count)")
+        //print("o5x6_TopLeft \(o5x6_TopLeft.count)")
         
         let o5x6_TopRight = TopRightRectangle(
             interlockWidth: 4,
@@ -2054,7 +2054,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o5x6_TopRight \(o5x6_TopRight.count)")
+        //print("o5x6_TopRight \(o5x6_TopRight.count)")
         
         let o6x6_BottomRight = BottomRightSquare(
             interlockWidth: 5,
@@ -2066,7 +2066,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o6x6_BottomRight \(o6x6_BottomRight.count)")
+        //print("o6x6_BottomRight \(o6x6_BottomRight.count)")
         
         let o6x6_TopLeft = TopLeftSquare(
             interlockWidth: 5,
@@ -2078,7 +2078,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o6x6_TopLeft \(o6x6_TopLeft.count)")
+        //print("o6x6_TopLeft \(o6x6_TopLeft.count)")
         
         let o6x6_TopRight = TopRightSquare(
             interlockWidth: 5,
@@ -2090,7 +2090,7 @@ public class RectangleCalculatorV3 {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        print("o6x6_TopRight \(o6x6_TopRight.count)")
+        //print("o6x6_TopRight \(o6x6_TopRight.count)")
         
         
          let result =
