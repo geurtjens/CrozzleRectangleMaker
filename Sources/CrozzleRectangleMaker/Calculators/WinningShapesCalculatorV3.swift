@@ -1,20 +1,21 @@
 //
-//  WinningShapesCalculator.swift
+//  File.swift
 //  
 //
-//  Created by Michael Geurtjens on 14/6/2023.
+//  Created by Michael Geurtjens on 25/8/2023.
 //
 
 import Foundation
-public class WinningShapesCalculator {
+
+public class WinningShapesCalculatorV3 {
     
     
 //    public static func Shapes(gameId: Int) -> ([ShapeModel], [String], Int, Int) {
 //        switch gameId {
-//    
+//
 //        case 8612:
 //            return Shapes_8612()
-//            
+//
 //    }
     
     
@@ -26,44 +27,54 @@ public class WinningShapesCalculator {
         let widthMax = game.maxWidth
         let heightMax = game.maxHeight
         let words = game.winningWords
+        let wordsInt = game.winningWordsInt()
         let len = WordCalculator.lengths(words: words)
 
+        let letterIndex = LetterIndexModel(words: words)
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV3.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
-            words: words,
+            letterIndex: letterIndex,
+            words: wordsInt,
+            words2: words,
             lengths: len,
             scoreMin: 136,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV3.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
-            words: words,
+            letterIndex: letterIndex,
+            words: wordsInt,
+            words2: words,
             lengths: len,
             scoreMin: 64,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV3.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
-            words: words,
+            letterIndex: letterIndex,
+            words: wordsInt,
+            words2: words,
             lengths: len,
             scoreMin: 90,
             widthMax: widthMax,
             heightMax: heightMax))
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV3.Square(
             interlockWidth: 2,
-            words: words,
+            letterIndex: letterIndex,
+            words: wordsInt,
+            words2: words,
             lengths: len,
             scoreMin: 52,
             widthMax: widthMax,
@@ -9576,7 +9587,7 @@ public class WinningShapesCalculator {
     
     
     public static func WinningShape_9602() -> ShapeModel {
-        let (shapes, words, widthMax, heightMax) = WinningShapesCalculator.Shapes_9602()
+        let (shapes, words, widthMax, heightMax) = WinningShapesCalculatorV1.Shapes_9602()
         let wordsInt = WordCalculator.WordsToInt(words: words)
         return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax)
     }

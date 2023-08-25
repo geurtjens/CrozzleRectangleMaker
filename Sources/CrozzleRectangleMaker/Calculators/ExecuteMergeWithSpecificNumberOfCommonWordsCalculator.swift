@@ -131,17 +131,24 @@ public class ExecuteMergeWithSpecificNumberOfCommonWordsCalculator {
         
         var shapeList: [ShapeModel] = []
         
+        /// We must take this out and pass it down in future
+        let wordsInt = WordCalculator.WordsToInt(words: words)
+        
         for instruction in instructions {
-            let potentialShape = MergePlacementCalculator.Execute(
+            let potentialPlacements = MergePlacementCalculator.Execute(
                 sourceShapes: sourceShapes,
                 searchShapes: searchShapes,
                 instruction: instruction,
                 words: words)
             
-            if let potentialShape = potentialShape {
-                if (potentialShape.width <= widthMax && potentialShape.height <= heightMax) ||
-                    (potentialShape.width <= heightMax && potentialShape.height <= widthMax) {
-                    let (validShape,_) = ShapeToTextConverter.ToValidShape(shape: potentialShape, words: words)
+            if potentialPlacements.count > 0 {
+                
+                let potentialWidth = potentialPlacements.width()
+                let potentialHeight = potentialPlacements.height()
+                
+                if (potentialWidth <= widthMax && potentialHeight <= heightMax) ||
+                    (potentialWidth <= heightMax && potentialHeight <= widthMax) {
+                    let validShape = ShapeToTextConverterV2.ToValidShape(placements: potentialPlacements, width: Int(potentialWidth), height: Int(potentialHeight), wordsInt: wordsInt, words: words)
                     
                     if let validShape = validShape {
                         // is shape is not nil so it must be a valid shape

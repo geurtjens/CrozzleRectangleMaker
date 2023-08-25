@@ -10,7 +10,7 @@ import Foundation
 public class MergePlacementCalculator {
     
     // Create a shape from two `GpuShapeModel` based on the instructions provided
-    public static func Execute(sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, instruction: MergeInstructionModel, words:[String]) -> ShapeModel? {
+    public static func Execute(sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, instruction: MergeInstructionModel, words:[String]) -> [PlacementModel] {
         
         // This will flip the placements if they are opposite direction
         let (sourcePlacement, searchPlacement) = GetPlacementsForBothShapes(
@@ -67,12 +67,12 @@ public class MergePlacementCalculator {
         
         let isOverlapping = OverlappingPlacementsCalculator.isOverlapping(sourcePlacements: sourceFinal, searchPlacements: searchNoDuplicates)
         if isOverlapping {
-            return nil
+            return []
         }
         
-        var combined = sourceFinal + searchNoDuplicates
+        let combined = sourceFinal + searchNoDuplicates
         
-        combined.sort { $0.w < $1.w }
+        //combined.sort { $0.w < $1.w }
         
         /*
          .  .
@@ -87,14 +87,12 @@ public class MergePlacementCalculator {
           .
          */
         
-        let width = PlacementCalculator.width(fromPlacements: combined)
-        let height = PlacementCalculator.height(fromPlacements: combined)
-
+        
         // We do not know the score just yet
-        let shape = ShapeModel(score:10, width: UInt8(width), height: UInt8(height), placements: combined)
+        //let shape = ShapeModel(score:10, width: UInt8(width), height: UInt8(height), placements: combined)
 
         
-        return shape
+        return combined
     }
     
     

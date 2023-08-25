@@ -28,215 +28,215 @@ public struct GameList {
     public static func getShapes(gameId: Int) -> ([ShapeModel],[String],Int,Int) {
         switch gameId {
         case 8612:
-            return WinningShapesCalculator.Shapes_8612()
+            return WinningShapesCalculatorV1.Shapes_8612()
         case 8702:
-            return WinningShapesCalculator.Shapes_8702()
+            return WinningShapesCalculatorV1.Shapes_8702()
         case 8703:
-            return WinningShapesCalculator.Shapes_8703()
+            return WinningShapesCalculatorV1.Shapes_8703()
         case 8704:
-            return WinningShapesCalculator.Shapes_8704()
+            return WinningShapesCalculatorV1.Shapes_8704()
         case 8705:
-            return WinningShapesCalculator.Shapes_8705()
+            return WinningShapesCalculatorV1.Shapes_8705()
         case 8710:
-            return WinningShapesCalculator.Shapes_8710()
+            return WinningShapesCalculatorV1.Shapes_8710()
         case 8711:
-            return WinningShapesCalculator.Shapes_8711()
+            return WinningShapesCalculatorV1.Shapes_8711()
         case 8712:
-            return WinningShapesCalculator.Shapes_8712()
+            return WinningShapesCalculatorV1.Shapes_8712()
         case 8802:
-            return WinningShapesCalculator.Shapes_8802()
+            return WinningShapesCalculatorV1.Shapes_8802()
         case 8803:
-            return WinningShapesCalculator.Shapes_8803()
+            return WinningShapesCalculatorV1.Shapes_8803()
         case 8804:
-            return WinningShapesCalculator.Shapes_8804()
+            return WinningShapesCalculatorV1.Shapes_8804()
         case 8805:
-            return WinningShapesCalculator.Shapes_8805()
+            return WinningShapesCalculatorV1.Shapes_8805()
         case 8806:
-            return WinningShapesCalculator.Shapes_8806()
+            return WinningShapesCalculatorV1.Shapes_8806()
         case 8807:
-            return WinningShapesCalculator.Shapes_8807()
+            return WinningShapesCalculatorV1.Shapes_8807()
         case 8808:
-            return WinningShapesCalculator.Shapes_8808()
+            return WinningShapesCalculatorV1.Shapes_8808()
         case 8809:
-            return WinningShapesCalculator.Shapes_8809()
+            return WinningShapesCalculatorV1.Shapes_8809()
         case 8810:
-            return WinningShapesCalculator.Shapes_8810()
+            return WinningShapesCalculatorV1.Shapes_8810()
         case 8811:
-            return WinningShapesCalculator.Shapes_8811()
+            return WinningShapesCalculatorV1.Shapes_8811()
         case 8812:
-            return WinningShapesCalculator.Shapes_8812()
+            return WinningShapesCalculatorV1.Shapes_8812()
         case 8902:
-            return WinningShapesCalculator.Shapes_8902()
+            return WinningShapesCalculatorV1.Shapes_8902()
         case 8903:
-            return WinningShapesCalculator.Shapes_8903()
+            return WinningShapesCalculatorV1.Shapes_8903()
         case 8904:
-            return WinningShapesCalculator.Shapes_8904()
+            return WinningShapesCalculatorV1.Shapes_8904()
         case 8905:
-            return WinningShapesCalculator.Shapes_8905()
+            return WinningShapesCalculatorV1.Shapes_8905()
         case 8906:
-            return WinningShapesCalculator.Shapes_8906()
+            return WinningShapesCalculatorV1.Shapes_8906()
         case 8907:
-            return WinningShapesCalculator.Shapes_8907()
+            return WinningShapesCalculatorV1.Shapes_8907()
         case 8908:
-            return WinningShapesCalculator.Shapes_8908()
+            return WinningShapesCalculatorV1.Shapes_8908()
         case 8909:
-            return WinningShapesCalculator.Shapes_8909()
+            return WinningShapesCalculatorV1.Shapes_8909()
         case 8910:
-            return WinningShapesCalculator.Shapes_8910()
+            return WinningShapesCalculatorV1.Shapes_8910()
         case 8911:
-            return WinningShapesCalculator.Shapes_8911()
+            return WinningShapesCalculatorV1.Shapes_8911()
         case 8912:
-            return WinningShapesCalculator.Shapes_8912()
+            return WinningShapesCalculatorV1.Shapes_8912()
         case 9001:
-            return WinningShapesCalculator.Shapes_9001()
+            return WinningShapesCalculatorV1.Shapes_9001()
         case 9002:
-            return WinningShapesCalculator.Shapes_9002()
+            return WinningShapesCalculatorV1.Shapes_9002()
         case 9003:
-            return WinningShapesCalculator.Shapes_9003()
+            return WinningShapesCalculatorV1.Shapes_9003()
         case 9004:
-            return WinningShapesCalculator.Shapes_9004()
+            return WinningShapesCalculatorV1.Shapes_9004()
         case 9005:
-            return WinningShapesCalculator.Shapes_9005()
+            return WinningShapesCalculatorV1.Shapes_9005()
         case 9006:
-            return WinningShapesCalculator.Shapes_9006()
+            return WinningShapesCalculatorV1.Shapes_9006()
         case 9007:
-            return WinningShapesCalculator.Shapes_9007()
+            return WinningShapesCalculatorV1.Shapes_9007()
         case 9008:
-            return WinningShapesCalculator.Shapes_9008()
+            return WinningShapesCalculatorV1.Shapes_9008()
         case 9009:
-            return WinningShapesCalculator.Shapes_9009()
+            return WinningShapesCalculatorV1.Shapes_9009()
         case 9010:
-            return WinningShapesCalculator.Shapes_9010()
+            return WinningShapesCalculatorV1.Shapes_9010()
         case 9011:
-            return WinningShapesCalculator.Shapes_9011()
+            return WinningShapesCalculatorV1.Shapes_9011()
         case 9012:
-            return WinningShapesCalculator.Shapes_9012()
+            return WinningShapesCalculatorV1.Shapes_9012()
         case 9101:
-            return WinningShapesCalculator.Shapes_9101()
+            return WinningShapesCalculatorV1.Shapes_9101()
         case 9102:
-            return WinningShapesCalculator.Shapes_9102()
+            return WinningShapesCalculatorV1.Shapes_9102()
         case 9103:
-            return WinningShapesCalculator.Shapes_9103()
+            return WinningShapesCalculatorV1.Shapes_9103()
         case 9104:
-            return WinningShapesCalculator.Shapes_9104()
+            return WinningShapesCalculatorV1.Shapes_9104()
         case 9105:
-            return WinningShapesCalculator.Shapes_9105()
+            return WinningShapesCalculatorV1.Shapes_9105()
         case 9106:
-            return WinningShapesCalculator.Shapes_9106()
+            return WinningShapesCalculatorV1.Shapes_9106()
         case 9107:
-            return WinningShapesCalculator.Shapes_9107()
+            return WinningShapesCalculatorV1.Shapes_9107()
         case 9108:
-            return WinningShapesCalculator.Shapes_9108()
+            return WinningShapesCalculatorV1.Shapes_9108()
         case 9109:
-            return WinningShapesCalculator.Shapes_9109()
+            return WinningShapesCalculatorV1.Shapes_9109()
         case 9110:
-            return WinningShapesCalculator.Shapes_9110()
+            return WinningShapesCalculatorV1.Shapes_9110()
         case 9111:
-            return WinningShapesCalculator.Shapes_9111()
+            return WinningShapesCalculatorV1.Shapes_9111()
         case 9112:
-            return WinningShapesCalculator.Shapes_9112()
+            return WinningShapesCalculatorV1.Shapes_9112()
         case 9201:
-            return WinningShapesCalculator.Shapes_9201()
+            return WinningShapesCalculatorV1.Shapes_9201()
         case 9202:
-            return WinningShapesCalculator.Shapes_9202()
+            return WinningShapesCalculatorV1.Shapes_9202()
         case 9203:
-            return WinningShapesCalculator.Shapes_9203()
+            return WinningShapesCalculatorV1.Shapes_9203()
         case 9204:
-            return WinningShapesCalculator.Shapes_9204()
+            return WinningShapesCalculatorV1.Shapes_9204()
         case 9206:
-            return WinningShapesCalculator.Shapes_9206()
+            return WinningShapesCalculatorV1.Shapes_9206()
         case 9207:
-            return WinningShapesCalculator.Shapes_9207()
+            return WinningShapesCalculatorV1.Shapes_9207()
         case 9208:
-            return WinningShapesCalculator.Shapes_9208()
+            return WinningShapesCalculatorV1.Shapes_9208()
         case 9209:
-            return WinningShapesCalculator.Shapes_9209()
+            return WinningShapesCalculatorV1.Shapes_9209()
         case 9210:
-            return WinningShapesCalculator.Shapes_9210()
+            return WinningShapesCalculatorV1.Shapes_9210()
         case 9211:
-            return WinningShapesCalculator.Shapes_9211()
+            return WinningShapesCalculatorV1.Shapes_9211()
         case 9212:
-            return WinningShapesCalculator.Shapes_9212()
+            return WinningShapesCalculatorV1.Shapes_9212()
         case 9301:
-            return WinningShapesCalculator.Shapes_9301()
+            return WinningShapesCalculatorV1.Shapes_9301()
         case 9302:
-            return WinningShapesCalculator.Shapes_9302()
+            return WinningShapesCalculatorV1.Shapes_9302()
         case 9303:
-            return WinningShapesCalculator.Shapes_9303()
+            return WinningShapesCalculatorV1.Shapes_9303()
         case 9304:
-            return WinningShapesCalculator.Shapes_9304()
+            return WinningShapesCalculatorV1.Shapes_9304()
         case 9305:
-            return WinningShapesCalculator.Shapes_9305()
+            return WinningShapesCalculatorV1.Shapes_9305()
         case 9306:
-            return WinningShapesCalculator.Shapes_9306()
+            return WinningShapesCalculatorV1.Shapes_9306()
         case 9307:
-            return WinningShapesCalculator.Shapes_9307()
+            return WinningShapesCalculatorV1.Shapes_9307()
         case 9308:
-            return WinningShapesCalculator.Shapes_9308()
+            return WinningShapesCalculatorV1.Shapes_9308()
         case 9309:
-            return WinningShapesCalculator.Shapes_9309()
+            return WinningShapesCalculatorV1.Shapes_9309()
         case 9310:
-            return WinningShapesCalculator.Shapes_9310()
+            return WinningShapesCalculatorV1.Shapes_9310()
         case 9311:
-            return WinningShapesCalculator.Shapes_9311()
+            return WinningShapesCalculatorV1.Shapes_9311()
         case 9312:
-            return WinningShapesCalculator.Shapes_9312()
+            return WinningShapesCalculatorV1.Shapes_9312()
         case 9401:
-            return WinningShapesCalculator.Shapes_9401()
+            return WinningShapesCalculatorV1.Shapes_9401()
         case 9402:
-            return WinningShapesCalculator.Shapes_9402()
+            return WinningShapesCalculatorV1.Shapes_9402()
         case 9403:
-            return WinningShapesCalculator.Shapes_9403()
+            return WinningShapesCalculatorV1.Shapes_9403()
         case 9404:
-            return WinningShapesCalculator.Shapes_9404()
+            return WinningShapesCalculatorV1.Shapes_9404()
         case 9406:
-            return WinningShapesCalculator.Shapes_9406()
+            return WinningShapesCalculatorV1.Shapes_9406()
         case 9407:
-            return WinningShapesCalculator.Shapes_9407()
+            return WinningShapesCalculatorV1.Shapes_9407()
         case 9408:
-            return WinningShapesCalculator.Shapes_9408()
+            return WinningShapesCalculatorV1.Shapes_9408()
         case 9409:
-            return WinningShapesCalculator.Shapes_9409()
+            return WinningShapesCalculatorV1.Shapes_9409()
         case 9410:
-            return WinningShapesCalculator.Shapes_9410()
+            return WinningShapesCalculatorV1.Shapes_9410()
         case 9411:
-            return WinningShapesCalculator.Shapes_9411()
+            return WinningShapesCalculatorV1.Shapes_9411()
         case 9412:
-            return WinningShapesCalculator.Shapes_9412()
+            return WinningShapesCalculatorV1.Shapes_9412()
         case 9501:
-            return WinningShapesCalculator.Shapes_9501()
+            return WinningShapesCalculatorV1.Shapes_9501()
         case 9502:
-            return WinningShapesCalculator.Shapes_9502()
+            return WinningShapesCalculatorV1.Shapes_9502()
         case 9503:
-            return WinningShapesCalculator.Shapes_9503()
+            return WinningShapesCalculatorV1.Shapes_9503()
         case 9504:
-            return WinningShapesCalculator.Shapes_9504()
+            return WinningShapesCalculatorV1.Shapes_9504()
         case 9505:
-            return WinningShapesCalculator.Shapes_9505()
+            return WinningShapesCalculatorV1.Shapes_9505()
         case 9506:
-            return WinningShapesCalculator.Shapes_9506()
+            return WinningShapesCalculatorV1.Shapes_9506()
         case 9507:
-            return WinningShapesCalculator.Shapes_9507()
+            return WinningShapesCalculatorV1.Shapes_9507()
         case 9508:
-            return WinningShapesCalculator.Shapes_9508()
+            return WinningShapesCalculatorV1.Shapes_9508()
         case 9509:
-            return WinningShapesCalculator.Shapes_9509()
+            return WinningShapesCalculatorV1.Shapes_9509()
         case 9510:
-            return WinningShapesCalculator.Shapes_9510()
+            return WinningShapesCalculatorV1.Shapes_9510()
         case 9511:
-            return WinningShapesCalculator.Shapes_9511()
+            return WinningShapesCalculatorV1.Shapes_9511()
         case 9512:
-            return WinningShapesCalculator.Shapes_9512()
+            return WinningShapesCalculatorV1.Shapes_9512()
         case 9601:
-            return WinningShapesCalculator.Shapes_9601()
+            return WinningShapesCalculatorV1.Shapes_9601()
         case 9602:
-            return WinningShapesCalculator.Shapes_9602()
+            return WinningShapesCalculatorV1.Shapes_9602()
         case 9603:
-            return WinningShapesCalculator.Shapes_9603()
+            return WinningShapesCalculatorV1.Shapes_9603()
         case 9604:
-            return WinningShapesCalculator.Shapes_9604()
+            return WinningShapesCalculatorV1.Shapes_9604()
         case 9605:
-            return WinningShapesCalculator.Shapes_9605()
+            return WinningShapesCalculatorV1.Shapes_9605()
         default:
             return ([],[],0,0)
         }

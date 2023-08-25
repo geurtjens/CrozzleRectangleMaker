@@ -417,24 +417,41 @@ public class ExecuteMergeCalculator {
                 
             if isValidSize {
                 
-                let potentialShape = MergePlacementCalculator.Execute(
+                let potentialPlacements = MergePlacementCalculator.Execute(
                     sourceShapes: sourceShapes,
                     searchShapes: searchShapes,
                     instruction: instruction,
                     words: words)
                 
-                if let potentialShape = potentialShape {
+                
+                
+                
+                if potentialPlacements.count > 0 {
                     
-                    if calcWidth != potentialShape.width || calcHeight != potentialShape.height {
-                        print("potentialShape.width:\(potentialShape.width), potentialShape.height:\(potentialShape.height), calcWidth: \(calcWidth), calcHeight: \(calcHeight)")
-                    }
+                    let potentialWidth = PlacementCalculator.width(fromPlacements: potentialPlacements)
+                    let potentialHeight = PlacementCalculator.height(fromPlacements: potentialPlacements)
+
+//                    if calcWidth != potentialWidth || calcHeight != potentialHeight {
+//                        print("potentialShape.width:\(potentialWidth), potentialShape.height:\(potentialHeight), calcWidth: \(calcWidth), calcHeight: \(calcHeight)")
+//                    }
                     
-                    if (potentialShape.width <= widthMax && potentialShape.height <= heightMax) ||
-                        (potentialShape.width <= heightMax && potentialShape.height <= widthMax) {
+                    if (potentialWidth <= widthMax && potentialHeight <= heightMax) ||
+                        (potentialWidth <= heightMax && potentialHeight <= widthMax) {
                         
-                        let validShape = ShapeToText2Converter.ToValidShape(shape: potentialShape, wordsInt: wordsInt, words: words)
+                        let validShape = ShapeToTextConverterV2.ToValidShape(placements: potentialPlacements, width: Int(potentialWidth), height: Int(potentialHeight), wordsInt: wordsInt, words: words)
                         
                         if let validShape = validShape {
+                            
+                            // I wonder if the shape width and height are the same
+                            if potentialWidth == validShape.width && potentialHeight == validShape.height {
+                                //print("same")
+                            } else if potentialWidth == validShape.height && potentialHeight == validShape.width {
+                                //print("opposite")
+                            } else {
+                                print("different")
+                            }
+                            
+                            
                             // is shape is not nil so it must be a valid shape
                             let wordCount = validShape.placements.count
                             let scoreMin = scoresMin[wordCount]

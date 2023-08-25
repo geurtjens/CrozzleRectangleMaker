@@ -1,8 +1,17 @@
+//
+//  File.swift
+//  
+//
+//  Created by Michael Geurtjens on 25/8/2023.
+//
 
 import Foundation
-public class WinningGameQueueListCalculator {
+
+public class WinningGameQueueListCalculatorV3 {
     public static func Queue_8612(words: [String], queueLength: Int, priorityFunction: PriorityFunction) -> QueueList {
 
+        let wordsInt = WordCalculator.WordsToInt(words: words)
+        let letterIndex = LetterIndexModel(words:words)
         let game = GameList().getGame(gameId: 8612)!
 
         let len = WordCalculator.lengths(words: words)
@@ -24,39 +33,47 @@ public class WinningGameQueueListCalculator {
             heightMax: 8))
         queue.add(shapes: edges)
 
-        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
+        let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV3.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
-            words: words,
+            letterIndex: letterIndex,
+            words: wordsInt,
+            words2: words,
             lengths: len,
             scoreMin: 136,
             widthMax: 10,
             heightMax: 6))
         queue.add(shapes: rectangle3x4)
 
-        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
+        let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV3.Rectangle(
             interlockWidth: 3,
             interlockHeight: 4,
-            words: words,
+            letterIndex: letterIndex,
+            words: wordsInt,
+            words2: words,
             lengths: len,
             scoreMin: 90,
             widthMax: 6,
             heightMax: 7))
         queue.add(shapes: rectangle4x5)
 
-        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.BottomLeftRectangle(
+        let rectangle3x4_BottomLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV3.BottomLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
-            words: words,
+            letterIndex: letterIndex,
+            words: wordsInt,
+            words2: words,
             lengths: len,
             scoreMin: 64,
             widthMax: 10,
             heightMax: 7))
         queue.add(shapes: rectangle3x4_BottomLeft)
 
-        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
+        let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV3.Square(
             interlockWidth: 2,
-            words: words,
+            letterIndex: letterIndex,
+            words: wordsInt,
+            words2: words,
             lengths: len,
             scoreMin: 52,
             widthMax: 11,

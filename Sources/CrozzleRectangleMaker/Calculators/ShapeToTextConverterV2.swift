@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class ShapeToText2Converter {
+class ShapeToTextConverterV2 {
     
     public static func ToString(grid:[Int]) -> String {
         var result = ""
@@ -22,8 +22,8 @@ class ShapeToText2Converter {
     }
     
     /// convert the shape to a valid shape or return null.  We might preprocess a shape but not yet know its valid so we use this to make sure
-    public static func ToValidShape(shape: ShapeModel, wordsInt: [[Int]], words: [String]) -> ShapeModel? {
-        let (score, grid) = getScoreAndText(shape: shape, words: wordsInt)
+    public static func ToValidShape(placements: [PlacementModel], width: Int, height: Int, wordsInt: [[Int]], words: [String]) -> ShapeModel? {
+        let (score, grid) = getScoreAndText(placements: placements, width: width, height: height, words: wordsInt)
         
         if score == 0 {
             return nil
@@ -33,13 +33,13 @@ class ShapeToText2Converter {
 //
 //        if textIsVerified {
             
-            let wordCount = getWordCount(grid:grid, width: Int(shape.width), height: Int(shape.height))
+            let wordCount = getWordCount(grid:grid, width: width, height: height)
             
-            if wordCount != shape.placements.count {
+            if wordCount != placements.count {
                 return nil
             }
             
-            let newShape = ShapeModel(score: score, width: shape.width, height: shape.height, placements: shape.placements)
+        let newShape = ShapeModel(score: score, width: UInt8(width), height: UInt8(height), placements: placements)
             
             // our shapes must have first word as horizontal to help with removing duplicates
             if (newShape.placements[0].z == false) {
@@ -55,7 +55,7 @@ class ShapeToText2Converter {
     
     
     
-    public static func getScoreAndText(shape: ShapeModel, words:[[Int]]) -> (UInt16, [Int]) {
+    public static func getScoreAndText(placements: [PlacementModel], width: Int, height: Int, words:[[Int]]) -> (UInt16, [Int]) {
         
         let SPACE: Int = 32
         let LF: Int = 10
@@ -64,8 +64,8 @@ class ShapeToText2Converter {
         
         var score = 0
         
-        let widthEOL = Int(shape.width) + 1
-        let height = Int(shape.height)
+        let widthEOL = width + 1
+        
         
         let gridSize = widthEOL * height
         
@@ -77,7 +77,7 @@ class ShapeToText2Converter {
             grid[i * widthEOL] = LF // Means end of line
         }
         
-        for placement in shape.placements {
+        for placement in placements {
             
             // the word must include the blocking characters at either end of the shape
             let word = [DOT] + words[Int(placement.w)] + [DOT]
@@ -112,7 +112,7 @@ class ShapeToText2Converter {
         //if result.contains("#") {
         //    score = 0
         //} else {
-            score += shape.placements.count * 10
+            score += placements.count * 10
         //}
         
         grid.remove(at: 0)

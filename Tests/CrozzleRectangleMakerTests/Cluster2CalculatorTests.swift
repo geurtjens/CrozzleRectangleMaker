@@ -1055,7 +1055,7 @@ final class Cluster2CalculatorTests: XCTestCase {
             let wordsInt = WordCalculator.WordsToInt(words: words)
             for _ in 0..<10_000 {
                 /// This method is much slower
-                let newShape = ShapeToText2Converter.ToValidShape(shape: shape, wordsInt: wordsInt, words: words)!
+                let newShape = ShapeToTextConverterV2.ToValidShape(placements: shape.placements, width: Int(shape.width), height: Int(shape.height), wordsInt: wordsInt, words: words)!
                 //getScoreAndText3(shape: shape, words2: wordsInt, grid: &gridText)
                 //let (score2, shapeWithText) = ShapeCalculator.getScoreAndText(shape: shape, words: words)
                 XCTAssertEqual(newShape.score,106)
@@ -1091,11 +1091,11 @@ final class Cluster2CalculatorTests: XCTestCase {
         XCTAssertEqual(12, shape.width)
         XCTAssertEqual(12, shape.height)
         
-        let (score, grid) = ShapeToText2Converter.getScoreAndText(shape: shape, words: wordsInt)
+        let (score, grid) = ShapeToTextConverterV2.getScoreAndText(placements: shape.placements, width: Int(shape.width), height: Int(shape.height), words: wordsInt)
         XCTAssertEqual(DOT, grid[8])
         XCTAssertEqual(71, grid[21])
         
-        let text2 = ShapeToText2Converter.ToString(grid: grid)
+        let text2 = ShapeToTextConverterV2.ToString(grid: grid)
         
         print(text2)
             
@@ -1111,12 +1111,12 @@ final class Cluster2CalculatorTests: XCTestCase {
         var text3 = ""
         let widthEOL = shape.width + 1
         
-        let value = ShapeToText2Converter.V(Int(0), Int(1), grid, Int(widthEOL))
+        let value = ShapeToTextConverterV2.V(Int(0), Int(1), grid, Int(widthEOL))
         
         
         for y in 0..<shape.height {
             for x in 0..<shape.width {
-                let value = ShapeToText2Converter.V(Int(x), Int(y), grid, Int(widthEOL))
+                let value = ShapeToTextConverterV2.V(Int(x), Int(y), grid, Int(widthEOL))
                 
                     let letter = Character(UnicodeScalar(value)!)
                     text3 += String(letter)

@@ -75,7 +75,7 @@ public class StrategyCalculator {
         
         let startNano = DateTimeCalculator.now()
             
-        var queue = WinningGameQueueListCalculator.Queue(gameId: game.gameId, words: words, queueLength: queueLength, priorityFunction: .score_area)!
+        var queue = WinningGameQueueListCalculatorV1.Queue(gameId: game.gameId, words: words, queueLength: queueLength, priorityFunction: .score_area)!
         
         //    for i in 5..<30 {
         //        queue.queues[i].search_TopScorePercent = 2.0
