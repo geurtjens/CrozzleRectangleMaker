@@ -70,9 +70,9 @@ public class MergePlacementCalculator {
             return []
         }
         
-        let combined = sourceFinal + searchNoDuplicates
+        var combined = sourceFinal + searchNoDuplicates
         
-        //combined.sort { $0.w < $1.w }
+        combined.sort { $0.w < $1.w }
         
         /*
          .  .
