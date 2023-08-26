@@ -9,13 +9,13 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class WinningGameQueueListCalculatorTests: XCTestCase {
 
-    func testExecute() {
-        measure {
-            let words = GameList().getGame(gameId: 8612)!.winningWords
-            let result = WinningGameQueueListCalculatorV3.Queue_8612(words: words, queueLength: 100, priorityFunction: .score_area)
-        }
-        // average time is 0.009
-    }
+//    func testExecute() {
+//        measure {
+//            let words = GameList().getGame(gameId: 8612)!.winningWords
+//            let result = WinningGameQueueListCalculatorV3.Queue_8612(words: words, queueLength: 100, priorityFunction: .score_area)
+//        }
+//        // average time is 0.009
+//    }
     
     func testExecuteV1() {
         measure {

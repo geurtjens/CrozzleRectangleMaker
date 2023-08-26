@@ -46,4 +46,10 @@ public struct LetterIndexModel {
         
         return self.index[letterPos]
     }
+    
+    public func findInt(_ letter: Int) -> [LetterIndexItemModel] {
+        let letterPos = Int(letter - 65)
+        
+        return self.index[letterPos]
+    }
 }

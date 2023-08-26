@@ -54,10 +54,21 @@ public class ScoreCalculator {
         let score = score(forLetter:topLeft) + score(forLetter:topRight) + score(forLetter:bottomLeft) + score(forLetter:bottomRight) + 40
         return score
     }
+   
+    public static func rectangleInt(topLeft: Int, topRight: Int, bottomLeft: Int, bottomRight: Int) -> Int {
+        let score = score(forInt:topLeft) + score(forInt:topRight) + score(forInt:bottomLeft) + score(forInt:bottomRight) + 40
+        return score
+    }
+ 
     
     /// convenience method for calculating the score of the `topLeft` rectangle
     public static func topLeft(topRight: Character, bottomLeft: Character, bottomRight: Character ) -> Int {
         let score = score(forLetter:topRight) + score(forLetter:bottomLeft) + score(forLetter:bottomRight) + 40
+        return score
+    }
+    
+    public static func topLeftInt(topRight: Int, bottomLeft: Int, bottomRight: Int ) -> Int {
+        let score = score(forInt:topRight) + score(forInt:bottomLeft) + score(forInt:bottomRight) + 40
         return score
     }
     
@@ -67,9 +78,20 @@ public class ScoreCalculator {
         return score
     }
     
+    public static func topRightInt(topLeft: Int, bottomLeft: Int, bottomRight: Int) -> Int {
+        let score = score(forInt:topLeft) + score(forInt:bottomLeft) + score(forInt:bottomRight) + 40
+        return score
+    }
+    
     /// convenience method for calculating the score of the `bottomRight` rectangle
     public static func bottomRight(topLeft: Character, topRight: Character, bottomLeft: Character) -> Int {
         let score = score(forLetter:topLeft) + score(forLetter:topRight) + score(forLetter:bottomLeft) + 40
+        return score
+    }
+    
+    /// convenience method for calculating the score of the `bottomRight` rectangle
+    public static func bottomRightInt(topLeft: Int, topRight: Int, bottomLeft: Int) -> Int {
+        let score = score(forInt:topLeft) + score(forInt:topRight) + score(forInt:bottomLeft) + 40
         return score
     }
 }
