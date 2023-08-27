@@ -122,19 +122,19 @@ public class MergePlacementCalculator {
         let searchPlacement = searchPlacements[Int(instruction.searchMatchingWordPosition)]
         
         // I think the first word position might be useful
-        let xSource = sourcePlacement.x
-        let ySource = sourcePlacement.y
+        let xSource = Int(sourcePlacement.x)
+        let ySource = Int(sourcePlacement.y)
 
-        let xSearch = searchPlacement.x
-        let ySearch = searchPlacement.y
+        let xSearch = Int(searchPlacement.x)
+        let ySearch = Int(searchPlacement.y)
         
         // By this moment the placements are flipped if they were wrong originally
         let (sourceOffsetX, sourceOffsetY, searchOffsetX, searchOffsetY) = MergeOffsetCalculator.CalculateOffsets(
-            xSource: Int(xSource),
-            ySource: Int(ySource),
-            xSearch: Int(xSearch),
-            ySearch: Int(ySearch),
-            flipped: instruction.flipped)
+            xSource: xSource,
+            ySource: ySource,
+            xSearch: xSearch,
+            ySearch: ySearch,
+            flipped: false) //instruction.flipped)
         
         // Now we can apply the offsets I guess
         let sourceFinal = MergeOffsetCalculator.ApplyOffsets(

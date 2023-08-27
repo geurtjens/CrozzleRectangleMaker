@@ -13,7 +13,7 @@ final class CrozzleRectangleMakerCommandTests: XCTestCase {
 
     func testExample() async throws {
         FeatureFlags.verbose = false
-        FeatureFlags.mergeMethod = 1
+        FeatureFlags.mergeMethod = 2
         let startTime = DateTimeCalculator.now()
         //await StrategyCalculator.gamesThatHaventWonYet()
 
