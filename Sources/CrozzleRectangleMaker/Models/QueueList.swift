@@ -330,9 +330,9 @@ public struct QueueList {
     {
         if FeatureFlags.mergeMethod == 1 {
             
-            return await MergeCalculatorV1.ExecuteDifferentShapesAsync(
-                source: self.queues[mergeIndex].gpuShapes,
-                search: self.queues[mergeIndex2].gpuShapes,
+            return MergeCalculatorV1.ExecuteDifferentShapes(
+                sourceShapes: self.queues[mergeIndex].gpuShapes,
+                searchShapes: self.queues[mergeIndex2].gpuShapes,
                 searchWordIndex: self.queues[mergeIndex2].wordIndex,
                 sourceMax: self.queues[mergeIndex].sourceMax,
                 searchMax: self.queues[mergeIndex2].searchMax,
@@ -343,7 +343,7 @@ public struct QueueList {
                 heightMax: self.game.maxHeight)
         } else {
             
-            return MergeCalculatorV2.ExecuteDifferentShapesSync(
+            return await MergeCalculatorV2.ExecuteDifferentShapesAsync(
                 sourceShapes: self.queues[mergeIndex].shapes,
                 searchShapes: self.queues[mergeIndex2].shapes,
                 searchWordIndex: self.queues[mergeIndex2].wordIndexV2,

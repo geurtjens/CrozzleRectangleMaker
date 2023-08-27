@@ -128,14 +128,14 @@ public class MergeCalculatorV2 {
         return await a0 + a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9
     }
     
-    public static func ExecuteDifferentShapesAsync(source: [ShapeModel], search: [ShapeModel], searchWordIndex: WordIndexModelV2, sourceMax: Int, searchMax: Int, words:[String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) async -> [ShapeModel] {
+    public static func ExecuteDifferentShapesAsync(sourceShapes: [ShapeModel], searchShapes: [ShapeModel], searchWordIndex: WordIndexModelV2, sourceMax: Int, searchMax: Int, words:[String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) async -> [ShapeModel] {
 
         // Rather than having a loop and running one at a time we have these async things that process all going up 10 at a time
         
         async let a0 = ExecuteDifferentShapesAsyncOne(
             zeroToNine: 0,
-            sourceShapes: source,
-            searchShapes: search,
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             wordIndex: searchWordIndex,
             sourceMax: sourceMax,
             searchMax: searchMax,
@@ -147,8 +147,8 @@ public class MergeCalculatorV2 {
         
         async let a1 = ExecuteDifferentShapesAsyncOne(
             zeroToNine: 1,
-            sourceShapes: source,
-            searchShapes: search,
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             wordIndex: searchWordIndex,
             sourceMax: sourceMax,
             searchMax: searchMax,
@@ -160,8 +160,8 @@ public class MergeCalculatorV2 {
         
         async let a2 = ExecuteDifferentShapesAsyncOne(
             zeroToNine: 2,
-            sourceShapes: source,
-            searchShapes: search,
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             wordIndex: searchWordIndex,
             sourceMax: sourceMax,
             searchMax: searchMax,
@@ -173,8 +173,8 @@ public class MergeCalculatorV2 {
         
         async let a3 = ExecuteDifferentShapesAsyncOne(
             zeroToNine: 3,
-            sourceShapes: source,
-            searchShapes: search,
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             wordIndex: searchWordIndex,
             sourceMax: sourceMax,
             searchMax: searchMax,
@@ -186,8 +186,8 @@ public class MergeCalculatorV2 {
         
         async let a4 = ExecuteDifferentShapesAsyncOne(
             zeroToNine: 4,
-            sourceShapes: source,
-            searchShapes: search,
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             wordIndex: searchWordIndex,
             sourceMax: sourceMax,
             searchMax: searchMax,
@@ -199,8 +199,8 @@ public class MergeCalculatorV2 {
         
         async let a5 = ExecuteDifferentShapesAsyncOne(
             zeroToNine: 5,
-            sourceShapes: source,
-            searchShapes: search,
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             wordIndex: searchWordIndex,
             sourceMax: sourceMax,
             searchMax: searchMax,
@@ -212,8 +212,8 @@ public class MergeCalculatorV2 {
         
         async let a6 = ExecuteDifferentShapesAsyncOne(
             zeroToNine: 6,
-            sourceShapes: source,
-            searchShapes: search,
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             wordIndex: searchWordIndex,
             sourceMax: sourceMax,
             searchMax: searchMax,
@@ -225,8 +225,8 @@ public class MergeCalculatorV2 {
         
         async let a7 = ExecuteDifferentShapesAsyncOne(
             zeroToNine: 7,
-            sourceShapes: source,
-            searchShapes: search,
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             wordIndex: searchWordIndex,
             sourceMax: sourceMax,
             searchMax: searchMax,
@@ -238,8 +238,8 @@ public class MergeCalculatorV2 {
         
         async let a8 = ExecuteDifferentShapesAsyncOne(
             zeroToNine: 8,
-            sourceShapes: source,
-            searchShapes: search,
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             wordIndex: searchWordIndex,
             sourceMax: sourceMax,
             searchMax: searchMax,
@@ -251,8 +251,8 @@ public class MergeCalculatorV2 {
         
         async let a9 = ExecuteDifferentShapesAsyncOne(
             zeroToNine: 9,
-            sourceShapes: source,
-            searchShapes: search,
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             wordIndex: searchWordIndex,
             sourceMax: sourceMax,
             searchMax: searchMax,
@@ -398,6 +398,12 @@ public class MergeCalculatorV2 {
 //            searchWordIndex: searchWordIndex,
 //            searchMax: searchMax)
        
+//        print("searchWordIndex.count: \(searchWordIndex.index.count)")
+//        var indexSize = 0
+//        for item in searchWordIndex.index {
+//            indexSize += item.count
+//        }
+//        print("index size \(indexSize)")
         let instructions = searchWordIndex.FindMatches(sourceShapes[sourceShapeId], sourceShapeId,0, searchMax, searchShapes)
         
         
@@ -420,9 +426,14 @@ public class MergeCalculatorV2 {
         
         for instruction in instructions {
             
-            let (isValidSize, calcWidth, calcHeight) = MergeSizeValidation.executeV2(instruction: instruction, sourceShapes: sourceShapes, searchShapes: searchShapes,  widthMax: widthMax, heightMax: heightMax) //== true {
-                
-            if isValidSize {
+            //let (isValidSize, calcWidth, calcHeight) = MergeSizeValidation.executeV2(
+//                instruction: instruction,
+//                sourceShapes: sourceShapes,
+//                searchShapes: searchShapes,
+//                widthMax: widthMax,
+//                heightMax: heightMax)
+//
+//            if isValidSize {
                 
                 let potentialPlacements = MergePlacementCalculator.ExecuteV2(
                     sourceShapes: sourceShapes,
@@ -438,9 +449,9 @@ public class MergeCalculatorV2 {
                     let potentialWidth = PlacementCalculator.width(fromPlacements: potentialPlacements)
                     let potentialHeight = PlacementCalculator.height(fromPlacements: potentialPlacements)
 
-                    if calcWidth != potentialWidth || calcHeight != potentialHeight {
-                        print("potentialShape.width:\(potentialWidth), potentialShape.height:\(potentialHeight), calcWidth: \(calcWidth), calcHeight: \(calcHeight)")
-                    }
+//                    if calcWidth != potentialWidth || calcHeight != potentialHeight {
+//                        print("potentialShape.width:\(potentialWidth), potentialShape.height:\(potentialHeight), calcWidth: \(calcWidth), calcHeight: \(calcHeight)")
+//                    }
                     
                     if (potentialWidth <= widthMax && potentialHeight <= heightMax) ||
                         (potentialWidth <= heightMax && potentialHeight <= widthMax) {
@@ -467,11 +478,11 @@ public class MergeCalculatorV2 {
                             }
                         }
                     } else {
-                        print("We thought it was a valid size but it wasnt")
+                        //print("We thought it was a valid size but it wasnt")
                     }
                 }
             }
-        }
+        //}
         return shapeList
     }
 }

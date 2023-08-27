@@ -306,6 +306,13 @@ public class MergeCalculatorV1 {
     
     public static func ExecuteDifferentShapesOne(sourceShapes: GpuShapeModel, sourceShapeId: Int, searchShapes: GpuShapeModel, searchWordIndex:[[Int]], searchMax: Int, words:[String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         
+//        print("searchWordIndex.count: \(searchWordIndex.count)")
+//        var indexSize = 0
+//        for item in searchWordIndex {
+//            indexSize += item.count
+//        }
+//        print("index size \(indexSize)")
+        
         let instructions = MatchingWordsCalculator.GetMergeInstructions(
             sourceShapes: sourceShapes,
             sourceShapeId: sourceShapeId,
@@ -313,7 +320,6 @@ public class MergeCalculatorV1 {
             searchWordIndex: searchWordIndex,
             searchMax: searchMax)
        
-        
         
         
         let shapeList = GetShapesFromInstructions(

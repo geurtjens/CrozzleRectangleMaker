@@ -160,7 +160,7 @@ public struct WordIndexModelV2 {
     
     
     private func RemoveItemsOutOfScope( _ matches: inout [Int], _ searchMin: Int, _ searchMax: Int) {
-        matches = matches.filter {$0 <= searchMin || $0 >= searchMax}
+        matches = matches.filter {$0 >= searchMin || $0 <= searchMax}
     }
     
     

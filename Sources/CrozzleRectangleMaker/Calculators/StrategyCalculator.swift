@@ -81,7 +81,6 @@ public class StrategyCalculator {
         //        queue.queues[i].search_TopScorePercent = 2.0
         //    }
             
-            
         var maxShape: ShapeModel? = nil
         let highScore = game.winningScore
         var maxScore: UInt16 = 0
