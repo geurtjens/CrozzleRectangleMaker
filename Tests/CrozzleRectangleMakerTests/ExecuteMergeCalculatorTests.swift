@@ -40,7 +40,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         
         let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
         
-        let merged = ExecuteMergeCalculator.ExecuteSameShape(
+        let merged = MergeCalculatorV1.ExecuteSameShape(
             sourceShapes:gpuShapes,
             wordIndex: wordIndex,
             searchMax: gpuShapes.count,
@@ -93,7 +93,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         
         let (gpuShapes, wordIndex) = GpuShapeModelCalculator.Create(shapes: shapes, totalWords: words.count, stride: 2)
         
-        let merged = ExecuteMergeCalculator.ExecuteSameShape(
+        let merged = MergeCalculatorV1.ExecuteSameShape(
             sourceShapes: gpuShapes,
             wordIndex: wordIndex,
             searchMax: gpuShapes.count,
@@ -136,7 +136,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         
         let (gpuShapes, wordIndex) = GpuShapeModelCalculator.Create(shapes:shapes,totalWords: words.count, stride:2)
         
-        let merged = ExecuteMergeCalculator.ExecuteSameShape(
+        let merged = MergeCalculatorV1.ExecuteSameShape(
             sourceShapes:gpuShapes,
             wordIndex: wordIndex,
             searchMax: gpuShapes.count,
@@ -163,7 +163,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
 
         let (gpuShapes, wordIndex) = GpuShapeModelCalculator.Create(shapes:shapes,totalWords: words.count, stride:2)
 
-        let merged = await ExecuteMergeCalculator.ExecuteSameShapeAsync(
+        let merged = await MergeCalculatorV1.ExecuteSameShapeAsync(
             shapes:gpuShapes,
             wordIndex: wordIndex,
             sourceMax: gpuShapes.count,
@@ -198,7 +198,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         
         let (gpuShapes, wordIndex) = GpuShapeModelCalculator.Create(shapes:shapes,totalWords: words.count, stride:2)
         
-        let merged = ExecuteMergeCalculator.ExecuteSameShape(
+        let merged = MergeCalculatorV1.ExecuteSameShape(
             sourceShapes:gpuShapes,
             wordIndex: wordIndex,
             searchMax: gpuShapes.count,
@@ -241,7 +241,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         
         let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
         
-        let merged = ExecuteMergeCalculator.ExecuteSameShape(
+        let merged = MergeCalculatorV1.ExecuteSameShape(
             sourceShapes: gpuShapes,
             wordIndex: wordIndex,
             searchMax: gpuShapes.count,
@@ -310,7 +310,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         let scoresMin = Array(repeating: 104, count: 20)
         
         print("merge starting at \(Date.now)")
-        let shapes = ExecuteMergeCalculator.ExecuteDifferentShapes(
+        let shapes = MergeCalculatorV1.ExecuteDifferentShapes(
             sourceShapes: c2x2Gpu,
             searchShapes:c2x3Gpu,
             searchWordIndex: wordIndex,
@@ -371,7 +371,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
    
         let scoresMin = Array(repeating: 104, count: 20)
         
-        let shapes = await ExecuteMergeCalculator.ExecuteDifferentShapesAsync(
+        let shapes = await MergeCalculatorV1.ExecuteDifferentShapesAsync(
             source: source,
             search:search,
             searchWordIndex: wordIndex,
@@ -438,7 +438,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         
         let scoresMin = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         
-        let shapes = ExecuteMergeCalculator.ExecuteDifferentShapes(
+        let shapes = MergeCalculatorV1.ExecuteDifferentShapes(
             sourceShapes: source,
             searchShapes:search,
             searchWordIndex: wordIndex,
@@ -499,7 +499,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         
         let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
         
-        let shapes2 = ExecuteMergeCalculator.ExecuteSameShape(
+        let shapes2 = MergeCalculatorV1.ExecuteSameShape(
             sourceShapes:gpuShapes,
             wordIndex: wordIndex,
             searchMax: gpuShapes.count,
@@ -542,7 +542,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         
         let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
         
-        let result = ExecuteMergeCalculator.ExecuteSameShape(
+        let result = MergeCalculatorV1.ExecuteSameShape(
             sourceShapes:gpuShapes,
             wordIndex: wordIndex,
             searchMax: gpuShapes.count,
@@ -569,7 +569,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         
         let scoresMin:[Int] = Array(repeating: 104, count: 20)  //[0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
         
-        let merged = await ExecuteMergeCalculator.ExecuteSameShapeAsync(
+        let merged = await MergeCalculatorV1.ExecuteSameShapeAsync(
             shapes:gpuShapes,
             wordIndex: wordIndex,
             sourceMax: gpuShapes.count,
@@ -602,7 +602,7 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         print("gpuShapes finished at \(Date.now)")
         let scoresMin:[Int] = Array(repeating: 0, count: 20)
         let wordsInt = WordCalculator.WordsToInt(words: words)
-        let mergedShapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(
+        let mergedShapes = await MergeCalculatorV1.ExecuteSameShapeAsync(
             shapes:gpuShapes,
             wordIndex: wordIndex,
             sourceMax: gpuShapes.count,

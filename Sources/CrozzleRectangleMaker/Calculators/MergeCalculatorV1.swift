@@ -8,122 +8,42 @@
 import Foundation
 
 /// a collection of functions that can merge a list of shapes to another list of shapes
-public class ExecuteMergeCalculator {
+public class MergeCalculatorV1 {
     
     // Execute same shape requires that we avoid repeats and so we go through each one
     public static func ExecuteSameShapeAsync(shapes: GpuShapeModel, wordIndex: [[Int]], sourceMax: Int, searchMax: Int, words:[String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) async -> [ShapeModel] {
         
         // Rather than having a loop and running one at a time we have these async things that process all going up 10 at a time
         
-        async let a0 = ExecuteSameShapeOneAsync(
-            zeroToNine:0,
-            sourceShapes: shapes,
-            wordIndex: wordIndex,
-            sourceMax: sourceMax,
-            searchMax: searchMax,
-            words: words,
-            wordsInt: wordsInt,
-            scoresMin:scoresMin,
-            widthMax: widthMax, heightMax: heightMax)
+        async let a0 = ExecuteSameShapeOneAsync(zeroToNine:0,
+            sourceShapes: shapes, wordIndex: wordIndex, sourceMax: sourceMax, searchMax: searchMax, words: words, wordsInt: wordsInt, scoresMin:scoresMin, widthMax: widthMax, heightMax: heightMax)
         
-        async let a1 = ExecuteSameShapeOneAsync(
-            zeroToNine: 1,
-            sourceShapes: shapes,
-            wordIndex: wordIndex,
-            sourceMax: sourceMax,
-            searchMax: searchMax,
-            words: words,
-            wordsInt: wordsInt,
-            scoresMin:scoresMin,
-            widthMax: widthMax, heightMax: heightMax)
+        async let a1 = ExecuteSameShapeOneAsync(zeroToNine: 1,
+            sourceShapes: shapes, wordIndex: wordIndex, sourceMax: sourceMax, searchMax: searchMax, words: words, wordsInt: wordsInt, scoresMin:scoresMin, widthMax: widthMax, heightMax: heightMax)
         
-        async let a2 = ExecuteSameShapeOneAsync(
-            zeroToNine: 2,
-            sourceShapes: shapes,
-            wordIndex: wordIndex,
-            sourceMax: sourceMax,
-            searchMax: searchMax,
-            words: words,
-            wordsInt: wordsInt,
-            scoresMin:scoresMin,
-            widthMax: widthMax, heightMax: heightMax)
+        async let a2 = ExecuteSameShapeOneAsync(zeroToNine: 2,
+            sourceShapes: shapes, wordIndex: wordIndex, sourceMax: sourceMax, searchMax: searchMax, words: words, wordsInt: wordsInt, scoresMin:scoresMin, widthMax: widthMax, heightMax: heightMax)
         
-        async let a3 = ExecuteSameShapeOneAsync(
-            zeroToNine: 3,
-            sourceShapes: shapes,
-            wordIndex: wordIndex,
-            sourceMax: sourceMax,
-            searchMax: searchMax,
-            words: words,
-            wordsInt: wordsInt,
-            scoresMin:scoresMin,
-            widthMax: widthMax, heightMax: heightMax)
+        async let a3 = ExecuteSameShapeOneAsync(zeroToNine: 3,
+            sourceShapes: shapes, wordIndex: wordIndex, sourceMax: sourceMax, searchMax: searchMax, words: words, wordsInt: wordsInt, scoresMin:scoresMin, widthMax: widthMax, heightMax: heightMax)
         
-        async let a4 = ExecuteSameShapeOneAsync(
-            zeroToNine: 4,
-            sourceShapes: shapes,
-            wordIndex: wordIndex,
-            sourceMax: sourceMax,
-            searchMax: searchMax,
-            words: words,
-            wordsInt: wordsInt,
-            scoresMin:scoresMin,
-            widthMax: widthMax, heightMax: heightMax)
+        async let a4 = ExecuteSameShapeOneAsync(zeroToNine: 4,
+            sourceShapes: shapes, wordIndex: wordIndex, sourceMax: sourceMax, searchMax: searchMax, words: words, wordsInt: wordsInt, scoresMin:scoresMin, widthMax: widthMax, heightMax: heightMax)
         
-        async let a5 = ExecuteSameShapeOneAsync(
-            zeroToNine: 5,
-            sourceShapes: shapes,
-            wordIndex: wordIndex,
-            sourceMax: sourceMax,
-            searchMax: searchMax,
-            words: words,
-            wordsInt: wordsInt,
-            scoresMin:scoresMin,
-            widthMax: widthMax, heightMax: heightMax)
+        async let a5 = ExecuteSameShapeOneAsync(zeroToNine: 5,
+            sourceShapes: shapes, wordIndex: wordIndex, sourceMax: sourceMax, searchMax: searchMax, words: words, wordsInt: wordsInt, scoresMin:scoresMin, widthMax: widthMax, heightMax: heightMax)
         
-        async let a6 = ExecuteSameShapeOneAsync(
-            zeroToNine: 6,
-            sourceShapes: shapes,
-            wordIndex: wordIndex,
-            sourceMax: sourceMax,
-            searchMax: searchMax,
-            words: words,
-            wordsInt: wordsInt,
-            scoresMin:scoresMin,
-            widthMax: widthMax, heightMax: heightMax)
+        async let a6 = ExecuteSameShapeOneAsync(zeroToNine: 6,
+            sourceShapes: shapes, wordIndex: wordIndex, sourceMax: sourceMax, searchMax: searchMax, words: words, wordsInt: wordsInt, scoresMin:scoresMin, widthMax: widthMax, heightMax: heightMax)
         
-        async let a7 = ExecuteSameShapeOneAsync(
-            zeroToNine: 7,
-            sourceShapes: shapes,
-            wordIndex: wordIndex,
-            sourceMax: sourceMax,
-            searchMax: searchMax,
-            words: words,
-            wordsInt: wordsInt,
-            scoresMin:scoresMin,
-            widthMax: widthMax, heightMax: heightMax)
+        async let a7 = ExecuteSameShapeOneAsync(zeroToNine: 7,
+            sourceShapes: shapes, wordIndex: wordIndex, sourceMax: sourceMax, searchMax: searchMax, words: words, wordsInt: wordsInt, scoresMin:scoresMin, widthMax: widthMax, heightMax: heightMax)
         
-        async let a8 = ExecuteSameShapeOneAsync(
-            zeroToNine: 8,
-            sourceShapes: shapes,
-            wordIndex: wordIndex,
-            sourceMax: sourceMax,
-            searchMax: searchMax,
-            words: words,
-            wordsInt: wordsInt,
-            scoresMin:scoresMin,
-            widthMax: widthMax, heightMax: heightMax)
+        async let a8 = ExecuteSameShapeOneAsync(zeroToNine: 8,
+            sourceShapes: shapes, wordIndex: wordIndex, sourceMax: sourceMax, searchMax: searchMax, words: words, wordsInt: wordsInt, scoresMin:scoresMin, widthMax: widthMax, heightMax: heightMax)
         
-        async let a9 = ExecuteSameShapeOneAsync(
-            zeroToNine: 9,
-            sourceShapes: shapes,
-            wordIndex: wordIndex,
-            sourceMax: sourceMax,
-            searchMax: searchMax,
-            words: words,
-            wordsInt: wordsInt,
-            scoresMin:scoresMin,
-            widthMax: widthMax, heightMax: heightMax)
+        async let a9 = ExecuteSameShapeOneAsync(zeroToNine: 9,
+            sourceShapes: shapes, wordIndex: wordIndex, sourceMax: sourceMax, searchMax: searchMax, words: words, wordsInt: wordsInt, scoresMin:scoresMin, widthMax: widthMax, heightMax: heightMax)
         
    
         return await a0 + a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9
@@ -394,6 +314,8 @@ public class ExecuteMergeCalculator {
             searchMax: searchMax)
        
         
+        
+        
         let shapeList = GetShapesFromInstructions(
             instructions: instructions,
             sourceShapes: sourceShapes,
@@ -431,9 +353,9 @@ public class ExecuteMergeCalculator {
                     let potentialWidth = PlacementCalculator.width(fromPlacements: potentialPlacements)
                     let potentialHeight = PlacementCalculator.height(fromPlacements: potentialPlacements)
 
-//                    if calcWidth != potentialWidth || calcHeight != potentialHeight {
-//                        print("potentialShape.width:\(potentialWidth), potentialShape.height:\(potentialHeight), calcWidth: \(calcWidth), calcHeight: \(calcHeight)")
-//                    }
+                    if calcWidth != potentialWidth || calcHeight != potentialHeight {
+                        print("potentialShape.width:\(potentialWidth), potentialShape.height:\(potentialHeight), calcWidth: \(calcWidth), calcHeight: \(calcHeight)")
+                    }
                     
                     if (potentialWidth <= widthMax && potentialHeight <= heightMax) ||
                         (potentialWidth <= heightMax && potentialHeight <= widthMax) {

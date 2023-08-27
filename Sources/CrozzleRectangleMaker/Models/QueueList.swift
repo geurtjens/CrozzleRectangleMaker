@@ -93,7 +93,7 @@ public struct QueueList {
     
     public func mergeWithItselfAsync(index wordCount: Int) async -> [ShapeModel] {
         if FeatureFlags.mergeMethod == 1 {
-            return await ExecuteMergeCalculator.ExecuteSameShapeAsync(
+            return await MergeCalculatorV1.ExecuteSameShapeAsync(
                 shapes: self.queues[wordCount].gpuShapes,
                 wordIndex: self.queues[wordCount].wordIndex,
                 sourceMax: self.queues[wordCount].sourceMax,
@@ -104,11 +104,14 @@ public struct QueueList {
                 widthMax: self.game.maxWidth,
                 heightMax: self.game.maxHeight)
         } else {
-            return ExecuteMergeCalculator2.ExecuteSameShapeSync(
-                sourceShapes: self.queues[wordCount].shapes,
-                searchIndex: self.queues[wordCount].wordIndex2,
+            // ExecuteMergeCalculator2 was the old one
+            return await MergeCalculatorV2.ExecuteSameShapeAsync(
+                shapes: self.queues[wordCount].shapes,
+                wordIndex: self.queues[wordCount].wordIndexV2,
+                sourceMax: self.queues[wordCount].sourceMax,
                 searchMax: self.queues[wordCount].searchMax,
                 words: self.constraints.words,
+                wordsInt: self.wordsInt,
                 scoresMin: self.constraints.scoresMin,
                 widthMax: self.game.maxWidth,
                 heightMax: self.game.maxHeight)
@@ -261,7 +264,7 @@ public struct QueueList {
     
     public func mergeWithItselfAsync(index wordCount: Int, notTheseWordCounts:[Int]) async -> [ShapeModel] {
             
-        let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(
+        let shapes = await MergeCalculatorV1.ExecuteSameShapeAsync(
                 shapes: self.queues[wordCount].gpuShapes,
                 wordIndex: self.queues[wordCount].wordIndex,
                 sourceMax: self.queues[wordCount].sourceMax,
@@ -296,7 +299,7 @@ public struct QueueList {
         heightMax: Int,
         notTheseWordCounts:[Int]) async {
             
-        let shapes = await ExecuteMergeCalculator.ExecuteSameShapeAsync(
+        let shapes = await MergeCalculatorV1.ExecuteSameShapeAsync(
             shapes: self.queues[wordCount].gpuShapes,
             wordIndex: self.queues[wordCount].wordIndex,
             sourceMax: self.queues[wordCount].sourceMax,
@@ -327,7 +330,7 @@ public struct QueueList {
     {
         if FeatureFlags.mergeMethod == 1 {
             
-            return await ExecuteMergeCalculator.ExecuteDifferentShapesAsync(
+            return await MergeCalculatorV1.ExecuteDifferentShapesAsync(
                 source: self.queues[mergeIndex].gpuShapes,
                 search: self.queues[mergeIndex2].gpuShapes,
                 searchWordIndex: self.queues[mergeIndex2].wordIndex,
@@ -340,14 +343,14 @@ public struct QueueList {
                 heightMax: self.game.maxHeight)
         } else {
             
-            return ExecuteMergeCalculator2.ExecuteDifferentShapesSync(
+            return MergeCalculatorV2.ExecuteDifferentShapesSync(
                 sourceShapes: self.queues[mergeIndex].shapes,
                 searchShapes: self.queues[mergeIndex2].shapes,
-                searchIndex: self.queues[mergeIndex2].wordIndex2,
+                searchWordIndex: self.queues[mergeIndex2].wordIndexV2,
                 sourceMax: self.queues[mergeIndex].sourceMax,
-                searchMin: 0,
                 searchMax: self.queues[mergeIndex2].searchMax,
                 words: self.constraints.words,
+                wordsInt: self.wordsInt,
                 scoresMin: self.constraints.scoresMin,
                 widthMax: self.game.maxWidth,
                 heightMax: self.game.maxHeight)
@@ -363,7 +366,7 @@ public struct QueueList {
         widthMax: Int,
         heightMax: Int,
         notTheseWordCounts:[Int]) async {
-        let shapes = await ExecuteMergeCalculator.ExecuteDifferentShapesAsync(
+        let shapes = await MergeCalculatorV1.ExecuteDifferentShapesAsync(
             source: self.queues[mergeIndex].gpuShapes,
             search:self.queues[mergeIndex2].gpuShapes,
             searchWordIndex: self.queues[mergeIndex2].wordIndex,

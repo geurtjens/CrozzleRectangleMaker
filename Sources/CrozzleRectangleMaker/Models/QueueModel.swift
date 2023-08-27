@@ -39,7 +39,9 @@ public struct QueueModel {
     public var wordIndex: [[Int]] = []
     
     
-    public var wordIndex2: [[WordIndexModel]] = []
+    //public var wordIndex2: [[WordIndexModel]] = []
+    
+    public var wordIndexV2: WordIndexModelV2
     
     /// Top percent of scores will merge from
     public var source_TopScorePercent: Float = 100.0
@@ -75,7 +77,7 @@ public struct QueueModel {
                 words: self.gpuShapes.wordId)
             
         } else {
-            self.wordIndex2 = WordIndex2Calculator.createWordIndex(shapes: self.shapes, totalWords: self.totalWords, stride: self.stride)
+            self.wordIndexV2 = WordIndexModelV2(self.shapes, self.stride, self.totalWords)
         }
         let wordIndexDone = DateTimeCalculator.now()
         /// Calculating where the last position to merge should be for this queue
@@ -126,6 +128,7 @@ public struct QueueModel {
         self.stride = stride
         self.scoreMin = scoreMin
         self.shapes = shapes
+        self.wordIndexV2 = WordIndexModelV2(shapes, stride, totalWords)
         if FeatureFlags.mergeMethod == 1 {
         // The gpu shapes and statistics are derived from shapes
             let gpuShapes = GpuShapeModel(shapes: shapes, totalWords: totalWords, stride: stride)
@@ -139,10 +142,8 @@ public struct QueueModel {
                 shapeCount: shapes.count,
                 words: gpuShapes.wordId)
         } else  {
-            self.wordIndex2 = WordIndex2Calculator.createWordIndex(
-                shapes: shapes,
-                totalWords: totalWords,
-                stride: stride)
+            
+               
             self.gpuShapes = GpuShapeModel()
         }
     }

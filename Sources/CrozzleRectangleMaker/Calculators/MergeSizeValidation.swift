@@ -66,6 +66,44 @@ public class MergeSizeValidation {
         }
     }
     
+    public static func executeV2(instruction: MergeInstructionModel, sourceShapes: [ShapeModel], searchShapes: [ShapeModel], widthMax: Int, heightMax: Int) -> (Bool, Int, Int) {
+        
+        //return true
+        
+        let sourceShape = sourceShapes[instruction.sourceShapeId]
+        let sourcePlacement = sourceShape.placements[Int(instruction.sourceMatchingWordPosition)]
+        
+        let sourceWidth = sourceShape.width
+        let sourceHeight = sourceShape.height
+        
+//        let sourceWordPosition = instruction.sourceShapeId * sourceShapes.stride + Int(instruction.sourceMatchingWordPosition)
+//
+        let sourceX = sourcePlacement.x
+        let sourceY = sourcePlacement.y
+        
+        let searchShape = searchShapes[instruction.searchShapeId]
+        
+        let searchWidth = searchShape.width
+        let searchHeight = searchShape.height
+        let searchPlacement = searchShape.placements[Int(instruction.searchMatchingWordPosition)]
+        
+        
+        
+//        let searchWordPosition = instruction.searchShapeId * searchShapes.stride + Int(instruction.searchMatchingWordPosition)
+//        
+        let searchX = searchPlacement.x
+        let searchY = searchPlacement.y
+        
+        let (isValid, width, height) = verifyWidthHeight(width1: Int(sourceWidth), height1: Int(sourceHeight), x1: Int(sourceX), y1: Int(sourceY), width2: Int(searchWidth), height2: Int(searchHeight), x2: Int(searchX), y2: Int(searchY), flipped: instruction.flipped, widthMax: widthMax, heightMax: heightMax)
+        
+        if isValid {
+            return (true, width, height)
+        } else {
+            return (false, width, height)
+        }
+    }
+    
+    
     public static func execute(instruction: MergeInstructionModel, sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, widthMax: Int, heightMax: Int) -> (Bool, Int, Int) {
         
         //return true

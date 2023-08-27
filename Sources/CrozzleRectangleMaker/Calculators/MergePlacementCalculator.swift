@@ -96,7 +96,95 @@ public class MergePlacementCalculator {
     }
     
     
-    
+    // Create a shape from two `GpuShapeModel` based on the instructions provided
+    public static func ExecuteV2(sourceShapes: [ShapeModel], searchShapes: [ShapeModel], instruction: MergeInstructionModel, words:[String]) -> [PlacementModel] {
+        
+        // This will flip the placements if they are opposite direction
+        let (sourcePlacements, searchPlacements) = GetPlacementsForBothShapesV2(
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
+            instruction: instruction)
+        
+        let commonPlacements = PlacementCalculator.findCommonPlacement(
+            sourcePlacements: sourcePlacements,
+            searchPlacements: searchPlacements)
+        
+        if commonPlacements.count == 0 {
+            print("Your offset calculator did not work")
+        }
+        
+//        let sourcePos = instruction.sourceShapeId * sourceShapes.stride + Int(instruction.sourceMatchingWordPosition)
+//
+//        let searchPos = instruction.searchShapeId * searchShapes.stride + Int(instruction.searchMatchingWordPosition)
+//
+        
+        let sourcePlacement = sourcePlacements[Int(instruction.sourceMatchingWordPosition)]
+        let searchPlacement = searchPlacements[Int(instruction.searchMatchingWordPosition)]
+        
+        // I think the first word position might be useful
+        let xSource = sourcePlacement.x
+        let ySource = sourcePlacement.y
+
+        let xSearch = searchPlacement.x
+        let ySearch = searchPlacement.y
+        
+        // By this moment the placements are flipped if they were wrong originally
+        let (sourceOffsetX, sourceOffsetY, searchOffsetX, searchOffsetY) = MergeOffsetCalculator.CalculateOffsets(
+            xSource: Int(xSource),
+            ySource: Int(ySource),
+            xSearch: Int(xSearch),
+            ySearch: Int(ySearch),
+            flipped: instruction.flipped)
+        
+        // Now we can apply the offsets I guess
+        let sourceFinal = MergeOffsetCalculator.ApplyOffsets(
+            placements: sourcePlacements,
+            xOffset: sourceOffsetX,
+            yOffset: sourceOffsetY)
+        
+        let searchFinal = MergeOffsetCalculator.ApplyOffsets(
+            placements: searchPlacements,
+            xOffset: searchOffsetX,
+            yOffset: searchOffsetY)
+        
+        
+        // We need to remove the common words from searchFinal
+        var searchNoDuplicates: [PlacementModel] = []
+        for item in searchFinal {
+            if commonPlacements.contains(Int(item.w)) == false {
+                searchNoDuplicates.append(item)
+            }
+        }
+        
+        let isOverlapping = OverlappingPlacementsCalculator.isOverlapping(sourcePlacements: sourceFinal, searchPlacements: searchNoDuplicates)
+        if isOverlapping {
+            return []
+        }
+        
+        var combined = sourceFinal + searchNoDuplicates
+        
+        combined.sort { $0.w < $1.w }
+        
+        /*
+         .  .
+         S .G
+         T.BUOY.
+        .AHOY.
+        .YAW.
+         .W.
+          S
+          E
+          R
+          .
+         */
+        
+        
+        // We do not know the score just yet
+        //let shape = ShapeModel(score:10, width: UInt8(width), height: UInt8(height), placements: combined)
+
+        
+        return combined
+    }
     
     
     
@@ -161,6 +249,21 @@ public class MergePlacementCalculator {
             //}
         }
         return (placements, otherPlacements)
+        
+    }
+    
+    public static func GetPlacementsForBothShapesV2(sourceShapes: [ShapeModel], searchShapes: [ShapeModel], instruction: MergeInstructionModel) -> ([PlacementModel], [PlacementModel]) {
+        
+        
+        let placements = sourceShapes[instruction.sourceShapeId].placements
+        
+        var searchShape = searchShapes[instruction.searchShapeId]
+        
+        if instruction.flipped == true {
+            searchShape = searchShape.Flip()
+        }
+        
+        return (placements, searchShape.placements)
         
     }
     
