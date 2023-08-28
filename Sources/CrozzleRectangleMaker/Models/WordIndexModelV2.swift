@@ -116,11 +116,6 @@ public struct WordIndexModelV2 {
             if (searchPos != -1) {
                 let flipped = sourceShape.placements[sourcePos].z != searchShape.placements[searchPos].z;
                 
-                
-                if sourceShapeId == 12 && searchShapeId == 51 && sourcePos == 0 && searchPos == 0 && flipped == false {
-                    print("stopHere")
-                }
-                
                 return MergeInstructionModel(sourceShapeId: sourceShapeId,
                                              searchShapeId: searchShapeId,
                                              matchingWordCount: 1,
