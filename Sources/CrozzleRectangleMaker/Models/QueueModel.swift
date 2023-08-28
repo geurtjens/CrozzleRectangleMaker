@@ -63,43 +63,41 @@ public struct QueueModel {
         self.shapes = ShapeCalculator.addShapes(oldShapes: self.shapes, newShapes: newShapes, scoreMin: self.scoreMin, constraints: constraints)
         let shapesDone = DateTimeCalculator.now()
         
-        if FeatureFlags.mergeMethod == 1 {
-            self.gpuShapes = GpuShapeModel(shapes: self.shapes, totalWords: self.totalWords, stride: self.stride)
-        }
         let gpuShapesDone = DateTimeCalculator.now()
-        
-        if FeatureFlags.mergeMethod == 1 {
-            
+        if FeatureFlags.mergeMethod == .async_objectOfArrays || FeatureFlags.mergeMethod == .sync_objectOfArrays {
+            self.gpuShapes = GpuShapeModel(shapes: self.shapes, totalWords: self.totalWords, stride: self.stride)
             self.wordIndex = WordIndexCalculator.createWordIndex(
                 totalWords: self.totalWords,
                 stride: self.stride,
                 shapeCount: self.gpuShapes.count,
                 words: self.gpuShapes.wordId)
-            
         } else {
             self.wordIndexV2 = WordIndexModelV2(shapes: self.shapes,
                                                 wordsPerShape: self.stride,
                                                 wordCount: self.totalWords)
         }
+        
+        
+        
         let wordIndexDone = DateTimeCalculator.now()
         /// Calculating where the last position to merge should be for this queue
-        if self.source_TopScorePercent < 100.0 || self.search_TopScorePercent < 100.0 {
-            self.statistics = StatisticsCalculator.Execute(scores: self.gpuShapes.scores)
-            if self.source_TopScorePercent < 100 {
-                self.sourceMax = StatisticsCalculator.findLastSearchPosition(percentage: self.source_TopScorePercent, statistics: self.statistics)
-            } else {
-                self.sourceMax = self.gpuShapes.count
-            }
-            if self.search_TopScorePercent < 100 {
-                self.searchMax = StatisticsCalculator.findLastSearchPosition(percentage: self.search_TopScorePercent, statistics: self.statistics)
-            } else {
-                self.searchMax = self.gpuShapes.count
-            }
-            
-        } else {
+//        if self.source_TopScorePercent < 100.0 || self.search_TopScorePercent < 100.0 {
+//            self.statistics = StatisticsCalculator.Execute(scores: self.gpuShapes.scores)
+//            if self.source_TopScorePercent < 100 {
+//                self.sourceMax = StatisticsCalculator.findLastSearchPosition(percentage: self.source_TopScorePercent, statistics: self.statistics)
+//            } else {
+//                self.sourceMax = self.gpuShapes.count
+//            }
+//            if self.search_TopScorePercent < 100 {
+//                self.searchMax = StatisticsCalculator.findLastSearchPosition(percentage: self.search_TopScorePercent, statistics: self.statistics)
+//            } else {
+//                self.searchMax = self.gpuShapes.count
+//            }
+//
+//        } else {
             self.sourceMax = self.shapes.count
             self.searchMax = self.shapes.count
-        }
+//        }
         
         let totalSeconds = DateTimeCalculator.seconds(start: startTime, finish: wordIndexDone)
         
@@ -120,6 +118,7 @@ public struct QueueModel {
             self.shapes = self.shapes.filter { $0.score >= scoreMin }
             self.gpuShapes = GpuShapeModel(shapes: self.shapes, totalWords: self.totalWords, stride: self.stride)
             self.statistics = StatisticsCalculator.Execute(scores: self.gpuShapes.scores)
+            self.wordIndexV2 = WordIndexModelV2(shapes: shapes, wordsPerShape: self.stride, wordCount: self.totalWords)
         }
         self.scoreMin = scoreMin
     }
@@ -135,7 +134,7 @@ public struct QueueModel {
                                             wordsPerShape: stride,
                                             wordCount: totalWords)
         
-        if FeatureFlags.mergeMethod == 1 {
+        if FeatureFlags.mergeMethod == .async_objectOfArrays || FeatureFlags.mergeMethod == .sync_objectOfArrays {
         // The gpu shapes and statistics are derived from shapes
             let gpuShapes = GpuShapeModel(shapes: shapes, totalWords: totalWords, stride: stride)
             self.gpuShapes = gpuShapes
@@ -149,7 +148,7 @@ public struct QueueModel {
                 words: gpuShapes.wordId)
         } else  {
             
-               
+            self.wordIndexV2 = WordIndexModelV2(shapes: self.shapes, wordsPerShape: stride, wordCount: totalWords)
             self.gpuShapes = GpuShapeModel()
         }
     }

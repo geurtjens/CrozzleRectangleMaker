@@ -49,14 +49,14 @@ public class MergeCalculatorV1 {
         return await a0 + a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9
     }
     
-    public static func ExecuteDifferentShapesAsync(source: GpuShapeModel, search: GpuShapeModel, searchWordIndex: [[Int]], sourceMax: Int, searchMax: Int, words:[String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) async -> [ShapeModel] {
+    public static func ExecuteDifferentShapesAsync(sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, searchWordIndex: [[Int]], sourceMax: Int, searchMax: Int, words:[String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) async -> [ShapeModel] {
 
         // Rather than having a loop and running one at a time we have these async things that process all going up 10 at a time
         
         async let a0 = ExecuteDifferentShapesAsyncOne(
             zeroToNine: 0,
-            sourceShapes: source,
-            searchShapes: search,
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             wordIndex: searchWordIndex,
             sourceMax: sourceMax,
             searchMax: searchMax,
@@ -68,8 +68,8 @@ public class MergeCalculatorV1 {
         
         async let a1 = ExecuteDifferentShapesAsyncOne(
             zeroToNine: 1,
-            sourceShapes: source,
-            searchShapes: search,
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             wordIndex: searchWordIndex,
             sourceMax: sourceMax,
             searchMax: searchMax,
@@ -81,8 +81,8 @@ public class MergeCalculatorV1 {
         
         async let a2 = ExecuteDifferentShapesAsyncOne(
             zeroToNine: 2,
-            sourceShapes: source,
-            searchShapes: search,
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             wordIndex: searchWordIndex,
             sourceMax: sourceMax,
             searchMax: searchMax,
@@ -94,8 +94,8 @@ public class MergeCalculatorV1 {
         
         async let a3 = ExecuteDifferentShapesAsyncOne(
             zeroToNine: 3,
-            sourceShapes: source,
-            searchShapes: search,
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             wordIndex: searchWordIndex,
             sourceMax: sourceMax,
             searchMax: searchMax,
@@ -107,8 +107,8 @@ public class MergeCalculatorV1 {
         
         async let a4 = ExecuteDifferentShapesAsyncOne(
             zeroToNine: 4,
-            sourceShapes: source,
-            searchShapes: search,
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             wordIndex: searchWordIndex,
             sourceMax: sourceMax,
             searchMax: searchMax,
@@ -120,8 +120,8 @@ public class MergeCalculatorV1 {
         
         async let a5 = ExecuteDifferentShapesAsyncOne(
             zeroToNine: 5,
-            sourceShapes: source,
-            searchShapes: search,
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             wordIndex: searchWordIndex,
             sourceMax: sourceMax,
             searchMax: searchMax,
@@ -133,8 +133,8 @@ public class MergeCalculatorV1 {
         
         async let a6 = ExecuteDifferentShapesAsyncOne(
             zeroToNine: 6,
-            sourceShapes: source,
-            searchShapes: search,
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             wordIndex: searchWordIndex,
             sourceMax: sourceMax,
             searchMax: searchMax,
@@ -146,8 +146,8 @@ public class MergeCalculatorV1 {
         
         async let a7 = ExecuteDifferentShapesAsyncOne(
             zeroToNine: 7,
-            sourceShapes: source,
-            searchShapes: search,
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             wordIndex: searchWordIndex,
             sourceMax: sourceMax,
             searchMax: searchMax,
@@ -159,8 +159,8 @@ public class MergeCalculatorV1 {
         
         async let a8 = ExecuteDifferentShapesAsyncOne(
             zeroToNine: 8,
-            sourceShapes: source,
-            searchShapes: search,
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             wordIndex: searchWordIndex,
             sourceMax: sourceMax,
             searchMax: searchMax,
@@ -172,8 +172,8 @@ public class MergeCalculatorV1 {
         
         async let a9 = ExecuteDifferentShapesAsyncOne(
             zeroToNine: 9,
-            sourceShapes: source,
-            searchShapes: search,
+            sourceShapes: sourceShapes,
+            searchShapes: searchShapes,
             wordIndex: searchWordIndex,
             sourceMax: sourceMax,
             searchMax: searchMax,

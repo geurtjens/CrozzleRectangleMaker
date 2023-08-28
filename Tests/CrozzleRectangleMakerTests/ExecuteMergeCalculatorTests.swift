@@ -372,8 +372,8 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         let scoresMin = Array(repeating: 104, count: 20)
         
         let shapes = await MergeCalculatorV1.ExecuteDifferentShapesAsync(
-            source: source,
-            search:search,
+            sourceShapes: source,
+            searchShapes:search,
             searchWordIndex: wordIndex,
             sourceMax: source.count,
             searchMax: search.count,

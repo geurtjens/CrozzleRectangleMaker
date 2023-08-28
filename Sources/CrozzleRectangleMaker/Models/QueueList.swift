@@ -92,7 +92,8 @@ public struct QueueList {
 //    }
     
     public func mergeWithItselfAsync(index wordCount: Int) async -> [ShapeModel] {
-        if FeatureFlags.mergeMethod == 1 {
+        switch (FeatureFlags.mergeMethod) {
+        case .async_arrayOfObjects:
             return await MergeCalculatorV1.ExecuteSameShapeAsync(
                 shapes: self.queues[wordCount].gpuShapes,
                 wordIndex: self.queues[wordCount].wordIndex,
@@ -103,12 +104,34 @@ public struct QueueList {
                 scoresMin: self.constraints.scoresMin,
                 widthMax: self.game.maxWidth,
                 heightMax: self.game.maxHeight)
-        } else {
-            // ExecuteMergeCalculator2 was the old one
+       
+        case .async_objectOfArrays:
             return await MergeCalculatorV2.ExecuteSameShapeAsync(
                 shapes: self.queues[wordCount].shapes,
                 wordIndex: self.queues[wordCount].wordIndexV2,
                 sourceMax: self.queues[wordCount].sourceMax,
+                searchMax: self.queues[wordCount].searchMax,
+                words: self.constraints.words,
+                wordsInt: self.wordsInt,
+                scoresMin: self.constraints.scoresMin,
+                widthMax: self.game.maxWidth,
+                heightMax: self.game.maxHeight)
+        case .sync_arrayOfObjects:
+            return MergeCalculatorV1.ExecuteSameShape(
+                sourceShapes: self.queues[wordCount].gpuShapes,
+                wordIndex: self.queues[wordCount].wordIndex,
+                //sourceMax: self.queues[wordCount].sourceMax,
+                searchMax: self.queues[wordCount].searchMax,
+                words: self.constraints.words,
+                wordsInt: self.wordsInt,
+                scoresMin: self.constraints.scoresMin,
+                widthMax: self.game.maxWidth,
+                heightMax: self.game.maxHeight)
+        case .sync_objectOfArrays:
+            return MergeCalculatorV2.ExecuteSameShapeSync(
+                sourceShapes: self.queues[wordCount].shapes,
+                wordIndex: self.queues[wordCount].wordIndexV2,
+                //sourceMax: self.queues[wordCount].sourceMax,
                 searchMax: self.queues[wordCount].searchMax,
                 words: self.constraints.words,
                 wordsInt: self.wordsInt,
@@ -328,9 +351,27 @@ public struct QueueList {
         mergeIndex: Int,
         withIndex mergeIndex2: Int) async -> [ShapeModel]
     {
-        if FeatureFlags.mergeMethod == 1 {
+        
+        switch (FeatureFlags.mergeMethod) {
+        case .async_arrayOfObjects:
             
-            return MergeCalculatorV1.ExecuteDifferentShapes(
+            return await MergeCalculatorV2.ExecuteDifferentShapesAsync(
+                sourceShapes: self.queues[mergeIndex].shapes,
+                searchShapes: self.queues[mergeIndex2].shapes,
+                searchWordIndex: self.queues[mergeIndex2].wordIndexV2,
+                sourceMax: self.queues[mergeIndex].sourceMax,
+                searchMax: self.queues[mergeIndex2].searchMax,
+                words: self.constraints.words,
+                wordsInt: self.wordsInt,
+                scoresMin: self.constraints.scoresMin,
+                widthMax: self.game.maxWidth,
+                heightMax: self.game.maxHeight)
+            
+            
+        
+        case .async_objectOfArrays:
+            
+            return await MergeCalculatorV1.ExecuteDifferentShapesAsync(
                 sourceShapes: self.queues[mergeIndex].gpuShapes,
                 searchShapes: self.queues[mergeIndex2].gpuShapes,
                 searchWordIndex: self.queues[mergeIndex2].wordIndex,
@@ -341,7 +382,8 @@ public struct QueueList {
                 scoresMin: self.constraints.scoresMin,
                 widthMax: self.game.maxWidth,
                 heightMax: self.game.maxHeight)
-        } else {
+            
+        case .sync_arrayOfObjects:
             
             return MergeCalculatorV2.ExecuteDifferentShapesSync(
                 sourceShapes: self.queues[mergeIndex].shapes,
@@ -354,6 +396,21 @@ public struct QueueList {
                 scoresMin: self.constraints.scoresMin,
                 widthMax: self.game.maxWidth,
                 heightMax: self.game.maxHeight)
+            
+        case .sync_objectOfArrays:
+            
+            return MergeCalculatorV1.ExecuteDifferentShapes(
+                sourceShapes: self.queues[mergeIndex].gpuShapes,
+                searchShapes: self.queues[mergeIndex2].gpuShapes,
+                searchWordIndex: self.queues[mergeIndex2].wordIndex,
+                sourceMax: self.queues[mergeIndex].sourceMax,
+                searchMax: self.queues[mergeIndex2].searchMax,
+                words: self.constraints.words,
+                wordsInt: self.wordsInt,
+                scoresMin: self.constraints.scoresMin,
+                widthMax: self.game.maxWidth,
+                heightMax: self.game.maxHeight)
+            
         }
     }
     
@@ -367,8 +424,8 @@ public struct QueueList {
         heightMax: Int,
         notTheseWordCounts:[Int]) async {
         let shapes = await MergeCalculatorV1.ExecuteDifferentShapesAsync(
-            source: self.queues[mergeIndex].gpuShapes,
-            search:self.queues[mergeIndex2].gpuShapes,
+            sourceShapes: self.queues[mergeIndex].gpuShapes,
+            searchShapes:self.queues[mergeIndex2].gpuShapes,
             searchWordIndex: self.queues[mergeIndex2].wordIndex,
             sourceMax: self.queues[mergeIndex].sourceMax,
             searchMax: self.queues[mergeIndex2].searchMax,

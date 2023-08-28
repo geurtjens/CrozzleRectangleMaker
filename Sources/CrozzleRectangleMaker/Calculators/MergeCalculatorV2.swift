@@ -444,7 +444,7 @@ public class MergeCalculatorV2 {
             
             
             // We have matches of 2 but instruction says its a match of 1
-            let (isValidSize, calcWidth, calcHeight) = MergeSizeValidation.executeV2(
+            let (isValidSize, calcWidth, calcHeight) = mergeSizeValidation(
                 instruction: instruction,
                 sourceShape: sourceShape,
                 searchShape: searchShape,
@@ -521,5 +521,44 @@ public class MergeCalculatorV2 {
             }
         }
         return shapeList
+    }
+    
+    
+    public static func mergeSizeValidation(instruction: MergeInstructionModel, sourceShape: ShapeModel, searchShape: ShapeModel, widthMax: Int, heightMax: Int) -> (Bool, Int, Int) {
+        
+        let sourceWidth = Int(sourceShape.width)
+        let sourceHeight = Int(sourceShape.height)
+        
+        let searchWidth = Int(searchShape.width)
+        let searchHeight = Int(searchShape.height)
+        
+        let sourcePlacement = sourceShape.placements[Int(instruction.sourceMatchingWordPosition)]
+        let sourceX = Int(sourcePlacement.x)
+        let sourceY = Int(sourcePlacement.y)
+        
+        let searchPlacement = searchShape.placements[Int(instruction.searchMatchingWordPosition)]
+        let searchX = Int(searchPlacement.x)
+        let searchY = Int(searchPlacement.y)
+        
+        
+        let (isValid, width, height) = MergeSizeValidation.verifyWidthHeight(
+            width1: sourceWidth,
+            height1: sourceHeight,
+            x1: sourceX,
+            y1: sourceY,
+            
+            width2: searchWidth,
+            height2: searchHeight,
+            x2: searchX,
+            y2: searchY,
+            flipped: instruction.flipped,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        if isValid {
+            return (true, width, height)
+        } else {
+            return (false, width, height)
+        }
     }
 }

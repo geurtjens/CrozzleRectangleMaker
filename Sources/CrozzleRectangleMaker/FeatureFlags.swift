@@ -10,5 +10,5 @@ public struct FeatureFlags {
     public static var verbose = false
     
     // Can either be 1 for the old way or 2 for the new way
-    public static var mergeMethod = 1
+    public static var mergeMethod: MergeMethod = .async_objectOfArrays
 }
