@@ -291,15 +291,14 @@ public struct WordIndexModelV2 {
             }
         }
         
-        
-        // Process last one
+        if searchShapeId != previous {
+            print("What should we do here then with previous and searchShapeId being different")
+        }
+        // Process last one, should this be previous or should it be searchShapeId?
         let item = Process(matchCount: matchCount, wordsPerShape: wordsPerShape, sourceShape: sourceShape, sourceShapeId: sourceShapeId, searchShape:searchShapes[searchShapeId], searchShapeId: searchShapeId)
         if item != nil {
             result.append(item!)
         }
-        
-        
-        
         
         return result
     }
