@@ -9,6 +9,27 @@ import Foundation
 public class StrategyCalculator {
     
     
+    public static func tryMergeWithLowerOnly(gamesToProcess: [Int], queueLength: Int, numberOfTimes: Int = 1) async {
+        let gameList = GameList()
+        let startTime = DateTimeCalculator.now()
+        for game in gameList.games {
+            let words = game.winningWords
+            
+            if gamesToProcess.contains(game.gameId) {
+                print("## GAME: \(game.gameId), queue: \(queueLength)")
+                for _ in 0..<numberOfTimes {
+                    let _ = await TryMergeWithLowerOnly(game: game, words: words, queueLength: queueLength)
+                }
+                print("")
+                print("")
+            }
+        }
+        let finishTime = DateTimeCalculator.now()
+        let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
+        print("TOTAL DURATION \(queueLength) = \(duration)")
+    }
+    
+    
     public static func gamesThatHaventWonYet() async {
         /// We added extra 8612 and 8710`
         let gamesWon = [8612,   8705,8710,8712,

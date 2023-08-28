@@ -33,21 +33,21 @@ class ShapeToTextConverterV2 {
 //
 //        if textIsVerified {
             
-            let wordCount = getWordCount(grid:grid, width: width, height: height)
-            
-            if wordCount != placements.count {
-                return nil
-            }
+        let wordCount = getWordCount(grid:grid, width: width, height: height)
+        
+        if wordCount != placements.count {
+            return nil
+        }
             
         let newShape = ShapeModel(score: score, width: UInt8(width), height: UInt8(height), placements: placements)
             
-            // our shapes must have first word as horizontal to help with removing duplicates
-            if (newShape.placements[0].z == false) {
-                let flipped = ShapeCalculator.Flip(shape: newShape)
-                return flipped
-            } else {
-                return newShape
-            }
+        // our shapes must have first word as horizontal to help with removing duplicates
+        if (newShape.placements[0].z == false) {
+            let flipped = ShapeCalculator.Flip(shape: newShape)
+            return flipped
+        } else {
+            return newShape
+        }
 //        } else {
 //            return nil
 //        }
