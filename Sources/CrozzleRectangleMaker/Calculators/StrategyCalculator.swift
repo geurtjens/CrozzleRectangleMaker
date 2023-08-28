@@ -29,6 +29,29 @@ public class StrategyCalculator {
         print("TOTAL DURATION \(queueLength) = \(duration)")
     }
     
+    public static func tryMergeWithItselfAndBelow(gamesToProcess: [Int], queueLength: Int, repeatTimes: Int = 1) async {
+        let gameList = GameList()
+        let startTime = DateTimeCalculator.now()
+        for game in gameList.games {
+            let words = game.winningWords
+            
+            if gamesToProcess.contains(game.gameId) {
+                print("## GAME: \(game.gameId), queue: \(queueLength)")
+                
+                let _ = await TryMergeWithItselfAndBelow(game: game, words: words, queueLength: queueLength, highScore: game.winningScore, repeatTimes: repeatTimes)
+                
+                print("")
+                print("")
+            }
+        }
+        let finishTime = DateTimeCalculator.now()
+        let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
+        print("TOTAL DURATION \(queueLength) = \(duration)")
+    }
+    
+    
+    
+    
     
     public static func gamesThatHaventWonYet() async {
         /// We added extra 8612 and 8710`
