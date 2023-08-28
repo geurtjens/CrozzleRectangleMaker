@@ -343,7 +343,7 @@ public struct QueueList {
                 heightMax: self.game.maxHeight)
         } else {
             
-            return await MergeCalculatorV2.ExecuteDifferentShapesAsync(
+            return MergeCalculatorV2.ExecuteDifferentShapesSync(
                 sourceShapes: self.queues[mergeIndex].shapes,
                 searchShapes: self.queues[mergeIndex2].shapes,
                 searchWordIndex: self.queues[mergeIndex2].wordIndexV2,

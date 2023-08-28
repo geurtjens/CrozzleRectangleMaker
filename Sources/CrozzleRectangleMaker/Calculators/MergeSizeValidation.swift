@@ -66,22 +66,17 @@ public class MergeSizeValidation {
         }
     }
     
-    public static func executeV2(instruction: MergeInstructionModel, sourceShapes: [ShapeModel], searchShapes: [ShapeModel], widthMax: Int, heightMax: Int) -> (Bool, Int, Int) {
+    public static func executeV2(instruction: MergeInstructionModel, sourceShape: ShapeModel, searchShape: ShapeModel, widthMax: Int, heightMax: Int) -> (Bool, Int, Int) {
         
-        //return true
-        
-        let sourceShape = sourceShapes[instruction.sourceShapeId]
         let sourceWidth = Int(sourceShape.width)
         let sourceHeight = Int(sourceShape.height)
+        
+        let searchWidth = Int(searchShape.width)
+        let searchHeight = Int(searchShape.height)
         
         let sourcePlacement = sourceShape.placements[Int(instruction.sourceMatchingWordPosition)]
         let sourceX = Int(sourcePlacement.x)
         let sourceY = Int(sourcePlacement.y)
-        
-      
-        let searchShape = searchShapes[instruction.searchShapeId]
-        let searchWidth = Int(searchShape.width)
-        let searchHeight = Int(searchShape.height)
         
         let searchPlacement = searchShape.placements[Int(instruction.searchMatchingWordPosition)]
         let searchX = Int(searchPlacement.x)
@@ -98,7 +93,7 @@ public class MergeSizeValidation {
             height2: searchHeight,
             x2: searchX,
             y2: searchY,
-            flipped: false, // instruction.flipped,
+            flipped: instruction.flipped,
             widthMax: widthMax,
             heightMax: heightMax)
         

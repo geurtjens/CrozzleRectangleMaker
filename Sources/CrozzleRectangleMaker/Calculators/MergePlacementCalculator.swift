@@ -97,17 +97,24 @@ public class MergePlacementCalculator {
     
     
     // Create a shape from two `GpuShapeModel` based on the instructions provided
-    public static func ExecuteV2(sourceShapes: [ShapeModel], searchShapes: [ShapeModel], instruction: MergeInstructionModel, words:[String]) -> [PlacementModel] {
+    public static func ExecuteV2(sourceShape: ShapeModel, searchShape: ShapeModel, instruction: MergeInstructionModel, words:[String]) -> [PlacementModel] {
         
         // This will flip the placements if they are opposite direction
-        let (sourcePlacements, searchPlacements) = GetPlacementsForBothShapesV2(
-            sourceShapes: sourceShapes,
-            searchShapes: searchShapes,
-            instruction: instruction)
+        //let (sourcePlacements, searchPlacements) = GetPlacementsForBothShapesV2(
+           // sourceShapes: sourceShapes,
+           // searchShapes: searchShapes,
+           // instruction: instruction)
+        
+        var sourceShape = sourceShape
+        if instruction.flipped {
+            sourceShape = sourceShape.Flip()
+        }
+        
+        
         
         let commonPlacements = PlacementCalculator.findCommonPlacement(
-            sourcePlacements: sourcePlacements,
-            searchPlacements: searchPlacements)
+            sourcePlacements: sourceShape.placements,
+            searchPlacements: searchShape.placements)
         
         if commonPlacements.count == 0 {
             print("Your offset calculator did not work")
@@ -118,8 +125,8 @@ public class MergePlacementCalculator {
 //        let searchPos = instruction.searchShapeId * searchShapes.stride + Int(instruction.searchMatchingWordPosition)
 //
         
-        let sourcePlacement = sourcePlacements[Int(instruction.sourceMatchingWordPosition)]
-        let searchPlacement = searchPlacements[Int(instruction.searchMatchingWordPosition)]
+        let sourcePlacement = sourceShape.placements[Int(instruction.sourceMatchingWordPosition)]
+        let searchPlacement = searchShape.placements[Int(instruction.searchMatchingWordPosition)]
         
         // I think the first word position might be useful
         let xSource = Int(sourcePlacement.x)
@@ -134,16 +141,16 @@ public class MergePlacementCalculator {
             ySource: ySource,
             xSearch: xSearch,
             ySearch: ySearch,
-            flipped: false) //instruction.flipped)
+            flipped: false)
         
         // Now we can apply the offsets I guess
         let sourceFinal = MergeOffsetCalculator.ApplyOffsets(
-            placements: sourcePlacements,
+            placements: sourceShape.placements,
             xOffset: sourceOffsetX,
             yOffset: sourceOffsetY)
         
         let searchFinal = MergeOffsetCalculator.ApplyOffsets(
-            placements: searchPlacements,
+            placements: searchShape.placements,
             xOffset: searchOffsetX,
             yOffset: searchOffsetY)
         
@@ -255,15 +262,15 @@ public class MergePlacementCalculator {
     public static func GetPlacementsForBothShapesV2(sourceShapes: [ShapeModel], searchShapes: [ShapeModel], instruction: MergeInstructionModel) -> ([PlacementModel], [PlacementModel]) {
         
         
-        let placements = sourceShapes[instruction.sourceShapeId].placements
+        let sourcePlacements = sourceShapes[instruction.sourceShapeId].placements
+        let searchPlacements = searchShapes[instruction.searchShapeId].placements
+//        var searchShape = searchShapes[instruction.searchShapeId]
+//
+//        if instruction.flipped == true {
+//            searchShape = searchShape.Flip()
+//        }
         
-        var searchShape = searchShapes[instruction.searchShapeId]
-        
-        if instruction.flipped == true {
-            searchShape = searchShape.Flip()
-        }
-        
-        return (placements, searchShape.placements)
+        return (sourcePlacements, searchPlacements)
         
     }
     

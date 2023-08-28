@@ -341,7 +341,7 @@ public class MergeCalculatorV1 {
         
         for instruction in instructions {
             
-            let (isValidSize, calcWidth, calcHeight) = MergeSizeValidation.execute(instruction: instruction, sourceShapes: sourceShapes, searchShapes: searchShapes,  widthMax: widthMax, heightMax: heightMax) //== true {
+            let (isValidSize, calcWidth, calcHeight) = MergeSizeValidation.execute(instruction: instruction, sourceShapes: sourceShapes, searchShapes: searchShapes,  widthMax: widthMax, heightMax: heightMax)
                 
             if isValidSize {
                 
@@ -365,6 +365,10 @@ public class MergeCalculatorV1 {
                     
                     if (potentialWidth <= widthMax && potentialHeight <= heightMax) ||
                         (potentialWidth <= heightMax && potentialHeight <= widthMax) {
+                        
+                        if isValidSize == false {
+                            print("FOUND THAT THE VALID SIZE ALGORITHM ISNT WORKING AND REMOVED WRONGLY")
+                        }
                         
                         let validShape = ShapeToTextConverterV2.ToValidShape(placements: potentialPlacements, width: Int(potentialWidth), height: Int(potentialHeight), wordsInt: wordsInt, words: words)
                         

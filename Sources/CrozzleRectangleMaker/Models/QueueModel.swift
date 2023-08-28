@@ -77,7 +77,9 @@ public struct QueueModel {
                 words: self.gpuShapes.wordId)
             
         } else {
-            self.wordIndexV2 = WordIndexModelV2(self.shapes, self.stride, self.totalWords)
+            self.wordIndexV2 = WordIndexModelV2(shapes: self.shapes,
+                                                wordsPerShape: self.stride,
+                                                wordCount: self.totalWords)
         }
         let wordIndexDone = DateTimeCalculator.now()
         /// Calculating where the last position to merge should be for this queue
@@ -128,7 +130,11 @@ public struct QueueModel {
         self.stride = stride
         self.scoreMin = scoreMin
         self.shapes = shapes
-        self.wordIndexV2 = WordIndexModelV2(shapes, stride, totalWords)
+        
+        self.wordIndexV2 = WordIndexModelV2(shapes: shapes,
+                                            wordsPerShape: stride,
+                                            wordCount: totalWords)
+        
         if FeatureFlags.mergeMethod == 1 {
         // The gpu shapes and statistics are derived from shapes
             let gpuShapes = GpuShapeModel(shapes: shapes, totalWords: totalWords, stride: stride)
