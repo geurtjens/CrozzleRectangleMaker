@@ -18,7 +18,7 @@ public class StrategyCalculator {
             if gamesToProcess.contains(game.gameId) {
                 print("## GAME: \(game.gameId), queue: \(queueLength)")
                 
-                let _ = await TryMergeWithLowerOnly(game: game, words: words, queueLength: queueLength, repeatTimes: repeatTimes)
+                let _ = await TryMergeWithLowerOnly(game: game, words: words, queueLength: queueLength, highScore: game.winningScore, repeatTimes: repeatTimes)
                 
                 print("")
                 print("")
@@ -49,7 +49,7 @@ public class StrategyCalculator {
             //if gamesWon.contains(game.gameId) == false {
                 let words = game.winningWords
                 
-                let _ = await StrategyCalculator.TryMergeWithLowerOnly(game: game, words: words, queueLength: 5_000)
+            let _ = await StrategyCalculator.TryMergeWithLowerOnly(game: game, words: words, queueLength: 5_000, highScore: game.winningScore)
                 //result += "\n"
                 //let shape = queueList.getBestShapeByScore()
 //                if shape != nil {
@@ -85,7 +85,7 @@ public class StrategyCalculator {
         return queueList
     }
     
-    public static func TryMergeWithLowerOnly(game: GameModel, words: [String], queueLength: Int, repeatTimes: Int = 100) async -> QueueList {
+    public static func TryMergeWithLowerOnly(game: GameModel, words: [String], queueLength: Int, highScore: Int, repeatTimes: Int = 1) async -> QueueList {
        
             
         //let words = game.winningWords
@@ -103,9 +103,8 @@ public class StrategyCalculator {
         //    }
             
         var maxShape: ShapeModel? = nil
-        let highScore = game.winningScore
         var maxScore: UInt16 = 0
-        var i = 0
+        
         var count = 0
         var previousCount = 0
         if FeatureFlags.verbose {
@@ -120,7 +119,7 @@ public class StrategyCalculator {
 //            print(text)
 //        }
         
-        for _ in 0..<repeatTimes {
+        for repeatTime in 0..<repeatTimes {
     //        let mergeWithItselfStartNano = DateTimeCalculator.now()
     //        DateTimeCalculator.printDate("mergeWithItselfAll() started at")
     //        await queue.mergeWithItselfAll()
@@ -135,7 +134,7 @@ public class StrategyCalculator {
     //        for i in 5..<30 {
     //            queue.queues[i].search_TopScorePercent = 2.0
     //        }
-            
+            var i = 0
             while maxScore < highScore && i < 40  {
                 
                 
@@ -176,7 +175,7 @@ public class StrategyCalculator {
                 // it shows all tiny variations of the same shape being built.  Quite interesting to see really.
                 previousCount = count
             }
-            print(repeatTimes)
+            print("Repeat Time: \(repeatTime) of \(repeatTimes)")
         }
         let _ = queue.getBestShape()
         

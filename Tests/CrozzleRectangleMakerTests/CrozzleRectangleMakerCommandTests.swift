@@ -74,7 +74,7 @@ final class CrozzleRectangleMakerCommandTests: XCTestCase {
                 }
                 if queueLength > 0 {
                     print("## GAME: \(game.gameId), queue: \(queueLength)")
-                    let _ = await StrategyCalculator.TryMergeWithLowerOnly(game: game, words: words, queueLength: queueLength)
+                    let _ = await StrategyCalculator.TryMergeWithLowerOnly(game: game, words: words, queueLength: queueLength, highScore: game.winningScore)
                     print("")
                     print("")
                 }
