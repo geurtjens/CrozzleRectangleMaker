@@ -9,7 +9,7 @@ import Foundation
 public class StrategyCalculator {
     
     
-    public static func tryMergeWithLowerOnly(gamesToProcess: [Int], queueLength: Int, numberOfTimes: Int = 1) async {
+    public static func tryMergeWithLowerOnly(gamesToProcess: [Int], queueLength: Int, repeatTimes: Int = 1) async {
         let gameList = GameList()
         let startTime = DateTimeCalculator.now()
         for game in gameList.games {
@@ -17,9 +17,9 @@ public class StrategyCalculator {
             
             if gamesToProcess.contains(game.gameId) {
                 print("## GAME: \(game.gameId), queue: \(queueLength)")
-                for _ in 0..<numberOfTimes {
-                    let _ = await TryMergeWithLowerOnly(game: game, words: words, queueLength: queueLength)
-                }
+                
+                let _ = await TryMergeWithLowerOnly(game: game, words: words, queueLength: queueLength, repeatTimes: repeatTimes)
+                
                 print("")
                 print("")
             }
@@ -85,11 +85,11 @@ public class StrategyCalculator {
         return queueList
     }
     
-    public static func TryMergeWithLowerOnly(game: GameModel, words: [String], queueLength: Int) async -> QueueList {
+    public static func TryMergeWithLowerOnly(game: GameModel, words: [String], queueLength: Int, repeatTimes: Int = 100) async -> QueueList {
        
             
-        let words = game.winningWords
-        let repeatTimes = 100
+        //let words = game.winningWords
+        
         //let _ = await StrategyCalculator.NextStep(words: game.winningWords, queueLength: 20000, priorityFunction: .score_area, repeatTimes: 5)
         
         
@@ -113,6 +113,7 @@ public class StrategyCalculator {
             print("")
             print("GAME \(game.gameId) with high score of \(game.winningScore) using \(words.count) words")
         }
+        /// gives us the highest score so far
         (maxShape, _) = queue.status()
 //        if let maxShape = maxShape {
 //            let text = maxShape.ToStringExtended(words: words, gameId: queue.game.gameId, winningScore: queue.game.winningScore)
@@ -175,24 +176,14 @@ public class StrategyCalculator {
                 // it shows all tiny variations of the same shape being built.  Quite interesting to see really.
                 previousCount = count
             }
-            
-            let bestShapeScore = queue.getBestShape()
-            if  bestShapeScore != nil && bestShapeScore!.score >= highScore {
-                //print(bestShapeScore!.ToStringExtended(words: words, gameId: game.gameId, winningScore: game.winningScore))
-                let finishNano = DateTimeCalculator.now()
-                       
-//                let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
-//                print("Duration \(duration)")
-                    
-                break
-            }
+            print(repeatTimes)
         }
         let _ = queue.getBestShape()
         
         let finishNano = DateTimeCalculator.now()
                
-       let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
-       print("Duration \(duration)")
+        let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
+        print("Duration \(duration)")
         
         return queue
     }
