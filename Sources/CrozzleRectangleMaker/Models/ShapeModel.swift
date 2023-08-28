@@ -27,7 +27,7 @@ public struct ShapeModel {
     /// Used to find duplicates, it is a csv for all the words in the shape.
     public var wordSequence: String
     
-    public var seqCalculated: Bool = false
+    //public var seqCalculated: Bool = false
     
     /// Its true that area can fit into a smaller size for valid grids but sometimes we have crazy large invalid grids and this causes overflows
     public let area: UInt16
@@ -42,7 +42,7 @@ public struct ShapeModel {
         let area: UInt16 = (UInt16(width) - 2) * (UInt16(height) - 2)
         self.area = area
         self.density = Float32(score) / Float32(area)
-        self.wordSequence = "" //ShapeModel.getWordSequence(placements: placements)
+        self.wordSequence = ShapeModel.getWordSequence(placements: placements)
     }
     /// provide the words that are found in this shape
     public func getWords() -> [UInt8] {

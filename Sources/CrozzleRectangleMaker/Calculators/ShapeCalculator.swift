@@ -283,12 +283,12 @@ public class ShapeCalculator {
         
         
         
-        for i in 0..<shapes.count {
-            if shapes[i].seqCalculated == false {
-                shapes[i].wordSequence = ShapeModel.getWordSequence(placements: shapes[i].placements)
-                shapes[i].seqCalculated = true
-            }
-        }
+//        for i in 0..<shapes.count {
+//            if shapes[i].seqCalculated == false {
+//                shapes[i].wordSequence = ShapeModel.getWordSequence(placements: shapes[i].placements)
+//                shapes[i].seqCalculated = true
+//            }
+//        }
         
         
         shapes.sort {
