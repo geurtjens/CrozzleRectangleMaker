@@ -14,6 +14,7 @@ final class CrozzleRectangleMakerCommandTests: XCTestCase {
     func testExample() async throws {
         FeatureFlags.verbose = false
         FeatureFlags.mergeMethod = .async_arrayOfObjects
+        FeatureFlags.findMatchesType = 1
         let startTime = DateTimeCalculator.now()
         //await StrategyCalculator.gamesThatHaventWonYet()
 
@@ -45,11 +46,14 @@ final class CrozzleRectangleMakerCommandTests: XCTestCase {
             ]
             
             let unknown = [
-                8702, 8703, 8711, 8806, 8807, 8810, 9002, 9010, 9012, 9101,
+                //8702, 8703,
+                8711, 8806, 8807, 8810, 9002, 9010, 9012, 9101,
                 9106, 9107, 9109, 9204, 9209, 9305, 9402, 9403, 9410, 9411,
                 9412, 9503, 9504, 9505, 9506, 9507, 9510, 9511, 9512, 9601,
                 9602, 9604, 9605]
 
+         
+        
             let gameList = GameList()
             //var result = ""
             for game in gameList.games {
@@ -68,13 +72,15 @@ final class CrozzleRectangleMakerCommandTests: XCTestCase {
                     //queueLength = 20_000
                 } else if unknown.contains(game.gameId){
                     // Dont know why these are not working yet
+                    //queueLength = 1000
                 } else {
                     print(game.gameId)
                     //queueLength = 0
                 }
                 if queueLength > 0 {
                     print("## GAME: \(game.gameId), queue: \(queueLength)")
-                    let _ = await StrategyCalculator.TryMergeWithLowerOnly(game: game, words: words, queueLength: queueLength, highScore: game.winningScore)
+                    
+                    let _ = await StrategyCalculator.TryMergeWithLowerOnly(game: game, words: words, queueLength: queueLength, highScore: game.winningScore, repeatTimes: 1)
                     print("")
                     print("")
                 }

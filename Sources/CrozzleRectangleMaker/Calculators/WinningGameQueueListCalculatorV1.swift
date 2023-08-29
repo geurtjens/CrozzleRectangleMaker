@@ -540,8 +540,13 @@ public class WinningGameQueueListCalculatorV1 {
             scoreMin: 82,
             widthMax: 8,
             heightMax: 9))
-        queue.add(shapes: c2x2)
-
+        queue.add(shapes: [c2x2[6]])
+        print("c2x2 ***********************")
+        for i in 0..<c2x2.count {
+            print(i)
+            print(c2x2[i].ToText(words: words))
+        }
+        print(c2x2[6].ToText(words: words))
         let c2x3 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x3(
             words: words,
             end: end,
@@ -549,8 +554,13 @@ public class WinningGameQueueListCalculatorV1 {
             scoreMin: 118,
             widthMax: 8,
             heightMax: 9))
-        queue.add(shapes: c2x3)
-
+        queue.add(shapes: [c2x3[1]])
+        print("c2x3 ***********************")
+//        for i in 0..<c2x3.count {
+//            print(i)
+//            print(c2x3[i].ToText(words: words))
+//        }
+        print(c2x3[1].ToText(words: words))
         let c2x5 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x5(
             words: words,
             end: end,
@@ -559,14 +569,27 @@ public class WinningGameQueueListCalculatorV1 {
             widthMax: 13,
             heightMax: 7))
         queue.add(shapes: c2x5)
-
+        print("c2x5 ***********************")
+        for i in 0..<c2x5.count {
+            print(i)
+            print(c2x5[i].ToText(words: words))
+        }
+        // these two are duplicates which is strange ACTUALLY DOWN UP AND UP DOWN ARE SAME IF VERTICALS ARE SAME SIZE.
+        // SO ITS REALLY A MIDDLE MIDDLE.
+        
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
             words: words,
             scoreMin: 22,
             widthMax: 9,
             heightMax: 7))
+        let includedEdges = [edges[396], edges[378], edges[84],edges[348]]
         queue.add(shapes: edges)
-
+        print("edges ***********************")
+        for i in 0..<edges.count {
+            print(i)
+            print(edges[i].ToText(words: words))
+        }
+        let included = [edges[396], edges[378], edges[84],edges[348]]
         let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,
@@ -576,6 +599,10 @@ public class WinningGameQueueListCalculatorV1 {
             widthMax: 7,
             heightMax: 8))
         queue.add(shapes: rectangle3x4)
+        print("rectangle3x4***********************")
+        for item in rectangle3x4 {
+            print(item.ToText(words: words))
+        }
 
         let rectangle3x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
@@ -586,7 +613,11 @@ public class WinningGameQueueListCalculatorV1 {
             widthMax: 9,
             heightMax: 7))
         queue.add(shapes: rectangle3x5)
-
+        print("rectangle3x5 ***********************")
+        for item in rectangle3x5 {
+            print(item.ToText(words: words))
+        }
+        
         let rectangle3x4_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
@@ -596,7 +627,11 @@ public class WinningGameQueueListCalculatorV1 {
             widthMax: 9,
             heightMax: 7))
         queue.add(shapes: rectangle3x4_TopLeft)
-
+        print("rectangle3x4_TopLeft ***********************")
+        for item in rectangle3x4_TopLeft {
+            print(item.ToText(words: words))
+        }
+        
         let rectangle3x4_TopRight = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopRightRectangle(
             interlockWidth: 2,
             interlockHeight: 3,
@@ -606,7 +641,10 @@ public class WinningGameQueueListCalculatorV1 {
             widthMax: 7,
             heightMax: 8))
         queue.add(shapes: rectangle3x4_TopRight)
-
+        print("rectangle3x4_TopRight***********************")
+        for item in rectangle3x4_TopRight {
+            print(item.ToText(words: words))
+        }
         let square3x3 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
@@ -615,7 +653,10 @@ public class WinningGameQueueListCalculatorV1 {
             widthMax: 9,
             heightMax: 7))
         queue.add(shapes: square3x3)
-
+        print("square3x3 ***********************")
+        for item in square3x3 {
+            print(item.ToText(words: words))
+        }
         let square3x3_TopLeft = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
             words: words,
@@ -624,7 +665,10 @@ public class WinningGameQueueListCalculatorV1 {
             widthMax: 10,
             heightMax: 8))
         queue.add(shapes: square3x3_TopLeft)
-
+        print("square3x3_TopLeft***********************")
+        for item in square3x3_TopLeft {
+            print(item.ToText(words: words))
+        }
         return queue
     }
 

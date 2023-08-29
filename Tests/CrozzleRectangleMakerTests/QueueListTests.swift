@@ -116,7 +116,7 @@ final class QueueListTests: XCTestCase {
             
             for i in 0..<40 {
                 if queueList.queues[i].shapes.count > 0 {
-                    await queueList.mergeEverythingBelowWith(index: i)
+                    await queueList.mergeEverythingBelowWithAsync(index: i)
                     queueList.printBest()
                 }
             }
@@ -139,13 +139,13 @@ final class QueueListTests: XCTestCase {
             if let bestShape = queueList.getBestShape() {
                 
                 let index = bestShape.placements.count
-                await queueList.mergeEverythingBelowWith(index: index)
+                await queueList.mergeEverythingBelowWithAsync(index: index)
                 queueList.printBest()
                 
                 if let bestShape2 = queueList.getBestShape() {
                     
                     let index2 = bestShape2.placements.count
-                    await queueList.mergeEverythingBelowWith(index: index2)
+                    await queueList.mergeEverythingBelowWithAsync(index: index2)
                     queueList.printBest()
                     
                     for _ in 0..<10 {

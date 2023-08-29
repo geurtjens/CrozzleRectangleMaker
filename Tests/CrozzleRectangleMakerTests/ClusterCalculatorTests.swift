@@ -9,6 +9,38 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class ClusterCalculatorTests: XCTestCase {
 
+    
+    func test_FoundDuplicate() {
+        
+        let game = GameList().getGame(gameId: 8711)!
+        
+        let words = game.winningWords
+        let end = WordCalculator.reverse(words: words)
+        let len = WordCalculator.lengths(words: words)
+        
+        let c2x5 = ShapeCalculator.toShapes(clusters: ClusterCalculatorV1.C2x5(
+            words: words,
+            end: end,
+            len: len,
+            scoreMin: 204,
+            widthMax: 13,
+            heightMax: 7))
+        
+        XCTAssertEqual(2, c2x5.count)
+        
+        let first = c2x5[0].ToText(words: words)
+        let second = c2x5[1].ToText(words: words)
+        
+        let first2 = c2x5[0].Flip().ToText(words: words)
+        let second2 = c2x5[1].Flip().ToText(words: words)
+        XCTAssertNotEqual(first, second)
+        print(first)
+        print(second)
+        print(first2)
+        print(second2)
+    }
+    
+    
     func test_Compare() {
         let count3 = ClusterCalculatorV3.ExecuteAllSerial(scoreMin: 0)
         let count2 = ClusterCalculatorV2.ExecuteAllSerial(scoreMin: 0)
