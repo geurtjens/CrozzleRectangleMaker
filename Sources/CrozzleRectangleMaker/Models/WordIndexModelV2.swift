@@ -217,6 +217,29 @@ public struct WordIndexModelV2 {
         return (matches, firstSource)
     }
     
+    private func GetMatchesV2(sourceShape: ShapeModel, searchShape: ShapeModel) -> ([Int],Int,Int) {
+        
+        var firstSource = -1
+        var matches: [Int] = [];
+        var matchCount = 0
+        for i in 0..<sourceShape.placements.count {
+            
+            /// Tells us the location of the word matching with the current word or else -1
+            let matchedId = MatchingPlacementPosition(searchShape: searchShape,
+                                                      wordId:Int(sourceShape.placements[i].w))
+            matches.append(matchedId);
+            
+            if matchedId != -1 {
+                
+                if firstSource == -1 {
+                    firstSource = i
+                }
+                matchCount += 1
+            }
+        }
+        return (matches, firstSource, matchCount)
+    }
+    
     private func ValidateMultiWordMatches(sourceShape: ShapeModel,
                                           sourceShapeId: Int,
                                           searchShape: ShapeModel,
@@ -277,7 +300,51 @@ public struct WordIndexModelV2 {
     
     
     
-    
+    private func ValidateMultiWordMatchesV2(
+        sourceShape: ShapeModel,
+        sourceShapeId: Int,
+        firstSourcePos: Int,
+        searchShape: ShapeModel,
+        searchShapeId: Int,
+        firstSearchPos: Int,
+        matches: [Int],
+        matchingWordCount: Int) -> MergeInstructionModel? {
+        
+        // If we have the smaller and larger the wrong way around then call again but this time making smaller actually smaller
+        
+        
+        
+        let firstIsFlipped = (sourceShape.placements[firstSourcePos].z != searchShape.placements[firstSearchPos].z)
+        
+        let sameDirectionIsOk = SameDirection(firstSource: firstSourcePos,
+                                              firstSearch: firstSearchPos,
+                                              matches: matches,
+                                              firstIsFlipped: firstIsFlipped,
+                                              sourceShape: sourceShape,
+                                              searchShape: searchShape)
+        
+        if sameDirectionIsOk == false {
+            return nil
+        }
+        
+        let isMatchingDistance = MatchingDistance(firstSource: firstSourcePos,
+                                                  firstSearch: firstSearchPos,
+                                                  matches: matches,
+                                                  isFlipped: firstIsFlipped,
+                                                  sourceShape:sourceShape,
+                                                  searchShape:searchShape)
+        if isMatchingDistance == false {
+            return nil
+        } else {
+            
+            return MergeInstructionModel(sourceShapeId: sourceShapeId,
+                                         searchShapeId: searchShapeId,
+                                         matchingWordCount: UInt8(matchingWordCount),
+                                         sourceMatchingWordPosition: UInt8(firstSourcePos),
+                                         searchMatchingWordPosition: UInt8(firstSearchPos),
+                                         flipped: firstIsFlipped)
+        }
+    }
     
     
     
@@ -416,39 +483,32 @@ public struct WordIndexModelV2 {
         
         // We do not want to include if we have already included when we processed an earlier word
         // so we make sure that the words that came before are not in this searchShape
-        
-        
-        for wordPos in 0..<wordPos {
-            let wordToAvoidFinding = Int(sourceShape.placements[wordPos].w)
-            
-            let searchPos = MatchingPlacementPosition(searchShape: searchShape, wordId: wordToAvoidFinding)
-            
-            if searchPos != -1 {
-                return nil
-            }
-        }
-    
         // How many words are matching
-        var matchCount = 0
-        for wordPos in 0..<sourceShape.placements.count {
-            let w = Int(sourceShape.placements[wordPos].w)
-            
-            let searchPos = MatchingPlacementPosition(searchShape: searchShape, wordId: w)
-            
-            if searchPos != -1 {
-                matchCount += 1
-            }
-        }
+        
+        assert(sourceShape.placements.count <= searchShape.placements.count, "Source Shape should always have less than or equal words as search shape")
+        
+        
+        let (matches, firstSourcePos, matchCount) = GetMatchesV2(sourceShape: sourceShape, searchShape: searchShape)
+        
         if matchCount == sourceShape.placements.count {
             return nil
         }
+        if firstSourcePos < wordPos {
+            return nil
+        }
+        
+        let firstSearchPos = matches[firstSourcePos]
         
         // We only have 1 match
         if (matchCount == 1) {
-            let match = SingleWordMatch(sourceShape: sourceShape,
-                                        sourceShapeId: sourceShapeId,
-                                        searchShape: searchShape,
-                                        searchShapeId: searchShapeId)
+            let match = SingleWordMatchV2(
+                sourceShape: sourceShape,
+                sourceShapeId: sourceShapeId,
+                firstSourcePos: firstSourcePos,
+                matches: matches,
+                searchShape: searchShape,
+                searchShapeId: searchShapeId,
+                firstSearchPos: firstSearchPos)
             
             return match
             
@@ -457,11 +517,15 @@ public struct WordIndexModelV2 {
             // We have more than one match
             if (matchCount < sourceShape.placements.count) {
                 
-                let multiWordMatch = ValidateMultiWordMatches(sourceShape: sourceShape,
-                                                              sourceShapeId: sourceShapeId,
-                                                              searchShape: searchShape,
-                                                              searchShapeId: searchShapeId,
-                                                              matchingWordCount: matchCount)
+                let multiWordMatch = ValidateMultiWordMatchesV2(sourceShape: sourceShape,
+                                                                sourceShapeId: sourceShapeId,
+                                                                firstSourcePos: firstSourcePos,
+                                                                searchShape: searchShape,
+                                                                searchShapeId: searchShapeId,
+                                                                firstSearchPos: firstSourcePos,
+                                                                matches: matches,
+                                                                
+                                                                matchingWordCount: matchCount)
                 
                 return multiWordMatch
             } else {
@@ -491,14 +555,14 @@ public struct WordIndexModelV2 {
             let wordId = Int(sourceShape.placements[wordPos].w)
             
             /// These are all the shapes that contain the word in shape
-            let matches = self.index[wordId]
+            //let matches = self.index[wordId]
             
-            let (lowestIndexPos, highestIndexPos) = FindValidRangeOfIndexPos(indexForWord: matches, searchMin: searchMin, searchMax: searchMax)
+            let (lowestIndexPos, highestIndexPos) = FindValidRangeOfIndexPos(indexForWord: self.index[wordId], searchMin: searchMin, searchMax: searchMax)
             
             if lowestIndexPos != -1 {
                
                 for i in lowestIndexPos..<highestIndexPos+1 {
-                    let searchShapeId = matches[i]
+                    let searchShapeId = self.index[wordId][i]
                     
                     let item = ProcessV2(wordPos: wordPos, sourceShape: sourceShape, sourceShapeId: sourceShapeId, searchShape:searchShapes[searchShapeId], searchShapeId: searchShapeId)
                     if item != nil {
@@ -509,5 +573,27 @@ public struct WordIndexModelV2 {
         }
   
         return result
+    }
+    
+    private func SingleWordMatchV2(
+        sourceShape: ShapeModel,
+        sourceShapeId: Int,
+        firstSourcePos: Int,
+        matches: [Int],
+        searchShape: ShapeModel,
+        searchShapeId: Int,
+        firstSearchPos: Int) -> MergeInstructionModel {
+        
+        assert(sourceShape.placements.count <= searchShape.placements.count, "Source Shape should always have less than or equal words as search shape")
+        
+        let flipped = sourceShape.placements[firstSourcePos].z != searchShape.placements[firstSearchPos].z;
+        
+        return MergeInstructionModel(sourceShapeId: sourceShapeId,
+                                     searchShapeId: searchShapeId,
+                                     matchingWordCount: 1,
+                                     sourceMatchingWordPosition: UInt8(firstSourcePos),
+                                     searchMatchingWordPosition: UInt8(firstSearchPos),
+                                     flipped: flipped);
+        
     }
 }
