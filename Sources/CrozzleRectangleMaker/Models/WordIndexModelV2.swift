@@ -110,9 +110,6 @@ public struct WordIndexModelV2 {
                                 searchShape: ShapeModel,
                                 searchShapeId:Int) -> MergeInstructionModel? {
         
-        assert(sourceShape.placements.count <= searchShape.placements.count, "Source Shape should always have less than or equal words as search shape")
-        
-        
         // We only have 1 match
         if (matchCount == 1) {
             let match = singleWordMatch(
@@ -247,7 +244,12 @@ public struct WordIndexModelV2 {
         
         // If we have the smaller and larger the wrong way around then call again but this time making smaller actually smaller
         
-        assert(sourceShape.placements.count <= searchShape.placements.count, "Source Shape should always have less than or equal words as search shape")
+        if matchingWordCount == sourceShape.placements.count || matchingWordCount == searchShape.placements.count {
+            // We have found some shape to be a subset of another shape
+            return nil
+        }
+        
+        
         
         let (matches, firstSourcePos, firstSearchPos, _) = GetMatches(sourceShape: sourceShape, searchShape: searchShape)
         
