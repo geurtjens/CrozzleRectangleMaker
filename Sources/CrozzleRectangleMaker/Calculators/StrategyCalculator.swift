@@ -119,7 +119,7 @@ public class StrategyCalculator {
         
         let startNano = DateTimeCalculator.now()
             
-        var queue = WinningGameQueueListCalculatorV3.Queue(gameId: game.gameId, words: words, queueLength: queueLength, priorityFunction: .score_area)!
+        var queue = GetQueue(game: game, words: words, queueLength: queueLength, priorityFunction: .score_area)
         
         //    for i in 5..<30 {
         //        queue.queues[i].search_TopScorePercent = 2.0
@@ -207,12 +207,9 @@ public class StrategyCalculator {
         
         let startNano = DateTimeCalculator.now()
             
-        var queue = WinningGameQueueListCalculatorV3.Queue(gameId: game.gameId, words: words, queueLength: queueLength, priorityFunction: .score_area)!
+        var queue = GetQueue(game: game, words: words, queueLength: queueLength, priorityFunction: .score_area)
         
-        //    for i in 5..<30 {
-        //        queue.queues[i].search_TopScorePercent = 2.0
-        //    }
-            
+        
         var maxShape: ShapeModel? = nil
         var maxScore: UInt16 = 0
         
@@ -283,12 +280,27 @@ public class StrategyCalculator {
         return queue
     }
     
+    public static func GetQueue(game: GameModel, words: [String], queueLength: Int, priorityFunction: PriorityFunction) -> QueueList {
+        let scoresMin = StrategyCalculator.GetScoreMins(gameId: game.gameId)
+
+        let constraint = ConstraintsModel(
+            words: words,
+            scoresMin: scoresMin,
+            queueLengthMax: queueLength,
+            priorityFunction: .score_area)
+
+        var queue = QueueList(game: game, constraints: constraint)
+
+        let shapes = WinningGameQueueListCalculatorV3.Shapes(gameId: game.gameId, words: words)
+        queue.add(shapes: shapes)
+        return queue
+    }
     
     public static func TryMergeWithLowerOnlySync(game: GameModel, words: [String], queueLength: Int, highScore: Int, repeatTimes: Int = 1) -> QueueList {
        
          let startNano = DateTimeCalculator.now()
             
-        var queue = WinningGameQueueListCalculatorV3.Queue(gameId: game.gameId, words: words, queueLength: queueLength, priorityFunction: .score_area)!
+        var queue = GetQueue(game: game, words: words, queueLength: queueLength, priorityFunction: .score_area)
             
         var maxShape: ShapeModel? = nil
         var maxScore: UInt16 = 0
