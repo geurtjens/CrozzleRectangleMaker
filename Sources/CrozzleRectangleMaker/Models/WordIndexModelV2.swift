@@ -26,6 +26,8 @@ public struct WordIndexModelV2 {
     public let index: [[Int]]
     
     
+    /// Use this when you do not know the size of the shapes, so we can have multiple sized shapes for example
+    /// For bulk loads this can take an extra 7 seconds so if all shapes are same size then use the other init
     public init(shapes: [ShapeModel],
                 wordCount: Int) {
         
@@ -33,6 +35,22 @@ public struct WordIndexModelV2 {
         
         for shapeId in 0..<shapes.count {
             for placementId in 0..<shapes[shapeId].placements.count {
+                let w = Int(shapes[shapeId].placements[placementId].w);
+                indexTemp[w].append(shapeId);
+            }
+        }
+        self.index = indexTemp
+    }
+    
+    /// Use this when you know the size of the shape
+    public init(shapes: [ShapeModel],
+                wordsPerShape: Int,
+                wordCount: Int) {
+        
+        var indexTemp: [[Int]] = Array(repeating: [], count: wordCount)
+        
+        for shapeId in 0..<shapes.count {
+            for placementId in 0..<wordsPerShape {
                 let w = Int(shapes[shapeId].placements[placementId].w);
                 indexTemp[w].append(shapeId);
             }

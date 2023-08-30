@@ -72,7 +72,7 @@ public struct QueueModel {
                 shapeCount: self.gpuShapes.count,
                 words: self.gpuShapes.wordId)
         } else {
-            self.wordIndexV2 = WordIndexModelV2(shapes: self.shapes,
+            self.wordIndexV2 = WordIndexModelV2(shapes: self.shapes, wordsPerShape: self.stride,
                                                 wordCount: self.totalWords)
         }
         
@@ -117,7 +117,7 @@ public struct QueueModel {
             self.shapes = self.shapes.filter { $0.score >= scoreMin }
             self.gpuShapes = GpuShapeModel(shapes: self.shapes, totalWords: self.totalWords, stride: self.stride)
             self.statistics = StatisticsCalculator.Execute(scores: self.gpuShapes.scores)
-            self.wordIndexV2 = WordIndexModelV2(shapes: shapes, wordCount: self.totalWords)
+            self.wordIndexV2 = WordIndexModelV2(shapes: shapes, wordsPerShape: self.stride, wordCount: self.totalWords)
         }
         self.scoreMin = scoreMin
     }
@@ -130,6 +130,7 @@ public struct QueueModel {
         self.shapes = shapes
         
         self.wordIndexV2 = WordIndexModelV2(shapes: shapes,
+                                            wordsPerShape: self.stride,
                                             wordCount: totalWords)
         
         if FeatureFlags.mergeMethod == .async_objectOfArrays || FeatureFlags.mergeMethod == .sync_objectOfArrays {
@@ -146,7 +147,7 @@ public struct QueueModel {
                 words: gpuShapes.wordId)
         } else  {
             
-            self.wordIndexV2 = WordIndexModelV2(shapes: self.shapes, wordCount: totalWords)
+            self.wordIndexV2 = WordIndexModelV2(shapes: self.shapes, wordsPerShape: self.stride, wordCount: totalWords)
             self.gpuShapes = GpuShapeModel()
         }
     }
