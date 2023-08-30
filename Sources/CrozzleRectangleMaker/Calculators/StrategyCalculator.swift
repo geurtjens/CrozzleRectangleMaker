@@ -119,7 +119,7 @@ public class StrategyCalculator {
         
         let startNano = DateTimeCalculator.now()
             
-        var queue = WinningGameQueueListCalculatorV1.Queue(gameId: game.gameId, words: words, queueLength: queueLength, priorityFunction: .score_area)!
+        var queue = WinningGameQueueListCalculatorV3.Queue(gameId: game.gameId, words: words, queueLength: queueLength, priorityFunction: .score_area)!
         
         //    for i in 5..<30 {
         //        queue.queues[i].search_TopScorePercent = 2.0
@@ -207,7 +207,7 @@ public class StrategyCalculator {
         
         let startNano = DateTimeCalculator.now()
             
-        var queue = WinningGameQueueListCalculatorV1.Queue(gameId: game.gameId, words: words, queueLength: queueLength, priorityFunction: .score_area)!
+        var queue = WinningGameQueueListCalculatorV3.Queue(gameId: game.gameId, words: words, queueLength: queueLength, priorityFunction: .score_area)!
         
         //    for i in 5..<30 {
         //        queue.queues[i].search_TopScorePercent = 2.0
@@ -288,7 +288,7 @@ public class StrategyCalculator {
        
          let startNano = DateTimeCalculator.now()
             
-        var queue = WinningGameQueueListCalculatorV1.Queue(gameId: game.gameId, words: words, queueLength: queueLength, priorityFunction: .score_area)!
+        var queue = WinningGameQueueListCalculatorV3.Queue(gameId: game.gameId, words: words, queueLength: queueLength, priorityFunction: .score_area)!
             
         var maxShape: ShapeModel? = nil
         var maxScore: UInt16 = 0
