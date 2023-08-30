@@ -34,6 +34,8 @@ public struct ShapeModel {
     
     public var density: Float32
     
+    public var mergeHistory: [Int] = []
+    
     public init(score: UInt16, width: UInt8, height: UInt8, placements: [PlacementModel]) {
         self.score = score
         self.width = width
@@ -51,6 +53,23 @@ public struct ShapeModel {
             result.append(placement.w)
         }
         return result
+    }
+    
+    
+    public static func createMergeHistory(sourceShapeHistory: [Int], searchShapeHistory: [Int]) -> [Int] {
+        if sourceShapeHistory.count == 1 && searchShapeHistory.count == 1 {
+            let source = sourceShapeHistory[0]
+            let search = searchShapeHistory[0]
+            if source < search {
+                return [source, search]
+            } else {
+                return [search, source]
+            }
+        } else if sourceShapeHistory.count > searchShapeHistory.count {
+            return sourceShapeHistory + searchShapeHistory
+        } else {
+            return searchShapeHistory + sourceShapeHistory
+        }
     }
     
     public func getGridSize() -> Int {
