@@ -76,7 +76,7 @@ public class MergeSizeValidation {
         let sourceWidth = sourceShapes.widths[instruction.sourceShapeId]
         let sourceHeight = sourceShapes.heights[instruction.sourceShapeId]
         
-        let sourceWordPosition = instruction.sourceShapeId * sourceShapes.stride + Int(instruction.sourceMatchingWordPosition)
+        let sourceWordPosition = instruction.sourceShapeId * sourceShapes.stride + Int(instruction.firstSourcePos)
         
         let sourceX = sourceShapes.x[sourceWordPosition]
         let sourceY = sourceShapes.y[sourceWordPosition]
@@ -84,7 +84,7 @@ public class MergeSizeValidation {
         let searchWidth = searchShapes.widths[instruction.searchShapeId]
         let searchHeight = searchShapes.heights[instruction.searchShapeId]
         
-        let searchWordPosition = instruction.searchShapeId * searchShapes.stride + Int(instruction.searchMatchingWordPosition)
+        let searchWordPosition = instruction.searchShapeId * searchShapes.stride + Int(instruction.firstSearchPos)
         
         let searchX = searchShapes.x[searchWordPosition]
         let searchY = searchShapes.y[searchWordPosition]

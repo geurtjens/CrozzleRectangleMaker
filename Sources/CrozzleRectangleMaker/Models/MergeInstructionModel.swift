@@ -18,10 +18,10 @@ public struct MergeInstructionModel {
     public let matchingWordCount: UInt8
     
     /// position of first matching word in first shape
-    public let sourceMatchingWordPosition: UInt8
+    public let firstSourcePos: UInt8
     
     /// position of first matching owrd in second shape
-    public let searchMatchingWordPosition: UInt8
+    public let firstSearchPos: UInt8
     
     /// does the second shape have to be flipped before they come together
     public let flipped: Bool

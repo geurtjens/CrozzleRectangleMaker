@@ -26,9 +26,9 @@ public class MergePlacementCalculator {
             print("Your offset calculator did not work")
         }
         
-        let sourcePos = instruction.sourceShapeId * sourceShapes.stride + Int(instruction.sourceMatchingWordPosition)
+        let sourcePos = instruction.sourceShapeId * sourceShapes.stride + Int(instruction.firstSourcePos)
         
-        let searchPos = instruction.searchShapeId * searchShapes.stride + Int(instruction.searchMatchingWordPosition)
+        let searchPos = instruction.searchShapeId * searchShapes.stride + Int(instruction.firstSearchPos)
         
         // I think the first word position might be useful
         let xSource = sourceShapes.x[sourcePos]
@@ -125,8 +125,8 @@ public class MergePlacementCalculator {
 //        let searchPos = instruction.searchShapeId * searchShapes.stride + Int(instruction.searchMatchingWordPosition)
 //
         
-        let sourcePlacement = sourceShape.placements[Int(instruction.sourceMatchingWordPosition)]
-        let searchPlacement = searchShape.placements[Int(instruction.searchMatchingWordPosition)]
+        let sourcePlacement = sourceShape.placements[Int(instruction.firstSourcePos)]
+        let searchPlacement = searchShape.placements[Int(instruction.firstSearchPos)]
         
         // I think the first word position might be useful
         let xSource = Int(sourcePlacement.x)

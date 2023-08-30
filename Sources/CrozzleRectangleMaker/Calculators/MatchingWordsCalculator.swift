@@ -283,8 +283,8 @@ public class MatchingWordsCalculator {
                 sourceShapeId: item.sourceShapeId,
                 searchShapeId: item.searchShapeId,
                 matchingWordCount: item.matchingWordCount,
-                sourceMatchingWordPosition: UInt8(i),
-                searchMatchingWordPosition: UInt8(k),
+                firstSourcePos: UInt8(i),
+                firstSearchPos: UInt8(k),
                 flipped: flipped)
                 
             result.append(mergeInstruction)

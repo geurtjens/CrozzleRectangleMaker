@@ -377,7 +377,7 @@ public class MergeCalculatorV2 {
 //            sourceWordIndex: wordIndex,
 //            searchMax: searchMax)
         
-        let instructions = wordIndex.FindMatches(sourceShape: sourceShape,
+        let instructions = wordIndex.findMatches(sourceShape: sourceShape,
                                                  sourceShapeId: sourceShapeId,
                                                  searchMin: sourceShapeId + 1,
                                                  searchMax: searchMax,
@@ -413,7 +413,7 @@ public class MergeCalculatorV2 {
 //            indexSize += item.count
 //        }
 //        print("index size \(indexSize)")
-        let instructions = searchWordIndex.FindMatches(sourceShape: sourceShape,
+        let instructions = searchWordIndex.findMatches(sourceShape: sourceShape,
                                                        sourceShapeId: sourceShapeId,
                                                        searchMin: 0,
                                                        searchMax: searchMax,
@@ -532,11 +532,11 @@ public class MergeCalculatorV2 {
         let searchWidth = Int(searchShape.width)
         let searchHeight = Int(searchShape.height)
         
-        let sourcePlacement = sourceShape.placements[Int(instruction.sourceMatchingWordPosition)]
+        let sourcePlacement = sourceShape.placements[Int(instruction.firstSourcePos)]
         let sourceX = Int(sourcePlacement.x)
         let sourceY = Int(sourcePlacement.y)
         
-        let searchPlacement = searchShape.placements[Int(instruction.searchMatchingWordPosition)]
+        let searchPlacement = searchShape.placements[Int(instruction.firstSearchPos)]
         let searchX = Int(searchPlacement.x)
         let searchY = Int(searchPlacement.y)
         
