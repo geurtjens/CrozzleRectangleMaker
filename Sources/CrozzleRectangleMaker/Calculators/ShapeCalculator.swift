@@ -282,9 +282,10 @@ public class ShapeCalculator {
     /// When we have an initial set of shapes and these shapes are going to be the origin of all merges
     /// then we give each shape a mergeHistory number and that is what will be propogated throughout all merges in the future
     /// So this routine just sets that number
-    public static func SetMergeHistory(shapes: inout [ShapeModel]) {
+    public static func SetMergeHistory(shapes: inout [ShapeModel], startingWith: Int = 0) {
         for shapeId in 0..<shapes.count {
-            shapes[shapeId].mergeHistory = [shapeId]
+            let position = shapeId + startingWith
+            shapes[shapeId].mergeHistory = [position]
         }
     }
     
