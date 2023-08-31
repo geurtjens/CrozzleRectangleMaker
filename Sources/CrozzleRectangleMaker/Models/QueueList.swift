@@ -214,11 +214,15 @@ public struct QueueList {
     }
     
     
-    public mutating func mergeWithOriginalShapesAsync(winningScore: Int) async -> ShapeModel {
-        
+    public mutating func mergeWithOriginalShapesAsync(winningScore: Int, attempts: Int = 1) async -> ShapeModel {
+        var currentAttempt = 0
         let wordIndex = WordIndexModelV2(shapes: self.originalShapes, wordCount: self.constraints.words.count)
         var maxShape:  ShapeModel?
-        for mergeIndex in 0..<40 {
+        
+        
+        var mergeIndex = 0
+        while mergeIndex < 40 && currentAttempt < attempts {
+        
             if self.queues[mergeIndex].shapes.count > 0 {
                 
                 let startNano = DateTimeCalculator.now()
@@ -247,8 +251,7 @@ public struct QueueList {
                         }
                     }
                 } else {
-                    print("Could not find winning shape")
-                    return maxShape!
+                    print("no shapes returned for \(mergeIndex)")
                 }
                 let finishNano = DateTimeCalculator.now()
                 
@@ -256,6 +259,13 @@ public struct QueueList {
                 if FeatureFlags.verbose {
                     DateTimeCalculator.printDate("mergeWithOriginalShapesAsync() for mergeIndex: \(mergeIndex)) produced \(shapes.count) shapes took \(duration) and finished at")
                 }
+            }
+            
+            if mergeIndex == 39 && currentAttempt < attempts {
+                mergeIndex = 0
+                currentAttempt += 1
+            } else {
+                mergeIndex += 1
             }
         }
         return maxShape!

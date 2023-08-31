@@ -511,6 +511,8 @@ public class MergeCalculatorV2 {
                             let wordCount = validShape.placements.count
                             let scoreMin = scoresMin[wordCount]
                             if validShape.score >= scoreMin {
+                                var validShape = validShape
+                                validShape.mergeHistory = ShapeModel.createMergeHistory(sourceShapeHistory: sourceShape.mergeHistory, searchShapeHistory: searchShape.mergeHistory)
                                 shapeList.append(validShape)
                             }
                         }

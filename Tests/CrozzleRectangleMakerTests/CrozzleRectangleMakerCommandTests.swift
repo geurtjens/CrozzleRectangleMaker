@@ -58,8 +58,10 @@ final class CrozzleRectangleMakerCommandTests: XCTestCase {
                 let words = game.winningWords
                 
                 var queueLength = 0
-                if gamesWon_1000.contains(game.gameId) { //}== false && newWinners.contains(game.gameId) == false && game.gameId >= 9412 {
+                if gamesWon_1000.contains(game.gameId) {
                     queueLength = 1_000
+//                } else if game.gameId == 8812 {
+//                    queueLength = 1_000
                 } else if gamesWon_5000.contains(game.gameId) {
                     //queueLength = 5_000
                 } else if gamesWon_10_000.contains(game.gameId) {
@@ -78,7 +80,7 @@ final class CrozzleRectangleMakerCommandTests: XCTestCase {
                 if queueLength > 0 {
                     print("## GAME: \(game.gameId), queue: \(queueLength)")
                     
-                    let _ = await StrategyCalculator.mergeWithOriginalShapeOnly(game: game, words: words, queueLength: queueLength, highScore: game.winningScore, repeatTimes: 1)
+                    let _ = await StrategyCalculator.mergeWithOriginalShapeOnly(game: game, words: words, queueLength: queueLength, highScore: game.winningScore, repeatTimes: 2)
                     print("")
                     print("")
                 }
