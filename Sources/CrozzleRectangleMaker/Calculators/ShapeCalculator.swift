@@ -307,7 +307,11 @@ public class ShapeCalculator {
             if $0.score == $1.score {
                 if $0.area == $1.area {
                     if $0.wordSequence == $1.wordSequence {
-                        return $0.mergeHistory.count < $1.mergeHistory.count
+                        if $0.mergeHistory.count == $1.mergeHistory.count {
+                            return lowestShapeScoresFirst($0, $1)
+                        } else {
+                            return $0.mergeHistory.count < $1.mergeHistory.count
+                        }
                     } else {
                         return $0.wordSequence < $1.wordSequence
                     }
@@ -322,7 +326,23 @@ public class ShapeCalculator {
     }
     
     
-    
+    public static func lowestShapeScoresFirst(_ firstShape: ShapeModel, _ secondShape: ShapeModel) -> Bool {
+        var firstIsBetterThanSecond = true
+
+        if firstShape.mergeHistory.count == secondShape.mergeHistory.count {
+            for mergeHistoryPos in 0..<firstShape.mergeHistory.count {
+                let firstItem = firstShape.mergeHistory[mergeHistoryPos]
+                let secondItem = secondShape.mergeHistory[mergeHistoryPos]
+                
+                if firstItem > secondItem {
+                    // Means that secondShape has a lower shape id in its merge history
+                    return false
+                }
+            }
+        }
+        
+        return firstIsBetterThanSecond
+    }
     
     
     public static func getScoreAndText3(shape: ShapeModel, words2:[[Int]], grid: inout [Int]) -> (UInt16, [Int]) {
