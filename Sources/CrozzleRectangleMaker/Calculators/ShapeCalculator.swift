@@ -306,7 +306,11 @@ public class ShapeCalculator {
         shapes.sort {
             if $0.score == $1.score {
                 if $0.area == $1.area {
-                    return $0.wordSequence < $1.wordSequence
+                    if $0.wordSequence == $1.wordSequence {
+                        return $0.mergeHistory.count < $1.mergeHistory.count
+                    } else {
+                        return $0.wordSequence < $1.wordSequence
+                    }
                 }
                 else {
                     return $0.area < $1.area
