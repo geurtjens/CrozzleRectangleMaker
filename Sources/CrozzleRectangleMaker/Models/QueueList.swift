@@ -21,6 +21,8 @@ public struct QueueList {
     
     public var wordsInt: [[Int]]
     
+    public var originalShapes: [ShapeModel] = []
+    
     public mutating func status() -> (ShapeModel?, Int) {
         var maxShape: ShapeModel? = nil
         
@@ -211,6 +213,53 @@ public struct QueueList {
         }
     }
     
+    
+    public mutating func mergeWithOriginalShapesAsync(winningScore: Int) async -> ShapeModel {
+        
+        let wordIndex = WordIndexModelV2(shapes: self.originalShapes, wordCount: self.constraints.words.count)
+        var maxShape:  ShapeModel?
+        for mergeIndex in 0..<40 {
+            if self.queues[mergeIndex].shapes.count > 0 {
+                
+                let startNano = DateTimeCalculator.now()
+                
+                let shapes = await MergeCalculatorV2.ExecuteDifferentShapesAsync(
+                    sourceShapes: self.queues[mergeIndex].shapes,
+                    searchShapes: self.originalShapes,
+                    searchWordIndex: wordIndex,
+                    sourceMax: self.queues[mergeIndex].sourceMax,
+                    searchMax: self.originalShapes.count,
+                    words: self.constraints.words,
+                    wordsInt: self.wordsInt,
+                    scoresMin: self.constraints.scoresMin,
+                    widthMax: self.game.maxWidth,
+                    heightMax: self.game.maxHeight)
+                
+                
+                
+                
+                if shapes.count > 0 {
+                    add(shapes: shapes)
+                    (maxShape, _) = self.status()
+                    if maxShape != nil {
+                        if maxShape!.score >= winningScore {
+                            return maxShape!
+                        }
+                    }
+                } else {
+                    print("Could not find winning shape")
+                    return maxShape!
+                }
+                let finishNano = DateTimeCalculator.now()
+                
+                let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
+                if FeatureFlags.verbose {
+                    DateTimeCalculator.printDate("mergeWithOriginalShapesAsync() for mergeIndex: \(mergeIndex)) produced \(shapes.count) shapes took \(duration) and finished at")
+                }
+            }
+        }
+        return maxShape!
+    }
     
     public func size() -> Int {
         var count = 0

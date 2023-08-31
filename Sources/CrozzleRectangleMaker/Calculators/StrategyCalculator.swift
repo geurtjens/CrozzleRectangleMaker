@@ -195,6 +195,89 @@ public class StrategyCalculator {
         return queue
     }
     
+    public static func mergeWithOriginalShapeOnly(game: GameModel, words: [String], queueLength: Int, highScore: Int, repeatTimes: Int = 1) async -> QueueList {
+       
+        let startNano = DateTimeCalculator.now()
+            
+        let scoresMin = StrategyCalculator.GetScoreMins(gameId: game.gameId)
+
+        let constraint = ConstraintsModel(
+            words: words,
+            scoresMin: scoresMin,
+            queueLengthMax: queueLength,
+            priorityFunction: .score_area)
+
+        var queue = QueueList(game: game, constraints: constraint)
+
+        var shapes = WinningGameQueueListCalculatorV3.Shapes(gameId: game.gameId, words: words)
+        ShapeCalculator.SetMergeHistory(shapes: &shapes)
+        
+        queue.originalShapes = shapes
+        queue.add(shapes: shapes)
+        
+        var maxShape: ShapeModel? = nil
+        var maxScore: UInt16 = 0
+        
+        var count = 0
+        var previousCount = 0
+        if FeatureFlags.verbose {
+            print("")
+            print("")
+            print("GAME \(game.gameId) with high score of \(game.winningScore) using \(words.count) words")
+        }
+        /// gives us the highest score so far
+        (maxShape, _) = queue.status()
+       
+        for repeatTime in 0..<repeatTimes {
+              var i = 0
+            while maxScore < highScore  {
+                
+                if queue.queues[i].shapes.count > 0 {
+                    let startNano = DateTimeCalculator.now()
+                    DateTimeCalculator.printDate("mergeEverythingBelowWith(index: \(i)) started at")
+                    let maxShape = await queue.mergeWithOriginalShapesAsync(winningScore: highScore)
+                    let finishNano = DateTimeCalculator.now()
+                    let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano)
+                    DateTimeCalculator.printDate("mergeEverythingBelowWith(index: \(i)) took \(duration) and finished at")
+                    
+                    //if maxShape.score >= highScore {
+                        //let finishNano = DateTimeCalculator.now()
+                               
+                        let duration2 = DateTimeCalculator.duration(start: startNano, finish: DateTimeCalculator.now())
+                        print("Duration \(duration2)")
+                        return queue
+                    //}
+                }
+                if i < 40 {
+                    i += 1
+                } else if i == 39 {
+                    i = 0
+                }
+            }
+            (_, count) = queue.status()
+            if count == previousCount {
+                //break
+            } else {
+                if FeatureFlags.verbose {
+                    print("GAME \(game.gameId) with high score of \(game.winningScore)")
+                }
+                // it shows all tiny variations of the same shape being built.  Quite interesting to see really.
+                previousCount = count
+            }
+            if repeatTimes > 1 {
+                print("Repeat Time: \(repeatTime+1) of \(repeatTimes)")
+            }
+        }
+        let _ = queue.getBestShape()
+        
+        let finishNano2 = DateTimeCalculator.now()
+               
+        let duration = DateTimeCalculator.duration(start: startNano, finish: finishNano2)
+        print("Duration \(duration)")
+        
+        return queue
+    }
+    
     
     public static func TryMergeWithLowerOnly(game: GameModel, words: [String], queueLength: Int, highScore: Int, repeatTimes: Int = 1) async -> QueueList {
        
