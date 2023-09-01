@@ -291,6 +291,10 @@ public class ShapeCalculator {
     
     public static func getMergeHistory(shape: ShapeModel, count: Int) -> [Int] {
         var result: [Int] = []
+        if shape.mergeHistory.count < count {
+            return []
+            // This should never happen
+        }
         for i in 0..<count {
             result.append(shape.mergeHistory[i])
         }
