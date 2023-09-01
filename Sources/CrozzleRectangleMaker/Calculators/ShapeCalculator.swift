@@ -289,6 +289,13 @@ public class ShapeCalculator {
         }
     }
     
+    public static func getMergeHistory(shape: ShapeModel, count: Int) -> [Int] {
+        var result: [Int] = []
+        for i in 0..<count {
+            result.append(shape.mergeHistory[i])
+        }
+        return result
+    }
     
     /// sort shapes by score, area and then also word sequence.  Useful for finding duplicates
     public static func SortWithWordSequence(shapes: inout [ShapeModel]) {
@@ -550,6 +557,31 @@ public class ShapeCalculator {
         return (result, UInt16(score))
     }
     
+    
+    public static func find(shapes: [ShapeModel], mergeHistory: [Int]) -> [ShapeModel] {
+        var result: [ShapeModel] = []
+
+        for shape in shapes {
+            if findMergeHistoryMatches(find: mergeHistory, search: shape.mergeHistory) {
+                result.append(shape)
+            }
+        }
+        return result
+    }
+    
+    public static func findMergeHistoryMatches(find: [Int], search: [Int]) -> Bool {
+        if find.count > search.count {
+            // it cannot match as there is not enough in the search
+            return false
+        }
+        
+        for i in 0..<find.count {
+            if find[i] != search[i] {
+                return false
+            }
+        }
+        return true
+    }
     
     public static func filterInclude(shapes: [ShapeModel], containing search:[String], from words: [String]) -> [ShapeModel]{
         let wordIds = WordCalculator.extractPositions(ofWords: search, from: words)

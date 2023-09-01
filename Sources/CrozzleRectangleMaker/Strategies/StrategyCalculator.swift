@@ -229,7 +229,7 @@ public class StrategyCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        var shapes = WinningGameQueueListCalculatorV3.Shapes(gameId: game.gameId, words: words)
+        var shapes = WinningShapesAllCalculatorV3.execute(gameId: game.gameId, words: words)
         ShapeCalculator.SortByScoreThenArea(shapes: &shapes)
         ShapeCalculator.SetMergeHistory(shapes: &shapes)
         
@@ -355,7 +355,7 @@ public class StrategyCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let shapes = WinningGameQueueListCalculatorV3.Shapes(gameId: game.gameId, words: words)
+        let shapes = WinningShapesAllCalculatorV3.execute(gameId: game.gameId, words: words)
         queue.add(shapes: shapes)
         return queue
     }

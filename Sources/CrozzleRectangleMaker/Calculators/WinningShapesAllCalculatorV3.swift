@@ -1,6 +1,5 @@
-
 import Foundation
-public class WinningGameQueueListCalculatorV3 {
+public class WinningShapesAllCalculatorV3 {
     public static func Shapes_8612(words: [String], end: [String], wordsInt:[[Int]], endInt: [[Int]], len: [Int], letterIndex: LetterIndexModel) -> [ShapeModel] {
 
         var shapes: [ShapeModel] = []
@@ -6347,7 +6346,7 @@ public class WinningGameQueueListCalculatorV3 {
         return shapes
     }
 
-    public static func Shapes(gameId: Int, words: [String]) -> [ShapeModel] {
+    public static func execute(gameId: Int, words: [String]) -> [ShapeModel] {
 
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
