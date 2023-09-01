@@ -27,6 +27,7 @@ public class BranchAndBoundStrategyV2 {
             for _ in 0..<lookahead {
                 let newShapes = await MergeCalculatorV2.ExecuteDifferentShapesAsync(sourceShapes: sourceShapes, searchShapes: searchShapes, searchWordIndex: wordIndex, sourceMax: sourceShapes.count, searchMax: searchShapes.count, words: words, wordsInt: wordsInt, scoresMin: scoresMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
                 if newShapes.count > 0 {
+                    var (newShapes,_) = RemoveDuplicatesCalculator.execute(shapes:newShapes)
                     sourceShapes = newShapes
                     ShapeCalculator.SortByScoreThenArea(shapes: &sourceShapes)
                     if bestShape.score < sourceShapes[0].score {
