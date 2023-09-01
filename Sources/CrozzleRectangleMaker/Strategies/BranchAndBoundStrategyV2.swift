@@ -46,8 +46,11 @@ public class BranchAndBoundStrategyV2 {
             backtrackCount += 1
             
             var backtrackShape = ShapeCalculator.mergeShapesByIndex(shapes: searchShapes, shapeIds: shapeIds, words: words)
-            
-            sourceShapes = [backtrackShape!]
+            if backtrackShape != nil {
+                sourceShapes = [backtrackShape!]
+            } else {
+                return bestShape
+            }
             
             
             // We are going to halve the number
