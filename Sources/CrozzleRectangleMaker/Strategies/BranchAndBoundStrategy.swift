@@ -7,7 +7,7 @@
 
 import Foundation
 public class BranchAndBoundStrategy {
-    public static func execute(gameId: Int, words: [String], repeatTimes: Int) async -> ShapeModel {
+    public static func execute(gameId: Int, words: [String], repeatTimes: Int, queueDepth: Int = 500) async -> ShapeModel {
         let game = GameList().getGame(gameId: gameId)!
         let wordsInt = WordCalculator.WordsToInt(words: words)
         let searchShapes = getShapes(gameId: gameId, words: words)
@@ -50,11 +50,9 @@ public class BranchAndBoundStrategy {
             ShapeCalculator.SortByScoreThenArea(shapes: &findBacktracks)
             
             // We are going to halve the number
-            for i in findBacktracks.count/2..<findBacktracks.count {
-                findBacktracks[i].isValid = false
-            }
-            if findBacktracks.count > 500 {
-                for i in 500..<findBacktracks.count {
+            
+            if findBacktracks.count > queueDepth {
+                for i in queueDepth..<findBacktracks.count {
                     findBacktracks[i].isValid = false
                 }
             }
