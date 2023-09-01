@@ -573,6 +573,8 @@ public class ShapeCalculator {
         return result
     }
     
+    
+    
     public static func findMergeHistoryMatches(find: [Int], search: [Int]) -> Bool {
         if find.count > search.count {
             // it cannot match as there is not enough in the search

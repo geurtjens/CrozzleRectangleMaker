@@ -14,7 +14,7 @@ final class BranchAndBoundStrategyTests: XCTestCase {
     
         let words = GameList().getGame(gameId: 8612)!.winningWords
         
-        await BranchAndBoundStrategy.execute(gameId: 8612, words: words)
+        await BranchAndBoundStrategy.execute(gameId: 8612, words: words, repeatTimes: 4)
         
     }
 

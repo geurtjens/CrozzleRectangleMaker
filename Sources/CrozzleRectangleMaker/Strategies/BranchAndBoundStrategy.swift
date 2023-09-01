@@ -44,13 +44,33 @@ public class BranchAndBoundStrategy {
             
             let historyToInclude = ShapeCalculator.getMergeHistory(shape: bestShape, count: backtrackCount)
             backtrackCount += 1
-            sourceShapes = ShapeCalculator.find(shapes: sourceShapes, mergeHistory: historyToInclude)
             
+            var findBacktracks = ShapeCalculator.find(shapes: sourceShapes, mergeHistory: historyToInclude)
+            
+            ShapeCalculator.SortByScoreThenArea(shapes: &findBacktracks)
+            
+            // We are going to halve the number
+            for i in findBacktracks.count/2..<findBacktracks.count {
+                findBacktracks[i].isValid = false
+            }
+            if findBacktracks.count > 500 {
+                for i in 500..<findBacktracks.count {
+                    findBacktracks[i].isValid = false
+                }
+            }
+                
+            findBacktracks = findBacktracks.filter { $0.isValid == true}
+            
+            
+            if findBacktracks.count != 0 {
+                print("Backtrack Level: \(backtrackCount), shapes: \(findBacktracks.count)")
+                sourceShapes = findBacktracks
+            }
             if bestShape.score >= game.winningScore {
                 return bestShape
             }
         }
-        return sourceShapes[0]
+        return bestShape
     }
     
     public static func getShapes(gameId: Int, words: [String]) -> [ShapeModel] {
