@@ -362,8 +362,7 @@ public class ShapeCalculator {
     }
     
     public static func lowestShapeScoresFirst(_ firstShape: ShapeModel, _ secondShape: ShapeModel) -> Bool {
-        var firstIsBetterThanSecond = true
-
+        
         if firstShape.mergeHistory.count == secondShape.mergeHistory.count {
             for mergeHistoryPos in 0..<firstShape.mergeHistory.count {
                 let firstItem = firstShape.mergeHistory[mergeHistoryPos]
@@ -375,8 +374,9 @@ public class ShapeCalculator {
                 }
             }
         }
-        
-        return firstIsBetterThanSecond
+
+        // means first is better than second
+        return true
     }
     
     
