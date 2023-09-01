@@ -326,6 +326,30 @@ public class ShapeCalculator {
     }
     
     
+    public static func mergeShapesByIndex(shapes: [ShapeModel], shapeIds:[Int], words: [String], widthMax: Int = 17, heightMax: Int = 13) -> ShapeModel? {
+        
+        let firstShapeId = shapeIds[0]
+        
+        var sourceShape: ShapeModel? = shapes[firstShapeId]
+        
+        for i in 1..<shapeIds.count {
+            let shapeId = shapeIds[i]
+            
+            let searchShape = shapes[shapeId]
+            
+            sourceShape = MergeCalculatorV2.mergeTwoShapes(
+                sourceShape: sourceShape!,
+                searchShape: searchShape,
+                words: words,
+                widthMax: widthMax,
+                heightMax: heightMax)
+            if sourceShape == nil {
+                return nil
+            }
+        }
+        return sourceShape
+    }
+    
     public static func lowestShapeScoresFirst(_ firstShape: ShapeModel, _ secondShape: ShapeModel) -> Bool {
         var firstIsBetterThanSecond = true
 

@@ -23,6 +23,33 @@ public struct QueueList {
     
     public var originalShapes: [ShapeModel] = []
     
+    public func findShapes(mergeHistory: [Int]) -> [ShapeModel] {
+        var shapes: [ShapeModel] = []
+        for queue in queues {
+            for shape in queue.shapes {
+                if findMergeHistoryMatches(find: mergeHistory, search: shape.mergeHistory) {
+                    shapes.append(shape)
+                }
+            }
+        }
+        return shapes
+    }
+    
+    public func findMergeHistoryMatches(find: [Int], search: [Int]) -> Bool {
+        if find.count > search.count {
+            // it cannot match as there is not enough in the search
+            return false
+        }
+        
+        for i in 0..<find.count {
+            if find[i] != search[i] {
+                return false
+            }
+        }
+        return true
+    }
+    
+    
     public mutating func status() -> (ShapeModel?, Int) {
         var maxShape: ShapeModel? = nil
         

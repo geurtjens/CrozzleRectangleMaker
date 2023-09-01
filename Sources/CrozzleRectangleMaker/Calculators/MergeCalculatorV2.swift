@@ -526,6 +526,101 @@ public class MergeCalculatorV2 {
     }
     
     
+    public static func mergeTwoShapes(sourceShape: ShapeModel, searchShape: ShapeModel, words: [String], widthMax: Int, heightMax: Int, scoreMin: Int = 0) -> ShapeModel? {
+        var sourceShape = sourceShape
+        
+        let wordsInt = WordCalculator.WordsToInt(words: words)
+        
+        let (_, _, _, matchingWordCount) = WordIndexModelV2.GetMatches(sourceShape: sourceShape, searchShape: searchShape)
+        
+        
+        let instruction = WordIndexModelV2.processMatches(matchCount: matchingWordCount, sourceShape: sourceShape, sourceShapeId: 0, searchShape:searchShape, searchShapeId: 0)
+        if instruction == nil {
+            return nil
+        }
+        
+        guard let instruction = instruction else { return nil}
+        
+            
+        // We have matches of 2 but instruction says its a match of 1
+        let (isValidSize, calcWidth, calcHeight) = mergeSizeValidation(
+            instruction: instruction,
+            sourceShape: sourceShape,
+            searchShape: searchShape,
+            widthMax: widthMax,
+            heightMax: heightMax)
+
+        if isValidSize {
+            
+            let potentialPlacements = MergePlacementCalculator.ExecuteV2(
+                sourceShape: sourceShape,
+                searchShape: searchShape,
+                instruction: instruction,
+                words: words)
+            
+            if potentialPlacements.count > 0 {
+                
+                let potentialWidth = PlacementCalculator.width(fromPlacements: potentialPlacements)
+                let potentialHeight = PlacementCalculator.height(fromPlacements: potentialPlacements)
+
+                if (calcWidth == potentialWidth && calcHeight == potentialHeight) || (calcWidth == potentialHeight && calcHeight == potentialWidth) {} else {
+                    
+                    
+                    print("ERROR HERE")
+                    print(sourceShape.ToCode(words: words))
+                    print(searchShape.ToCode(words: words))
+                    
+                    print ("// sourceShape\n")
+                    if instruction.flipped {
+                        print("/*\n\(sourceShape.Flip().ToText(words: words))\n*/")
+                    } else {
+                        print("/*\n\(sourceShape.ToText(words: words))\n*/")
+                    }
+                    print ("// searchShape\n")
+                    print("/*\n\(searchShape.ToText(words: words))\n*/")
+                    print ("// result\n")
+                    print("/*\n\(potentialPlacements.toShape(score: 0).ToTextDebug(words: words))\n*/")
+                    print("potentialWH::(\(potentialWidth),\(potentialHeight)), calcWH:(\(calcWidth), \(calcHeight))")
+                    
+                    
+                    print("\(instruction)")
+                }
+                
+                if (potentialWidth <= widthMax && potentialHeight <= heightMax) ||
+                    (potentialWidth <= heightMax && potentialHeight <= widthMax) {
+                    
+                    let validShape = ShapeToTextConverterV2.ToValidShape(placements: potentialPlacements, width: Int(potentialWidth), height: Int(potentialHeight), wordsInt: wordsInt, words: words)
+                    
+                    if let validShape = validShape {
+                        
+                        // I wonder if the shape width and height are the same
+                        if potentialWidth == validShape.width && potentialHeight == validShape.height {
+                            //print("same")
+                        } else if potentialWidth == validShape.height && potentialHeight == validShape.width {
+                            //print("opposite")
+                        } else {
+                            print("different")
+                        }
+                        
+                        
+                        // is shape is not nil so it must be a valid shape
+                        let wordCount = validShape.placements.count
+                        
+                        if validShape.score >= scoreMin {
+                            var validShape = validShape
+                            validShape.mergeHistory = ShapeModel.createMergeHistory(sourceShapeHistory: sourceShape.mergeHistory, searchShapeHistory: searchShape.mergeHistory)
+                            sourceShape = validShape
+                        }
+                    }
+                }
+            } else {
+                print("We thought it was a valid size but it wasnt")
+            }
+        }
+        
+        return sourceShape
+    }
+    
     public static func mergeSizeValidation(instruction: MergeInstructionModel, sourceShape: ShapeModel, searchShape: ShapeModel, widthMax: Int, heightMax: Int) -> (Bool, Int, Int) {
         
         let sourceWidth = Int(sourceShape.width)

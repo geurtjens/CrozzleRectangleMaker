@@ -236,8 +236,7 @@ public class StrategyCalculator {
         queue.originalShapes = shapes
         queue.add(shapes: shapes)
         
-        var count = 0
-        var previousCount = 0
+        
         if FeatureFlags.verbose {
             print("")
             print("")

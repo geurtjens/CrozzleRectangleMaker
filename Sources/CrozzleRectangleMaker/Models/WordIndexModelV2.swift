@@ -82,7 +82,7 @@ public struct WordIndexModelV2 {
             if (previous == searchShapeId) {
                 matchCount += 1
             } else {
-                let item = processMatches(matchCount: matchCount, sourceShape: sourceShape, sourceShapeId: sourceShapeId, searchShape:searchShapes[previous], searchShapeId: previous)
+                let item = WordIndexModelV2.processMatches(matchCount: matchCount, sourceShape: sourceShape, sourceShapeId: sourceShapeId, searchShape:searchShapes[previous], searchShapeId: previous)
                 if item != nil {
                     result.append(item!)
                 }
@@ -96,7 +96,7 @@ public struct WordIndexModelV2 {
             print("What should we do here then with previous and searchShapeId being different")
         }
         // Process last one, should this be previous or should it be searchShapeId?
-        let item = processMatches(matchCount: matchCount, sourceShape: sourceShape, sourceShapeId: sourceShapeId, searchShape:searchShapes[searchShapeId], searchShapeId: searchShapeId)
+        let item = WordIndexModelV2.processMatches(matchCount: matchCount, sourceShape: sourceShape, sourceShapeId: sourceShapeId, searchShape:searchShapes[searchShapeId], searchShapeId: searchShapeId)
         if item != nil {
             result.append(item!)
         }
@@ -104,7 +104,7 @@ public struct WordIndexModelV2 {
         return result
     }
     
-    private func processMatches(matchCount: Int,
+    public static func processMatches(matchCount: Int,
                                 sourceShape: ShapeModel,
                                 sourceShapeId: Int,
                                 searchShape: ShapeModel,
@@ -143,7 +143,7 @@ public struct WordIndexModelV2 {
 
 
     // While we are here lets see if they are the same orientation
-    private func isSameDirection(firstSourcePos: Int,
+    private static func isSameDirection(firstSourcePos: Int,
                                firstSearchPos: Int,
                                matches:[Int],
                                firstIsFlipped: Bool,
@@ -174,7 +174,7 @@ public struct WordIndexModelV2 {
     
     /// Is there a placement in the searchShape that has the same word as what we are looking for
     /// if so then what is the word position within the shape
-    private func MatchingPlacementPosition(searchShape: ShapeModel,
+    private static func MatchingPlacementPosition(searchShape: ShapeModel,
                                            wordId: Int) -> Int {
         
         for i in 0..<searchShape.placements.count {
@@ -185,7 +185,7 @@ public struct WordIndexModelV2 {
         return -1;
     }
     
-    private func singleWordMatch(sourceShape: ShapeModel,
+    private static func singleWordMatch(sourceShape: ShapeModel,
                                  sourceShapeId: Int,
                                  searchShape: ShapeModel,
                                  searchShapeId: Int) -> MergeInstructionModel? {
@@ -193,7 +193,7 @@ public struct WordIndexModelV2 {
         for sourcePos in 0..<sourceShape.placements.count {
             
             /// Tells us the location of the word matching with the current word or else -1
-            let searchPos = MatchingPlacementPosition(searchShape: searchShape,
+            let searchPos = WordIndexModelV2.MatchingPlacementPosition(searchShape: searchShape,
                                                       wordId: Int(sourceShape.placements[sourcePos].w))
             
             if (searchPos != -1) {
@@ -211,7 +211,7 @@ public struct WordIndexModelV2 {
     }
     
     
-    private func GetMatches(sourceShape: ShapeModel, searchShape: ShapeModel) -> ([Int],Int,Int,Int) {
+    public static func GetMatches(sourceShape: ShapeModel, searchShape: ShapeModel) -> ([Int],Int,Int,Int) {
         
         var firstSourcePos = -1
         var firstSearchPos = -1
@@ -236,7 +236,7 @@ public struct WordIndexModelV2 {
     }
     
     
-    private func multiWordMatch(sourceShape: ShapeModel,
+    private static func multiWordMatch(sourceShape: ShapeModel,
                                           sourceShapeId: Int,
                                           searchShape: ShapeModel,
                                           searchShapeId: Int,
@@ -251,7 +251,7 @@ public struct WordIndexModelV2 {
         
         
         
-        let (matches, firstSourcePos, firstSearchPos, _) = GetMatches(sourceShape: sourceShape, searchShape: searchShape)
+        let (matches, firstSourcePos, firstSearchPos, _) = WordIndexModelV2.GetMatches(sourceShape: sourceShape, searchShape: searchShape)
         
         let firstIsFlipped = (sourceShape.placements[firstSourcePos].z != searchShape.placements[firstSearchPos].z)
         
@@ -311,7 +311,7 @@ public struct WordIndexModelV2 {
     }
     
     
-    private func isSameDistance(firstSourcePos: Int,
+    private static func isSameDistance(firstSourcePos: Int,
                                   firstSearchPos: Int,
                                   matches: [Int],
                                   isFlipped: Bool,

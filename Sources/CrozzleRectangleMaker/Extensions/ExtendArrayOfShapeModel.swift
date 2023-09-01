@@ -12,4 +12,13 @@ extension Array where Element == ShapeModel {
         let shapes = ShapeCalculator.filterInclude(shapes: self, containing: containing, from: from)
         return shapes
     }
+    
+    func ToTextWithMergeHistory(words: [String]){
+        for shape in self {
+            print(shape.ToText(words: words))
+            print("Merge History: \(shape.mergeHistory)")
+            print("")
+        }
+       
+    }
 }
