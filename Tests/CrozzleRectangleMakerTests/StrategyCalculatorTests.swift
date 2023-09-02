@@ -13,12 +13,6 @@ final class StrategyCalculatorTests: XCTestCase {
     func test_gamesThatHaventWonYet() async {
         await StrategyCalculator.gamesThatHaventWonYet()
     }
-    
-    func test_shapesFor8612() {
-        let game = GameList().getGame(gameId: 8612)!
-        var queue = StrategyCalculator.shapesFor8612(queueLength: 5000, words: game.winningWords)
-        print(queue.status())
-    }
 
     func test_Next() async {
         await StrategyCalculator.BasicStrategy()
@@ -30,7 +24,7 @@ final class StrategyCalculatorTests: XCTestCase {
             return
         }
         
-        let (winningShapes, words, _, _) = GameList.getShapes(gameId: 8612)
+        let (winningShapes, words, _, _) = WinningShapesCalculatorV1.getShapes(gameId: 8612)
         let scoresMin:[Int] = Array(repeating: 0, count: 40)
         let constraints = ConstraintsModel(words: words, scoresMin:scoresMin, queueLengthMax: 1000, priorityFunction: .score_area)
         var queues = QueueList(game: game, constraints: constraints)

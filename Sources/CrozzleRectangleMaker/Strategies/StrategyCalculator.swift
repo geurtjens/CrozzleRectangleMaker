@@ -103,31 +103,6 @@ public class StrategyCalculator {
     }
     
     
-    public static func shapesFor8612(queueLength: Int, words: [String]) -> QueueList {
-        let shapeConstraints: [ShapeConstraintModel] = [
-            ShapeConstraintModel(name:"edge", scoreMin: 22, widthMax: 10, heightMax:8),
-            ShapeConstraintModel(name: "rectangle3x4", scoreMin: 136, widthMax: 10, heightMax: 8),
-            ShapeConstraintModel(name: "rectangle3x4_BottomLeft", scoreMin: 64, widthMax: 10, heightMax: 7),
-            ShapeConstraintModel(name: "rectangle4x5", scoreMin: 90, widthMax: 11, heightMax:8),
-            ShapeConstraintModel(name: "square3x3", scoreMin: 52, widthMax:11, heightMax: 8)
-            ]
-        let game = GameList().getGame(gameId: 8612)!
-        
-        let scoresMin = StrategyCalculator.GetScoreMins(gameId: 8612)
-        let constraints = ConstraintsModel(
-            words: words,
-            shapeConstraints: shapeConstraints,
-            scoresMin: scoresMin,
-            
-            queueLengthMax: queueLength,
-            priorityFunction: .score_area)
-        
-        let queueList = QueueList(game: game, constraints: constraints)
-        
-        
-        return queueList
-    }
-    
     public static func TryMergeWithItselfAndBelow(game: GameModel, words: [String], queueLength: Int, highScore: Int, repeatTimes: Int = 1) async -> QueueList {
        
             
@@ -753,7 +728,7 @@ public class StrategyCalculator {
         let gameList = GameList()
         for game in gameList.games {
             
-            let (winningShapes, words, _, _) = GameList.getShapes(gameId: game.gameId)
+            let (winningShapes, words, _, _) = WinningShapesCalculatorV1.getShapes(gameId: game.gameId)
             
             guard let winningShape = GameList.getWinningShape(gameId: game.gameId) else { return  }
             

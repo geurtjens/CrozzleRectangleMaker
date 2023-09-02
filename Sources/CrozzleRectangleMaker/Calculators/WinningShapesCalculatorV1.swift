@@ -8,18 +8,225 @@
 import Foundation
 public class WinningShapesCalculatorV1 {
     
+    public static func getShapes(gameId: Int) -> ([ShapeModel],[String],Int,Int) {
+        switch gameId {
+        case 8612:
+            return WinningShapesCalculatorV1.Shapes_8612()
+        case 8702:
+            return WinningShapesCalculatorV1.Shapes_8702()
+        case 8703:
+            return WinningShapesCalculatorV1.Shapes_8703()
+        case 8704:
+            return WinningShapesCalculatorV1.Shapes_8704()
+        case 8705:
+            return WinningShapesCalculatorV1.Shapes_8705()
+        case 8710:
+            return WinningShapesCalculatorV1.Shapes_8710()
+        case 8711:
+            return WinningShapesCalculatorV1.Shapes_8711()
+        case 8712:
+            return WinningShapesCalculatorV1.Shapes_8712()
+        case 8802:
+            return WinningShapesCalculatorV1.Shapes_8802()
+        case 8803:
+            return WinningShapesCalculatorV1.Shapes_8803()
+        case 8804:
+            return WinningShapesCalculatorV1.Shapes_8804()
+        case 8805:
+            return WinningShapesCalculatorV1.Shapes_8805()
+        case 8806:
+            return WinningShapesCalculatorV1.Shapes_8806()
+        case 8807:
+            return WinningShapesCalculatorV1.Shapes_8807()
+        case 8808:
+            return WinningShapesCalculatorV1.Shapes_8808()
+        case 8809:
+            return WinningShapesCalculatorV1.Shapes_8809()
+        case 8810:
+            return WinningShapesCalculatorV1.Shapes_8810()
+        case 8811:
+            return WinningShapesCalculatorV1.Shapes_8811()
+        case 8812:
+            return WinningShapesCalculatorV1.Shapes_8812()
+        case 8902:
+            return WinningShapesCalculatorV1.Shapes_8902()
+        case 8903:
+            return WinningShapesCalculatorV1.Shapes_8903()
+        case 8904:
+            return WinningShapesCalculatorV1.Shapes_8904()
+        case 8905:
+            return WinningShapesCalculatorV1.Shapes_8905()
+        case 8906:
+            return WinningShapesCalculatorV1.Shapes_8906()
+        case 8907:
+            return WinningShapesCalculatorV1.Shapes_8907()
+        case 8908:
+            return WinningShapesCalculatorV1.Shapes_8908()
+        case 8909:
+            return WinningShapesCalculatorV1.Shapes_8909()
+        case 8910:
+            return WinningShapesCalculatorV1.Shapes_8910()
+        case 8911:
+            return WinningShapesCalculatorV1.Shapes_8911()
+        case 8912:
+            return WinningShapesCalculatorV1.Shapes_8912()
+        case 9001:
+            return WinningShapesCalculatorV1.Shapes_9001()
+        case 9002:
+            return WinningShapesCalculatorV1.Shapes_9002()
+        case 9003:
+            return WinningShapesCalculatorV1.Shapes_9003()
+        case 9004:
+            return WinningShapesCalculatorV1.Shapes_9004()
+        case 9005:
+            return WinningShapesCalculatorV1.Shapes_9005()
+        case 9006:
+            return WinningShapesCalculatorV1.Shapes_9006()
+        case 9007:
+            return WinningShapesCalculatorV1.Shapes_9007()
+        case 9008:
+            return WinningShapesCalculatorV1.Shapes_9008()
+        case 9009:
+            return WinningShapesCalculatorV1.Shapes_9009()
+        case 9010:
+            return WinningShapesCalculatorV1.Shapes_9010()
+        case 9011:
+            return WinningShapesCalculatorV1.Shapes_9011()
+        case 9012:
+            return WinningShapesCalculatorV1.Shapes_9012()
+        case 9101:
+            return WinningShapesCalculatorV1.Shapes_9101()
+        case 9102:
+            return WinningShapesCalculatorV1.Shapes_9102()
+        case 9103:
+            return WinningShapesCalculatorV1.Shapes_9103()
+        case 9104:
+            return WinningShapesCalculatorV1.Shapes_9104()
+        case 9105:
+            return WinningShapesCalculatorV1.Shapes_9105()
+        case 9106:
+            return WinningShapesCalculatorV1.Shapes_9106()
+        case 9107:
+            return WinningShapesCalculatorV1.Shapes_9107()
+        case 9108:
+            return WinningShapesCalculatorV1.Shapes_9108()
+        case 9109:
+            return WinningShapesCalculatorV1.Shapes_9109()
+        case 9110:
+            return WinningShapesCalculatorV1.Shapes_9110()
+        case 9111:
+            return WinningShapesCalculatorV1.Shapes_9111()
+        case 9112:
+            return WinningShapesCalculatorV1.Shapes_9112()
+        case 9201:
+            return WinningShapesCalculatorV1.Shapes_9201()
+        case 9202:
+            return WinningShapesCalculatorV1.Shapes_9202()
+        case 9203:
+            return WinningShapesCalculatorV1.Shapes_9203()
+        case 9204:
+            return WinningShapesCalculatorV1.Shapes_9204()
+        case 9206:
+            return WinningShapesCalculatorV1.Shapes_9206()
+        case 9207:
+            return WinningShapesCalculatorV1.Shapes_9207()
+        case 9208:
+            return WinningShapesCalculatorV1.Shapes_9208()
+        case 9209:
+            return WinningShapesCalculatorV1.Shapes_9209()
+        case 9210:
+            return WinningShapesCalculatorV1.Shapes_9210()
+        case 9211:
+            return WinningShapesCalculatorV1.Shapes_9211()
+        case 9212:
+            return WinningShapesCalculatorV1.Shapes_9212()
+        case 9301:
+            return WinningShapesCalculatorV1.Shapes_9301()
+        case 9302:
+            return WinningShapesCalculatorV1.Shapes_9302()
+        case 9303:
+            return WinningShapesCalculatorV1.Shapes_9303()
+        case 9304:
+            return WinningShapesCalculatorV1.Shapes_9304()
+        case 9305:
+            return WinningShapesCalculatorV1.Shapes_9305()
+        case 9306:
+            return WinningShapesCalculatorV1.Shapes_9306()
+        case 9307:
+            return WinningShapesCalculatorV1.Shapes_9307()
+        case 9308:
+            return WinningShapesCalculatorV1.Shapes_9308()
+        case 9309:
+            return WinningShapesCalculatorV1.Shapes_9309()
+        case 9310:
+            return WinningShapesCalculatorV1.Shapes_9310()
+        case 9311:
+            return WinningShapesCalculatorV1.Shapes_9311()
+        case 9312:
+            return WinningShapesCalculatorV1.Shapes_9312()
+        case 9401:
+            return WinningShapesCalculatorV1.Shapes_9401()
+        case 9402:
+            return WinningShapesCalculatorV1.Shapes_9402()
+        case 9403:
+            return WinningShapesCalculatorV1.Shapes_9403()
+        case 9404:
+            return WinningShapesCalculatorV1.Shapes_9404()
+        case 9406:
+            return WinningShapesCalculatorV1.Shapes_9406()
+        case 9407:
+            return WinningShapesCalculatorV1.Shapes_9407()
+        case 9408:
+            return WinningShapesCalculatorV1.Shapes_9408()
+        case 9409:
+            return WinningShapesCalculatorV1.Shapes_9409()
+        case 9410:
+            return WinningShapesCalculatorV1.Shapes_9410()
+        case 9411:
+            return WinningShapesCalculatorV1.Shapes_9411()
+        case 9412:
+            return WinningShapesCalculatorV1.Shapes_9412()
+        case 9501:
+            return WinningShapesCalculatorV1.Shapes_9501()
+        case 9502:
+            return WinningShapesCalculatorV1.Shapes_9502()
+        case 9503:
+            return WinningShapesCalculatorV1.Shapes_9503()
+        case 9504:
+            return WinningShapesCalculatorV1.Shapes_9504()
+        case 9505:
+            return WinningShapesCalculatorV1.Shapes_9505()
+        case 9506:
+            return WinningShapesCalculatorV1.Shapes_9506()
+        case 9507:
+            return WinningShapesCalculatorV1.Shapes_9507()
+        case 9508:
+            return WinningShapesCalculatorV1.Shapes_9508()
+        case 9509:
+            return WinningShapesCalculatorV1.Shapes_9509()
+        case 9510:
+            return WinningShapesCalculatorV1.Shapes_9510()
+        case 9511:
+            return WinningShapesCalculatorV1.Shapes_9511()
+        case 9512:
+            return WinningShapesCalculatorV1.Shapes_9512()
+        case 9601:
+            return WinningShapesCalculatorV1.Shapes_9601()
+        case 9602:
+            return WinningShapesCalculatorV1.Shapes_9602()
+        case 9603:
+            return WinningShapesCalculatorV1.Shapes_9603()
+        case 9604:
+            return WinningShapesCalculatorV1.Shapes_9604()
+        case 9605:
+            return WinningShapesCalculatorV1.Shapes_9605()
+        default:
+            return ([],[],0,0)
+        }
+    }
     
-//    public static func Shapes(gameId: Int) -> ([ShapeModel], [String], Int, Int) {
-//        switch gameId {
-//    
-//        case 8612:
-//            return Shapes_8612()
-//            
-//    }
     
-    
-    
-    public static func Shapes_8612() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8612() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8612)!
 
@@ -106,7 +313,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_8702() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8702() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8702)!
         
@@ -212,7 +419,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_8703() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8703() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8703)!
 
@@ -319,7 +526,7 @@ public class WinningShapesCalculatorV1 {
         ]
         return (winningShapes, words, widthMax, heightMax)
     }
-    public static func Shapes_8704() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8704() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8704)!
         
@@ -419,7 +626,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_8710() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8710() -> ([ShapeModel], [String], Int, Int) {
         
         let game = GameList().getGame(gameId: 8710)!
 
@@ -541,7 +748,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_8711() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8711() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8711)!
 
@@ -673,7 +880,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_8712() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8712() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8712)!
 
@@ -786,7 +993,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_8802() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8802() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8802)!
 
@@ -889,7 +1096,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_8803() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8803() -> ([ShapeModel], [String], Int, Int) {
         
         let game = GameList().getGame(gameId: 8803)!
 
@@ -990,7 +1197,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_8804() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8804() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8804)!
 
@@ -1093,7 +1300,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_8805() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8805() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8805)!
 
@@ -1183,7 +1390,7 @@ public class WinningShapesCalculatorV1 {
         ]
         return (winningShapes, words, widthMax, heightMax)
     }
-    public static func Shapes_8806() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8806() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8806)!
 
@@ -1276,7 +1483,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_8807() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8807() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8807)!
 
@@ -1357,7 +1564,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_8808() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8808() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8808)!
 
@@ -1466,7 +1673,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_8809() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8809() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8809)!
 
@@ -1571,7 +1778,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_8810() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8810() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8810)!
 
@@ -1649,7 +1856,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_8811() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8811() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8811)!
 
@@ -1767,7 +1974,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_8812() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8812() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8812)!
 
@@ -1877,7 +2084,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_8902() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8902() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8902)!
 
@@ -1971,7 +2178,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_8903() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8903() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8903)!
 
@@ -2036,7 +2243,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_8904() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8904() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8904)!
 
@@ -2122,7 +2329,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_8905() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8905() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8905)!
 
@@ -2226,7 +2433,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_8705() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8705() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8705)!
 
@@ -2329,7 +2536,7 @@ public class WinningShapesCalculatorV1 {
     }
     
    
-    public static func Shapes_8906() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8906() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8906)!
 
@@ -2424,7 +2631,7 @@ public class WinningShapesCalculatorV1 {
     }
    
     
-    public static func Shapes_8907() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8907() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8907)!
 
@@ -2535,7 +2742,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_8908() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8908() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8908)!
 
@@ -2623,7 +2830,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_8909() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8909() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8909)!
 
@@ -2723,7 +2930,7 @@ public class WinningShapesCalculatorV1 {
     }
        
     
-    public static func Shapes_8910() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8910() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8910)!
 
@@ -2812,7 +3019,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_8911() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8911() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8911)!
 
@@ -2891,7 +3098,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_8912() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8912() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8912)!
 
@@ -2998,7 +3205,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9001() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9001() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9001)!
 
@@ -3075,7 +3282,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9002() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9002() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9002)!
 
@@ -3137,7 +3344,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9003() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9003() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9003)!
 
@@ -3215,7 +3422,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9004() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9004() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9004)!
 
@@ -3298,7 +3505,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9005() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9005() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9005)!
 
@@ -3384,7 +3591,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9006() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9006() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9006)!
 
@@ -3497,7 +3704,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9007() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9007() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9007)!
 
@@ -3594,7 +3801,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9008() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9008() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9008)!
 
@@ -3695,7 +3902,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9009() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9009() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9009)!
 
@@ -3796,7 +4003,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9010() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9010() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9010)!
 
@@ -3891,7 +4098,7 @@ public class WinningShapesCalculatorV1 {
     }
     
 
-    public static func Shapes_9011() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9011() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9011)!
 
@@ -3983,7 +4190,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9012() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9012() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9012)!
 
@@ -4073,7 +4280,7 @@ public class WinningShapesCalculatorV1 {
     }
    
     
-//    public static func Shapes_9101() -> ([ShapeModel], [String], Int, Int) {
+//    private static func Shapes_9101() -> ([ShapeModel], [String], Int, Int) {
 //
 //        let game = GameList().getGame(gameId: 9101)!
 //
@@ -4166,7 +4373,7 @@ public class WinningShapesCalculatorV1 {
 //        return (winningShapes, words, widthMax, heightMax)
 //    }
     
-    public static func Shapes_9101() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9101() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9101)!
 
@@ -4257,7 +4464,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9102() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9102() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9102)!
 
@@ -4345,7 +4552,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9103() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9103() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9103)!
 
@@ -4432,7 +4639,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9104() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9104() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9104)!
 
@@ -4516,7 +4723,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9105() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9105() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9105)!
 
@@ -4599,7 +4806,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9106() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9106() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9106)!
 
@@ -4662,7 +4869,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9107() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9107() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9107)!
 
@@ -4768,7 +4975,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9108() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9108() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9108)!
 
@@ -4856,7 +5063,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9109() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9109() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9109)!
 
@@ -4960,7 +5167,7 @@ public class WinningShapesCalculatorV1 {
         ]
         return (winningShapes, words, widthMax, heightMax)
     }
-    public static func Shapes_9110() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9110() -> ([ShapeModel], [String], Int, Int) {
         
         let game = GameList().getGame(gameId: 9110)!
 
@@ -5038,7 +5245,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9111() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9111() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9111)!
 
@@ -5105,7 +5312,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9112() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9112() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9112)!
 
@@ -5179,7 +5386,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9201() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9201() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9201)!
 
@@ -5247,7 +5454,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9202() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9202() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9202)!
 
@@ -5323,7 +5530,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9203() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9203() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9203)!
 
@@ -5396,7 +5603,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9204() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9204() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9204)!
 
@@ -5472,7 +5679,7 @@ public class WinningShapesCalculatorV1 {
 
     
     
-    public static func Shapes_9206() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9206() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9206)!
 
@@ -5562,7 +5769,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9207() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9207() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9207)!
 
@@ -5633,7 +5840,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9208() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9208() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9208)!
 
@@ -5713,7 +5920,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9209() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9209() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9209)!
 
@@ -5786,7 +5993,7 @@ public class WinningShapesCalculatorV1 {
         ]
         return (winningShapes, words, widthMax, heightMax)
     }
-    public static func Shapes_9210() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9210() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9210)!
 
@@ -5876,7 +6083,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9211() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9211() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9211)!
 
@@ -5968,7 +6175,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9212() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9212() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9212)!
 
@@ -6060,7 +6267,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9301() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9301() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9301)!
 
@@ -6148,7 +6355,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9302() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9302() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9302)!
         
@@ -6208,7 +6415,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9303() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9303() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9303)!
 
@@ -6316,7 +6523,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9304() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9304() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9304)!
 
@@ -6420,7 +6627,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9305() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9305() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9305)!
 
@@ -6510,7 +6717,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9306() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9306() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9306)!
 
@@ -6586,7 +6793,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9307() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9307() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9307)!
 
@@ -6665,7 +6872,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9308() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9308() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9308)!
 
@@ -6744,7 +6951,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9309() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9309() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9309)!
 
@@ -6832,7 +7039,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9310() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9310() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9310)!
 
@@ -6894,7 +7101,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9311() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9311() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9311)!
 
@@ -6979,7 +7186,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9312() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9312() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9312)!
 
@@ -7049,7 +7256,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9401() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9401() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9401)!
 
@@ -7123,7 +7330,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9402() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9402() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9402)!
 
@@ -7228,7 +7435,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9403() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9403() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9403)!
 
@@ -7311,7 +7518,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9404() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9404() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9404)!
 
@@ -7414,7 +7621,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9406() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9406() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9406)!
 
@@ -7504,7 +7711,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9407() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9407() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9407)!
 
@@ -7608,7 +7815,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9408() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9408() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9408)!
 
@@ -7707,7 +7914,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9409() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9409() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9409)!
 
@@ -7799,7 +8006,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9410() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9410() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9410)!
 
@@ -7878,7 +8085,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9411() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9411() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9411)!
 
@@ -7967,7 +8174,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9412() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9412() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9412)!
 
@@ -8082,7 +8289,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9501() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9501() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9501)!
 
@@ -8189,7 +8396,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9502() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9502() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9502)!
 
@@ -8288,7 +8495,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9503() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9503() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9503)!
 
@@ -8399,7 +8606,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9504() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9504() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9504)!
 
@@ -8522,7 +8729,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9505() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9505() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9505)!
 
@@ -8642,7 +8849,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9506() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9506() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9506)!
 
@@ -8764,7 +8971,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9507() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9507() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9507)!
 
@@ -8863,7 +9070,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9508() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9508() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9508)!
 
@@ -8965,7 +9172,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9509() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9509() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9509)!
 
@@ -9068,7 +9275,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9510() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9510() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9510)!
 
@@ -9170,7 +9377,7 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    public static func Shapes_9511() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9511() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9511)!
 
@@ -9288,7 +9495,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9512() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9512() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9512)!
 
@@ -9378,7 +9585,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9601() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9601() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9601)!
 
@@ -9473,7 +9680,7 @@ public class WinningShapesCalculatorV1 {
         ]
         return (winningShapes, words, widthMax, heightMax)
     }
-    public static func Shapes_9602() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9602() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9602)!
 
@@ -9574,14 +9781,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    
-    public static func WinningShape_9602() -> ShapeModel {
-        let (shapes, words, widthMax, heightMax) = WinningShapesCalculatorV1.Shapes_9602()
-        let wordsInt = WordCalculator.WordsToInt(words: words)
-        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax)
-    }
-    
-    public static func Shapes_9603() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9603() -> ([ShapeModel], [String], Int, Int) {
         
         let game = GameList().getGame(gameId: 9603)!
 
@@ -9655,7 +9855,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9604() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9604() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9604)!
 
@@ -9751,7 +9951,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    public static func Shapes_9605() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9605() -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9605)!
 
