@@ -57,16 +57,20 @@ public class BranchAndBoundStrategyV2 {
             
             ShapeCalculator.SortByScoreThenArea(shapes: &sourceShapes)
             
-            
-            let shapeIds = ShapeCalculator.getMergeHistory(shape: bestShape, count: backtrackCount)
-            backtrackCount += 1
-            
-            var backtrackShape = ShapeCalculator.mergeShapesByIndex(shapes: searchShapes, shapeIds: shapeIds, words: words)
-            if backtrackShape != nil {
-                sourceShapes = [backtrackShape!]
-            } else {
-                return bestShape
+            // What do we do when the best shape cannot provide enough backtrackCount, that is its mergeHistory is shorter than the backtrackCount we want to have.
+            if bestShape.mergeHistory.count >= backtrackCount {
+                let shapeIds = ShapeCalculator.getMergeHistory(shape: bestShape, count: backtrackCount)
+                backtrackCount += 1
+                
+                let backtrackShape = ShapeCalculator.mergeShapesByIndex(shapes: searchShapes, shapeIds: shapeIds, words: words)
+                if backtrackShape != nil {
+                    sourceShapes = [backtrackShape!]
+                } else {
+                    return bestShape
+                }
             }
+            
+            
             
             
             // We are going to halve the number

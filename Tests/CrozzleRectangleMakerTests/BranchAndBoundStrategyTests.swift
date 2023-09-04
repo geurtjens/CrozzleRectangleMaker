@@ -20,11 +20,12 @@ final class BranchAndBoundStrategyTests: XCTestCase {
     }
     
     func testExample2() async throws {
-        let game = GameList().getGame(gameId: 8802)!
+        let gameId = 9407
+        let game = GameList().getGame(gameId: gameId)!
         let words = game.winningWords
         
         // This is closer to how marks solution works in that it wipes out the search space.  We should make lookahead a parameter
-        let shape = await BranchAndBoundStrategyV2.execute(gameId: 8802, words: words, repeatTimes: 10, lookahead:3)
+        let shape = await BranchAndBoundStrategyV2.execute(gameId: gameId, words: words, repeatTimes: 18, lookahead:3)
         XCTAssertEqual(game.winningScore, Int(shape.score))
     }
 }
