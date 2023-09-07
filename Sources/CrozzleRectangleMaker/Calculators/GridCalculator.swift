@@ -9,6 +9,20 @@ import Foundation
 public class GridCalculator {
     
     
+    public static func ConvertToCharacterArray(grid: [String]) -> [[Character]] {
+        var result: [[Character]] = []
+        
+        for line in grid {
+            var characters: [Character] = []
+            
+            for item in line {
+                characters.append(item)
+            }
+            result.append(characters)
+        }
+        return result
+    }
+    
     public static func FindWords(grid: [String], words: [String]) -> ([String],[String],[String]) {
         
         let (horizontal, vertical, _) = FindWordsInGrid(grid: grid)
