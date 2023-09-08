@@ -8,7 +8,7 @@
 import Foundation
 public struct GameModel {
     public let gameId: Int
-    
+    public let title: String
     /// number of words in the words collection
     public let wordCount: Int
     public let winningWordCount: Int
@@ -25,9 +25,9 @@ public struct GameModel {
     public let nonWinningWords: [String]
     public let winningGame: [String]
     
-    public init(gameId: Int, maxWidth: Int, maxHeight: Int, winningScore: Int, isValid: Bool, tags: [String], winningWords: [String], nonWinningWords: [String], winningGame: [String]) {
+    public init(gameId: Int, title: String, maxWidth: Int, maxHeight: Int, winningScore: Int, isValid: Bool, tags: [String], winningWords: [String], nonWinningWords: [String], winningGame: [String]) {
         self.gameId = gameId
-        
+        self.title = title
         self.maxWidth = maxWidth
         self.maxHeight = maxHeight
         self.winningScore = winningScore

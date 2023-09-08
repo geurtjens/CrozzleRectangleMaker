@@ -264,6 +264,18 @@ public class ConvertMarksFilesToShapes {
         
     }
     
+    public static func removeBoarder(grid: [String]) -> [String] {
+        var result: [String] = []
+        for y in 1..<grid.count-1 {
+            var line = ""
+            for x in 1..<grid[y].count - 1 {
+                let letter = grid[y][x]
+                line += String(letter)
+            }
+            result.append(line)
+        }
+        return result
+    }
     
     
     
