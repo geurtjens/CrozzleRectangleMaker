@@ -59,6 +59,11 @@ public struct WordIndexModelV2 {
     }
     
     
+    
+        
+        
+    
+    
     public func findMatches(sourceShape: ShapeModel,
                             sourceShapeId: Int,
                             searchMin: Int,
@@ -350,5 +355,36 @@ public struct WordIndexModelV2 {
         }
         // We have passed all the distance checks
         return true
+    }
+    
+    
+    
+    // Finds all matches in the source shape and search shape and includes word count.  Maybe we dont need the word count?
+    public func findMatches(sourceShapes: [ShapeModel],
+                            sourceShapeId: Int,
+                            searchMin: Int,
+                            searchMax: Int,
+                            searchShapes: [ShapeModel]) -> [PotentialMatchModel] {
+        
+        var result:[PotentialMatchModel] = []
+        
+        for sourceShapeId in 0..<sourceShapes.count {
+            // Find potential matches by using the index against all words in shape
+            let matches = findMatchUsingIndex(sourceShape: sourceShapes[sourceShapeId], searchMin: searchMin, searchMax: searchMax)
+            
+            var searchShapeId = matches[0]
+            var previous = matches[0]
+            var matchCount = 1
+            
+            for i in 1..<matches.count {
+                searchShapeId = matches[i]
+                if (previous == searchShapeId) {
+                    matchCount += 1
+                } else {
+                    result.append(PotentialMatchModel(sourceShapeId: sourceShapeId, searchShapeId: searchShapeId, matchingWordCount: UInt8(matchCount)))
+                }
+            }
+        }
+        return result
     }
 }
