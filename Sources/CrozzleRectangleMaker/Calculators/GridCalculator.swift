@@ -146,6 +146,23 @@ public class GridCalculator {
         return result
     }
     
+    public static func findInterlocksAsString(grid: [String]) -> String {
+        
+        if grid.count == 0 {
+            return ""
+        }
+        
+        var result = ""
+        
+        let positions = findInterlockPositions(grid: grid)
+        
+        for (y,x) in positions {
+            result += String(grid[y][x])
+        }
+        
+        return result
+    }
+    
     public static func getInterlock(grid: [String], y: Int, x: Int) -> InterlockModel {
         
         let xPos = getHorizontalInterlockPos(grid: grid, y: y, x: x)
@@ -277,6 +294,16 @@ public class GridCalculator {
         return words
         
         
+    }
+    
+    public static func stringToGrid(text: String) -> [String] {
+        let splitList = text.split(separator: "\n")
+        
+        var result: [String] = []
+        for split in splitList {
+            result.append(String(split))
+        }
+        return result
     }
     
     public static func gridToString(grid:[String]) -> String {

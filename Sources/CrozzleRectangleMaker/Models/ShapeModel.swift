@@ -135,6 +135,26 @@ public struct ShapeModel {
         return text
     }
     
+    
+    public func ToTest(words: [String]) -> String {
+        let (text, score) = ShapeCalculator.ToText(shape: self, words: words)
+        
+        let grid = text.split(separator: "\n")
+        
+        var result = ""
+        for line in grid {
+            if result != "" {
+                result += "\\n\" + \n"
+            }
+            result += "    \"" + line 
+        }
+        result += "\"\n"
+        
+        result = "    let sut = \n" + result
+        
+        return result
+    }
+    
     public func ToCode(words: [String]) -> String {
         let (text, score) = ShapeCalculator.ToText(shape: self, words: words)
         

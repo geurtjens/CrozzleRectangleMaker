@@ -72,6 +72,32 @@ public class ScoreCalculator {
         return score
     }
     
+    public static func score(text: String) -> Int {
+        var result = 0
+        for letter in text {
+            result += score(forLetter: letter)
+        }
+        return result
+    }
+    
+    public static func scoreGrid(text: String, words: [String]) -> UInt16 {
+        let grid = GridCalculator.stringToGrid(text: text)
+        
+        let (_,wordsFound,_) = GridCalculator.FindWords(grid: grid, words: words)
+        
+        let wordScore = wordsFound.count * 10
+        
+        let interlockLetters = GridCalculator.findInterlocksAsString(grid: grid)
+        
+        let letterScore = score(text: interlockLetters)
+        
+        let result = wordScore + letterScore
+        
+        return UInt16(result)
+        
+    }
+    
+    
     /// convenience method for calculating the score of the `topRight` rectangle
     public static func topRight(topLeft: Character, bottomLeft: Character, bottomRight: Character ) -> Int {
         let score = score(forLetter:topLeft) + score(forLetter:bottomLeft) + score(forLetter:bottomRight) + 40
