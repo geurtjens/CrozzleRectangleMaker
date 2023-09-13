@@ -12,7 +12,7 @@ public class ShapeConstraintCodeGen {
         let code =
         """
         import Foundation
-        public class WinningGameQueueListCalculator {
+        public class WinningShapesAllCalculatorV3_2 {
 
         """
         return code
@@ -37,13 +37,14 @@ public class ShapeConstraintCodeGen {
             let gameId = input.0
             let shapes = input.1
             
-            let endText = includeEndDependingOnShapes(shapeConstraints: shapes)
+            //let endText = includeEndDependingOnShapes(shapeConstraints: shapes)
             
-            result += codeHeader(gameId: gameId,endText: endText)
+            result += codeHeader(gameId: gameId)
             
 
             result += codeShapeCalculations(constraints: shapes)
-            result += "        return queue\n    }\n\n"
+            result += "        return shapes\n"
+            result += "    }\n\n"
             
         }
         return result
@@ -74,25 +75,31 @@ public class ShapeConstraintCodeGen {
             let (newCode, variableName) = shapeCode(constraint: constraint)
             
             code += newCode
-            code += "        queue.add(shapes: \(variableName))\n\n"
+            code += "        shapes += \(variableName)\n\n"
         }
         return code
     }
     
     public static func driverCode() -> String {
         var code = ""
-        code += "    public static func Queue(gameId: Int, words: [String], queueLength: Int, priorityFunction: PriorityFunction) -> QueueList? {\n\n"
+        code += "    public static func execute(gameId: Int, words: [String]) -> [ShapeModel] {\n\n"
 
+        code += "        let end = WordCalculator.reverse(words: words)\n"
+        code += "        let len = WordCalculator.lengths(words: words)\n"
+        code += "        let letterIndex = LetterIndexModel(words: words)\n"
+        code += "        let wordsInt = WordCalculator.WordsToInt(words: words)\n"
+        code += "        let endInt = WordCalculator.WordsToInt(words: end)\n"
+        code += "\n"
         code += "        switch gameId {\n"
         let gameList = GameList()
         for game in gameList.games {
             let gameId = game.gameId
             
             code += "        case \(gameId):\n"
-            code += "            return Queue_\(gameId)(words: words, queueLength: queueLength, priorityFunction: priorityFunction)\n"
+            code += "            return Shapes_\(gameId)(words: words, end: end, wordsInt: wordsInt, endInt: endInt, len: len, letterIndex: letterIndex)\n"
         }
             code += "        default:\n"
-            code += "            return nil\n"
+            code += "            return []\n"
         code += "        }\n"
         code += "    }\n"
         return code
@@ -190,30 +197,15 @@ public class ShapeConstraintCodeGen {
         return ("", name)
     }
     
-    public static func codeHeader(gameId: Int, endText: String) -> String {
-        var code =
+    public static func codeHeader(gameId: Int) -> String {
+        let code =
         """
-            public static func Queue_\(gameId)(words: [String], queueLength: Int, priorityFunction: PriorityFunction) -> QueueList {
+            public static func Shapes_\(gameId)(words: [String], end: [String], wordsInt: [[Int]], endInt: [[Int]], len: [Int], letterIndex: LetterIndexModel) -> [ShapeModel] {
 
-                let game = GameList().getGame(gameId: \(gameId))!
+                var shapes: [ShapeModel] = []
 
-                let len = WordCalculator.lengths(words: words)
         """
-        code += endText
-        code +=
-        """
-                let scoresMin = StrategyCalculator.GetScoreMins(gameId: \(gameId))
         
-                let constraint = ConstraintsModel(
-                    words: words,
-                    scoresMin: scoresMin,
-                    queueLengthMax: queueLength,
-                    priorityFunction: priorityFunction)
-        
-                var queue = QueueList(game: game, constraints: constraint)
-
-        
-        """
         return code
     }
     
@@ -223,10 +215,11 @@ public class ShapeConstraintCodeGen {
         
         let code =
         """
-                let \(name) = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
+                let \(name) = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV3.Rectangle(
                     interlockWidth: \(interlockWidth - 1),
                     interlockHeight: \(interlockHeight - 1),
-                    words: words,
+                    letterIndex: letterIndex,
+                    words: wordsInt,
                     lengths: len,
                     scoreMin: \(scoreMin),
                     widthMax: \(widthMax),
@@ -242,9 +235,12 @@ public class ShapeConstraintCodeGen {
     
         let code =
         """
-                let \(name) = ShapeCalculator.toShapes(clusters: ClusterCalculator.C\(interlockWidth)x\(interlockHeight)(
-                    start: words,
-                    end: end,
+                let \(name) = ShapeCalculator.toShapes(clusters: ClusterCalculatorV3.C\(interlockWidth)x\(interlockHeight)(
+                    letterIndex: letterIndex,
+                    words: wordsInt,
+                    end: endInt,
+                    words2: words,
+                    end2: end,
                     len: len,
                     scoreMin: \(scoreMin),
                     widthMax: \(widthMax),
@@ -260,9 +256,12 @@ public class ShapeConstraintCodeGen {
     
         let code =
         """
-                let \(name) = ShapeCalculator.toShapes(outers: OuterCalculatorV1.C\(interlockWidth)x\(interlockHeight)(
-                    start: words,
-                    end: end,
+                let \(name) = ShapeCalculator.toShapes(outers: OuterCalculatorV3.C\(interlockWidth)x\(interlockHeight)(
+                    letterIndex: letterIndex,
+                    words: wordsInt,
+                    end: endInt,
+                    words2: words,
+                    end2: end,
                     len: len,
                     scoreMin: \(scoreMin),
                     widthMax: \(widthMax),
@@ -278,9 +277,12 @@ public class ShapeConstraintCodeGen {
     
         let code =
         """
-                let \(name) = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV1.\(corner)(
-                    start: words,
-                    end: end,
+                let \(name) = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV3.\(corner)(
+                    letterIndex: letterIndex,
+                    words: wordsInt,
+                    end: endInt,
+                    words2: words,
+                    end2: end,
                     len: len,
                     scoreMin: \(scoreMin),
                     widthMax: \(widthMax),
@@ -297,10 +299,11 @@ public class ShapeConstraintCodeGen {
         
         let code =
         """
-                let \(name) = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.\(corner)Rectangle(
+                let \(name) = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV3.\(corner)Rectangle(
                     interlockWidth: \(interlockWidth - 1),
                     interlockHeight: \(interlockHeight - 1),
-                    words: words,
+                    letterIndex: letterIndex,
+                    words: wordsInt,
                     lengths: len,
                     scoreMin: \(scoreMin),
                     widthMax: \(widthMax),
@@ -317,9 +320,10 @@ public class ShapeConstraintCodeGen {
         
         let code =
         """
-                let \(name) = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Square(
+                let \(name) = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV3.Square(
                     interlockWidth: \(interlockWidth - 1),
-                    words: words,
+                    letterIndex: letterIndex,
+                    words: wordsInt,
                     lengths: len,
                     scoreMin: \(scoreMin),
                     widthMax: \(widthMax),
@@ -347,9 +351,10 @@ public class ShapeConstraintCodeGen {
         
         let code =
         """
-                let \(name) = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.\(corner)Square(
+                let \(name) = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV3.\(corner)Square(
                     interlockWidth: \(interlockWidth - 1),
-                    words: words,
+                    letterIndex: letterIndex,
+                    words: wordsInt,
                     lengths: len,
                     scoreMin: \(scoreMin),
                     widthMax: \(widthMax),

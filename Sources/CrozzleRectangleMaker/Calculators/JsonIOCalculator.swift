@@ -51,7 +51,7 @@ public class JsonIOCalculator {
         
     }
     
-    
+    // Creates WinningShapesCalculatorV1
     public static func execute(gameId: Int, winningScore: Int, widthMax: Int, heightMax: Int) -> String {
         var jsonShapes = load(gameId: gameId)
         

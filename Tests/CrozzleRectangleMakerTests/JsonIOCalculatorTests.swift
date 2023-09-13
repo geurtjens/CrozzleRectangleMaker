@@ -39,6 +39,7 @@ final class JsonIOCalculatorTests: XCTestCase {
         print(text)
     }
     
+    /// Creates WinningShapesCalculatorV1
     func test_JsonAll() throws {
         var codes:[String] = []
         let gameList = GameList()

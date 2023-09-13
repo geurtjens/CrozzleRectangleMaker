@@ -179,9 +179,15 @@ public class ShapeConstraintFromJsonCalculator {
         for jsonShape in jsonShapes {
             let name = jsonShape.name
             let revisedName = splitName(shapeName: name)
-            let width = jsonShape.size.x
-            let height = jsonShape.size.y
+            var width = jsonShape.size.x
+            var height = jsonShape.size.y
             let score = jsonShape.score
+            
+            if width < height {
+                let swap = width
+                width = height
+                height = swap
+            }
             
             let constraintShape = ShapeConstraintModel(name: revisedName,
                                              scoreMin: score,

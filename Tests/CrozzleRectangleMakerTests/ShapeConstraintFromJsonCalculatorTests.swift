@@ -13,5 +13,4 @@ final class ShapeConstraintFromJsonCalculatorTests: XCTestCase {
         let code = ShapeConstraintFromJsonCalculator.executeCode()
         print(code)
     }
-
 }
