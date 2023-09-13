@@ -7,19 +7,22 @@
 
 import XCTest
 @testable import CrozzleRectangleMaker
-final class PacmanCalculatorV3_Tests: XCTestCase {
+final class PacmanCalculatorV3Tests: XCTestCase {
 
     let scoreMin = 0
     let widthMax = 17
     let heightMax = 15
     
     func test8710() {
+        
+        /// GIVEN we have used the words found in a Pacman3x3 shape on game 8710
         let words = ["LORY", "SPARROW", "OWLET", "ROC", "SWALLOW", "OWL"]
+        /// WHEN we calculate pacmans for these words
         let result = PacmanCalculatorV3.ExecuteSerial(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        /// THEN we find that two entries are returned
         XCTAssertEqual(2, result.count)
         
-       
-        let sut1 =
+        let expectedText0 =
         "      .    \n" +
         "      S    \n" +
         "      W    \n" +
@@ -32,7 +35,7 @@ final class PacmanCalculatorV3_Tests: XCTestCase {
         "     . T   \n" +
         "       .   "
 
-        let sut2 =
+        let expectedText1 =
         "      .    \n" +
         "      S    \n" +
         "      W    \n" +
@@ -44,28 +47,29 @@ final class PacmanCalculatorV3_Tests: XCTestCase {
         "     C..   \n" +
         "     .     "
         
-        let text0 = result[0].ToShape().ToText(words: words)
-        let text1 = result[1].ToShape().ToText(words: words)
+        let actualText0 = result[0].ToShape().ToText(words: words)
+        let actualText1 = result[1].ToShape().ToText(words: words)
         
-        XCTAssertEqual(sut1, text0)
-        XCTAssertEqual(sut2, text1)
+        let expectedScore0 = ScoreCalculator.scoreGrid(text: actualText0, words: words)
+        let expectedScore1 = ScoreCalculator.scoreGrid(text: actualText1, words: words)
         
-        let score0 = ScoreCalculator.scoreGrid(text: text0, words: words)
-        let score1 = ScoreCalculator.scoreGrid(text: text1, words: words)
+        /// /// AND the actual text is the same as the expected text
+        XCTAssertEqual(expectedText0, actualText0)
+        XCTAssertEqual(expectedText1, actualText1)
         
-        
-        
-        XCTAssertEqual(score0, result[0].score)
-        XCTAssertEqual(score1, result[1].score)
-        
+        /// AND actual score is same as expected score
+        XCTAssertEqual(expectedScore0, result[0].score)
+        XCTAssertEqual(expectedScore1, result[1].score)
     }
 
     func test8803() throws {
-        let words = ["DELHI", "OMSK", "BOMBAY", "HOBART", "LIMA", "SYDNEY"]
-        let result = PacmanCalculatorV3.ExecuteSerial(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
-        XCTAssertEqual(1, result.count)
         
-       
+        /// GIVEN we have used the words found in a Pacman3x3 shape on game 8803
+        let words = ["DELHI", "OMSK", "BOMBAY", "HOBART", "LIMA", "SYDNEY"]
+        
+        ///WHEN we calculate pacmans for these words
+        let result = PacmanCalculatorV3.ExecuteSerial(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        
         let expectedText =
         "     .   \n" +
         "    .L   \n" +
@@ -78,21 +82,26 @@ final class PacmanCalculatorV3_Tests: XCTestCase {
         "    . Y  \n" +
         "      .  "
         
-        XCTAssertEqual(1,result.count)
-        
         let actualText = result[0].ToShape().ToText(words: words)
+        let expectedScore = ScoreCalculator.scoreGrid(text: actualText, words: words)
+        
+        /// THEN one entry is returned
+        XCTAssertEqual(1, result.count)
+
+        /// AND the actual text is the same as the expected text
         XCTAssertEqual(expectedText, actualText)
         
-        let expectedScore = ScoreCalculator.scoreGrid(text: actualText, words: words)
+        /// AND actual score is same as expected score
         XCTAssertEqual(expectedScore, result[0].score)
-        
     }
 
     func test8907() {
+        
+        /// GIVEN we have used the words found in a Pacman3x3 shape on game 8907
         let words = ["SHAPE", "RULE", "QUARTZ", "ART", "PUZZLE", "EASEL"]
         
+        ///WHEN we calculate pacmans for these words
         let result = PacmanCalculatorV3.ExecuteSerial(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
-        XCTAssertEqual(1, result.count)
         
         let expectedText =
         "       .  \n" +
@@ -107,20 +116,25 @@ final class PacmanCalculatorV3_Tests: XCTestCase {
         "      E   \n" +
         "      .   "
         
-        XCTAssertEqual(1,result.count)
-        
         let actualText = result[0].ToShape().ToText(words: words)
+        let expectedScore = ScoreCalculator.scoreGrid(text: actualText, words: words)
+        
+        /// THEN one entry is returned
+        XCTAssertEqual(1, result.count)
+        
+        /// AND the actual text is the same as the expected text
         XCTAssertEqual(expectedText, actualText)
         
-        let expectedScore = ScoreCalculator.scoreGrid(text: actualText, words: words)
+        /// AND actual score is same as expected score
         XCTAssertEqual(expectedScore, result[0].score)
     }
 
     func test8911() {
+        /// GIVEN we have used the words found in a Pacman3x3 shape on game 8911
         let words = ["HATS", "TUESDAY", "TRAINER", "GATE", "TURF", "COURSE"]
         
+        ///WHEN we calculate pacmans for these words
         let result = PacmanCalculatorV3.ExecuteSerial(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
-        XCTAssertEqual(1, result.count)
         
         let expectedText =
         "        .     \n" +
@@ -134,20 +148,26 @@ final class PacmanCalculatorV3_Tests: XCTestCase {
         "      .F      \n" +
         "       .      "
         
-        XCTAssertEqual(1,result.count)
-        
         let actualText = result[0].ToShape().ToText(words: words)
+        let expectedScore = ScoreCalculator.scoreGrid(text: actualText, words: words)
+        
+        /// THEN one entry is returned
+        XCTAssertEqual(1, result.count)
+        
+        /// AND the actual text is the same as the expected text
         XCTAssertEqual(expectedText, actualText)
         
-        let expectedScore = ScoreCalculator.scoreGrid(text: actualText, words: words)
+        /// AND actual score is same as expected score
         XCTAssertEqual(expectedScore, result[0].score)
     }
     
     func test9209() {
+        
+        /// GIVEN we have used the words found in a Pacman3x3 shape on game 9209
         let words = ["PATROL", "ENEMY", "SMUTS", "TURRET", "ONSET", "RIFLE"]
         
+        ///WHEN we calculate pacmans for these words
         let result = PacmanCalculatorV3.ExecuteSerial(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
-        XCTAssertEqual(1, result.count)
         
         let expectedText =
         "    . .   \n" +
@@ -161,20 +181,26 @@ final class PacmanCalculatorV3_Tests: XCTestCase {
         "     T    \n" +
         "     .    "
         
-        XCTAssertEqual(1,result.count)
-        
         let actualText = result[0].ToShape().ToText(words: words)
+        let expectedScore = ScoreCalculator.scoreGrid(text: actualText, words: words)
+        
+        /// THEN one entry is returned
+        XCTAssertEqual(1, result.count)
+        
+        /// AND the actual text is the same as the expected text
         XCTAssertEqual(expectedText, actualText)
         
-        let expectedScore = ScoreCalculator.scoreGrid(text: actualText, words: words)
+        /// AND actual score is same as expected score
         XCTAssertEqual(expectedScore, result[0].score)
     }
     
     func test9410() {
+        
+        /// GIVEN we have used the words found in a Pacman3x3 shape on game 9410
         let words = ["TRESPASS", "SUSPECT", "FORGER", "CASE", "SURTAX", "WITNESS"]
         
+        ///WHEN we calculate pacmans for these words
         let result = PacmanCalculatorV3.ExecuteSerial(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
-        XCTAssertEqual(1, result.count)
         
         let expectedText =
         "        .     \n" +
@@ -191,20 +217,26 @@ final class PacmanCalculatorV3_Tests: XCTestCase {
         "       X      \n" +
         "       .      "
         
-        XCTAssertEqual(1,result.count)
-        
         let actualText = result[0].ToShape().ToText(words: words)
+        let expectedScore = ScoreCalculator.scoreGrid(text: actualText, words: words)
+        
+        /// THEN one entry is returned
+        XCTAssertEqual(1, result.count)
+        
+        /// AND the actual text is the same as the expected text
         XCTAssertEqual(expectedText, actualText)
         
-        let expectedScore = ScoreCalculator.scoreGrid(text: actualText, words: words)
+        /// AND actual score is same as expected score
         XCTAssertEqual(expectedScore, result[0].score)
     }
     
     func test9511() {
+        
+        /// GIVEN we have used the words found in a Pacman3x3 shape on game 9511
         let words = ["SEAMS", "CUT", "SLEEVES", "LACE", "MUSLIN", "ADJUST"]
         
+        ///WHEN we calculate pacmans for these words
         let result = PacmanCalculatorV3.ExecuteSerial(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
-        XCTAssertEqual(1, result.count)
         
         let expectedText =
         "        . \n" +
@@ -220,12 +252,16 @@ final class PacmanCalculatorV3_Tests: XCTestCase {
         "       N  \n" +
         "       .  "
         
-        XCTAssertEqual(1,result.count)
-        
         let actualText = result[0].ToShape().ToText(words: words)
+        let expectedScore = ScoreCalculator.scoreGrid(text: actualText, words: words)
+        
+        /// THEN one entry is returned
+        XCTAssertEqual(1, result.count)
+        
+        /// AND the actual text is the same as the expected text
         XCTAssertEqual(expectedText, actualText)
         
-        let expectedScore = ScoreCalculator.scoreGrid(text: actualText, words: words)
+        /// AND actual score is same as expected score
         XCTAssertEqual(expectedScore, result[0].score)
     }
 

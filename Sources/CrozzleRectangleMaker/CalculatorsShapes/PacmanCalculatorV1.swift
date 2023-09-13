@@ -18,7 +18,7 @@ public class PacmanCalculatorV1 {
         
         for game in gameList.games {
 
-            let result = Execute(
+            let result = ExecuteSerial(
                 words: game.words,
                 scoreMin: scoreMin,
                 widthMax: game.maxWidth,
@@ -35,7 +35,7 @@ public class PacmanCalculatorV1 {
         return count
     }
     
-    static func Execute(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [PacmanModel] {
+    static func ExecuteSerial(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [PacmanModel] {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
         
