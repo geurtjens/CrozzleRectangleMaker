@@ -331,6 +331,7 @@ public class StrategyCalculator {
         var queue = QueueList(game: game, constraints: constraint)
 
         let shapes = WinningShapesAllCalculatorV3.execute(gameId: game.gameId, words: words)
+        print("Starting Shape Count = \(shapes.count)")
         queue.add(shapes: shapes)
         return queue
     }
