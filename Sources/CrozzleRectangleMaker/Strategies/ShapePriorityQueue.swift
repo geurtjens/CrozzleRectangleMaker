@@ -13,7 +13,7 @@ public struct ShapePriorityQueue {
     
     public var elements: [ShapeModel] = []
 
-    public var dequeueHistory: [String] = []
+    public var dequeueHistory: Set<String> = []
     
     mutating func enqueue(_ value: ShapeModel) {
         if dequeueHistory.contains(value.wordSequence) == false {
@@ -29,7 +29,7 @@ public struct ShapePriorityQueue {
         dequeueCount += 1
         
         let element = elements.removeFirst()
-        dequeueHistory.append(element.wordSequence)
+        dequeueHistory.insert(element.wordSequence)
         return element
     }
 

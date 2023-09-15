@@ -54,19 +54,24 @@ final class StandardSearchAlgorithmsTests: XCTestCase {
             9312, 9406, 9411
             
         ]
-        
+        let breamStartTime = DateTimeCalculator.now()
         var winnerCount = 0
         for game in gameList.games {
-            //if successfulGames.contains(game.gameId) {
+            if successfulGames.contains(game.gameId) {
                 let (highestScoringShape, enqueueCount, dequeueCount, isWinner) = StandardSearchAlgorithms.beamSearchExtendedV1(gameId: game.gameId, beamWidth: 2)
                 if isWinner {
                     winnerCount += 1
                 }
                 print("enqueue count: \(enqueueCount), dequeueCount: \(dequeueCount)")
                 print(highestScoringShape.mergeHistory)
-            //}
+            }
         }
         print("Winners = \(winnerCount)")
+        let beamFinishTime = DateTimeCalculator.now()
+
+        print("Beam Search Duration across \(successfulGames.count) games is \(DateTimeCalculator.duration(start: breamStartTime, finish: beamFinishTime))")
+        
+        //Beam Search Duration across 23 is 1 minutes 5 seconds
         XCTAssertEqual(successfulGames.count, winnerCount)
     }
     
