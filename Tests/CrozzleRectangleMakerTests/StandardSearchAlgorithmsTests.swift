@@ -37,6 +37,62 @@ final class StandardSearchAlgorithmsTests: XCTestCase {
         print(highestScoringShape.mergeHistory)
     }
     
+    func testHillClimingSearchExtendedV1() throws {
+        let (highestScoringShape, enqueueCount, dequeueCount, isWinner) = StandardSearchAlgorithms.hillClimbingSearchExtendedV1(gameId: 8612)
+        print("enqueue count: \(enqueueCount), dequeueCount: \(dequeueCount)")
+        print(highestScoringShape.mergeHistory)
+        XCTAssertTrue(isWinner)
+    }
+    
+    func testBeamSearchOf2ExtendedAllV1() throws {
+        
+        let gameList = GameList()
+        
+        let successfulGames = [
+            8705, 8710, 8802, 8808, 8812, 8911, 9002, 9006, 9008, 9103,
+            9104, 9108, 9109, 9201, 9202, 9207, 9210, 9211, 9306, 9308,
+            9312, 9406, 9411
+            
+        ]
+        
+        var winnerCount = 0
+        for game in gameList.games {
+            //if successfulGames.contains(game.gameId) {
+                let (highestScoringShape, enqueueCount, dequeueCount, isWinner) = StandardSearchAlgorithms.beamSearchExtendedV1(gameId: game.gameId, beamWidth: 2)
+                if isWinner {
+                    winnerCount += 1
+                }
+                print("enqueue count: \(enqueueCount), dequeueCount: \(dequeueCount)")
+                print(highestScoringShape.mergeHistory)
+            //}
+        }
+        print("Winners = \(winnerCount)")
+        XCTAssertEqual(successfulGames.count, winnerCount)
+    }
+    
+    func testHillClimingSearchExtendedAllV1() throws {
+        
+        let gameList = GameList()
+        
+        let successfulGames = [
+            8808, 9002, 9103, 9109, 9110, 9306, 9311, 9312
+        ]
+        
+        var winnerCount = 0
+        for game in gameList.games {
+            if successfulGames.contains(game.gameId) {
+                let (highestScoringShape, enqueueCount, dequeueCount, isWinner) = StandardSearchAlgorithms.hillClimbingSearchExtendedV1(gameId: game.gameId)
+                if isWinner {
+                    winnerCount += 1
+                }
+                print("enqueue count: \(enqueueCount), dequeueCount: \(dequeueCount)")
+                print(highestScoringShape.mergeHistory)
+            }
+        }
+        print("Winners = \(winnerCount)")
+        XCTAssertEqual(successfulGames.count, winnerCount)
+    }
+    
     func testDepthFirstSearchV2() throws {
         let (highestScoringShape, enqueueCount, dequeueCount, isWinner) = StandardSearchAlgorithms.depthFirstSearchV2(gameId: 8612)
         XCTAssertTrue(isWinner)
