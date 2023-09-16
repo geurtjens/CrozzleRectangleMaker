@@ -142,12 +142,13 @@ public struct WordIndexModelV2 {
     
     
     public func findMatches(containingWords: [Int],
+                            shapesToExclude: [Int],
                             sourceShape: ShapeModel,
                             sourceShapeId: Int,
                             searchShapes: [ShapeModel]) -> [MergeInstructionModel] {
         
         // Find potential matches by using the index against all words in shape
-        let matches = findMatchUsingIndex(words: containingWords)
+        let matches = findMatchUsingIndex(words: containingWords, shapesToExclude: shapesToExclude)
         
         if matches.count == 0 {
             return []
@@ -380,7 +381,7 @@ public struct WordIndexModelV2 {
         return matches;
     }
     
-    private func findMatchUsingIndex(words: [Int]) -> [Int] {
+    private func findMatchUsingIndex(words: [Int], shapesToExclude: [Int]) -> [Int] {
         
         var matches: [Int] = [];
         for w in words {
@@ -388,7 +389,7 @@ public struct WordIndexModelV2 {
         }
         
         // Remove items out of score
-        //matches = matches.filter {$0 >= searchMin || $0 <= searchMax}
+        matches = matches.filter { shapesToExclude.contains($0) == false }
         
         matches.sort()
         

@@ -71,7 +71,9 @@ public class SiblingMergeCalculator {
             
             
             // Find matches that only link to the new words that this has added
-            let instructions = wordIndex.findMatches(containingWords: Array(siblingWords), sourceShape: sourceShape, sourceShapeId: sourceShapeId, searchShapes: searchShapes)
+            let instructions = wordIndex.findMatches(containingWords: Array(siblingWords),
+                                                     shapesToExclude: leafShapesAddedToBecomeSiblings,
+                                                     sourceShape: sourceShape, sourceShapeId: sourceShapeId, searchShapes: searchShapes)
             
             // ScoresMin is flawed if we want to merge larger shapes together eventually
             // it is the score starting from the beginning not score inbetween or increments to score
