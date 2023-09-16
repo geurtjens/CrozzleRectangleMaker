@@ -105,7 +105,38 @@ public struct WordIndexModelV2 {
         return result
     }
         
-   
+    
+    public func findMatchCount(sourceShape: ShapeModel, searchShape: ShapeModel) -> Int {
+        var matchCount = 0
+        for sourcePlacement in sourceShape.placements {
+            for searchPlacement in searchShape.placements {
+                if sourcePlacement.w == searchPlacement.w {
+                    matchCount += 1
+                }
+            }
+        }
+        return matchCount
+    }
+    
+    
+    public func checkMatchesForLeafs(matches: [Int], sourceShape: ShapeModel, sourceShapeId: Int, searchShapes: [ShapeModel]) -> [MergeInstructionModel] {
+        var result: [MergeInstructionModel] = [];
+        
+        
+        for searchShapeId in matches {
+            
+            let matchCount = findMatchCount(sourceShape: sourceShape, searchShape: searchShapes[searchShapeId])
+            
+            if matchCount != sourceShape.placements.count && matchCount != searchShapes[searchShapeId].placements.count {
+                
+                if let item = WordIndexModelV2.processMatches(matchCount: matchCount, sourceShape: sourceShape, sourceShapeId: sourceShapeId, searchShape:searchShapes[searchShapeId], searchShapeId: searchShapeId) {
+                    result.append(item)
+                }
+            }
+        }
+        
+        return result
+    }
     
     public func checkMatches(matches: [Int], sourceShape: ShapeModel, sourceShapeId: Int, searchShapes: [ShapeModel]) -> [MergeInstructionModel] {
         var result: [MergeInstructionModel] = [];
@@ -115,6 +146,7 @@ public struct WordIndexModelV2 {
         var matchCount = 1
         for i in 1..<matches.count {
             searchShapeId = matches[i]
+            
             if (previous == searchShapeId) {
                 matchCount += 1
             } else {
@@ -154,7 +186,7 @@ public struct WordIndexModelV2 {
             return []
         }
         
-        return checkMatches(matches: matches, sourceShape: sourceShape, sourceShapeId: sourceShapeId, searchShapes: searchShapes)
+        return checkMatchesForLeafs(matches: matches, sourceShape: sourceShape, sourceShapeId: sourceShapeId, searchShapes: searchShapes)
         
     }
     
@@ -388,8 +420,12 @@ public struct WordIndexModelV2 {
             matches += self.index[w]
         }
         
-        // Remove items out of score
-        matches = matches.filter { shapesToExclude.contains($0) == false }
+        // This will remove any duplicates
+        let matchesAsSet = Set(matches)
+        
+        let shapesToExcludeSet = Set(shapesToExclude)
+        
+        matches = Array(matchesAsSet.subtracting(shapesToExcludeSet))
         
         matches.sort()
         
