@@ -59,12 +59,8 @@ public struct WordIndexModelV2 {
     }
     
     
-    
-        
-        
-    
-    
-    public func findMatches(sourceShape: ShapeModel,
+    public func findMatches(words: [Int],
+                            sourceShape: ShapeModel,
                             sourceShapeId: Int,
                             searchMin: Int,
                             searchMax: Int,
@@ -107,6 +103,75 @@ public struct WordIndexModelV2 {
         }
         
         return result
+    }
+        
+   
+    
+    public func checkMatches(matches: [Int], sourceShape: ShapeModel, sourceShapeId: Int, searchShapes: [ShapeModel]) -> [MergeInstructionModel] {
+        var result: [MergeInstructionModel] = [];
+        
+        var searchShapeId = matches[0]
+        var previous = matches[0]
+        var matchCount = 1
+        for i in 1..<matches.count {
+            searchShapeId = matches[i]
+            if (previous == searchShapeId) {
+                matchCount += 1
+            } else {
+                let item = WordIndexModelV2.processMatches(matchCount: matchCount, sourceShape: sourceShape, sourceShapeId: sourceShapeId, searchShape:searchShapes[previous], searchShapeId: previous)
+                if item != nil {
+                    result.append(item!)
+                }
+                
+                previous = searchShapeId
+                matchCount = 1
+            }
+        }
+        
+        if searchShapeId != previous {
+            print("What should we do here then with previous and searchShapeId being different")
+        }
+        // Process last one, should this be previous or should it be searchShapeId?
+        let item = WordIndexModelV2.processMatches(matchCount: matchCount, sourceShape: sourceShape, sourceShapeId: sourceShapeId, searchShape:searchShapes[searchShapeId], searchShapeId: searchShapeId)
+        if item != nil {
+            result.append(item!)
+        }
+        
+        return result
+    }
+    
+    
+    public func findMatches(containingWords: [Int],
+                            sourceShape: ShapeModel,
+                            sourceShapeId: Int,
+                            searchShapes: [ShapeModel]) -> [MergeInstructionModel] {
+        
+        // Find potential matches by using the index against all words in shape
+        let matches = findMatchUsingIndex(words: containingWords)
+        
+        if matches.count == 0 {
+            return []
+        }
+        
+        return checkMatches(matches: matches, sourceShape: sourceShape, sourceShapeId: sourceShapeId, searchShapes: searchShapes)
+        
+    }
+    
+    public func findMatches(sourceShape: ShapeModel,
+                            sourceShapeId: Int,
+                            searchMin: Int,
+                            searchMax: Int,
+                            searchShapes: [ShapeModel]) -> [MergeInstructionModel] {
+        
+        // Find potential matches by using the index against all words in shape
+        let matches = findMatchUsingIndex(sourceShape: sourceShape, searchMin: searchMin, searchMax: searchMax)
+        
+        if matches.count == 0 {
+            return []
+        }
+        
+        return checkMatches(matches: matches, sourceShape: sourceShape, sourceShapeId: sourceShapeId, searchShapes: searchShapes)
+        
     }
     
     public static func processMatches(matchCount: Int,
@@ -309,6 +374,21 @@ public struct WordIndexModelV2 {
         
         // Remove items out of score
         matches = matches.filter {$0 >= searchMin || $0 <= searchMax}
+        
+        matches.sort()
+        
+        return matches;
+    }
+    
+    private func findMatchUsingIndex(words: [Int]) -> [Int] {
+        
+        var matches: [Int] = [];
+        for w in words {
+            matches += self.index[w]
+        }
+        
+        // Remove items out of score
+        //matches = matches.filter {$0 >= searchMin || $0 <= searchMax}
         
         matches.sort()
         

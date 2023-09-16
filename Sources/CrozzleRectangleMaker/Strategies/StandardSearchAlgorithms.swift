@@ -7,7 +7,7 @@
 
 import Foundation
 public class StandardSearchAlgorithms {
-    private static func winnings(gameId: Int) -> ([ShapeModel],[String],Int, Int, Int) {
+    public static func winnings(gameId: Int) -> ([ShapeModel],[String],Int, Int, Int) {
         let (shapes,words,widthMax,heightMax) = WinningShapesCalculatorV1.getShapes(gameId: gameId)
         
         let winningScore = GameList().getGame(gameId: gameId)!.winningScore
@@ -15,7 +15,7 @@ public class StandardSearchAlgorithms {
         return (shapes, words, widthMax, heightMax, winningScore)
     }
     
-    private static func winningsMore(gameId: Int) -> ([ShapeModel],[String],Int, Int, Int) {
+    public static func winningsMore(gameId: Int) -> ([ShapeModel],[String],Int, Int, Int) {
         
         let game = GameList().getGame(gameId: gameId)!
         

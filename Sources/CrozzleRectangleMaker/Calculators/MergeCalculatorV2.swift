@@ -609,7 +609,7 @@ public class MergeCalculatorV2 {
                         if validShape.score >= scoreMin {
                             var validShape = validShape
                             validShape.mergeHistory = ShapeModel.createMergeHistory(sourceShapeHistory: sourceShape.mergeHistory, searchShapeHistory: searchShape.mergeHistory)
-                            sourceShape = validShape
+                            return validShape
                         }
                     }
                 }
@@ -618,7 +618,7 @@ public class MergeCalculatorV2 {
             }
         }
         
-        return sourceShape
+        return nil
     }
     
     public static func mergeSizeValidation(instruction: MergeInstructionModel, sourceShape: ShapeModel, searchShape: ShapeModel, widthMax: Int, heightMax: Int) -> (Bool, Int, Int) {
