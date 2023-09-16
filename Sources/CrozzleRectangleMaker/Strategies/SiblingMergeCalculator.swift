@@ -14,27 +14,27 @@
 import Foundation
 public class SiblingMergeCalculator {
     
-    public static func execute(parent: ShapeModel, siblings: [ShapeModel], searchShapes: [ShapeModel], words: [String], wordsInt: [[Int]], widthMax: Int, heightMax: Int, wordIndex: WordIndexModelV2, scoresMin: [Int]) -> [[ShapeModel]] {
+    public static func execute(treeNode: TreeNodeModel, searchShapes: [ShapeModel], words: [String], wordsInt: [[Int]], widthMax: Int, heightMax: Int, wordIndex: WordIndexModelV2, scoresMin: [Int]) -> [TreeNodeModel] {
         
-        var result: [[ShapeModel]] = []
+        var result: [TreeNodeModel] = []
     
         // These are the shapes that all the siblings have added to become unique siblings
-        let leafShapesAddedToBecomeSiblings = getSiblingLastShape(siblings: siblings)
+        let leafShapesAddedToBecomeSiblings = getSiblingLastShape(siblings: treeNode.childShapes)
         
         // These are the extra words that the siblings have added
-        let wordDifferenceBetweenParentAndSibling = getWordDifferences(parent: parent, siblings: siblings)
+        let wordDifferenceBetweenParentAndSibling = getWordDifferences(parent: treeNode.parentShape, siblings: treeNode.childShapes)
         
         
         // So now we can add the siblings to each other and see if they merge
         // We can check the added words are not the same
         
         var processedQueue: Set<String> = []
-        for siblingId in 0..<siblings.count {
+        for siblingId in 0..<leafShapesAddedToBecomeSiblings.count {
             
             var resultForShape: [ShapeModel] = []
             
             let sourceShapeId = leafShapesAddedToBecomeSiblings[siblingId]
-            let sourceShape = siblings[siblingId]
+            let sourceShape = treeNode.childShapes[siblingId]
             let siblingWords = wordDifferenceBetweenParentAndSibling[siblingId]
             
             
@@ -43,7 +43,7 @@ public class SiblingMergeCalculator {
             
             
             
-            for matchingSiblingId in 0..<siblings.count {
+            for matchingSiblingId in 0..<leafShapesAddedToBecomeSiblings.count {
                 
                 let searchShapeId = leafShapesAddedToBecomeSiblings[matchingSiblingId]
                 let wordsInMatchingSibling = wordDifferenceBetweenParentAndSibling[matchingSiblingId]
@@ -62,6 +62,7 @@ public class SiblingMergeCalculator {
 
                         
                     if let mergedShape = MergeCalculatorV2.mergeTwoShapes(sourceShape: sourceShape, searchShape: searchShapes[searchShapeId], words: words, widthMax: widthMax, heightMax: heightMax) {
+                        
                         
                         resultForShape.append(mergedShape)
                     }
@@ -91,17 +92,20 @@ public class SiblingMergeCalculator {
                 widthMax: widthMax,
                 heightMax: heightMax)
             
+            
+            let siblingCount = resultForShape.count
+            
             print(extraShapes.ToTextWithMergeHistory(words: words))
             
             resultForShape += extraShapes
             
-            
-            
-            
-            result.append(resultForShape)
+            if resultForShape.count > 0 {
+                
+                resultForShape.sort { $0.score > $1.score }
+                
+                result.append(TreeNodeModel(parentShape: sourceShape, childShapes: resultForShape, scoreMax: Int(resultForShape[0].score), siblingCount: siblingCount))
+            }
         }
-        
-        
         
         return result
     }

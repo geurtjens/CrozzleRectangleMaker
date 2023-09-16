@@ -11,4 +11,7 @@ public struct TreeNodeModel {
     public let childShapes: [ShapeModel]
     
     public let scoreMax: Int
+
+    /// How many siblings where used to calculate the children
+    public let siblingCount: Int
 }

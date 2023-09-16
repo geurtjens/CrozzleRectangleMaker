@@ -333,7 +333,7 @@ Shape 258 is
         
         let scoresMin: [Int] = Array(repeating: 0, count: 40)
         
-        var siblingShapes = MergeCalculatorV2.ExecuteDifferentShapesSync(
+        var childShapes = MergeCalculatorV2.ExecuteDifferentShapesSync(
             sourceShapes: [parentShape],
             searchShapes: searchShapes,
             searchWordIndex: wordIndex,
@@ -344,10 +344,15 @@ Shape 258 is
             scoresMin: scoresMin,
             widthMax: widthMax, heightMax: heightMax)
         
+        childShapes.sort { $0.score > $1.score }
         
-        let result = SiblingMergeCalculator.execute(parent: parentShape, siblings: siblingShapes, searchShapes: searchShapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax, wordIndex: wordIndex, scoresMin: scoresMin)
+        XCTAssertEqual(11, childShapes.count)
         
-        XCTAssertEqual(1,result.count)
+        let treeNode = TreeNodeModel(parentShape: parentShape, childShapes: childShapes, scoreMax: Int(childShapes[0].score), siblingCount: 0)
+        
+        let result = SiblingMergeCalculator.execute(treeNode: treeNode, searchShapes: searchShapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax, wordIndex: wordIndex, scoresMin: scoresMin)
+        
+        XCTAssertEqual(8,result.count)
     }
 
 }
