@@ -15,6 +15,9 @@ import Foundation
 public class SiblingMergeCalculator {
     
     
+    
+    
+    
     public static func GetStartingData(gameId: Int) -> (ShapeModel, [ShapeModel], [ShapeModel], [Int], [String], Int, Int, Int, WordIndexModelV2,[[Int]]) {
         let (winningShapes, words, widthMax, heightMax, winningScore) = StandardSearchAlgorithms.winningsMore(gameId: gameId)
         
@@ -28,7 +31,8 @@ public class SiblingMergeCalculator {
         
         let parentShape = searchShapes[0]
         
-        let scoresMin: [Int] = Array(repeating: 0, count: 40)
+        
+        let scoresMin = StrategyCalculator.GetScoreMins(gameId: gameId)
         
         var childShapes = MergeCalculatorV2.ExecuteDifferentShapesSync(
             sourceShapes: [parentShape],
@@ -48,35 +52,39 @@ public class SiblingMergeCalculator {
     }
     
     
-    public static func Execute(gameId: Int, maxLevels: Int = 20) {
+    public static func BreadthFirstSearch(gameId: Int, maxLevels: Int = 20, useCalculatedScoresMin: Bool = true) {
         
         var winnerFound = false
         
         let (parentShape, childShapes, searchShapes, scoresMin, words, widthMax, heightMax, winningScore, wordIndex, wordsInt) = GetStartingData(gameId: gameId)
         
+        var scoresMin2 = scoresMin
+        if useCalculatedScoresMin == false {
+            scoresMin2 = Array(repeating: 0, count: 40)
+        }
         
         let treeNode = TreeNodeModel(parentShape: parentShape, childShapes: childShapes, scoreMax: Int(childShapes[0].score), siblingCount: 0)
         
-        print("\nGameId: \(gameId), winning score: \(winningScore)")
+        print("\nBreadth First Search, gameId: \(gameId), winning score: \(winningScore)")
         print("level: 0, score: \(treeNode.parentShape.score), size: 1")
         print("level: 1, score: \(treeNode.scoreMax), size: \(treeNode.childShapes.count)")
         var previous = [treeNode]
         for i in 2..<maxLevels {
-            let level = executeAll(treeNodes: previous, searchShapes: searchShapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax, wordIndex: wordIndex, scoresMin: scoresMin)
+            let treeNodes = executeAll(treeNodes: previous, searchShapes: searchShapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax, wordIndex: wordIndex, scoresMin: scoresMin2)
             
-            let size = countLeafs(treeNodes: level)
-            let score = getScoreMax(treeNodes: level)
+            let (treeNodesWithoutDuplicates, duplicateCount) = RemoveDuplicatesCalculator.execute(treeNodes: treeNodes)
             
-            previous = level
+            let size = countLeafs(treeNodes: treeNodesWithoutDuplicates)
+            let score = getScoreMax(treeNodes: treeNodesWithoutDuplicates)
+            
+            previous = treeNodesWithoutDuplicates
             
             if score >= winningScore {
-                print("HUMAN SCORE REACHED, level: \(i), score: \(score), size: \(size), gameId: \(gameId)")
+                print("HUMAN SCORE REACHED, level: \(i), score: \(score), size: \(size), duplicates removed: \(duplicateCount), gameId: \(gameId)")
                 return
             }
-            print("level: \(i), score: \(score), size: \(size), gameId: \(gameId)")
-            
+            print("level: \(i), score: \(score), size: \(size), duplicates removed: \(duplicateCount), gameId: \(gameId)")
         }
-
     }
     
     
