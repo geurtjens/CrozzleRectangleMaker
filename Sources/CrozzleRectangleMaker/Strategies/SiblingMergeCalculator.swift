@@ -14,6 +14,89 @@
 import Foundation
 public class SiblingMergeCalculator {
     
+    public static func Execute(gameId: Int, maxLevels: Int = 20) {
+        
+        let (winningShapes, words, widthMax, heightMax, winningScore) = StandardSearchAlgorithms.winningsMore(gameId: gameId)
+        
+        let wordsInt = WordCalculator.WordsToInt(words: words)
+        
+        var searchShapes = winningShapes
+        searchShapes.sort { $0.score > $1.score }
+        ShapeCalculator.SetMergeHistory(shapes: &searchShapes)
+        
+        let wordIndex = WordIndexModelV2(shapes: searchShapes, wordCount: words.count)
+        
+        let parentShape = searchShapes[0]
+        
+        let scoresMin: [Int] = Array(repeating: 0, count: 40)
+        
+        var childShapes = MergeCalculatorV2.ExecuteDifferentShapesSync(
+            sourceShapes: [parentShape],
+            searchShapes: searchShapes,
+            searchWordIndex: wordIndex,
+            sourceMax: 1,
+            searchMax: searchShapes.count,
+            words: words,
+            wordsInt: wordsInt,
+            scoresMin: scoresMin,
+            widthMax: widthMax, heightMax: heightMax)
+        
+        childShapes.sort { $0.score > $1.score }
+        
+        
+        
+        let treeNode = TreeNodeModel(parentShape: parentShape, childShapes: childShapes, scoreMax: Int(childShapes[0].score), siblingCount: 0)
+        
+        print("\nGameId: \(gameId), winning score: \(winningScore)")
+        print("level: 0, score: \(treeNode.parentShape.score), size: 1")
+        print("level: 1, score: \(treeNode.scoreMax), size: \(treeNode.childShapes.count)")
+        var previous = [treeNode]
+        for i in 2..<maxLevels {
+            let level = executeAll(treeNodes: previous, searchShapes: searchShapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax, wordIndex: wordIndex, scoresMin: scoresMin)
+            
+            let size = countLeafs(treeNodes: level)
+            let score = getScoreMax(treeNodes: level)
+            
+            previous = level
+            print("level: \(i), score: \(score), size: \(size)")
+            
+        }
+
+    }
+    
+    
+    
+    public static func countLeafs(treeNodes: [TreeNodeModel]) -> Int {
+        var count = 0
+        for item in treeNodes {
+            count += item.childShapes.count
+        }
+        return count
+    }
+    
+    public static func getScoreMax(treeNodes: [TreeNodeModel]) -> Int {
+        if treeNodes.count == 0 {
+            return 0
+        } else {
+            return treeNodes[0].scoreMax
+        }
+    }
+    
+    public static func executeAll(treeNodes: [TreeNodeModel], searchShapes: [ShapeModel], words: [String], wordsInt: [[Int]], widthMax: Int, heightMax: Int, wordIndex: WordIndexModelV2, scoresMin: [Int]) -> [TreeNodeModel] {
+        
+        var result: [TreeNodeModel] = []
+        
+        for treeNode in treeNodes {
+            let values = execute(treeNode: treeNode, searchShapes: searchShapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax, wordIndex: wordIndex, scoresMin: scoresMin)
+            result += values
+        }
+        
+        result.sort { $0.scoreMax > $1.scoreMax}
+        return result
+    }
+    
+    
+    
     public static func execute(treeNode: TreeNodeModel, searchShapes: [ShapeModel], words: [String], wordsInt: [[Int]], widthMax: Int, heightMax: Int, wordIndex: WordIndexModelV2, scoresMin: [Int]) -> [TreeNodeModel] {
         
         var result: [TreeNodeModel] = []
@@ -95,7 +178,7 @@ public class SiblingMergeCalculator {
             
             let siblingCount = resultForShape.count
             
-            print(extraShapes.ToTextWithMergeHistory(words: words))
+            //print(extraShapes.ToTextWithMergeHistory(words: words))
             
             resultForShape += extraShapes
             
@@ -106,6 +189,8 @@ public class SiblingMergeCalculator {
                 result.append(TreeNodeModel(parentShape: sourceShape, childShapes: resultForShape, scoreMax: Int(resultForShape[0].score), siblingCount: siblingCount))
             }
         }
+        
+        result.sort { $0.scoreMax > $1.scoreMax}
         
         return result
     }

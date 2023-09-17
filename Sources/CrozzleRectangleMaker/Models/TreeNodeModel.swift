@@ -14,4 +14,6 @@ public struct TreeNodeModel {
 
     /// How many siblings where used to calculate the children
     public let siblingCount: Int
+    
+    public var isValid = true
 }

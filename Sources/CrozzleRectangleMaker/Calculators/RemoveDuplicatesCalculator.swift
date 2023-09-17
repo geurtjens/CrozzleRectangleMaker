@@ -25,6 +25,42 @@ public class RemoveDuplicatesCalculator {
     }
     
     
+    public static func execute(treeNodes:[TreeNodeModel]) -> ([TreeNodeModel], Int) {
+        if treeNodes.count == 0 {
+            return ([],0)
+        }
+        
+        var treeNodes = treeNodes
+
+        ShapeCalculator.SortWithWordSequence(treeNodes: &treeNodes)
+        
+        var previous = 0
+        var duplicateCount = 0
+        for current in 1..<treeNodes.count {
+            previous = current - 1
+            if (treeNodes[current].parentShape.score == treeNodes[previous].parentShape.score &&
+                treeNodes[current].parentShape.wordSequence == treeNodes[previous].parentShape.wordSequence &&
+                treeNodes[current].parentShape.width * treeNodes[current].parentShape.height == treeNodes[previous].parentShape.width * treeNodes[previous].parentShape.height)
+            {
+                treeNodes[current].isValid = false
+                duplicateCount += 1
+            }
+        }
+        
+        if duplicateCount > 0 {
+            treeNodes = treeNodes.filter { $0.isValid }
+            return (treeNodes, duplicateCount)
+        } else {
+            return (treeNodes, 0)
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
     /// This provides a new list of shapes that have no duplicates
     public static func execute(shapes: [ShapeModel]) -> ([ShapeModel], Int) {
         let (flippedShapes, flippedCount) = flipIfRequired(shapes: shapes)

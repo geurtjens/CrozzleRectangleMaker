@@ -517,7 +517,7 @@ public class MergeCalculatorV2 {
                             }
                         }
                     } else {
-                        print("We thought it was a valid size but it wasnt")
+                        //print("We thought it was a valid size but it wasnt")
                     }
                 }
             }
@@ -614,7 +614,7 @@ public class MergeCalculatorV2 {
                     }
                 }
             } else {
-                print("We thought it was a valid size but it wasnt")
+                //print("We thought it was a valid size but it wasnt")
             }
         }
         

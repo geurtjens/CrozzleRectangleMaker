@@ -301,6 +301,41 @@ public class ShapeCalculator {
         return result
     }
     
+    public static func SortWithWordSequence(treeNodes: inout [TreeNodeModel]) {
+        
+        
+        
+//        for i in 0..<shapes.count {
+//            if shapes[i].seqCalculated == false {
+//                shapes[i].wordSequence = ShapeModel.getWordSequence(placements: shapes[i].placements)
+//                shapes[i].seqCalculated = true
+//            }
+//        }
+        
+        
+        treeNodes.sort {
+            if $0.parentShape.score == $1.parentShape.score {
+                if $0.parentShape.area == $1.parentShape.area {
+                    if $0.parentShape.wordSequence == $1.parentShape.wordSequence {
+                        if $0.parentShape.mergeHistory.count == $1.parentShape.mergeHistory.count {
+                            return lowestShapeScoresFirst(firstNode:$0, secondNode:$1)
+                        } else {
+                            return $0.parentShape.mergeHistory.count < $1.parentShape.mergeHistory.count
+                        }
+                    } else {
+                        return $0.parentShape.wordSequence < $1.parentShape.wordSequence
+                    }
+                }
+                else {
+                    return $0.parentShape.area < $1.parentShape.area
+                }
+            } else {
+                return $0.parentShape.score > $1.parentShape.score
+            }
+        }
+    }
+    
+    
     /// sort shapes by score, area and then also word sequence.  Useful for finding duplicates
     public static func SortWithWordSequence(shapes: inout [ShapeModel]) {
         
@@ -379,6 +414,23 @@ public class ShapeCalculator {
         return true
     }
     
+    public static func lowestShapeScoresFirst( firstNode: TreeNodeModel, secondNode: TreeNodeModel) -> Bool {
+        
+        if firstNode.parentShape.mergeHistory.count == secondNode.parentShape.mergeHistory.count {
+            for mergeHistoryPos in 0..<firstNode.parentShape.mergeHistory.count {
+                let firstItem = firstNode.parentShape.mergeHistory[mergeHistoryPos]
+                let secondItem = secondNode.parentShape.mergeHistory[mergeHistoryPos]
+                
+                if firstItem > secondItem {
+                    // Means that secondShape has a lower shape id in its merge history
+                    return false
+                }
+            }
+        }
+
+        // means first is better than second
+        return true
+    }
     
     public static func getScoreAndText3(shape: ShapeModel, words2:[[Int]], grid: inout [Int]) -> (UInt16, [Int]) {
         
