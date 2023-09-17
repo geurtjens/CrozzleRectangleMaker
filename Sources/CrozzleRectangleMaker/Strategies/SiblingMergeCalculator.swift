@@ -58,6 +58,10 @@ public class SiblingMergeCalculator {
             let score = getScoreMax(treeNodes: level)
             
             previous = level
+            
+            if score >= winningScore {
+                print("HUMAN SCORE REACHED")
+            }
             print("level: \(i), score: \(score), size: \(size)")
             
         }
