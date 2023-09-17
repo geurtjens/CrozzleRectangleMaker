@@ -54,6 +54,8 @@ public class SiblingMergeCalculator {
     
     public static func BreadthFirstSearch(gameId: Int, maxLevels: Int = 20, useCalculatedScoresMin: Bool = true) {
         
+        let startTime = DateTimeCalculator.now()
+        
         var winnerFound = false
         
         let (parentShape, childShapes, searchShapes, scoresMin, words, widthMax, heightMax, winningScore, wordIndex, wordsInt) = GetStartingData(gameId: gameId)
@@ -81,10 +83,14 @@ public class SiblingMergeCalculator {
             
             if score >= winningScore {
                 print("HUMAN SCORE REACHED, level: \(i), score: \(score), size: \(size), duplicates removed: \(duplicateCount), gameId: \(gameId)")
+                let finishTime = DateTimeCalculator.now()
+                print("duration: \(DateTimeCalculator.duration(start: startTime, finish: finishTime))")
                 return
             }
             print("level: \(i), score: \(score), size: \(size), duplicates removed: \(duplicateCount), gameId: \(gameId)")
         }
+        let finishTime = DateTimeCalculator.now()
+        print("duration: \(DateTimeCalculator.duration(start: startTime, finish: finishTime))")
     }
     
     
