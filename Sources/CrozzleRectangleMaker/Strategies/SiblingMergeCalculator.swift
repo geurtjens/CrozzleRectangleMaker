@@ -14,8 +14,8 @@
 import Foundation
 public class SiblingMergeCalculator {
     
-    public static func Execute(gameId: Int, maxLevels: Int = 20) {
-        
+    
+    public static func GetStartingData(gameId: Int) -> (ShapeModel, [ShapeModel], [ShapeModel], [Int], [String], Int, Int, Int, WordIndexModelV2,[[Int]]) {
         let (winningShapes, words, widthMax, heightMax, winningScore) = StandardSearchAlgorithms.winningsMore(gameId: gameId)
         
         let wordsInt = WordCalculator.WordsToInt(words: words)
@@ -44,6 +44,16 @@ public class SiblingMergeCalculator {
         childShapes.sort { $0.score > $1.score }
         
         
+        return (parentShape, childShapes, searchShapes, scoresMin, words, widthMax, heightMax, winningScore, wordIndex, wordsInt)
+    }
+    
+    
+    public static func Execute(gameId: Int, maxLevels: Int = 20) {
+        
+        var winnerFound = false
+        
+        let (parentShape, childShapes, searchShapes, scoresMin, words, widthMax, heightMax, winningScore, wordIndex, wordsInt) = GetStartingData(gameId: gameId)
+        
         
         let treeNode = TreeNodeModel(parentShape: parentShape, childShapes: childShapes, scoreMax: Int(childShapes[0].score), siblingCount: 0)
         
@@ -60,9 +70,10 @@ public class SiblingMergeCalculator {
             previous = level
             
             if score >= winningScore {
-                print("HUMAN SCORE REACHED")
+                print("HUMAN SCORE REACHED, level: \(i), score: \(score), size: \(size), gameId: \(gameId)")
+                return
             }
-            print("level: \(i), score: \(score), size: \(size)")
+            print("level: \(i), score: \(score), size: \(size), gameId: \(gameId)")
             
         }
 
@@ -137,10 +148,20 @@ public class SiblingMergeCalculator {
                 
                 let searchForDuplicates = "\(searchShapeId),\(sourceShapeId)"
                 
+                if searchShapeId == 57 && sourceShapeId == 10 {
+                    print("This should work")
+                }
                 
-                if (matchingSiblingId != siblingId &&
-                    processedQueue.contains(searchForDuplicates) == false &&
-                    siblingWords.intersection(wordsInMatchingSibling).count != 0) {
+                //let differentWords = siblingWords.intersection(wordsInMatchingSibling)
+                
+                let subsetA = siblingWords.isStrictSubset(of: wordsInMatchingSibling)
+                let subsetB = wordsInMatchingSibling.isStrictSubset(of: siblingWords)
+                
+                if (
+                    //matchingSiblingId != siblingId &&
+                    subsetA == false && subsetB == false &&
+                    processedQueue.contains(searchForDuplicates) == false
+                    ) {
                     
 
                     processedQueue.insert("\(sourceShapeId),\(searchShapeId)")
