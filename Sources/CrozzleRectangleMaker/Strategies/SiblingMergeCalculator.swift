@@ -67,7 +67,7 @@ public class SiblingMergeCalculator {
         
         let treeNode = TreeNodeModel(parentShape: parentShape, childShapes: childShapes, scoreMax: Int(childShapes[0].score), siblingCount: 0)
         
-        print("\nBreadth First Search, gameId: \(gameId), winning score: \(winningScore)")
+        print("\nBreadth First Search, gameId: \(gameId), starting shapes: \(childShapes.count), winning score: \(winningScore)")
         print("level: 0, score: \(treeNode.parentShape.score), size: 1")
         print("level: 1, score: \(treeNode.scoreMax), size: \(treeNode.childShapes.count)")
         var previous = [treeNode]
@@ -88,6 +88,12 @@ public class SiblingMergeCalculator {
                 return
             }
             print("level: \(i), score: \(score), size: \(size), duplicates removed: \(duplicateCount), gameId: \(gameId)")
+            
+            if size == 0 {
+                let finishTime = DateTimeCalculator.now()
+                print("duration: \(DateTimeCalculator.duration(start: startTime, finish: finishTime))")
+                return
+            }
         }
         let finishTime = DateTimeCalculator.now()
         print("duration: \(DateTimeCalculator.duration(start: startTime, finish: finishTime))")
