@@ -48,7 +48,7 @@ public class SiblingMergeCalculator {
     }
     
     
-    public static func BreadthFirstSearch(gameId: Int, maxLevels: Int = 20, useCalculatedScoresMin: Bool = true, exitWhenHumanScoreFound: Bool = true) {
+    public static func BreadthFirstSearch(gameId: Int, maxLevels: Int = 20, useCalculatedScoresMin: Bool = true, exitWhenHumanScoreFound: Bool = true, maxAllowableSize: Int = 1_500_000) {
         
         
         
@@ -93,6 +93,11 @@ public class SiblingMergeCalculator {
                 }
             }
             print("level: \(i), score: \(score), size: \(size), duplicates removed: \(duplicateCount)")
+            
+            if size > maxAllowableSize {
+                print("size is greater than 1.5 million so exiting")
+                return
+            }
             
             if size == 0 {
                 let finishTime = DateTimeCalculator.now()
