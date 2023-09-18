@@ -48,7 +48,7 @@ public class SiblingMergeCalculator {
     }
     
     
-    public static func BreadthFirstSearch(gameId: Int, maxLevels: Int = 20, useCalculatedScoresMin: Bool = true) {
+    public static func BreadthFirstSearch(gameId: Int, maxLevels: Int = 20, useCalculatedScoresMin: Bool = true, exitWhenHumanScoreFound: Bool = true) {
         
         
         
@@ -84,12 +84,15 @@ public class SiblingMergeCalculator {
             previous = treeNodesWithoutDuplicates
             
             if score >= winningScore {
-                print("HUMAN SCORE REACHED, level: \(i), score: \(score), size: \(size), duplicates removed: \(duplicateCount), gameId: \(gameId)")
-                let finishTime = DateTimeCalculator.now()
-                print("\(totalNodes) nodes traversed in: \(DateTimeCalculator.duration(start: startTime, finish: finishTime))")
-                return
+                print("level: \(i), score: \(score), size: \(size), duplicates removed: \(duplicateCount), HUMAN SCORE REACHED for \(gameId)")
+                
+                if exitWhenHumanScoreFound {
+                    let finishTime = DateTimeCalculator.now()
+                    print("\(totalNodes) nodes traversed in: \(DateTimeCalculator.duration(start: startTime, finish: finishTime))")
+                    return
+                }
             }
-            print("level: \(i), score: \(score), size: \(size), duplicates removed: \(duplicateCount), gameId: \(gameId)")
+            print("level: \(i), score: \(score), size: \(size), duplicates removed: \(duplicateCount)")
             
             if size == 0 {
                 let finishTime = DateTimeCalculator.now()
