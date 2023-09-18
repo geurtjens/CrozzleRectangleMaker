@@ -10,10 +10,10 @@ import XCTest
 final class SiblingMergeCalculatorTests: XCTestCase {
 
     
-    func testExecute() {
+    func testExecute() async {
         let gameList = GameList()
         for game in gameList.games {
-            SiblingMergeCalculator.BreadthFirstSearch(gameId: game.gameId, maxLevels: 20)
+            await SiblingMergeCalculator.BreadthFirstSearch(gameId: game.gameId, maxLevels: 20)
         }
     }
     
