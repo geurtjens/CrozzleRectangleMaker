@@ -95,7 +95,7 @@ public class SiblingMergeCalculator {
             print("level: \(i), score: \(score), size: \(size), duplicates removed: \(duplicateCount)")
             
             if size > maxAllowableSize {
-                print("size is greater than 1.5 million so exiting")
+                print("size is greater than max size of \(maxAllowableSize) so exiting")
                 return
             }
             
