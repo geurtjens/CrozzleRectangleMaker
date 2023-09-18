@@ -96,6 +96,8 @@ public class SiblingMergeCalculator {
             
             if size > maxAllowableSize {
                 print("size is greater than max size of \(maxAllowableSize) so exiting")
+                let finishTime = DateTimeCalculator.now()
+                print("\(totalNodes) nodes traversed in: \(DateTimeCalculator.duration(start: startTime, finish: finishTime))")
                 return
             }
             
