@@ -13,7 +13,7 @@ final class SiblingMergeCalculatorTests: XCTestCase {
     func testExecute() {
         let gameList = GameList()
         for game in gameList.games {
-            SiblingMergeCalculator.Execute(gameId: game.gameId, maxLevels: 20)
+            SiblingMergeCalculator.BreadthFirstSearch(gameId: game.gameId, maxLevels: 20)
         }
     }
     

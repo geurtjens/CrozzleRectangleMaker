@@ -15,7 +15,7 @@ public class StandardSearchAlgorithms {
         return (shapes, words, widthMax, heightMax, winningScore)
     }
     
-    public static func winningsMore(gameId: Int) -> ([ShapeModel],[String],Int, Int, Int) {
+    public static func winningsMore(gameId: Int) -> ([ShapeModel],[String],Int, Int, Int, Int) {
         
         let game = GameList().getGame(gameId: gameId)!
         
@@ -24,11 +24,26 @@ public class StandardSearchAlgorithms {
         let widthMax = game.maxWidth
         let heightMax = game.maxHeight
         
+        let shapesInWinningGame = WinningShapesCalculatorV1.getShapes(gameId: gameId).0.sorted { $0.score > $1.score}
+        
+        // now we must find this best winning shape within the shapes
+        let startingShape = shapesInWinningGame[0]
+        
         let winningScore = game.winningScore
         
-        let shapes = WinningShapesAllCalculatorV3.execute(gameId: gameId, words: game.winningWords)
+        var searchShapes = WinningShapesAllCalculatorV3.execute(gameId: gameId, words: game.winningWords)
+        searchShapes.sort { $0.score > $1.score }
+        ShapeCalculator.SetMergeHistory(shapes: &searchShapes)
         
-        return (shapes, words, widthMax, heightMax, winningScore)
+        var startingShapeId = 0
+        
+        for shapeId in 0..<searchShapes.count {
+            if startingShape.wordSequence == searchShapes[shapeId].wordSequence {
+                startingShapeId = shapeId
+            }
+        }
+        
+        return (searchShapes, words, widthMax, heightMax, winningScore, startingShapeId)
     }
     
     public static func depthFirstSearchV1(gameId: Int) -> (ShapeModel, Int, Int, Bool) {
@@ -94,17 +109,13 @@ public class StandardSearchAlgorithms {
     
     public static func depthFirstSearchExtendedV1(gameId: Int) -> (ShapeModel, Int, Int, Bool) {
 
-        let (winningShapes, words, widthMax, heightMax, winningScore) = winningsMore(gameId: gameId)
+        let (searchShapes, words, widthMax, heightMax, winningScore, startingShapeId) = winningsMore(gameId: gameId)
         
         let wordsInt = WordCalculator.WordsToInt(words: words)
         
-        var searchShapes = winningShapes
-        searchShapes.sort { $0.score > $1.score }
-        ShapeCalculator.SetMergeHistory(shapes: &searchShapes)
-        
         let wordIndex = WordIndexModelV2(shapes: searchShapes, wordCount: words.count)
         
-        let firstShape = searchShapes[0]
+        let firstShape = searchShapes[startingShapeId]
         
         var queue = ShapePriorityQueue()
         
@@ -166,17 +177,13 @@ public class StandardSearchAlgorithms {
     
     public static func hillClimbingSearchExtendedV1(gameId: Int) -> (ShapeModel, Int, Int, Bool) {
 
-        let (winningShapes, words, widthMax, heightMax, winningScore) = winningsMore(gameId: gameId)
+        let (searchShapes, words, widthMax, heightMax, winningScore,startingShapeId) = winningsMore(gameId: gameId)
         
         let wordsInt = WordCalculator.WordsToInt(words: words)
         
-        var searchShapes = winningShapes
-        searchShapes.sort { $0.score > $1.score }
-        ShapeCalculator.SetMergeHistory(shapes: &searchShapes)
-        
         let wordIndex = WordIndexModelV2(shapes: searchShapes, wordCount: words.count)
         
-        let firstShape = searchShapes[0]
+        let firstShape = searchShapes[startingShapeId]
         
         var queue = ShapePriorityQueue()
         
@@ -240,17 +247,14 @@ public class StandardSearchAlgorithms {
     
     public static func beamSearchExtendedV1(gameId: Int, beamWidth: Int) -> (ShapeModel, Int, Int, Bool) {
 
-        let (winningShapes, words, widthMax, heightMax, winningScore) = winningsMore(gameId: gameId)
+        let (searchShapes, words, widthMax, heightMax, winningScore, startingShapeId) = winningsMore(gameId: gameId)
         
         let wordsInt = WordCalculator.WordsToInt(words: words)
         
-        var searchShapes = winningShapes
-        searchShapes.sort { $0.score > $1.score }
-        ShapeCalculator.SetMergeHistory(shapes: &searchShapes)
         
         let wordIndex = WordIndexModelV2(shapes: searchShapes, wordCount: words.count)
         
-        let firstShape = searchShapes[0]
+        let firstShape = searchShapes[startingShapeId]
         
         var queue = ShapePriorityQueue()
         

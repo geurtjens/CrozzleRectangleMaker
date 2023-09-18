@@ -15,21 +15,17 @@ import Foundation
 public class SiblingMergeCalculator {
     
     
-    
-    
-    
     public static func GetStartingData(gameId: Int) -> (ShapeModel, [ShapeModel], [ShapeModel], [Int], [String], Int, Int, Int, WordIndexModelV2,[[Int]]) {
-        let (winningShapes, words, widthMax, heightMax, winningScore) = StandardSearchAlgorithms.winningsMore(gameId: gameId)
+        let (winningShapes, words, widthMax, heightMax, winningScore, startingShapeId) = StandardSearchAlgorithms.winningsMore(gameId: gameId)
         
         let wordsInt = WordCalculator.WordsToInt(words: words)
         
-        var searchShapes = winningShapes
-        searchShapes.sort { $0.score > $1.score }
-        ShapeCalculator.SetMergeHistory(shapes: &searchShapes)
+        let searchShapes = winningShapes
+        
         
         let wordIndex = WordIndexModelV2(shapes: searchShapes, wordCount: words.count)
         
-        let parentShape = searchShapes[0]
+        let parentShape = searchShapes[startingShapeId]
         
         
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: gameId)
@@ -58,8 +54,6 @@ public class SiblingMergeCalculator {
         
         let startTime = DateTimeCalculator.now()
         
-        var winnerFound = false
-        
         let (parentShape, childShapes, searchShapes, scoresMin, words, widthMax, heightMax, winningScore, wordIndex, wordsInt) = GetStartingData(gameId: gameId)
         
         var totalNodes = 1 + childShapes.count
@@ -71,7 +65,7 @@ public class SiblingMergeCalculator {
         
         let treeNode = TreeNodeModel(parentShape: parentShape, childShapes: childShapes, scoreMax: Int(childShapes[0].score), siblingCount: 0)
         
-        print("\nBreadth First Search, gameId: \(gameId), winning score: \(winningScore)")
+        print("\nBreadth First Search, gameId: \(gameId), search shapes: \(searchShapes.count), winning score: \(winningScore)")
         print("level: 0, score: \(treeNode.parentShape.score), size: 1")
         print("level: 1, score: \(treeNode.scoreMax), size: \(treeNode.childShapes.count)")
         var previous = [treeNode]
