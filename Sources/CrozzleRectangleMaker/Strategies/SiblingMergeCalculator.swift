@@ -54,11 +54,15 @@ public class SiblingMergeCalculator {
     
     public static func BreadthFirstSearch(gameId: Int, maxLevels: Int = 20, useCalculatedScoresMin: Bool = true) {
         
+        
+        
         let startTime = DateTimeCalculator.now()
         
         var winnerFound = false
         
         let (parentShape, childShapes, searchShapes, scoresMin, words, widthMax, heightMax, winningScore, wordIndex, wordsInt) = GetStartingData(gameId: gameId)
+        
+        var totalNodes = 1 + childShapes.count
         
         var scoresMin2 = scoresMin
         if useCalculatedScoresMin == false {
@@ -74,7 +78,11 @@ public class SiblingMergeCalculator {
         for i in 2..<maxLevels {
             let treeNodes = executeAll(treeNodes: previous, searchShapes: searchShapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax, wordIndex: wordIndex, scoresMin: scoresMin2)
             
+            
+            
             let (treeNodesWithoutDuplicates, duplicateCount) = RemoveDuplicatesCalculator.execute(treeNodes: treeNodes)
+            
+            totalNodes += treeNodesWithoutDuplicates.count
             
             let size = countLeafs(treeNodes: treeNodesWithoutDuplicates)
             let score = getScoreMax(treeNodes: treeNodesWithoutDuplicates)
@@ -84,19 +92,19 @@ public class SiblingMergeCalculator {
             if score >= winningScore {
                 print("HUMAN SCORE REACHED, level: \(i), score: \(score), size: \(size), duplicates removed: \(duplicateCount), gameId: \(gameId)")
                 let finishTime = DateTimeCalculator.now()
-                print("duration: \(DateTimeCalculator.duration(start: startTime, finish: finishTime))")
+                print("\(totalNodes) nodes traversed in: \(DateTimeCalculator.duration(start: startTime, finish: finishTime))")
                 return
             }
             print("level: \(i), score: \(score), size: \(size), duplicates removed: \(duplicateCount), gameId: \(gameId)")
             
             if size == 0 {
                 let finishTime = DateTimeCalculator.now()
-                print("duration: \(DateTimeCalculator.duration(start: startTime, finish: finishTime))")
+                print("\(totalNodes) nodes traversed in: \(DateTimeCalculator.duration(start: startTime, finish: finishTime))")
                 return
             }
         }
         let finishTime = DateTimeCalculator.now()
-        print("duration: \(DateTimeCalculator.duration(start: startTime, finish: finishTime))")
+        print("\(totalNodes) nodes traversed in: \(DateTimeCalculator.duration(start: startTime, finish: finishTime))")
     }
     
     
