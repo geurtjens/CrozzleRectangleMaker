@@ -73,7 +73,7 @@ public class SiblingMergeCalculator {
 //            let treeNodes = executeAll(treeNodes: previous, searchShapes: searchShapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax, wordIndex: wordIndex, scoresMin: scoresMin2)
             var treeNodes = await executeAllParallel(treeNodes: previous, searchShapes: searchShapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax, wordIndex: wordIndex, scoresMin: scoresMin2)
             
-            treeNodes.sort { $0.scoreMax > $1.scoreMax}
+            //treeNodes.sort { $0.scoreMax > $1.scoreMax}
             
             let (treeNodesWithoutDuplicates, duplicateCount) = RemoveDuplicatesCalculator.execute(treeNodes: treeNodes)
             
