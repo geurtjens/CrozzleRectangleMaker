@@ -48,69 +48,7 @@ public class SiblingMergeCalculator {
     }
     
     
-    public static func BreadthFirstSearch(gameId: Int, maxLevels: Int = 20, useCalculatedScoresMin: Bool = true, exitWhenHumanScoreFound: Bool = true, maxAllowableSize: Int = 1_500_000) async {
-        
-        
-        
-        let startTime = DateTimeCalculator.now()
-        
-        let (parentShape, childShapes, searchShapes, scoresMin, words, widthMax, heightMax, winningScore, wordIndex, wordsInt) = GetStartingData(gameId: gameId)
-        
-        var totalNodes = 1 + childShapes.count
-        
-        var scoresMin2 = scoresMin
-        if useCalculatedScoresMin == false {
-            scoresMin2 = Array(repeating: 0, count: 40)
-        }
-        
-        let treeNode = TreeNodeModel(parentShape: parentShape, childShapes: childShapes, scoreMax: Int(childShapes[0].score), siblingCount: 0)
-        
-        print("\nBreadth First Search, gameId: \(gameId), search shapes: \(searchShapes.count), winning score: \(winningScore)")
-        print("level: 0, score: \(treeNode.parentShape.score), size: 1")
-        print("level: 1, score: \(treeNode.scoreMax), size: \(treeNode.childShapes.count)")
-        var previous = [treeNode]
-        for i in 2..<maxLevels {
-//            let treeNodes = executeAll(treeNodes: previous, searchShapes: searchShapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax, wordIndex: wordIndex, scoresMin: scoresMin2)
-            var treeNodes = await executeAllParallel(treeNodes: previous, searchShapes: searchShapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax, wordIndex: wordIndex, scoresMin: scoresMin2)
-            
-            //treeNodes.sort { $0.scoreMax > $1.scoreMax}
-            
-            let (treeNodesWithoutDuplicates, duplicateCount) = RemoveDuplicatesCalculator.execute(treeNodes: treeNodes)
-            
-            totalNodes += treeNodesWithoutDuplicates.count
-            
-            let size = countLeafs(treeNodes: treeNodesWithoutDuplicates)
-            let score = getScoreMax(treeNodes: treeNodesWithoutDuplicates)
-            
-            previous = treeNodesWithoutDuplicates
-            
-            if score >= winningScore {
-                print("level: \(i), score: \(score), size: \(size), duplicates removed: \(duplicateCount), HUMAN SCORE REACHED for \(gameId)")
-                
-                if exitWhenHumanScoreFound {
-                    let finishTime = DateTimeCalculator.now()
-                    print("\(totalNodes) nodes traversed in: \(DateTimeCalculator.duration(start: startTime, finish: finishTime))")
-                    return
-                }
-            }
-            print("level: \(i), score: \(score), size: \(size), duplicates removed: \(duplicateCount)")
-            
-            if size > maxAllowableSize {
-                print("size is greater than max size of \(maxAllowableSize) so exiting")
-                let finishTime = DateTimeCalculator.now()
-                print("\(totalNodes) nodes traversed in: \(DateTimeCalculator.duration(start: startTime, finish: finishTime))")
-                return
-            }
-            
-            if size == 0 {
-                let finishTime = DateTimeCalculator.now()
-                print("\(totalNodes) nodes traversed in: \(DateTimeCalculator.duration(start: startTime, finish: finishTime))")
-                return
-            }
-        }
-        let finishTime = DateTimeCalculator.now()
-        print("\(totalNodes) nodes traversed in: \(DateTimeCalculator.duration(start: startTime, finish: finishTime))")
-    }
+    
     
     
     
@@ -123,6 +61,7 @@ public class SiblingMergeCalculator {
     }
     
     public static func getScoreMax(treeNodes: [TreeNodeModel]) -> Int {
+        
         if treeNodes.count == 0 {
             return 0
         } else {
@@ -144,150 +83,7 @@ public class SiblingMergeCalculator {
     }
     
     
-    public static func executeAllParallel(
-        treeNodes: [TreeNodeModel],
-        searchShapes: [ShapeModel],
-        words: [String],
-        wordsInt: [[Int]],
-        widthMax: Int,
-        heightMax: Int,
-        wordIndex: WordIndexModelV2,
-        scoresMin: [Int]) async -> [TreeNodeModel] {
-        
-        async let a0 = ExecuteSameShapeOneAsync(
-            zeroToNine: 0,
-            treeNodes: treeNodes,
-            searchShapes: searchShapes,
-            words: words,
-            wordsInt: wordsInt,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            wordIndex: wordIndex,
-            scoresMin: scoresMin)
-        
-        async let a1 = ExecuteSameShapeOneAsync(
-            zeroToNine: 1,
-            treeNodes: treeNodes,
-            searchShapes: searchShapes,
-            words: words,
-            wordsInt: wordsInt,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            wordIndex: wordIndex,
-            scoresMin: scoresMin)
-        
-        async let a2 = ExecuteSameShapeOneAsync(
-            zeroToNine: 2,
-            treeNodes: treeNodes,
-            searchShapes: searchShapes,
-            words: words,
-            wordsInt: wordsInt,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            wordIndex: wordIndex,
-            scoresMin: scoresMin)
-        
-        async let a3 = ExecuteSameShapeOneAsync(
-            zeroToNine: 3,
-            treeNodes: treeNodes,
-            searchShapes: searchShapes,
-            words: words,
-            wordsInt: wordsInt,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            wordIndex: wordIndex,
-            scoresMin: scoresMin)
-        
-        async let a4 = ExecuteSameShapeOneAsync(
-            zeroToNine: 4,
-            treeNodes: treeNodes,
-            searchShapes: searchShapes,
-            words: words,
-            wordsInt: wordsInt,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            wordIndex: wordIndex,
-            scoresMin: scoresMin)
-        
-        async let a5 = ExecuteSameShapeOneAsync(
-            zeroToNine: 5,
-            treeNodes: treeNodes,
-            searchShapes: searchShapes,
-            words: words,
-            wordsInt: wordsInt,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            wordIndex: wordIndex,
-            scoresMin: scoresMin)
-        
-        async let a6 = ExecuteSameShapeOneAsync(
-            zeroToNine: 6,
-            treeNodes: treeNodes,
-            searchShapes: searchShapes,
-            words: words,
-            wordsInt: wordsInt,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            wordIndex: wordIndex,
-            scoresMin: scoresMin)
-        
-        async let a7 = ExecuteSameShapeOneAsync(
-            zeroToNine: 7,
-            treeNodes: treeNodes,
-            searchShapes: searchShapes,
-            words: words,
-            wordsInt: wordsInt,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            wordIndex: wordIndex,
-            scoresMin: scoresMin)
-        
-        async let a8 = ExecuteSameShapeOneAsync(
-            zeroToNine: 8,
-            treeNodes: treeNodes,
-            searchShapes: searchShapes,
-            words: words,
-            wordsInt: wordsInt,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            wordIndex: wordIndex,
-            scoresMin: scoresMin)
-        
-        async let a9 = ExecuteSameShapeOneAsync(
-            zeroToNine: 9,
-            treeNodes: treeNodes,
-            searchShapes: searchShapes,
-            words: words,
-            wordsInt: wordsInt,
-            widthMax: widthMax,
-            heightMax: heightMax,
-            wordIndex: wordIndex,
-            scoresMin: scoresMin)
-        
-       
-        return await a0 + a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9
-    }
     
-    public static func ExecuteSameShapeOneAsync(zeroToNine: Int,
-                                                treeNodes: [TreeNodeModel],
-                                                searchShapes: [ShapeModel],
-                                                words: [String],
-                                                wordsInt: [[Int]],
-                                                widthMax: Int,
-                                                heightMax: Int,
-                                                wordIndex: WordIndexModelV2,
-                                                scoresMin: [Int]) -> [TreeNodeModel] {
-        var result:[TreeNodeModel] = []
-        
-        // The difference is that each cpu works on 0,10,20 .. or 1, 11, 21 and so we divide the task
-        for treeNodeId in stride(from: zeroToNine, to:treeNodes.count, by: 10) {
-            
-            let treeNodes = execute(treeNode: treeNodes[treeNodeId], searchShapes: searchShapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax, wordIndex: wordIndex, scoresMin: scoresMin)
-            result += treeNodes
-            
-        }
-        return result
-    }
     
     
     
@@ -327,10 +123,6 @@ public class SiblingMergeCalculator {
                 
                 let searchForDuplicates = "\(searchShapeId),\(sourceShapeId)"
                 
-                if searchShapeId == 57 && sourceShapeId == 10 {
-                    print("This should work")
-                }
-                
                 //let differentWords = siblingWords.intersection(wordsInMatchingSibling)
                 
                 let subsetA = siblingWords.isStrictSubset(of: wordsInMatchingSibling)
@@ -357,6 +149,7 @@ public class SiblingMergeCalculator {
                 }
             }
             
+            // We might be ignoring the words added by the sibling but is this at the same level I wonder
             
             // Find matches that only link to the new words that this has added
             let instructions = wordIndex.findMatches(containingWords: Array(siblingWords),

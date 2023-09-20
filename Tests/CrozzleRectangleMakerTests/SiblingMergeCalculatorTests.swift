@@ -10,12 +10,6 @@ import XCTest
 final class SiblingMergeCalculatorTests: XCTestCase {
 
     
-    func testExecute() async {
-        let gameList = GameList()
-        for game in gameList.games {
-            await SiblingMergeCalculator.BreadthFirstSearch(gameId: game.gameId, maxLevels: 20)
-        }
-    }
     
     /// We find here that treeSearch produces the same results as normal merge with less duplicates
     /// Also the normal merge duplicates shapes in the parent shape.
