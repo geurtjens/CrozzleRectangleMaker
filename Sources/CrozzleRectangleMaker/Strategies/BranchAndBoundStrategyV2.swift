@@ -7,32 +7,18 @@
 
 import Foundation
 public class BranchAndBoundStrategyV2 {
+    
+    
+    
     public static func execute(gameId: Int, words: [String], repeatTimes: Int, lookahead: Int = 5) async -> ShapeModel {
-        let game = GameList().getGame(gameId: gameId)!
-        let wordsInt = WordCalculator.WordsToInt(words: words)
-        var searchShapes = getShapes(gameId: gameId, words: words)
         
+        let (winningScore, wordsInt, searchShapes, wordIndex, startingShape, scoresMin, widthMax, heightMax) = getStartingData(gameId: gameId, words: words)
         
+        var sourceShapes = [startingShape]
         
-        let bestShapeExample = getBestWinningShape(gameId: gameId)
+        var bestShape = startingShape
         
-        var bestShapePos = getShapeBySequence(shapes: searchShapes, sequence: bestShapeExample.wordSequence)
-        
-        if bestShapePos == -1 {
-            searchShapes = [bestShapeExample] + searchShapes
-            bestShapePos = 0
-        }
-        
-        
-        let wordIndex = WordIndexModelV2(shapes: searchShapes, wordCount: words.count)
-        
-        var bestShape = searchShapes[bestShapePos]
-        
-        let scoresMin = StrategyCalculator.GetScoreMins(gameId: game.gameId)
-        
-        var sourceShapes = [searchShapes[0]]
-        
-        print(bestShape.ToStringExtended(words: words, gameId: gameId, winningScore: game.winningScore))
+        print(bestShape.ToStringExtended(words: words, gameId: gameId, winningScore: winningScore))
         print(bestShape.mergeHistory)
         
         var backtrackCount = 2
@@ -40,14 +26,26 @@ public class BranchAndBoundStrategyV2 {
         
         for _ in 0..<repeatTimes {
             for _ in 0..<lookahead {
-                let newShapes = await MergeCalculatorV2.ExecuteDifferentShapesAsync(sourceShapes: sourceShapes, searchShapes: searchShapes, searchWordIndex: wordIndex, sourceMax: sourceShapes.count, searchMax: searchShapes.count, words: words, wordsInt: wordsInt, scoresMin: scoresMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
+                let newShapes = await MergeCalculatorV2.ExecuteDifferentShapesAsync(
+                    sourceShapes: sourceShapes,
+                    searchShapes: searchShapes,
+                    searchWordIndex: wordIndex,
+                    sourceMax: sourceShapes.count,
+                    searchMax: searchShapes.count,
+                    words: words,
+                    wordsInt: wordsInt,
+                    scoresMin: scoresMin,
+                    widthMax: widthMax,
+                    heightMax: heightMax)
+                
                 if newShapes.count > 0 {
                     let (newShapes,_) = RemoveDuplicatesCalculator.execute(shapes:newShapes)
                     sourceShapes = newShapes
-                    ShapeCalculator.SortByScoreThenArea(shapes: &sourceShapes)
+                    //ShapeCalculator.SortByScoreThenArea(shapes: &sourceShapes)
+                    
                     if bestShape.score < sourceShapes[0].score {
                         bestShape = sourceShapes[0]
-                        print(bestShape.ToStringExtended(words: words, gameId: gameId, winningScore: game.winningScore))
+                        print(bestShape.ToStringExtended(words: words, gameId: gameId, winningScore: winningScore))
                         print(bestShape.mergeHistory)
                     }
                 } else {
@@ -76,7 +74,7 @@ public class BranchAndBoundStrategyV2 {
             // We are going to halve the number
             
            
-            if bestShape.score >= game.winningScore {
+            if bestShape.score >= winningScore {
                 return bestShape
             }
         }
@@ -108,4 +106,40 @@ public class BranchAndBoundStrategyV2 {
         }
         return -1
     }
+    
+    public static func getStartingData(gameId: Int, words: [String]) -> (Int,[[Int]],[ShapeModel], WordIndexModelV2, ShapeModel, [Int], Int, Int){
+        let game = GameList().getGame(gameId: gameId)!
+        
+        let winningScore = game.winningScore
+        
+        let wordsInt = WordCalculator.WordsToInt(words: words)
+        
+        var searchShapes = getShapes(gameId: gameId, words: words)
+        
+        
+        let bestShapeExample = getBestWinningShape(gameId: gameId)
+        
+        var bestShapePos = getShapeBySequence(shapes: searchShapes, sequence: bestShapeExample.wordSequence)
+        
+        if bestShapePos == -1 {
+            searchShapes = [bestShapeExample] + searchShapes
+            bestShapePos = 0
+        }
+        
+        var startingShape = searchShapes[bestShapePos]
+        
+        let wordIndex = WordIndexModelV2(shapes: searchShapes, wordCount: words.count)
+        
+        
+        
+        
+        let scoresMin = StrategyCalculator.GetScoreMins(gameId: gameId)
+        
+        
+        
+        
+        return (winningScore, wordsInt, searchShapes, wordIndex, startingShape, scoresMin, game.maxWidth, game.maxHeight)
+    }
+    
+    
 }

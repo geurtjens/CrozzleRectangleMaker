@@ -8,8 +8,11 @@
 import Foundation
 public class BranchAndBoundStrategyV1 {
     public static func execute(gameId: Int, words: [String], repeatTimes: Int, queueDepth: Int = 500) async -> ShapeModel {
+        
         let game = GameList().getGame(gameId: gameId)!
+        
         let wordsInt = WordCalculator.WordsToInt(words: words)
+        
         let searchShapes = getShapes(gameId: gameId, words: words)
         
         let wordIndex = WordIndexModelV2(shapes: searchShapes, wordCount: words.count)

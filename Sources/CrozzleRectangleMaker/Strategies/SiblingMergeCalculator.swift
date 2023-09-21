@@ -82,9 +82,91 @@ public class SiblingMergeCalculator {
         return result
     }
     
+    /// Takes a list of tree nodes and expands them repeatedly to the lookahead depth
+    /// Then using beamWidth returns the top scoring treeNodeModels as calculated at the lookahead depth
+    public static func executeLookaheadAndBeam(
+        lookaheadDepth: Int,
+        beamWidth: Int,
+        treeNodes: [TreeNodeModel],
+        searchShapes: [ShapeModel],
+        words: [String],
+        wordsInt: [[Int]],
+        widthMax: Int,
+        heightMax: Int,
+        wordIndex: WordIndexModelV2,
+        scoresMin: [Int]
+    ) -> [TreeNodeModel] {
+        
+        var treeNodes = treeNodes
+        
+        for treeNodeId in 0..<treeNodes.count {
+            
+            let treeNode = treeNodes[treeNodeId]
+            
+            let maxScore = getMaxScoreOfTreeNode(
+                lookaheadDepth: lookaheadDepth,
+                treeNode: treeNode,
+                searchShapes: searchShapes,
+                words: words,
+                wordsInt: wordsInt,
+                widthMax: widthMax,
+                heightMax: heightMax,
+                wordIndex: wordIndex,
+                scoresMin: scoresMin)
+            
+            treeNodes[treeNodeId].scoreMax = maxScore
+            
+            
+        }
+        treeNodes.sort { $0.scoreMax > $1.scoreMax }
+        
+        var result: [TreeNodeModel] = []
+        for treeNodeId in 0..<beamWidth {
+            if treeNodeId < treeNodes.count {
+                result.append(treeNodes[treeNodeId])
+            }
+        }
+        return result
+    }
     
-    
-    
+    public static func getMaxScoreOfTreeNode(
+        lookaheadDepth: Int,
+        treeNode: TreeNodeModel,
+        searchShapes: [ShapeModel],
+        words: [String],
+        wordsInt: [[Int]],
+        widthMax: Int,
+        heightMax: Int,
+        wordIndex: WordIndexModelV2,
+        scoresMin: [Int]
+    ) -> Int {
+            
+        var treeNodes = [treeNode]
+            
+        for i in 1..<lookaheadDepth {
+            //print("Looked ahead: \(i)")
+                
+            treeNodes = executeAll(
+                treeNodes: treeNodes,
+                searchShapes: searchShapes,
+                words: words,
+                wordsInt: wordsInt,
+                widthMax: widthMax,
+                heightMax: heightMax,
+                wordIndex: wordIndex,
+                scoresMin: scoresMin)
+
+        }
+        // Ok so we have now done our tree nodes to a certain depth
+        
+        let maxScore = getScoreMax(treeNodes: treeNodes)
+        
+        // How big is this max scoring shape?  Do it later
+        return maxScore
+        
+        
+
+    }
     
     
     public static func execute(treeNode: TreeNodeModel, searchShapes: [ShapeModel], words: [String], wordsInt: [[Int]], widthMax: Int, heightMax: Int, wordIndex: WordIndexModelV2, scoresMin: [Int]) -> [TreeNodeModel] {
