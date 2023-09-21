@@ -136,30 +136,6 @@ public class BranchAndBoundStrategyV3 {
         }
             
             
-            // What do we do when the best shape cannot provide enough backtrackCount, that is its mergeHistory is shorter than the backtrackCount we want to have.
-//            if bestShape.mergeHistory.count >= backtrackCount {
-//                let shapeIds = ShapeCalculator.getMergeHistory(shape: bestShape, count: backtrackCount)
-//                backtrackCount += 1
-//
-//                let backtrackShape = ShapeCalculator.mergeShapesByIndex(shapes: searchShapes, shapeIds: shapeIds, words: words)
-//                if backtrackShape != nil {
-//                    sourceShapes = [backtrackShape!]
-//                } else {
-//                    return bestShape
-//                }
-//            }
-//
-//
-//
-//
-//            // We are going to halve the number
-//
-//
-//            if bestShape.score >= winningScore {
-//                return bestShape
-//            }
-//        }
-//        return bestShape
         return false
     }
     
@@ -171,7 +147,12 @@ public class BranchAndBoundStrategyV3 {
     }
     public static func getBestWinningShape(gameId: Int) -> ShapeModel {
         
-        var (shapes, _,_,_) = WinningShapesCalculatorV1.getShapes(gameId: gameId)
+        var (shapes, words, _, _) = WinningShapesCalculatorV1.getShapes(gameId: gameId)
+        
+        for shape in shapes {
+            print(shape.ToText(words: words))
+        }
+        
         
         ShapeCalculator.SortByScoreThenArea(shapes: &shapes)
         

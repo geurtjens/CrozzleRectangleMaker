@@ -142,6 +142,8 @@ public class SiblingMergeCalculator {
     ) async -> Int {
             
         var treeNodes = [treeNode]
+        
+        var maxScore = 0
             
         for _ in 1..<lookaheadDepth {
             //print("Looked ahead: \(i)")
@@ -155,11 +157,10 @@ public class SiblingMergeCalculator {
                 heightMax: heightMax,
                 wordIndex: wordIndex,
                 scoresMin: scoresMin)
-
+            
+            maxScore = getScoreMax(treeNodes: treeNodes)
         }
         // Ok so we have now done our tree nodes to a certain depth
-        
-        let maxScore = getScoreMax(treeNodes: treeNodes)
         
         // How big is this max scoring shape?  Do it later
         return maxScore
