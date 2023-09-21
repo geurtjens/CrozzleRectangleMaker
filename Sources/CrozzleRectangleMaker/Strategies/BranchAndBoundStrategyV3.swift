@@ -73,7 +73,7 @@ public class BranchAndBoundStrategyV3 {
         beamWidth: Int,
         repeatTimes: Int,
         winningScore: Int
-    ) async {
+    ) async -> Bool {
         
         let startTime = DateTimeCalculator.now()
         
@@ -123,15 +123,15 @@ public class BranchAndBoundStrategyV3 {
             if bestScores.count > 0 && bestScores[0] >= winningScore {
                 print("HUMAN SCORE \(gameId)")
                 print(DateTimeCalculator.duration(start: startTime))
-                return
+                return true
             } else if bestScores.count == 0 {
                 print("FAILED \(gameId)")
                 print(DateTimeCalculator.duration(start: startTime))
-                return
+                return false
             } else if bestScores[0] == 0 {
                 print("FAILED \(gameId)")
                 print(DateTimeCalculator.duration(start: startTime))
-                return
+                return false
             }
         }
             
@@ -160,6 +160,7 @@ public class BranchAndBoundStrategyV3 {
 //            }
 //        }
 //        return bestShape
+        return false
     }
     
     public static func getShapes(gameId: Int, words: [String]) -> [ShapeModel] {
