@@ -131,6 +131,7 @@ public class BranchAndBoundStrategyV3 {
             } else if bestScores[0] == 0 {
                 print("FAILED \(gameId)")
                 print(DateTimeCalculator.duration(start: startTime))
+                return
             }
         }
             
