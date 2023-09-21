@@ -95,7 +95,7 @@ public class SiblingMergeCalculator {
         heightMax: Int,
         wordIndex: WordIndexModelV2,
         scoresMin: [Int]
-    ) -> [TreeNodeModel] {
+    ) async -> [TreeNodeModel] {
         
         var treeNodes = treeNodes
         
@@ -103,7 +103,7 @@ public class SiblingMergeCalculator {
             
             let treeNode = treeNodes[treeNodeId]
             
-            let maxScore = getMaxScoreOfTreeNode(
+            let maxScore = await getMaxScoreOfTreeNode(
                 lookaheadDepth: lookaheadDepth,
                 treeNode: treeNode,
                 searchShapes: searchShapes,
@@ -139,14 +139,14 @@ public class SiblingMergeCalculator {
         heightMax: Int,
         wordIndex: WordIndexModelV2,
         scoresMin: [Int]
-    ) -> Int {
+    ) async -> Int {
             
         var treeNodes = [treeNode]
             
-        for i in 1..<lookaheadDepth {
+        for _ in 1..<lookaheadDepth {
             //print("Looked ahead: \(i)")
                 
-            treeNodes = executeAll(
+            treeNodes = await executeLevelInParallel(
                 treeNodes: treeNodes,
                 searchShapes: searchShapes,
                 words: words,
@@ -168,6 +168,153 @@ public class SiblingMergeCalculator {
 
     }
     
+    public static func executeAsync(
+        zeroToNine: Int,
+        treeNodes: [TreeNodeModel],
+        searchShapes: [ShapeModel],
+        words: [String],
+        wordsInt: [[Int]],
+        widthMax: Int,
+        heightMax: Int,
+        wordIndex: WordIndexModelV2,
+        scoresMin: [Int]
+    ) -> [TreeNodeModel] {
+        
+        var result:[TreeNodeModel] = []
+        
+        // The difference is that each cpu works on 0,10,20 .. or 1, 11, 21 and so we divide the task
+        for treeNodeId in stride(from: zeroToNine, to:treeNodes.count, by: 10) {
+            
+            let treeNodes = SiblingMergeCalculator.execute(treeNode: treeNodes[treeNodeId], searchShapes: searchShapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax, wordIndex: wordIndex, scoresMin: scoresMin)
+            result += treeNodes
+            
+        }
+        return result
+    }
+    
+    public static func executeLevelInParallel(
+        treeNodes: [TreeNodeModel],
+        searchShapes: [ShapeModel],
+        words: [String],
+        wordsInt: [[Int]],
+        widthMax: Int,
+        heightMax: Int,
+        wordIndex: WordIndexModelV2,
+        scoresMin: [Int]) async -> [TreeNodeModel] {
+        
+        async let a0 = executeAsync(
+            zeroToNine: 0,
+            treeNodes: treeNodes,
+            searchShapes: searchShapes,
+            words: words,
+            wordsInt: wordsInt,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            wordIndex: wordIndex,
+            scoresMin: scoresMin)
+        
+        async let a1 = executeAsync(
+            zeroToNine: 1,
+            treeNodes: treeNodes,
+            searchShapes: searchShapes,
+            words: words,
+            wordsInt: wordsInt,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            wordIndex: wordIndex,
+            scoresMin: scoresMin)
+        
+        async let a2 = executeAsync(
+            zeroToNine: 2,
+            treeNodes: treeNodes,
+            searchShapes: searchShapes,
+            words: words,
+            wordsInt: wordsInt,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            wordIndex: wordIndex,
+            scoresMin: scoresMin)
+        
+        async let a3 = executeAsync(
+            zeroToNine: 3,
+            treeNodes: treeNodes,
+            searchShapes: searchShapes,
+            words: words,
+            wordsInt: wordsInt,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            wordIndex: wordIndex,
+            scoresMin: scoresMin)
+        
+        async let a4 = executeAsync(
+            zeroToNine: 4,
+            treeNodes: treeNodes,
+            searchShapes: searchShapes,
+            words: words,
+            wordsInt: wordsInt,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            wordIndex: wordIndex,
+            scoresMin: scoresMin)
+        
+        async let a5 = executeAsync(
+            zeroToNine: 5,
+            treeNodes: treeNodes,
+            searchShapes: searchShapes,
+            words: words,
+            wordsInt: wordsInt,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            wordIndex: wordIndex,
+            scoresMin: scoresMin)
+        
+        async let a6 = executeAsync(
+            zeroToNine: 6,
+            treeNodes: treeNodes,
+            searchShapes: searchShapes,
+            words: words,
+            wordsInt: wordsInt,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            wordIndex: wordIndex,
+            scoresMin: scoresMin)
+        
+        async let a7 = executeAsync(
+            zeroToNine: 7,
+            treeNodes: treeNodes,
+            searchShapes: searchShapes,
+            words: words,
+            wordsInt: wordsInt,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            wordIndex: wordIndex,
+            scoresMin: scoresMin)
+        
+        async let a8 = executeAsync(
+            zeroToNine: 8,
+            treeNodes: treeNodes,
+            searchShapes: searchShapes,
+            words: words,
+            wordsInt: wordsInt,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            wordIndex: wordIndex,
+            scoresMin: scoresMin)
+        
+        async let a9 = executeAsync(
+            zeroToNine: 9,
+            treeNodes: treeNodes,
+            searchShapes: searchShapes,
+            words: words,
+            wordsInt: wordsInt,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            wordIndex: wordIndex,
+            scoresMin: scoresMin)
+        
+       
+        return await a0 + a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9
+    }
     
     public static func execute(treeNode: TreeNodeModel, searchShapes: [ShapeModel], words: [String], wordsInt: [[Int]], widthMax: Int, heightMax: Int, wordIndex: WordIndexModelV2, scoresMin: [Int]) -> [TreeNodeModel] {
         

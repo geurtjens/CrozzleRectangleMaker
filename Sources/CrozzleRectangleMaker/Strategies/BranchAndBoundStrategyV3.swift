@@ -75,17 +75,14 @@ public class BranchAndBoundStrategyV3 {
         winningScore: Int
     ) async {
         
+        let startTime = DateTimeCalculator.now()
         
         let (winningScore, wordsInt, searchShapes, wordIndex, treeNode, scoresMin, widthMax, heightMax) = await getStartingData(gameId: gameId, words: words)
         
         
-        var previous = [treeNode]
-        
-        
-        var bestShape = treeNode.parentShape
-        
+        let bestShape = treeNode.parentShape
         print(bestShape.ToStringExtended(words: words, gameId: gameId, winningScore: winningScore))
-        print(bestShape.mergeHistory)
+        //print(bestShape.mergeHistory)
         
 
         
@@ -93,7 +90,7 @@ public class BranchAndBoundStrategyV3 {
         
         
         var treeNodes = [treeNode]
-        
+        print("game: \(gameId), lookahead depth: \(lookaheadDepth), beam width: \(beamWidth)")
         for i in 0..<repeatTimes {
             
             treeNodes = SiblingMergeCalculator.executeAll(
@@ -106,7 +103,7 @@ public class BranchAndBoundStrategyV3 {
                 wordIndex: wordIndex,
                 scoresMin: scoresMin)
             
-            treeNodes = SiblingMergeCalculator.executeLookaheadAndBeam(
+            treeNodes = await SiblingMergeCalculator.executeLookaheadAndBeam(
                 lookaheadDepth: lookaheadDepth,
                 beamWidth: beamWidth,
                 treeNodes: treeNodes,
@@ -124,8 +121,16 @@ public class BranchAndBoundStrategyV3 {
             }
             print("cycle: \(i), bestScores: \(bestScores)")
             if bestScores.count > 0 && bestScores[0] >= winningScore {
-                print("HUMAN SCORE")
+                print("HUMAN SCORE \(gameId)")
+                print(DateTimeCalculator.duration(start: startTime))
                 return
+            } else if bestScores.count == 0 {
+                print("FAILED \(gameId)")
+                print(DateTimeCalculator.duration(start: startTime))
+                return
+            } else if bestScores[0] == 0 {
+                print("FAILED \(gameId)")
+                print(DateTimeCalculator.duration(start: startTime))
             }
         }
             

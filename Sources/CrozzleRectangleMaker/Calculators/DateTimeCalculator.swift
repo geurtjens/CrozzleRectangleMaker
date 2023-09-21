@@ -27,6 +27,12 @@ public class DateTimeCalculator {
         return durationSeconds
     }
     
+    public static func duration(start: DispatchTime) -> String {
+        let finishTime = now()
+        
+        return duration(start: start, finish: finishTime)
+    }
+    
     public static func duration(start: DispatchTime, finish: DispatchTime) -> String {
     
         let durationSeconds = seconds(start: start, finish:finish)
