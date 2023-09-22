@@ -38,6 +38,9 @@ public class BranchAndBoundStrategyV3 {
         print("depth: \(depth), width: \(width), games successful: \(successfulGames.count), time: \(DateTimeCalculator.duration(start: startTime))")
         if successfulGames.count == games.count {
             print("ALL GAMES SUCCEEDED")
+        } else {
+            let missing = [Set(games).subtracting(Set(successfulGames))]
+            print("MISSING \(missing)")
         }
     }
     
