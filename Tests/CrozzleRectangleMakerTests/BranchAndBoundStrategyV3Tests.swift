@@ -28,7 +28,7 @@ final class BranchAndBoundStrategyV3Tests: XCTestCase {
     
     public func test_Execute2() async {
         let games = [8612]
-        await BranchAndBoundStrategyV3.executeGames(games: games, depth: 3, width: 4, maxDepth: 20)
+        await BranchAndBoundStrategyV3.executeGames(games: games, depth: 3, width: 2, maxDepth: 20)
         
     }
     
