@@ -9,6 +9,38 @@ import Foundation
 public class BranchAndBoundStrategyV3 {
     
     
+    public static func executeGames(games: [Int], depth: Int, width: Int, maxDepth: Int) async {
+        
+        let startTime = DateTimeCalculator.now()
+        
+        let gameList = GameList()
+        
+        var successfulGames: [Int] = []
+        print("depth: \(depth), width: \(width), maxDepth: \(maxDepth), games to process: \(games.count)")
+        print(games)
+        for game in gameList.games {
+            if games.contains(game.gameId) {
+                
+                let bestShape = await execute(
+                    gameId: game.gameId,
+                    words: game.winningWords,
+                    lookaheadDepth: depth,
+                    beamWidth: width,
+                    repeatTimes: maxDepth,
+                    winningScore: game.winningScore)
+                
+                if bestShape.score >= game.winningScore {
+                    successfulGames.append(game.gameId)
+                }
+            }
+        }
+        print(successfulGames)
+        print("depth: \(depth), width: \(width), games successful: \(successfulGames.count), time: \(DateTimeCalculator.duration(start: startTime))")
+        if successfulGames.count == games.count {
+            print("ALL GAMES SUCCEEDED")
+        }
+    }
+    
     public static func getStartingData(gameId: Int, words: [String]) async -> (Int,[[Int]],[ShapeModel], WordIndexModelV2, TreeNodeModel, [Int], Int, Int){
         let game = GameList().getGame(gameId: gameId)!
         
