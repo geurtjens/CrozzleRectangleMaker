@@ -8,9 +8,11 @@
 import Foundation
 public struct TreeNodeModel {
     public let parentShape: ShapeModel
+    
     public let childShapes: [ShapeModel]
     
-    public var scoreMax: Int
+    public var bestDescendant : ShapeModel
+    //public var scoreMax: Int
 
     /// How many siblings where used to calculate the children
     public let siblingCount: Int

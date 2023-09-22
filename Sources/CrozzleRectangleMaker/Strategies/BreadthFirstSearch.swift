@@ -95,11 +95,15 @@ public class BreadthFirstSearch {
             scoresMin2 = Array(repeating: 0, count: 40)
         }
         
-        let treeNode = TreeNodeModel(parentShape: parentShape, childShapes: childShapes, scoreMax: Int(childShapes[0].score), siblingCount: 0)
+        let treeNode = TreeNodeModel(
+            parentShape: parentShape,
+            childShapes: childShapes,
+            bestDescendant: childShapes[0],
+            siblingCount: 0)
         
         print("\nBreadth First Search in Serial\ngameId: \(gameId), search shapes: \(searchShapes.count), winning score: \(winningScore)")
         print("level: 0, score: \(treeNode.parentShape.score), size: 1")
-        print("level: 1, score: \(treeNode.scoreMax), size: \(treeNode.childShapes.count)")
+            print("level: 1, score: \(treeNode.bestDescendant.score), size: \(treeNode.childShapes.count)")
         var previous = [treeNode]
         for i in 2..<maxLevels {
             
@@ -111,7 +115,7 @@ public class BreadthFirstSearch {
             totalNodes += treeNodesWithoutDuplicates.count
             
             let size = SiblingMergeCalculator.countLeafs(treeNodes: treeNodesWithoutDuplicates)
-            let score = SiblingMergeCalculator.getScoreMax(treeNodes: treeNodesWithoutDuplicates)
+            let score = SiblingMergeCalculator.getBestScore(treeNodes: treeNodesWithoutDuplicates)
             
             previous = treeNodesWithoutDuplicates
             
@@ -163,11 +167,15 @@ public class BreadthFirstSearch {
             scoresMin2 = Array(repeating: 0, count: 40)
         }
         
-        let treeNode = TreeNodeModel(parentShape: parentShape, childShapes: childShapes, scoreMax: Int(childShapes[0].score), siblingCount: 0)
+        let treeNode = TreeNodeModel(
+            parentShape: parentShape,
+            childShapes: childShapes,
+            bestDescendant: childShapes[0],
+            siblingCount: 0)
         
         print("\nBreadth First Search in Parallel\ngameId: \(gameId), search shapes: \(searchShapes.count), winning score: \(winningScore)")
         print("level: 0, score: \(treeNode.parentShape.score), size: 1")
-        print("level: 1, score: \(treeNode.scoreMax), size: \(treeNode.childShapes.count)")
+        print("level: 1, score: \(treeNode.bestDescendant.score), size: \(treeNode.childShapes.count)")
         var previous = [treeNode]
         for i in 2..<maxLevels {
 //            let treeNodes = executeAll(treeNodes: previous, searchShapes: searchShapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax, wordIndex: wordIndex, scoresMin: scoresMin2)
@@ -186,7 +194,7 @@ public class BreadthFirstSearch {
             totalNodes += treeNodesWithoutDuplicates.count
             
             let size = SiblingMergeCalculator.countLeafs(treeNodes: treeNodesWithoutDuplicates)
-            let score = SiblingMergeCalculator.getScoreMax(treeNodes: treeNodesWithoutDuplicates)
+            let score = SiblingMergeCalculator.getBestScore(treeNodes: treeNodesWithoutDuplicates)
             
             previous = treeNodesWithoutDuplicates
             
@@ -373,7 +381,7 @@ public class BreadthFirstSearch {
                                                 widthMax: Int,
                                                 heightMax: Int,
                                                 wordIndex: WordIndexModelV2,
-                                                scoresMin: [Int]) -> [TreeNodeModel] {
+                                     scoresMin: [Int]) async -> [TreeNodeModel] {
         var result:[TreeNodeModel] = []
         
         // The difference is that each cpu works on 0,10,20 .. or 1, 11, 21 and so we divide the task

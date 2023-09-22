@@ -60,12 +60,21 @@ public class SiblingMergeCalculator {
         return count
     }
     
-    public static func getScoreMax(treeNodes: [TreeNodeModel]) -> Int {
+    public static func getBestShape(treeNodes: [TreeNodeModel]) -> ShapeModel? {
+        
+        if treeNodes.count == 0 {
+            return nil
+        } else {
+            return treeNodes[0].bestDescendant
+        }
+    }
+    
+    public static func getBestScore(treeNodes: [TreeNodeModel]) -> Int {
         
         if treeNodes.count == 0 {
             return 0
         } else {
-            return treeNodes[0].scoreMax
+            return Int(treeNodes[0].bestDescendant.score)
         }
     }
     
@@ -78,7 +87,8 @@ public class SiblingMergeCalculator {
             result += values
         }
         
-        result.sort { $0.scoreMax > $1.scoreMax}
+        TreeNodeCalculator.sort(treeNodes: &result)
+        
         return result
     }
     
@@ -103,7 +113,7 @@ public class SiblingMergeCalculator {
             
             let treeNode = treeNodes[treeNodeId]
             
-            let maxScore = await getMaxScoreOfTreeNode(
+            if let bestShape = await getMaxScoreOfTreeNode(
                 lookaheadDepth: lookaheadDepth,
                 treeNode: treeNode,
                 searchShapes: searchShapes,
@@ -112,14 +122,25 @@ public class SiblingMergeCalculator {
                 widthMax: widthMax,
                 heightMax: heightMax,
                 wordIndex: wordIndex,
-                scoresMin: scoresMin)
+                scoresMin: scoresMin) {
             
-            treeNodes[treeNodeId].scoreMax = maxScore
-            
-            
+                treeNodes[treeNodeId].bestDescendant = bestShape
+            }
         }
-        treeNodes.sort { $0.scoreMax > $1.scoreMax }
         
+        // We remove tree nodes if their descendants do not have a greater score than them
+        treeNodes = treeNodes.filter { $0.bestDescendant.score != $0.parentShape.score}
+        
+        TreeNodeCalculator.sort(treeNodes: &treeNodes)
+        
+
+        
+        let result = applyBeamWidth(treeNodes: treeNodes, beamWidth: beamWidth)
+        return result
+    }
+    
+    
+    public static func applyBeamWidth(treeNodes: [TreeNodeModel], beamWidth: Int) -> [TreeNodeModel] {
         var result: [TreeNodeModel] = []
         for treeNodeId in 0..<beamWidth {
             if treeNodeId < treeNodes.count {
@@ -128,6 +149,7 @@ public class SiblingMergeCalculator {
         }
         return result
     }
+    
     
     public static func getMaxScoreOfTreeNode(
         lookaheadDepth: Int,
@@ -139,11 +161,11 @@ public class SiblingMergeCalculator {
         heightMax: Int,
         wordIndex: WordIndexModelV2,
         scoresMin: [Int]
-    ) async -> Int {
+    ) async -> ShapeModel? {
             
         var treeNodes = [treeNode]
         
-        var maxScore = 0
+        var bestShape: ShapeModel = treeNode.parentShape
             
         for _ in 1..<lookaheadDepth {
             //print("Looked ahead: \(i)")
@@ -158,15 +180,16 @@ public class SiblingMergeCalculator {
                 wordIndex: wordIndex,
                 scoresMin: scoresMin)
             
-            maxScore = getScoreMax(treeNodes: treeNodes)
+            if let currentBestShape = getBestShape(treeNodes: treeNodes) {
+                if currentBestShape.score > bestShape.score {
+                    bestShape = currentBestShape
+                }
+            }
         }
         // Ok so we have now done our tree nodes to a certain depth
         
         // How big is this max scoring shape?  Do it later
-        return maxScore
-        
-        
-
+        return bestShape
     }
     
     public static func executeAsync(
@@ -317,7 +340,16 @@ public class SiblingMergeCalculator {
         return await a0 + a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9
     }
     
-    public static func execute(treeNode: TreeNodeModel, searchShapes: [ShapeModel], words: [String], wordsInt: [[Int]], widthMax: Int, heightMax: Int, wordIndex: WordIndexModelV2, scoresMin: [Int]) -> [TreeNodeModel] {
+    public static func execute(
+        treeNode: TreeNodeModel,
+        searchShapes: [ShapeModel],
+        words: [String],
+        wordsInt: [[Int]],
+        widthMax: Int,
+        heightMax: Int,
+        wordIndex: WordIndexModelV2,
+        scoresMin: [Int]) -> [TreeNodeModel]
+    {
         
         var result: [TreeNodeModel] = []
     
@@ -340,12 +372,7 @@ public class SiblingMergeCalculator {
             let sourceShape = treeNode.childShapes[siblingId]
             let siblingWords = wordDifferenceBetweenParentAndSibling[siblingId]
             
-            
-            
             // We want to find all the siblings that have different words added than this older sibling (closer to top of list)
-            
-            
-            
             for matchingSiblingId in 0..<leafShapesAddedToBecomeSiblings.count {
                 
                 let searchShapeId = leafShapesAddedToBecomeSiblings[matchingSiblingId]
@@ -353,74 +380,140 @@ public class SiblingMergeCalculator {
                 
                 let searchForDuplicates = "\(searchShapeId),\(sourceShapeId)"
                 
-                //let differentWords = siblingWords.intersection(wordsInMatchingSibling)
-                
                 let subsetA = siblingWords.isStrictSubset(of: wordsInMatchingSibling)
                 let subsetB = wordsInMatchingSibling.isStrictSubset(of: siblingWords)
                 
-                if (
-                    //matchingSiblingId != siblingId &&
+                if (matchingSiblingId != siblingId &&
                     subsetA == false && subsetB == false &&
                     processedQueue.contains(searchForDuplicates) == false
-                    ) {
-                    
-
+                    )
+                {
                     processedQueue.insert("\(sourceShapeId),\(searchShapeId)")
                         
                     // This means that they have different words and so a merge is possible
-
-                        
-                    if let mergedShape = MergeCalculatorV2.mergeTwoShapes(sourceShape: sourceShape, searchShape: searchShapes[searchShapeId], words: words, widthMax: widthMax, heightMax: heightMax) {
-                        
-                        
+                    if let mergedShape = MergeCalculatorV2.mergeTwoShapes(
+                        sourceShape: sourceShape,
+                        searchShape: searchShapes[searchShapeId],
+                        words: words,
+                        widthMax: widthMax,
+                        heightMax: heightMax)
+                    {
                         resultForShape.append(mergedShape)
                     }
-                   
                 }
             }
             
+            let siblingCount = resultForShape.count
+            
             // We might be ignoring the words added by the sibling but is this at the same level I wonder
             
-            // Find matches that only link to the new words that this has added
-            let instructions = wordIndex.findMatches(containingWords: Array(siblingWords),
-                                                     shapesToExclude: leafShapesAddedToBecomeSiblings,
-                                                     sourceShape: sourceShape,
-                                                     sourceShapeId: sourceShapeId,
-                                                     searchShapes: searchShapes)
             
-            // ScoresMin is flawed if we want to merge larger shapes together eventually
-            // it is the score starting from the beginning not score inbetween or increments to score
-            
-            
-            let extraShapes = MergeCalculatorV2.GetShapesFromInstructions(
-                instructions: instructions,
+            // We are getting the shapes that connect only to the last words that where added to the grid
+            let extraShapes = getLeafShapes(
+                wordIndex: wordIndex,
+                siblingWords: Array(siblingWords),
+                shapesToExclude: leafShapesAddedToBecomeSiblings,
                 sourceShape: sourceShape,
+                sourceShapeId: sourceShapeId,
                 searchShapes: searchShapes,
                 words: words,
                 wordsInt: wordsInt,
                 scoresMin: scoresMin,
                 widthMax: widthMax,
                 heightMax: heightMax)
-            
-            
-            let siblingCount = resultForShape.count
-            
-            //print(extraShapes.ToTextWithMergeHistory(words: words))
-            
+                
             resultForShape += extraShapes
+            
+//            var newShapesWithDuplicates = await getAllMatchingShapes(
+//                    wordIndex: wordIndex,
+//                    siblingWords: Array(siblingWords),
+//                    shapesToExclude: leafShapesAddedToBecomeSiblings,
+//                    sourceShape: sourceShape,
+//                    sourceShapeId: sourceShapeId,
+//                    searchShapes: searchShapes,
+//                    words: words,
+//                    wordsInt: wordsInt,
+//                    scoresMin: scoresMin,
+//                    widthMax: widthMax,
+//                    heightMax: heightMax)
+//            resultForShape += newShapesWithDuplicates
+//            (resultForShape, _) = RemoveDuplicatesCalculator.execute(shapes: resultForShape)
+
+            
+            
+            
+            
             
             if resultForShape.count > 0 {
                 
-                resultForShape.sort { $0.score > $1.score }
+                resultForShape.sort {
+                    if $0.score == $1.score {
+                        return $0.area < $1.area
+                    } else {
+                        return $0.score > $1.score
+                    }
+                }
                 
-                result.append(TreeNodeModel(parentShape: sourceShape, childShapes: resultForShape, scoreMax: Int(resultForShape[0].score), siblingCount: siblingCount))
+                result.append(TreeNodeModel(
+                    parentShape: sourceShape,
+                    childShapes: resultForShape,
+                    bestDescendant: resultForShape[0],
+                    siblingCount: siblingCount)
+                )
             }
         }
         
-        result.sort { $0.scoreMax > $1.scoreMax}
+        TreeNodeCalculator.sort(treeNodes: &result)
+
         
         return result
     }
+    
+    
+    public static func getAllMatchingShapes(wordIndex: WordIndexModelV2, siblingWords: [Int], shapesToExclude: [Int], sourceShape: ShapeModel, sourceShapeId: Int, searchShapes: [ShapeModel], words: [String], wordsInt: [[Int]], scoresMin: [Int], widthMax: Int, heightMax: Int) async -> [ShapeModel] {
+        
+        let newShapes = await MergeCalculatorV2.ExecuteDifferentShapesAsync(
+            sourceShapes: [sourceShape],
+            searchShapes: searchShapes,
+            searchWordIndex: wordIndex,
+            sourceMax: 1,
+            searchMax: searchShapes.count,
+            words: words,
+            wordsInt: wordsInt,
+            scoresMin: scoresMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        return newShapes
+    }
+    
+    public static func getLeafShapes(wordIndex: WordIndexModelV2, siblingWords: [Int], shapesToExclude: [Int], sourceShape: ShapeModel, sourceShapeId: Int, searchShapes: [ShapeModel], words: [String], wordsInt: [[Int]], scoresMin: [Int], widthMax: Int, heightMax: Int) -> [ShapeModel]
+    {
+        // Find matches that only link to the new words that this has added
+        let instructions = wordIndex.findMatches(
+            containingWords: siblingWords,
+            shapesToExclude: shapesToExclude,
+            sourceShape: sourceShape,
+            sourceShapeId: sourceShapeId,
+            searchShapes: searchShapes)
+        
+        // ScoresMin is flawed if we want to merge larger shapes together eventually
+        // it is the score starting from the beginning not score inbetween or increments to score
+        
+        
+        let leafShapes = MergeCalculatorV2.GetShapesFromInstructions(
+            instructions: instructions,
+            sourceShape: sourceShape,
+            searchShapes: searchShapes,
+            words: words,
+            wordsInt: wordsInt,
+            scoresMin: scoresMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        return leafShapes
+    }
+    
     
     public static func getSiblingLastShape(siblings: [ShapeModel]) -> [Int] {
         var result: [Int] = []
@@ -429,6 +522,8 @@ public class SiblingMergeCalculator {
         }
         return result
     }
+    
+    
     public static func getWordDifferences(parent: ShapeModel, siblings: [ShapeModel]) -> [Set<Int>] {
         var result: [Set<Int>] = []
         
@@ -443,10 +538,12 @@ public class SiblingMergeCalculator {
         return result
     }
     
+    
     public static func findExtraWords(parent: Set<Int>, sibling: Set<Int>) -> Set<Int> {
         let missingWords = sibling.subtracting(parent)
         return missingWords
     }
+    
     
     public static func getWordsFromShape(shape: ShapeModel) -> Set<Int> {
         var result: Set<Int> = []
@@ -455,6 +552,4 @@ public class SiblingMergeCalculator {
         }
         return result
     }
-    
-    
 }

@@ -82,7 +82,7 @@ public struct ShapeModel {
     
     public func getGridArray() -> [Int] {
         let SPACE = 32
-        var grid:[Int] = Array(repeating: 32, count: getGridSize())
+        let grid:[Int] = Array(repeating: 32, count: getGridSize())
         return grid
     }
     public static func getWordSequence(placements: [PlacementModel]) -> String {

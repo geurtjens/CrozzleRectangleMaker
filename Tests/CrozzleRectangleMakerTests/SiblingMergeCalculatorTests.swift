@@ -14,7 +14,7 @@ final class SiblingMergeCalculatorTests: XCTestCase {
     /// We find here that treeSearch produces the same results as normal merge with less duplicates
     /// Also the normal merge duplicates shapes in the parent shape.
     /// TreeMerge produces 1 duplicate and normal produces 27 duplicates.
-    func testCompare() {
+    func testCompare() async {
         
         let gameId = 8912
         let (parentShape, sourceShapes, searchShapes, scoresMin, words, widthMax, heightMax, _, wordIndex, wordsInt) = SiblingMergeCalculator.GetStartingData(gameId: gameId)
@@ -33,7 +33,7 @@ final class SiblingMergeCalculatorTests: XCTestCase {
         let treeNode = TreeNodeModel(
             parentShape: parentShape,
             childShapes: sourceShapes,
-            scoreMax: Int(sourceShapes[0].score),
+            bestDescendant: sourceShapes[0],
             siblingCount: 0)
         
         /// `AND` perform the tree merge calculation
@@ -72,7 +72,7 @@ final class SiblingMergeCalculatorTests: XCTestCase {
         XCTAssertEqual(0, duplicatesFromParentShapes)
         
         // WHEN we create shapes the old way
-        var shapesFromTheOldWay = MergeCalculatorV2.ExecuteDifferentShapesSync(
+        let shapesFromTheOldWay = MergeCalculatorV2.ExecuteDifferentShapesSync(
             sourceShapes: sourceShapes,
             searchShapes: searchShapes,
             searchWordIndex: wordIndex,

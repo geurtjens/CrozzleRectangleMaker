@@ -57,7 +57,11 @@ public class BranchAndBoundStrategyV3 {
         
         let (noDuplicates, _) = RemoveDuplicatesCalculator.execute(shapes: childShapes)
         
-        let treeNode = TreeNodeModel(parentShape: startingShape, childShapes: noDuplicates, scoreMax: Int(childShapes[0].score), siblingCount: 0)
+        let treeNode = TreeNodeModel(
+            parentShape: startingShape,
+            childShapes: noDuplicates,
+            bestDescendant: childShapes[0],
+            siblingCount: 0)
         
         
         
@@ -73,18 +77,18 @@ public class BranchAndBoundStrategyV3 {
         beamWidth: Int,
         repeatTimes: Int,
         winningScore: Int
-    ) async -> Bool {
+    ) async -> ShapeModel {
         
         let startTime = DateTimeCalculator.now()
         
         let (winningScore, wordsInt, searchShapes, wordIndex, treeNode, scoresMin, widthMax, heightMax) = await getStartingData(gameId: gameId, words: words)
         
         
-        let bestShape = treeNode.parentShape
+        var bestShape = treeNode.parentShape
         print(bestShape.ToStringExtended(words: words, gameId: gameId, winningScore: winningScore))
         //print(bestShape.mergeHistory)
         
-
+       
         
         /// We have to find the child nodes of the first tree node and send them
         
@@ -115,28 +119,40 @@ public class BranchAndBoundStrategyV3 {
                 wordIndex: wordIndex,
                 scoresMin: scoresMin)
                 
-            var bestScores: [Int] = []
-            for treeNode in treeNodes {
-                bestScores.append(treeNode.scoreMax)
+            
+            if treeNodes.count > 0 {
+                var bestShapes: [ShapeModel] = []
+                var bestScores: [UInt16] = []
+                for treeNode in treeNodes {
+                    bestShapes.append(treeNode.bestDescendant)
+                    bestScores.append(treeNode.bestDescendant.score)
+                }
+                ShapeCalculator.Sort(shapes: &bestShapes)
+                
+                if bestShape.score < bestShapes[0].score {
+                    bestShape = bestShapes[0]
+                }
+                
+                
+                print("cycle: \(i), bestScores: \(bestScores)")
+                
+                
             }
-            print("cycle: \(i), bestScores: \(bestScores)")
-            if bestScores.count > 0 && bestScores[0] >= winningScore {
+            
+            if bestShape.score >= winningScore {
                 print("HUMAN SCORE \(gameId)")
                 print(DateTimeCalculator.duration(start: startTime))
-                return true
-            } else if bestScores.count == 0 {
+                return bestShape
+                
+            } else if treeNodes.count == 0 {
                 print("FAILED \(gameId)")
                 print(DateTimeCalculator.duration(start: startTime))
-                return false
-            } else if bestScores[0] == 0 {
-                print("FAILED \(gameId)")
-                print(DateTimeCalculator.duration(start: startTime))
-                return false
+                return bestShape
             }
         }
             
             
-        return false
+        return bestShape
     }
     
     public static func getShapes(gameId: Int, words: [String]) -> [ShapeModel] {
@@ -149,9 +165,9 @@ public class BranchAndBoundStrategyV3 {
         
         var (shapes, words, _, _) = WinningShapesCalculatorV1.getShapes(gameId: gameId)
         
-        for shape in shapes {
-            print(shape.ToText(words: words))
-        }
+//        for shape in shapes {
+//            print(shape.ToText(words: words))
+//        }
         
         
         ShapeCalculator.SortByScoreThenArea(shapes: &shapes)
