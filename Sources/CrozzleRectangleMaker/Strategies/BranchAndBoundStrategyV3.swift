@@ -34,10 +34,11 @@ public class BranchAndBoundStrategyV3 {
                 }
             }
         }
-        print(successfulGames)
+        //print(successfulGames)
         print("depth: \(depth), width: \(width), games successful: \(successfulGames.count), time: \(DateTimeCalculator.duration(start: startTime))")
         if successfulGames.count == games.count {
             print("ALL GAMES SUCCEEDED")
+            print("FOUND \(successfulGames)")
         } else {
             let missing = Array(Set(games).subtracting(Set(successfulGames))).sorted()
             print("MISSING \(missing)")
@@ -56,13 +57,13 @@ public class BranchAndBoundStrategyV3 {
         
         let wordsInt = WordCalculator.WordsToInt(words: words)
         
-        var searchShapes = getShapes(gameId: gameId, words: words)
+        let searchShapes = getShapes(gameId: gameId, words: words)
         
         
         var (winningShapes, _, _, _) = WinningShapesCalculatorV1.getShapes(gameId: gameId)
         ShapeCalculator.SortByScoreThenArea(shapes: &winningShapes)
         
-        var winningShapeIds = getWinningShapesShapeIds(winningShapes: winningShapes, searchShapes: searchShapes)
+        let winningShapeIds = getWinningShapesShapeIds(winningShapes: winningShapes, searchShapes: searchShapes)
 
         let bestShapePos = winningShapeIds[0]
 
@@ -111,9 +112,51 @@ public class BranchAndBoundStrategyV3 {
         return (winningScore, wordsInt, searchShapes, wordIndex, treeNode, scoresMin, game.maxWidth, game.maxHeight, winningShapeIds)
     }
     
-    
-    
     public static func execute(
+        gameId: Int,
+        words: [String],
+        lookaheadDepth: Int,
+        beamWidth: Int,
+        repeatTimes: Int,
+        winningScore: Int
+    ) async -> ShapeModel {
+        
+        var bestShape = await executeLeaf(
+            gameId: gameId,
+            words: words,
+            lookaheadDepth: lookaheadDepth,
+            beamWidth: beamWidth,
+            repeatTimes: repeatTimes,
+            winningScore: winningScore)
+        
+        if bestShape.score == winningScore {
+            return bestShape
+        }
+     
+        let (winningScore, wordsInt, searchShapes, wordIndex, _, scoresMin, widthMax, heightMax, _) = await getStartingData(gameId: gameId, words: words)
+        
+        // If we havent got best score then lets keep going but now dont use the leaf heuristic
+        
+        bestShape = await SiblingMergeCalculator.getAllMatchingShapes(
+            wordIndex: wordIndex,
+            sourceShape: bestShape,
+            sourceShapeId: 0,
+            searchShapes: searchShapes,
+            words: words,
+            wordsInt: wordsInt,
+            scoresMin: scoresMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        if bestShape.score >= winningScore {
+            print("HUMAN SCORE \(gameId) Calculated at end")
+        }
+        
+        return bestShape
+        
+    }
+    
+    public static func executeLeaf(
         gameId: Int,
         words: [String],
         lookaheadDepth: Int,
@@ -242,7 +285,7 @@ public class BranchAndBoundStrategyV3 {
         var mergeHistory: [Int] = []
         
         for i in 0..<winningShapes.count {
-            var shapePos = getShapeBySequence(shapes: searchShapes, sequence: winningShapes[i].wordSequence)
+            let shapePos = getShapeBySequence(shapes: searchShapes, sequence: winningShapes[i].wordSequence)
             if shapePos == -1 {
                 print("Something wrong, winning shapes are not in searchShapes")
             } else {

@@ -470,8 +470,18 @@ public class SiblingMergeCalculator {
     }
     
     
-    public static func getAllMatchingShapes(wordIndex: WordIndexModelV2, siblingWords: [Int], shapesToExclude: [Int], sourceShape: ShapeModel, sourceShapeId: Int, searchShapes: [ShapeModel], words: [String], wordsInt: [[Int]], scoresMin: [Int], widthMax: Int, heightMax: Int) async -> [ShapeModel] {
-        
+    public static func getAllMatchingShapes(
+        wordIndex: WordIndexModelV2,
+        sourceShape: ShapeModel,
+        sourceShapeId: Int,
+        searchShapes: [ShapeModel],
+        words: [String],
+        wordsInt: [[Int]],
+        scoresMin: [Int],
+        widthMax: Int,
+        heightMax: Int) async -> ShapeModel
+    {
+        var bestShape = sourceShape
         let newShapes = await MergeCalculatorV2.ExecuteDifferentShapesAsync(
             sourceShapes: [sourceShape],
             searchShapes: searchShapes,
@@ -484,7 +494,14 @@ public class SiblingMergeCalculator {
             widthMax: widthMax,
             heightMax: heightMax)
         
-        return newShapes
+        for newShape in newShapes {
+            if bestShape.score < newShape.score {
+                bestShape = newShape
+            }
+        }
+        
+        
+        return bestShape
     }
     
     public static func getLeafShapes(wordIndex: WordIndexModelV2, siblingWords: [Int], shapesToExclude: [Int], sourceShape: ShapeModel, sourceShapeId: Int, searchShapes: [ShapeModel], words: [String], wordsInt: [[Int]], scoresMin: [Int], widthMax: Int, heightMax: Int) -> [ShapeModel]
