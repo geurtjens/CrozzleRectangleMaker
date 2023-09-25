@@ -215,6 +215,11 @@ public class BranchAndBoundStrategyV3 {
                 
                 let firstWinningChildNode = findFirstValidTreeNodeFromChildren(requiredShapes: requiredShapes, treeNodes: previousNodes)
                 
+                if requiredBeam < firstWinningChildNode {
+                    requiredBeam = firstWinningChildNode
+                }
+                
+                
                 // Now we should get all the children together, remove duplicates and then do the beam restriction thing
                 
                 var childShapes: [ShapeModel] = []
@@ -247,6 +252,7 @@ public class BranchAndBoundStrategyV3 {
                     return bestShape
                     
                 } else {
+                    print("Required Beam = \(requiredBeam + 1)")
                     print("FAILED \(gameId)")
                     print(DateTimeCalculator.duration(start: startTime))
                     return bestShape
