@@ -150,6 +150,7 @@ public class BranchAndBoundStrategyV3 {
         
         if bestShape.score >= winningScore {
             print("HUMAN SCORE \(gameId) Calculated at end")
+            
         }
         
         return bestShape
@@ -245,14 +246,23 @@ public class BranchAndBoundStrategyV3 {
                 
                 print("cycle: \(cycleId), bestScores: \(bestScores)")
                 
+                var beamText = "Required beam = \(requiredBeam + 1), actual beam = \(beamWidth)"
+                if requiredBeam + 1 < beamWidth {
+                    beamText += ", Beam can be improved"
+                }
+                
                 if bestShape.score >= winningScore {
-                    print("Required beam = \(requiredBeam + 1), actual beam = \(beamWidth)")
+                    if requiredBeam + 1 != beamWidth {
+                        print(beamText)
+                    }
                     print("HUMAN SCORE \(gameId)")
                     print(DateTimeCalculator.duration(start: startTime))
                     return bestShape
                     
                 } else {
-                    print("Required Beam = \(requiredBeam + 1)")
+                    if requiredBeam + 1 != beamWidth {
+                        print(beamText)
+                    }
                     print("FAILED \(gameId)")
                     print(DateTimeCalculator.duration(start: startTime))
                     return bestShape
@@ -288,17 +298,30 @@ public class BranchAndBoundStrategyV3 {
                 
                 print("cycle: \(cycleId), bestScores: \(bestScores)")
                 
-                
             }
             let parentTreeNodeBestScore = getBestParentNodeScore(treeNodes: treeNodes)
             
+            var beamText = "Required beam: \(requiredBeam + 1), actual beam: \(beamWidth)"
+            if requiredBeam + 1 < beamWidth {
+                beamText += ", Beam can be improved"
+            }
+            if requiredBeam == -1 {
+                beamText = "Actual beam: \(beamWidth) cannot calculate winning game"
+            }
+            
+            
             if parentTreeNodeBestScore >= winningScore {
-                print("Required Beam = \(requiredBeam + 1)")
+                if requiredBeam + 1 != beamWidth {
+                    print(beamText)
+                }
                 print("HUMAN SCORE \(gameId)")
                 print(DateTimeCalculator.duration(start: startTime))
                 return bestShape
                 
             } else if treeNodes.count == 0 {
+                if requiredBeam + 1 != beamWidth {
+                    print(beamText)
+                }
                 print("FAILED \(gameId)")
                 print(DateTimeCalculator.duration(start: startTime))
                 return bestShape
