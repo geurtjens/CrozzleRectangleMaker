@@ -246,7 +246,7 @@ public class BranchAndBoundStrategyV3 {
                 print("cycle: \(cycleId), bestScores: \(bestScores)")
                 
                 if bestShape.score >= winningScore {
-                    print("Required Beam = \(requiredBeam + 1)")
+                    print("Required beam = \(requiredBeam + 1), actual beam = \(beamWidth)")
                     print("HUMAN SCORE \(gameId)")
                     print(DateTimeCalculator.duration(start: startTime))
                     return bestShape
