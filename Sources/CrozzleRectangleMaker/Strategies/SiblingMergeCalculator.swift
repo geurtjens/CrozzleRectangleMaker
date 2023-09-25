@@ -86,8 +86,9 @@ public class SiblingMergeCalculator {
             let values = execute(treeNode: treeNode, searchShapes: searchShapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax, wordIndex: wordIndex, scoresMin: scoresMin)
             result += values
         }
-        
-        TreeNodeCalculator.sort(treeNodes: &result)
+        // We have child decendant that is the winner but when we run this we have no children so it fails
+        // So we should somehow check for winner in another way
+        TreeNodeCalculator.sortByBestDescendant(treeNodes: &result)
         
         return result
     }
@@ -129,9 +130,9 @@ public class SiblingMergeCalculator {
         }
         
         // We remove tree nodes if their descendants do not have a greater score than them
-        treeNodes = treeNodes.filter { $0.bestDescendant.score != $0.parentShape.score}
-        
-        TreeNodeCalculator.sort(treeNodes: &treeNodes)
+//        treeNodes = treeNodes.filter { $0.bestDescendant.score != $0.parentShape.score}
+//
+        TreeNodeCalculator.sortByBestDescendant(treeNodes: &treeNodes)
         
 
         
@@ -463,8 +464,8 @@ public class SiblingMergeCalculator {
             }
         }
         
-        TreeNodeCalculator.sort(treeNodes: &result)
-
+        TreeNodeCalculator.sortByBestDescendant(treeNodes: &result)
+// Given we are going down to the end now we want any descendants of the tree, doesnt have to be max depth anymore
         
         return result
     }

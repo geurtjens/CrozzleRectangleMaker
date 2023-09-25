@@ -171,7 +171,7 @@ public class BranchAndBoundStrategyV3 {
         
         
         var bestShape = treeNode.parentShape
-        print(bestShape.ToStringExtended(words: words, gameId: gameId, winningScore: winningScore))
+        print(treeNode.parentShape.ToStringExtended(words: words, gameId: gameId, winningScore: winningScore))
         //print(bestShape.mergeHistory)
         
         let requiredShapes = Set(winningShapeIds)
@@ -181,8 +181,9 @@ public class BranchAndBoundStrategyV3 {
         var requiredBeam = 0
         
         var treeNodes = [treeNode]
+        var previousNodes = treeNodes
         print("game: \(gameId), lookahead depth: \(lookaheadDepth), beam width: \(beamWidth)")
-        for i in 0..<repeatTimes {
+        for cycleId in 0..<repeatTimes {
             
             treeNodes = SiblingMergeCalculator.executeAll(
                 treeNodes: treeNodes,
@@ -206,6 +207,56 @@ public class BranchAndBoundStrategyV3 {
                 wordIndex: wordIndex,
                 scoresMin: scoresMin)
                 
+            /// We get to the end of processing but we do not have any answers so maybe we need a previous list and if the list is empty then we go to previous
+            if treeNodes.count > 0 {
+                previousNodes = treeNodes
+            } else {
+                /// We have reached the end so we need to look at the previous nodes children
+                
+                let firstWinningChildNode = findFirstValidTreeNodeFromChildren(requiredShapes: requiredShapes, treeNodes: previousNodes)
+                
+                // Now we should get all the children together, remove duplicates and then do the beam restriction thing
+                
+                var childShapes: [ShapeModel] = []
+                for treeNode in previousNodes {
+                    for childShape in treeNode.childShapes {
+                        childShapes.append(childShape)
+                    }
+                }
+                ShapeCalculator.Sort(shapes: &childShapes)
+                
+                var bestShapes: [ShapeModel] = []
+                var bestScores: [UInt16] = []
+                for childShape in childShapes {
+                    bestShapes.append(childShape)
+                    bestScores.append(childShape.score)
+                }
+                
+                
+                if bestShape.score < bestShapes[0].score {
+                    bestShape = bestShapes[0]
+                }
+                
+                
+                print("cycle: \(cycleId), bestScores: \(bestScores)")
+                
+                if bestShape.score >= winningScore {
+                    print("Required Beam = \(requiredBeam + 1)")
+                    print("HUMAN SCORE \(gameId)")
+                    print(DateTimeCalculator.duration(start: startTime))
+                    return bestShape
+                    
+                } else {
+                    print("FAILED \(gameId)")
+                    print(DateTimeCalculator.duration(start: startTime))
+                    return bestShape
+                }
+                
+                
+                
+            }
+            
+            
             /// Find tree node that contains all winning shapes and nothing else.  You can comment this out if you dont need to know
             let firstValidTreeNode = findFirstValidTreeNode(
                 requiredShapes: requiredShapes,
@@ -219,8 +270,8 @@ public class BranchAndBoundStrategyV3 {
                 var bestShapes: [ShapeModel] = []
                 var bestScores: [UInt16] = []
                 for treeNode in treeNodes {
-                    bestShapes.append(treeNode.bestDescendant)
-                    bestScores.append(treeNode.bestDescendant.score)
+                    bestShapes.append(treeNode.parentShape)
+                    bestScores.append(treeNode.parentShape.score)
                 }
                 ShapeCalculator.Sort(shapes: &bestShapes)
                 
@@ -229,12 +280,13 @@ public class BranchAndBoundStrategyV3 {
                 }
                 
                 
-                print("cycle: \(i), bestScores: \(bestScores)")
+                print("cycle: \(cycleId), bestScores: \(bestScores)")
                 
                 
             }
+            let parentTreeNodeBestScore = getBestParentNodeScore(treeNodes: treeNodes)
             
-            if bestShape.score >= winningScore {
+            if parentTreeNodeBestScore >= winningScore {
                 print("Required Beam = \(requiredBeam + 1)")
                 print("HUMAN SCORE \(gameId)")
                 print(DateTimeCalculator.duration(start: startTime))
@@ -251,6 +303,16 @@ public class BranchAndBoundStrategyV3 {
         return bestShape
     }
     
+    public static func getBestParentNodeScore(treeNodes: [TreeNodeModel]) -> UInt16 {
+        var result: UInt16 = 0
+        for treeNode in treeNodes {
+            if treeNode.parentShape.score > result {
+                result = treeNode.parentShape.score
+            }
+        }
+        return result
+    }
+    
     public static func findFirstValidTreeNode(requiredShapes: Set<Int>, treeNodes: [TreeNodeModel]) -> Int
     {
         for i in 0..<treeNodes.count {
@@ -263,6 +325,34 @@ public class BranchAndBoundStrategyV3 {
             }
         }
         return -1
+    }
+    
+    public static func findFirstValidTreeNodeFromChildren(requiredShapes: Set<Int>, treeNodes: [TreeNodeModel]) -> Int
+    {
+        var result = 99999
+        for treeNodeId in 0..<treeNodes.count {
+            let treeNode = treeNodes[treeNodeId]
+            
+            for treeNodeChildId in 0..<treeNode.childShapes.count {
+                
+                let treeNodeMergeHistory = Set(treeNode.childShapes[treeNodeChildId].mergeHistory)
+                
+                let unrequiredShapes = treeNodeMergeHistory.subtracting(requiredShapes)
+                
+                if unrequiredShapes.count == 0 {
+                    if result > treeNodeChildId {
+                        result = treeNodeChildId
+                    }
+                }
+            }
+        }
+        
+        /// We havent found any so return that there are none here
+        if result == 9999 {
+            result = -1
+        }
+        
+        return result
     }
             
     public static func getShapes(gameId: Int, words: [String]) -> [ShapeModel] {
