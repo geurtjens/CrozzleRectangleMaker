@@ -480,7 +480,7 @@ public class SiblingMergeCalculator {
         wordsInt: [[Int]],
         scoresMin: [Int],
         widthMax: Int,
-        heightMax: Int) async -> ShapeModel
+        heightMax: Int) async -> [ShapeModel]
     {
         var bestShape = sourceShape
         let newShapes = await MergeCalculatorV2.ExecuteDifferentShapesAsync(
@@ -502,7 +502,7 @@ public class SiblingMergeCalculator {
         }
         
         
-        return bestShape
+        return newShapes
     }
     
     public static func getLeafShapes(wordIndex: WordIndexModelV2, siblingWords: [Int], shapesToExclude: [Int], sourceShape: ShapeModel, sourceShapeId: Int, searchShapes: [ShapeModel], words: [String], wordsInt: [[Int]], scoresMin: [Int], widthMax: Int, heightMax: Int) -> [ShapeModel]

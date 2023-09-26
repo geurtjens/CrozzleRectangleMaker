@@ -121,7 +121,7 @@ public class BranchAndBoundStrategyV3 {
         winningScore: Int
     ) async -> ShapeModel {
         
-        var bestShape = await executeLeaf(
+        let bestShapes = await executeLeaf(
             gameId: gameId,
             words: words,
             lookaheadDepth: lookaheadDepth,
@@ -129,31 +129,43 @@ public class BranchAndBoundStrategyV3 {
             repeatTimes: repeatTimes,
             winningScore: winningScore)
         
-        if bestShape.score == winningScore {
-            return bestShape
+        var bestShape = bestShapes[0]
+        if bestShapes[0].score == winningScore {
+            return bestShapes[0]
+            
         }
      
         let (winningScore, wordsInt, searchShapes, wordIndex, _, scoresMin, widthMax, heightMax, _) = await getStartingData(gameId: gameId, words: words)
         
         // If we havent got best score then lets keep going but now dont use the leaf heuristic
         
-        bestShape = await SiblingMergeCalculator.getAllMatchingShapes(
-            wordIndex: wordIndex,
-            sourceShape: bestShape,
-            sourceShapeId: 0,
-            searchShapes: searchShapes,
-            words: words,
-            wordsInt: wordsInt,
-            scoresMin: scoresMin,
-            widthMax: widthMax,
-            heightMax: heightMax)
-        
+        for shape in bestShapes {
+            
+            let shapes = await SiblingMergeCalculator.getAllMatchingShapes(
+                wordIndex: wordIndex,
+                sourceShape: shape,
+                sourceShapeId: 0,
+                searchShapes: searchShapes,
+                words: words,
+                wordsInt: wordsInt,
+                scoresMin: scoresMin,
+                widthMax: widthMax,
+                heightMax: heightMax)
+            
+            for shape in shapes {
+                print(shape.ToString(words: words))
+                
+                if shape.score > bestShape.score {
+                    bestShape = shape
+                }
+            }
+        }
         if bestShape.score >= winningScore {
             print("HUMAN SCORE \(gameId) Calculated at end")
             
         }
-        
         return bestShape
+
         
     }
     
@@ -164,7 +176,7 @@ public class BranchAndBoundStrategyV3 {
         beamWidth: Int,
         repeatTimes: Int,
         winningScore: Int
-    ) async -> ShapeModel {
+    ) async -> [ShapeModel] {
         
         let startTime = DateTimeCalculator.now()
         
@@ -236,9 +248,11 @@ public class BranchAndBoundStrategyV3 {
                 
                 var bestShapes: [ShapeModel] = []
                 var bestScores: [UInt16] = []
-                for childShape in childShapes {
-                    bestShapes.append(childShape)
-                    bestScores.append(childShape.score)
+                for childShapeId in 0..<childShapes.count {
+                    if bestShapes.count < beamWidth {
+                        bestShapes.append(childShapes[childShapeId])
+                        bestScores.append(childShapes[childShapeId].score)
+                    }
                 }
                 
                 
@@ -260,7 +274,7 @@ public class BranchAndBoundStrategyV3 {
                     }
                     print("HUMAN SCORE \(gameId)")
                     print(DateTimeCalculator.duration(start: startTime))
-                    return bestShape
+                    return bestShapes
                     
                 } else {
                     if requiredBeam + 1 != -1 && requiredBeam < beamWidth {
@@ -268,18 +282,21 @@ public class BranchAndBoundStrategyV3 {
                     }
                     print("FAILED \(gameId)")
                     print(DateTimeCalculator.duration(start: startTime))
-                    return bestShape
+                    return bestShapes
                 }
-                
-                
-                
             }
             
             
             /// Find tree node that contains all winning shapes and nothing else.  You can comment this out if you dont need to know
-            let firstValidTreeNode = findFirstValidTreeNode(
+            let firstValidTreeNode = findFirstValidTreeNodeParent(
                 requiredShapes: requiredShapes,
                 treeNodes: treeNodes)
+            
+            if firstValidTreeNode == -1 {
+                print("No more valid treeNodes")
+            } else {
+                print(treeNodes[firstValidTreeNode].parentShape.Flip().ToString(words: words))
+            }
             
             if requiredBeam < firstValidTreeNode {
                 requiredBeam = firstValidTreeNode
@@ -288,51 +305,57 @@ public class BranchAndBoundStrategyV3 {
             if treeNodes.count > 0 {
                 var bestShapes: [ShapeModel] = []
                 var bestScores: [UInt16] = []
-                for treeNode in treeNodes {
-                    bestShapes.append(treeNode.parentShape)
-                    bestScores.append(treeNode.parentShape.score)
+                for treeNodeId in 0..<treeNodes.count {
+                    
+                    bestShapes.append(treeNodes[treeNodeId].parentShape)
+                    
+                    
                 }
-                ShapeCalculator.Sort(shapes: &bestShapes)
+                (bestShapes, _) = RemoveDuplicatesCalculator.execute(shapes: bestShapes)
                 
+                for bestShape in bestShapes {
+                    bestScores.append(bestShape.score)
+                }
+                var bestShapesWithinBeam: [ShapeModel] = []
                 if bestShape.score < bestShapes[0].score {
                     bestShape = bestShapes[0]
                 }
                 
                 
-                print("cycle: \(cycleId), bestScores: \(bestScores)")
+                print("cycle: \(cycleId), winningWidth: \(requiredBeam), bestScores: \(bestScores)")
                 
             }
-            let parentTreeNodeBestScore = getBestParentNodeScore(treeNodes: treeNodes)
-            
-            var beamText = "Required beam: \(requiredBeam + 1), actual beam: \(beamWidth)"
-            if requiredBeam + 1 < beamWidth {
-                beamText += ", Beam can be improved"
-            }
-            if requiredBeam == -1 {
-                beamText = "Actual beam: \(beamWidth) cannot calculate winning game"
-            }
-            
-            
-            if parentTreeNodeBestScore >= winningScore {
-                if requiredBeam + 1 != -1 && requiredBeam < beamWidth {
-                    print(beamText)
-                }
-                print("HUMAN SCORE \(gameId)")
-                print(DateTimeCalculator.duration(start: startTime))
-                return bestShape
-                
-            } else if treeNodes.count == 0 {
-                if requiredBeam + 1 != -1 && requiredBeam < beamWidth {
-                    print(beamText)
-                }
-                print("FAILED \(gameId)")
-                print(DateTimeCalculator.duration(start: startTime))
-                return bestShape
-            }
+//            let parentTreeNodeBestScore = getBestParentNodeScore(treeNodes: treeNodes)
+//            
+//            var beamText = "Required beam: \(requiredBeam + 1), actual beam: \(beamWidth)"
+//            if requiredBeam + 1 < beamWidth {
+//                beamText += ", Beam can be improved"
+//            }
+//            if requiredBeam == -1 {
+//                beamText = "Actual beam: \(beamWidth) cannot calculate winning game"
+//            }
+//            
+//            
+//            if parentTreeNodeBestScore >= winningScore {
+//                if requiredBeam + 1 != -1 && requiredBeam < beamWidth {
+//                    print(beamText)
+//                }
+//                print("HUMAN SCORE \(gameId)")
+//                print(DateTimeCalculator.duration(start: startTime))
+//                return bestShapes
+//                
+//            } else if treeNodes.count == 0 {
+//                if requiredBeam + 1 != -1 && requiredBeam < beamWidth {
+//                    print(beamText)
+//                }
+//                print("FAILED \(gameId)")
+//                print(DateTimeCalculator.duration(start: startTime))
+//                return bestShape
+//            }
         }
             
-            
-        return bestShape
+            // Not sure if this is correct, just want it to compile
+        return []
     }
     
     public static func getBestParentNodeScore(treeNodes: [TreeNodeModel]) -> UInt16 {
@@ -349,6 +372,20 @@ public class BranchAndBoundStrategyV3 {
     {
         for i in 0..<treeNodes.count {
             let treeNodeMergeHistory = Set(treeNodes[i].bestDescendant.mergeHistory)
+            
+            let unrequiredShapes = treeNodeMergeHistory.subtracting(requiredShapes)
+            
+            if unrequiredShapes.count == 0 {
+                return i
+            }
+        }
+        return -1
+    }
+    
+    public static func findFirstValidTreeNodeParent(requiredShapes: Set<Int>, treeNodes: [TreeNodeModel]) -> Int
+    {
+        for i in 0..<treeNodes.count {
+            let treeNodeMergeHistory = Set(treeNodes[i].parentShape.mergeHistory)
             
             let unrequiredShapes = treeNodeMergeHistory.subtracting(requiredShapes)
             

@@ -40,20 +40,22 @@ final class BranchAndBoundStrategyV3Tests: XCTestCase {
             gameId: gameId,
             words: words,
             lookaheadDepth: 3,
-            beamWidth: 500,
+            beamWidth: 200,
             repeatTimes:30,
             winningScore: winningScore)
         print(result.ToText(words: words))
     }
     
-    public func test_Execute() async {
-        let game = GameList().getGame(gameId:8612)!
+    public func test_Execute8612() async {
+        let gameId = 8612
+        
+        let game = GameList().getGame(gameId:gameId)!
         let winningScore = game.winningScore
         let words = game.winningWords
         
         
         let result = await BranchAndBoundStrategyV3.execute(
-            gameId: 8612,
+            gameId: gameId,
             words: words,
             lookaheadDepth: 3,
             beamWidth: 1,
