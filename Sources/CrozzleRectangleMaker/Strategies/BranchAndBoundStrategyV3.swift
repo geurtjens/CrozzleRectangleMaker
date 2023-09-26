@@ -9,6 +9,79 @@ import Foundation
 public class BranchAndBoundStrategyV3 {
     
     
+    public static func optimizeBeamWidth(games: [Int], lookaheadDepth: Int, maximumDepth: Int, minimumBeamWidth: Int, maximumBeamWidth: Int) async -> [[Int]] {
+        
+        var lowerWidth = 0
+        var upperWidth = 0
+        var currentWidth = 0
+
+        var result: [[Int]] = []
+        for _ in 0..<maximumBeamWidth+1 {
+            result.append([])
+        }
+        var failures: [Int] = []
+
+
+        for game in games {
+            
+            lowerWidth = minimumBeamWidth
+            upperWidth = maximumBeamWidth
+            
+            let lowerWidthShouldFail = await BranchAndBoundStrategyV3.executeGames(
+                games: [game],
+                depth: lookaheadDepth,
+                width: lowerWidth,
+                maxDepth: maximumDepth)
+            
+            let upperWidthShouldSucceed = await BranchAndBoundStrategyV3.executeGames(
+                games: [game],
+                depth: lookaheadDepth,
+                width: upperWidth,
+                maxDepth: maximumDepth)
+            
+            if upperWidthShouldSucceed.count > 0 && lowerWidthShouldFail.count == 0  {
+                
+                while lowerWidth != upperWidth {
+                    
+                    currentWidth = Int((Double(lowerWidth) + Double(upperWidth) + 0.5) / 2.0)
+                    print ("CURRENT WIDTH: \(currentWidth)")
+                    
+                    let winnersForCurrent = await BranchAndBoundStrategyV3.executeGames(
+                        games: [game],
+                        depth: lookaheadDepth,
+                        width: currentWidth,
+                        maxDepth: maximumDepth)
+                    
+                    if winnersForCurrent.count == 0 {
+                        if lowerWidth == currentWidth {
+                            lowerWidth += 1
+                            currentWidth = lowerWidth
+                        } else {
+                            lowerWidth = currentWidth
+                        }
+                        
+                    } else {
+                        upperWidth = currentWidth
+                    }
+                }
+                print("FINAL SIZE for : \(game) is \(currentWidth)")
+                result[currentWidth].append(game)
+            } else {
+                failures.append(game)
+                print("CANNOT FIND RANGE VALUE FOR \(game) as upperWidthShouldSucceed: \(upperWidthShouldSucceed), lowerWidthShouldFail: \(lowerWidthShouldFail)")
+            }
+            
+        }
+        print("Failures because they started out of range: \(failures)")
+
+        for beamWidth in 0..<maximumBeamWidth+1 {
+            if result[beamWidth].count > 0 {
+                print("branchAndBoundV3_Depth\(lookaheadDepth)_Width\(beamWidth) = \(result[beamWidth])")
+            }
+        }
+        return result
+    }
+    
     public static func executeGames(games: [Int], depth: Int, width: Int, maxDepth: Int) async -> [Int] {
         
         let startTime = DateTimeCalculator.now()
