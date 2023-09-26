@@ -229,7 +229,10 @@ public class BranchAndBoundStrategyV3 {
                         childShapes.append(childShape)
                     }
                 }
+                
                 ShapeCalculator.Sort(shapes: &childShapes)
+                
+                (childShapes, _) = RemoveDuplicatesCalculator.execute(shapes: childShapes)
                 
                 var bestShapes: [ShapeModel] = []
                 var bestScores: [UInt16] = []
