@@ -252,7 +252,7 @@ public class BranchAndBoundStrategyV3 {
                 }
                 
                 if bestShape.score >= winningScore {
-                    if requiredBeam + 1 != beamWidth {
+                    if requiredBeam + 1 != -1 && requiredBeam < beamWidth {
                         print(beamText)
                     }
                     print("HUMAN SCORE \(gameId)")
@@ -260,7 +260,7 @@ public class BranchAndBoundStrategyV3 {
                     return bestShape
                     
                 } else {
-                    if requiredBeam + 1 != beamWidth {
+                    if requiredBeam + 1 != -1 && requiredBeam < beamWidth {
                         print(beamText)
                     }
                     print("FAILED \(gameId)")
@@ -311,7 +311,7 @@ public class BranchAndBoundStrategyV3 {
             
             
             if parentTreeNodeBestScore >= winningScore {
-                if requiredBeam + 1 != beamWidth {
+                if requiredBeam + 1 != -1 && requiredBeam < beamWidth {
                     print(beamText)
                 }
                 print("HUMAN SCORE \(gameId)")
@@ -319,7 +319,7 @@ public class BranchAndBoundStrategyV3 {
                 return bestShape
                 
             } else if treeNodes.count == 0 {
-                if requiredBeam + 1 != beamWidth {
+                if requiredBeam + 1 != -1 && requiredBeam < beamWidth {
                     print(beamText)
                 }
                 print("FAILED \(gameId)")
@@ -358,7 +358,7 @@ public class BranchAndBoundStrategyV3 {
     
     public static func findFirstValidTreeNodeFromChildren(requiredShapes: Set<Int>, treeNodes: [TreeNodeModel]) -> Int
     {
-        var result = 99999
+        var result = 9999
         for treeNodeId in 0..<treeNodes.count {
             let treeNode = treeNodes[treeNodeId]
             

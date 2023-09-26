@@ -63,6 +63,26 @@ final class BranchAndBoundStrategyV3Tests: XCTestCase {
         XCTAssertEqual(winningScore, Int(result.score))
     }
     
+    public func test_Execute8802() async {
+        let gameId = 8802
+        
+        let game = GameList().getGame(gameId:gameId)!
+        let winningScore = game.winningScore
+        let words = game.winningWords
+        
+        
+        let result = await BranchAndBoundStrategyV3.execute(
+            gameId: gameId,
+            words: words,
+            lookaheadDepth: 3,
+            beamWidth: 1,
+            repeatTimes: 30,
+            winningScore: winningScore)
+        
+        XCTAssertEqual(winningScore, Int(result.score))
+    }
+    
+    
     
     public func test_Execute8703() async {
         let gameId = 8703
