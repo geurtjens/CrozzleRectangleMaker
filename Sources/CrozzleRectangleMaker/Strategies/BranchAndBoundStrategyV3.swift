@@ -9,7 +9,7 @@ import Foundation
 public class BranchAndBoundStrategyV3 {
     
     
-    public static func executeGames(games: [Int], depth: Int, width: Int, maxDepth: Int) async {
+    public static func executeGames(games: [Int], depth: Int, width: Int, maxDepth: Int) async -> [Int] {
         
         let startTime = DateTimeCalculator.now()
         
@@ -44,6 +44,7 @@ public class BranchAndBoundStrategyV3 {
             print("MISSING \(missing)")
             print("FOUND \(successfulGames)")
         }
+        return successfulGames
     }
     
     public static func getStartingData(gameId: Int, words: [String]) async -> (Int,[[Int]],[ShapeModel], WordIndexModelV2, TreeNodeModel, [Int], Int, Int, [Int]){
