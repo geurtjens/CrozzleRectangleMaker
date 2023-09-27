@@ -239,9 +239,8 @@ public class BranchAndBoundStrategyV3 {
             
         }
         return bestShape
-
-        
     }
+    
     
     public static func executeLeaf(
         gameId: Int,
@@ -265,6 +264,9 @@ public class BranchAndBoundStrategyV3 {
         
         /// We have to find the child nodes of the first tree node and send them
         
+        var shapesCreatedCount = 0
+        var shapesCreated = 0
+        
         var requiredBeam = 0
         
         var treeNodes = [treeNode]
@@ -272,6 +274,7 @@ public class BranchAndBoundStrategyV3 {
         print("game: \(gameId), lookahead depth: \(lookaheadDepth), beam width: \(beamWidth)")
         for cycleId in 0..<repeatTimes {
             
+            shapesCreatedCount = 0
             treeNodes = SiblingMergeCalculator.executeAll(
                 treeNodes: treeNodes,
                 searchShapes: searchShapes,
@@ -282,7 +285,12 @@ public class BranchAndBoundStrategyV3 {
                 wordIndex: wordIndex,
                 scoresMin: scoresMin)
             
-            treeNodes = await SiblingMergeCalculator.executeLookaheadAndBeam(
+            shapesCreatedCount = treeNodes.count
+            for treeNode in treeNodes {
+                shapesCreatedCount += treeNode.childShapes.count
+            }
+            
+            (treeNodes, shapesCreated) = await SiblingMergeCalculator.executeLookaheadAndBeam(
                 lookaheadDepth: lookaheadDepth,
                 beamWidth: beamWidth,
                 treeNodes: treeNodes,
@@ -294,6 +302,8 @@ public class BranchAndBoundStrategyV3 {
                 wordIndex: wordIndex,
                 scoresMin: scoresMin)
                 
+            shapesCreatedCount += shapesCreated
+            
             /// We get to the end of processing but we do not have any answers so maybe we need a previous list and if the list is empty then we go to previous
             if treeNodes.count > 0 {
                 previousNodes = treeNodes
@@ -335,7 +345,7 @@ public class BranchAndBoundStrategyV3 {
                 }
                 
                 
-                print("cycle: \(cycleId), bestScores: \(bestScores)")
+                print("cycle: \(cycleId), shapesCreated: \(shapesCreatedCount), winningWidth: \(requiredBeam), bestScores: \(bestScores)")
                 
                 var beamText = "Required beam = \(requiredBeam + 1), actual beam = \(beamWidth)"
                 if requiredBeam + 1 < beamWidth {
@@ -396,7 +406,7 @@ public class BranchAndBoundStrategyV3 {
                 }
                 
                 
-                print("cycle: \(cycleId), winningWidth: \(requiredBeam), bestScores: \(bestScores)")
+                print("cycle: \(cycleId), shapesCreated: \(shapesCreatedCount), winningWidth: \(requiredBeam), bestScores: \(bestScores)")
                 
             }
 //            let parentTreeNodeBestScore = getBestParentNodeScore(treeNodes: treeNodes)

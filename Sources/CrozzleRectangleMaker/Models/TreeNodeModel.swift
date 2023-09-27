@@ -17,5 +17,7 @@ public struct TreeNodeModel {
     /// How many siblings where used to calculate the children
     public let siblingCount: Int
     
+    public var shapesCreated: Int = 0
+    
     public var isValid = true
 }
