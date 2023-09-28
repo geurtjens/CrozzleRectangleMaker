@@ -672,4 +672,89 @@ public class ShapeCalculator {
         
         return code
     }
+    
+    
+    
+    public static func getWordDifferences(parentShape: ShapeModel, childShapes: [ShapeModel]) -> [Set<Int>] {
+        var result: [Set<Int>] = []
+        
+        let parentWords = getWordsFromShape(shape: parentShape)
+        
+        for sibling in childShapes {
+            let siblingWords = getWordsFromShape(shape: sibling)
+            
+            let missingWords = findExtraWords(parent: parentWords, sibling: siblingWords)
+            result.append(missingWords)
+        }
+        return result
+    }
+    
+    /// Given a shape, return the set of words used in the shape
+    public static func getWordsFromShape(shape: ShapeModel) -> Set<Int> {
+        var result: Set<Int> = []
+        for placement in shape.placements {
+            result.insert(Int(placement.w))
+        }
+        return result
+    }
+    
+    public static func findExtraWords(parent: Set<Int>, sibling: Set<Int>) -> Set<Int> {
+        let missingWords = sibling.subtracting(parent)
+        return missingWords
+    }
+    
+    
+    
+    public static func getSiblingLastShape(shapes: [ShapeModel]) -> [Int] {
+        var result: [Int] = []
+        for shape in shapes {
+            result.append(shape.mergeHistory.last!)
+        }
+        return result
+    }
+    
+    
+    
+    public static func getWinningShapesShapeIds(
+        winningShapes: [ShapeModel],
+        searchShapes: [ShapeModel]) -> [Int]
+    {
+        
+        
+        
+//        for shape in shapes {
+//            print(shape.ToText(words: words))
+//        }
+        
+        
+        
+        
+        var mergeHistory: [Int] = []
+        
+        for i in 0..<winningShapes.count {
+            let shapePos = getShapeBySequence(shapes: searchShapes, sequence: winningShapes[i].wordSequence)
+            if shapePos == -1 {
+                print("Something wrong, winning shapes are not in searchShapes")
+            } else {
+                mergeHistory += searchShapes[shapePos].mergeHistory
+            }
+            
+        }
+        
+        // The mergeHistory is sorted by score and so its not the actual sequence of words.  So order doesnt matter except for choosing the first word
+        
+        return mergeHistory
+    }
+    
+    public static func getShapeBySequence(
+        shapes: [ShapeModel],
+        sequence: String) -> Int
+    {
+        for shapeId in 0..<shapes.count {
+            if shapes[shapeId].wordSequence == sequence {
+                return shapeId
+            }
+        }
+        return -1
+    }
 }

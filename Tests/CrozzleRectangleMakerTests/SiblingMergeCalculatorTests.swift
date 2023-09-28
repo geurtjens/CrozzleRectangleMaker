@@ -26,7 +26,7 @@ final class SiblingMergeCalculatorTests: XCTestCase {
         XCTAssertEqual(0, sourceShapeDuplicatesCount)
         
         /// `WHEN` we calculate the last shape that was added to each sibling in the source shapes
-        let siblingShapes = SiblingMergeCalculator.getSiblingLastShape(siblings: sourceShapes).sorted()
+        let siblingShapes = ShapeCalculator.getSiblingLastShape(shapes: sourceShapes).sorted()
         
         
         /// `AND` create a tree node from parent and sourceShapes
@@ -37,7 +37,7 @@ final class SiblingMergeCalculatorTests: XCTestCase {
             siblingCount: 0)
         
         /// `AND` perform the tree merge calculation
-        let level1 = SiblingMergeCalculator.executeAll(
+        let level1 = BranchAndBoundStrategyV3.executeAll(
             treeNodes: [treeNode],
             searchShapes: searchShapes,
             words: words,
