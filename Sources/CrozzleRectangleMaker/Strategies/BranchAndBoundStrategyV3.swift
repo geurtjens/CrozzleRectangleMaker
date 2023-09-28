@@ -120,7 +120,8 @@ public class BranchAndBoundStrategyV3 {
                 missing.append(game.gameId)
             }
         }
-        
+        solved.sort()
+        missing.sort()
         print("Solved: \(solved)")
         print("Missing: \(missing)")
 
