@@ -33,7 +33,7 @@ public class StandardSearchAlgorithms {
         
         var searchShapes = WinningShapesAllCalculatorV3.execute(gameId: gameId, words: game.winningWords)
         searchShapes.sort { $0.score > $1.score }
-        ShapeCalculator.SetMergeHistory(shapes: &searchShapes)
+        ShapeCalculator.setMergeHistory(shapes: &searchShapes)
         
         var startingShapeId = 0
         
@@ -54,7 +54,7 @@ public class StandardSearchAlgorithms {
         
         var searchShapes = winningShapes
         searchShapes.sort { $0.score > $1.score }
-        ShapeCalculator.SetMergeHistory(shapes: &searchShapes)
+        ShapeCalculator.setMergeHistory(shapes: &searchShapes)
         
         let wordIndex = WordIndexModelV2(shapes: searchShapes, wordCount: words.count)
         
@@ -329,7 +329,7 @@ public class StandardSearchAlgorithms {
         
         var searchShapes = winningShapes
         searchShapes.sort { $0.score > $1.score }
-        ShapeCalculator.SetMergeHistory(shapes: &searchShapes)
+        ShapeCalculator.setMergeHistory(shapes: &searchShapes)
         
         
         let wordIndex = WordIndexModelV2(shapes: searchShapes, wordCount: words.count)

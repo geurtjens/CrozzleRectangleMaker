@@ -41,7 +41,8 @@ final class BranchAndBoundStrategyV3Tests: XCTestCase {
             words: words,
             lookaheadDepth: 3,
             beamWidth: 200,
-            repeatTimes:30,
+            maxDepth:30,
+            rootWidth: 1,
             winningScore: winningScore)
         print(result.ToText(words: words))
     }
@@ -59,7 +60,8 @@ final class BranchAndBoundStrategyV3Tests: XCTestCase {
             words: words,
             lookaheadDepth: 3,
             beamWidth: 1,
-            repeatTimes: 20,
+            maxDepth: 20,
+            rootWidth: 1,
             winningScore: winningScore)
         
         XCTAssertEqual(winningScore, Int(result.score))
@@ -78,7 +80,8 @@ final class BranchAndBoundStrategyV3Tests: XCTestCase {
             words: words,
             lookaheadDepth: 3,
             beamWidth: 1,
-            repeatTimes: 30,
+            maxDepth: 30,
+            rootWidth: 1,
             winningScore: winningScore)
         
         XCTAssertEqual(winningScore, Int(result.score))
@@ -99,16 +102,25 @@ final class BranchAndBoundStrategyV3Tests: XCTestCase {
             words: words,
             lookaheadDepth: 3,
             beamWidth: 1,
-            repeatTimes: 30,
+            maxDepth: 30,
+            rootWidth: 1,
             winningScore: winningScore)
         
         XCTAssertEqual(winningScore, Int(result.score))
     }
     
-    public func test_Execute2() async {
-        let games = [8612]
-        await BranchAndBoundStrategyV3.executeGames(games: games, depth: 3, width: 2, maxDepth: 20)
+    public func test_ExecuteGames8612() async {
         
+        let games = [8612]
+        
+        let result = await BranchAndBoundStrategyV3.executeGames(
+            games: games,
+            lookaheadDepth: 3,
+            beamWidth: 2,
+            maxDepth: 30,
+            rootWidth: 1)
+        
+        XCTAssertEqual(1, result.count)
     }
     
     public func test_Execute8803() async {
@@ -125,7 +137,8 @@ final class BranchAndBoundStrategyV3Tests: XCTestCase {
             words: words,
             lookaheadDepth: 3,
             beamWidth: 500,
-            repeatTimes: 20,
+            maxDepth: 20,
+            rootWidth: 1,
             winningScore: winningScore)
         
         XCTAssertEqual(winningScore, Int(result.score))

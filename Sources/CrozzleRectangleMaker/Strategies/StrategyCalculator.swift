@@ -206,7 +206,7 @@ public class StrategyCalculator {
 
         var shapes = WinningShapesAllCalculatorV3.execute(gameId: game.gameId, words: words)
         ShapeCalculator.SortByScoreThenArea(shapes: &shapes)
-        ShapeCalculator.SetMergeHistory(shapes: &shapes)
+        ShapeCalculator.setMergeHistory(shapes: &shapes)
         
         queue.originalShapes = shapes
         queue.add(shapes: shapes)

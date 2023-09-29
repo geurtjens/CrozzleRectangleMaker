@@ -84,7 +84,7 @@ public class BranchAndBoundStrategyV2 {
     public static func getShapes(gameId: Int, words: [String]) -> [ShapeModel] {
         var shapes = WinningShapesAllCalculatorV3.execute(gameId: gameId, words: words)
         ShapeCalculator.SortByScoreThenArea(shapes: &shapes)
-        ShapeCalculator.SetMergeHistory(shapes: &shapes)
+        ShapeCalculator.setMergeHistory(shapes: &shapes)
         return shapes
     }
     public static func getBestWinningShape(gameId: Int) -> ShapeModel {

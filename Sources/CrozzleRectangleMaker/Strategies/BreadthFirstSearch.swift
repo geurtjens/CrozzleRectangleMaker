@@ -426,7 +426,7 @@ public class BreadthFirstSearch {
         var result: [TreeNodeModel] = []
     
         // These are the shapes that all the siblings have added to become unique siblings
-        let leafShapesAddedToBecomeSiblings = ShapeCalculator.getSiblingLastShape(
+        let leafShapesAddedToBecomeSiblings = ShapeCalculator.getLastMergeHistoryShapeId(
             shapes: treeNode.childShapes)
         
         // These are the extra words that the siblings have added

@@ -64,53 +64,53 @@ public class BranchAndBoundStrategyV3 {
         
         var solved: [Int] = []
         
-        solved += await executeGames(games: depth1_width1, depth: 1, width: 1, maxDepth: 30)
-        solved += await executeGames(games: depth2_width1, depth: 2, width: 1, maxDepth: 30)
-        solved += await executeGames(games: depth3_width1, depth: 3, width: 1, maxDepth: 30)
-        solved += await executeGames(games: depth1_width2, depth: 1, width: 2, maxDepth: 30)
-        solved += await executeGames(games: depth2_width2, depth: 2, width: 2, maxDepth: 30)
-        solved += await executeGames(games: depth3_width2, depth: 3, width: 2, maxDepth: 30)
-        solved += await executeGames(games: depth1_width3, depth: 1, width: 3, maxDepth: 30)
-        solved += await executeGames(games: depth2_width3, depth: 2, width: 3, maxDepth: 30)
-        solved += await executeGames(games: depth3_width3, depth: 3, width: 3, maxDepth: 30)
-        solved += await executeGames(games: depth2_width4, depth: 2, width: 4, maxDepth: 30)
-        solved += await executeGames(games: depth3_width4, depth: 3, width: 4, maxDepth: 30)
-        solved += await executeGames(games: depth1_width5, depth: 1, width: 5, maxDepth: 30)
-        solved += await executeGames(games: depth2_width5, depth: 2, width: 5, maxDepth: 30)
-        solved += await executeGames(games: depth3_width5, depth: 3, width: 5, maxDepth: 30)
-        solved += await executeGames(games: depth2_width6, depth: 2, width: 6, maxDepth: 30)
-        solved += await executeGames(games: depth3_width6, depth: 3, width: 6, maxDepth: 30)
-        solved += await executeGames(games: depth2_width7, depth: 2, width: 7, maxDepth: 30)
-        solved += await executeGames(games: depth3_width7, depth: 3, width: 7, maxDepth: 30)
-        solved += await executeGames(games: depth1_width8, depth: 1, width: 8, maxDepth: 30)
-        solved += await executeGames(games: depth2_width8, depth: 2, width: 8, maxDepth: 30)
-        solved += await executeGames(games: depth3_width9, depth: 3, width: 9, maxDepth: 30)
-        solved += await executeGames(games: depth2_width10, depth: 2, width: 10, maxDepth: 30)
-        solved += await executeGames(games: depth3_width10, depth: 3, width: 10, maxDepth: 30)
-        solved += await executeGames(games: depth3_width11, depth: 3, width: 11, maxDepth: 30)
-        solved += await executeGames(games: depth2_width13, depth: 2, width: 13, maxDepth: 30)
-        solved += await executeGames(games: depth3_width14, depth: 3, width: 14, maxDepth: 30)
-        solved += await executeGames(games: depth3_width16, depth: 3, width: 16, maxDepth: 30)
-        solved += await executeGames(games: depth1_width17, depth: 1, width: 17, maxDepth: 30)
-        solved += await executeGames(games: depth3_width18, depth: 3, width: 18, maxDepth: 30)
-        solved += await executeGames(games: depth3_width19, depth: 3, width: 19, maxDepth: 30)
-        solved += await executeGames(games: depth3_width21, depth: 3, width: 21, maxDepth: 30)
-        solved += await executeGames(games: depth3_width22, depth: 3, width: 22, maxDepth: 30)
-        solved += await executeGames(games: depth1_width27, depth: 1, width: 27, maxDepth: 30)
-        solved += await executeGames(games: depth2_width36, depth: 2, width: 36, maxDepth: 30)
-        solved += await executeGames(games: depth3_width36, depth: 3, width: 36, maxDepth: 30)
-        solved += await executeGames(games: depth2_width37, depth: 2, width: 37, maxDepth: 30)
-        solved += await executeGames(games: depth3_width49, depth: 3, width: 49, maxDepth: 30)
-        solved += await executeGames(games: depth3_width66, depth: 3, width: 66, maxDepth: 30)
-        solved += await executeGames(games: depth3_width74, depth: 3, width: 74, maxDepth: 30)
-        solved += await executeGames(games: depth3_width98, depth: 3, width: 98, maxDepth: 30)
-        solved += await executeGames(games: depth3_width193, depth: 3, width: 193, maxDepth: 30)
-        solved += await executeGames(games: depth4_width7, depth: 4, width: 7, maxDepth: 30)
-        solved += await executeGames(games: depth4_width8, depth: 4, width: 8, maxDepth: 30)
-        solved += await executeGames(games: depth4_width23, depth: 4, width: 23, maxDepth: 30)
-        solved += await executeGames(games: depth4_width35, depth: 4, width: 35, maxDepth: 30)
-        solved += await executeGames(games: depth4_width68, depth: 4, width: 68, maxDepth: 30)
-        solved += await executeGames(games: depth4_width82, depth: 4, width: 82, maxDepth: 30)
+        solved += await executeGames(games: depth1_width1, lookaheadDepth: 1, beamWidth: 1, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth2_width1, lookaheadDepth: 2, beamWidth: 1, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width1, lookaheadDepth: 3, beamWidth: 1, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth1_width2, lookaheadDepth: 1, beamWidth: 2, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth2_width2, lookaheadDepth: 2, beamWidth: 2, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width2, lookaheadDepth: 3, beamWidth: 2, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth1_width3, lookaheadDepth: 1, beamWidth: 3, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth2_width3, lookaheadDepth: 2, beamWidth: 3, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width3, lookaheadDepth: 3, beamWidth: 3, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth2_width4, lookaheadDepth: 2, beamWidth: 4, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width4, lookaheadDepth: 3, beamWidth: 4, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth1_width5, lookaheadDepth: 1, beamWidth: 5, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth2_width5, lookaheadDepth: 2, beamWidth: 5, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width5, lookaheadDepth: 3, beamWidth: 5, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth2_width6, lookaheadDepth: 2, beamWidth: 6, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width6, lookaheadDepth: 3, beamWidth: 6, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth2_width7, lookaheadDepth: 2, beamWidth: 7, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width7, lookaheadDepth: 3, beamWidth: 7, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth1_width8, lookaheadDepth: 1, beamWidth: 8, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth2_width8, lookaheadDepth: 2, beamWidth: 8, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width9, lookaheadDepth: 3, beamWidth: 9, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth2_width10, lookaheadDepth: 2, beamWidth: 10, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width10, lookaheadDepth: 3, beamWidth: 10, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width11, lookaheadDepth: 3, beamWidth: 11, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth2_width13, lookaheadDepth: 2, beamWidth: 13, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width14, lookaheadDepth: 3, beamWidth: 14, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width16, lookaheadDepth: 3, beamWidth: 16, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth1_width17, lookaheadDepth: 1, beamWidth: 17, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width18, lookaheadDepth: 3, beamWidth: 18, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width19, lookaheadDepth: 3, beamWidth: 19, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width21, lookaheadDepth: 3, beamWidth: 21, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width22, lookaheadDepth: 3, beamWidth: 22, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth1_width27, lookaheadDepth: 1, beamWidth: 27, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth2_width36, lookaheadDepth: 2, beamWidth: 36, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width36, lookaheadDepth: 3, beamWidth: 36, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth2_width37, lookaheadDepth: 2, beamWidth: 37, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width49, lookaheadDepth: 3, beamWidth: 49, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width66, lookaheadDepth: 3, beamWidth: 66, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width74, lookaheadDepth: 3, beamWidth: 74, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width98, lookaheadDepth: 3, beamWidth: 98, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth3_width193, lookaheadDepth: 3, beamWidth: 193, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth4_width7, lookaheadDepth: 4, beamWidth: 7, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth4_width8, lookaheadDepth: 4, beamWidth: 8, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth4_width23, lookaheadDepth: 4, beamWidth: 23, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth4_width35, lookaheadDepth: 4, beamWidth: 35, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth4_width68, lookaheadDepth: 4, beamWidth: 68, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth4_width82, lookaheadDepth: 4, beamWidth: 82, maxDepth: 30, rootWidth: 1)
 
         
         let gameList = GameList()
@@ -156,15 +156,17 @@ public class BranchAndBoundStrategyV3 {
             
             let lowerWidthShouldFail = await executeGames(
                 games: [game],
-                depth: lookaheadDepth,
-                width: lowerWidth,
-                maxDepth: maximumDepth)
+                lookaheadDepth: lookaheadDepth,
+                beamWidth: lowerWidth,
+                maxDepth: maximumDepth,
+                rootWidth: 1)
             
             let upperWidthShouldSucceed = await executeGames(
                 games: [game],
-                depth: lookaheadDepth,
-                width: upperWidth,
-                maxDepth: maximumDepth)
+                lookaheadDepth: lookaheadDepth,
+                beamWidth: lowerWidth,
+                maxDepth: maximumDepth,
+                rootWidth: 1)
             
             if upperWidthShouldSucceed.count > 0 && lowerWidthShouldFail.count == 0  {
                 
@@ -175,9 +177,10 @@ public class BranchAndBoundStrategyV3 {
                     
                     let winnersForCurrent = await executeGames(
                         games: [game],
-                        depth: lookaheadDepth,
-                        width: currentWidth,
-                        maxDepth: maximumDepth)
+                        lookaheadDepth: lookaheadDepth,
+                        beamWidth: lowerWidth,
+                        maxDepth: maximumDepth,
+                        rootWidth: 1)
                     
                     if winnersForCurrent.count == 0 {
                         if lowerWidth == currentWidth {
@@ -211,9 +214,10 @@ public class BranchAndBoundStrategyV3 {
     
     public static func executeGames(
         games: [Int],
-        depth: Int,
-        width: Int,
-        maxDepth: Int) async -> [Int]
+        lookaheadDepth: Int,
+        beamWidth: Int,
+        maxDepth: Int,
+        rootWidth: Int) async -> [Int]
     {
         
         let startTime = DateTimeCalculator.now()
@@ -221,7 +225,7 @@ public class BranchAndBoundStrategyV3 {
         let gameList = GameList()
         
         var successfulGames: [Int] = []
-        print("depth: \(depth), width: \(width), maxDepth: \(maxDepth), games to process: \(games.count)")
+        print("lookaheadDepth: \(lookaheadDepth), beamWidth: \(beamWidth), rootWidth: \(rootWidth), maxDepth: \(maxDepth), games: \(games.count)")
         print(games)
         for game in gameList.games {
             if games.contains(game.gameId) {
@@ -229,9 +233,10 @@ public class BranchAndBoundStrategyV3 {
                 let bestShape = await execute(
                     gameId: game.gameId,
                     words: game.winningWords,
-                    lookaheadDepth: depth,
-                    beamWidth: width,
-                    repeatTimes: maxDepth,
+                    lookaheadDepth: lookaheadDepth,
+                    beamWidth: beamWidth,
+                    maxDepth: maxDepth,
+                    rootWidth: rootWidth,
                     winningScore: game.winningScore)
                 
                 if bestShape.score >= game.winningScore {
@@ -240,7 +245,7 @@ public class BranchAndBoundStrategyV3 {
             }
         }
         //print(successfulGames)
-        print("depth: \(depth), width: \(width), games successful: \(successfulGames.count), time: \(DateTimeCalculator.duration(start: startTime))")
+        print("lookaheadDepth: \(lookaheadDepth), beamWidth: \(beamWidth), successes: \(successfulGames.count), time: \(DateTimeCalculator.duration(start: startTime))")
         if successfulGames.count == games.count {
             print("ALL GAMES SUCCEEDED")
             print("FOUND \(successfulGames)")
@@ -254,72 +259,71 @@ public class BranchAndBoundStrategyV3 {
     
     public static func getStartingData(
         gameId: Int,
-        words: [String]) async -> (Int,[[Int]],[ShapeModel], WordIndexModelV2, TreeNodeModel, [Int], Int, Int, [Int])
+        words: [String],
+        rootWidth: Int) async -> (Int,[[Int]],[ShapeModel], WordIndexModelV2, [TreeNodeModel], [Int], Int, Int, [Int])
     {
-        let game = GameList().getGame(gameId: gameId)!
         
+        /// Get game parameters of widthMax, heightMax, winningScore
+        let game = GameList().getGame(gameId: gameId)!
         
         let widthMax = game.maxWidth
         let heightMax = game.maxHeight
-        
         let winningScore = game.winningScore
         
         let wordsInt = WordCalculator.WordsToInt(words: words)
         
-        let searchShapes = getShapes(gameId: gameId, words: words)
+        /// Returns `searchShapes` which have `mergeHistories`
+        let searchShapes = getSearchShapes(gameId: gameId, words: words)
         
+        var winningShapes = getWinningShapes(gameId: gameId)
         
-        var (winningShapes, _, _, _) = WinningShapesCalculatorV1.getShapes(gameId: gameId)
+        ShapeCalculator.setMergeHistories(
+            shapes: &winningShapes,
+            referenceShapes: searchShapes)
         
-        ShapeCalculator.SortByScoreThenArea(shapes: &winningShapes)
+        let winningShapeIds = ShapeCalculator.getLastMergeHistoryShapeId(shapes: winningShapes)
         
-        let winningShapeIds = ShapeCalculator.getWinningShapesShapeIds(
-            winningShapes: winningShapes,
-            searchShapes: searchShapes)
-
-        let bestShapePos = winningShapeIds[0]
-
-        
-//
-//
-//
-//        if bestShapePos == -1 {
-//            searchShapes = [bestShapeExample] + searchShapes
-//            bestShapePos = 0
-//        }
-        
-        let startingShape = searchShapes[bestShapePos]
+        var startingShapes: [ShapeModel] = []
+        for i in 0..<rootWidth {
+            if i < winningShapes.count {
+                startingShapes.append(winningShapes[i])
+            }
+        }
         
         let wordIndex = WordIndexModelV2(shapes: searchShapes, wordCount: words.count)
         
         let scoresMin = StrategyCalculator.GetScoreMins(gameId: gameId)
         
-        let sourceShapes = [startingShape]
+        var treeNodes: [TreeNodeModel] = []
         
-        let childShapes = await MergeCalculatorV2.ExecuteDifferentShapesAsync(
-            sourceShapes: sourceShapes,
-            searchShapes: searchShapes,
-            searchWordIndex: wordIndex,
-            sourceMax: sourceShapes.count,
-            searchMax: searchShapes.count,
-            words: words,
-            wordsInt: wordsInt,
-            scoresMin: scoresMin,
-            widthMax: widthMax,
-            heightMax: heightMax)
+        for startingShapeId in 0..<startingShapes.count {
+            
+            let childShapes = await MergeCalculatorV2.ExecuteDifferentShapesAsync(
+                sourceShapes: [startingShapes[startingShapeId]],
+                searchShapes: searchShapes,
+                searchWordIndex: wordIndex,
+                sourceMax: 1,
+                searchMax: searchShapes.count,
+                words: words,
+                wordsInt: wordsInt,
+                scoresMin: scoresMin,
+                widthMax: widthMax,
+                heightMax: heightMax)
+            
+            let (noDuplicates, _) = RemoveDuplicatesCalculator.execute(
+                shapes: childShapes)
+            
+            let treeNode = TreeNodeModel(
+                parentShape: startingShapes[startingShapeId],
+                childShapes: noDuplicates,
+                bestDescendant: childShapes[0],
+                siblingCount: 0)
+            
+            treeNodes.append(treeNode)
+        }
         
-        let (noDuplicates, _) = RemoveDuplicatesCalculator.execute(
-            shapes: childShapes)
         
-        let treeNode = TreeNodeModel(
-            parentShape: startingShape,
-            childShapes: noDuplicates,
-            bestDescendant: childShapes[0],
-            siblingCount: 0)
-        
-        
-        
-        return (winningScore, wordsInt, searchShapes, wordIndex, treeNode, scoresMin, game.maxWidth, game.maxHeight, winningShapeIds)
+        return (winningScore, wordsInt, searchShapes, wordIndex, treeNodes, scoresMin, widthMax, heightMax, winningShapeIds)
     }
     
     
@@ -328,9 +332,9 @@ public class BranchAndBoundStrategyV3 {
         words: [String],
         lookaheadDepth: Int,
         beamWidth: Int,
-        repeatTimes: Int,
-        winningScore: Int
-    ) async -> ShapeModel
+        maxDepth: Int,
+        rootWidth: Int,
+        winningScore: Int) async -> ShapeModel
     {
         
         let bestShapes = await executeLeaf(
@@ -338,7 +342,8 @@ public class BranchAndBoundStrategyV3 {
             words: words,
             lookaheadDepth: lookaheadDepth,
             beamWidth: beamWidth,
-            repeatTimes: repeatTimes,
+            maxDepth: maxDepth,
+            rootWidth: rootWidth,
             winningScore: winningScore)
         
         var bestShape = bestShapes[0]
@@ -347,7 +352,10 @@ public class BranchAndBoundStrategyV3 {
             return bestShapes[0]
         }
      
-        let (winningScore, wordsInt, searchShapes, wordIndex, _, scoresMin, widthMax, heightMax, _) = await getStartingData(gameId: gameId, words: words)
+        let (winningScore, wordsInt, searchShapes, wordIndex, _, scoresMin, widthMax, heightMax, _) = await getStartingData(
+            gameId: gameId,
+            words: words,
+            rootWidth: rootWidth)
         
         // If we havent got best score then lets keep going but now dont use the leaf heuristic
         
@@ -385,18 +393,22 @@ public class BranchAndBoundStrategyV3 {
         words: [String],
         lookaheadDepth: Int,
         beamWidth: Int,
-        repeatTimes: Int,
-        winningScore: Int
-    ) async -> [ShapeModel] {
+        maxDepth: Int,
+        rootWidth: Int,
+        winningScore: Int) async -> [ShapeModel]
+    {
         
         let startTime = DateTimeCalculator.now()
         
-        let (winningScore, wordsInt, searchShapes, wordIndex, treeNode, scoresMin, widthMax, heightMax, winningShapeIds) = await getStartingData(gameId: gameId, words: words)
+        let (winningScore, wordsInt, searchShapes, wordIndex, rootTreeNodes, scoresMin, widthMax, heightMax, winningShapeIds) = await getStartingData(
+            gameId: gameId,
+            words: words,
+            rootWidth: rootWidth)
         
+        var bestShape: ShapeModel = rootTreeNodes[0].parentShape
         
-        var bestShape = treeNode.parentShape
-        print(treeNode.parentShape.ToStringExtended(words: words, gameId: gameId, winningScore: winningScore))
-        //print(bestShape.mergeHistory)
+        print(bestShape.ToStringExtended(words: words, gameId: gameId, winningScore: winningScore))
+        
         
         let requiredShapes = Set(winningShapeIds)
         
@@ -406,11 +418,12 @@ public class BranchAndBoundStrategyV3 {
         var shapesCreated = 0
         
         var requiredBeam = 0
+        var treeNodes = rootTreeNodes
         
-        var treeNodes = [treeNode]
+        
         var previousNodes = treeNodes
         print("game: \(gameId), lookahead depth: \(lookaheadDepth), beam width: \(beamWidth)")
-        for cycleId in 0..<repeatTimes {
+        for cycleId in 0..<maxDepth {
             
             shapesCreatedCount = 0
             treeNodes = executeAll(
@@ -530,7 +543,7 @@ public class BranchAndBoundStrategyV3 {
                 for bestShape in bestShapes {
                     bestScores.append(bestShape.score)
                 }
-                var bestShapesWithinBeam: [ShapeModel] = []
+                //var bestShapesWithinBeam: [ShapeModel] = []
                 if bestShape.score < bestShapes[0].score {
                     bestShape = bestShapes[0]
                 }
@@ -641,7 +654,7 @@ public class BranchAndBoundStrategyV3 {
         var result: [TreeNodeModel] = []
     
         // These are the shapes that all the siblings have added to become unique siblings
-        let leafShapesAddedToBecomeSiblings = ShapeCalculator.getSiblingLastShape(
+        let leafShapesAddedToBecomeSiblings = ShapeCalculator.getLastMergeHistoryShapeId(
             shapes: treeNode.childShapes)
         
         // These are the extra words that the siblings have added
@@ -1027,16 +1040,29 @@ public class BranchAndBoundStrategyV3 {
     
     
             
-    public static func getShapes(
+    public static func getSearchShapes(
         gameId: Int,
         words: [String]) -> [ShapeModel]
     {
-        var shapes = WinningShapesAllCalculatorV3.execute(gameId: gameId, words: words)
-        ShapeCalculator.SortByScoreThenArea(shapes: &shapes)
-        ShapeCalculator.SetMergeHistory(shapes: &shapes)
+        var shapes = WinningShapesAllCalculatorV3.execute(
+            gameId: gameId,
+            words: words)
+        
+        ShapeCalculator.SortByScoreThenArea(
+            shapes: &shapes)
+        
+        ShapeCalculator.setMergeHistory(
+            shapes: &shapes)
+        
         return shapes
     }
     
-    
+    public static func getWinningShapes(gameId: Int) -> [ShapeModel] {
+        var (winningShapes, _, _, _) = WinningShapesCalculatorV1.getShapes(gameId: gameId)
+        
+        ShapeCalculator.SortByScoreThenArea(shapes: &winningShapes)
+        
+        return winningShapes
+    }
     
 }

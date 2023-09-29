@@ -282,7 +282,7 @@ public class ShapeCalculator {
     /// When we have an initial set of shapes and these shapes are going to be the origin of all merges
     /// then we give each shape a mergeHistory number and that is what will be propogated throughout all merges in the future
     /// So this routine just sets that number
-    public static func SetMergeHistory(shapes: inout [ShapeModel], startingWith: Int = 0) {
+    public static func setMergeHistory(shapes: inout [ShapeModel], startingWith: Int = 0) {
         for shapeId in 0..<shapes.count {
             let position = shapeId + startingWith
             shapes[shapeId].mergeHistory = [position]
@@ -705,7 +705,10 @@ public class ShapeCalculator {
     
     
     
-    public static func getSiblingLastShape(shapes: [ShapeModel]) -> [Int] {
+    /// Assuming that all shapes have at least one shapeId in their mergeHistory, lets get the last one from each shape
+    /// - Parameter shapes: ShapeModel that definitely has their mergeHistory set
+    /// - Returns: An array of shapeIds that was the last shapeId added to make up each shape
+    public static func getLastMergeHistoryShapeId(shapes: [ShapeModel]) -> [Int] {
         var result: [Int] = []
         for shape in shapes {
             result.append(shape.mergeHistory.last!)
@@ -713,6 +716,29 @@ public class ShapeCalculator {
         return result
     }
     
+    
+    /// Set the mergeHistory for `shapes` based on the `referenceShapes` that already have mergeHistories
+    /// We use this when we have `winningShapes` and want to give them the `mergeHistory` of `searchShapes`
+    /// - Parameters:
+    ///   - shapes: Array of shapes that have no `mergeHistory`
+    ///   - referenceShapes: Array of shapes that have a `mergeHistory`
+    public static func setMergeHistories(
+        shapes: inout [ShapeModel],
+        referenceShapes: [ShapeModel])
+    {
+        
+        for shapeId in 0..<shapes.count {
+            let referenceShapeId = getShapeBySequence(
+                shapes: referenceShapes,
+                sequence: shapes[shapeId].wordSequence)
+            
+            if referenceShapeId == -1 {
+                print("Something wrong, winning shapes are not in searchShapes")
+            } else {
+                shapes[shapeId].mergeHistory += referenceShapes[referenceShapeId].mergeHistory
+            }
+        }
+    }
     
     
     public static func getWinningShapesShapeIds(

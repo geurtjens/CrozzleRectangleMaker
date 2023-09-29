@@ -26,7 +26,7 @@ final class SiblingMergeCalculatorTests: XCTestCase {
         XCTAssertEqual(0, sourceShapeDuplicatesCount)
         
         /// `WHEN` we calculate the last shape that was added to each sibling in the source shapes
-        let siblingShapes = ShapeCalculator.getSiblingLastShape(shapes: sourceShapes).sorted()
+        let siblingShapes = ShapeCalculator.getLastMergeHistoryShapeId(shapes: sourceShapes).sorted()
         
         
         /// `AND` create a tree node from parent and sourceShapes
