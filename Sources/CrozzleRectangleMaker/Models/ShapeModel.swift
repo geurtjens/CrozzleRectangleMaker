@@ -82,7 +82,7 @@ public struct ShapeModel {
     
     public func getGridArray() -> [Int] {
         let SPACE = 32
-        let grid:[Int] = Array(repeating: 32, count: getGridSize())
+        let grid:[Int] = Array(repeating: SPACE, count: getGridSize())
         return grid
     }
     public static func getWordSequence(placements: [PlacementModel]) -> String {
@@ -137,7 +137,7 @@ public struct ShapeModel {
     
     
     public func ToTest(words: [String]) -> String {
-        let (text, score) = ShapeCalculator.ToText(shape: self, words: words)
+        let (text, _) = ShapeCalculator.ToText(shape: self, words: words)
         
         let grid = text.split(separator: "\n")
         
@@ -211,6 +211,10 @@ public struct ShapeModel {
     
     public func Code() -> String {
         return ShapeCalculator.ToCode(fromShape: self)
+    }
+    
+    public func ToJson(words: [String]) -> String {
+        return ShapeCalculator.ToJson(shape: self, words: words)
     }
     
     public func Flip() -> ShapeModel {

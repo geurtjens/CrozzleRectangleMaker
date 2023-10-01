@@ -6,9 +6,56 @@
 //
 
 import Foundation
-public class BranchAndBoundStrategyV1 {
-    public static func execute(gameId: Int, words: [String], repeatTimes: Int, queueDepth: Int = 500) async -> ShapeModel {
+public class BranchAndBoundV1 {
+    
+    public static func executeAll() async -> [Int] {
+        let startTime = DateTimeCalculator.now()
+        let successes = [
+            8704, 8802, 8808, 8811, 9002, 9007, 9008, 9109, 9201, 9207,
+            9209, 9210, 9302, 9306, 9307, 9311, 9312, 9406
+        ]
         
+        let gameList = GameList()
+        var result: [Int] = []
+        for game in gameList.games {
+            if successes.contains(game.gameId) {
+                let gameId = game.gameId
+                
+                let words = game.winningWords
+                
+                // This is closer to how marks solution works in that it wipes out the search space.  We should make lookahead a parameter
+                let shape = await BranchAndBoundV1.execute(
+                    gameId: gameId,
+                    words: words,
+                    repeatTimes: 4,
+                    lookahead: 3,
+                    backtrackCount: 2,
+                    queueDepth: 500)
+                //XCTAssertEqual(550, Int(shape.score))
+                //XCTAssertEqual(game.winningScore, Int(shape.score))
+                
+                if shape.score == game.winningScore {
+                    result.append(gameId)
+                }
+            }
+        }
+        print(result)
+        print("Total Duration: \(DateTimeCalculator.duration(start: startTime))")
+        return result
+    }
+    
+    
+    
+    
+    public static func execute(
+        gameId: Int,
+        words: [String],
+        repeatTimes: Int,
+        lookahead: Int,
+        backtrackCount: Int,
+        queueDepth: Int) async -> ShapeModel
+    {
+        let startTime = DateTimeCalculator.now()
         let game = GameList().getGame(gameId: gameId)!
         
         let wordsInt = WordCalculator.WordsToInt(words: words)
@@ -22,8 +69,8 @@ public class BranchAndBoundStrategyV1 {
         var sourceShapes = [searchShapes[0]]
         var bestShape = searchShapes[0]
         print(bestShape.ToStringExtended(words: words, gameId: gameId, winningScore: game.winningScore))
-        let lookahead = 3
-        var backtrackCount = 2
+        
+        var backtrackCount = backtrackCount
         
         
         for _ in 0..<repeatTimes {
@@ -72,6 +119,7 @@ public class BranchAndBoundStrategyV1 {
                 return bestShape
             }
         }
+        print("Duration: \(DateTimeCalculator.duration(start: startTime))")
         return bestShape
     }
     

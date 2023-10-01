@@ -557,6 +557,21 @@ public class ShapeCalculator {
         return (result, UInt16(score))
     }
     
+    public static func ToJson(shape: ShapeModel, words: [String]) -> String {
+        let (text, score) = ToText(shape: shape, words: words)
+        
+        let grid = text.split(separator:"\n")
+        var result = ""
+        for line in grid {
+            if result != "" {
+                result += ",\n"
+            }
+            result += "    \"\(line)\""
+        }
+        result = "{\"score\": \(score), \"grid\": [\n" + result + "]}"
+        return result
+    }
+    
     public static func ToTextDebug(shape: ShapeModel, words:[String]) -> (String, UInt16) {
         
         var score = 0
@@ -668,7 +683,7 @@ public class ShapeCalculator {
         code += PlacementCalculator.ToCode(fromPlacements: shape.placements) + "\n"
         
         
-        code += "let shape = ShapeModel(score: \(shape.score), width: \(shape.width), height: \(shape.height), placements: placements)"
+        code += "let shape = ShapeModel(score: \(shape.score), width: \(shape.width), height: \(shape.height), placements: \(shape.placements))"
         
         return code
     }

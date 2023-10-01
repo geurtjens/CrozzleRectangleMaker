@@ -43,40 +43,8 @@ public class SiblingMergeCalculator {
         
         childShapes.sort { $0.score > $1.score }
         
-        
         return (parentShape, childShapes, searchShapes, scoresMin, words, widthMax, heightMax, winningScore, wordIndex, wordsInt)
     }
-    
-    
-    
-    
-    
-    
-    public static func countLeafs(treeNodes: [TreeNodeModel]) -> Int {
-        var count = 0
-        for item in treeNodes {
-            count += item.childShapes.count
-        }
-        return count
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     public static func getAllMatchingShapes(
@@ -109,18 +77,6 @@ public class SiblingMergeCalculator {
             }
         }
         
-        
         return newShapes
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

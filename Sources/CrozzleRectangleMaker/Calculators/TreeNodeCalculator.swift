@@ -111,6 +111,41 @@ public class TreeNodeCalculator {
         return result
     }
     
+    /// When we have common shapes then maybe these long set of shapes can be merged together
+    /// So if we have `[1,2,3,4,5]` and another called `[5,6,7,8,9]` then its possible to get `[1,2,3,4,5,6,7,8,9]`
+    /// - Parameters:
+    ///   - treeNodes: A list of tree nodes
+    ///   - maxCommonShapes: Maximum number of common shapes
+    /// - Returns: treeNodeId, mergeableTreeNodeId, commonShapesBetweenBothOfThem
+    public static func identifySiblingMerges(
+        treeNodes: [TreeNodeModel],
+        minCommonShapes: Int,
+        maxCommonShapes: Int) -> [(Int,Int,[Int])] 
+    {
+        
+        if treeNodes.count < 2 {
+            return []
+        }
+            
+            
+        var result: [(Int,Int, [Int])] = []
+        for sourceId in 0..<treeNodes.count {
+            let sourceHistory = Set(treeNodes[sourceId].parentShape.mergeHistory)
+            for searchId in sourceId+1..<treeNodes.count {
+                let searchHistory = Set(treeNodes[searchId].parentShape.mergeHistory)
+                
+                let commonShapes = Array(sourceHistory.intersection(searchHistory)).sorted()
+                let commonShapeCount = commonShapes.count
+                if (commonShapeCount >= minCommonShapes &&
+                    commonShapeCount <= maxCommonShapes) {
+                    result.append((sourceId, searchId, Array(commonShapes).sorted()))
+                }
+            }
+        }
+        return result
+    }
+    
+    
     public static func findFirstValidTreeNodeParent(
         requiredShapes: Set<Int>,
         treeNodes: [TreeNodeModel]) -> Int
@@ -144,7 +179,21 @@ public class TreeNodeCalculator {
         return result
     }
     
+    public static func countShapesCreated(treeNodes: [TreeNodeModel]) -> Int {
+        var result = treeNodes.count
+        for treeNode in treeNodes {
+            result += treeNode.childShapes.count
+        }
+        return result
+    }
     
+    public static func countLeafs(treeNodes: [TreeNodeModel]) -> Int {
+        var count = 0
+        for item in treeNodes {
+            count += item.childShapes.count
+        }
+        return count
+    }
     
     public static func findFirstValidTreeNodeFromChildren(
         requiredShapes: Set<Int>,

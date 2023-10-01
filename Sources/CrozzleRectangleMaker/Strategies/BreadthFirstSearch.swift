@@ -114,7 +114,7 @@ public class BreadthFirstSearch {
             
             totalNodes += treeNodesWithoutDuplicates.count
             
-            let size = SiblingMergeCalculator.countLeafs(treeNodes: treeNodesWithoutDuplicates)
+            let size = TreeNodeCalculator.countLeafs(treeNodes: treeNodesWithoutDuplicates)
             let score = TreeNodeCalculator.getBestScore(treeNodes: treeNodesWithoutDuplicates)
             
             previous = treeNodesWithoutDuplicates
@@ -193,7 +193,7 @@ public class BreadthFirstSearch {
             
             totalNodes += treeNodesWithoutDuplicates.count
             
-            let size = SiblingMergeCalculator.countLeafs(treeNodes: treeNodesWithoutDuplicates)
+            let size = TreeNodeCalculator.countLeafs(treeNodes: treeNodesWithoutDuplicates)
             let score = TreeNodeCalculator.getBestScore(treeNodes: treeNodesWithoutDuplicates)
             
             previous = treeNodesWithoutDuplicates

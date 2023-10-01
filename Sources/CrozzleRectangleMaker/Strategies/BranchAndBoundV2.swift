@@ -6,11 +6,13 @@
 //
 
 import Foundation
-public class BranchAndBoundStrategyV2 {
+public class BranchAndBoundV2 {
     
     
     
-    public static func execute(gameId: Int, words: [String], repeatTimes: Int, lookahead: Int = 5) async -> ShapeModel {
+    public static func execute(gameId: Int, words: [String], depthMax: Int, lookaheadDepth: Int, backtrackCount: Int) async -> ShapeModel {
+        
+        var backtrackCount = backtrackCount
         
         let (winningScore, wordsInt, searchShapes, wordIndex, startingShape, scoresMin, widthMax, heightMax) = getStartingData(gameId: gameId, words: words)
         
@@ -21,11 +23,11 @@ public class BranchAndBoundStrategyV2 {
         print(bestShape.ToStringExtended(words: words, gameId: gameId, winningScore: winningScore))
         print(bestShape.mergeHistory)
         
-        var backtrackCount = 2
         
         
-        for _ in 0..<repeatTimes {
-            for _ in 0..<lookahead {
+        
+        for _ in 0..<depthMax {
+            for _ in 0..<lookaheadDepth {
                 let newShapes = await MergeCalculatorV2.ExecuteDifferentShapesAsync(
                     sourceShapes: sourceShapes,
                     searchShapes: searchShapes,

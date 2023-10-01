@@ -6,7 +6,7 @@
 //
 
 import Foundation
-public class BranchAndBoundStrategyV3 {
+public class BranchAndBoundV3 {
     
     public static func allShapesThatCanBeSolved() async {
         
@@ -225,7 +225,7 @@ public class BranchAndBoundStrategyV3 {
         let gameList = GameList()
         
         var successfulGames: [Int] = []
-        print("lookaheadDepth: \(lookaheadDepth), beamWidth: \(beamWidth), rootWidth: \(rootWidth), maxDepth: \(maxDepth), games: \(games.count)")
+        print("\"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"rootWidth\": \(rootWidth), \"maxDepth\": \(maxDepth), \"games\": \(games.count)")
         print(games)
         for game in gameList.games {
             if games.contains(game.gameId) {
@@ -245,7 +245,7 @@ public class BranchAndBoundStrategyV3 {
             }
         }
         //print(successfulGames)
-        print("lookaheadDepth: \(lookaheadDepth), beamWidth: \(beamWidth), successes: \(successfulGames.count), time: \(DateTimeCalculator.duration(start: startTime))")
+        print("\"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"successes\": \(successfulGames.count), \"time\": \"\(DateTimeCalculator.duration(start: startTime))\"")
         if successfulGames.count == games.count {
             print("ALL GAMES SUCCEEDED")
             print("FOUND \(successfulGames)")
@@ -336,7 +336,7 @@ public class BranchAndBoundStrategyV3 {
         rootWidth: Int,
         winningScore: Int) async -> ShapeModel
     {
-        
+        print("{\"game\": \(gameId), \"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"maxDepth\": \(maxDepth), \"rootWidth\": \(rootWidth), \"cycles\": [")
         let bestShapes = await executeLeaf(
             gameId: gameId,
             words: words,
@@ -373,7 +373,7 @@ public class BranchAndBoundStrategyV3 {
                 heightMax: heightMax)
             
             for shape in shapes {
-                print(shape.ToString(words: words))
+                print(shape.ToJson(words: words))
                 
                 if shape.score > bestShape.score {
                     bestShape = shape
@@ -407,8 +407,7 @@ public class BranchAndBoundStrategyV3 {
         
         var bestShape: ShapeModel = rootTreeNodes[0].parentShape
         
-        print(bestShape.ToStringExtended(words: words, gameId: gameId, winningScore: winningScore))
-        
+        print(bestShape.ToJson(words: words))
         
         let requiredShapes = Set(winningShapeIds)
         
@@ -420,13 +419,12 @@ public class BranchAndBoundStrategyV3 {
         var requiredBeam = 0
         var treeNodes = rootTreeNodes
         
-        
         var previousNodes = treeNodes
-        print("game: \(gameId), lookahead depth: \(lookaheadDepth), beam width: \(beamWidth)")
+        
         for cycleId in 0..<maxDepth {
             
             shapesCreatedCount = 0
-            treeNodes = executeAll(
+            treeNodes = await executeAll(
                 treeNodes: treeNodes,
                 searchShapes: searchShapes,
                 words: words,
@@ -497,8 +495,15 @@ public class BranchAndBoundStrategyV3 {
                     bestShape = bestShapes[0]
                 }
                 
+                print(bestShape.ToJson(words: words))
+                let siblingMerges = TreeNodeCalculator.identifySiblingMerges(
+                    treeNodes: treeNodes,
+                    minCommonShapes: 1,
+                    maxCommonShapes: 2)
                 
-                print("cycle: \(cycleId), shapesCreated: \(shapesCreatedCount), winningWidth: \(requiredBeam), bestScores: \(bestScores)")
+                print("{\"cycle\": \(cycleId), \"shapesCreated\": \(shapesCreatedCount), \"winningWidth\": \(requiredBeam), \"bestScores\": \(bestScores), \"merges\": \(siblingMerges)}")
+                
+                
                 
                 
                 if bestShape.score >= winningScore {
@@ -521,8 +526,9 @@ public class BranchAndBoundStrategyV3 {
             
             if firstValidTreeNode == -1 {
                 print("No more valid treeNodes")
+                print(bestShape.ToJson(words: words))
             } else {
-                print(treeNodes[firstValidTreeNode].parentShape.Flip().ToString(words: words))
+                print(treeNodes[firstValidTreeNode].parentShape.Flip().ToJson(words: words))
             }
             
             if requiredBeam < firstValidTreeNode {
@@ -548,8 +554,13 @@ public class BranchAndBoundStrategyV3 {
                     bestShape = bestShapes[0]
                 }
                 
-                
-                print("cycle: \(cycleId), shapesCreated: \(shapesCreatedCount), winningWidth: \(requiredBeam), bestScores: \(bestScores)")
+                let siblingMerges:[(Int,Int,[Int])] = []
+//                TreeNodeCalculator.identifySiblingMerges(
+//                    treeNodes: treeNodes,
+//                    minCommonShapes: 1,
+//                    maxCommonShapes: 1)
+//                
+                print("{\"cycle\": \(cycleId), \"shapesCreated\": \(shapesCreatedCount), \"winningWidth\": \(requiredBeam), \"bestScores\": \(bestScores), \"merges\": \(siblingMerges),")
                 
             }
 //            let parentTreeNodeBestScore = getBestParentNodeScore(treeNodes: treeNodes)
@@ -597,8 +608,7 @@ public class BranchAndBoundStrategyV3 {
         widthMax: Int,
         heightMax: Int,
         wordIndex: WordIndexModelV2,
-        scoresMin: [Int]
-    ) async -> ([TreeNodeModel],Int)
+        scoresMin: [Int]) async -> ([TreeNodeModel],Int)
     {
         
         var shapesCreatedCount = 0
@@ -636,6 +646,12 @@ public class BranchAndBoundStrategyV3 {
 
         
         let result = TreeNodeCalculator.applyBeamWidth(treeNodes: treeNodes, beamWidth: beamWidth)
+        
+        for node in result {
+            print(node.parentShape.Flip().ToJson(words: words))
+            print(node.parentShape.mergeHistory)
+        }
+        
         return (result, shapesCreatedCount)
     }
     
@@ -648,7 +664,7 @@ public class BranchAndBoundStrategyV3 {
         widthMax: Int,
         heightMax: Int,
         wordIndex: WordIndexModelV2,
-        scoresMin: [Int]) -> [TreeNodeModel]
+        scoresMin: [Int]) async -> [TreeNodeModel]
     {
         
         var result: [TreeNodeModel] = []
@@ -725,6 +741,25 @@ public class BranchAndBoundStrategyV3 {
                 heightMax: heightMax)
                 
             resultForShape += extraShapes
+            
+//            if resultForShape.count == 0 {
+//                
+//                if deadEndCanJump {
+//                    //print("deadEndCanJump == true")
+//                    resultForShape = await MergeCalculatorV2.ExecuteDifferentShapesAsync(
+//                        sourceShapes: [sourceShape],
+//                        searchShapes: searchShapes,
+//                        searchWordIndex: wordIndex,
+//                        sourceMax: 1,
+//                        searchMax: searchShapes.count,
+//                        words: words,
+//                        wordsInt: wordsInt,
+//                        scoresMin: scoresMin,
+//                        widthMax: widthMax,
+//                        heightMax: heightMax)
+//                    (resultForShape, _) = RemoveDuplicatesCalculator.execute(shapes: resultForShape)
+//                }
+//            }
             
 //            var newShapesWithDuplicates = await getAllMatchingShapes(
 //                    wordIndex: wordIndex,
@@ -820,8 +855,7 @@ public class BranchAndBoundStrategyV3 {
         widthMax: Int,
         heightMax: Int,
         wordIndex: WordIndexModelV2,
-        scoresMin: [Int]
-    ) -> [TreeNodeModel]
+        scoresMin: [Int]) async -> [TreeNodeModel]
     {
         
         var result:[TreeNodeModel] = []
@@ -829,7 +863,16 @@ public class BranchAndBoundStrategyV3 {
         // The difference is that each cpu works on 0,10,20 .. or 1, 11, 21 and so we divide the task
         for treeNodeId in stride(from: zeroToNine, to:treeNodes.count, by: 10) {
             
-            let treeNodes = execute(treeNode: treeNodes[treeNodeId], searchShapes: searchShapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax, wordIndex: wordIndex, scoresMin: scoresMin)
+            let treeNodes = await execute(
+                treeNode: treeNodes[treeNodeId],
+                searchShapes: searchShapes,
+                words: words,
+                wordsInt: wordsInt,
+                widthMax: widthMax,
+                heightMax: heightMax,
+                wordIndex: wordIndex,
+                scoresMin: scoresMin)
+            
             result += treeNodes
             
         }
@@ -982,9 +1025,6 @@ public class BranchAndBoundStrategyV3 {
         var shapesCreated = 0
         
         for _ in 1..<lookaheadDepth {
-            //print("Looked ahead: \(i)")
-                
-            
             
             treeNodes = await executeLevelInParallel(
                 treeNodes: treeNodes,
@@ -996,10 +1036,7 @@ public class BranchAndBoundStrategyV3 {
                 wordIndex: wordIndex,
                 scoresMin: scoresMin)
             
-            shapesCreated += treeNodes.count
-            for treeNode in treeNodes {
-                shapesCreated += treeNode.childShapes.count
-            }
+            shapesCreated += TreeNodeCalculator.countNodesCreated(treeNodes: treeNodes)
             
             if let currentBestShape = TreeNodeCalculator.getBestShape(treeNodes: treeNodes) {
                 if currentBestShape.score > bestShape.score {
@@ -1022,13 +1059,23 @@ public class BranchAndBoundStrategyV3 {
         widthMax: Int,
         heightMax: Int,
         wordIndex: WordIndexModelV2,
-        scoresMin: [Int]) -> [TreeNodeModel]
+        scoresMin: [Int]) async -> [TreeNodeModel]
     {
         
         var result: [TreeNodeModel] = []
         
         for treeNode in treeNodes {
-            let values = execute(treeNode: treeNode, searchShapes: searchShapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax, wordIndex: wordIndex, scoresMin: scoresMin)
+            
+            let values = await execute(
+                treeNode: treeNode,
+                searchShapes: searchShapes,
+                words: words,
+                wordsInt: wordsInt,
+                widthMax: widthMax,
+                heightMax: heightMax,
+                wordIndex: wordIndex,
+                scoresMin: scoresMin)
+            
             result += values
         }
         // We have child decendant that is the winner but when we run this we have no children so it fails

@@ -7,7 +7,7 @@
 
 import XCTest
 @testable import CrozzleRectangleMaker
-final class BranchAndBoundStrategyV3Tests: XCTestCase {
+final class BranchAndBoundV3Tests: XCTestCase {
 
 
     
@@ -36,7 +36,7 @@ final class BranchAndBoundStrategyV3Tests: XCTestCase {
         let game = GameList().getGame(gameId: 8803)!
         let words = game.winningWords
         let winningScore = game.winningScore
-        let result = await BranchAndBoundStrategyV3.execute(
+        let result = await BranchAndBoundV3.execute(
             gameId: gameId,
             words: words,
             lookaheadDepth: 3,
@@ -55,13 +55,13 @@ final class BranchAndBoundStrategyV3Tests: XCTestCase {
         let words = game.winningWords
         
         
-        let result = await BranchAndBoundStrategyV3.execute(
+        let result = await BranchAndBoundV3.execute(
             gameId: gameId,
             words: words,
             lookaheadDepth: 3,
-            beamWidth: 1,
+            beamWidth: 3,
             maxDepth: 20,
-            rootWidth: 1,
+            rootWidth: 3,
             winningScore: winningScore)
         
         XCTAssertEqual(winningScore, Int(result.score))
@@ -75,7 +75,7 @@ final class BranchAndBoundStrategyV3Tests: XCTestCase {
         let words = game.winningWords
         
         
-        let result = await BranchAndBoundStrategyV3.execute(
+        let result = await BranchAndBoundV3.execute(
             gameId: gameId,
             words: words,
             lookaheadDepth: 3,
@@ -97,7 +97,7 @@ final class BranchAndBoundStrategyV3Tests: XCTestCase {
         let words = game.winningWords
         
         
-        let result = await BranchAndBoundStrategyV3.execute(
+        let result = await BranchAndBoundV3.execute(
             gameId: gameId,
             words: words,
             lookaheadDepth: 3,
@@ -113,17 +113,34 @@ final class BranchAndBoundStrategyV3Tests: XCTestCase {
         
         let games = [8612]
         
-        let result = await BranchAndBoundStrategyV3.executeGames(
+        let result = await BranchAndBoundV3.executeGames(
             games: games,
             lookaheadDepth: 3,
             beamWidth: 2,
             maxDepth: 30,
-            rootWidth: 1)
+            rootWidth: 18)
         
         XCTAssertEqual(1, result.count)
     }
     
-    public func test_Execute8803() async {
+    public func test_execute8803() async {
+        
+        /// The order of execution should be
+        /// 1. `[QuItO, zUrICH], [SuEz, tOrONTO]`
+        /// 2. `[toKYO, LAGos], [TORONto, osLO]`
+        /// 3. `TOKyO:yORK`
+        /// 4. `[BoNn, LaGos], [oSaKA, TOROnTo]`
+        /// 5. `[LaGOs, CaIRo], [OSaKa, OsLo]`
+        /// 6.  `rOME:YOrK`
+        /// 7. `ZURICh:OMAhA`
+        /// 8. `BoGOTA:oMAHA`
+        /// 9. `BOGOtA:tOLEDO`
+        /// 10. `[DeLhI, BoMbAY], [TOLeDo, hObART]`
+        /// 11. `[DELhi, omsK, BOMbay], [hobART, Lima, syDNEY]`
+        /// 12. `[oMsK, aYR], [HoBART, sYDNEy]`
+        /// 13. `[rEnO, AyR], [HOBArT, SYDnEy]`
+        /// 14. `OMSk:CORk`
+        
         
         let gameId = 8803
         
@@ -132,12 +149,12 @@ final class BranchAndBoundStrategyV3Tests: XCTestCase {
         let words = game.winningWords
         
         
-        let result = await BranchAndBoundStrategyV3.execute(
+        let result = await BranchAndBoundV3.execute(
             gameId: gameId,
             words: words,
             lookaheadDepth: 3,
-            beamWidth: 500,
-            maxDepth: 20,
+            beamWidth: 10,
+            maxDepth: 30,
             rootWidth: 1,
             winningScore: winningScore)
         
