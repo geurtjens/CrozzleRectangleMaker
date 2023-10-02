@@ -373,7 +373,7 @@ public class BranchAndBoundV3 {
                 heightMax: heightMax)
             
             for shape in shapes {
-                print(shape.ToJson(words: words))
+                //print(shape.ToJson(words: words))
                 
                 if shape.score > bestShape.score {
                     bestShape = shape
@@ -407,7 +407,7 @@ public class BranchAndBoundV3 {
         
         var bestShape: ShapeModel = rootTreeNodes[0].parentShape
         
-        print(bestShape.ToJson(words: words))
+        //print(bestShape.ToJson(words: words))
         
         let requiredShapes = Set(winningShapeIds)
         
@@ -495,7 +495,7 @@ public class BranchAndBoundV3 {
                     bestShape = bestShapes[0]
                 }
                 
-                print(bestShape.ToJson(words: words))
+                //print(bestShape.ToJson(words: words))
                 let siblingMerges = TreeNodeCalculator.identifySiblingMerges(
                     treeNodes: treeNodes,
                     minCommonShapes: 1,
@@ -647,10 +647,10 @@ public class BranchAndBoundV3 {
         
         let result = TreeNodeCalculator.applyBeamWidth(treeNodes: treeNodes, beamWidth: beamWidth)
         
-        for node in result {
-            print(node.parentShape.Flip().ToJson(words: words))
-            print(node.parentShape.mergeHistory)
-        }
+//        for node in result {
+//            print(node.parentShape.Flip().ToJson(words: words))
+//            print(node.parentShape.mergeHistory)
+//        }
         
         return (result, shapesCreatedCount)
     }
