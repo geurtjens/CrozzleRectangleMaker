@@ -1036,7 +1036,7 @@ public class BranchAndBoundV3 {
                 wordIndex: wordIndex,
                 scoresMin: scoresMin)
             
-            shapesCreated += TreeNodeCalculator.countNodesCreated(treeNodes: treeNodes)
+            shapesCreated += TreeNodeCalculator.countShapesCreated(treeNodes: treeNodes)
             
             if let currentBestShape = TreeNodeCalculator.getBestShape(treeNodes: treeNodes) {
                 if currentBestShape.score > bestShape.score {
