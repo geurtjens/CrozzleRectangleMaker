@@ -137,6 +137,14 @@ public class BranchAndBoundV3 {
             rootWidth: -8,
             useGuidedScores: false)
         
+        solved += await BranchAndBoundV3.executeGames(
+            games: [9305],
+            lookaheadDepth: 3,
+            beamWidth: 40,
+            maxDepth: 30,
+            rootWidth: -5,
+            useGuidedScores: false)
+        
         let gameList = GameList()
         var missing: [Int] = []
         for game in gameList.games {
@@ -186,7 +194,7 @@ public class BranchAndBoundV3 {
                 beamWidth: lowerWidth,
                 maxDepth: maxDepth,
                 rootWidth: rootWidth,
-                useGuidedScores: true)
+                useGuidedScores: useGuidedScores)
             
             let upperWidthShouldSucceed = await executeGames(
                 games: [game],
@@ -209,7 +217,7 @@ public class BranchAndBoundV3 {
                         beamWidth: lowerWidth,
                         maxDepth: maxDepth,
                         rootWidth: rootWidth,
-                        useGuidedScores: true)
+                        useGuidedScores: useGuidedScores)
                     
                     if winnersForCurrent.count == 0 {
                         if lowerWidth == currentWidth {
