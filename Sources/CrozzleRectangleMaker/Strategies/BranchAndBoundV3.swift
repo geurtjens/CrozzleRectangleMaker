@@ -271,6 +271,13 @@ public class BranchAndBoundV3 {
         return successfulGames
     }
     
+    /// Get the starting shapes and parameters for the game
+    /// - Parameters:
+    ///   - gameId: game identifier which tells us the widthMax and heightMax etc
+    ///   - words: words used in the puzzle
+    ///   - rootWidth: when a positive number it gets the best `rootWidth` number of winning games.  But if its 0 or -1 then it is repurposed to be an exact winning shape so 0 is the same as rootWidth of 1 but -1 will start with a starting shape of winningShapes[1] for example
+    ///   - useGuidedScores: guided scores can be turned off if you dont want to start with the highest scoring winning shape
+    /// - Returns: lots of data used by the calculation
     public static func getStartingData(
         gameId: Int,
         words: [String],
@@ -299,9 +306,22 @@ public class BranchAndBoundV3 {
         let winningShapeIds = ShapeCalculator.getLastMergeHistoryShapeId(shapes: winningShapes)
         
         var startingShapes: [ShapeModel] = []
-        for i in 0..<rootWidth {
-            if i < winningShapes.count {
-                startingShapes.append(winningShapes[i])
+        
+        if rootWidth > 0 {
+            for i in 0..<rootWidth {
+                if i < winningShapes.count {
+                    startingShapes.append(winningShapes[i])
+                }
+            }
+        } else if rootWidth < 0 {
+            let startingShapeIndex = rootWidth * -1
+            startingShapes.append(winningShapes[startingShapeIndex])
+        } else {
+            startingShapes.append(winningShapes[0])
+            // and we want to print all starting shapes so we can get the appropriate index
+            for i in 0..<winningShapes.count {
+                print(i)
+                print(winningShapes[i].ToJson(words: words))
             }
         }
         
