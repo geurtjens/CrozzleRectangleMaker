@@ -160,7 +160,34 @@ public class BranchAndBoundV3 {
         print("Overall Duration: \(DateTimeCalculator.duration(start: overallStart))")
     }
     
-    
+    public static func findStartingWord(
+        gameId: Int,
+        lookaheadDepth: Int,
+        beamWidth: Int,
+        maxDepth: Int) async -> Int
+    {
+        let useGuidedScores = false
+        
+        let winningShapes = getWinningShapes(gameId: gameId)
+        
+        for i in 0..<winningShapes.count {
+            let startingShape = i * -1
+
+            let result = await BranchAndBoundV3.executeGames(
+                games: [gameId],
+                lookaheadDepth: lookaheadDepth,
+                beamWidth: beamWidth,
+                maxDepth: maxDepth,
+                rootWidth: startingShape,
+                useGuidedScores: false)
+            if result.count == 1 {
+                return startingShape
+            }
+        }
+
+        
+        return -1
+    }
     
     public static func optimizeBeamWidth(
         games: [Int],
@@ -183,64 +210,73 @@ public class BranchAndBoundV3 {
         var failures: [Int] = []
 
 
-        for game in games {
+        for gameId in games {
             
             lowerWidth = minimumBeamWidth
             upperWidth = maximumBeamWidth
             
             let lowerWidthShouldFail = await executeGames(
-                games: [game],
+                games: [gameId],
                 lookaheadDepth: lookaheadDepth,
                 beamWidth: lowerWidth,
                 maxDepth: maxDepth,
                 rootWidth: rootWidth,
                 useGuidedScores: useGuidedScores)
             
-            let upperWidthShouldSucceed = await executeGames(
-                games: [game],
-                lookaheadDepth: lookaheadDepth,
-                beamWidth: lowerWidth,
-                maxDepth: maxDepth,
-                rootWidth: rootWidth,
-                useGuidedScores: useGuidedScores)
-            
-            if upperWidthShouldSucceed.count > 0 && lowerWidthShouldFail.count == 0  {
+            if lowerWidthShouldFail.count > 0 {
+                failures.append(gameId)
+                print("game \(gameId) lower width of \(minimumBeamWidth) should not produce a winning game.  Skipping this game.")
                 
-                while lowerWidth != upperWidth {
-                    
-                    currentWidth = Int((Double(lowerWidth) + Double(upperWidth) + 0.5) / 2.0)
-                    print ("CURRENT WIDTH: \(currentWidth)")
-                    
-                    let winnersForCurrent = await executeGames(
-                        games: [game],
-                        lookaheadDepth: lookaheadDepth,
-                        beamWidth: lowerWidth,
-                        maxDepth: maxDepth,
-                        rootWidth: rootWidth,
-                        useGuidedScores: useGuidedScores)
-                    
-                    if winnersForCurrent.count == 0 {
-                        if lowerWidth == currentWidth {
-                            lowerWidth += 1
-                            currentWidth = lowerWidth
-                        } else {
-                            lowerWidth = currentWidth
-                        }
-                        
-                    } else {
-                        upperWidth = currentWidth
-                    }
-                }
-                print("FINAL SIZE for : \(game) is \(currentWidth)")
-                result[currentWidth].append(game)
+                
             } else {
-                failures.append(game)
-                print("CANNOT FIND RANGE VALUE FOR \(game) as upperWidthShouldSucceed: \(upperWidthShouldSucceed), lowerWidthShouldFail: \(lowerWidthShouldFail)")
+            
+                let upperWidthShouldSucceed = await executeGames(
+                    games: [gameId],
+                    lookaheadDepth: lookaheadDepth,
+                    beamWidth: upperWidth,
+                    maxDepth: maxDepth,
+                    rootWidth: rootWidth,
+                    useGuidedScores: useGuidedScores)
+            
+                if upperWidthShouldSucceed.count == 0  
+                {
+                    failures.append(gameId)
+                    print("game \(gameId) upper width of \(maximumBeamWidth) should produce a winning game.  Skipping this game.")
+                } else {
+                    while lowerWidth != upperWidth {
+                        
+                        currentWidth = Int((Double(lowerWidth) + Double(upperWidth) + 0.5) / 2.0)
+                        print ("CURRENT WIDTH: \(currentWidth)")
+                        
+                        let winnersForCurrent = await executeGames(
+                            games: [gameId],
+                            lookaheadDepth: lookaheadDepth,
+                            beamWidth: lowerWidth,
+                            maxDepth: maxDepth,
+                            rootWidth: rootWidth,
+                            useGuidedScores: useGuidedScores)
+                        
+                        if winnersForCurrent.count == 0 {
+                            if lowerWidth == currentWidth {
+                                lowerWidth += 1
+                                currentWidth = lowerWidth
+                            } else {
+                                lowerWidth = currentWidth
+                            }
+                            
+                        } else {
+                            upperWidth = currentWidth
+                        }
+                    }
+                    print("FINAL SIZE for : \(gameId) is \(currentWidth)")
+                    result[currentWidth].append(gameId)
+                }
             }
         }
+        if failures.count > 0 {
+            print("Failures because they started out of range: \(failures)")
+        }
         
-        print("Failures because they started out of range: \(failures)")
-
         for beamWidth in 0..<maximumBeamWidth+1 {
             if result[beamWidth].count > 0 {
                 print("depth\(lookaheadDepth)_width\(beamWidth) = \(result[beamWidth])")
