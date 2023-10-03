@@ -113,6 +113,30 @@ public class BranchAndBoundV3 {
         solved += await executeGames(games: depth4_width82, lookaheadDepth: 4, beamWidth: 82, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
 
         
+        solved += await BranchAndBoundV3.executeGames(
+            games: [8803],
+            lookaheadDepth: 3,
+            beamWidth: 28,
+            maxDepth: 30,
+            rootWidth: -1,
+            useGuidedScores: false)
+        
+        solved += await BranchAndBoundV3.executeGames(
+            games: [8804],
+            lookaheadDepth: 3,
+            beamWidth: 4,
+            maxDepth: 30,
+            rootWidth: -2,
+            useGuidedScores: false)
+        
+        solved += await BranchAndBoundV3.executeGames(
+            games: [8806],
+            lookaheadDepth: 3,
+            beamWidth: 77,
+            maxDepth: 30,
+            rootWidth: -8,
+            useGuidedScores: false)
+        
         let gameList = GameList()
         var missing: [Int] = []
         for game in gameList.games {
@@ -133,9 +157,11 @@ public class BranchAndBoundV3 {
     public static func optimizeBeamWidth(
         games: [Int],
         lookaheadDepth: Int,
-        maximumDepth: Int,
+        maxDepth: Int,
         minimumBeamWidth: Int,
-        maximumBeamWidth: Int) async -> [[Int]]
+        maximumBeamWidth: Int,
+        rootWidth: Int,
+        useGuidedScores: Bool) async -> [[Int]]
     {
         
         var lowerWidth = 0
@@ -158,17 +184,17 @@ public class BranchAndBoundV3 {
                 games: [game],
                 lookaheadDepth: lookaheadDepth,
                 beamWidth: lowerWidth,
-                maxDepth: maximumDepth,
-                rootWidth: 1, 
+                maxDepth: maxDepth,
+                rootWidth: rootWidth,
                 useGuidedScores: true)
             
             let upperWidthShouldSucceed = await executeGames(
                 games: [game],
                 lookaheadDepth: lookaheadDepth,
                 beamWidth: lowerWidth,
-                maxDepth: maximumDepth,
-                rootWidth: 1, 
-                useGuidedScores: true)
+                maxDepth: maxDepth,
+                rootWidth: rootWidth,
+                useGuidedScores: useGuidedScores)
             
             if upperWidthShouldSucceed.count > 0 && lowerWidthShouldFail.count == 0  {
                 
@@ -181,8 +207,8 @@ public class BranchAndBoundV3 {
                         games: [game],
                         lookaheadDepth: lookaheadDepth,
                         beamWidth: lowerWidth,
-                        maxDepth: maximumDepth,
-                        rootWidth: 1, 
+                        maxDepth: maxDepth,
+                        rootWidth: rootWidth,
                         useGuidedScores: true)
                     
                     if winnersForCurrent.count == 0 {
@@ -203,8 +229,8 @@ public class BranchAndBoundV3 {
                 failures.append(game)
                 print("CANNOT FIND RANGE VALUE FOR \(game) as upperWidthShouldSucceed: \(upperWidthShouldSucceed), lowerWidthShouldFail: \(lowerWidthShouldFail)")
             }
-            
         }
+        
         print("Failures because they started out of range: \(failures)")
 
         for beamWidth in 0..<maximumBeamWidth+1 {
