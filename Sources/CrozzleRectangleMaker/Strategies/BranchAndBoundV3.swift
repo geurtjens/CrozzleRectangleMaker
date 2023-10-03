@@ -64,53 +64,53 @@ public class BranchAndBoundV3 {
         
         var solved: [Int] = []
         
-        solved += await executeGames(games: depth1_width1, lookaheadDepth: 1, beamWidth: 1, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth2_width1, lookaheadDepth: 2, beamWidth: 1, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width1, lookaheadDepth: 3, beamWidth: 1, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth1_width2, lookaheadDepth: 1, beamWidth: 2, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth2_width2, lookaheadDepth: 2, beamWidth: 2, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width2, lookaheadDepth: 3, beamWidth: 2, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth1_width3, lookaheadDepth: 1, beamWidth: 3, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth2_width3, lookaheadDepth: 2, beamWidth: 3, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width3, lookaheadDepth: 3, beamWidth: 3, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth2_width4, lookaheadDepth: 2, beamWidth: 4, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width4, lookaheadDepth: 3, beamWidth: 4, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth1_width5, lookaheadDepth: 1, beamWidth: 5, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth2_width5, lookaheadDepth: 2, beamWidth: 5, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width5, lookaheadDepth: 3, beamWidth: 5, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth2_width6, lookaheadDepth: 2, beamWidth: 6, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width6, lookaheadDepth: 3, beamWidth: 6, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth2_width7, lookaheadDepth: 2, beamWidth: 7, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width7, lookaheadDepth: 3, beamWidth: 7, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth1_width8, lookaheadDepth: 1, beamWidth: 8, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth2_width8, lookaheadDepth: 2, beamWidth: 8, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width9, lookaheadDepth: 3, beamWidth: 9, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth2_width10, lookaheadDepth: 2, beamWidth: 10, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width10, lookaheadDepth: 3, beamWidth: 10, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width11, lookaheadDepth: 3, beamWidth: 11, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth2_width13, lookaheadDepth: 2, beamWidth: 13, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width14, lookaheadDepth: 3, beamWidth: 14, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width16, lookaheadDepth: 3, beamWidth: 16, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth1_width17, lookaheadDepth: 1, beamWidth: 17, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width18, lookaheadDepth: 3, beamWidth: 18, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width19, lookaheadDepth: 3, beamWidth: 19, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width21, lookaheadDepth: 3, beamWidth: 21, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width22, lookaheadDepth: 3, beamWidth: 22, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth1_width27, lookaheadDepth: 1, beamWidth: 27, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth2_width36, lookaheadDepth: 2, beamWidth: 36, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width36, lookaheadDepth: 3, beamWidth: 36, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth2_width37, lookaheadDepth: 2, beamWidth: 37, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width49, lookaheadDepth: 3, beamWidth: 49, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width66, lookaheadDepth: 3, beamWidth: 66, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width74, lookaheadDepth: 3, beamWidth: 74, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width98, lookaheadDepth: 3, beamWidth: 98, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth3_width193, lookaheadDepth: 3, beamWidth: 193, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth4_width7, lookaheadDepth: 4, beamWidth: 7, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth4_width8, lookaheadDepth: 4, beamWidth: 8, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth4_width23, lookaheadDepth: 4, beamWidth: 23, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth4_width35, lookaheadDepth: 4, beamWidth: 35, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth4_width68, lookaheadDepth: 4, beamWidth: 68, maxDepth: 30, rootWidth: 1)
-        solved += await executeGames(games: depth4_width82, lookaheadDepth: 4, beamWidth: 82, maxDepth: 30, rootWidth: 1)
+        solved += await executeGames(games: depth1_width1, lookaheadDepth: 1, beamWidth: 1, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth2_width1, lookaheadDepth: 2, beamWidth: 1, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width1, lookaheadDepth: 3, beamWidth: 1, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth1_width2, lookaheadDepth: 1, beamWidth: 2, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth2_width2, lookaheadDepth: 2, beamWidth: 2, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width2, lookaheadDepth: 3, beamWidth: 2, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth1_width3, lookaheadDepth: 1, beamWidth: 3, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth2_width3, lookaheadDepth: 2, beamWidth: 3, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width3, lookaheadDepth: 3, beamWidth: 3, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth2_width4, lookaheadDepth: 2, beamWidth: 4, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width4, lookaheadDepth: 3, beamWidth: 4, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth1_width5, lookaheadDepth: 1, beamWidth: 5, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth2_width5, lookaheadDepth: 2, beamWidth: 5, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width5, lookaheadDepth: 3, beamWidth: 5, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth2_width6, lookaheadDepth: 2, beamWidth: 6, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width6, lookaheadDepth: 3, beamWidth: 6, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth2_width7, lookaheadDepth: 2, beamWidth: 7, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width7, lookaheadDepth: 3, beamWidth: 7, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth1_width8, lookaheadDepth: 1, beamWidth: 8, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth2_width8, lookaheadDepth: 2, beamWidth: 8, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width9, lookaheadDepth: 3, beamWidth: 9, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth2_width10, lookaheadDepth: 2, beamWidth: 10, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width10, lookaheadDepth: 3, beamWidth: 10, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width11, lookaheadDepth: 3, beamWidth: 11, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth2_width13, lookaheadDepth: 2, beamWidth: 13, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width14, lookaheadDepth: 3, beamWidth: 14, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width16, lookaheadDepth: 3, beamWidth: 16, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth1_width17, lookaheadDepth: 1, beamWidth: 17, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width18, lookaheadDepth: 3, beamWidth: 18, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width19, lookaheadDepth: 3, beamWidth: 19, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width21, lookaheadDepth: 3, beamWidth: 21, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width22, lookaheadDepth: 3, beamWidth: 22, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth1_width27, lookaheadDepth: 1, beamWidth: 27, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth2_width36, lookaheadDepth: 2, beamWidth: 36, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width36, lookaheadDepth: 3, beamWidth: 36, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth2_width37, lookaheadDepth: 2, beamWidth: 37, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width49, lookaheadDepth: 3, beamWidth: 49, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width66, lookaheadDepth: 3, beamWidth: 66, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width74, lookaheadDepth: 3, beamWidth: 74, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width98, lookaheadDepth: 3, beamWidth: 98, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth3_width193, lookaheadDepth: 3, beamWidth: 193, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth4_width7, lookaheadDepth: 4, beamWidth: 7, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth4_width8, lookaheadDepth: 4, beamWidth: 8, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth4_width23, lookaheadDepth: 4, beamWidth: 23, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth4_width35, lookaheadDepth: 4, beamWidth: 35, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth4_width68, lookaheadDepth: 4, beamWidth: 68, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGames(games: depth4_width82, lookaheadDepth: 4, beamWidth: 82, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
 
         
         let gameList = GameList()
@@ -159,14 +159,16 @@ public class BranchAndBoundV3 {
                 lookaheadDepth: lookaheadDepth,
                 beamWidth: lowerWidth,
                 maxDepth: maximumDepth,
-                rootWidth: 1)
+                rootWidth: 1, 
+                useGuidedScores: true)
             
             let upperWidthShouldSucceed = await executeGames(
                 games: [game],
                 lookaheadDepth: lookaheadDepth,
                 beamWidth: lowerWidth,
                 maxDepth: maximumDepth,
-                rootWidth: 1)
+                rootWidth: 1, 
+                useGuidedScores: true)
             
             if upperWidthShouldSucceed.count > 0 && lowerWidthShouldFail.count == 0  {
                 
@@ -180,7 +182,8 @@ public class BranchAndBoundV3 {
                         lookaheadDepth: lookaheadDepth,
                         beamWidth: lowerWidth,
                         maxDepth: maximumDepth,
-                        rootWidth: 1)
+                        rootWidth: 1, 
+                        useGuidedScores: true)
                     
                     if winnersForCurrent.count == 0 {
                         if lowerWidth == currentWidth {
@@ -212,12 +215,22 @@ public class BranchAndBoundV3 {
         return result
     }
     
+    /// Executes all games according to the parameters give
+    /// - Parameters:
+    ///   - games: An array of game id's that we want to process with the given parameters
+    ///   - lookaheadDepth: How deep we want to go down before deciding if that option is good
+    ///   - beamWidth: The top K shapes that we will continue with according to beam search algorithm
+    ///   - maxDepth: Maximum number of nodes down from the starting node to the last node visited
+    ///   - rootWidth: how many shapes are included when we first begin
+    ///   - useGuidedScores: limit the scores to what the human winning score was when it started with the highest scoring shape.  So it has a score for each number of words
+    /// - Returns: list of game id's have have been solved, that is that we get human winning score
     public static func executeGames(
         games: [Int],
         lookaheadDepth: Int,
         beamWidth: Int,
         maxDepth: Int,
-        rootWidth: Int) async -> [Int]
+        rootWidth: Int,
+        useGuidedScores: Bool) async -> [Int]
     {
         
         let startTime = DateTimeCalculator.now()
@@ -237,7 +250,8 @@ public class BranchAndBoundV3 {
                     beamWidth: beamWidth,
                     maxDepth: maxDepth,
                     rootWidth: rootWidth,
-                    winningScore: game.winningScore)
+                    winningScore: game.winningScore,
+                    useGuidedScores: useGuidedScores)
                 
                 if bestShape.score >= game.winningScore {
                     successfulGames.append(game.gameId)
@@ -260,7 +274,8 @@ public class BranchAndBoundV3 {
     public static func getStartingData(
         gameId: Int,
         words: [String],
-        rootWidth: Int) async -> (Int,[[Int]],[ShapeModel], WordIndexModelV2, [TreeNodeModel], [Int], Int, Int, [Int])
+        rootWidth: Int,
+        useGuidedScores: Bool) async -> (Int,[[Int]],[ShapeModel], WordIndexModelV2, [TreeNodeModel], [Int], Int, Int, [Int])
     {
         
         /// Get game parameters of widthMax, heightMax, winningScore
@@ -292,7 +307,10 @@ public class BranchAndBoundV3 {
         
         let wordIndex = WordIndexModelV2(shapes: searchShapes, wordCount: words.count)
         
-        let scoresMin = StrategyCalculator.GetScoreMins(gameId: gameId)
+        var scoresMin = StrategyCalculator.GetScoreMins(gameId: gameId)
+        if useGuidedScores == false {
+            scoresMin = Array(repeating: 0, count: 40)
+        }
         
         var treeNodes: [TreeNodeModel] = []
         
@@ -334,7 +352,8 @@ public class BranchAndBoundV3 {
         beamWidth: Int,
         maxDepth: Int,
         rootWidth: Int,
-        winningScore: Int) async -> ShapeModel
+        winningScore: Int,
+        useGuidedScores: Bool) async -> ShapeModel
     {
         print("{\"game\": \(gameId), \"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"maxDepth\": \(maxDepth), \"rootWidth\": \(rootWidth), \"cycles\": [")
         let bestShapes = await executeLeaf(
@@ -344,7 +363,8 @@ public class BranchAndBoundV3 {
             beamWidth: beamWidth,
             maxDepth: maxDepth,
             rootWidth: rootWidth,
-            winningScore: winningScore)
+            winningScore: winningScore,
+            useGuidedScores: useGuidedScores)
         
         var bestShape = bestShapes[0]
         
@@ -355,7 +375,8 @@ public class BranchAndBoundV3 {
         let (winningScore, wordsInt, searchShapes, wordIndex, _, scoresMin, widthMax, heightMax, _) = await getStartingData(
             gameId: gameId,
             words: words,
-            rootWidth: rootWidth)
+            rootWidth: rootWidth,
+            useGuidedScores: useGuidedScores)
         
         // If we havent got best score then lets keep going but now dont use the leaf heuristic
         
@@ -395,7 +416,8 @@ public class BranchAndBoundV3 {
         beamWidth: Int,
         maxDepth: Int,
         rootWidth: Int,
-        winningScore: Int) async -> [ShapeModel]
+        winningScore: Int,
+        useGuidedScores: Bool) async -> [ShapeModel]
     {
         
         let startTime = DateTimeCalculator.now()
@@ -403,7 +425,8 @@ public class BranchAndBoundV3 {
         let (winningScore, wordsInt, searchShapes, wordIndex, rootTreeNodes, scoresMin, widthMax, heightMax, winningShapeIds) = await getStartingData(
             gameId: gameId,
             words: words,
-            rootWidth: rootWidth)
+            rootWidth: rootWidth,
+            useGuidedScores: useGuidedScores)
         
         var bestShape: ShapeModel = rootTreeNodes[0].parentShape
         

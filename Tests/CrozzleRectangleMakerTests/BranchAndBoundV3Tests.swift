@@ -43,7 +43,8 @@ final class BranchAndBoundV3Tests: XCTestCase {
             beamWidth: 200,
             maxDepth:30,
             rootWidth: 1,
-            winningScore: winningScore)
+            winningScore: winningScore,
+            useGuidedScores: false)
         print(result.ToText(words: words))
     }
     
@@ -62,7 +63,8 @@ final class BranchAndBoundV3Tests: XCTestCase {
             beamWidth: 3,
             maxDepth: 20,
             rootWidth: 3,
-            winningScore: winningScore)
+            winningScore: winningScore,
+            useGuidedScores: true)
         
         XCTAssertEqual(winningScore, Int(result.score))
     }
@@ -82,7 +84,8 @@ final class BranchAndBoundV3Tests: XCTestCase {
             beamWidth: 1,
             maxDepth: 30,
             rootWidth: 1,
-            winningScore: winningScore)
+            winningScore: winningScore,
+            useGuidedScores: true)
         
         XCTAssertEqual(winningScore, Int(result.score))
     }
@@ -104,7 +107,8 @@ final class BranchAndBoundV3Tests: XCTestCase {
             beamWidth: 1,
             maxDepth: 30,
             rootWidth: 1,
-            winningScore: winningScore)
+            winningScore: winningScore,
+            useGuidedScores: true)
         
         XCTAssertEqual(winningScore, Int(result.score))
     }
@@ -118,7 +122,8 @@ final class BranchAndBoundV3Tests: XCTestCase {
             lookaheadDepth: 3,
             beamWidth: 2,
             maxDepth: 30,
-            rootWidth: 18)
+            rootWidth: 18,
+            useGuidedScores: false)
         
         XCTAssertEqual(1, result.count)
     }
@@ -156,7 +161,8 @@ final class BranchAndBoundV3Tests: XCTestCase {
             beamWidth: 10,
             maxDepth: 30,
             rootWidth: 1,
-            winningScore: winningScore)
+            winningScore: winningScore,
+            useGuidedScores: true)
         
         XCTAssertEqual(winningScore, Int(result.score))
     }
