@@ -121,6 +121,7 @@ public class BranchAndBoundV3 {
             rootWidth: -1,
             useGuidedScores: false)
         
+        // Start from winningWords[2]
         solved += await BranchAndBoundV3.executeGames(
             games: [8804],
             lookaheadDepth: 3,
@@ -129,6 +130,7 @@ public class BranchAndBoundV3 {
             rootWidth: -2,
             useGuidedScores: false)
         
+        // Start from winningWords[8]
         solved += await BranchAndBoundV3.executeGames(
             games: [8806],
             lookaheadDepth: 3,
@@ -137,6 +139,7 @@ public class BranchAndBoundV3 {
             rootWidth: -8,
             useGuidedScores: false)
         
+        // Start from winningWords[5]
         solved += await BranchAndBoundV3.executeGames(
             games: [9305],
             lookaheadDepth: 3,
@@ -144,6 +147,27 @@ public class BranchAndBoundV3 {
             maxDepth: 30,
             rootWidth: -5,
             useGuidedScores: false)
+        
+        // Start from winningWords[1]
+        solved += await BranchAndBoundV3.executeGames(
+            games: [9505],
+            lookaheadDepth: 3,
+            beamWidth: 102, // Lets see what we end up with here
+            maxDepth: 30,
+            rootWidth: -2,
+            useGuidedScores: false)
+        
+        
+        
+        // Start from winningWords[1]
+        solved += await BranchAndBoundV3.executeGames(
+            games: [9602],
+            lookaheadDepth: 3,
+            beamWidth: 22,
+            maxDepth: 30,
+            rootWidth: -1,
+            useGuidedScores: false)
+        
         
         let gameList = GameList()
         var missing: [Int] = []
@@ -160,33 +184,74 @@ public class BranchAndBoundV3 {
         print("Overall Duration: \(DateTimeCalculator.duration(start: overallStart))")
     }
     
-    public static func findStartingWord(
+    
+    
+    public static func optimizeWithStartingWords(
         gameId: Int,
         lookaheadDepth: Int,
         beamWidth: Int,
-        maxDepth: Int) async -> Int
+        maxDepth: Int) async -> ([Int],[Int])
+    {
+        var beamWidthResults: [Int] = []
+        
+        let startingWords = await findValidStartingWords(
+            gameId: gameId,
+            lookaheadDepth: lookaheadDepth,
+            beamWidth: beamWidth,
+            maxDepth: maxDepth)
+        
+        
+        for startingWord in startingWords {
+            let beamWidthResult = await BranchAndBoundV3.optimizeBeamWidth(
+                gameId: gameId,
+                lookaheadDepth: lookaheadDepth,
+                maxDepth: maxDepth,
+                minimumBeamWidth: 1,
+                maximumBeamWidth: beamWidth,
+                rootWidth: startingWord * -1,
+                useGuidedScores: false)
+            beamWidthResults.append(beamWidthResult)
+            
+        }
+        
+        for i in 0..<beamWidthResults.count {
+            print("starting word \(startingWords[i]) has beam width of \(beamWidthResults[i])")
+        }
+        
+        return (startingWords, beamWidthResults)
+ 
+    }
+    
+    
+    
+    
+    
+    public static func findValidStartingWords(
+        gameId: Int,
+        lookaheadDepth: Int,
+        beamWidth: Int,
+        maxDepth: Int) async -> [Int]
     {
         let useGuidedScores = false
         
         let winningShapes = getWinningShapes(gameId: gameId)
-        
+        var result: [Int] = []
         for i in 0..<winningShapes.count {
             let startingShape = i * -1
 
-            let result = await BranchAndBoundV3.executeGames(
+            let winning = await BranchAndBoundV3.executeGames(
                 games: [gameId],
                 lookaheadDepth: lookaheadDepth,
                 beamWidth: beamWidth,
                 maxDepth: maxDepth,
                 rootWidth: startingShape,
                 useGuidedScores: false)
-            if result.count == 1 {
-                return startingShape
+            if winning.count == 1 {
+                result.append(startingShape)
             }
         }
 
-        
-        return -1
+        return result
     }
     
     public static func optimizeBeamWidth(
@@ -284,6 +349,89 @@ public class BranchAndBoundV3 {
         }
         return result
     }
+    
+    public static func optimizeBeamWidth(
+        gameId: Int,
+        lookaheadDepth: Int,
+        maxDepth: Int,
+        minimumBeamWidth: Int,
+        maximumBeamWidth: Int,
+        rootWidth: Int,
+        useGuidedScores: Bool) async -> Int
+    {
+        
+        var lowerWidth = 0
+        var upperWidth = 0
+        var currentWidth = 0
+
+
+            
+        lowerWidth = minimumBeamWidth
+        upperWidth = maximumBeamWidth
+        
+        let lowerWidthShouldFail = await executeGames(
+            games: [gameId],
+            lookaheadDepth: lookaheadDepth,
+            beamWidth: lowerWidth,
+            maxDepth: maxDepth,
+            rootWidth: rootWidth,
+            useGuidedScores: useGuidedScores)
+        
+        if lowerWidthShouldFail.count > 0 {
+            
+            print("game \(gameId) lower width of \(minimumBeamWidth) should not produce a winning game.  Skipping this game.")
+            return -1
+            
+        } else {
+        
+            let upperWidthShouldSucceed = await executeGames(
+                games: [gameId],
+                lookaheadDepth: lookaheadDepth,
+                beamWidth: upperWidth,
+                maxDepth: maxDepth,
+                rootWidth: rootWidth,
+                useGuidedScores: useGuidedScores)
+        
+            if upperWidthShouldSucceed.count == 0
+            {
+                print("game \(gameId) upper width of \(maximumBeamWidth) should produce a winning game.  Skipping this game.")
+                return -1
+            } else {
+                
+                while lowerWidth != upperWidth {
+                    
+                    currentWidth = Int((Double(lowerWidth) + Double(upperWidth) + 0.5) / 2.0)
+                    print ("CURRENT WIDTH: \(currentWidth)")
+                    
+                    let winnersForCurrent = await executeGames(
+                        games: [gameId],
+                        lookaheadDepth: lookaheadDepth,
+                        beamWidth: lowerWidth,
+                        maxDepth: maxDepth,
+                        rootWidth: rootWidth,
+                        useGuidedScores: useGuidedScores)
+                    
+                    if winnersForCurrent.count == 0 {
+                        if lowerWidth == currentWidth {
+                            lowerWidth += 1
+                            currentWidth = lowerWidth
+                        } else {
+                            lowerWidth = currentWidth
+                        }
+                        
+                    } else {
+                        upperWidth = currentWidth
+                    }
+                }
+                print("FINAL SIZE for : \(gameId) is \(currentWidth)")
+                return currentWidth
+            }
+        }
+    }
+    
+    
+    
+    
     
     /// Executes all games according to the parameters give
     /// - Parameters:
