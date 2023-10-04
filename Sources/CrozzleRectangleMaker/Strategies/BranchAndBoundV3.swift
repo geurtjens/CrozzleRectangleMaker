@@ -148,16 +148,32 @@ public class BranchAndBoundV3 {
             rootWidth: -5,
             useGuidedScores: false)
         
-        // Start from winningWords[1]
+        // Start from winningWords[3]
+        solved += await BranchAndBoundV3.executeGames(
+            games: [9504],
+            lookaheadDepth: 3,
+            beamWidth: 87,
+            maxDepth: 30,
+            rootWidth: -3,
+            useGuidedScores: false)
+        
+        // Start from winningWords[6]
         solved += await BranchAndBoundV3.executeGames(
             games: [9505],
             lookaheadDepth: 3,
-            beamWidth: 102, // Lets see what we end up with here
+            beamWidth: 51,
             maxDepth: 30,
-            rootWidth: -2,
+            rootWidth: -6,
             useGuidedScores: false)
         
-        
+        // Start from winningWords[6]
+        solved += await BranchAndBoundV3.executeGames(
+            games: [9507],
+            lookaheadDepth: 3,
+            beamWidth: 87,
+            maxDepth: 30,
+            rootWidth: -5,
+            useGuidedScores: false)
         
         // Start from winningWords[1]
         solved += await BranchAndBoundV3.executeGames(
