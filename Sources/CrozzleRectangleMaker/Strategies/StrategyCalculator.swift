@@ -121,7 +121,7 @@ public class StrategyCalculator {
         //    }
             
         var maxShape: ShapeModel? = nil
-        var maxScore: UInt16 = 0
+        let maxScore: UInt16 = 0
         
         var count = 0
         var previousCount = 0
@@ -250,7 +250,7 @@ public class StrategyCalculator {
         
         
         var maxShape: ShapeModel? = nil
-        var maxScore: UInt16 = 0
+        let maxScore: UInt16 = 0
         
         var count = 0
         var previousCount = 0

@@ -582,14 +582,12 @@ public class WinningGameQueueListCalculatorV1 {
             scoreMin: 22,
             widthMax: 9,
             heightMax: 7))
-        let includedEdges = [edges[396], edges[378], edges[84],edges[348]]
         queue.add(shapes: edges)
         print("edges ***********************")
         for i in 0..<edges.count {
             print(i)
             print(edges[i].ToText(words: words))
         }
-        let included = [edges[396], edges[378], edges[84],edges[348]]
         let rectangle3x4 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 2,
             interlockHeight: 3,

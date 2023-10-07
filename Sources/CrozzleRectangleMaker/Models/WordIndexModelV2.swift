@@ -490,7 +490,7 @@ public struct WordIndexModelV2 {
             let matches = findMatchUsingIndex(sourceShape: sourceShapes[sourceShapeId], searchMin: searchMin, searchMax: searchMax)
             
             var searchShapeId = matches[0]
-            var previous = matches[0]
+            let previous = matches[0]
             var matchCount = 1
             
             for i in 1..<matches.count {

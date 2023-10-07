@@ -527,7 +527,7 @@ public class MergeCalculatorV2 {
     
     
     public static func mergeTwoShapes(sourceShape: ShapeModel, searchShape: ShapeModel, words: [String], widthMax: Int, heightMax: Int, scoreMin: Int = 0) -> ShapeModel? {
-        var sourceShape = sourceShape
+        let sourceShape = sourceShape
         
         let wordsInt = WordCalculator.WordsToInt(words: words)
         
@@ -604,7 +604,6 @@ public class MergeCalculatorV2 {
                         
                         
                         // is shape is not nil so it must be a valid shape
-                        let wordCount = validShape.placements.count
                         
                         if validShape.score >= scoreMin {
                             var validShape = validShape

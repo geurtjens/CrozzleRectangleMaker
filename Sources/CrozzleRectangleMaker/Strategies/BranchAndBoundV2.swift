@@ -128,7 +128,7 @@ public class BranchAndBoundV2 {
             bestShapePos = 0
         }
         
-        var startingShape = searchShapes[bestShapePos]
+        let startingShape = searchShapes[bestShapePos]
         
         let wordIndex = WordIndexModelV2(shapes: searchShapes, wordCount: words.count)
         
