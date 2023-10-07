@@ -13,7 +13,8 @@ public class BranchAndBoundV3 {
         
         let depth1_width1 = [8703, 8802, 8808, 9104, 9212, 9306, 9406]
         let depth2_width1 = [8612, 8809, 9002, 9109, 9201, 9211, 9303, 9310, 9312]
-        let depth3_width1 = [8705, 8712, 8811, 9007, 9008, 9103, 9110, 9111, 9206, 9302, 9308, 9309, 9404, 9502]
+        let depth3_width1 = [8705, 8712, 8811, 9007, 9008, 9103, 9110, 9111, 9206, 9302,
+                             9308, 9309, 9404, 9502]
         let depth1_width2 = [8710, 9311]
         let depth2_width2 = [8702, 8704, 8910, 9105, 9207, 9210]
         let depth3_width2 = [8812, 8903, 8910, 9006, 9204, 9304, 9402, 9508]
@@ -36,8 +37,8 @@ public class BranchAndBoundV3 {
         let depth3_width10 = [9506, 9604]
         let depth3_width11 = [8807, 8902, 9202, 9501]
         let depth2_width13 = [9410]
-        let depth3_width14 = [9010]
-        let depth3_width16 = [9209]
+        
+        
         let depth1_width17 = [9510]
         let depth3_width18 = [9001, 9011]
         let depth3_width19 = [9601, 9605]
@@ -47,17 +48,30 @@ public class BranchAndBoundV3 {
         let depth2_width36 = [8906]
         let depth3_width36 = [9102]
         let depth2_width37 = [9301]
-        let depth3_width49 = [9603]
+        
         let depth3_width66 = [9403]
-        let depth3_width74 = [9203]
+        
         let depth3_width98 = [8909]
+        
+        //let depth3_width74 = [9203] // only works with guided
+        let depth3_width107 = [9203]
+        
+        
+        //let depth3_width49 = [9603] // only works with guided
+        let depth3_width124 = [9603]
+        //let depth3_width14 = [9010] // only works with guided maxWidth of 100 failed
+        //let depth3_width16 = [9209] // only works with guided
+        let depth3_width153 = [9010, 9209]
+        
+        
         let depth3_width193 = [8905]
         let depth4_width7 = [9101]
         let depth4_width8 = [9509]
         let depth4_width23 = [9107]
         let depth4_width35 = [9112]
         let depth4_width68 = [8805]
-        let depth4_width82 = [8904]
+        //let depth4_width82 = [8904] // only works with guided, last one to solve
+        let depth4_width140 = [8904]
 
         //let depth3_width454 = [9507]
         
@@ -90,8 +104,8 @@ public class BranchAndBoundV3 {
         solved += await executeGames(games: depth3_width10, lookaheadDepth: 3, beamWidth: 10, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
         solved += await executeGames(games: depth3_width11, lookaheadDepth: 3, beamWidth: 11, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
         solved += await executeGames(games: depth2_width13, lookaheadDepth: 2, beamWidth: 13, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width14, lookaheadDepth: 3, beamWidth: 14, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width16, lookaheadDepth: 3, beamWidth: 16, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        // changed this one with 9010 and 2909
+        solved += await executeGames(games: depth3_width153, lookaheadDepth: 3, beamWidth: 153, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
         solved += await executeGames(games: depth1_width17, lookaheadDepth: 1, beamWidth: 17, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
         solved += await executeGames(games: depth3_width18, lookaheadDepth: 3, beamWidth: 18, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
         solved += await executeGames(games: depth3_width19, lookaheadDepth: 3, beamWidth: 19, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
@@ -101,9 +115,10 @@ public class BranchAndBoundV3 {
         solved += await executeGames(games: depth2_width36, lookaheadDepth: 2, beamWidth: 36, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
         solved += await executeGames(games: depth3_width36, lookaheadDepth: 3, beamWidth: 36, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
         solved += await executeGames(games: depth2_width37, lookaheadDepth: 2, beamWidth: 37, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width49, lookaheadDepth: 3, beamWidth: 49, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        
         solved += await executeGames(games: depth3_width66, lookaheadDepth: 3, beamWidth: 66, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width74, lookaheadDepth: 3, beamWidth: 74, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGames(games: depth3_width107, lookaheadDepth: 3, beamWidth: 107, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGames(games: depth3_width124, lookaheadDepth: 3, beamWidth: 124, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
         solved += await executeGames(games: depth3_width98, lookaheadDepth: 3, beamWidth: 98, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
         solved += await executeGames(games: depth3_width193, lookaheadDepth: 3, beamWidth: 193, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
         solved += await executeGames(games: depth4_width7, lookaheadDepth: 4, beamWidth: 7, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
@@ -111,7 +126,7 @@ public class BranchAndBoundV3 {
         solved += await executeGames(games: depth4_width23, lookaheadDepth: 4, beamWidth: 23, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
         solved += await executeGames(games: depth4_width35, lookaheadDepth: 4, beamWidth: 35, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
         solved += await executeGames(games: depth4_width68, lookaheadDepth: 4, beamWidth: 68, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth4_width82, lookaheadDepth: 4, beamWidth: 82, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGames(games: depth4_width140, lookaheadDepth: 4, beamWidth: 140, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
 
         
         solved += await BranchAndBoundV3.executeGames(
