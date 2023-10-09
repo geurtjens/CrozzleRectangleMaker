@@ -117,7 +117,7 @@ final class BranchAndBoundV3Tests: XCTestCase {
         
         let games = [8612]
         
-        let result = await BranchAndBoundV3.executeGames(
+        let result = await BranchAndBoundV3.executeGamesWinningWords(
             games: games,
             lookaheadDepth: 3,
             beamWidth: 2,

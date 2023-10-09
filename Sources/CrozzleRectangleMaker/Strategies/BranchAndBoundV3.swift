@@ -9,6 +9,216 @@ import Foundation
 public class BranchAndBoundV3 {
     
     
+    
+    public static func allShapesThatCanBeSolvedWithoutGuidesAllWords() async {
+        
+        let depth1_width1 = [8703, 8802, 8808, 9104, 9212, 9306, 9406]
+        let depth2_width1 = [8612, 8809, 9002, 9109, 9201, 9211, 9303, 9310, 9312]
+        let depth3_width1 = [8705, 8712, 8811, 9007, 9008, 9103, 9110, 9111, 9206, 9302,
+                             9308, 9309, 9404, 9502]
+        let depth1_width2 = [8710, 9311]
+        let depth2_width2 = [8702, 8704, 8910, 9105, 9207, 9210]
+        let depth3_width2 = [8812, 8903, 8910, 9006, 9204, 9304, 9402, 9508]
+        let depth1_width3 = [9412]
+        let depth2_width3 = [8911, 9004, 9408]
+        let depth3_width3 = [9009, 9407]
+        let depth2_width4 = [8912]
+        let depth3_width4 = [8810, 9003]
+        let depth1_width5 = [8711]
+        let depth2_width5 = [9409]
+        let depth3_width5 = [9005, 9512]
+        let depth2_width6 = [9511]
+        let depth3_width6 = [8907]
+        let depth2_width7 = [9208]
+        let depth3_width7 = [9106]
+        let depth1_width8 = [9108]
+        let depth2_width8 = [9411]
+        let depth3_width9 = [9307]
+        let depth2_width10 = [9401]
+        let depth3_width10 = [9506, 9604]
+        let depth3_width11 = [8807, 8902, 9202, 9501]
+        let depth2_width13 = [9410]
+        
+        
+        let depth1_width17 = [9510]
+        let depth3_width18 = [9001, 9011]
+        let depth3_width19 = [9601, 9605]
+        let depth3_width21 = [8908]
+        let depth3_width22 = [9012]
+        let depth1_width27 = [9503]
+        let depth2_width36 = [8906]
+        let depth3_width36 = [9102]
+        let depth2_width37 = [9301]
+        
+        let depth3_width66 = [9403]
+        
+        let depth3_width98 = [8909]
+        
+        //let depth3_width74 = [9203] // only works with guided
+        let depth3_width107 = [9203]
+        
+        
+        //let depth3_width49 = [9603] // only works with guided
+        let depth3_width124 = [9603]
+        //let depth3_width14 = [9010] // only works with guided maxWidth of 100 failed
+        //let depth3_width16 = [9209] // only works with guided
+        let depth3_width153 = [9010, 9209]
+        
+        
+        let depth3_width193 = [8905]
+        let depth4_width7 = [9101]
+        let depth4_width8 = [9509]
+        let depth4_width23 = [9107]
+        let depth4_width35 = [9112]
+        let depth4_width68 = [8805]
+        //let depth4_width82 = [8904] // only works with guided, last one to solve
+        let depth4_width140 = [8904]
+
+        //let depth3_width454 = [9507]
+        
+        let overallStart = DateTimeCalculator.now()
+        
+        var solved: [Int] = []
+        
+        solved += await executeGamesAllWords(games: depth1_width1, lookaheadDepth: 1, beamWidth: 1, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth2_width1, lookaheadDepth: 2, beamWidth: 1, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth3_width1, lookaheadDepth: 3, beamWidth: 1, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth1_width2, lookaheadDepth: 1, beamWidth: 2, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth2_width2, lookaheadDepth: 2, beamWidth: 2, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth3_width2, lookaheadDepth: 3, beamWidth: 2, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth1_width3, lookaheadDepth: 1, beamWidth: 3, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth2_width3, lookaheadDepth: 2, beamWidth: 3, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth3_width3, lookaheadDepth: 3, beamWidth: 3, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth2_width4, lookaheadDepth: 2, beamWidth: 4, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth3_width4, lookaheadDepth: 3, beamWidth: 4, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth1_width5, lookaheadDepth: 1, beamWidth: 5, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth2_width5, lookaheadDepth: 2, beamWidth: 5, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth3_width5, lookaheadDepth: 3, beamWidth: 5, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth2_width6, lookaheadDepth: 2, beamWidth: 6, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth3_width6, lookaheadDepth: 3, beamWidth: 6, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth2_width7, lookaheadDepth: 2, beamWidth: 7, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth3_width7, lookaheadDepth: 3, beamWidth: 7, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth1_width8, lookaheadDepth: 1, beamWidth: 8, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth2_width8, lookaheadDepth: 2, beamWidth: 8, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth3_width9, lookaheadDepth: 3, beamWidth: 9, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth2_width10, lookaheadDepth: 2, beamWidth: 10, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth3_width10, lookaheadDepth: 3, beamWidth: 10, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth3_width11, lookaheadDepth: 3, beamWidth: 11, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth2_width13, lookaheadDepth: 2, beamWidth: 13, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        // changed this one with 9010 and 2909
+        solved += await executeGamesAllWords(games: depth3_width153, lookaheadDepth: 3, beamWidth: 153, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth1_width17, lookaheadDepth: 1, beamWidth: 17, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth3_width18, lookaheadDepth: 3, beamWidth: 18, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth3_width19, lookaheadDepth: 3, beamWidth: 19, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth3_width21, lookaheadDepth: 3, beamWidth: 21, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth3_width22, lookaheadDepth: 3, beamWidth: 22, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth1_width27, lookaheadDepth: 1, beamWidth: 27, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth2_width36, lookaheadDepth: 2, beamWidth: 36, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth3_width36, lookaheadDepth: 3, beamWidth: 36, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth2_width37, lookaheadDepth: 2, beamWidth: 37, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        
+        solved += await executeGamesAllWords(games: depth3_width66, lookaheadDepth: 3, beamWidth: 66, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth3_width107, lookaheadDepth: 3, beamWidth: 107, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth3_width124, lookaheadDepth: 3, beamWidth: 124, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth3_width98, lookaheadDepth: 3, beamWidth: 98, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth3_width193, lookaheadDepth: 3, beamWidth: 193, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth4_width7, lookaheadDepth: 4, beamWidth: 7, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth4_width8, lookaheadDepth: 4, beamWidth: 8, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth4_width23, lookaheadDepth: 4, beamWidth: 23, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth4_width35, lookaheadDepth: 4, beamWidth: 35, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth4_width68, lookaheadDepth: 4, beamWidth: 68, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth4_width140, lookaheadDepth: 4, beamWidth: 140, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+
+        
+        solved += await BranchAndBoundV3.executeGamesAllWords(
+            games: [8803],
+            lookaheadDepth: 3,
+            beamWidth: 28,
+            maxDepth: 30,
+            rootWidth: -1,
+            useGuidedScores: false)
+        
+        // Start from winningWords[2]
+        solved += await BranchAndBoundV3.executeGamesAllWords(
+            games: [8804],
+            lookaheadDepth: 3,
+            beamWidth: 4,
+            maxDepth: 30,
+            rootWidth: -2,
+            useGuidedScores: false)
+        
+        // Start from winningWords[8]
+        solved += await BranchAndBoundV3.executeGamesAllWords(
+            games: [8806],
+            lookaheadDepth: 3,
+            beamWidth: 77,
+            maxDepth: 30,
+            rootWidth: -8,
+            useGuidedScores: false)
+        
+        // Start from winningWords[5]
+        solved += await BranchAndBoundV3.executeGamesAllWords(
+            games: [9305],
+            lookaheadDepth: 3,
+            beamWidth: 40,
+            maxDepth: 30,
+            rootWidth: -5,
+            useGuidedScores: false)
+        
+        // Start from winningWords[3]
+        solved += await BranchAndBoundV3.executeGamesAllWords(
+            games: [9504],
+            lookaheadDepth: 3,
+            beamWidth: 87,
+            maxDepth: 30,
+            rootWidth: -3,
+            useGuidedScores: false)
+        
+        // Start from winningWords[6]
+        solved += await BranchAndBoundV3.executeGamesAllWords(
+            games: [9505],
+            lookaheadDepth: 3,
+            beamWidth: 51,
+            maxDepth: 30,
+            rootWidth: -6,
+            useGuidedScores: false)
+        
+        // Start from winningWords[6]
+        solved += await BranchAndBoundV3.executeGamesAllWords(
+            games: [9507],
+            lookaheadDepth: 3,
+            beamWidth: 87,
+            maxDepth: 30,
+            rootWidth: -5,
+            useGuidedScores: false)
+        
+        // Start from winningWords[1]
+        solved += await BranchAndBoundV3.executeGamesAllWords(
+            games: [9602],
+            lookaheadDepth: 3,
+            beamWidth: 22,
+            maxDepth: 30,
+            rootWidth: -1,
+            useGuidedScores: false)
+        
+        
+        let gameList = GameList()
+        var missing: [Int] = []
+        for game in gameList.games {
+            if solved.contains(game.gameId) == false {
+                missing.append(game.gameId)
+            }
+        }
+        solved.sort()
+        missing.sort()
+        print("Solved: \(solved)")
+        print("Missing: \(missing)")
+
+        print("Overall Duration: \(DateTimeCalculator.duration(start: overallStart))")
+    }
+    
+    
+    
     public static func allShapesThatCanBeSolvedWithoutGuides() async {
         
         let depth1_width1 = [8703, 8802, 8808, 9104, 9212, 9306, 9406]
@@ -79,57 +289,57 @@ public class BranchAndBoundV3 {
         
         var solved: [Int] = []
         
-        solved += await executeGames(games: depth1_width1, lookaheadDepth: 1, beamWidth: 1, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth2_width1, lookaheadDepth: 2, beamWidth: 1, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width1, lookaheadDepth: 3, beamWidth: 1, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth1_width2, lookaheadDepth: 1, beamWidth: 2, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth2_width2, lookaheadDepth: 2, beamWidth: 2, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width2, lookaheadDepth: 3, beamWidth: 2, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth1_width3, lookaheadDepth: 1, beamWidth: 3, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth2_width3, lookaheadDepth: 2, beamWidth: 3, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width3, lookaheadDepth: 3, beamWidth: 3, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth2_width4, lookaheadDepth: 2, beamWidth: 4, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width4, lookaheadDepth: 3, beamWidth: 4, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth1_width5, lookaheadDepth: 1, beamWidth: 5, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth2_width5, lookaheadDepth: 2, beamWidth: 5, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width5, lookaheadDepth: 3, beamWidth: 5, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth2_width6, lookaheadDepth: 2, beamWidth: 6, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width6, lookaheadDepth: 3, beamWidth: 6, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth2_width7, lookaheadDepth: 2, beamWidth: 7, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width7, lookaheadDepth: 3, beamWidth: 7, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth1_width8, lookaheadDepth: 1, beamWidth: 8, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth2_width8, lookaheadDepth: 2, beamWidth: 8, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width9, lookaheadDepth: 3, beamWidth: 9, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth2_width10, lookaheadDepth: 2, beamWidth: 10, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width10, lookaheadDepth: 3, beamWidth: 10, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width11, lookaheadDepth: 3, beamWidth: 11, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth2_width13, lookaheadDepth: 2, beamWidth: 13, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth1_width1, lookaheadDepth: 1, beamWidth: 1, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth2_width1, lookaheadDepth: 2, beamWidth: 1, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth3_width1, lookaheadDepth: 3, beamWidth: 1, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth1_width2, lookaheadDepth: 1, beamWidth: 2, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth2_width2, lookaheadDepth: 2, beamWidth: 2, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth3_width2, lookaheadDepth: 3, beamWidth: 2, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth1_width3, lookaheadDepth: 1, beamWidth: 3, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth2_width3, lookaheadDepth: 2, beamWidth: 3, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth3_width3, lookaheadDepth: 3, beamWidth: 3, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth2_width4, lookaheadDepth: 2, beamWidth: 4, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth3_width4, lookaheadDepth: 3, beamWidth: 4, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth1_width5, lookaheadDepth: 1, beamWidth: 5, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth2_width5, lookaheadDepth: 2, beamWidth: 5, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth3_width5, lookaheadDepth: 3, beamWidth: 5, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth2_width6, lookaheadDepth: 2, beamWidth: 6, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth3_width6, lookaheadDepth: 3, beamWidth: 6, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth2_width7, lookaheadDepth: 2, beamWidth: 7, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth3_width7, lookaheadDepth: 3, beamWidth: 7, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth1_width8, lookaheadDepth: 1, beamWidth: 8, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth2_width8, lookaheadDepth: 2, beamWidth: 8, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth3_width9, lookaheadDepth: 3, beamWidth: 9, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth2_width10, lookaheadDepth: 2, beamWidth: 10, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth3_width10, lookaheadDepth: 3, beamWidth: 10, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth3_width11, lookaheadDepth: 3, beamWidth: 11, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth2_width13, lookaheadDepth: 2, beamWidth: 13, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
         // changed this one with 9010 and 2909
-        solved += await executeGames(games: depth3_width153, lookaheadDepth: 3, beamWidth: 153, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth1_width17, lookaheadDepth: 1, beamWidth: 17, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width18, lookaheadDepth: 3, beamWidth: 18, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width19, lookaheadDepth: 3, beamWidth: 19, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width21, lookaheadDepth: 3, beamWidth: 21, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width22, lookaheadDepth: 3, beamWidth: 22, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth1_width27, lookaheadDepth: 1, beamWidth: 27, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth2_width36, lookaheadDepth: 2, beamWidth: 36, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width36, lookaheadDepth: 3, beamWidth: 36, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth2_width37, lookaheadDepth: 2, beamWidth: 37, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth3_width153, lookaheadDepth: 3, beamWidth: 153, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth1_width17, lookaheadDepth: 1, beamWidth: 17, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth3_width18, lookaheadDepth: 3, beamWidth: 18, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth3_width19, lookaheadDepth: 3, beamWidth: 19, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth3_width21, lookaheadDepth: 3, beamWidth: 21, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth3_width22, lookaheadDepth: 3, beamWidth: 22, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth1_width27, lookaheadDepth: 1, beamWidth: 27, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth2_width36, lookaheadDepth: 2, beamWidth: 36, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth3_width36, lookaheadDepth: 3, beamWidth: 36, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth2_width37, lookaheadDepth: 2, beamWidth: 37, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
         
-        solved += await executeGames(games: depth3_width66, lookaheadDepth: 3, beamWidth: 66, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width107, lookaheadDepth: 3, beamWidth: 107, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width124, lookaheadDepth: 3, beamWidth: 124, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width98, lookaheadDepth: 3, beamWidth: 98, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth3_width193, lookaheadDepth: 3, beamWidth: 193, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth4_width7, lookaheadDepth: 4, beamWidth: 7, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth4_width8, lookaheadDepth: 4, beamWidth: 8, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth4_width23, lookaheadDepth: 4, beamWidth: 23, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth4_width35, lookaheadDepth: 4, beamWidth: 35, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth4_width68, lookaheadDepth: 4, beamWidth: 68, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
-        solved += await executeGames(games: depth4_width140, lookaheadDepth: 4, beamWidth: 140, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth3_width66, lookaheadDepth: 3, beamWidth: 66, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth3_width107, lookaheadDepth: 3, beamWidth: 107, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth3_width124, lookaheadDepth: 3, beamWidth: 124, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth3_width98, lookaheadDepth: 3, beamWidth: 98, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth3_width193, lookaheadDepth: 3, beamWidth: 193, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth4_width7, lookaheadDepth: 4, beamWidth: 7, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth4_width8, lookaheadDepth: 4, beamWidth: 8, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth4_width23, lookaheadDepth: 4, beamWidth: 23, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth4_width35, lookaheadDepth: 4, beamWidth: 35, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth4_width68, lookaheadDepth: 4, beamWidth: 68, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesWinningWords(games: depth4_width140, lookaheadDepth: 4, beamWidth: 140, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
 
         
-        solved += await BranchAndBoundV3.executeGames(
+        solved += await BranchAndBoundV3.executeGamesWinningWords(
             games: [8803],
             lookaheadDepth: 3,
             beamWidth: 28,
@@ -138,7 +348,7 @@ public class BranchAndBoundV3 {
             useGuidedScores: false)
         
         // Start from winningWords[2]
-        solved += await BranchAndBoundV3.executeGames(
+        solved += await BranchAndBoundV3.executeGamesWinningWords(
             games: [8804],
             lookaheadDepth: 3,
             beamWidth: 4,
@@ -147,7 +357,7 @@ public class BranchAndBoundV3 {
             useGuidedScores: false)
         
         // Start from winningWords[8]
-        solved += await BranchAndBoundV3.executeGames(
+        solved += await BranchAndBoundV3.executeGamesWinningWords(
             games: [8806],
             lookaheadDepth: 3,
             beamWidth: 77,
@@ -156,7 +366,7 @@ public class BranchAndBoundV3 {
             useGuidedScores: false)
         
         // Start from winningWords[5]
-        solved += await BranchAndBoundV3.executeGames(
+        solved += await BranchAndBoundV3.executeGamesWinningWords(
             games: [9305],
             lookaheadDepth: 3,
             beamWidth: 40,
@@ -165,7 +375,7 @@ public class BranchAndBoundV3 {
             useGuidedScores: false)
         
         // Start from winningWords[3]
-        solved += await BranchAndBoundV3.executeGames(
+        solved += await BranchAndBoundV3.executeGamesWinningWords(
             games: [9504],
             lookaheadDepth: 3,
             beamWidth: 87,
@@ -174,7 +384,7 @@ public class BranchAndBoundV3 {
             useGuidedScores: false)
         
         // Start from winningWords[6]
-        solved += await BranchAndBoundV3.executeGames(
+        solved += await BranchAndBoundV3.executeGamesWinningWords(
             games: [9505],
             lookaheadDepth: 3,
             beamWidth: 51,
@@ -183,7 +393,7 @@ public class BranchAndBoundV3 {
             useGuidedScores: false)
         
         // Start from winningWords[6]
-        solved += await BranchAndBoundV3.executeGames(
+        solved += await BranchAndBoundV3.executeGamesWinningWords(
             games: [9507],
             lookaheadDepth: 3,
             beamWidth: 87,
@@ -192,7 +402,7 @@ public class BranchAndBoundV3 {
             useGuidedScores: false)
         
         // Start from winningWords[1]
-        solved += await BranchAndBoundV3.executeGames(
+        solved += await BranchAndBoundV3.executeGamesWinningWords(
             games: [9602],
             lookaheadDepth: 3,
             beamWidth: 22,
@@ -273,56 +483,56 @@ public class BranchAndBoundV3 {
         
         var solved: [Int] = []
         
-        solved += await executeGames(games: depth1_width1, lookaheadDepth: 1, beamWidth: 1, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth2_width1, lookaheadDepth: 2, beamWidth: 1, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width1, lookaheadDepth: 3, beamWidth: 1, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth1_width2, lookaheadDepth: 1, beamWidth: 2, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth2_width2, lookaheadDepth: 2, beamWidth: 2, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width2, lookaheadDepth: 3, beamWidth: 2, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth1_width3, lookaheadDepth: 1, beamWidth: 3, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth2_width3, lookaheadDepth: 2, beamWidth: 3, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width3, lookaheadDepth: 3, beamWidth: 3, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth2_width4, lookaheadDepth: 2, beamWidth: 4, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width4, lookaheadDepth: 3, beamWidth: 4, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth1_width5, lookaheadDepth: 1, beamWidth: 5, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth2_width5, lookaheadDepth: 2, beamWidth: 5, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width5, lookaheadDepth: 3, beamWidth: 5, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth2_width6, lookaheadDepth: 2, beamWidth: 6, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width6, lookaheadDepth: 3, beamWidth: 6, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth2_width7, lookaheadDepth: 2, beamWidth: 7, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width7, lookaheadDepth: 3, beamWidth: 7, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth1_width8, lookaheadDepth: 1, beamWidth: 8, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth2_width8, lookaheadDepth: 2, beamWidth: 8, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width9, lookaheadDepth: 3, beamWidth: 9, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth2_width10, lookaheadDepth: 2, beamWidth: 10, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width10, lookaheadDepth: 3, beamWidth: 10, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width11, lookaheadDepth: 3, beamWidth: 11, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth2_width13, lookaheadDepth: 2, beamWidth: 13, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width14, lookaheadDepth: 3, beamWidth: 14, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width16, lookaheadDepth: 3, beamWidth: 16, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth1_width17, lookaheadDepth: 1, beamWidth: 17, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width18, lookaheadDepth: 3, beamWidth: 18, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width19, lookaheadDepth: 3, beamWidth: 19, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width21, lookaheadDepth: 3, beamWidth: 21, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width22, lookaheadDepth: 3, beamWidth: 22, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth1_width27, lookaheadDepth: 1, beamWidth: 27, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth2_width36, lookaheadDepth: 2, beamWidth: 36, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width36, lookaheadDepth: 3, beamWidth: 36, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth2_width37, lookaheadDepth: 2, beamWidth: 37, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width49, lookaheadDepth: 3, beamWidth: 49, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width66, lookaheadDepth: 3, beamWidth: 66, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width74, lookaheadDepth: 3, beamWidth: 74, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width98, lookaheadDepth: 3, beamWidth: 98, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth3_width193, lookaheadDepth: 3, beamWidth: 193, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth4_width7, lookaheadDepth: 4, beamWidth: 7, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth4_width8, lookaheadDepth: 4, beamWidth: 8, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth4_width23, lookaheadDepth: 4, beamWidth: 23, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth4_width35, lookaheadDepth: 4, beamWidth: 35, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth4_width68, lookaheadDepth: 4, beamWidth: 68, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
-        solved += await executeGames(games: depth4_width82, lookaheadDepth: 4, beamWidth: 82, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth1_width1, lookaheadDepth: 1, beamWidth: 1, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth2_width1, lookaheadDepth: 2, beamWidth: 1, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width1, lookaheadDepth: 3, beamWidth: 1, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth1_width2, lookaheadDepth: 1, beamWidth: 2, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth2_width2, lookaheadDepth: 2, beamWidth: 2, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width2, lookaheadDepth: 3, beamWidth: 2, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth1_width3, lookaheadDepth: 1, beamWidth: 3, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth2_width3, lookaheadDepth: 2, beamWidth: 3, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width3, lookaheadDepth: 3, beamWidth: 3, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth2_width4, lookaheadDepth: 2, beamWidth: 4, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width4, lookaheadDepth: 3, beamWidth: 4, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth1_width5, lookaheadDepth: 1, beamWidth: 5, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth2_width5, lookaheadDepth: 2, beamWidth: 5, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width5, lookaheadDepth: 3, beamWidth: 5, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth2_width6, lookaheadDepth: 2, beamWidth: 6, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width6, lookaheadDepth: 3, beamWidth: 6, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth2_width7, lookaheadDepth: 2, beamWidth: 7, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width7, lookaheadDepth: 3, beamWidth: 7, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth1_width8, lookaheadDepth: 1, beamWidth: 8, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth2_width8, lookaheadDepth: 2, beamWidth: 8, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width9, lookaheadDepth: 3, beamWidth: 9, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth2_width10, lookaheadDepth: 2, beamWidth: 10, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width10, lookaheadDepth: 3, beamWidth: 10, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width11, lookaheadDepth: 3, beamWidth: 11, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth2_width13, lookaheadDepth: 2, beamWidth: 13, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width14, lookaheadDepth: 3, beamWidth: 14, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width16, lookaheadDepth: 3, beamWidth: 16, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth1_width17, lookaheadDepth: 1, beamWidth: 17, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width18, lookaheadDepth: 3, beamWidth: 18, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width19, lookaheadDepth: 3, beamWidth: 19, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width21, lookaheadDepth: 3, beamWidth: 21, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width22, lookaheadDepth: 3, beamWidth: 22, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth1_width27, lookaheadDepth: 1, beamWidth: 27, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth2_width36, lookaheadDepth: 2, beamWidth: 36, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width36, lookaheadDepth: 3, beamWidth: 36, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth2_width37, lookaheadDepth: 2, beamWidth: 37, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width49, lookaheadDepth: 3, beamWidth: 49, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width66, lookaheadDepth: 3, beamWidth: 66, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width74, lookaheadDepth: 3, beamWidth: 74, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width98, lookaheadDepth: 3, beamWidth: 98, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth3_width193, lookaheadDepth: 3, beamWidth: 193, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth4_width7, lookaheadDepth: 4, beamWidth: 7, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth4_width8, lookaheadDepth: 4, beamWidth: 8, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth4_width23, lookaheadDepth: 4, beamWidth: 23, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth4_width35, lookaheadDepth: 4, beamWidth: 35, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth4_width68, lookaheadDepth: 4, beamWidth: 68, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
+        solved += await executeGamesWinningWords(games: depth4_width82, lookaheadDepth: 4, beamWidth: 82, maxDepth: 30, rootWidth: 1, useGuidedScores: true)
 
         
-        solved += await BranchAndBoundV3.executeGames(
+        solved += await BranchAndBoundV3.executeGamesWinningWords(
             games: [8803],
             lookaheadDepth: 3,
             beamWidth: 28,
@@ -331,7 +541,7 @@ public class BranchAndBoundV3 {
             useGuidedScores: false)
         
         // Start from winningWords[2]
-        solved += await BranchAndBoundV3.executeGames(
+        solved += await BranchAndBoundV3.executeGamesWinningWords(
             games: [8804],
             lookaheadDepth: 3,
             beamWidth: 4,
@@ -340,7 +550,7 @@ public class BranchAndBoundV3 {
             useGuidedScores: false)
         
         // Start from winningWords[8]
-        solved += await BranchAndBoundV3.executeGames(
+        solved += await BranchAndBoundV3.executeGamesWinningWords(
             games: [8806],
             lookaheadDepth: 3,
             beamWidth: 77,
@@ -349,7 +559,7 @@ public class BranchAndBoundV3 {
             useGuidedScores: false)
         
         // Start from winningWords[5]
-        solved += await BranchAndBoundV3.executeGames(
+        solved += await BranchAndBoundV3.executeGamesWinningWords(
             games: [9305],
             lookaheadDepth: 3,
             beamWidth: 40,
@@ -358,7 +568,7 @@ public class BranchAndBoundV3 {
             useGuidedScores: false)
         
         // Start from winningWords[3]
-        solved += await BranchAndBoundV3.executeGames(
+        solved += await BranchAndBoundV3.executeGamesWinningWords(
             games: [9504],
             lookaheadDepth: 3,
             beamWidth: 87,
@@ -367,7 +577,7 @@ public class BranchAndBoundV3 {
             useGuidedScores: false)
         
         // Start from winningWords[6]
-        solved += await BranchAndBoundV3.executeGames(
+        solved += await BranchAndBoundV3.executeGamesWinningWords(
             games: [9505],
             lookaheadDepth: 3,
             beamWidth: 51,
@@ -376,7 +586,7 @@ public class BranchAndBoundV3 {
             useGuidedScores: false)
         
         // Start from winningWords[6]
-        solved += await BranchAndBoundV3.executeGames(
+        solved += await BranchAndBoundV3.executeGamesWinningWords(
             games: [9507],
             lookaheadDepth: 3,
             beamWidth: 87,
@@ -385,7 +595,7 @@ public class BranchAndBoundV3 {
             useGuidedScores: false)
         
         // Start from winningWords[1]
-        solved += await BranchAndBoundV3.executeGames(
+        solved += await BranchAndBoundV3.executeGamesWinningWords(
             games: [9602],
             lookaheadDepth: 3,
             beamWidth: 22,
@@ -464,7 +674,7 @@ public class BranchAndBoundV3 {
         for i in 0..<winningShapes.count {
             let startingShape = i * -1
 
-            let winning = await BranchAndBoundV3.executeGames(
+            let winning = await BranchAndBoundV3.executeGamesWinningWords(
                 games: [gameId],
                 lookaheadDepth: lookaheadDepth,
                 beamWidth: beamWidth,
@@ -505,7 +715,7 @@ public class BranchAndBoundV3 {
             lowerWidth = minimumBeamWidth
             upperWidth = maximumBeamWidth
             
-            let lowerWidthShouldFail = await executeGames(
+            let lowerWidthShouldFail = await executeGamesWinningWords(
                 games: [gameId],
                 lookaheadDepth: lookaheadDepth,
                 beamWidth: lowerWidth,
@@ -520,7 +730,7 @@ public class BranchAndBoundV3 {
                 
             } else {
             
-                let upperWidthShouldSucceed = await executeGames(
+                let upperWidthShouldSucceed = await executeGamesWinningWords(
                     games: [gameId],
                     lookaheadDepth: lookaheadDepth,
                     beamWidth: upperWidth,
@@ -538,7 +748,7 @@ public class BranchAndBoundV3 {
                         currentWidth = Int((Double(lowerWidth) + Double(upperWidth) + 0.5) / 2.0)
                         print ("CURRENT WIDTH: \(currentWidth)")
                         
-                        let winnersForCurrent = await executeGames(
+                        let winnersForCurrent = await executeGamesWinningWords(
                             games: [gameId],
                             lookaheadDepth: lookaheadDepth,
                             beamWidth: lowerWidth,
@@ -594,7 +804,7 @@ public class BranchAndBoundV3 {
         lowerWidth = minimumBeamWidth
         upperWidth = maximumBeamWidth
         
-        let lowerWidthShouldFail = await executeGames(
+        let lowerWidthShouldFail = await executeGamesWinningWords(
             games: [gameId],
             lookaheadDepth: lookaheadDepth,
             beamWidth: lowerWidth,
@@ -609,7 +819,7 @@ public class BranchAndBoundV3 {
             
         } else {
         
-            let upperWidthShouldSucceed = await executeGames(
+            let upperWidthShouldSucceed = await executeGamesWinningWords(
                 games: [gameId],
                 lookaheadDepth: lookaheadDepth,
                 beamWidth: upperWidth,
@@ -628,7 +838,7 @@ public class BranchAndBoundV3 {
                     currentWidth = Int((Double(lowerWidth) + Double(upperWidth) + 0.5) / 2.0)
                     print ("CURRENT WIDTH: \(currentWidth)")
                     
-                    let winnersForCurrent = await executeGames(
+                    let winnersForCurrent = await executeGamesWinningWords(
                         games: [gameId],
                         lookaheadDepth: lookaheadDepth,
                         beamWidth: lowerWidth,
@@ -655,7 +865,52 @@ public class BranchAndBoundV3 {
     }
     
     
-    
+    public static func executeGamesAllWords(
+        games: [Int],
+        lookaheadDepth: Int,
+        beamWidth: Int,
+        maxDepth: Int,
+        rootWidth: Int,
+        useGuidedScores: Bool) async -> [Int]
+    {
+        
+        let startTime = DateTimeCalculator.now()
+        
+        let gameList = GameList()
+        
+        var successfulGames: [Int] = []
+        print("\"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"rootWidth\": \(rootWidth), \"maxDepth\": \(maxDepth), \"games\": \(games.count)")
+        print(games)
+        for game in gameList.games {
+            if games.contains(game.gameId) {
+                
+                let bestShape = await execute(
+                    gameId: game.gameId,
+                    words: game.words,
+                    lookaheadDepth: lookaheadDepth,
+                    beamWidth: beamWidth,
+                    maxDepth: maxDepth,
+                    rootWidth: rootWidth,
+                    winningScore: game.winningScore,
+                    useGuidedScores: useGuidedScores)
+                
+                if bestShape.score >= game.winningScore {
+                    successfulGames.append(game.gameId)
+                }
+            }
+        }
+        //print(successfulGames)
+        print("\"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"successes\": \(successfulGames.count), \"time\": \"\(DateTimeCalculator.duration(start: startTime))\"")
+        if successfulGames.count == games.count {
+            print("ALL GAMES SUCCEEDED")
+            print("FOUND \(successfulGames)")
+        } else {
+            let missing = Array(Set(games).subtracting(Set(successfulGames))).sorted()
+            print("MISSING \(missing)")
+            print("FOUND \(successfulGames)")
+        }
+        return successfulGames
+    }
     
     
     /// Executes all games according to the parameters give
@@ -667,7 +922,7 @@ public class BranchAndBoundV3 {
     ///   - rootWidth: how many shapes are included when we first begin
     ///   - useGuidedScores: limit the scores to what the human winning score was when it started with the highest scoring shape.  So it has a score for each number of words
     /// - Returns: list of game id's have have been solved, that is that we get human winning score
-    public static func executeGames(
+    public static func executeGamesWinningWords(
         games: [Int],
         lookaheadDepth: Int,
         beamWidth: Int,
