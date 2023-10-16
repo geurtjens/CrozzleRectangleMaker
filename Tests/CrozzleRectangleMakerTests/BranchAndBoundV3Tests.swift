@@ -36,7 +36,7 @@ final class BranchAndBoundV3Tests: XCTestCase {
         let game = GameList().getGame(gameId: 8803)!
         let words = game.winningWords
         let winningScore = game.winningScore
-        let result = await BranchAndBoundV3.execute(
+        let result = await BranchAndBoundV3.executeGame(
             gameId: gameId,
             words: words,
             lookaheadDepth: 3,
@@ -56,7 +56,7 @@ final class BranchAndBoundV3Tests: XCTestCase {
         let words = game.winningWords
         
         
-        let result = await BranchAndBoundV3.execute(
+        let result = await BranchAndBoundV3.executeGame(
             gameId: gameId,
             words: words,
             lookaheadDepth: 3,
@@ -77,7 +77,7 @@ final class BranchAndBoundV3Tests: XCTestCase {
         let words = game.winningWords
         
         
-        let result = await BranchAndBoundV3.execute(
+        let result = await BranchAndBoundV3.executeGame(
             gameId: gameId,
             words: words,
             lookaheadDepth: 3,
@@ -100,7 +100,7 @@ final class BranchAndBoundV3Tests: XCTestCase {
         let words = game.winningWords
         
         
-        let result = await BranchAndBoundV3.execute(
+        let result = await BranchAndBoundV3.executeGame(
             gameId: gameId,
             words: words,
             lookaheadDepth: 3,
@@ -111,6 +111,17 @@ final class BranchAndBoundV3Tests: XCTestCase {
             useGuidedScores: true)
         
         XCTAssertEqual(winningScore, Int(result.score))
+    }
+    
+    public func test_optimizeBeamWidthAllWords() async {
+        let answer = await BranchAndBoundV3.optimizeBeamWidthAllWords(
+            gameId: 8802,
+            lookaheadDepth: 2,
+            maxDepth: 30,
+            minimumBeamWidth: 1,
+            maximumBeamWidth: 25,
+            rootWidth: 1,
+            useGuidedScores: false)
     }
     
     public func test_ExecuteGames8612() async {
@@ -154,7 +165,7 @@ final class BranchAndBoundV3Tests: XCTestCase {
         let words = game.winningWords
         
         
-        let result = await BranchAndBoundV3.execute(
+        let result = await BranchAndBoundV3.executeGame(
             gameId: gameId,
             words: words,
             lookaheadDepth: 3,
