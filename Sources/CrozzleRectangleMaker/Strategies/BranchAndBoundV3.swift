@@ -138,7 +138,7 @@ public class BranchAndBoundV3 {
                         let winnersForCurrent = await executeGamesWinningWords(
                             games: [gameId],
                             lookaheadDepth: lookaheadDepth,
-                            beamWidth: lowerWidth,
+                            beamWidth: currentWidth,
                             maxDepth: maxDepth,
                             rootWidth: rootWidth,
                             useGuidedScores: useGuidedScores)
@@ -229,7 +229,7 @@ public class BranchAndBoundV3 {
                     let winnersForCurrent = await executeGamesAllWords(
                         games: [gameId],
                         lookaheadDepth: lookaheadDepth,
-                        beamWidth: lowerWidth,
+                        beamWidth: currentWidth,
                         maxDepth: maxDepth,
                         rootWidth: rootWidth,
                         useGuidedScores: useGuidedScores)
@@ -1265,17 +1265,20 @@ public class BranchAndBoundV3 {
     
     public static func allShapesThatCanBeSolvedWithAllWords() async {
         
-        let depth1_width1 = [8703]
+        let depth1_width1 =  [8703]
         let depth1_width25 = [8802, 9306]
         let depth1_width43 = [9212]
         let depth1_width75 = [8710]
         
-        let depth2_width1 = [9002, 9109, 9312]
-        let depth2_width50 = [8612, 8809, 9104, 9108, 9311, 9412]
-        let depth2_width75 = [8808]
+        let depth2_width1 =  [9002, 9109, 9312]
+        let depth2_width50 = [8612, 8702, 8704, 8809, 8910, 8912, 9104, 9105, 9108, 9207, 9310, 9311, 9412]
+        let depth2_width75 = [8808, 9210]
+        let depth2_width87 = [9303]
         
-        let depth3_width1 = [8712, 9007]
-        
+        let depth3_width1 = [8712, 9007, 9008]
+        let depth3_width25 = [8705, 8811, 9103,9308]
+        let depth3_width37 = [8711]
+        // 32 games full words so far
         
         let overallStart = DateTimeCalculator.now()
         
@@ -1289,8 +1292,10 @@ public class BranchAndBoundV3 {
         solved += await executeGamesAllWords(games: depth2_width1, lookaheadDepth: 2, beamWidth: 1, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
         solved += await executeGamesAllWords(games: depth2_width50, lookaheadDepth: 2, beamWidth: 50, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
         solved += await executeGamesAllWords(games: depth2_width75, lookaheadDepth: 2, beamWidth: 75, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth2_width87, lookaheadDepth: 2, beamWidth: 87, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
         
         solved += await executeGamesAllWords(games: depth3_width1, lookaheadDepth: 3, beamWidth: 1, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth3_width25, lookaheadDepth: 3, beamWidth: 25, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
 //        solved += await executeGamesAllWords(games: depth3_width3, lookaheadDepth: 3, beamWidth: 3, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
 //        solved += await executeGamesAllWords(games: depth2_width4, lookaheadDepth: 2, beamWidth: 4, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
 //        solved += await executeGamesAllWords(games: depth3_width4, lookaheadDepth: 3, beamWidth: 4, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
