@@ -544,7 +544,18 @@ public class BranchAndBoundV3 {
         winningScore: Int,
         useGuidedScores: Bool) async -> ShapeModel
     {
-        print("{\"game\": \(gameId), \"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"maxDepth\": \(maxDepth), \"rootWidth\": \(rootWidth), \"cycles\": [")
+        
+        let (_, wordsInt, searchShapes, wordIndex, rootTreeNodes, scoresMin, widthMax, heightMax) = await getStartingData(
+            gameId: gameId,
+            words: words,
+            rootWidth: rootWidth,
+            useGuidedScores: useGuidedScores)
+       
+        
+        
+        
+        print("{\"game\": \(gameId), \"wordCount\": \(words.count), \"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"maxDepth\": \(maxDepth), \"rootWidth\": \(rootWidth), \"searchShapes\": \(searchShapes.count), \"cycles\": [")
+        
         let bestShapes = await executeLeaf(
             gameId: gameId,
             words: words,
@@ -553,7 +564,14 @@ public class BranchAndBoundV3 {
             maxDepth: maxDepth,
             rootWidth: rootWidth,
             winningScore: winningScore,
-            useGuidedScores: useGuidedScores)
+            useGuidedScores: useGuidedScores,
+            wordsInt: wordsInt,
+            searchShapes: searchShapes,
+            wordIndex: wordIndex,
+            widthMax: widthMax,
+            heightMax: heightMax,
+            scoresMin: scoresMin,
+            rootTreeNodes: rootTreeNodes)
         
         var bestShape = bestShapes[0]
         
@@ -561,11 +579,7 @@ public class BranchAndBoundV3 {
             return bestShapes[0]
         }
      
-        let (winningScore, wordsInt, searchShapes, wordIndex, _, scoresMin, widthMax, heightMax) = await getStartingData(
-            gameId: gameId,
-            words: words,
-            rootWidth: rootWidth,
-            useGuidedScores: useGuidedScores)
+        
         
         // If we havent got best score then lets keep going but now dont use the leaf heuristic
         
@@ -606,17 +620,27 @@ public class BranchAndBoundV3 {
         maxDepth: Int,
         rootWidth: Int,
         winningScore: Int,
-        useGuidedScores: Bool) async -> [ShapeModel]
+        useGuidedScores: Bool,
+    
+        wordsInt: [[Int]], 
+        searchShapes: [ShapeModel],
+        wordIndex: WordIndexModelV2,
+        widthMax: Int,
+        heightMax: Int,
+        scoresMin: [Int],
+        rootTreeNodes: [TreeNodeModel]
+        
+        
+        //searchShapes, wordIndex, treeNodes, scoresMin,
+    
+    
+    
+    ) async -> [ShapeModel]
     {
         
         let startTime = DateTimeCalculator.now()
         
-        let (winningScore, wordsInt, searchShapes, wordIndex, rootTreeNodes, scoresMin, widthMax, heightMax) = await getStartingData(
-            gameId: gameId,
-            words: words,
-            rootWidth: rootWidth,
-            useGuidedScores: useGuidedScores)
-        
+         
         var bestShape: ShapeModel = rootTreeNodes[0].parentShape
         
         //print(bestShape.ToJson(words: words))
