@@ -39,6 +39,7 @@ public class ShapesFromMergesCalculator {
     public static func LadderPacman(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel] {
         
         let len = WordCalculator.lengths(words: words)
+        let wordsInt = WordCalculator.WordsToInt(words: words)
         
         let square2x2 = RectangleCalculatorV1.Square(
             interlockWidth: 2,
@@ -87,6 +88,7 @@ public class ShapesFromMergesCalculator {
                 searchShapes: gpuSearch,
                 searchWordIndex: wordIndex,
                 words: words,
+                wordsInt: wordsInt,
                 scoreMin: scoreMin,
                 widthMax: widthMax,
                 heightMax: heightMax)
@@ -101,6 +103,7 @@ public class ShapesFromMergesCalculator {
     public static func LadderLadderPacman(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel] {
         
         let len = WordCalculator.lengths(words: words)
+        let wordsInt = WordCalculator.WordsToInt(words: words)
         
         let square2x2 = RectangleCalculatorV1.Square(
             interlockWidth: 2,
@@ -133,6 +136,7 @@ public class ShapesFromMergesCalculator {
             searchShapes: gpuMergeStart,
             searchWordIndex: gpuMergeStartWordIndex,
             words: words,
+            wordsInt: wordsInt,
             scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -192,6 +196,7 @@ public class ShapesFromMergesCalculator {
     public static func Glasses2(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel] {
         
         let len = WordCalculator.lengths(words: words)
+        let wordsInt = WordCalculator.WordsToInt(words: words)
         
         let squareTopLeft2x2 = RectangleCalculatorV1.TopLeftSquare(
             interlockWidth: 2,
@@ -223,6 +228,7 @@ public class ShapesFromMergesCalculator {
             searchShapes: gpuTopRight,
             searchWordIndex: wordIndex,
             words: words,
+            wordsInt: wordsInt,
             scoreMin: scoreMin,
             widthMax: widthMax,
             heightMax: heightMax)
@@ -233,6 +239,7 @@ public class ShapesFromMergesCalculator {
     }
     public static func Execute2x3And2x2(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel] {
         let len = WordCalculator.lengths(words: words)
+        let wordsInt = WordCalculator.WordsToInt(words: words)
         let d2x2 = RectangleCalculatorV1.Square(
             interlockWidth: 2,
             words: words,
@@ -266,6 +273,7 @@ public class ShapesFromMergesCalculator {
                 searchShapes: gpuShapes2x3,
                 searchWordIndex: wordIndex,
                 words: words,
+                wordsInt: wordsInt,
                 scoreMin: scoreMin,
                 widthMax: widthMax,
                 heightMax: heightMax)

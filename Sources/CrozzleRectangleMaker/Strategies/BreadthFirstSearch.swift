@@ -470,7 +470,8 @@ public class BreadthFirstSearch {
                         searchShape: searchShapes[searchShapeId],
                         words: words,
                         widthMax: widthMax,
-                        heightMax: heightMax)
+                        heightMax: heightMax,
+                        wordsInt: wordsInt)
                     {
                         resultForShape.append(mergedShape)
                     }

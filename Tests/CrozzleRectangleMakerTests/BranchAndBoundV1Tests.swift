@@ -14,10 +14,11 @@ final class BranchAndBoundV1Tests: XCTestCase {
         let gameId = 8802
         let game = GameList().getGame(gameId: gameId)!
         let words = game.winningWords
-        
+        let wordsInt = WordCalculator.WordsToInt(words: words)
         let shape = await BranchAndBoundV1.execute(
             gameId: gameId,
             words: words,
+            wordsInt: wordsInt,
             repeatTimes: 4,
             lookahead: 3,
             backtrackCount: 2,

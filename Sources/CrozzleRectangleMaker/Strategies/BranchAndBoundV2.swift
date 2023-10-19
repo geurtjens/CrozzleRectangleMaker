@@ -62,7 +62,12 @@ public class BranchAndBoundV2 {
                 let shapeIds = ShapeCalculator.getMergeHistory(shape: bestShape, count: backtrackCount)
                 backtrackCount += 1
                 
-                let backtrackShape = ShapeCalculator.mergeShapesByIndex(shapes: searchShapes, shapeIds: shapeIds, words: words)
+                let backtrackShape = ShapeCalculator.mergeShapesByIndex(
+                    shapes: searchShapes,
+                    shapeIds: shapeIds,
+                    words: words,
+                    wordsInt: wordsInt)
+                
                 if backtrackShape != nil {
                     sourceShapes = [backtrackShape!]
                 } else {

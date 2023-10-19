@@ -22,11 +22,13 @@ public class BranchAndBoundV1 {
                 let gameId = game.gameId
                 
                 let words = game.winningWords
+                let wordsInt = WordCalculator.WordsToInt(words: words)
                 
                 // This is closer to how marks solution works in that it wipes out the search space.  We should make lookahead a parameter
                 let shape = await BranchAndBoundV1.execute(
                     gameId: gameId,
                     words: words,
+                    wordsInt: wordsInt,
                     repeatTimes: 4,
                     lookahead: 3,
                     backtrackCount: 2,
@@ -50,6 +52,7 @@ public class BranchAndBoundV1 {
     public static func execute(
         gameId: Int,
         words: [String],
+        wordsInt: [[Int]],
         repeatTimes: Int,
         lookahead: Int,
         backtrackCount: Int,
@@ -58,7 +61,7 @@ public class BranchAndBoundV1 {
         let startTime = DateTimeCalculator.now()
         let game = GameList().getGame(gameId: gameId)!
         
-        let wordsInt = WordCalculator.WordsToInt(words: words)
+        
         
         let searchShapes = getShapes(gameId: gameId, words: words)
         

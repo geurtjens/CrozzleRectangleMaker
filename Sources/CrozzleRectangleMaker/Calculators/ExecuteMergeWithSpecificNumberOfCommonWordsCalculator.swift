@@ -16,7 +16,7 @@ public class ExecuteMergeWithSpecificNumberOfCommonWordsCalculator {
         var result: [ShapeModel] = []
         
         let scoresMin: [Int] = Array(repeating: scoreMin, count: 40)
-        
+        let wordsInt = WordCalculator.WordsToInt(words: words)
         for shapeId in 0..<sourceShapes.count {
             let matchingShapes = ExecuteSameShapeOnce(
                 matchingWordCount: matchingWordCount,
@@ -26,7 +26,8 @@ public class ExecuteMergeWithSpecificNumberOfCommonWordsCalculator {
                 words: words,
                 scoresMin: scoresMin,
                 widthMax: widthMax,
-                heightMax: heightMax)
+                heightMax: heightMax,
+                wordsInt: wordsInt)
             
             result += matchingShapes
         }
@@ -34,7 +35,16 @@ public class ExecuteMergeWithSpecificNumberOfCommonWordsCalculator {
     }
     
     
-    public static func ExecuteSameShapeOnce(matchingWordCount: Int, shapeId: Int, sourceShapes: GpuShapeModel, wordIndex: [[Int]],words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
+    public static func ExecuteSameShapeOnce(
+        matchingWordCount: Int,
+        shapeId: Int,
+        sourceShapes: GpuShapeModel,
+        wordIndex: [[Int]],
+        words:[String],
+        scoresMin:[Int],
+        widthMax: Int,
+        heightMax: Int,
+        wordsInt: [[Int]]) -> [ShapeModel] {
         
         var matchingWords: [MatchingShapesModel] = MatchingWordsCalculator.ExecuteOne(
             sourceShapes: sourceShapes,
@@ -59,12 +69,13 @@ public class ExecuteMergeWithSpecificNumberOfCommonWordsCalculator {
             instructions: instructions,
             scoresMin: scoresMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsInt: wordsInt)
        
         return shapeList
     }
     
-    public static func ExecuteTwoShapes(matchingWordCount: Int, sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, searchWordIndex:[[Int]], words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel]
+    public static func ExecuteTwoShapes(matchingWordCount: Int, sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, searchWordIndex:[[Int]], words: [String], wordsInt: [[Int]], scoreMin: Int, widthMax: Int, heightMax: Int) -> [ShapeModel]
     {
     
         var result: [ShapeModel] = []
@@ -81,6 +92,7 @@ public class ExecuteMergeWithSpecificNumberOfCommonWordsCalculator {
                 searchWordIndex: searchWordIndex,
                 
                 words: words,
+                wordsInt: wordsInt,
                 scoresMin: scoresMin,
                 widthMax: widthMax,
                 heightMax: heightMax)
@@ -96,7 +108,11 @@ public class ExecuteMergeWithSpecificNumberOfCommonWordsCalculator {
         sourceShapes: GpuShapeModel,
         searchShapes: GpuShapeModel,
         searchWordIndex: [[Int]],
-        words:[String], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
+        words: [String],
+        wordsInt: [[Int]],
+        scoresMin: [Int],
+        widthMax: Int,
+        heightMax: Int) -> [ShapeModel] {
         
         var matchingWords: [MatchingShapesModel] = MatchingWordsCalculator.ExecuteOne(
             sourceShapes: sourceShapes,
@@ -121,18 +137,16 @@ public class ExecuteMergeWithSpecificNumberOfCommonWordsCalculator {
             instructions: instructions,
             scoresMin: scoresMin,
             widthMax: widthMax,
-            heightMax: heightMax)
+            heightMax: heightMax,
+            wordsInt: wordsInt)
        
         return shapeList
     }
     
     
-    public static func ProcessInstructions(words: [String], sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, instructions: [MergeInstructionModel], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
+    public static func ProcessInstructions(words: [String], sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, instructions: [MergeInstructionModel], scoresMin:[Int], widthMax: Int, heightMax: Int, wordsInt: [[Int]]) -> [ShapeModel] {
         
         var shapeList: [ShapeModel] = []
-        
-        /// We must take this out and pass it down in future
-        let wordsInt = WordCalculator.WordsToInt(words: words)
         
         for instruction in instructions {
             let potentialPlacements = MergePlacementCalculator.Execute(

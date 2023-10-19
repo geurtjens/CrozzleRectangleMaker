@@ -526,10 +526,10 @@ public class MergeCalculatorV2 {
     }
     
     
-    public static func mergeTwoShapes(sourceShape: ShapeModel, searchShape: ShapeModel, words: [String], widthMax: Int, heightMax: Int, scoreMin: Int = 0) -> ShapeModel? {
+    public static func mergeTwoShapes(sourceShape: ShapeModel, searchShape: ShapeModel, words: [String], widthMax: Int, heightMax: Int, scoreMin: Int = 0, wordsInt:[[Int]]) -> ShapeModel? {
         let sourceShape = sourceShape
         
-        let wordsInt = WordCalculator.WordsToInt(words: words)
+
         
         let (_, _, _, matchingWordCount) = WordIndexModelV2.GetMatches(sourceShape: sourceShape, searchShape: searchShape)
         

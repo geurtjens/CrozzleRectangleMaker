@@ -407,7 +407,7 @@ public class BranchAndBoundV3 {
         let gameList = GameList()
         
         var successfulGames: [Int] = []
-        print("\"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"rootWidth\": \(rootWidth), \"maxDepth\": \(maxDepth), \"games\": \(games.count)")
+        print("{\"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"rootWidth\": \(rootWidth), \"maxDepth\": \(maxDepth), \"games\": \(games.count)")
         print(games)
         for game in gameList.games {
             if games.contains(game.gameId) {
@@ -554,7 +554,7 @@ public class BranchAndBoundV3 {
         
         
         
-        print("{\"game\": \(gameId), \"wordCount\": \(words.count), \"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"maxDepth\": \(maxDepth), \"rootWidth\": \(rootWidth), \"searchShapes\": \(searchShapes.count), \"cycles\": [")
+        print("{\"game\": \(gameId), \"wordCount\": \(words.count), \"searchShapes\": \(searchShapes.count), \"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"rootWidth\": \(rootWidth), \"maxDepth\": \(maxDepth), \"cycles\": [")
         
         let bestShapes = await executeLeaf(
             gameId: gameId,
@@ -890,7 +890,8 @@ public class BranchAndBoundV3 {
                         searchShape: searchShapes[searchShapeId],
                         words: words,
                         widthMax: widthMax,
-                        heightMax: heightMax)
+                        heightMax: heightMax,
+                        wordsInt: wordsInt)
                     {
                         resultForShape.append(mergedShape)
                     }
@@ -1320,6 +1321,7 @@ public class BranchAndBoundV3 {
         
         solved += await executeGamesAllWords(games: depth3_width1, lookaheadDepth: 3, beamWidth: 1, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
         solved += await executeGamesAllWords(games: depth3_width25, lookaheadDepth: 3, beamWidth: 25, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
+        solved += await executeGamesAllWords(games: depth3_width37, lookaheadDepth: 3, beamWidth: 37, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
 //        solved += await executeGamesAllWords(games: depth3_width3, lookaheadDepth: 3, beamWidth: 3, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
 //        solved += await executeGamesAllWords(games: depth2_width4, lookaheadDepth: 2, beamWidth: 4, maxDepth: 30, rootWidth: 1, useGuidedScores: false)
 //        solved += await executeGamesAllWords(games: depth3_width4, lookaheadDepth: 3, beamWidth: 4, maxDepth: 30, rootWidth: 1, useGuidedScores: false)

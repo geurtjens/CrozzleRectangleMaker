@@ -372,7 +372,13 @@ public class ShapeCalculator {
     }
     
     
-    public static func mergeShapesByIndex(shapes: [ShapeModel], shapeIds:[Int], words: [String], widthMax: Int = 17, heightMax: Int = 13) -> ShapeModel? {
+    public static func mergeShapesByIndex(
+        shapes: [ShapeModel],
+        shapeIds: [Int],
+        words: [String],
+        widthMax: Int = 17,
+        heightMax: Int = 13,
+        wordsInt: [[Int]]) -> ShapeModel? {
         
         let firstShapeId = shapeIds[0]
         
@@ -388,7 +394,9 @@ public class ShapeCalculator {
                 searchShape: searchShape,
                 words: words,
                 widthMax: widthMax,
-                heightMax: heightMax)
+                heightMax: heightMax,
+                wordsInt: wordsInt)
+            
             if sourceShape == nil {
                 return nil
             }

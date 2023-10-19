@@ -114,7 +114,7 @@ final class BranchAndBoundV3Tests: XCTestCase {
     }
     
     public func test_optimizeBeamWidthAllWords() async {
-        let answer = await BranchAndBoundV3.optimizeBeamWidthAllWords(
+        let _ = await BranchAndBoundV3.optimizeBeamWidthAllWords(
             gameId: 8802,
             lookaheadDepth: 2,
             maxDepth: 30,
