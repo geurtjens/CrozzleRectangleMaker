@@ -21,8 +21,8 @@ public class PacmanCalculatorV1 {
             let result = ExecuteSerial(
                 words: game.words,
                 scoreMin: scoreMin,
-                widthMax: game.maxWidth,
-                heightMax: game.maxHeight)
+                widthMax: game.widthMax,
+                heightMax: game.heightMax)
             if includeBreakdown {
                 print("PacmanCalculatorV1.Execute: \(game.gameId), count: \(result.count)")
             }

@@ -18,8 +18,8 @@ public class QueueListCalculator {
         var result = QueueList(game: game, constraints: constraints)
         
         let words = game.words
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         
         
         

@@ -16,7 +16,7 @@ public class RectangleCalculatorV3 {
         let gameList = GameList()
         for game in gameList.games {
             
-            let newResults = await Execute(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
+            let newResults = await Execute(words: game.words, scoreMin: scoreMin, widthMax: game.widthMax, heightMax: game.heightMax)
             
             if includeBreakdown {
                 print("RectangleCalculatorV3.ExecuteParallel: \(game.gameId), count: \(newResults.count)")
@@ -32,30 +32,36 @@ public class RectangleCalculatorV3 {
     
     public static func ExecuteAllSerial(scoreMin: Int, includeBreakdown: Bool = true) -> Int  {
         
-        let gameList = GameList()
-        
         let startTime = DateTimeCalculator.now()
-        var count = 0
         
+        var shapesFromWordsCount = 0;
+        var shapesFromWinningWordsCount = 0;
+        
+        if includeBreakdown {
+            print("Rectangle Shapes");
+            print("GameId, WinningWordShapes, AllWordShapes");
+        }
+        
+        let gameList = GameList()
         for game in gameList.games {
 
-            let result = ExecuteSerial(
-                words: game.words,
-                scoreMin: scoreMin,
-                widthMax: game.maxWidth,
-                heightMax: game.maxHeight)
+            let shapesFromWinningWords = Execute(words: game.winningWords, scoreMin: scoreMin, widthMax: game.widthMax, heightMax: game.heightMax)
+            let shapesFromWords = Execute(words: game.words, scoreMin: scoreMin, widthMax: game.widthMax, heightMax:game.heightMax)
             
             if includeBreakdown {
-                print("RectangleCalculatorV3.ExecuteSerial: \(game.gameId), count: \(result.count)")
+                print("\(game.gameId), \(shapesFromWinningWords.count), \(shapesFromWords.count)")
             }
-            count += result.count
+            
+            shapesFromWordsCount += shapesFromWords.count
+            shapesFromWinningWordsCount += shapesFromWinningWords.count;
         }
+        
         let finishTime = DateTimeCalculator.now()
         let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
         
-        print("RectangleCalculatorV3.ExecuteSerial: \(count) records found in \(duration)")
-        return count
+        print("RectangleCalculatorV3.ExecuteSerial: produced \(shapesFromWinningWordsCount) winning word shapes and \(shapesFromWordsCount) words shapes in \(duration)")
         
+        return shapesFromWordsCount
     }
     
     
@@ -971,7 +977,7 @@ public class RectangleCalculatorV3 {
     }
     
     
-    public static func Execute(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) async -> [RectangleModel] {
+    public static func ExecuteParallel(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) async -> [RectangleModel] {
             
         let lengths = WordCalculator.lengths(words: words)
         
@@ -1440,7 +1446,7 @@ public class RectangleCalculatorV3 {
     /// Creates all possible rectangles and then sorts them by score and then area
     public static func ExecuteAndSortByScoreAndArea(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) async -> [RectangleModel]  {
         
-        var rectangles = await Execute(
+        var rectangles = await ExecuteParallel(
             words: words,
             scoreMin: scoreMin,
             widthMax: widthMax,
@@ -1456,7 +1462,7 @@ public class RectangleCalculatorV3 {
         return rectangles
     }
     
-    public static func ExecuteSerial(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [RectangleModel] {
+    public static func Execute(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [RectangleModel] {
             
         let lengths = WordCalculator.lengths(words: words)
             

@@ -9,25 +9,36 @@ import Foundation
 /// calculates all instances when one word can interlock with another word
 public class EdgeCalculatorV1 {
     public static func ExecuteAllSerial(scoreMin: Int, includeBreakdown: Bool = true) -> Int {
+        
         let startTime = DateTimeCalculator.now()
-        var count = 0
-        /// We want to calculate new to see how long it takes and then compare with old
+        
+        var shapesFromWordsCount = 0;
+        var shapesFromWinningWordsCount = 0;
+        
+        if includeBreakdown {
+            print("Edge Shapes");
+            print("GameId, WinningWordShapes, AllWordShapes");
+        }
+        
         let gameList = GameList()
         for game in gameList.games {
             
-            let clusters = Execute(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
+            var shapesFromWinningWords = Execute(words: game.winningWords, scoreMin: scoreMin, widthMax: game.widthMax, heightMax: game.heightMax)
+            var shapesFromWords = Execute(words: game.words, scoreMin: scoreMin, widthMax: game.widthMax, heightMax:game.heightMax)
             
             if includeBreakdown {
-                print("EdgeCalculatorV1.Execute: \(game.gameId), count: \(clusters.count)")
+                print("\(game.gameId), \(shapesFromWinningWords.count), \(shapesFromWords.count)")
             }
             
-            count += clusters.count
+            shapesFromWordsCount += shapesFromWords.count
+            shapesFromWinningWordsCount += shapesFromWinningWords.count;
         }
         let finishTime = DateTimeCalculator.now()
         let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
         
-        print("EdgeCalculatorV1.Execute \(count) records found in \(duration)")
-        return count
+        print("EdgeCalculatorV1.Execute produced \(shapesFromWinningWordsCount) winning word shapes and \(shapesFromWordsCount) words shapes in \(duration)")
+        
+        return shapesFromWordsCount
     }
     /// Finds all edges found within an array of words
     /// - Parameter wordList: A list of words

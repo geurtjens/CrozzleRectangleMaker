@@ -48,42 +48,42 @@ public struct GameList {
             ".TREE.INN.E .  . ",
             " .  .   . .      "]))
 
-       games.append(GameModel(gameId:8702, title: "", maxWidth:17, maxHeight:12, winningScore:726, isValid: false, tags:["P","P33","C","C22"],
-                              
-       winningWords:["CAPITAL", "NOTES", "SCRIP", "BULL", "SOLD", "STOCK", "UNITS", "PAY", "SPOT", "SHORT", "DEBIT", "BEAR", "CUT", "BUYER", "DEED", "CASH", "SALE", "PARITY", "BUY", "TIP", "COST", "BONUS", "IOU", "NET", "BID", "TRUST", "LOSS", "SELL", "PAR", "RIG", "TAX"],
-                              
-       nonWinningWords:["EMBEZZLE", "GAZUMP", "SQUEEZE", "PROXY", "MONEY", "ASSETS", "PAYMENT", "TRUSTEE", "MONOPOLY", "QUOTE", "PROSPECTUS", "CURRENCY", "INVESTMENT", "JUMP", "DISCOUNT", "INTEREST", "SETTLEMENT", "FUNDS", "YIELD", "OPTION", "RIGHTS", "SECURITIES", "REPORT", "SHARES", "DEPOSIT", "LIABILITY", "CONTRACT", "ACCOUNT", "PREMIUM", "RESERVE", "REVENUE", "PROFIT", "VENDOR", "MARKET", "GUARANTEE", "BOOM", "DEBENTURE", "AGENT", "DRAWER", "DEFAULT", "CREDITOR", "INFLATION", "RING", "CORNER", "RECEIPT", "CARTEL", "CHEQUE", "CREDIT", "MARGIN", "ORDER", "FIRM", "PERCENTAGE", "BROKER", "INCOME", "MERGER", "COLLATERAL", "AVERAGE", "BOND", "DIVIDEND", "EXCHANGE", "PRICE", "ADVICE", "GOLD", "OFFER", "BANKER", "JOBBER", "BANK", "FINANCE", "BILL", "BALANCE", "CALL", "DEAL"],
-        
-        winningGame: [
-            " . . .     . .   ",
-            ".CAPITAL.NOTES.  ",
-            " A A I  .  R.E   ",
-            ".SCRIP. I.BULL.  ",
-            " H.I .  O..SOLD. ",
-            " .STOCK.UNITS. . ",
-            ".PAY.O B.E .SPOT.",
-            "  L..SHORT. .A A ",
-            ".DEBIT.N .BEAR.X ",
-            "  .U .CUT.I  . . ",
-            ".BUYER.S .DEED.  ",
-            "   .   .  .      "]))
+//       games.append(GameModel(gameId:8702, title: "", maxWidth:17, maxHeight:12, winningScore:726, isValid: false, tags:["P","P33","C","C22"],
+//                              
+//       winningWords:["CAPITAL", "NOTES", "SCRIP", "BULL", "SOLD", "STOCK", "UNITS", "PAY", "SPOT", "SHORT", "DEBIT", "BEAR", "CUT", "BUYER", "DEED", "CASH", "SALE", "PARITY", "BUY", "TIP", "COST", "BONUS", "IOU", "NET", "BID", "TRUST", "LOSS", "SELL", "PAR", "RIG", "TAX"],
+//                              
+//       nonWinningWords:["EMBEZZLE", "GAZUMP", "SQUEEZE", "PROXY", "MONEY", "ASSETS", "PAYMENT", "TRUSTEE", "MONOPOLY", "QUOTE", "PROSPECTUS", "CURRENCY", "INVESTMENT", "JUMP", "DISCOUNT", "INTEREST", "SETTLEMENT", "FUNDS", "YIELD", "OPTION", "RIGHTS", "SECURITIES", "REPORT", "SHARES", "DEPOSIT", "LIABILITY", "CONTRACT", "ACCOUNT", "PREMIUM", "RESERVE", "REVENUE", "PROFIT", "VENDOR", "MARKET", "GUARANTEE", "BOOM", "DEBENTURE", "AGENT", "DRAWER", "DEFAULT", "CREDITOR", "INFLATION", "RING", "CORNER", "RECEIPT", "CARTEL", "CHEQUE", "CREDIT", "MARGIN", "ORDER", "FIRM", "PERCENTAGE", "BROKER", "INCOME", "MERGER", "COLLATERAL", "AVERAGE", "BOND", "DIVIDEND", "EXCHANGE", "PRICE", "ADVICE", "GOLD", "OFFER", "BANKER", "JOBBER", "BANK", "FINANCE", "BILL", "BALANCE", "CALL", "DEAL"],
+//        
+//        winningGame: [
+//            " . . .     . .   ",
+//            ".CAPITAL.NOTES.  ",
+//            " A A I  .  R.E   ",
+//            ".SCRIP. I.BULL.  ",
+//            " H.I .  O..SOLD. ",
+//            " .STOCK.UNITS. . ",
+//            ".PAY.O B.E .SPOT.",
+//            "  L..SHORT. .A A ",
+//            ".DEBIT.N .BEAR.X ",
+//            "  .U .CUT.I  . . ",
+//            ".BUYER.S .DEED.  ",
+//            "   .   .  .      "]))
 
-        games.append(GameModel(gameId:8703, title: "", maxWidth:17, maxHeight:12, winningScore:564, isValid: false, tags:[],
-        winningWords:["ALWAYS","CENTURY","DAY","TODAY","MONTHLY","YEAR","NOW","PAST","WEEKLY","EARLY","FAST","DAILY","JIFFY","OFT","TERM","MORN","PM","WATCH","THEN","TIME","WIND","FIX","DAWN","TICK","EON","LATE","WEEK","DATE","AM","AGO","GAIN","ERA","AGE","FACE"],
-        nonWinningWords:["BUZZ","QUARTZ","SLOWLY","YESTERDAY","SUNSET","INSTANTLY","BATTERY","SLOW","AUTUMN","ETERNITY","FUTURE","INSTANT","TOMORROW","SUMMER","UNTIL","HOROLOGY","ADJUST","LATEST","HOUR","MINUTE","WINTER","PUNCTUAL","MONTH","SEASON","ETERNALLY","TONIGHT","MOVEMENT","MIDDAY","MOMENT","NOON","SPRING","DURATION","PENDULUM","STRIKING","FORTNIGHT","EXACT","LOSE","INTERVAL","EVERLASTING","ALREADY","SUNDIAL","AFTERWARDS","NEVER","NIGHT","OFTEN","INTERIM","EVER","AFTERNOON","MORNING","QUICK","SPELL","CHRONOMETER","ANNUAL","FORENOON","HANDS","LATER","SECOND","EVENING","MIDNIGHT","GONG","RING","AFTER","WHILE","ANCIENT","ETERNAL","PERIOD","IMMEDIATE","WEEKEND","ONCE","ELECTRIC","ALARM","EPOCH","PERIODIC","EARLIER","CHIME","CLOCK","BEFORE","BELL","DIAL","DECADE"],
-        winningGame: [
-            "         .       ",
-            "       .AGE.     ",
-            "        .A .     ",
-            "       .WIND..   ",
-            "     .THEN.A.O.  ",
-            "     . .E.JIFFY. ",
-            "    .WEEK..LATE. ",
-            "   . A.ALWAYS.A  ",
-            " .CENTURY.G.TERM.",
-            " A O C L.NOW.R.  ",
-            ".MONTHLY. ..FACE.",
-            " . . . .     .   "]))
+//        games.append(GameModel(gameId:8703, title: "", maxWidth:17, maxHeight:12, winningScore:564, isValid: false, tags:[],
+//        winningWords:["ALWAYS","CENTURY","DAY","TODAY","MONTHLY","YEAR","NOW","PAST","WEEKLY","EARLY","FAST","DAILY","JIFFY","OFT","TERM","MORN","PM","WATCH","THEN","TIME","WIND","FIX","DAWN","TICK","EON","LATE","WEEK","DATE","AM","AGO","GAIN","ERA","AGE","FACE"],
+//        nonWinningWords:["BUZZ","QUARTZ","SLOWLY","YESTERDAY","SUNSET","INSTANTLY","BATTERY","SLOW","AUTUMN","ETERNITY","FUTURE","INSTANT","TOMORROW","SUMMER","UNTIL","HOROLOGY","ADJUST","LATEST","HOUR","MINUTE","WINTER","PUNCTUAL","MONTH","SEASON","ETERNALLY","TONIGHT","MOVEMENT","MIDDAY","MOMENT","NOON","SPRING","DURATION","PENDULUM","STRIKING","FORTNIGHT","EXACT","LOSE","INTERVAL","EVERLASTING","ALREADY","SUNDIAL","AFTERWARDS","NEVER","NIGHT","OFTEN","INTERIM","EVER","AFTERNOON","MORNING","QUICK","SPELL","CHRONOMETER","ANNUAL","FORENOON","HANDS","LATER","SECOND","EVENING","MIDNIGHT","GONG","RING","AFTER","WHILE","ANCIENT","ETERNAL","PERIOD","IMMEDIATE","WEEKEND","ONCE","ELECTRIC","ALARM","EPOCH","PERIODIC","EARLIER","CHIME","CLOCK","BEFORE","BELL","DIAL","DECADE"],
+//        winningGame: [
+//            "         .       ",
+//            "       .AGE.     ",
+//            "        .A .     ",
+//            "       .WIND..   ",
+//            "     .THEN.A.O.  ",
+//            "     . .E.JIFFY. ",
+//            "    .WEEK..LATE. ",
+//            "   . A.ALWAYS.A  ",
+//            " .CENTURY.G.TERM.",
+//            " A O C L.NOW.R.  ",
+//            ".MONTHLY. ..FACE.",
+//            " . . . .     .   "]))
 
         games.append(GameModel(gameId:8704, title: "", maxWidth:17, maxHeight:12, winningScore:704, isValid: true, tags:[],
         winningWords:["STANZA","PRIZE","YEATS","POESY","HYMN","TEXT","SCOTT","GRAY","RHYME","SLESSOR","DOYLE","HARDY","SAXE","ELEGY","FOOT","POET","MILTON","SCAN","HOMER","POE","DONNE","HOOD","HOPE","BRIDGES","LAMB","ODE"],

@@ -21,8 +21,8 @@ public class StandardSearchAlgorithms {
         
         let words = game.winningWords
         
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         
         let shapesInWinningGame = WinningShapesCalculatorV1.getShapes(gameId: gameId).0.sorted { $0.score > $1.score}
         

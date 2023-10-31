@@ -15,8 +15,8 @@ final class DuplicateCalculatorTests: XCTestCase {
             let edges = QueueListCalculator.get_2_word_shapes(
                 words: game.winningWords,
                 scoreMin: 28,
-                widthMax: game.maxWidth,
-                heightMax: game.maxHeight)
+                widthMax: game.widthMax,
+                heightMax: game.heightMax)
             
             XCTAssertEqual(203, edges.count)
             

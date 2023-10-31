@@ -16,7 +16,7 @@ public class RectangleCalculatorV2 {
         let gameList = GameList()
         for game in gameList.games {
             
-            let newResults = await Execute(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
+            let newResults = await Execute(words: game.words, scoreMin: scoreMin, widthMax: game.widthMax, heightMax: game.heightMax)
             if includeBreakdown {
                 print("RectangleCalculatorV2.ExecuteParallel: \(game.gameId), count: \(newResults.count)")
             }
@@ -41,8 +41,8 @@ public class RectangleCalculatorV2 {
             let result = ExecuteSerial(
                 words: game.words,
                 scoreMin: scoreMin,
-                widthMax: game.maxWidth,
-                heightMax: game.maxHeight)
+                widthMax: game.widthMax,
+                heightMax: game.heightMax)
             
             if includeBreakdown {
                 print("RectangleCalculatorV2.ExecuteSerial: \(game.gameId), count: \(result.count)")

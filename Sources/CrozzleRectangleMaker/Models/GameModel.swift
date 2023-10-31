@@ -15,9 +15,9 @@ public struct GameModel {
     /// these are the words that are used in all processing.  They must say in the same order / sequence throughout the game
     public let words: [String]
     /// when a shape is rendered as text, its width must be less than or equal to `widthMax` for it to comply with the games size.  Shapes can be flipped so the constraint is width x height or height x width
-    public let maxWidth: Int
+    public let widthMax: Int
     /// when a shape is rendered as text, its height must be less than or equal to `heightMax` for it to comply with the games size.  Shapes can be flipped so its width x height or height x width
-    public let maxHeight: Int
+    public let heightMax: Int
     public let winningScore: Int
     public let isValid: Bool
     public let tags: [String]
@@ -28,8 +28,8 @@ public struct GameModel {
     public init(gameId: Int, title: String, maxWidth: Int, maxHeight: Int, winningScore: Int, isValid: Bool, tags: [String], winningWords: [String], nonWinningWords: [String], winningGame: [String]) {
         self.gameId = gameId
         self.title = title
-        self.maxWidth = maxWidth
-        self.maxHeight = maxHeight
+        self.widthMax = maxWidth
+        self.heightMax = maxHeight
         self.winningScore = winningScore
         self.isValid = isValid
         self.tags = tags

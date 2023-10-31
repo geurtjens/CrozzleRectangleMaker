@@ -18,7 +18,7 @@ final class PacmanCalculatorV3Tests: XCTestCase {
         /// GIVEN we have used the words found in a Pacman3x3 shape on game 8710
         let words = ["LORY", "SPARROW", "OWLET", "ROC", "SWALLOW", "OWL"]
         /// WHEN we calculate pacmans for these words
-        let result = PacmanCalculatorV3.ExecuteSerial(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = PacmanCalculatorV3.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         /// THEN we find that two entries are returned
         XCTAssertEqual(2, result.count)
         
@@ -68,7 +68,7 @@ final class PacmanCalculatorV3Tests: XCTestCase {
         let words = ["DELHI", "OMSK", "BOMBAY", "HOBART", "LIMA", "SYDNEY"]
         
         ///WHEN we calculate pacmans for these words
-        let result = PacmanCalculatorV3.ExecuteSerial(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = PacmanCalculatorV3.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         let expectedText =
         "     .   \n" +
@@ -101,7 +101,7 @@ final class PacmanCalculatorV3Tests: XCTestCase {
         let words = ["SHAPE", "RULE", "QUARTZ", "ART", "PUZZLE", "EASEL"]
         
         ///WHEN we calculate pacmans for these words
-        let result = PacmanCalculatorV3.ExecuteSerial(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = PacmanCalculatorV3.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         let expectedText =
         "       .  \n" +
@@ -134,7 +134,7 @@ final class PacmanCalculatorV3Tests: XCTestCase {
         let words = ["HATS", "TUESDAY", "TRAINER", "GATE", "TURF", "COURSE"]
         
         ///WHEN we calculate pacmans for these words
-        let result = PacmanCalculatorV3.ExecuteSerial(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = PacmanCalculatorV3.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         let expectedText =
         "        .     \n" +
@@ -167,7 +167,7 @@ final class PacmanCalculatorV3Tests: XCTestCase {
         let words = ["PATROL", "ENEMY", "SMUTS", "TURRET", "ONSET", "RIFLE"]
         
         ///WHEN we calculate pacmans for these words
-        let result = PacmanCalculatorV3.ExecuteSerial(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = PacmanCalculatorV3.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         let expectedText =
         "    . .   \n" +
@@ -200,7 +200,7 @@ final class PacmanCalculatorV3Tests: XCTestCase {
         let words = ["TRESPASS", "SUSPECT", "FORGER", "CASE", "SURTAX", "WITNESS"]
         
         ///WHEN we calculate pacmans for these words
-        let result = PacmanCalculatorV3.ExecuteSerial(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = PacmanCalculatorV3.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         let expectedText =
         "        .     \n" +
@@ -236,7 +236,7 @@ final class PacmanCalculatorV3Tests: XCTestCase {
         let words = ["SEAMS", "CUT", "SLEEVES", "LACE", "MUSLIN", "ADJUST"]
         
         ///WHEN we calculate pacmans for these words
-        let result = PacmanCalculatorV3.ExecuteSerial(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
+        let result = PacmanCalculatorV3.Execute(words: words, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
         
         let expectedText =
         "        . \n" +

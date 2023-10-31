@@ -131,8 +131,8 @@ public struct QueueList {
                 words: self.constraints.words,
                 wordsInt: self.wordsInt,
                 scoresMin: self.constraints.scoresMin,
-                widthMax: self.game.maxWidth,
-                heightMax: self.game.maxHeight)
+                widthMax: self.game.widthMax,
+                heightMax: self.game.heightMax)
        
         case .async_objectOfArrays:
             return await MergeCalculatorV2.ExecuteSameShapeAsync(
@@ -143,8 +143,8 @@ public struct QueueList {
                 words: self.constraints.words,
                 wordsInt: self.wordsInt,
                 scoresMin: self.constraints.scoresMin,
-                widthMax: self.game.maxWidth,
-                heightMax: self.game.maxHeight)
+                widthMax: self.game.widthMax,
+                heightMax: self.game.heightMax)
         case .sync_arrayOfObjects:
             return MergeCalculatorV1.ExecuteSameShape(
                 sourceShapes: self.queues[wordCount].gpuShapes,
@@ -154,8 +154,8 @@ public struct QueueList {
                 words: self.constraints.words,
                 wordsInt: self.wordsInt,
                 scoresMin: self.constraints.scoresMin,
-                widthMax: self.game.maxWidth,
-                heightMax: self.game.maxHeight)
+                widthMax: self.game.widthMax,
+                heightMax: self.game.heightMax)
         case .sync_objectOfArrays:
             return MergeCalculatorV2.ExecuteSameShapeSync(
                 sourceShapes: self.queues[wordCount].shapes,
@@ -165,8 +165,8 @@ public struct QueueList {
                 words: self.constraints.words,
                 wordsInt: self.wordsInt,
                 scoresMin: self.constraints.scoresMin,
-                widthMax: self.game.maxWidth,
-                heightMax: self.game.maxHeight)
+                widthMax: self.game.widthMax,
+                heightMax: self.game.heightMax)
         }
     }
     
@@ -263,8 +263,8 @@ public struct QueueList {
                     words: self.constraints.words,
                     wordsInt: self.wordsInt,
                     scoresMin: self.constraints.scoresMin,
-                    widthMax: self.game.maxWidth,
-                    heightMax: self.game.maxHeight)
+                    widthMax: self.game.widthMax,
+                    heightMax: self.game.heightMax)
                 
                 
                 
@@ -405,8 +405,8 @@ public struct QueueList {
                 words: self.constraints.words,
                 wordsInt: self.wordsInt,
                 scoresMin: self.constraints.scoresMin,
-                widthMax: self.game.maxWidth,
-                heightMax: self.game.maxHeight)
+                widthMax: self.game.widthMax,
+                heightMax: self.game.heightMax)
         
         if shapes.count > 0 {
             var result: [ShapeModel] = []
@@ -470,8 +470,8 @@ public struct QueueList {
                 words: self.constraints.words,
                 wordsInt: self.wordsInt,
                 scoresMin: self.constraints.scoresMin,
-                widthMax: self.game.maxWidth,
-                heightMax: self.game.maxHeight)
+                widthMax: self.game.widthMax,
+                heightMax: self.game.heightMax)
             
         } else {
             
@@ -484,8 +484,8 @@ public struct QueueList {
                 words: self.constraints.words,
                 wordsInt: self.wordsInt,
                 scoresMin: self.constraints.scoresMin,
-                widthMax: self.game.maxWidth,
-                heightMax: self.game.maxHeight)
+                widthMax: self.game.widthMax,
+                heightMax: self.game.heightMax)
         }
     }
     
@@ -507,8 +507,8 @@ public struct QueueList {
                 words: self.constraints.words,
                 wordsInt: self.wordsInt,
                 scoresMin: self.constraints.scoresMin,
-                widthMax: self.game.maxWidth,
-                heightMax: self.game.maxHeight)
+                widthMax: self.game.widthMax,
+                heightMax: self.game.heightMax)
             
             
         
@@ -523,8 +523,8 @@ public struct QueueList {
                 words: self.constraints.words,
                 wordsInt: self.wordsInt,
                 scoresMin: self.constraints.scoresMin,
-                widthMax: self.game.maxWidth,
-                heightMax: self.game.maxHeight)
+                widthMax: self.game.widthMax,
+                heightMax: self.game.heightMax)
             
         case .sync_arrayOfObjects:
             
@@ -537,8 +537,8 @@ public struct QueueList {
                 words: self.constraints.words,
                 wordsInt: self.wordsInt,
                 scoresMin: self.constraints.scoresMin,
-                widthMax: self.game.maxWidth,
-                heightMax: self.game.maxHeight)
+                widthMax: self.game.widthMax,
+                heightMax: self.game.heightMax)
             
         case .sync_objectOfArrays:
             
@@ -551,8 +551,8 @@ public struct QueueList {
                 words: self.constraints.words,
                 wordsInt: self.wordsInt,
                 scoresMin: self.constraints.scoresMin,
-                widthMax: self.game.maxWidth,
-                heightMax: self.game.maxHeight)
+                widthMax: self.game.widthMax,
+                heightMax: self.game.heightMax)
             
         }
     }

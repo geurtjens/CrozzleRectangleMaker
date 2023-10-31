@@ -16,7 +16,7 @@ public class ClusterCalculatorV2 {
         let gameList = GameList()
         for game in gameList.games {
             
-            let clusters = Execute(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
+            let clusters = Execute(words: game.words, scoreMin: scoreMin, widthMax: game.widthMax, heightMax: game.heightMax)
             
             if includeBreakdown {
                 print("CusterCalculatorV2.Execute: \(game.gameId), count: \(clusters.count)")

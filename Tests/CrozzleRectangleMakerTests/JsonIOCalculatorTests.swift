@@ -46,7 +46,7 @@ final class JsonIOCalculatorTests: XCTestCase {
         
         for game in gameList.games {
             
-            let code = JsonIOCalculator.execute(gameId: game.gameId, winningScore: game.winningScore, widthMax: game.maxWidth, heightMax: game.maxHeight)
+            let code = JsonIOCalculator.execute(gameId: game.gameId, winningScore: game.winningScore, widthMax: game.widthMax, heightMax: game.heightMax)
             codes.append(code)
         }
         var result = ""

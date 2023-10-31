@@ -145,7 +145,7 @@ public class BranchAndBoundV2 {
         
         
         
-        return (winningScore, wordsInt, searchShapes, wordIndex, startingShape, scoresMin, game.maxWidth, game.maxHeight)
+        return (winningScore, wordsInt, searchShapes, wordIndex, startingShape, scoresMin, game.widthMax, game.heightMax)
     }
     
     

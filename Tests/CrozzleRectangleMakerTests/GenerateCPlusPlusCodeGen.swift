@@ -14,7 +14,7 @@ final class GenerateCPlusPlusCodeGen: XCTestCase {
         let gameList = GameList()
         
         for game in gameList.games {
-            print("games.push_back(Game2Model(\(game.gameId), \(game.winningScore), \(game.isValid), \(game.maxWidth), \(game.maxHeight),")
+            print("games.push_back(Game2Model(\(game.gameId), \(game.winningScore), \(game.isValid), \(game.widthMax), \(game.heightMax),")
             print("  {\(commaSeparated(words: game.winningWords))},")
             print("  {\(commaSeparated(words: game.nonWinningWords))},")
             print("  {\(commaSeparated(words: game.winningWords + game.nonWinningWords))},")

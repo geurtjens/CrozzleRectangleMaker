@@ -11,29 +11,34 @@ public class PacmanCalculatorV3 {
     
     public static func ExecuteAllSerial(scoreMin: Int, includeBreakdown: Bool = true) -> Int  {
         
-        let gameList = GameList()
-        
         let startTime = DateTimeCalculator.now()
-        var count = 0
         
+        var shapesFromWordsCount = 0;
+        var shapesFromWinningWordsCount = 0;
+        
+        if includeBreakdown {
+            print("Pacman Shapes");
+            print("GameId, WinningWordShapes, AllWordShapes");
+        }
+        
+        let gameList = GameList()
         for game in gameList.games {
 
-            let result = ExecuteSerial(
-                words: game.words,
-                scoreMin: scoreMin,
-                widthMax: game.maxWidth,
-                heightMax: game.maxHeight)
-            
+            let shapesFromWinningWords = Execute(words: game.winningWords, scoreMin: scoreMin, widthMax: game.widthMax, heightMax: game.heightMax)
+            let shapesFromWords = Execute(words: game.words, scoreMin: scoreMin, widthMax: game.widthMax, heightMax:game.heightMax)
+           
             if includeBreakdown {
-                print("PacmanCalculatorV3.Execute: \(game.gameId), count: \(result.count)")
+                print("\(game.gameId), \(shapesFromWinningWords.count), \(shapesFromWords.count)")
             }
-            count += result.count
+            
+            shapesFromWordsCount += shapesFromWords.count
+            shapesFromWinningWordsCount += shapesFromWinningWords.count;
         }
         let finishTime = DateTimeCalculator.now()
         let duration = DateTimeCalculator.duration(start: startTime, finish: finishTime)
         
-        print("PacmanCalculatorV3.Execute: \(count) records found in \(duration)")
-        return count
+        print("PacmanCalculatorV3.Execute: produced \(shapesFromWinningWordsCount) winning word shapes and \(shapesFromWordsCount) words shapes in \(duration)")
+        return shapesFromWordsCount
     }
     
     public static func ExecuteAll_TopLeft(scoreMin: Int) -> Int {
@@ -50,7 +55,7 @@ public class PacmanCalculatorV3 {
             let words2 = WordCalculator.WordsToInt(words: words)
             let end2 = WordCalculator.WordsToInt(words: end)
             
-            let newResults = TopLeft(letterIndex: letterIndex, words: words2, end: end2, words2: words, end2: end, len: len, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
+            let newResults = TopLeft(letterIndex: letterIndex, words: words2, end: end2, words2: words, end2: end, len: len, scoreMin: scoreMin, widthMax: game.widthMax, heightMax: game.heightMax)
             
             print("PacmanCalculatorV3.TopLeft: \(game.gameId), count: \(newResults.count)")
             
@@ -79,7 +84,7 @@ public class PacmanCalculatorV3 {
             let words2 = WordCalculator.WordsToInt(words: words)
             let end2 = WordCalculator.WordsToInt(words: end)
             
-            let newResults = TopRight(letterIndex: letterIndex, words: words2, end: end2, words2: words, end2: end, len: len, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
+            let newResults = TopRight(letterIndex: letterIndex, words: words2, end: end2, words2: words, end2: end, len: len, scoreMin: scoreMin, widthMax: game.widthMax, heightMax: game.heightMax)
             
             print("PacmanCalculatorV3.TopRight: \(game.gameId), count: \(newResults.count)")
             
@@ -106,7 +111,7 @@ public class PacmanCalculatorV3 {
             let words2 = WordCalculator.WordsToInt(words: words)
             let end2 = WordCalculator.WordsToInt(words: end)
             
-            let newResults = BottomRight(letterIndex: letterIndex, words: words2, end: end2, words2: words, end2: end, len: len, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
+            let newResults = BottomRight(letterIndex: letterIndex, words: words2, end: end2, words2: words, end2: end, len: len, scoreMin: scoreMin, widthMax: game.widthMax, heightMax: game.heightMax)
             
             print("PacmanCalculatorV3.TopLeft: \(game.gameId), count: \(newResults.count)")
             
@@ -123,7 +128,7 @@ public class PacmanCalculatorV3 {
     
     // flips to bottom left so does not need to worry about duplicates.  Visually inspected
     
-    static func ExecuteSerial(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [PacmanModel] {
+    static func Execute(words: [String], scoreMin: Int, widthMax: Int, heightMax: Int) -> [PacmanModel] {
         
         let letterIndex = LetterIndexModel(words: words)
         

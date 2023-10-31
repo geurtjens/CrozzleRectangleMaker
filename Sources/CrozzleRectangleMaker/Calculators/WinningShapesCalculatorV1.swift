@@ -230,8 +230,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8612)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -317,8 +317,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8702)!
         
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -423,8 +423,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8703)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
 
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
@@ -530,8 +530,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8704)!
         
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -630,8 +630,8 @@ public class WinningShapesCalculatorV1 {
         
         let game = GameList().getGame(gameId: 8710)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -752,8 +752,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8711)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -884,8 +884,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8712)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -997,8 +997,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8802)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -1100,8 +1100,8 @@ public class WinningShapesCalculatorV1 {
         
         let game = GameList().getGame(gameId: 8803)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -1201,8 +1201,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8804)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
 
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
@@ -1304,8 +1304,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8805)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
 
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
@@ -1394,8 +1394,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8806)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -1487,8 +1487,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8807)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
 
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
@@ -1568,8 +1568,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8808)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -1677,8 +1677,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8809)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -1782,8 +1782,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8810)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -1860,8 +1860,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8811)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -1978,8 +1978,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8812)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -2088,8 +2088,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8902)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -2182,8 +2182,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8903)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -2247,8 +2247,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8904)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -2333,8 +2333,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8905)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -2437,8 +2437,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8705)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -2540,8 +2540,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8906)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -2635,8 +2635,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8907)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
 
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
@@ -2746,8 +2746,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8908)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -2834,8 +2834,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8909)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -2934,8 +2934,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8910)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
 
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
@@ -3023,8 +3023,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8911)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -3102,8 +3102,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 8912)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -3209,8 +3209,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9001)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -3286,8 +3286,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9002)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
 
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
@@ -3348,8 +3348,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9003)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -3426,8 +3426,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9004)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -3509,8 +3509,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9005)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -3595,8 +3595,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9006)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -3708,8 +3708,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9007)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -3805,8 +3805,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9008)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
 
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
@@ -3906,8 +3906,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9009)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -4007,8 +4007,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9010)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -4102,8 +4102,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9011)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -4194,8 +4194,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9012)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -4377,8 +4377,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9101)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
 
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
@@ -4468,8 +4468,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9102)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
 
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
@@ -4556,8 +4556,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9103)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -4643,8 +4643,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9104)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -4727,8 +4727,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9105)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -4810,8 +4810,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9106)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -4873,8 +4873,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9107)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -4979,8 +4979,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9108)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -5067,8 +5067,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9109)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
 
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
@@ -5171,8 +5171,8 @@ public class WinningShapesCalculatorV1 {
         
         let game = GameList().getGame(gameId: 9110)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -5249,8 +5249,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9111)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -5316,8 +5316,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9112)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -5390,8 +5390,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9201)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -5458,8 +5458,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9202)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -5534,8 +5534,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9203)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -5607,8 +5607,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9204)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
 
         let words = game.winningWords
         //let end = WordCalculator.reverse(words: words)
@@ -5683,8 +5683,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9206)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -5773,8 +5773,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9207)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -5844,8 +5844,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9208)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -5924,8 +5924,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9209)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
 
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
@@ -5997,8 +5997,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9210)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -6087,8 +6087,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9211)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
 
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
@@ -6179,8 +6179,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9212)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -6271,8 +6271,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9301)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -6359,8 +6359,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9302)!
         
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -6419,8 +6419,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9303)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -6527,8 +6527,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9304)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -6631,8 +6631,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9305)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -6721,8 +6721,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9306)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -6797,8 +6797,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9307)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -6876,8 +6876,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9308)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -6955,8 +6955,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9309)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -7043,8 +7043,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9310)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -7105,8 +7105,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9311)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -7190,8 +7190,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9312)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -7260,8 +7260,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9401)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -7334,8 +7334,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9402)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -7439,8 +7439,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9403)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -7522,8 +7522,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9404)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -7625,8 +7625,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9406)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -7715,8 +7715,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9407)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
 
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
@@ -7819,8 +7819,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9408)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -7918,8 +7918,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9409)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -8010,8 +8010,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9410)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -8089,8 +8089,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9411)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -8178,8 +8178,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9412)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -8293,8 +8293,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9501)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -8400,8 +8400,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9502)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -8499,8 +8499,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9503)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -8610,8 +8610,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9504)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -8733,8 +8733,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9505)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -8853,8 +8853,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9506)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -8975,8 +8975,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9507)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
 
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
@@ -9074,8 +9074,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9508)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
 
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
@@ -9176,8 +9176,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9509)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -9279,8 +9279,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9510)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -9381,8 +9381,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9511)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -9499,8 +9499,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9512)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -9589,8 +9589,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9601)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
 
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
@@ -9684,8 +9684,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9602)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
@@ -9785,8 +9785,8 @@ public class WinningShapesCalculatorV1 {
         
         let game = GameList().getGame(gameId: 9603)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
@@ -9859,8 +9859,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9604)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
 
         let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
@@ -9955,8 +9955,8 @@ public class WinningShapesCalculatorV1 {
 
         let game = GameList().getGame(gameId: 9605)!
 
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
 
         let words = game.winningWords
         //let end = WordCalculator.reverse(words: words)

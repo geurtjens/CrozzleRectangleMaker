@@ -457,8 +457,8 @@ public class BranchAndBoundV3 {
         /// Get game parameters of widthMax, heightMax, winningScore
         let game = GameList().getGame(gameId: gameId)!
         
-        let widthMax = game.maxWidth
-        let heightMax = game.maxHeight
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
         let winningScore = game.winningScore
         
         let wordsInt = WordCalculator.WordsToInt(words: words)
@@ -1304,6 +1304,11 @@ public class BranchAndBoundV3 {
         let depth3_width25 = [8705, 8811, 9103,9308]
         let depth3_width37 = [8711]
         // 32 games full words so far
+        
+        let solvedGames = [8703, 8802, 9306, 9212, 8710, 9002, 9109, 9312, 8612, 8702,
+                      8704, 8809, 8910, 8912, 9104, 9105, 9108, 9207, 9310, 9311,
+                      9412, 8808, 9210, 9303, 8712, 9007, 9008, 8705, 8811, 9103,
+                      9308, 8711]
         
         let overallStart = DateTimeCalculator.now()
         

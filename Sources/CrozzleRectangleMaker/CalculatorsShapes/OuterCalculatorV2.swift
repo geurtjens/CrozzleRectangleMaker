@@ -16,7 +16,7 @@ public class OuterCalculatorV2 {
         let gameList = GameList()
         for game in gameList.games {
             
-            let clusters = Execute(words: game.words, scoreMin: scoreMin, widthMax: game.maxWidth, heightMax: game.maxHeight)
+            let clusters = Execute(words: game.words, scoreMin: scoreMin, widthMax: game.widthMax, heightMax: game.heightMax)
             
 //            for item in clusters {
 //                print(item.ToShape().ToText(words: game.words))
