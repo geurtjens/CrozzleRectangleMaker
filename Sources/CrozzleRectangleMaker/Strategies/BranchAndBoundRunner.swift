@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class BranchAndBoundRunner {
+public class BranchAndBoundRunner {
     
     public static func executeGamesAllWords(
         games: [Int],
