@@ -10,6 +10,68 @@ import XCTest
 final class WinningShapesCalculatorV1Tests: XCTestCase {
 
     
+    func test_shapesToTextSwift() {
+        let gameList = GameList()
+        for game in gameList.games {
+            let (shapes,words, width, height) = WinningShapesCalculatorV1.getShapes(gameId: game.gameId)
+            var result = ""
+            for shape in shapes {
+                let text = shape.ToTextBlock(words: words, spaces: 4)
+                
+                if result != "" {
+                    result += ","
+                }
+                result += "[\n" + text + "\n]"
+                
+                
+            }
+            print("case \(game.gameId):\n")
+            print("    return [\n\(result)\n]\n")
+            
+        }
+    }
+    
+    func test_shapesToText_CSharp() {
+        
+        print("using System;")
+        print("namespace ShapeMakerCSharp.Calculators")
+        print("{")
+        print("    public class WinningGameCalculator")
+        print("    {")
+        print("        public static List<List<string>> findWinningGame(int gameId)")
+        print("        {")
+        print("            switch (gameId) {")
+         
+        let gameList = GameList()
+        for game in gameList.games {
+            let (shapes, words, _, _) = WinningShapesCalculatorV1.getShapes(gameId: game.gameId)
+            var result = ""
+            for shape in shapes {
+                let text = shape.ToTextBlock(words: words, spaces: 24)
+                
+                if result != "" {
+                    result += ","
+                }
+                result += "new List<string> {\n" + text + "\n                    }"
+                
+                
+            }
+            print("                case \(game.gameId):\n")
+            print("                    return new List<List<string>> {\n")
+            print("                    \(result)\n                };\n")
+            
+        }
+        print("            default:")
+        print("                return new List<List<string>>();")
+        print("            }")
+        print("        }")
+        print("    }")
+        print("}")
+    }
+    
+    
+    
+    
     func test_testAllShapes() async throws {
         let gameList = GameList()
         for game in gameList.games {

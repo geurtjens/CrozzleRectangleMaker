@@ -9618,9 +9618,9 @@ public class WinningShapesCalculatorV1 {
            widthMax: widthMax,
            heightMax: heightMax))
         
-        for item in outer2x4 {
-            print(item.ToString(words: words))
-        }
+//        for item in outer2x4 {
+//            print(item.ToString(words: words))
+//        }
 
         let rectangle4x5 = ShapeCalculator.toShapes(rectangles:RectangleCalculatorV1.Rectangle(
             interlockWidth: 3,

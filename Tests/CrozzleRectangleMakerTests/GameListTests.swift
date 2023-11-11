@@ -18,5 +18,15 @@ final class GameListTests: XCTestCase {
             }
         }
     }
+    
+    func test_CreateSwitch() {
+        let gameList = GameList()
+        
+        for game in gameList.games {
+            print("case \(game.gameId):")
+            print("    return \(game.winningScore);")
+            
+        }
+    }
 
 }

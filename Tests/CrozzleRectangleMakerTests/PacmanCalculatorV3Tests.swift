@@ -95,6 +95,54 @@ final class PacmanCalculatorV3Tests: XCTestCase {
         XCTAssertEqual(expectedScore, result[0].score)
     }
 
+    
+    func test_CSharpImplementationOf_pacman3x3_TopRight(){
+        
+        let game = GameList().getGame(gameId:8803)!;
+        let words = game.winningWords
+        let wordsInt = WordCalculator.WordsToInt(words: words)
+        let letterIndex = LetterIndexModel(words: words)
+        let end = WordCalculator.reverse(words: words)
+        let endInt = WordCalculator.WordsToInt(words: end)
+        let len = WordCalculator.lengths(words: words)
+        
+        let pacman3x3_TopRight = ShapeCalculator.toShapes(pacmans: PacmanCalculatorV3.TopRight(
+            letterIndex: letterIndex,
+            words: wordsInt,
+            end: endInt,
+            words2: words,
+            end2: end,
+            len: len,
+            scoreMin: 136,
+            widthMax: 10,
+            heightMax: 9))
+        
+        let pacman = pacman3x3_TopRight[0]
+        print(pacman.ToSwiftCode(words: words))
+// This is what the correct and swift version produced but the cSharp is wrong
+//        let placements = [
+//                PlacementModel(w: 2, x: 2, y: 6, z: true, l:6),
+//                PlacementModel(w: 8, x: 4, y: 0, z: false, l:6),
+//                PlacementModel(w: 9, x: 3, y: 3, z: false, l:4),
+//                PlacementModel(w: 13, x: 1, y: 4, z: true, l:6),
+//                PlacementModel(w: 22, x: 0, y: 5, z: true, l:4),
+//                PlacementModel(w: 23, x: 2, y: 0, z: false, l:5)
+//            ]
+//        let shape = ShapeModel(score: 136, width: 10, height: 9, placements: placements)
+        let placements = [
+                PlacementModel(w: 2, x: 1, y: 4, z: true, l:6),
+                PlacementModel(w: 8, x: 4, y: 1, z: false, l:6),
+                PlacementModel(w: 9, x: 3, y: 0, z: false, l:4),
+                PlacementModel(w: 13, x: 2, y: 2, z: true, l:6),
+                PlacementModel(w: 22, x: 0, y: 3, z: true, l:4),
+                PlacementModel(w: 23, x: 2, y: 2, z: false, l:5)
+            ]
+        let shape = ShapeModel(score: 136, width: 10, height: 9, placements: placements)
+
+        let result = shape.ToTextDebug(words: game.winningWords)
+        XCTAssertFalse(result.contains("#"))
+        print(result)
+    }
     func test8907() {
         
         /// GIVEN we have used the words found in a Pacman3x3 shape on game 8907

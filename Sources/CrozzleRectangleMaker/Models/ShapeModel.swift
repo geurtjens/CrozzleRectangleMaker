@@ -135,6 +135,24 @@ public struct ShapeModel {
         return text
     }
     
+    public func ToTextBlock(words: [String], spaces: Int) -> String {
+        let (text, _) = ShapeCalculator.ToTextDebug(shape: self, words: words)
+        
+        let lines = text.split(separator: "\n")
+
+        var result = ""
+        for line in lines {
+            if result != "" {
+                result += ",\n"
+            }
+            for _ in 0..<spaces {
+                result += " "
+            }
+            result += "\"" + line + "\""
+        }
+        return result
+    }
+    
     
     public func ToTest(words: [String]) -> String {
         let (text, _) = ShapeCalculator.ToText(shape: self, words: words)
@@ -171,6 +189,16 @@ public struct ShapeModel {
         var code = "//score:\(score), width:\(width), height:\(height), words:\(self.placements.count)\n"
         code += "let grid = [\n" + result + "]\n"
         code += "let shape = ShapeCalculator.toShape(fromGrid: grid, words: words)\n\n"
+        return code
+    }
+    
+    public func ToSwiftCode(words: [String]) -> String {
+        
+        
+        var code = PlacementCalculator.ToCode(fromPlacements: self.placements)
+        code += "\n"
+        code += "let shape = ShapeModel(score: \(score), width: \(width), height: \(height), placements: placements)"
+        
         return code
     }
     
