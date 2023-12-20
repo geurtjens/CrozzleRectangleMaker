@@ -30,7 +30,105 @@ public class BranchAndBoundRunner {
             return await BranchAndBoundV3.executeGamesWinningWords(games: games, lookaheadDepth: lookaheadDepth, beamWidth: beamWidth, maxDepth: maxDepth, rootWidth: rootWidth, useGuidedScores: useGuidedScores)
     }
     
+    public static func UseGuidedScores_WinningWords() async {
+        var instructions = getBranchAndBoundInstruction_UseGuidedScores_WinningWords()
+        
+        let overallStart = DateTimeCalculator.now()
+        
+        var solved: [Int] = []
+        
+        for instruction in instructions {
+            solved += await executeGamesWinningWords(
+                games: instruction.games,
+                lookaheadDepth: instruction.depth,
+                beamWidth: instruction.width,
+                maxDepth: instruction.maxDepth,
+                rootWidth: instruction.rootWidth,
+                useGuidedScores: instruction.useGuidedScores)
+        }
+        
+        let gameList = GameList()
+        var missing: [Int] = []
+        for game in gameList.games {
+            if solved.contains(game.gameId) == false {
+                missing.append(game.gameId)
+            }
+        }
+        solved.sort()
+        missing.sort()
+        print("Solved: \(solved)")
+        print("Missing: \(missing)")
+
+        print("Overall Duration: \(DateTimeCalculator.duration(start: overallStart))")
+    }
     
+    public static func getBranchAndBoundInstruction_UseGuidedScores_WinningWords() -> [BranchAndBoundInstruction] {
+        
+        var result: [BranchAndBoundInstruction] = []
+
+        result.append(BranchAndBoundInstruction(depth: 1, width: 1, games: [8703, 8802, 8808, 9104, 9212, 9306, 9406], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 1, width: 2, games: [8710, 9311], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 1, width: 3, games: [9412], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 1, width: 5, games: [8711], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 1, width: 8, games: [9108], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 1, width: 17, games: [9510], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 1, width: 27, games: [9503], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+
+        result.append(BranchAndBoundInstruction(depth: 2, width: 1, games: [8612, 8809, 9002, 9109, 9201, 9211, 9303, 9310, 9312], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 2, width: 2, games: [8702, 8704, 8910, 9105, 9207, 9210], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 2, width: 3, games: [8911, 9004, 9408], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 2, width: 4, games: [8912], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 2, width: 5, games: [9409], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 2, width: 6, games: [9511], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 2, width: 7, games: [9208], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 2, width: 8, games: [9411], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 2, width: 10, games: [9401], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 2, width: 13, games: [9410], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 2, width: 36, games: [8906], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 2, width: 37, games: [9301], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+
+        result.append(BranchAndBoundInstruction(depth: 3, width: 1, games: [8705, 8712, 8811, 9007, 9008, 9103, 9110, 9111, 9206, 9302, 9308, 9309, 9404, 9502], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 2, games: [8812, 8903, 8910, 9006, 9204, 9304, 9402, 9508], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 3, games: [9009, 9407], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 4, games: [8810, 9003], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 5, games: [9005, 9512], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 6, games: [8907], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 7, games: [9106], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 9, games: [9307], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 10, games: [9506, 9604], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 11, games: [8807, 8902, 9202, 9501], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 14, games: [9010], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 16, games: [9209], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 18, games: [9001, 9011], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 19, games: [9601, 9605], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 21, games: [8908], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 22, games: [9012], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 36, games: [9102], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 49, games: [9603], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 66, games: [9403], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 74, games: [9203], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 98, games: [8909], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 193, games: [8905], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+
+        result.append(BranchAndBoundInstruction(depth: 4, width: 7, games: [9101], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 4, width: 8, games: [9509], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 4, width: 23, games: [9107], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 4, width: 35, games: [9112], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 4, width: 68, games: [8805], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 4, width: 82, games: [8904], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+
+        // These are the stranger instructions that do not start with the highest scoring starting shape
+        result.append(BranchAndBoundInstruction(depth: 3, width: 4, games: [8804], rootWidth: -2, useGuidedScores: false, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 22, games: [9602], rootWidth: -1, useGuidedScores: false, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 28, games: [8803], rootWidth: -1, useGuidedScores: false, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 40, games: [9305], rootWidth: -5, useGuidedScores: false, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 51, games: [9505], rootWidth: -6, useGuidedScores: false, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 77, games: [8806], rootWidth: -8, useGuidedScores: false, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 87, games: [9504], rootWidth: -3, useGuidedScores: false, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(depth: 3, width: 87, games: [9507], rootWidth: -5, useGuidedScores: false, maxDepth: 30))
+        
+        return result
+    }
     
     
     public static func allShapesThatCanBeSolvedWithAllWords() async {

@@ -60,6 +60,8 @@ public class BranchAndBoundV3 {
         for i in 0..<winningShapes.count {
             let startingShape = i * -1
 
+            
+            // Using the winning words we find all games that are winning in this case there should be only one
             let winning = await executeGamesWinningWords(
                 games: [gameId],
                 lookaheadDepth: lookaheadDepth,
