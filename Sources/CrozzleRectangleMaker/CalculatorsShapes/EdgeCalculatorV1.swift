@@ -23,8 +23,8 @@ public class EdgeCalculatorV1 {
         let gameList = GameList()
         for game in gameList.games {
             
-            var shapesFromWinningWords = Execute(words: game.winningWords, scoreMin: scoreMin, widthMax: game.widthMax, heightMax: game.heightMax)
-            var shapesFromWords = Execute(words: game.words, scoreMin: scoreMin, widthMax: game.widthMax, heightMax:game.heightMax)
+            let shapesFromWinningWords = Execute(words: game.winningWords, scoreMin: scoreMin, widthMax: game.widthMax, heightMax: game.heightMax)
+            let shapesFromWords = Execute(words: game.words, scoreMin: scoreMin, widthMax: game.widthMax, heightMax:game.heightMax)
             
             if includeBreakdown {
                 print("\(game.gameId), \(shapesFromWinningWords.count), \(shapesFromWords.count)")

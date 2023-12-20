@@ -16,7 +16,7 @@ public class RectangleCalculatorV3 {
         let gameList = GameList()
         for game in gameList.games {
             
-            let newResults = await Execute(words: game.words, scoreMin: scoreMin, widthMax: game.widthMax, heightMax: game.heightMax)
+            let newResults = Execute(words: game.words, scoreMin: scoreMin, widthMax: game.widthMax, heightMax: game.heightMax)
             
             if includeBreakdown {
                 print("RectangleCalculatorV3.ExecuteParallel: \(game.gameId), count: \(newResults.count)")
