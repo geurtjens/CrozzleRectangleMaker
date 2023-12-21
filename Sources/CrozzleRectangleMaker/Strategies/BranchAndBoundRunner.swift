@@ -8,6 +8,19 @@
 import Foundation
 public class BranchAndBoundRunner {
     
+    
+    public static func AllWords_NoGuidedScores() async {
+        let instructions = BranchAndBound_GetInstructions.AllWords_NoGuidedScores()
+        await UseAllWords(instructions: instructions)
+    }
+    
+    
+    public static func AllWords_UseGuidedScores() async {
+        let instructions = BranchAndBound_GetInstructions.AllWords_UseGuidedScores()
+        await UseAllWords(instructions: instructions)
+    }
+    
+    
     public static func WinningWords_NoGuidedScores() async {
         let instructions = BranchAndBound_GetInstructions.WinningWords_NoGuidedScores()
         await UseWinningWords(instructions: instructions)
@@ -19,13 +32,7 @@ public class BranchAndBoundRunner {
         await UseWinningWords(instructions: instructions)
     }
     
-    
-    public static func AllWords_NoGuidedScores() async {
-        let instructions = BranchAndBound_GetInstructions.AllWords_NoGuidedScores()
-        await UseAllWords(instructions: instructions)
-    }
-    
-    
+
     public static func UseWinningWords(instructions: [BranchAndBoundInstruction]) async {
 
         let overallStart = DateTimeCalculator.now()
@@ -44,6 +51,7 @@ public class BranchAndBoundRunner {
         
         PrintResults(overallStart: overallStart, solved: solved)
     }
+    
     
     public static func UseAllWords(instructions: [BranchAndBoundInstruction]) async {
         
@@ -64,6 +72,7 @@ public class BranchAndBoundRunner {
         PrintResults(overallStart: overallStart, solved: solved)
         
     }
+    
     
     public static func PrintResults(overallStart: DispatchTime, solved: [Int]) {
         let gameList = GameList()

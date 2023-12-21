@@ -35,6 +35,33 @@ public struct BranchAndBound_GetInstructions {
         
     }
     
+    public static func AllWords_UseGuidedScores() -> [BranchAndBoundInstruction]
+    {
+        
+        var result: [BranchAndBoundInstruction] = []
+
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 1, games: [8703], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 25, games: [8802, 9306], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 43, games: [9212], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 75, games: [8710], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 1, games: [9002, 9109, 9312], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 50, games: [8612, 8702, 8704, 8809, 8910, 8912, 9104, 9105, 9108, 9207, 9310, 9311, 9412], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 75, games: [8808, 9210], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 87, games: [9303], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 1, games: [8712, 9007, 9008], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 25, games: [8705, 8811, 9103, 9308], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 37, games: [8711], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        // 32 games full words so far
+        
+//        let solvedGames = [8703, 8802, 9306, 9212, 8710, 9002, 9109, 9312, 8612, 8702, 8704, 8809, 8910, 8912, 9104, 9105, 9108, 9207, 9310, 9311, 9412, 8808, 9210, 9303, 8712, 9007, 9008, 8705, 8811, 9103, 9308, 8711]
+        
+        return result
+        
+    }
+    
+    
     public static func WinningWords_NoGuidedScores() -> [BranchAndBoundInstruction]
     {
 
