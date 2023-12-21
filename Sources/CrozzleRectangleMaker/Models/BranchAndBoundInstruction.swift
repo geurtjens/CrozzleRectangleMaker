@@ -7,8 +7,8 @@
 
 import Foundation
 public struct BranchAndBoundInstruction {
-    var depth: Int
-    var width: Int
+    var lookaheadDepth: Int
+    var beamWidth: Int
     var games: [Int]
     var rootWidth: Int
     var useGuidedScores: Bool

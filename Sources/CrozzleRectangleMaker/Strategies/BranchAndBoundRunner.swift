@@ -8,20 +8,20 @@
 import Foundation
 public class BranchAndBoundRunner {
     
-    public static func NoScoreGuides_WinningWords() async {
-        let instructions = GetInstructions.NoScoreGuides_WinningWords()
+    public static func WinningWords_NoGuidedScores() async {
+        let instructions = BranchAndBound_GetInstructions.WinningWords_NoGuidedScores()
         await UseWinningWords(instructions: instructions)
     }
     
     
-    public static func UseGuidedScores_WinningWords() async {
-        let instructions = GetInstructions.UseGuidedScores_WinningWords()
+    public static func WinningWords_UseGuidedScores() async {
+        let instructions = BranchAndBound_GetInstructions.WinningWords_UseGuidedScores()
         await UseWinningWords(instructions: instructions)
     }
     
     
-    public static func allShapesThatCanBeSolvedWithAllWords() async {
-        let instructions = GetInstructions.allShapesThatCanBeSolvedWithAllWords()
+    public static func AllWords_NoGuidedScores() async {
+        let instructions = BranchAndBound_GetInstructions.AllWords_NoGuidedScores()
         await UseAllWords(instructions: instructions)
     }
     
@@ -35,8 +35,8 @@ public class BranchAndBoundRunner {
         for instruction in instructions {
             solved += await BranchAndBoundV3.executeGamesWinningWords(
                 games: instruction.games,
-                lookaheadDepth: instruction.depth,
-                beamWidth: instruction.width,
+                lookaheadDepth: instruction.lookaheadDepth,
+                beamWidth: instruction.beamWidth,
                 maxDepth: instruction.maxDepth,
                 rootWidth: instruction.rootWidth,
                 useGuidedScores: instruction.useGuidedScores)
@@ -54,8 +54,8 @@ public class BranchAndBoundRunner {
         for instruction in instructions {
             solved += await BranchAndBoundV3.executeGamesAllWords(
                 games: instruction.games,
-                lookaheadDepth: instruction.depth,
-                beamWidth: instruction.width,
+                lookaheadDepth: instruction.lookaheadDepth,
+                beamWidth: instruction.beamWidth,
                 maxDepth: instruction.maxDepth,
                 rootWidth: instruction.rootWidth,
                 useGuidedScores: instruction.useGuidedScores)

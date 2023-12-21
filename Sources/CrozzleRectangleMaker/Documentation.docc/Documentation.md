@@ -36,15 +36,10 @@ Contains various groupings of components
 
 - ``EdgeCalculatorV1``
 
-- ``ClusterCalculator``
 
 - ``RectangleCalculatorV1``
 
 ### Merging Functionality
-
-- ``ExecuteMergeCalculator``
-
-- ``MergeCalculator``
 
 - ``MergePlacementCalculator``
 
@@ -81,10 +76,6 @@ Contains various groupings of components
 - ``PlacementModel``
 
 - ``ShapeModel``
-
-- ``ShapeQueueList``
-
-- ``ShapeQueueModel``
 
 - ``StatisticsModel``
 

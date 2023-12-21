@@ -71,8 +71,6 @@ So we can only process winning words as we know how many winning words there are
 
 ### Shape Calculating Classes
 
-- ``ClusterCalculator``
-
 - ``EdgeCalculatorV1``
 
 - ``RectangleCalculatorV1``

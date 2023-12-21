@@ -69,5 +69,3 @@ So whenever we try to add to the `ShapeQueueList` then remove duplicates.
 ### Supporting Code
 
 - ``RemoveDuplicatesCalculator``
-
-- ``ShapeQueueListCalculator``

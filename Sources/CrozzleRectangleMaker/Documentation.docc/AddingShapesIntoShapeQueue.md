@@ -32,8 +32,4 @@ and we then create the gpuShapes and the statistics is refreshed.
 
 ### Components
 
-- ``ShapeQueueList``
-
-- ``ShapeQueueModel``
-
 - ``RemoveDuplicatesCalculator``
