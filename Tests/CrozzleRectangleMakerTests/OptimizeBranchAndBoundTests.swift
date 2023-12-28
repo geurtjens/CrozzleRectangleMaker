@@ -10,7 +10,7 @@ import XCTest
 final class OptimizeBranchAndBoundTests: XCTestCase {
     
     public func test_optimizeBeamWidthAllWords() async {
-        let _ = await OptimizeBranchAndBound.optimizeBeamWidthAllWords(
+        let _ = await OptimizeBranchAndBoundAllWords.optimizeBeamWidthAllWords(
             gameId: 8802,
             lookaheadDepth: 2,
             maxDepth: 30,

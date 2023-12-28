@@ -218,6 +218,14 @@ final class ShapeCalculatorTests: XCTestCase {
         }
     }
     
+    public func test_AverageScore() {
+        let winningShapes = GetStartingData.getWinningShapes(gameId: 8808)
+        
+        let average = ShapeCalculator.findAverageScore(shapes: winningShapes)
+        
+        XCTAssertEqual(68, average)
+    }
+    
     func testToCodeResult() throws {
         let placements = [
             PlacementModel(w: 0, x: 0, y: 9, z: true, l:4),

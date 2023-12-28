@@ -109,7 +109,7 @@ public class GetStartingData {
             words: words)
         
         
-        
+        // We want a way by which the Merge History will be the same whether the code is written in C# or Swift so the word sequence which is always unique gives us a consistent numbering scheme for the MergeHistory.
         ShapeCalculator.SortByScoreThenWordSequence(
             shapes: &shapes)
         

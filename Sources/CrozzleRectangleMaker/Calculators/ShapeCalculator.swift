@@ -149,7 +149,15 @@ public class ShapeCalculator {
         return result
     }
     
-    
+    public static func findAverageScore(shapes: [ShapeModel]) -> UInt16 {
+        var sum = 0
+        for shape in shapes {
+            sum += Int(shape.score)
+        }
+        
+        let average = sum / shapes.count
+        return UInt16(average)
+    }
     
     
     /// Verify that the shapes text is valid, that is there are no overlaps and no errors like #
@@ -314,17 +322,7 @@ public class ShapeCalculator {
     }
     
     public static func SortWithWordSequence(treeNodes: inout [TreeNodeModel]) {
-        
-        
-        
-//        for i in 0..<shapes.count {
-//            if shapes[i].seqCalculated == false {
-//                shapes[i].wordSequence = ShapeModel.getWordSequence(placements: shapes[i].placements)
-//                shapes[i].seqCalculated = true
-//            }
-//        }
-        
-        
+
         treeNodes.sort {
             if $0.parentShape.score == $1.parentShape.score {
                 if $0.parentShape.area == $1.parentShape.area {
@@ -350,16 +348,6 @@ public class ShapeCalculator {
     
     /// sort shapes by score, area and then also word sequence.  Useful for finding duplicates
     public static func SortWithWordSequence(shapes: inout [ShapeModel]) {
-        
-        
-        
-//        for i in 0..<shapes.count {
-//            if shapes[i].seqCalculated == false {
-//                shapes[i].wordSequence = ShapeModel.getWordSequence(placements: shapes[i].placements)
-//                shapes[i].seqCalculated = true
-//            }
-//        }
-        
         
         shapes.sort {
             if $0.score == $1.score {

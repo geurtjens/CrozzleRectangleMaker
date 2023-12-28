@@ -417,14 +417,6 @@ final class PacmanCalculatorV1Tests: XCTestCase {
                 heightMax: heightMax)
             
             XCTAssertEqual(609, result.count)
-            
-//            var shapes = ShapeCalculator.toShapes(pacmans: result)
-//
-//            ShapeCalculator.Sort(shapes: &shapes)
-//
-//            for shape in shapes {
-//                print(shape.ToString(words: start))
-//            }
         }
     }
     
