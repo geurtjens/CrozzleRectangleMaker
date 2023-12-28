@@ -36,7 +36,7 @@ final class BranchAndBoundV3Tests: XCTestCase {
         let game = GameList().getGame(gameId: 8803)!
         let words = game.winningWords
         let winningScore = game.winningScore
-        let result = await BranchAndBoundV3.executeGame(
+        let result = await BranchAndBoundV3.Execute(
             gameId: gameId,
             words: words,
             lookaheadDepth: 3,
@@ -56,7 +56,7 @@ final class BranchAndBoundV3Tests: XCTestCase {
         let words = game.winningWords
         
         
-        let result = await BranchAndBoundV3.executeGame(
+        let result = await BranchAndBoundV3.Execute(
             gameId: gameId,
             words: words,
             lookaheadDepth: 3,
@@ -77,7 +77,7 @@ final class BranchAndBoundV3Tests: XCTestCase {
         let words = game.winningWords
         
         
-        let result = await BranchAndBoundV3.executeGame(
+        let result = await BranchAndBoundV3.Execute(
             gameId: gameId,
             words: words,
             lookaheadDepth: 3,
@@ -100,7 +100,7 @@ final class BranchAndBoundV3Tests: XCTestCase {
         let words = game.winningWords
         
         
-        let result = await BranchAndBoundV3.executeGame(
+        let result = await BranchAndBoundV3.Execute(
             gameId: gameId,
             words: words,
             lookaheadDepth: 3,
@@ -113,31 +113,9 @@ final class BranchAndBoundV3Tests: XCTestCase {
         XCTAssertEqual(winningScore, Int(result.score))
     }
     
-    public func test_optimizeBeamWidthAllWords() async {
-        let _ = await BranchAndBoundV3.optimizeBeamWidthAllWords(
-            gameId: 8802,
-            lookaheadDepth: 2,
-            maxDepth: 30,
-            minimumBeamWidth: 1,
-            maximumBeamWidth: 25,
-            rootWidth: 1,
-            useGuidedScores: false)
-    }
     
-    public func test_ExecuteGames8612() async {
-        
-        let games = [8612]
-        
-        let result = await BranchAndBoundV3.executeGamesWinningWords(
-            games: games,
-            lookaheadDepth: 3,
-            beamWidth: 2,
-            maxDepth: 30,
-            rootWidth: 18,
-            useGuidedScores: false)
-        
-        XCTAssertEqual(1, result.count)
-    }
+    
+    
     
     public func test_execute8803() async {
         
@@ -165,7 +143,7 @@ final class BranchAndBoundV3Tests: XCTestCase {
         let words = game.winningWords
         
         
-        let result = await BranchAndBoundV3.executeGame(
+        let result = await BranchAndBoundV3.Execute(
             gameId: gameId,
             words: words,
             lookaheadDepth: 3,

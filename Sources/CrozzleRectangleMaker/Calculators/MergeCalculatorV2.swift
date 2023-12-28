@@ -128,7 +128,18 @@ public class MergeCalculatorV2 {
         return await a0 + a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9
     }
     
-    public static func ExecuteDifferentShapesAsync(sourceShapes: [ShapeModel], searchShapes: [ShapeModel], searchWordIndex: WordIndexModelV2, sourceMax: Int, searchMax: Int, words:[String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) async -> [ShapeModel] {
+    public static func ExecuteDifferentShapesAsync(
+        sourceShapes: [ShapeModel],
+        searchShapes: [ShapeModel],
+        searchWordIndex: WordIndexModelV2,
+        sourceMax: Int,
+        searchMax: Int,
+        words:[String],
+        wordsInt: [[Int]],
+        scoresMin:[Int],
+        widthMax: Int,
+        heightMax: Int) async -> [ShapeModel]
+    {
 
         // Rather than having a loop and running one at a time we have these async things that process all going up 10 at a time
         

@@ -262,7 +262,19 @@ public class ShapeCalculator {
         shapes.sort {
             if $0.score == $1.score {
                 return $0.area < $1.area
-            } else {
+            } 
+            else {
+                return $0.score > $1.score
+            }
+        }
+    }
+    
+    public static func SortByScoreThenWordSequence(shapes: inout [ShapeModel]) {
+        shapes.sort {
+            if $0.score == $1.score {
+                return $0.wordSequence < $1.wordSequence
+            }
+            else {
                 return $0.score > $1.score
             }
         }
@@ -576,7 +588,7 @@ public class ShapeCalculator {
             }
             result += "    \"\(line)\""
         }
-        result = "{\"score\": \(score), \"grid\": [\n" + result + "]}"
+        result = "{\"score\": \(score), \"width\": \(shape.width), \"height\": \(shape.height), \"history\": \(shape.mergeHistory), \"grid\": [\n" + result + "]}"
         return result
     }
     

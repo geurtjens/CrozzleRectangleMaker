@@ -50,7 +50,6 @@ public class SiblingMergeCalculator {
     public static func getAllMatchingShapes(
         wordIndex: WordIndexModelV2,
         sourceShape: ShapeModel,
-        sourceShapeId: Int,
         searchShapes: [ShapeModel],
         words: [String],
         wordsInt: [[Int]],
@@ -58,7 +57,7 @@ public class SiblingMergeCalculator {
         widthMax: Int,
         heightMax: Int) async -> [ShapeModel]
     {
-        var bestShape = sourceShape
+        
         let newShapes = await MergeCalculatorV2.ExecuteDifferentShapesAsync(
             sourceShapes: [sourceShape],
             searchShapes: searchShapes,
@@ -70,12 +69,6 @@ public class SiblingMergeCalculator {
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
-        
-        for newShape in newShapes {
-            if bestShape.score < newShape.score {
-                bestShape = newShape
-            }
-        }
         
         return newShapes
     }

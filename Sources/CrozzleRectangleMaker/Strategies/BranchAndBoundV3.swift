@@ -7,536 +7,9 @@
 
 import Foundation
 public class BranchAndBoundV3 {
-     
-    public static func optimizeWithStartingWords(
-        gameId: Int,
-        lookaheadDepth: Int,
-        beamWidth: Int,
-        maxDepth: Int) async -> ([Int],[Int])
-    {
-        var beamWidthResults: [Int] = []
-        
-        let startingWords = await findValidStartingWords(
-            gameId: gameId,
-            lookaheadDepth: lookaheadDepth,
-            beamWidth: beamWidth,
-            maxDepth: maxDepth)
-        
-        
-        for startingWord in startingWords {
-            let beamWidthResult = await optimizeBeamWidth(
-                gameId: gameId,
-                lookaheadDepth: lookaheadDepth,
-                maxDepth: maxDepth,
-                minimumBeamWidth: 1,
-                maximumBeamWidth: beamWidth,
-                rootWidth: startingWord * -1,
-                useGuidedScores: false)
-            beamWidthResults.append(beamWidthResult)
-            
-        }
-        
-        for i in 0..<beamWidthResults.count {
-            print("starting word \(startingWords[i]) has beam width of \(beamWidthResults[i])")
-        }
-        
-        return (startingWords, beamWidthResults)
- 
-    }
     
-    
-    
-    
-    
-    public static func findValidStartingWords(
-        gameId: Int,
-        lookaheadDepth: Int,
-        beamWidth: Int,
-        maxDepth: Int) async -> [Int]
-    {
-        
-        let winningShapes = getWinningShapes(gameId: gameId)
-        var result: [Int] = []
-        for i in 0..<winningShapes.count {
-            let startingShape = i * -1
-
-            
-            // Using the winning words we find all games that are winning in this case there should be only one
-            let winning = await executeGamesWinningWords(
-                games: [gameId],
-                lookaheadDepth: lookaheadDepth,
-                beamWidth: beamWidth,
-                maxDepth: maxDepth,
-                rootWidth: startingShape,
-                useGuidedScores: false)
-            
-            if winning.count == 1 {
-                result.append(startingShape)
-            }
-        }
-
-        return result
-    }
-    
-    public static func optimizeBeamWidth(
-        games: [Int],
-        lookaheadDepth: Int,
-        maxDepth: Int,
-        minimumBeamWidth: Int,
-        maximumBeamWidth: Int,
-        rootWidth: Int,
-        useGuidedScores: Bool) async -> [[Int]]
-    {
-        
-        var lowerWidth = 0
-        var upperWidth = 0
-        var currentWidth = 0
-
-        var result: [[Int]] = []
-        for _ in 0..<maximumBeamWidth+1 {
-            result.append([])
-        }
-        var failures: [Int] = []
-
-
-        for gameId in games {
-            
-            lowerWidth = minimumBeamWidth
-            upperWidth = maximumBeamWidth
-            
-            let lowerWidthShouldFail = await executeGamesWinningWords(
-                games: [gameId],
-                lookaheadDepth: lookaheadDepth,
-                beamWidth: lowerWidth,
-                maxDepth: maxDepth,
-                rootWidth: rootWidth,
-                useGuidedScores: useGuidedScores)
-            
-            if lowerWidthShouldFail.count > 0 {
-                failures.append(gameId)
-                print("game \(gameId) lower width of \(minimumBeamWidth) should not produce a winning game.  Skipping this game.")
-                
-                
-            } else {
-            
-                let upperWidthShouldSucceed = await executeGamesWinningWords(
-                    games: [gameId],
-                    lookaheadDepth: lookaheadDepth,
-                    beamWidth: upperWidth,
-                    maxDepth: maxDepth,
-                    rootWidth: rootWidth,
-                    useGuidedScores: useGuidedScores)
-            
-                if upperWidthShouldSucceed.count == 0  
-                {
-                    failures.append(gameId)
-                    print("game \(gameId) upper width of \(maximumBeamWidth) should produce a winning game.  Skipping this game.")
-                } else {
-                    while lowerWidth != upperWidth {
-                        
-                        currentWidth = Int((Double(lowerWidth) + Double(upperWidth) + 0.5) / 2.0)
-                        print ("GAME: \(gameId), LOWER: \(lowerWidth), UPPER: \(upperWidth), CURRENT WIDTH: \(currentWidth)")
-                        
-                        let winnersForCurrent = await executeGamesWinningWords(
-                            games: [gameId],
-                            lookaheadDepth: lookaheadDepth,
-                            beamWidth: currentWidth,
-                            maxDepth: maxDepth,
-                            rootWidth: rootWidth,
-                            useGuidedScores: useGuidedScores)
-                        
-                        if winnersForCurrent.count == 0 {
-                            if lowerWidth == currentWidth {
-                                lowerWidth += 1
-                                currentWidth = lowerWidth
-                            } else {
-                                lowerWidth = currentWidth
-                            }
-                            
-                        } else {
-                            upperWidth = currentWidth
-                        }
-                    }
-                    print("FINAL SIZE for : \(gameId) is \(currentWidth)")
-                    result[currentWidth].append(gameId)
-                }
-            }
-        }
-        if failures.count > 0 {
-            print("Failures because they started out of range: \(failures)")
-        }
-        
-        for beamWidth in 0..<maximumBeamWidth+1 {
-            if result[beamWidth].count > 0 {
-                print("depth\(lookaheadDepth)_width\(beamWidth) = \(result[beamWidth])")
-            }
-        }
-        return result
-    }
-    
-    
-    public static func optimizeBeamWidthAllWords(
-        gameId: Int,
-        lookaheadDepth: Int,
-        maxDepth: Int,
-        minimumBeamWidth: Int,
-        maximumBeamWidth: Int,
-        rootWidth: Int,
-        useGuidedScores: Bool) async -> Int
-    {
-        
-        var lowerWidth = 0
-        var upperWidth = 0
-        var currentWidth = 0
-
-
-            
-        lowerWidth = minimumBeamWidth
-        upperWidth = maximumBeamWidth
-        
-        let lowerWidthShouldFail = await executeGamesAllWords(
-            games: [gameId],
-            lookaheadDepth: lookaheadDepth,
-            beamWidth: lowerWidth,
-            maxDepth: maxDepth,
-            rootWidth: rootWidth,
-            useGuidedScores: useGuidedScores)
-        
-        if lowerWidthShouldFail.count > 0 {
-            
-            print("game \(gameId) lower width of \(minimumBeamWidth) should not produce a winning game.  Skipping this game.")
-            return -1
-            
-        } else {
-        
-            let upperWidthShouldSucceed = await executeGamesAllWords(
-                games: [gameId],
-                lookaheadDepth: lookaheadDepth,
-                beamWidth: upperWidth,
-                maxDepth: maxDepth,
-                rootWidth: rootWidth,
-                useGuidedScores: useGuidedScores)
-        
-            if upperWidthShouldSucceed.count == 0
-            {
-                print("game \(gameId) upper width of \(maximumBeamWidth) should produce a winning game.  Skipping this game.")
-                return -1
-            } else {
-                
-                while lowerWidth != upperWidth {
-                    
-                    currentWidth = Int((Double(lowerWidth) + Double(upperWidth) + 0.5) / 2.0)
-                    print ("GAME: \(gameId), LOWER: \(lowerWidth), UPPER: \(upperWidth), CURRENT WIDTH: \(currentWidth)")
-                    
-                    let winnersForCurrent = await executeGamesAllWords(
-                        games: [gameId],
-                        lookaheadDepth: lookaheadDepth,
-                        beamWidth: currentWidth,
-                        maxDepth: maxDepth,
-                        rootWidth: rootWidth,
-                        useGuidedScores: useGuidedScores)
-                    
-                    if winnersForCurrent.count == 0 {
-                        if lowerWidth == currentWidth {
-                            lowerWidth += 1
-                            currentWidth = lowerWidth
-                        } else {
-                            lowerWidth = currentWidth
-                        }
-                        
-                    } else {
-                        upperWidth = currentWidth
-                    }
-                }
-                print("FINAL SIZE for : \(gameId) is \(currentWidth)")
-                return currentWidth
-            }
-        }
-    }
-    
-    
-    
-    
-    
-    public static func optimizeBeamWidth(
-        gameId: Int,
-        lookaheadDepth: Int,
-        maxDepth: Int,
-        minimumBeamWidth: Int,
-        maximumBeamWidth: Int,
-        rootWidth: Int,
-        useGuidedScores: Bool) async -> Int
-    {
-        
-        var lowerWidth = 0
-        var upperWidth = 0
-        var currentWidth = 0
-
-
-            
-        lowerWidth = minimumBeamWidth
-        upperWidth = maximumBeamWidth
-        
-        let lowerWidthShouldFail = await executeGamesWinningWords(
-            games: [gameId],
-            lookaheadDepth: lookaheadDepth,
-            beamWidth: lowerWidth,
-            maxDepth: maxDepth,
-            rootWidth: rootWidth,
-            useGuidedScores: useGuidedScores)
-        
-        if lowerWidthShouldFail.count > 0 {
-            
-            print("game \(gameId) lower width of \(minimumBeamWidth) should not produce a winning game.  Skipping this game.")
-            return -1
-            
-        } else {
-        
-            let upperWidthShouldSucceed = await executeGamesWinningWords(
-                games: [gameId],
-                lookaheadDepth: lookaheadDepth,
-                beamWidth: upperWidth,
-                maxDepth: maxDepth,
-                rootWidth: rootWidth,
-                useGuidedScores: useGuidedScores)
-        
-            if upperWidthShouldSucceed.count == 0
-            {
-                print("game \(gameId) upper width of \(maximumBeamWidth) should produce a winning game.  Skipping this game.")
-                return -1
-            } else {
-                
-                while lowerWidth != upperWidth {
-                    
-                    currentWidth = Int((Double(lowerWidth) + Double(upperWidth) + 0.5) / 2.0)
-                    print ("GAME: \(gameId), LOWER: \(lowerWidth), UPPER: \(upperWidth), CURRENT WIDTH: \(currentWidth)")
-                    
-                    let winnersForCurrent = await executeGamesWinningWords(
-                        games: [gameId],
-                        lookaheadDepth: lookaheadDepth,
-                        beamWidth: lowerWidth,
-                        maxDepth: maxDepth,
-                        rootWidth: rootWidth,
-                        useGuidedScores: useGuidedScores)
-                    
-                    if winnersForCurrent.count == 0 {
-                        if lowerWidth == currentWidth {
-                            lowerWidth += 1
-                            currentWidth = lowerWidth
-                        } else {
-                            lowerWidth = currentWidth
-                        }
-                        
-                    } else {
-                        upperWidth = currentWidth
-                    }
-                }
-                print("FINAL SIZE for : \(gameId) is \(currentWidth)")
-                return currentWidth
-            }
-        }
-    }
-    
-    
-    public static func executeGamesAllWords(
-        games: [Int],
-        lookaheadDepth: Int,
-        beamWidth: Int,
-        maxDepth: Int,
-        rootWidth: Int,
-        useGuidedScores: Bool) async -> [Int]
-    {
-        
-        let startTime = DateTimeCalculator.now()
-        
-        let gameList = GameList()
-        
-        var successfulGames: [Int] = []
-        print("\"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"rootWidth\": \(rootWidth), \"maxDepth\": \(maxDepth), \"games\": \(games.count)")
-        print(games)
-        for game in gameList.games {
-            if games.contains(game.gameId) {
-                
-                let bestShape = await executeGame(
-                    gameId: game.gameId,
-                    words: game.words,
-                    lookaheadDepth: lookaheadDepth,
-                    beamWidth: beamWidth,
-                    maxDepth: maxDepth,
-                    rootWidth: rootWidth,
-                    winningScore: game.winningScore,
-                    useGuidedScores: useGuidedScores)
-                
-                if bestShape.score >= game.winningScore {
-                    successfulGames.append(game.gameId)
-                }
-            }
-        }
-        //print(successfulGames)
-        print("\"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"successes\": \(successfulGames.count), \"time\": \"\(DateTimeCalculator.duration(start: startTime))\"")
-        if successfulGames.count == games.count {
-            print("ALL GAMES SUCCEEDED")
-            print("FOUND \(successfulGames)")
-        } else {
-            let missing = Array(Set(games).subtracting(Set(successfulGames))).sorted()
-            print("MISSING \(missing)")
-            print("FOUND \(successfulGames)")
-        }
-        return successfulGames
-    }
-    
-    
-    /// Executes all games according to the parameters give
-    /// - Parameters:
-    ///   - games: An array of game id's that we want to process with the given parameters
-    ///   - lookaheadDepth: How deep we want to go down before deciding if that option is good
-    ///   - beamWidth: The top K shapes that we will continue with according to beam search algorithm
-    ///   - maxDepth: Maximum number of nodes down from the starting node to the last node visited
-    ///   - rootWidth: how many shapes are included when we first begin
-    ///   - useGuidedScores: limit the scores to what the human winning score was when it started with the highest scoring shape.  So it has a score for each number of words
-    /// - Returns: list of game id's have have been solved, that is that we get human winning score
-    public static func executeGamesWinningWords(
-        games: [Int],
-        lookaheadDepth: Int,
-        beamWidth: Int,
-        maxDepth: Int,
-        rootWidth: Int,
-        useGuidedScores: Bool) async -> [Int]
-    {
-        
-        let startTime = DateTimeCalculator.now()
-        
-        let gameList = GameList()
-        
-        var successfulGames: [Int] = []
-        print("{\"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"rootWidth\": \(rootWidth), \"maxDepth\": \(maxDepth), \"games\": \(games.count)")
-        print(games)
-        for game in gameList.games {
-            if games.contains(game.gameId) {
-                
-                let bestShape = await executeGame(
-                    gameId: game.gameId,
-                    words: game.winningWords,
-                    lookaheadDepth: lookaheadDepth,
-                    beamWidth: beamWidth,
-                    maxDepth: maxDepth,
-                    rootWidth: rootWidth,
-                    winningScore: game.winningScore,
-                    useGuidedScores: useGuidedScores)
-                
-                if bestShape.score >= game.winningScore {
-                    successfulGames.append(game.gameId)
-                }
-            }
-        }
-        //print(successfulGames)
-        print("\"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"successes\": \(successfulGames.count), \"time\": \"\(DateTimeCalculator.duration(start: startTime))\"")
-        if successfulGames.count == games.count {
-            print("ALL GAMES SUCCEEDED")
-            print("FOUND \(successfulGames)")
-        } else {
-            let missing = Array(Set(games).subtracting(Set(successfulGames))).sorted()
-            print("MISSING \(missing)")
-            print("FOUND \(successfulGames)")
-        }
-        return successfulGames
-    }
-    
-    /// Get the starting shapes and parameters for the game
-    /// - Parameters:
-    ///   - gameId: game identifier which tells us the widthMax and heightMax etc
-    ///   - words: words used in the puzzle
-    ///   - rootWidth: when a positive number it gets the best `rootWidth` number of winning games.  But if its 0 or -1 then it is repurposed to be an exact winning shape so 0 is the same as rootWidth of 1 but -1 will start with a starting shape of winningShapes[1] for example
-    ///   - useGuidedScores: guided scores can be turned off if you dont want to start with the highest scoring winning shape
-    /// - Returns: lots of data used by the calculation
-    public static func getStartingData(
-        gameId: Int,
-        words: [String],
-        rootWidth: Int,
-        useGuidedScores: Bool) async -> (Int,[[Int]],[ShapeModel], WordIndexModelV2, [TreeNodeModel], [Int], Int, Int)
-    {
-        
-        /// Get game parameters of widthMax, heightMax, winningScore
-        let game = GameList().getGame(gameId: gameId)!
-        
-        let widthMax = game.widthMax
-        let heightMax = game.heightMax
-        let winningScore = game.winningScore
-        
-        let wordsInt = WordCalculator.WordsToInt(words: words)
-        
-        /// Returns `searchShapes` which have `mergeHistories`
-        let searchShapes = await getSearchShapes(gameId: gameId, words: words)
-        
-        var winningShapes = getWinningShapes(gameId: gameId)
-        
-        ShapeCalculator.setMergeHistories(
-            shapes: &winningShapes,
-            referenceShapes: searchShapes)
-        
-        //let winningShapeIds = ShapeCalculator.getLastMergeHistoryShapeId(shapes: winningShapes)
-        
-        var startingShapes: [ShapeModel] = []
-        
-        if rootWidth > 0 {
-            for i in 0..<rootWidth {
-                if i < winningShapes.count {
-                    startingShapes.append(winningShapes[i])
-                }
-            }
-        } else if rootWidth < 0 {
-            let startingShapeIndex = rootWidth * -1
-            startingShapes.append(winningShapes[startingShapeIndex])
-        } else {
-            startingShapes.append(winningShapes[0])
-            // and we want to print all starting shapes so we can get the appropriate index
-            for i in 0..<winningShapes.count {
-                print(i)
-                print(winningShapes[i].ToJson(words: words))
-            }
-        }
-        
-        let wordIndex = WordIndexModelV2(shapes: searchShapes, wordCount: words.count)
-        
-        var scoresMin = StrategyCalculator.GetScoreMins(gameId: gameId)
-        if useGuidedScores == false {
-            scoresMin = Array(repeating: 0, count: 40)
-        }
-        
-        var treeNodes: [TreeNodeModel] = []
-        
-        for startingShapeId in 0..<startingShapes.count {
-            
-            let childShapes = await MergeCalculatorV2.ExecuteDifferentShapesAsync(
-                sourceShapes: [startingShapes[startingShapeId]],
-                searchShapes: searchShapes,
-                searchWordIndex: wordIndex,
-                sourceMax: 1,
-                searchMax: searchShapes.count,
-                words: words,
-                wordsInt: wordsInt,
-                scoresMin: scoresMin,
-                widthMax: widthMax,
-                heightMax: heightMax)
-            
-            let (noDuplicates, _) = RemoveDuplicatesCalculator.execute(
-                shapes: childShapes)
-            
-            let treeNode = TreeNodeModel(
-                parentShape: startingShapes[startingShapeId],
-                childShapes: noDuplicates,
-                bestDescendant: childShapes[0],
-                siblingCount: 0)
-            
-            treeNodes.append(treeNode)
-        }
-        
-        
-        return (winningScore, wordsInt, searchShapes, wordIndex, treeNodes, scoresMin, widthMax, heightMax)
-    }
-    
-    
-    public static func executeGame(
+    // called by BranchAndBoundRunner.executeGameAllWords and BranchAndBoundRunner.executeGameWinningWords
+    public static func Execute(
         gameId: Int,
         words: [String],
         lookaheadDepth: Int,
@@ -547,7 +20,8 @@ public class BranchAndBoundV3 {
         useGuidedScores: Bool) async -> ShapeModel
     {
         
-        let (_, wordsInt, searchShapes, wordIndex, rootTreeNodes, scoresMin, widthMax, heightMax) = await getStartingData(
+        /// rootTreeNodes will have the children already populated
+        let (_, wordsInt, searchShapes, wordIndex, rootTreeNodes, scoresMin, widthMax, heightMax) = await GetStartingData.Execute(
             gameId: gameId,
             words: words,
             rootWidth: rootWidth,
@@ -558,15 +32,13 @@ public class BranchAndBoundV3 {
         
         print("{\"game\": \(gameId), \"wordCount\": \(words.count), \"searchShapes\": \(searchShapes.count), \"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"rootWidth\": \(rootWidth), \"maxDepth\": \(maxDepth), \"cycles\": [")
         
-        let bestShapes = await executeLeaf(
+        let bestShapes = await executeCycles(
             gameId: gameId,
             words: words,
             lookaheadDepth: lookaheadDepth,
             beamWidth: beamWidth,
             maxDepth: maxDepth,
-            rootWidth: rootWidth,
             winningScore: winningScore,
-            useGuidedScores: useGuidedScores,
             wordsInt: wordsInt,
             searchShapes: searchShapes,
             wordIndex: wordIndex,
@@ -590,7 +62,6 @@ public class BranchAndBoundV3 {
             let shapes = await SiblingMergeCalculator.getAllMatchingShapes(
                 wordIndex: wordIndex,
                 sourceShape: shape,
-                sourceShapeId: 0,
                 searchShapes: searchShapes,
                 words: words,
                 wordsInt: wordsInt,
@@ -613,31 +84,22 @@ public class BranchAndBoundV3 {
         return bestShape
     }
     
-    
-    public static func executeLeaf(
+    // called by executeGame
+    public static func executeCycles(
         gameId: Int,
         words: [String],
         lookaheadDepth: Int,
         beamWidth: Int,
         maxDepth: Int,
-        rootWidth: Int,
         winningScore: Int,
-        useGuidedScores: Bool,
     
-        wordsInt: [[Int]], 
+        wordsInt: [[Int]],
         searchShapes: [ShapeModel],
         wordIndex: WordIndexModelV2,
         widthMax: Int,
         heightMax: Int,
         scoresMin: [Int],
-        rootTreeNodes: [TreeNodeModel]
-        
-        
-        //searchShapes, wordIndex, treeNodes, scoresMin,
-    
-    
-    
-    ) async -> [ShapeModel]
+        rootTreeNodes: [TreeNodeModel]) async -> [ShapeModel]
     {
         
         let startTime = DateTimeCalculator.now()
@@ -645,12 +107,7 @@ public class BranchAndBoundV3 {
          
         var bestShape: ShapeModel = rootTreeNodes[0].parentShape
         
-        //print(bestShape.ToJson(words: words))
-        
-        //let requiredShapes = Set(winningShapeIds)
-        
         /// We have to find the child nodes of the first tree node and send them
-        
         var shapesCreatedCount = 0
         var shapesCreated = 0
         
@@ -658,10 +115,16 @@ public class BranchAndBoundV3 {
         
         var previousNodes = treeNodes
         
-        for cycleId in 0..<maxDepth {
+        for cycleId in 1..<maxDepth {
             
-            shapesCreatedCount = 0
-            treeNodes = await executeAll(
+            if cycleId == 3 {
+                print("CHILD SHAPES FOR CYCLE 5");
+                for childShape in previousNodes[0].childShapes {
+                    print(childShape.ToJson(words: words))
+                }
+                print("Hault here")
+            }
+            treeNodes = await executeTreeNodes(
                 treeNodes: treeNodes,
                 searchShapes: searchShapes,
                 words: words,
@@ -671,6 +134,9 @@ public class BranchAndBoundV3 {
                 wordIndex: wordIndex,
                 scoresMin: scoresMin)
             
+//            if cycleId == 4 {
+//                print("Break here")
+//            }
             shapesCreatedCount = treeNodes.count
             for treeNode in treeNodes {
                 shapesCreatedCount += treeNode.childShapes.count
@@ -694,7 +160,7 @@ public class BranchAndBoundV3 {
             if treeNodes.count > 0 {
                 previousNodes = treeNodes
             } else {
-                 // Now we should get all the children together, remove duplicates and then do the beam restriction thing
+                /// Now we should get all the children together, remove duplicates and then do the beam restriction thing
                 
                 var childShapes: [ShapeModel] = []
                 for treeNode in previousNodes {
@@ -722,6 +188,7 @@ public class BranchAndBoundV3 {
                 }
                 
                 print(bestShape.ToJson(words: words))
+                
                 let siblingMerges = TreeNodeCalculator.identifySiblingMerges(
                     treeNodes: treeNodes,
                     minCommonShapes: 1,
@@ -764,21 +231,19 @@ public class BranchAndBoundV3 {
                 if bestShape.score < bestShapes[0].score {
                     bestShape = bestShapes[0]
                 }
-                
-                let siblingMerges:[(Int,Int,[Int])] = []
             
-                print("{\"cycle\": \(cycleId), \"shapesCreated\": \(shapesCreatedCount), \"bestScores\": \(bestScores), \"merges\": \(siblingMerges),")
+                print("{\"cycle\": \(cycleId), \"shapesCreated\": \(shapesCreatedCount), \"bestScores\": \(bestScores),")
                 
             }
         }
         return []
     }
     
-    /// Takes a list of tree nodes and expands them repeatedly to the lookahead depth
-    /// Then using beamWidth returns the top scoring treeNodeModels as calculated at the lookahead depth
-    public static func executeLookaheadAndBeam(
-        lookaheadDepth: Int,
-        beamWidth: Int,
+    
+    
+    
+    // called by executeLeaf
+    public static func executeTreeNodes(
         treeNodes: [TreeNodeModel],
         searchShapes: [ShapeModel],
         words: [String],
@@ -786,19 +251,14 @@ public class BranchAndBoundV3 {
         widthMax: Int,
         heightMax: Int,
         wordIndex: WordIndexModelV2,
-        scoresMin: [Int]) async -> ([TreeNodeModel],Int)
+        scoresMin: [Int]) async -> [TreeNodeModel]
     {
         
-        var shapesCreatedCount = 0
+        var result: [TreeNodeModel] = []
         
-        var treeNodes = treeNodes
-        
-        for treeNodeId in 0..<treeNodes.count {
+        for treeNode in treeNodes {
             
-            let treeNode = treeNodes[treeNodeId]
-            
-            let (bestShape, shapesCreated) = await getMaxScoreOfTreeNode(
-                lookaheadDepth: lookaheadDepth,
+            let values = executeTreeNode(
                 treeNode: treeNode,
                 searchShapes: searchShapes,
                 words: words,
@@ -808,32 +268,20 @@ public class BranchAndBoundV3 {
                 wordIndex: wordIndex,
                 scoresMin: scoresMin)
             
-            
-            if bestShape != nil {
-                treeNodes[treeNodeId].bestDescendant = bestShape!
-            }
-            shapesCreatedCount += shapesCreated
-
+            result += values
         }
+        // We have child decendant that is the winner but when we run this we have no children so it fails
+        // So we should somehow check for winner in another way
+        TreeNodeCalculator.sortByBestDescendant(treeNodes: &result)
         
-        // We remove tree nodes if their descendants do not have a greater score than them
-//        treeNodes = treeNodes.filter { $0.bestDescendant.score != $0.parentShape.score}
-//
-        TreeNodeCalculator.sortByBestDescendant(treeNodes: &treeNodes)
-        
-
-        
-        let result = TreeNodeCalculator.applyBeamWidth(treeNodes: treeNodes, beamWidth: beamWidth)
-        
-//        for node in result {
-//            print(node.parentShape.Flip().ToJson(words: words))
-//            print(node.parentShape.mergeHistory)
-//        }
-        
-        return (result, shapesCreatedCount)
+        return result
     }
     
     
+    
+    
+    
+    // called by executeAll and executeAsync
     public static func executeTreeNode(
         treeNode: TreeNodeModel,
         searchShapes: [ShapeModel],
@@ -864,9 +312,10 @@ public class BranchAndBoundV3 {
             
             var resultForShape: [ShapeModel] = []
             
-            let sourceShapeId = leafShapesAddedToBecomeSiblings[siblingId]
             let sourceShape = treeNode.childShapes[siblingId]
+            let sourceShapeId = leafShapesAddedToBecomeSiblings[siblingId]
             let siblingWords = wordDifferenceBetweenParentAndSibling[siblingId]
+            
             
             // We want to find all the siblings that have different words added than this older sibling (closer to top of list)
             for matchingSiblingId in 0..<leafShapesAddedToBecomeSiblings.count {
@@ -906,7 +355,7 @@ public class BranchAndBoundV3 {
             
             
             // We are getting the shapes that connect only to the last words that where added to the grid
-            let extraShapes = getLeafShapes(
+            let extraShapes = getLeafShapesForLastWordsAddedToCurrentShape(
                 wordIndex: wordIndex,
                 siblingWords: Array(siblingWords),
                 shapesToExclude: leafShapesAddedToBecomeSiblings,
@@ -920,45 +369,6 @@ public class BranchAndBoundV3 {
                 heightMax: heightMax)
                 
             resultForShape += extraShapes
-            
-//            if resultForShape.count == 0 {
-//                
-//                if deadEndCanJump {
-//                    //print("deadEndCanJump == true")
-//                    resultForShape = await MergeCalculatorV2.ExecuteDifferentShapesAsync(
-//                        sourceShapes: [sourceShape],
-//                        searchShapes: searchShapes,
-//                        searchWordIndex: wordIndex,
-//                        sourceMax: 1,
-//                        searchMax: searchShapes.count,
-//                        words: words,
-//                        wordsInt: wordsInt,
-//                        scoresMin: scoresMin,
-//                        widthMax: widthMax,
-//                        heightMax: heightMax)
-//                    (resultForShape, _) = RemoveDuplicatesCalculator.execute(shapes: resultForShape)
-//                }
-//            }
-            
-//            var newShapesWithDuplicates = await getAllMatchingShapes(
-//                    wordIndex: wordIndex,
-//                    siblingWords: Array(siblingWords),
-//                    shapesToExclude: leafShapesAddedToBecomeSiblings,
-//                    sourceShape: sourceShape,
-//                    sourceShapeId: sourceShapeId,
-//                    searchShapes: searchShapes,
-//                    words: words,
-//                    wordsInt: wordsInt,
-//                    scoresMin: scoresMin,
-//                    widthMax: widthMax,
-//                    heightMax: heightMax)
-//            resultForShape += newShapesWithDuplicates
-//            (resultForShape, _) = RemoveDuplicatesCalculator.execute(shapes: resultForShape)
-
-            
-            
-            
-            
             
             if resultForShape.count > 0 {
                 
@@ -985,7 +395,9 @@ public class BranchAndBoundV3 {
     }
     
     
-    public static func getLeafShapes(
+    
+    // called by executeTreeNode
+    public static func getLeafShapesForLastWordsAddedToCurrentShape(
         wordIndex: WordIndexModelV2,
         siblingWords: [Int],
         shapesToExclude: [Int],
@@ -1024,8 +436,12 @@ public class BranchAndBoundV3 {
     }
     
     
-    public static func executeAsync(
-        zeroToNine: Int,
+    /// Takes a list of tree nodes and expands them repeatedly to the lookahead depth
+    /// Then using beamWidth returns the top scoring treeNodeModels as calculated at the lookahead depth
+    /// called by executeLeaf
+    public static func executeLookaheadAndBeam(
+        lookaheadDepth: Int,
+        beamWidth: Int,
         treeNodes: [TreeNodeModel],
         searchShapes: [ShapeModel],
         words: [String],
@@ -1033,16 +449,20 @@ public class BranchAndBoundV3 {
         widthMax: Int,
         heightMax: Int,
         wordIndex: WordIndexModelV2,
-        scoresMin: [Int]) -> [TreeNodeModel]
+        scoresMin: [Int]) async -> ([TreeNodeModel],Int)
     {
         
-        var result:[TreeNodeModel] = []
+        var shapesCreatedCount = 0
         
-        // The difference is that each cpu works on 0,10,20 .. or 1, 11, 21 and so we divide the task
-        for treeNodeId in stride(from: zeroToNine, to:treeNodes.count, by: 10) {
+        var treeNodes = treeNodes
+        
+        for treeNodeId in 0..<treeNodes.count {
             
-            let treeNodes = executeTreeNode(
-                treeNode: treeNodes[treeNodeId],
+            let treeNode = treeNodes[treeNodeId]
+            
+            let (bestShape, shapesCreated) = await getNodesAccordingToLookaheadDepth(
+                lookaheadDepth: lookaheadDepth,
+                treeNode: treeNode,
                 searchShapes: searchShapes,
                 words: words,
                 wordsInt: wordsInt,
@@ -1051,13 +471,77 @@ public class BranchAndBoundV3 {
                 wordIndex: wordIndex,
                 scoresMin: scoresMin)
             
-            result += treeNodes
             
+            if bestShape != nil {
+                treeNodes[treeNodeId].bestDescendant = bestShape!
+            }
+            shapesCreatedCount += shapesCreated
+
         }
-        return result
+        
+        // We remove tree nodes if their descendants do not have a greater score than them
+//        treeNodes = treeNodes.filter { $0.bestDescendant.score != $0.parentShape.score}
+//
+        TreeNodeCalculator.sortByBestDescendant(treeNodes: &treeNodes)
+        
+
+        
+        let result = TreeNodeCalculator.applyBeamWidth(treeNodes: treeNodes, beamWidth: beamWidth)
+        
+//        for node in result {
+//            print(node.parentShape.Flip().ToJson(words: words))
+//            print(node.parentShape.mergeHistory)
+//        }
+        
+        return (result, shapesCreatedCount)
     }
     
+    // Called from executeLookaheadAndBeam
+    public static func getNodesAccordingToLookaheadDepth(
+        lookaheadDepth: Int,
+        treeNode: TreeNodeModel,
+        searchShapes: [ShapeModel],
+        words: [String],
+        wordsInt: [[Int]],
+        widthMax: Int,
+        heightMax: Int,
+        wordIndex: WordIndexModelV2,
+        scoresMin: [Int]) async -> (ShapeModel?, Int)
+    {
+            
+        var treeNodes = [treeNode]
+        
+        var bestShape: ShapeModel = treeNode.parentShape
+            
+        let shapesCreated = 0
+        
+        for _ in 1..<lookaheadDepth {
+            
+            treeNodes = await executeLevelInParallel(
+                treeNodes: treeNodes,
+                searchShapes: searchShapes,
+                words: words,
+                wordsInt: wordsInt,
+                widthMax: widthMax,
+                heightMax: heightMax,
+                wordIndex: wordIndex,
+                scoresMin: scoresMin)
+            
+            //shapesCreated += TreeNodeCalculator.countShapesCreated(treeNodes: treeNodes)
+            
+            if let currentBestShape = TreeNodeCalculator.getBestShape(treeNodes: treeNodes) {
+                if currentBestShape.score > bestShape.score {
+                    bestShape = currentBestShape
+                }
+            }
+        }
+        // Ok so we have now done our tree nodes to a certain depth
+        
+        // How big is this max scoring shape?  Do it later
+        return (bestShape, shapesCreated)
+    }
     
+    // called by getMaxScoreOfTreeNode
     public static func executeLevelInParallel(
         treeNodes: [TreeNodeModel],
         searchShapes: [ShapeModel],
@@ -1184,52 +668,11 @@ public class BranchAndBoundV3 {
     }
     
     
-    public static func getMaxScoreOfTreeNode(
-        lookaheadDepth: Int,
-        treeNode: TreeNodeModel,
-        searchShapes: [ShapeModel],
-        words: [String],
-        wordsInt: [[Int]],
-        widthMax: Int,
-        heightMax: Int,
-        wordIndex: WordIndexModelV2,
-        scoresMin: [Int]) async -> (ShapeModel?, Int)
-    {
-            
-        var treeNodes = [treeNode]
-        
-        var bestShape: ShapeModel = treeNode.parentShape
-            
-        let shapesCreated = 0
-        
-        for _ in 1..<lookaheadDepth {
-            
-            treeNodes = await executeLevelInParallel(
-                treeNodes: treeNodes,
-                searchShapes: searchShapes,
-                words: words,
-                wordsInt: wordsInt,
-                widthMax: widthMax,
-                heightMax: heightMax,
-                wordIndex: wordIndex,
-                scoresMin: scoresMin)
-            
-            //shapesCreated += TreeNodeCalculator.countShapesCreated(treeNodes: treeNodes)
-            
-            if let currentBestShape = TreeNodeCalculator.getBestShape(treeNodes: treeNodes) {
-                if currentBestShape.score > bestShape.score {
-                    bestShape = currentBestShape
-                }
-            }
-        }
-        // Ok so we have now done our tree nodes to a certain depth
-        
-        // How big is this max scoring shape?  Do it later
-        return (bestShape, shapesCreated)
-    }
     
     
-    public static func executeAll(
+    // called from executeLevelInParallel
+    public static func executeAsync(
+        zeroToNine: Int,
         treeNodes: [TreeNodeModel],
         searchShapes: [ShapeModel],
         words: [String],
@@ -1237,15 +680,16 @@ public class BranchAndBoundV3 {
         widthMax: Int,
         heightMax: Int,
         wordIndex: WordIndexModelV2,
-        scoresMin: [Int]) async -> [TreeNodeModel]
+        scoresMin: [Int]) -> [TreeNodeModel]
     {
         
-        var result: [TreeNodeModel] = []
+        var result:[TreeNodeModel] = []
         
-        for treeNode in treeNodes {
+        // The difference is that each cpu works on 0,10,20 .. or 1, 11, 21 and so we divide the task
+        for treeNodeId in stride(from: zeroToNine, to:treeNodes.count, by: 10) {
             
-            let values = executeTreeNode(
-                treeNode: treeNode,
+            let treeNodes = executeTreeNode(
+                treeNode: treeNodes[treeNodeId],
                 searchShapes: searchShapes,
                 words: words,
                 wordsInt: wordsInt,
@@ -1254,46 +698,9 @@ public class BranchAndBoundV3 {
                 wordIndex: wordIndex,
                 scoresMin: scoresMin)
             
-            result += values
+            result += treeNodes
+            
         }
-        // We have child decendant that is the winner but when we run this we have no children so it fails
-        // So we should somehow check for winner in another way
-        TreeNodeCalculator.sortByBestDescendant(treeNodes: &result)
-        
         return result
     }
-    
-    
-            
-    public static func getSearchShapes(
-        gameId: Int,
-        words: [String]) async -> [ShapeModel]
-    {
-        var shapes = await WinningShapesAllCalculatorV3Async.execute(
-            gameId: gameId,
-            words: words)
-        
-        ShapeCalculator.SortByScoreThenArea(
-            shapes: &shapes)
-        
-        ShapeCalculator.setMergeHistory(
-            shapes: &shapes)
-        
-        return shapes
-    }
-    
-    public static func getWinningShapes(gameId: Int) -> [ShapeModel] {
-        var (winningShapes, _, _, _) = WinningShapesCalculatorV1.getShapes(gameId: gameId)
-        
-        ShapeCalculator.SortByScoreThenArea(shapes: &winningShapes)
-        
-        return winningShapes
-    }
-    
-    
-    
-    
-    
-    
-    
-}
+ }

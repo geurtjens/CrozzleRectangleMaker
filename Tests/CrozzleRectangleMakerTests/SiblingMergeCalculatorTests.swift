@@ -37,7 +37,7 @@ final class SiblingMergeCalculatorTests: XCTestCase {
             siblingCount: 0)
         
         /// `AND` perform the tree merge calculation
-        let level1 = await BranchAndBoundV3.executeAll(
+        let level1 = await BranchAndBoundV3.executeTreeNodes(
             treeNodes: [treeNode],
             searchShapes: searchShapes,
             words: words,

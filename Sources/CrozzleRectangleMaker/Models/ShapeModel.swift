@@ -88,29 +88,16 @@ public struct ShapeModel {
     public static func getWordSequence(placements: [PlacementModel]) -> String {
         var wordSequence = ""
         for placement in placements {
-            if wordSequence != "" {
-                wordSequence += ","
-            }
-            wordSequence += String(placement.w)
-        }
-        
-        for placement in placements {
-            if wordSequence != "" {
-                wordSequence += ","
-            }
-            wordSequence += String(placement.x)
+            wordSequence += String(placement.w) + ","
         }
         for placement in placements {
-            if wordSequence != "" {
-                wordSequence += ","
-            }
-            wordSequence += String(placement.y)
+            wordSequence += String(placement.x) + ","
         }
-        
         for placement in placements {
-            if wordSequence != "" {
-                wordSequence += ","
-            }
+            wordSequence += String(placement.y) + ","
+        }
+        for placement in placements {
+            
             if placement.z == true {
                 wordSequence += "1"
             } else {
