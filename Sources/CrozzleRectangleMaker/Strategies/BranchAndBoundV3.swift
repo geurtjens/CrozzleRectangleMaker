@@ -117,13 +117,13 @@ public class BranchAndBoundV3 {
         
         for cycleId in 1..<maxDepth {
             
-            if cycleId == 3 {
-                print("CHILD SHAPES FOR CYCLE 5");
-                for childShape in previousNodes[0].childShapes {
-                    print(childShape.ToJson(words: words))
-                }
-                print("Hault here")
-            }
+//            if cycleId == 3 {
+//                print("CHILD SHAPES FOR CYCLE 5");
+//                for childShape in previousNodes[0].childShapes {
+//                    print(childShape.ToJson(words: words))
+//                }
+//                print("Hault here")
+//            }
             treeNodes = await executeTreeNodes(
                 treeNodes: treeNodes,
                 searchShapes: searchShapes,
