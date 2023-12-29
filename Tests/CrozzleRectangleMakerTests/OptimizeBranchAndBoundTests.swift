@@ -9,6 +9,10 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class OptimizeBranchAndBoundTests: XCTestCase {
     
+    public func test_executeFailures() async {
+        await OptimizeBranchAndBound.executeFailures()
+    }
+    
     public func test_optimizeBeamWidthAllWords() async {
         let _ = await OptimizeBranchAndBoundAllWords.optimizeBeamWidthAllWords(
             gameId: 8802,

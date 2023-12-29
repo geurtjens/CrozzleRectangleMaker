@@ -205,7 +205,7 @@ public class BranchAndBoundV3 {
                     return bestShapes
                     
                 } else {
-                    print("FAILED \(gameId)")
+                    print("FAILED \(gameId), expected: \(winningScore)")
                     print(DateTimeCalculator.duration(start: startTime))
                     return bestShapes
                 }

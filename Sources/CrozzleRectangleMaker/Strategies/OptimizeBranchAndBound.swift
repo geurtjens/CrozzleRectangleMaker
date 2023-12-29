@@ -14,14 +14,48 @@ public class OptimizeBranchAndBound {
     // But we also want to see how many beam per depth
     // so we steadily increase the depth too
     
+    public static func executeFailures() async {
+        let games = [8805, 8807, 8911, 9112, 9203, 9305, 9509]
+        await executeGames(
+            games: games,
+            maxLookaheadDepth: 4,
+            maxBeamWidth: 100,
+            maxDepth: 30,
+            useGuidedScores: true)
+                     
+    }
     
+    public static func executeGames(
+        games: [Int], // = [8805, 8807, 8911, 9112, 9203, 9305, 9509]
+        maxLookaheadDepth: Int,
+        maxBeamWidth: Int,
+        maxDepth: Int,
+        useGuidedScores: Bool) async
+    {
+        var result: [String] = []
+        for gameId in games {
+            let results = await execute(
+                gameId: gameId,
+                maxLookaheadDepth: maxLookaheadDepth,
+                maxBeamWidth: maxBeamWidth,
+                maxDepth: maxDepth,
+                useGuidedScores: useGuidedScores)
+            
+            result += results
+        }
+        for item in result {
+            print(item)
+        }
+        
+    }
     
     
     public static func execute(
         gameId: Int,
         maxLookaheadDepth: Int,
         maxBeamWidth: Int,
-        maxDepth: Int) async
+        maxDepth: Int,
+        useGuidedScores: Bool) async -> [String]
     {
         var result: [String] = []
         // First we find out how many starting words are there in the game
@@ -46,6 +80,8 @@ public class OptimizeBranchAndBound {
             
                 let rootWidth = startingShapesToTest[i] * -1
                 
+                let overallStart = DateTimeCalculator.now()
+                
                 let winningWidth = await optimizeBeamWidth(
                     gameId: gameId,
                     lookaheadDepth: lookaheadDepth,
@@ -53,16 +89,17 @@ public class OptimizeBranchAndBound {
                     minimumBeamWidth: 1,
                     maximumBeamWidth: maxBeamWidth,
                     rootWidth: rootWidth,
-                    useGuidedScores: false)
+                    useGuidedScores: useGuidedScores)
                 
                 if winningWidth != -1 {
-                    result.append("game: \(gameId), startingWord: \(i), beamWidth: \(winningWidth), lookaheadDepth: \(lookaheadDepth)")
+                    result.append("game: \(gameId), startingWord: \(i), lookaheadDepth: \(lookaheadDepth), beamWidth: \(winningWidth), timeToProcess: \(DateTimeCalculator.duration(start: overallStart))")
                 }
             }
         }
         for item in result {
             print(item)
         }
+        return result
     }
     
     
@@ -251,11 +288,12 @@ public class OptimizeBranchAndBound {
         rootWidth: Int,
         useGuidedScores: Bool) async -> Int
     {
-        
+        var timeToProcessOneConfiguration = ""
         var lowerWidth = 0
         var upperWidth = 0
         var currentWidth = 0
 
+        let overallStart = DateTimeCalculator.now()
 
             
         lowerWidth = minimumBeamWidth
@@ -293,7 +331,9 @@ public class OptimizeBranchAndBound {
                 while lowerWidth != upperWidth {
                     
                     currentWidth = Int((Double(lowerWidth) + Double(upperWidth) + 0.5) / 2.0)
-                    print ("GAME: \(gameId), LOWER: \(lowerWidth), UPPER: \(upperWidth), CURRENT WIDTH: \(currentWidth)")
+                    print ("GAME: \(gameId), STARTINGSHAPE: \(rootWidth * -1), LOWER: \(lowerWidth), UPPER: \(upperWidth), CURRENT WIDTH: \(currentWidth)")
+                    
+                    let testOneConfigurationStart = DateTimeCalculator.now()
                     
                     let winnersForCurrent = await BranchAndBoundRunner.executeGamesWinningWords(
                         games: [gameId],
@@ -302,7 +342,7 @@ public class OptimizeBranchAndBound {
                         maxDepth: maxDepth,
                         rootWidth: rootWidth,
                         useGuidedScores: useGuidedScores)
-                    
+                    timeToProcessOneConfiguration = DateTimeCalculator.duration(start: testOneConfigurationStart)
                     if winnersForCurrent.count == 0 {
                         if lowerWidth == currentWidth {
                             lowerWidth += 1
@@ -315,7 +355,9 @@ public class OptimizeBranchAndBound {
                         upperWidth = currentWidth
                     }
                 }
-                print("FINAL SIZE for : \(gameId) is \(currentWidth)")
+                
+                
+                print("FINAL SIZE\nGame: \(gameId), StartingShape: \(rootWidth * -1), lookaheadDepth: \(lookaheadDepth), beamWidth: \(currentWidth), time: \(timeToProcessOneConfiguration), overallProcessTime: \(DateTimeCalculator.duration(start: overallStart))")
                 return currentWidth
             }
         }
