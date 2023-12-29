@@ -324,24 +324,7 @@ public class ShapeCalculator {
     public static func SortWithWordSequence(treeNodes: inout [TreeNodeModel]) {
 
         treeNodes.sort {
-            if $0.parentShape.score == $1.parentShape.score {
-                if $0.parentShape.area == $1.parentShape.area {
-                    if $0.parentShape.wordSequence == $1.parentShape.wordSequence {
-                        if $0.parentShape.mergeHistory.count == $1.parentShape.mergeHistory.count {
-                            return lowestShapeScoresFirst(firstNode:$0, secondNode:$1)
-                        } else {
-                            return $0.parentShape.mergeHistory.count < $1.parentShape.mergeHistory.count
-                        }
-                    } else {
-                        return $0.parentShape.wordSequence < $1.parentShape.wordSequence
-                    }
-                }
-                else {
-                    return $0.parentShape.area < $1.parentShape.area
-                }
-            } else {
-                return $0.parentShape.score > $1.parentShape.score
-            }
+            return $0.parentShape.wordSequence < $1.parentShape.wordSequence
         }
     }
     
@@ -350,24 +333,7 @@ public class ShapeCalculator {
     public static func SortWithWordSequence(shapes: inout [ShapeModel]) {
         
         shapes.sort {
-            if $0.score == $1.score {
-                if $0.area == $1.area {
-                    if $0.wordSequence == $1.wordSequence {
-                        if $0.mergeHistory.count == $1.mergeHistory.count {
-                            return lowestShapeScoresFirst($0, $1)
-                        } else {
-                            return $0.mergeHistory.count < $1.mergeHistory.count
-                        }
-                    } else {
-                        return $0.wordSequence < $1.wordSequence
-                    }
-                }
-                else {
-                    return $0.area < $1.area
-                }
-            } else {
-                return $0.score > $1.score
-            }
+            return $0.wordSequence < $1.wordSequence
         }
     }
     

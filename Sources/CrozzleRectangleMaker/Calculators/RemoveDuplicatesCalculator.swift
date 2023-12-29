@@ -38,9 +38,7 @@ public class RemoveDuplicatesCalculator {
         var duplicateCount = 0
         for current in 1..<treeNodes.count {
             previous = current - 1
-            if (treeNodes[current].parentShape.score == treeNodes[previous].parentShape.score &&
-                treeNodes[current].parentShape.wordSequence == treeNodes[previous].parentShape.wordSequence &&
-                treeNodes[current].parentShape.width * treeNodes[current].parentShape.height == treeNodes[previous].parentShape.width * treeNodes[previous].parentShape.height)
+            if (treeNodes[current].parentShape.wordSequence == treeNodes[previous].parentShape.wordSequence)
             {
                 treeNodes[current].isValid = false
                 duplicateCount += 1
@@ -125,9 +123,7 @@ public class RemoveDuplicatesCalculator {
         /// what if all shapes are flipped if their first shape is not horizontal so that it is always horizontal,  then the using x and y will work for removing duplicates
         for current in 1..<shapes.count {
             previous = current - 1
-            if (shapes[current].score == shapes[previous].score &&
-                shapes[current].wordSequence == shapes[previous].wordSequence &&
-                shapes[current].width * shapes[current].height == shapes[previous].width * shapes[previous].height)
+            if (shapes[current].wordSequence == shapes[previous].wordSequence)
             {
                 shapes[current].isValid = false
                 duplicateCount += 1
