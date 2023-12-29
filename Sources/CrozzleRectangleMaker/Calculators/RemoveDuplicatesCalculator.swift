@@ -70,7 +70,12 @@ public class RemoveDuplicatesCalculator {
             }
         }
         
-        let (nonDuplicatedShapes, previousDuplicateCount) = findDuplicates(shapes: flippedShapes)
+        
+        
+        var (nonDuplicatedShapes, previousDuplicateCount) = findDuplicates(shapes: flippedShapes)
+        
+        ShapeCalculator.SortByScoreThenArea(shapes: &nonDuplicatedShapes)
+        
         return (nonDuplicatedShapes, previousDuplicateCount)
     }
     
