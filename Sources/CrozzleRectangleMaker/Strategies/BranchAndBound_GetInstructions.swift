@@ -139,14 +139,13 @@ public struct BranchAndBound_GetInstructions {
         
         var result: [BranchAndBoundInstruction] = []
         
-        
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 4, beamWidth: 68, games: [8805], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 11, games: [8807], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 3, games: [8911], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 4, beamWidth: 35, games: [9112], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 74, games: [9203], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+    
+    
+    
+    // No solution found for 9305
         result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 40, games: [9305], rootWidth: -5, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 4, beamWidth: 8, games: [9509], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        
+        
         return result
     }
     public static func WinningWords_UseGuidedScores() -> [BranchAndBoundInstruction] {
@@ -162,7 +161,12 @@ public struct BranchAndBound_GetInstructions {
         result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 8, games: [9108], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
         result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 17, games: [9510], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
         result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 27, games: [9503], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
-
+        
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 50, games: [8911], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 75, games: [8807], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 87, games: [9509], rootWidth: -2, useGuidedScores: true, maxDepth: 30))
+        
         result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 1, games: [8612, 8809, 9002, 9109, 9201, 9211, 9303, 9310, 9312], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
         result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 2, games: [8702, 8704, 8910, 9105, 9207, 9210], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
         result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 3, games: [
@@ -177,7 +181,11 @@ public struct BranchAndBound_GetInstructions {
         result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 13, games: [9410], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
         result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 36, games: [8906], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
         result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 37, games: [9301], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
-
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 99, games: [8805], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        //result.append(BranchAndBoundInstruction(lookaheadDepth: 4, beamWidth: 68, games: [8805], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 1, games: [9112], rootWidth: -3, useGuidedScores: true, maxDepth: 30))
+        
         result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 1, games: [8705, 8712, 8811, 9007, 9008, 9103, 9110, 9111, 9206, 9302, 9308, 9309, 9404, 9502], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
         result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 2, games: [8812, 8903, 8910, 9006, 9204, 9304, 9402, 9508], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
         result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 3, games: [9009, 9407], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
@@ -187,9 +195,7 @@ public struct BranchAndBound_GetInstructions {
         result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 7, games: [9106], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
         result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 9, games: [9307], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
         result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 10, games: [9506, 9604], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 11, games: [
-            //8807,
-            8902, 9202, 9501], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 11, games: [8902, 9202, 9501], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
         result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 14, games: [9010], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
         result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 16, games: [9209], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
         result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 18, games: [9001, 9011], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
@@ -207,7 +213,8 @@ public struct BranchAndBound_GetInstructions {
         //result.append(BranchAndBoundInstruction(lookaheadDepth: 4, beamWidth: 8, games: [9509], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
         result.append(BranchAndBoundInstruction(lookaheadDepth: 4, beamWidth: 23, games: [9107], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
         //result.append(BranchAndBoundInstruction(lookaheadDepth: 4, beamWidth: 35, games: [9112], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
-        //result.append(BranchAndBoundInstruction(lookaheadDepth: 4, beamWidth: 68, games: [8805], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+        
+        
         result.append(BranchAndBoundInstruction(lookaheadDepth: 4, beamWidth: 82, games: [8904], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
 
         // These are the stranger instructions that do not start with the highest scoring starting shape
