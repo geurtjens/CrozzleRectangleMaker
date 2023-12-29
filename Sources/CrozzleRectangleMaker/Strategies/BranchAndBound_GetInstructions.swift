@@ -140,8 +140,8 @@ public struct BranchAndBound_GetInstructions {
         var result: [BranchAndBoundInstruction] = []
 
         result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 1, games: [
-            //8802, 8808, 9104, this one works perfectly so lets concentrate on the next one
-            9212, 9306, 9406], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
+            //, this one works perfectly so lets concentrate on the next one
+            8802, 8808, 9104, 9212, 9306, 9406], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
         result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 2, games: [8710, 9311], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
         result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 3, games: [9412], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
         result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 5, games: [8711], rootWidth: 1, useGuidedScores: true, maxDepth: 30))
