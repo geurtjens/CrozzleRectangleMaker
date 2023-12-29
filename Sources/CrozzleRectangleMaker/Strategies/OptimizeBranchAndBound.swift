@@ -69,7 +69,7 @@ public class OptimizeBranchAndBound {
         
         for i in 0..<winningShapes.count {
             if winningShapes[i].score > averageScore {
-                startingShapesToTest.append(i)
+                startingShapesToTest.append(i+1)
             }
         }
         
