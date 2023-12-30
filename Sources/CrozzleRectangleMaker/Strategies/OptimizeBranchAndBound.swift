@@ -14,14 +14,26 @@ public class OptimizeBranchAndBound {
     // But we also want to see how many beam per depth
     // so we steadily increase the depth too
     
-    public static func executeFailures() async {
-        let games = [8805, 8807, 8911, 9112, 9203, 9305, 9509]
+    public static func executeFailuresUsingGuidedScores() async {
+        let games = [8807, 9203, 9305]
+        await executeGames(
+            games: games,
+            maxLookaheadDepth: 4,
+            maxBeamWidth: 150,
+            maxDepth: 30,
+            useGuidedScores: true)
+                     
+    }
+    
+    public static func executeFailuresNoGuidedScores() async {
+        let games = [8807, 8911, 9112, 9203, 9305, 9509]
+                    
         await executeGames(
             games: games,
             maxLookaheadDepth: 4,
             maxBeamWidth: 100,
             maxDepth: 30,
-            useGuidedScores: true)
+            useGuidedScores: false)
                      
     }
     
