@@ -10,7 +10,7 @@ import XCTest
 final class OptimizeBranchAndBoundTests: XCTestCase {
     
     public func test_executeFailures() async {
-        await OptimizeBranchAndBound.executeFailures()
+        await OptimizeBranchAndBound.executeFailuresUsingGuidedScores()
     }
     
     public func test_optimizeBeamWidthAllWords() async {
