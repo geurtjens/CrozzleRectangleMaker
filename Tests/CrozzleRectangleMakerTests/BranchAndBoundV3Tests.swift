@@ -42,6 +42,7 @@ final class BranchAndBoundV3Tests: XCTestCase {
             lookaheadDepth: 3,
             beamWidth: 200,
             maxDepth:30,
+            rootShape: 0,
             rootWidth: 1,
             winningScore: winningScore,
             useGuidedScores: false)
@@ -62,6 +63,7 @@ final class BranchAndBoundV3Tests: XCTestCase {
             lookaheadDepth: 3,
             beamWidth: 3,
             maxDepth: 20,
+            rootShape: 0,
             rootWidth: 3,
             winningScore: winningScore,
             useGuidedScores: true)
@@ -85,6 +87,7 @@ final class BranchAndBoundV3Tests: XCTestCase {
             lookaheadDepth: 3,
             beamWidth: 1,
             maxDepth: 30,
+            rootShape: 0,
             rootWidth: 1,
             winningScore: winningScore,
             useGuidedScores: true)
@@ -108,6 +111,7 @@ final class BranchAndBoundV3Tests: XCTestCase {
             lookaheadDepth: 3,
             beamWidth: 1,
             maxDepth: 30,
+            rootShape: 0,
             rootWidth: 1,
             winningScore: winningScore,
             useGuidedScores: true)
@@ -151,6 +155,7 @@ final class BranchAndBoundV3Tests: XCTestCase {
             lookaheadDepth: 3,
             beamWidth: 10,
             maxDepth: 30,
+            rootShape: 0,
             rootWidth: 1,
             winningScore: winningScore,
             useGuidedScores: true)

@@ -17,6 +17,7 @@ public class GetStartingData {
     public static func Execute(
         gameId: Int,
         words: [String],
+        rootShape: Int,
         rootWidth: Int,
         useGuidedScores: Bool) async -> (Int,[[Int]],[ShapeModel], WordIndexModelV2, [TreeNodeModel], [Int], Int, Int)
     {
@@ -43,21 +44,13 @@ public class GetStartingData {
         
         var startingShapes: [ShapeModel] = []
         
-        if rootWidth > 0 {
+        if rootWidth == 1 {
+            startingShapes.append(winningShapes[rootShape])
+        } else if rootWidth > 1 {
             for i in 0..<rootWidth {
                 if i < winningShapes.count {
                     startingShapes.append(winningShapes[i])
                 }
-            }
-        } else if rootWidth < 0 {
-            let startingShapeIndex = rootWidth * -1
-            startingShapes.append(winningShapes[startingShapeIndex])
-        } else {
-            startingShapes.append(winningShapes[0])
-            // and we want to print all starting shapes so we can get the appropriate index
-            for i in 0..<winningShapes.count {
-                print(i)
-                print(winningShapes[i].ToJson(words: words))
             }
         }
         

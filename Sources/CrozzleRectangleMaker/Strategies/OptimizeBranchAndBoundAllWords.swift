@@ -13,6 +13,7 @@ class OptimizeBranchAndBoundAllWords {
         maxDepth: Int,
         minimumBeamWidth: Int,
         maximumBeamWidth: Int,
+        rootShape: Int,
         rootWidth: Int,
         useGuidedScores: Bool) async -> Int
     {
@@ -31,6 +32,7 @@ class OptimizeBranchAndBoundAllWords {
             lookaheadDepth: lookaheadDepth,
             beamWidth: lowerWidth,
             maxDepth: maxDepth,
+            rootShape: rootShape,
             rootWidth: rootWidth,
             useGuidedScores: useGuidedScores)
         
@@ -46,6 +48,7 @@ class OptimizeBranchAndBoundAllWords {
                 lookaheadDepth: lookaheadDepth,
                 beamWidth: upperWidth,
                 maxDepth: maxDepth,
+                rootShape: rootShape,
                 rootWidth: rootWidth,
                 useGuidedScores: useGuidedScores)
         
@@ -65,6 +68,7 @@ class OptimizeBranchAndBoundAllWords {
                         lookaheadDepth: lookaheadDepth,
                         beamWidth: currentWidth,
                         maxDepth: maxDepth,
+                        rootShape: rootShape,
                         rootWidth: rootWidth,
                         useGuidedScores: useGuidedScores)
                     

@@ -15,11 +15,13 @@ final class GetStartingDataTests: XCTestCase {
         let gameId = 8808
         let words = ["STUTZ", "SUZUKI", "BENZ", "VW", "MAZDA", "VORTEX", "ROCKY", "CAMRY", "SUPRA", "TURBO", "TELSTAR", "ASTRA", "BMW", "RENAULT", "ROLLS", "COLT", "ROMEO", "TARAGO", "AUDI", "MG", "SEDAN", "NOMAD", "SAAB", "GOLF", "ALFA", "LADA"]
         let rootWidth = 1
+        let rootShape = 0
         let useGuidedScores = false
         
         let (_, wordsInt, searchShapes, wordIndex, rootTreeNodes, scoresMin, widthMax, heightMax) = await GetStartingData.Execute(
             gameId: gameId,
             words: words,
+            rootShape: rootShape,
             rootWidth: rootWidth,
             useGuidedScores: useGuidedScores)
         

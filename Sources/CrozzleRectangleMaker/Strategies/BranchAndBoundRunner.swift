@@ -45,6 +45,7 @@ public class BranchAndBoundRunner {
                 lookaheadDepth: instruction.lookaheadDepth,
                 beamWidth: instruction.beamWidth,
                 maxDepth: instruction.maxDepth,
+                rootShape: instruction.rootShape,
                 rootWidth: instruction.rootWidth,
                 useGuidedScores: instruction.useGuidedScores)
         }
@@ -65,6 +66,7 @@ public class BranchAndBoundRunner {
                 lookaheadDepth: instruction.lookaheadDepth,
                 beamWidth: instruction.beamWidth,
                 maxDepth: instruction.maxDepth,
+                rootShape: instruction.rootShape,
                 rootWidth: instruction.rootWidth,
                 useGuidedScores: instruction.useGuidedScores)
         }
@@ -80,6 +82,7 @@ public class BranchAndBoundRunner {
         lookaheadDepth: Int,
         beamWidth: Int,
         maxDepth: Int,
+        rootShape: Int,
         rootWidth: Int,
         useGuidedScores: Bool) async -> [Int]
     {
@@ -100,6 +103,7 @@ public class BranchAndBoundRunner {
                     lookaheadDepth: lookaheadDepth,
                     beamWidth: beamWidth,
                     maxDepth: maxDepth,
+                    rootShape: rootShape,
                     rootWidth: rootWidth,
                     winningScore: game.winningScore,
                     useGuidedScores: useGuidedScores)
@@ -138,6 +142,7 @@ public class BranchAndBoundRunner {
         lookaheadDepth: Int,
         beamWidth: Int,
         maxDepth: Int,
+        rootShape: Int,
         rootWidth: Int,
         useGuidedScores: Bool) async -> [Int]
     {
@@ -158,6 +163,7 @@ public class BranchAndBoundRunner {
                     lookaheadDepth: lookaheadDepth,
                     beamWidth: beamWidth,
                     maxDepth: maxDepth,
+                    rootShape: rootShape,
                     rootWidth: rootWidth,
                     winningScore: game.winningScore,
                     useGuidedScores: useGuidedScores)

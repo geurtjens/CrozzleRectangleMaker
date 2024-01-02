@@ -22,6 +22,7 @@ final class BranchAndBoundRunnerTests: XCTestCase {
             lookaheadDepth: 3,
             beamWidth: 2,
             maxDepth: 30,
+            rootShape: 0,
             rootWidth: 18,
             useGuidedScores: false)
         

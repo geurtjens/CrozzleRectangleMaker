@@ -10,6 +10,7 @@ public struct BranchAndBoundInstruction {
     var lookaheadDepth: Int
     var beamWidth: Int
     var games: [Int]
+    var rootShape: Int
     var rootWidth: Int
     var useGuidedScores: Bool
     var maxDepth: Int

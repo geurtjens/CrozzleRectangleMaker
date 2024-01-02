@@ -88,9 +88,9 @@ public class OptimizeBranchAndBound {
         print("game: \(gameId), numberOfStartingShapesToTest: \(startingShapesToTest.count)")
         
         for lookaheadDepth in 1..<(maxLookaheadDepth+1) {
-            for i in 0..<startingShapesToTest.count {
+            for rootShapeId in 0..<startingShapesToTest.count {
             
-                let rootWidth = startingShapesToTest[i] * -1
+                let rootShape = startingShapesToTest[rootShapeId]
                 
                 let overallStart = DateTimeCalculator.now()
                 
@@ -100,11 +100,12 @@ public class OptimizeBranchAndBound {
                     maxDepth: maxDepth,
                     minimumBeamWidth: 1,
                     maximumBeamWidth: maxBeamWidth,
-                    rootWidth: rootWidth,
+                    rootShape: rootShape,
+                    rootWidth: 1,
                     useGuidedScores: useGuidedScores)
                 
                 if winningWidth != -1 {
-                    result.append("game: \(gameId), startingWord: \(i), lookaheadDepth: \(lookaheadDepth), beamWidth: \(winningWidth), timeToProcess: \(DateTimeCalculator.duration(start: overallStart))")
+                    result.append("game: \(gameId), rootShape: \(rootShape), lookaheadDepth: \(lookaheadDepth), beamWidth: \(winningWidth), timeToProcess: \(DateTimeCalculator.duration(start: overallStart))")
                 }
             }
         }
@@ -126,31 +127,32 @@ public class OptimizeBranchAndBound {
     {
         var beamWidthResults: [Int] = []
         
-        let startingWords = await findValidStartingWords(
+        let rootShapes = await findValidStartingWords(
             gameId: gameId,
             lookaheadDepth: lookaheadDepth,
             beamWidth: beamWidth,
             maxDepth: maxDepth)
         
         
-        for startingWord in startingWords {
+        for rootShape in rootShapes {
             let beamWidthResult = await optimizeBeamWidth(
                 gameId: gameId,
                 lookaheadDepth: lookaheadDepth,
                 maxDepth: maxDepth,
                 minimumBeamWidth: 1,
                 maximumBeamWidth: beamWidth,
-                rootWidth: startingWord * -1,
+                rootShape: rootShape,
+                rootWidth: 1,
                 useGuidedScores: false)
             beamWidthResults.append(beamWidthResult)
             
         }
         
         for i in 0..<beamWidthResults.count {
-            print("starting word \(startingWords[i]) has beam width of \(beamWidthResults[i])")
+            print("starting word \(rootShapes[i]) has beam width of \(beamWidthResults[i])")
         }
         
-        return (startingWords, beamWidthResults)
+        return (rootShapes, beamWidthResults)
  
     }
     
@@ -160,6 +162,7 @@ public class OptimizeBranchAndBound {
         maxDepth: Int,
         minimumBeamWidth: Int,
         maximumBeamWidth: Int,
+        rootShape: Int,
         rootWidth: Int,
         useGuidedScores: Bool) async -> [[Int]]
     {
@@ -185,6 +188,7 @@ public class OptimizeBranchAndBound {
                 lookaheadDepth: lookaheadDepth,
                 beamWidth: lowerWidth,
                 maxDepth: maxDepth,
+                rootShape: rootShape,
                 rootWidth: rootWidth,
                 useGuidedScores: useGuidedScores)
             
@@ -200,6 +204,7 @@ public class OptimizeBranchAndBound {
                     lookaheadDepth: lookaheadDepth,
                     beamWidth: upperWidth,
                     maxDepth: maxDepth,
+                    rootShape: rootShape,
                     rootWidth: rootWidth,
                     useGuidedScores: useGuidedScores)
             
@@ -218,6 +223,7 @@ public class OptimizeBranchAndBound {
                             lookaheadDepth: lookaheadDepth,
                             beamWidth: currentWidth,
                             maxDepth: maxDepth,
+                            rootShape: rootShape,
                             rootWidth: rootWidth,
                             useGuidedScores: useGuidedScores)
                         
@@ -261,8 +267,8 @@ public class OptimizeBranchAndBound {
         
         let winningShapes = GetStartingData.getWinningShapes(gameId: gameId)
         var result: [Int] = []
-        for i in 0..<winningShapes.count {
-            let startingShape = i * -1
+        for rootShape in 0..<winningShapes.count {
+            
 
             
             // Using the winning words we find all games that are winning in this case there should be only one
@@ -271,11 +277,12 @@ public class OptimizeBranchAndBound {
                 lookaheadDepth: lookaheadDepth,
                 beamWidth: beamWidth,
                 maxDepth: maxDepth,
-                rootWidth: startingShape,
+                rootShape: rootShape,
+                rootWidth: 1,
                 useGuidedScores: false)
             
             if winning.count == 1 {
-                result.append(startingShape)
+                result.append(rootShape)
             }
         }
 
@@ -297,6 +304,7 @@ public class OptimizeBranchAndBound {
         maxDepth: Int,
         minimumBeamWidth: Int,
         maximumBeamWidth: Int,
+        rootShape: Int,
         rootWidth: Int,
         useGuidedScores: Bool) async -> Int
     {
@@ -316,6 +324,7 @@ public class OptimizeBranchAndBound {
             lookaheadDepth: lookaheadDepth,
             beamWidth: lowerWidth,
             maxDepth: maxDepth,
+            rootShape: rootShape,
             rootWidth: rootWidth,
             useGuidedScores: useGuidedScores)
         
@@ -331,6 +340,7 @@ public class OptimizeBranchAndBound {
                 lookaheadDepth: lookaheadDepth,
                 beamWidth: upperWidth,
                 maxDepth: maxDepth,
+                rootShape: rootShape,
                 rootWidth: rootWidth,
                 useGuidedScores: useGuidedScores)
         
@@ -352,6 +362,7 @@ public class OptimizeBranchAndBound {
                         lookaheadDepth: lookaheadDepth,
                         beamWidth: lowerWidth,
                         maxDepth: maxDepth,
+                        rootShape: rootShape,
                         rootWidth: rootWidth,
                         useGuidedScores: useGuidedScores)
                     timeToProcessOneConfiguration = DateTimeCalculator.duration(start: testOneConfigurationStart)

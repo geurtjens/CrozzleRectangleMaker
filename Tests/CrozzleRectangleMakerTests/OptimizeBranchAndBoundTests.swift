@@ -20,6 +20,7 @@ final class OptimizeBranchAndBoundTests: XCTestCase {
             maxDepth: 30,
             minimumBeamWidth: 1,
             maximumBeamWidth: 25,
+            rootShape: 0,
             rootWidth: 1,
             useGuidedScores: false)
     }

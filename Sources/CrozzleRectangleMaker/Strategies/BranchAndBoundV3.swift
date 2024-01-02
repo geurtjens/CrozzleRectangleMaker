@@ -15,6 +15,7 @@ public class BranchAndBoundV3 {
         lookaheadDepth: Int,
         beamWidth: Int,
         maxDepth: Int,
+        rootShape: Int,
         rootWidth: Int,
         winningScore: Int,
         useGuidedScores: Bool) async -> ShapeModel
@@ -24,6 +25,7 @@ public class BranchAndBoundV3 {
         let (_, wordsInt, searchShapes, wordIndex, rootTreeNodes, scoresMin, widthMax, heightMax) = await GetStartingData.Execute(
             gameId: gameId,
             words: words,
+            rootShape: rootShape,
             rootWidth: rootWidth,
             useGuidedScores: useGuidedScores)
        
