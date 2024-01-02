@@ -85,16 +85,29 @@ public struct ShapeModel {
         let grid:[Int] = Array(repeating: SPACE, count: getGridSize())
         return grid
     }
+    
+    
+    static func convertWordId(_ wordId: Int) -> Character {
+        let result = Character(UnicodeScalar(wordId + 32)!)
+        return result
+    }
+
+    static func convertNumber(_ wordId: Int) -> Character {
+        
+        let result = Character(UnicodeScalar(wordId + 48)!)
+        return result
+    }
+    
     public static func getWordSequence(placements: [PlacementModel]) -> String {
         var wordSequence = ""
         for placement in placements {
-            wordSequence += String(placement.w) + ","
+            wordSequence.append(convertWordId(Int(placement.w)))
         }
         for placement in placements {
-            wordSequence += String(placement.x) + ","
+            wordSequence.append(convertNumber(Int(placement.x)))
         }
         for placement in placements {
-            wordSequence += String(placement.y) + ","
+            wordSequence.append(convertNumber(Int(placement.x)))
         }
         for placement in placements {
             
