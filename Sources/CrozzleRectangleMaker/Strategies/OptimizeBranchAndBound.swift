@@ -26,7 +26,7 @@ public class OptimizeBranchAndBound {
     }
     
     public static func executeFailuresNoGuidedScores() async {
-        let games = [8807, 8911, 9112, 9203, 9305, 9509]
+        let games = [8911, 9112, 9203, 9305, 9509]
                     
         await executeWinningGames(
             games: games,
@@ -173,7 +173,7 @@ public class OptimizeBranchAndBound {
                 while lowerWidth != upperWidth {
                     
                     currentWidth = Int((Double(lowerWidth) + Double(upperWidth) + 0.5) / 2.0)
-                    print ("GAME: \(gameId), STARTINGSHAPE: \(rootWidth * -1), LOWER: \(lowerWidth), UPPER: \(upperWidth), CURRENT WIDTH: \(currentWidth)")
+                    print ("game: \(gameId), lookaheadDepth: \(lookaheadDepth) rootShape: \(rootShape), lower: \(lowerWidth), upper: \(upperWidth), currentWidth: \(currentWidth)")
                     
                     let testOneConfigurationStart = DateTimeCalculator.now()
                     
@@ -208,7 +208,7 @@ public class OptimizeBranchAndBound {
                 }
                 
                 
-                print("FINAL SIZE\nGame: \(gameId), rootShape: \(rootWidth * -1), lookaheadDepth: \(lookaheadDepth), beamWidth: \(currentWidth), time: \(timeToProcessOneConfiguration), overallProcessTime: \(DateTimeCalculator.duration(start: overallStart))")
+                print("FINAL SIZE\ngame: \(gameId), rootShape: \(rootShape), lookaheadDepth: \(lookaheadDepth), beamWidth: \(currentWidth), time: \(timeToProcessOneConfiguration), overallProcessTime: \(DateTimeCalculator.duration(start: overallStart))")
                 return currentWidth
             }
         }

@@ -13,6 +13,10 @@ final class BranchAndBoundRunnerTests: XCTestCase {
         await BranchAndBoundRunner.WinningWords_UseGuidedScores()
     }
     
+    func test_WinningWords_NoGuidedScores() async throws {
+        await BranchAndBoundRunner.WinningWords_NoGuidedScores()
+    }
+    
     public func test_ExecuteGames8612() async {
         
         let games = [8612]
