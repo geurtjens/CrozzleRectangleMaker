@@ -15,7 +15,7 @@ public class OptimizeBranchAndBound {
     // so we steadily increase the depth too
     
     public static func executeFailuresUsingGuidedScores() async {
-        let games = [8807, 9203, 9305]
+        let games = [9305]
         await executeWinningGames(
             games: games,
             maxLookaheadDepth: 4,
@@ -26,7 +26,7 @@ public class OptimizeBranchAndBound {
     }
     
     public static func executeFailuresNoGuidedScores() async {
-        let games = [8911, 9112, 9203, 9305, 9509]
+        let games = [9305]
                     
         await executeWinningGames(
             games: games,
@@ -173,7 +173,7 @@ public class OptimizeBranchAndBound {
                 while lowerWidth != upperWidth {
                     
                     currentWidth = Int((Double(lowerWidth) + Double(upperWidth) + 0.5) / 2.0)
-                    print ("game: \(gameId), lookaheadDepth: \(lookaheadDepth) rootShape: \(rootShape), lower: \(lowerWidth), upper: \(upperWidth), currentWidth: \(currentWidth)")
+                    print ("game: \(gameId), lookaheadDepth: \(lookaheadDepth), rootShape: \(rootShape), lower: \(lowerWidth), upper: \(upperWidth), currentWidth: \(currentWidth)")
                     
                     let testOneConfigurationStart = DateTimeCalculator.now()
                     
