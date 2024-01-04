@@ -15,7 +15,7 @@ public class OptimizeBranchAndBound {
     // so we steadily increase the depth too
     
     public static func executeFailuresUsingGuidedScores() async {
-        let games = [9305]
+        let games: [Int] = []
         await executeWinningGames(
             games: games,
             maxLookaheadDepth: 4,
@@ -26,7 +26,7 @@ public class OptimizeBranchAndBound {
     }
     
     public static func executeFailuresNoGuidedScores() async {
-        let games = [9305]
+        let games: [Int] = []
                     
         await executeWinningGames(
             games: games,

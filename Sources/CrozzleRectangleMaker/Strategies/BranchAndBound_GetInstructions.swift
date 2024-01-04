@@ -67,6 +67,7 @@ public struct BranchAndBound_GetInstructions {
 
         var result: [BranchAndBoundInstruction] = []
         
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 40, games: [9305], rootShape: 5, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
 
         result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 80, games: [9509], rootShape: 2, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
         
@@ -162,8 +163,8 @@ public struct BranchAndBound_GetInstructions {
     public static func WinningWords_UseGuidedScores() -> [BranchAndBoundInstruction] {
         
         var result: [BranchAndBoundInstruction] = []
-
         
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 40, games: [9305], rootShape: 5, rootWidth: 1, useGuidedScores: true, maxDepth: 30))
         result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 90, games: [9203], rootShape: 0, rootWidth: 1, useGuidedScores: true, maxDepth: 30))
     
         result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 62, games: [8807], rootShape: 1, rootWidth: 1, useGuidedScores: true, maxDepth: 30))
