@@ -20,7 +20,7 @@ final class SiblingMergeCalculatorTests: XCTestCase {
         var (parentShape, sourceShapes, searchShapes, scoresMin, words, widthMax, heightMax, _, wordIndex, wordsInt) = SiblingMergeCalculator.GetStartingData(gameId: gameId)
         
         /// `WHEN` we check for duplicates in the `sourceShapes`
-        RemoveDuplicatesCalculator.execute(shapes: &sourceShapes)
+        sourceShapes = RemoveDuplicatesCalculator.execute(shapes: sourceShapes)
         
         /// `THEN` there are `0 duplicates` in the `sourceShapes`
         //XCTAssertEqual(0, sourceShapes.count)
@@ -57,7 +57,7 @@ final class SiblingMergeCalculatorTests: XCTestCase {
         XCTAssertEqual(52, treeShapes.count)
         
         // The tree calculation calculated 1 duplicate
-        RemoveDuplicatesCalculator.execute(shapes: &treeShapes)
+        treeShapes = RemoveDuplicatesCalculator.execute(shapes: treeShapes)
         
         // `AND` we find one duplicate
         //XCTAssertEqual(1, treeDuplicateCount)
@@ -86,7 +86,7 @@ final class SiblingMergeCalculatorTests: XCTestCase {
         // THEN we find 78 shapes are created
         XCTAssertEqual(78, shapesFromTheOldWay.count)
         
-        RemoveDuplicatesCalculator.execute(shapes: &shapesFromTheOldWay)
+        shapesFromTheOldWay = RemoveDuplicatesCalculator.execute(shapes: shapesFromTheOldWay)
         
         // AND 22 of them are duplicated
         //XCTAssertEqual(22, shapesFromTheOldWay)

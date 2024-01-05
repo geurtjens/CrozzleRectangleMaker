@@ -1054,7 +1054,7 @@ public class StrategyCalculator {
         
         var mergeFork2 = MergeCalculatorV1.ExecuteSameShape(sourceShapes: gpuFork2, wordIndex: fork2Index, searchMax: gpuFork2.count, words: words, wordsInt: wordsInt, scoresMin: [0,0,0,0,0,0,0,0,0,0], widthMax: widthMax, heightMax: heightMax)
         
-        RemoveDuplicatesCalculator.execute(shapes: &mergeFork2)
+        mergeFork2 = RemoveDuplicatesCalculator.execute(shapes: mergeFork2)
         
 //        for item in withoutDuplicates {
 //            print(item.ToString(words: words))

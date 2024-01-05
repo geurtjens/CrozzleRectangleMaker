@@ -22,7 +22,7 @@ final class DuplicateCalculatorTests: XCTestCase {
             
             var result = edges + edges
             
-            RemoveDuplicatesCalculator.execute(shapes: &result)
+            result = RemoveDuplicatesCalculator.execute(shapes: result)
             //XCTAssertEqual(203, duplicateCount)
             XCTAssertEqual(203, result.count)
 

@@ -110,7 +110,7 @@ public class BreadthFirstSearch {
             let treeNodes = executeLevelInSerial(treeNodes: previous, searchShapes: searchShapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax, wordIndex: wordIndex, scoresMin: scoresMin2)
             
             
-            let (treeNodesWithoutDuplicates, duplicateCount) = RemoveDuplicatesCalculator.execute(treeNodes: treeNodes)
+            let treeNodesWithoutDuplicates = RemoveDuplicatesCalculator.execute(treeNodes: treeNodes)
             
             totalNodes += treeNodesWithoutDuplicates.count
             
@@ -120,7 +120,7 @@ public class BreadthFirstSearch {
             previous = treeNodesWithoutDuplicates
             
             if score >= winningScore {
-                print("level: \(i), score: \(score), size: \(size), duplicates removed: \(duplicateCount), HUMAN SCORE REACHED for \(gameId)")
+                print("level: \(i), score: \(score), size: \(size), HUMAN SCORE REACHED for \(gameId)")
                 
                 if exitWhenHumanScoreFound {
                     let finishTime = DateTimeCalculator.now()
@@ -128,7 +128,7 @@ public class BreadthFirstSearch {
                     return
                 }
             }
-            print("level: \(i), score: \(score), size: \(size), duplicates removed: \(duplicateCount)")
+            print("level: \(i), score: \(score), size: \(size)")
             
             if size > maxAllowableSize {
                 print("size is greater than max size of \(maxAllowableSize) so exiting")
@@ -189,7 +189,7 @@ public class BreadthFirstSearch {
                 wordIndex: wordIndex,
                 scoresMin: scoresMin2)
             
-            let (treeNodesWithoutDuplicates, duplicateCount) = RemoveDuplicatesCalculator.execute(treeNodes: treeNodes)
+            let treeNodesWithoutDuplicates = RemoveDuplicatesCalculator.execute(treeNodes: treeNodes)
             
             totalNodes += treeNodesWithoutDuplicates.count
             
@@ -199,7 +199,7 @@ public class BreadthFirstSearch {
             previous = treeNodesWithoutDuplicates
             
             if score >= winningScore {
-                print("level: \(i), score: \(score), size: \(size), duplicates removed: \(duplicateCount), HUMAN SCORE REACHED for \(gameId)")
+                print("level: \(i), score: \(score), size: \(size), HUMAN SCORE REACHED for \(gameId)")
                 
                 if exitWhenHumanScoreFound {
                     let finishTime = DateTimeCalculator.now()
@@ -207,7 +207,7 @@ public class BreadthFirstSearch {
                     return
                 }
             }
-            print("level: \(i), score: \(score), size: \(size), duplicates removed: \(duplicateCount)")
+            print("level: \(i), score: \(score), size: \(size)")
             
             if size > maxAllowableSize {
                 print("size is greater than max size of \(maxAllowableSize) so exiting")

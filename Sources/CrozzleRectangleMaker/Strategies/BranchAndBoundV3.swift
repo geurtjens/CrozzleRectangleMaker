@@ -160,7 +160,7 @@ public class BranchAndBoundV3 {
                     childShapes += treeNode.childShapes
                 }
                 
-                RemoveDuplicatesCalculator.execute(shapes: &childShapes)
+                childShapes = RemoveDuplicatesCalculator.execute(shapes: childShapes)
                 
                 var bestShapes: [ShapeModel] = []
                 var bestScores: [UInt16] = []
@@ -211,7 +211,7 @@ public class BranchAndBoundV3 {
                 for treeNodeId in 0..<treeNodes.count {
                     bestShapes.append(treeNodes[treeNodeId].parentShape)
                 }
-                RemoveDuplicatesCalculator.execute(shapes: &bestShapes)
+                bestShapes = RemoveDuplicatesCalculator.execute(shapes: bestShapes)
                 
                 for bestShape in bestShapes {
                     bestScores.append(bestShape.score)

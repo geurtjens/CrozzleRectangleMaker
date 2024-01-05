@@ -41,7 +41,7 @@ public class BranchAndBoundV2 {
                     heightMax: heightMax)
                 
                 if newShapes.count > 0 {
-                    RemoveDuplicatesCalculator.execute(shapes: &newShapes)
+                    newShapes = RemoveDuplicatesCalculator.execute(shapes: newShapes)
                     sourceShapes = newShapes
                     //ShapeCalculator.SortByScoreThenArea(shapes: &sourceShapes)
                     
