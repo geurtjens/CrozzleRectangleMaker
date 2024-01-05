@@ -20,11 +20,11 @@ final class DuplicateCalculatorTests: XCTestCase {
             
             XCTAssertEqual(203, edges.count)
             
-            let result = edges + edges
+            var result = edges + edges
             
-            let (noDuplicates, duplicateCount) = RemoveDuplicatesCalculator.execute(shapes: result)
-            XCTAssertEqual(203, duplicateCount)
-            XCTAssertEqual(203, noDuplicates.count)
+            RemoveDuplicatesCalculator.execute(shapes: &result)
+            //XCTAssertEqual(203, duplicateCount)
+            XCTAssertEqual(203, result.count)
 
         }
     }

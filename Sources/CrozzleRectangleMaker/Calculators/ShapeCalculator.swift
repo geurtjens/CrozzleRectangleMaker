@@ -12,35 +12,28 @@ public class ShapeCalculator {
     /// This is how the `QueueModel` adds shapes
     public static func addShapes(oldShapes: [ShapeModel], newShapes: [ShapeModel], scoreMin: Int, constraints: ConstraintsModel) -> [ShapeModel] {
         
-        let newShapes = newShapes.filter { $0.score >= scoreMin }
+        var newShapes = newShapes.filter { $0.score >= scoreMin }
         
-        let (noDuplicatesOfShapesWithCorrectScores, duplicatesOfShapesWithCorrectScores) = RemoveDuplicatesCalculator.execute(shapes: newShapes)
+        RemoveDuplicatesCalculator.execute(shapes: &newShapes)
         
         
-        let result = oldShapes + noDuplicatesOfShapesWithCorrectScores
+        var result = oldShapes + newShapes
         //self.shapes += shapesWithCorrectScores
         
-
-        // Its not finding two duplicates
-        var (noDuplicates, duplicateCount) = RemoveDuplicatesCalculator.execute(shapes: result)
+        RemoveDuplicatesCalculator.execute(shapes: &result)
         
-        if newShapes.count > 0 {
-            let wordCount = newShapes[0].placements.count
-            if FeatureFlags.verbose {
-                print("\(wordCount) word queue has \(oldShapes.count), adding \(noDuplicatesOfShapesWithCorrectScores.count) after taking out \(duplicatesOfShapesWithCorrectScores) duplicates, once merged encountered \(duplicateCount) duplicates, so \(noDuplicatesOfShapesWithCorrectScores.count - duplicateCount) where new")
-            }
-        }
-        switch (constraints.priorityFunction) {
-        case .score_area:
-            ShapeCalculator.SortByScoreThenArea(shapes: &noDuplicates)
-        case .density_score:
-            ShapeCalculator.SortByDensityThenScore(shapes: &noDuplicates)
-        }
+//        if newShapes.count > 0 {
+//            let wordCount = newShapes[0].placements.count
+//            if FeatureFlags.verbose {
+//                print("\(wordCount) word queue has \(oldShapes.count), adding \(noDuplicatesOfShapesWithCorrectScores.count) after taking out \(duplicatesOfShapesWithCorrectScores) duplicates, once merged encountered \(duplicateCount) duplicates, so \(noDuplicatesOfShapesWithCorrectScores.count - duplicateCount) where new")
+//            }
+//        }
         
-        if noDuplicates.count > constraints.queueLengthMax {
-            noDuplicates.removeSubrange(constraints.queueLengthMax..<noDuplicates.count)
-        }
-        return noDuplicates
+        
+//        if noDuplicates.count > constraints.queueLengthMax {
+//            noDuplicates.removeSubrange(constraints.queueLengthMax..<result.count)
+//        }
+        return result
     }
     
     public static func toShapes(fromGrids grids: [[String]], words:[String]) -> [ShapeModel] {
@@ -288,15 +281,7 @@ public class ShapeCalculator {
         }
     }
     
-    public static func SortByDensityThenScore(shapes: inout [ShapeModel]) {
-        shapes.sort {
-            if $0.density == $1.density {
-                return $0.score > $1.score
-            } else {
-                return $0.density > $1.density
-            }
-        }
-    }
+    
     
     
     /// When we have an initial set of shapes and these shapes are going to be the origin of all merges

@@ -31,8 +31,6 @@ final class ShapeModelTests: XCTestCase {
             // this is (6-2) * (7 - 2) = 4 * 5 = 20
             XCTAssertEqual(20, shape.area)
             
-            // 84 divide by 20 = 4.2
-            XCTAssertEqual(4.2, shape.density)
             
         }
     }

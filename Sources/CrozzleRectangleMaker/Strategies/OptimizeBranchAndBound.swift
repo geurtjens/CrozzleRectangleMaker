@@ -26,7 +26,9 @@ public class OptimizeBranchAndBound {
     }
     
     public static func executeFailuresNoGuidedScores() async {
-        let games: [Int] = [8807, 9101, 9210, 9301, 9303, 9508, 9605]
+        let games: [Int] = [8804, 8805, 8807, 8811, 8902, 8904, 8904, 8905, 8911,
+                            9001, 9003, 9106, 9207, 9210, 9212, 9303, 9305, 9307, 9404,
+                            9410, 9501, 9502, 9504, 9506, 9507, 9508, 9509, 9602, 9604]
                     
         await executeWinningGames(
             games: games,
