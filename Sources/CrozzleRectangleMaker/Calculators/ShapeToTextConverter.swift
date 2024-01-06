@@ -77,12 +77,12 @@ public class ShapeToTextConverter {
             let newShape = ShapeModel(score: score, width: shape.width, height: shape.height, placements: shape.placements)
             
             // our shapes must have first word as horizontal to help with removing duplicates
-//            if (newShape.placements[0].z == false) {
-//                let flipped = ShapeCalculator.Flip(shape: newShape)
-//                return (flipped, text)
-//            } else {
+            if (newShape.placements[0].z == false) {
+                let flipped = ShapeCalculator.Flip(shape: newShape)
+                return (flipped, text)
+            } else {
                 return (newShape, text)
-//            }
+            }
         } else {
             return (nil,text)
         }

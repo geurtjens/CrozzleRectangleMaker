@@ -10,17 +10,7 @@ import Foundation
 public class MergeCalculatorV2 {
     
     // Execute same shape requires that we avoid repeats and so we go through each one
-    public static func ExecuteSameShapeAsync(
-        shapes: [ShapeModel],
-        wordIndex: WordIndexModelV2,
-        sourceMax: Int,
-        searchMax: Int,
-        words:[String],
-        wordsInt: [[Int]],
-        scoresMin:[Int],
-        widthMax: Int,
-        heightMax: Int) async -> [ShapeModel]
-    {
+    public static func ExecuteSameShapeAsync(shapes: [ShapeModel], wordIndex: WordIndexModelV2, sourceMax: Int, searchMax: Int, words:[String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) async -> [ShapeModel] {
         
         // Rather than having a loop and running one at a time we have these async things that process all going up 10 at a time
         
@@ -134,7 +124,7 @@ public class MergeCalculatorV2 {
             scoresMin:scoresMin,
             widthMax: widthMax, heightMax: heightMax)
         
-        
+   
         return await a0 + a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9
     }
     
@@ -150,7 +140,7 @@ public class MergeCalculatorV2 {
         widthMax: Int,
         heightMax: Int) async -> [ShapeModel]
     {
-        
+
         // Rather than having a loop and running one at a time we have these async things that process all going up 10 at a time
         
         async let a0 = ExecuteDifferentShapesAsyncOne(
@@ -282,27 +272,20 @@ public class MergeCalculatorV2 {
             scoresMin: scoresMin,
             widthMax: widthMax,
             heightMax: heightMax)
-        
+
         return await a0 + a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9
     }
     
     
-    public static func ExecuteSameShapeOneAsync(
-        zeroToNine: Int,
-        sourceShapes: [ShapeModel],
-        wordIndex: WordIndexModelV2,
-        sourceMax: Int,
-        searchMax:Int,
-        words:[String],
-        wordsInt: [[Int]],
-        scoresMin:[Int],
-        widthMax: Int,
-        heightMax: Int) -> [ShapeModel]
-    {
+    
+    
+    
+    public static func ExecuteSameShapeOneAsync(zeroToNine: Int, sourceShapes: [ShapeModel], wordIndex: WordIndexModelV2, sourceMax: Int, searchMax:Int, words:[String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         var result:[ShapeModel] = []
         
         // The difference is that each cpu works on 0,10,20 .. or 1, 11, 21 and so we divide the task
         for sourceShapeId in stride(from: zeroToNine, to:sourceMax, by: 10) {
+            
             
             let shapes = ExecuteSameShapeOnce(
                 sourceShapeId: sourceShapeId,
@@ -321,20 +304,8 @@ public class MergeCalculatorV2 {
         return result
     }
     
-    
-    public static func ExecuteDifferentShapesAsyncOne(
-        zeroToNine: Int,
-        sourceShapes: [ShapeModel],
-        searchShapes: [ShapeModel],
-        wordIndex: WordIndexModelV2,
-        sourceMax: Int,
-        searchMax: Int,
-        words:[String],
-        wordsInt: [[Int]],
-        scoresMin:[Int],
-        widthMax: Int,
-        heightMax: Int) -> [ShapeModel]
-    {
+
+    public static func ExecuteDifferentShapesAsyncOne(zeroToNine: Int, sourceShapes: [ShapeModel], searchShapes: [ShapeModel], wordIndex: WordIndexModelV2, sourceMax: Int, searchMax: Int, words:[String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         var result: [ShapeModel] = []
         
         for sourceShapeId in stride(from: zeroToNine, to: sourceMax, by: 10) {
@@ -359,14 +330,7 @@ public class MergeCalculatorV2 {
     // NonAsync version of merging shapes together.  So it runs on only one core.
     public static func ExecuteSameShapeSync(
         sourceShapes: [ShapeModel],
-        wordIndex: WordIndexModelV2,
-        searchMax: Int,
-        words:[String],
-        wordsInt: [[Int]],
-        scoresMin:[Int],
-        widthMax: Int,
-        heightMax: Int) -> [ShapeModel]
-    {
+        wordIndex: WordIndexModelV2, searchMax: Int, words:[String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         var result: [ShapeModel] = []
         
         for sourceShapeId in 0..<sourceShapes.count {
@@ -384,23 +348,14 @@ public class MergeCalculatorV2 {
                 heightMax: heightMax)
             result += shapes
         }
-        
+   
         return result
     }
     
     
     public static func ExecuteDifferentShapesSync(
         sourceShapes: [ShapeModel],
-        searchShapes: [ShapeModel],
-        searchWordIndex: WordIndexModelV2,
-        sourceMax: Int,
-        searchMax: Int,
-        words:[String],
-        wordsInt: [[Int]],
-        scoresMin:[Int],
-        widthMax: Int,
-        heightMax: Int) -> [ShapeModel]
-    {
+        searchShapes: [ShapeModel], searchWordIndex: WordIndexModelV2, sourceMax: Int, searchMax: Int, words:[String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         var result: [ShapeModel] = []
         
         for sourceShapeId in 0..<sourceMax {
@@ -422,25 +377,59 @@ public class MergeCalculatorV2 {
     }
     
     
-    public static func ExecuteSameShapeOnce(
-        sourceShapeId: Int,
-        sourceShape: ShapeModel,
-        searchShapes: [ShapeModel],
-        wordIndex: WordIndexModelV2,
-        searchMax: Int,
-        words:[String],
-        wordsInt:[[Int]],
-        scoresMin:[Int],
-        widthMax: Int,
-        heightMax: Int) -> [ShapeModel]
-    {
+    
+    
+    
+    public static func ExecuteSameShapeOnce(sourceShapeId: Int, sourceShape: ShapeModel, searchShapes: [ShapeModel], wordIndex: WordIndexModelV2, searchMax: Int, words:[String], wordsInt:[[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         
-        let instructions = wordIndex.findMatches(
+//        let instructions = MatchingWordsCalculator.GetMergeInstructions(
+//            sourceShapes: sourceShapes,
+//            sourceShapeId: shapeId,
+//            sourceWordIndex: wordIndex,
+//            searchMax: searchMax)
+        
+        let instructions = wordIndex.findMatches(sourceShape: sourceShape,
+                                                 sourceShapeId: sourceShapeId,
+                                                 searchMin: sourceShapeId + 1,
+                                                 searchMax: searchMax,
+                                                 searchShapes: searchShapes)
+        
+        let shapeList = GetShapesFromInstructions(
+            instructions: instructions,
             sourceShape: sourceShape,
-            sourceShapeId: sourceShapeId,
-            searchMin: sourceShapeId + 1,
-            searchMax: searchMax,
-            searchShapes: searchShapes)
+            searchShapes: searchShapes,
+            words: words,
+            wordsInt: wordsInt,
+            scoresMin: scoresMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        
+        return shapeList
+    }
+    
+    
+    public static func ExecuteDifferentShapesOne(sourceShape: ShapeModel, sourceShapeId: Int, searchShapes: [ShapeModel], searchWordIndex: WordIndexModelV2, searchMax: Int, words:[String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
+        
+//        let instructions = MatchingWordsCalculator.GetMergeInstructions(
+//            sourceShapes: sourceShapes,
+//            sourceShapeId: sourceShapeId,
+//            searchShapes: searchShapes,
+//            searchWordIndex: searchWordIndex,
+//            searchMax: searchMax)
+       
+//        print("searchWordIndex.count: \(searchWordIndex.index.count)")
+//        var indexSize = 0
+//        for item in searchWordIndex.index {
+//            indexSize += item.count
+//        }
+//        print("index size \(indexSize)")
+        let instructions = searchWordIndex.findMatches(sourceShape: sourceShape,
+                                                       sourceShapeId: sourceShapeId,
+                                                       searchMin: 0,
+                                                       searchMax: searchMax,
+                                                       searchShapes: searchShapes)
+        
         
         let shapeList = GetShapesFromInstructions(
             instructions: instructions,
@@ -456,109 +445,66 @@ public class MergeCalculatorV2 {
     }
     
     
-    public static func ExecuteDifferentShapesOne(
-        sourceShape: ShapeModel,
-        sourceShapeId: Int,
-        searchShapes: [ShapeModel],
-        searchWordIndex: WordIndexModelV2,
-        searchMax: Int, words:[String],
-        wordsInt: [[Int]],
-        scoresMin:[Int],
-        widthMax: Int,
-        heightMax: Int) -> [ShapeModel]
-    {
-        let instructions = searchWordIndex.findMatches(
-            sourceShape: sourceShape,
-            sourceShapeId: sourceShapeId,
-            searchMin: 0,
-            searchMax: searchMax,
-            searchShapes: searchShapes)
-        
-        let shapeList = GetShapesFromInstructions(
-            instructions: instructions,
-            sourceShape: sourceShape,
-            searchShapes: searchShapes,
-            words: words,
-            wordsInt: wordsInt,
-            scoresMin: scoresMin,
-            widthMax: widthMax,
-            heightMax: heightMax)
-        
-        return shapeList
-    }
-    
-    
-    public static func GetShapesFromInstructions(
-        instructions: [MergeInstructionModel],
-        sourceShape: ShapeModel,
-        searchShapes: [ShapeModel],
-        words: [String],
-        wordsInt: [[Int]],
-        scoresMin:[Int],
-        widthMax: Int,
-        heightMax: Int) -> [ShapeModel]
-    {
-        
+    public static func GetShapesFromInstructions(instructions: [MergeInstructionModel], sourceShape: ShapeModel, searchShapes: [ShapeModel], words: [String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
         var shapeList: [ShapeModel] = []
         
         for instruction in instructions {
             
             let searchShape = searchShapes[instruction.searchShapeId]
             
+            
+            
             // We have matches of 2 but instruction says its a match of 1
-            let (isValidSize, calcWidth, calcHeight) = MergeSizeValidation.Execute(
+            let (isValidSize, calcWidth, calcHeight) = mergeSizeValidation(
                 instruction: instruction,
                 sourceShape: sourceShape,
                 searchShape: searchShape,
                 widthMax: widthMax,
                 heightMax: heightMax)
-            
+
             if isValidSize {
                 
                 let potentialPlacements = MergePlacementCalculator.ExecuteV2(
-                    sourcePlacements: sourceShape.placements,
-                    searchPlacements: searchShape.placements)
+                    sourceShape: sourceShape,
+                    searchShape: searchShape,
+                    instruction: instruction,
+                    words: words)
+                
+                
+                
                 
                 if potentialPlacements.count > 0 {
                     
-                    
-                    
-                    
-                    
                     let potentialWidth = PlacementCalculator.width(fromPlacements: potentialPlacements)
                     let potentialHeight = PlacementCalculator.height(fromPlacements: potentialPlacements)
-                    
-                    //                    if (calcWidth == potentialWidth && calcHeight == potentialHeight) || (calcWidth == potentialHeight && calcHeight == potentialWidth) {}
-                    //                    else {
-                    //
-                    //                        print("ERROR HERE - GetShapesFromInstructions\ncalcWidth: \(calcWidth), potentialWidth:\(potentialWidth), calcHeight: \(calcHeight), potentialHeight: \(potentialHeight)")
-                    //                        print(sourceShape.ToCode(words: words))
-                    //                        print(searchShape.ToCode(words: words))
-                    //
-                    //                        print ("// sourceShape\n")
-                    //                        if instruction.flipped {
-                    //                            print("/*\n\(sourceShape.ToText(words: words))\n*/")
-                    //                        } else {
-                    //                            print("/*\n\(sourceShape.ToText(words: words))\n*/")
-                    //                        }
-                    //                        print ("// searchShape\n")
-                    //                        print("/*\n\(searchShape.ToText(words: words))\n*/")
-                    //                        print ("// result\n")
-                    //                        print("/*\n\(potentialPlacements.toShape(score: 0).ToTextDebug(words: words))\n*/")
-                    //                        print("potentialWH::(\(potentialWidth),\(potentialHeight)), calcWH:(\(calcWidth), \(calcHeight))")
-                    //
-                    //                        print("\(instruction)")
-                    //                    }
+
+                    if (calcWidth == potentialWidth && calcHeight == potentialHeight) || (calcWidth == potentialHeight && calcHeight == potentialWidth) {} else {
+                        
+                        
+                        print("ERROR HERE")
+                        print(sourceShape.ToCode(words: words))
+                        print(searchShape.ToCode(words: words))
+                        
+                        print ("// sourceShape\n")
+                        if instruction.flipped {
+                            print("/*\n\(sourceShape.Flip().ToText(words: words))\n*/")
+                        } else {
+                            print("/*\n\(sourceShape.ToText(words: words))\n*/")
+                        }
+                        print ("// searchShape\n")
+                        print("/*\n\(searchShape.ToText(words: words))\n*/")
+                        print ("// result\n")
+                        print("/*\n\(potentialPlacements.toShape(score: 0).ToTextDebug(words: words))\n*/")
+                        print("potentialWH::(\(potentialWidth),\(potentialHeight)), calcWH:(\(calcWidth), \(calcHeight))")
+                        
+                        
+                        print("\(instruction)")
+                    }
                     
                     if (potentialWidth <= widthMax && potentialHeight <= heightMax) ||
                         (potentialWidth <= heightMax && potentialHeight <= widthMax) {
                         
-                        let validShape = ShapeToTextConverterV2.ToValidShape(
-                            placements: potentialPlacements,
-                            width: Int(potentialWidth),
-                            height: Int(potentialHeight),
-                            wordsInt: wordsInt,
-                            words: words)
+                        let validShape = ShapeToTextConverterV2.ToValidShape(placements: potentialPlacements, width: Int(potentialWidth), height: Int(potentialHeight), wordsInt: wordsInt, words: words)
                         
                         if let validShape = validShape {
                             
@@ -571,15 +517,13 @@ public class MergeCalculatorV2 {
                                 print("different")
                             }
                             
+                            
                             // is shape is not nil so it must be a valid shape
                             let wordCount = validShape.placements.count
                             let scoreMin = scoresMin[wordCount]
                             if validShape.score >= scoreMin {
                                 var validShape = validShape
-                                validShape.mergeHistory = ShapeModel.createMergeHistory(
-                                    sourceShapeHistory: sourceShape.mergeHistory,
-                                    searchShapeHistory: searchShape.mergeHistory)
-                                
+                                validShape.mergeHistory = ShapeModel.createMergeHistory(sourceShapeHistory: sourceShape.mergeHistory, searchShapeHistory: searchShape.mergeHistory)
                                 shapeList.append(validShape)
                             }
                         }
@@ -593,78 +537,65 @@ public class MergeCalculatorV2 {
     }
     
     
-    public static func mergeTwoShapes(
-        sourceShape: ShapeModel,
-        searchShape: ShapeModel,
-        words: [String],
-        widthMax: Int,
-        heightMax: Int,
-        scoreMin: Int = 0,
-        wordsInt:[[Int]]) -> ShapeModel?
-    {
+    public static func mergeTwoShapes(sourceShape: ShapeModel, searchShape: ShapeModel, words: [String], widthMax: Int, heightMax: Int, scoreMin: Int = 0, wordsInt:[[Int]]) -> ShapeModel? {
         let sourceShape = sourceShape
         
+
+        
+        let (_, _, _, matchingWordCount) = WordIndexModelV2.GetMatches(sourceShape: sourceShape, searchShape: searchShape)
         
         
-        let (_, _, _, matchingWordCount) = ValidateMergeCalculator.GetMatches(
-            sourceShape: sourceShape,
-            searchShape: searchShape)
-        
-        
-        let instruction = ValidateMergeCalculator.Execute(
-            matchCount: matchingWordCount,
-            sourceShape: sourceShape,
-            sourceShapeId: 0,
-            searchShape:searchShape,
-            searchShapeId: 0)
+        let instruction = WordIndexModelV2.processMatches(matchCount: matchingWordCount, sourceShape: sourceShape, sourceShapeId: 0, searchShape:searchShape, searchShapeId: 0)
         if instruction == nil {
             return nil
         }
         
         guard let instruction = instruction else { return nil}
         
-        
+            
         // We have matches of 2 but instruction says its a match of 1
-        let (isValidSize, calcWidth, calcHeight) = MergeSizeValidation.Execute(
+        let (isValidSize, calcWidth, calcHeight) = mergeSizeValidation(
             instruction: instruction,
             sourceShape: sourceShape,
             searchShape: searchShape,
             widthMax: widthMax,
             heightMax: heightMax)
-        
+
         if isValidSize {
             
             let potentialPlacements = MergePlacementCalculator.ExecuteV2(
-                sourcePlacements: sourceShape.placements,
-                searchPlacements: searchShape.placements)
+                sourceShape: sourceShape,
+                searchShape: searchShape,
+                instruction: instruction,
+                words: words)
             
             if potentialPlacements.count > 0 {
                 
                 let potentialWidth = PlacementCalculator.width(fromPlacements: potentialPlacements)
                 let potentialHeight = PlacementCalculator.height(fromPlacements: potentialPlacements)
-                
-                //                if (calcWidth == potentialWidth && calcHeight == potentialHeight) || (calcWidth == potentialHeight && calcHeight == potentialWidth) {} else {
-                //
-                //
-                //                    print("ERROR HERE - mergeTwoShapes\ncalcWidth: \(calcWidth), potentialWidth:\(potentialWidth), calcHeight: \(calcHeight), potentialHeight: \(potentialHeight)")
-                //                    print(sourceShape.ToCode(words: words))
-                //                    print(searchShape.ToCode(words: words))
-                //
-                //                    print ("// sourceShape\n")
-                //                    if instruction.flipped {
-                //                        print("/*\n\(sourceShape.ToText(words: words))\n*/")
-                //                    } else {
-                //                        print("/*\n\(sourceShape.ToText(words: words))\n*/")
-                //                    }
-                //                    print ("// searchShape\n")
-                //                    print("/*\n\(searchShape.ToText(words: words))\n*/")
-                //                    print ("// result\n")
-                //                    print("/*\n\(potentialPlacements.toShape(score: 0).ToTextDebug(words: words))\n*/")
-                //                    print("potentialWH::(\(potentialWidth),\(potentialHeight)), calcWH:(\(calcWidth), \(calcHeight))")
-                //
-                //
-                //                    print("\(instruction)")
-                //                }
+
+                if (calcWidth == potentialWidth && calcHeight == potentialHeight) || (calcWidth == potentialHeight && calcHeight == potentialWidth) {} else {
+                    
+                    
+                    print("ERROR HERE")
+                    print(sourceShape.ToCode(words: words))
+                    print(searchShape.ToCode(words: words))
+                    
+                    print ("// sourceShape\n")
+                    if instruction.flipped {
+                        print("/*\n\(sourceShape.Flip().ToText(words: words))\n*/")
+                    } else {
+                        print("/*\n\(sourceShape.ToText(words: words))\n*/")
+                    }
+                    print ("// searchShape\n")
+                    print("/*\n\(searchShape.ToText(words: words))\n*/")
+                    print ("// result\n")
+                    print("/*\n\(potentialPlacements.toShape(score: 0).ToTextDebug(words: words))\n*/")
+                    print("potentialWH::(\(potentialWidth),\(potentialHeight)), calcWH:(\(calcWidth), \(calcHeight))")
+                    
+                    
+                    print("\(instruction)")
+                }
                 
                 if (potentialWidth <= widthMax && potentialHeight <= heightMax) ||
                     (potentialWidth <= heightMax && potentialHeight <= widthMax) {
@@ -696,10 +627,45 @@ public class MergeCalculatorV2 {
                 //print("We thought it was a valid size but it wasnt")
             }
         }
+        
+        return nil
+    }
+    
+    public static func mergeSizeValidation(instruction: MergeInstructionModel, sourceShape: ShapeModel, searchShape: ShapeModel, widthMax: Int, heightMax: Int) -> (Bool, Int, Int) {
+        
+        let sourceWidth = Int(sourceShape.width)
+        let sourceHeight = Int(sourceShape.height)
+        
+        let searchWidth = Int(searchShape.width)
+        let searchHeight = Int(searchShape.height)
+        
+        let sourcePlacement = sourceShape.placements[Int(instruction.firstSourcePos)]
+        let sourceX = Int(sourcePlacement.x)
+        let sourceY = Int(sourcePlacement.y)
+        
+        let searchPlacement = searchShape.placements[Int(instruction.firstSearchPos)]
+        let searchX = Int(searchPlacement.x)
+        let searchY = Int(searchPlacement.y)
+        
+        
+        let (isValid, width, height) = MergeSizeValidation.verifyWidthHeight(
+            width1: sourceWidth,
+            height1: sourceHeight,
+            x1: sourceX,
+            y1: sourceY,
             
-            return nil
+            width2: searchWidth,
+            height2: searchHeight,
+            x2: searchX,
+            y2: searchY,
+            flipped: instruction.flipped,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        if isValid {
+            return (true, width, height)
+        } else {
+            return (false, width, height)
         }
-        
-        
-   
+    }
 }

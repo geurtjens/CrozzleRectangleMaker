@@ -107,17 +107,17 @@ public class ShapeCalculator {
     }
     
     /// rotate a shape and return a rotated shape which means width becomes height and all placements are rearranged
-//    public static func Flip(shape: ShapeModel) -> ShapeModel {
-//        var placements:[PlacementModel] = []
-//        
-//        for p in shape.placements {
-//            let reversed = PlacementModel(w: p.w, x: p.y, y: p.x, z: !p.z, l: UInt8(p.l))
-//            placements.append(reversed)
-//        }
-//        
-//        let shape = ShapeModel(score: shape.score, width: shape.height, height: shape.width, placements: placements)
-//        return shape
-//    }
+    public static func Flip(shape: ShapeModel) -> ShapeModel {
+        var placements:[PlacementModel] = []
+        
+        for p in shape.placements {
+            let reversed = PlacementModel(w: p.w, x: p.y, y: p.x, z: !p.z, l: UInt8(p.l))
+            placements.append(reversed)
+        }
+        
+        let shape = ShapeModel(score: shape.score, width: shape.height, height: shape.width, placements: placements)
+        return shape
+    }
     
     
     

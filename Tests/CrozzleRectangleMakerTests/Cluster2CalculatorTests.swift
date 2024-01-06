@@ -506,7 +506,7 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             if oldResults.count != newResults.count {
                 print(oldResults[0].ToShape().ToText(words: words))
-                //print(oldResults[0].ToShape().Flip().ToText(words: words))
+                print(oldResults[0].ToShape().Flip().ToText(words: words))
             }
         }
     }
@@ -592,7 +592,7 @@ final class Cluster2CalculatorTests: XCTestCase {
                 
                 XCTAssertEqual(oldResults.count, newResults.count)
                 print("3x5: \(game.gameId), old: \(oldResults.count), new: \(newResults.count)")
-                //compareShapes(oldResults: oldResults, newResults: newResults, words: words)
+                compareShapes(oldResults: oldResults, newResults: newResults, words: words)
             }
         }
     }
@@ -1264,50 +1264,50 @@ final class Cluster2CalculatorTests: XCTestCase {
     }
     
     
-//    func compareShapes(oldResults: [ClusterModel], newResults: [ClusterModel], words: [String]) {
-//        
-//        var oldShapes:[String] = []
-//        for oldResult in oldResults {
-//            var oldShape = oldResult.ToShape()
-////            if oldShape.width < oldShape.height {
-////                oldShape = oldShape.Flip()
-////            }
-//            
-//            let text = oldShape.ToTextDebug(words: words)
-//            oldShapes.append(text)
-//        }
-//        
-//        var newShapes:[String] = []
-//        for newResult in newResults {
-//            var newShape = newResult.ToShape()
-////            if newShape.width < newShape.height {
-////                newShape = newShape.Flip()
-////            }
-//            let text = newShape.ToTextDebug(words: words)
-//            newShapes.append(text)
-//        }
-//        
-////        for oldResult in oldResults {
-////            
-////            let oldShape = oldResult.ToShape().ToTextDebug(words: words)
-//            //let oldShapeFlipped = oldResult.ToShape().Flip().ToTextDebug(words: words)
-//
-////            XCTAssertNotEqual(oldShape, oldShapeFlipped)
-////            
-////            if newShapes.contains(oldShape) == false && newShapes.contains(oldShapeFlipped) == false {
-////                print(oldShape)
-////            }
-//        }
-//        
-//        
-//        // How many are in new and not in old
-//        print("NEW but not in OLD")
-//        for newShape in newShapes {
-//            if oldShapes.contains(newShape) == false {
-//                print(newShape)
-//            }
-//        }
-//    }
+    func compareShapes(oldResults: [ClusterModel], newResults: [ClusterModel], words: [String]) {
+        
+        var oldShapes:[String] = []
+        for oldResult in oldResults {
+            var oldShape = oldResult.ToShape()
+            if oldShape.width < oldShape.height {
+                oldShape = oldShape.Flip()
+            }
+            
+            let text = oldShape.ToTextDebug(words: words)
+            oldShapes.append(text)
+        }
+        
+        var newShapes:[String] = []
+        for newResult in newResults {
+            var newShape = newResult.ToShape()
+            if newShape.width < newShape.height {
+                newShape = newShape.Flip()
+            }
+            let text = newShape.ToTextDebug(words: words)
+            newShapes.append(text)
+        }
+        
+        for oldResult in oldResults {
+            
+            let oldShape = oldResult.ToShape().ToTextDebug(words: words)
+            let oldShapeFlipped = oldResult.ToShape().Flip().ToTextDebug(words: words)
+            
+            XCTAssertNotEqual(oldShape, oldShapeFlipped)
+            
+            if newShapes.contains(oldShape) == false && newShapes.contains(oldShapeFlipped) == false {
+                print(oldShape)
+            }
+        }
+        
+        
+        // How many are in new and not in old
+        print("NEW but not in OLD")
+        for newShape in newShapes {
+            if oldShapes.contains(newShape) == false {
+                print(newShape)
+            }
+        }
+    }
     
     let scoreMin = 0
     let widthMax = 17

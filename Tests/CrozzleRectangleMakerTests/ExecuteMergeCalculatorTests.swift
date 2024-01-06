@@ -534,25 +534,25 @@ final class ExecuteMergeCalculatorTests: XCTestCase {
         let a = items[0].ToShape()
         let b = items[1].ToShape()
         
-        //let c = ShapeCalculator.Flip(shape: b)
+        let c = ShapeCalculator.Flip(shape: b)
         
-        //let shapes = [a, c]
+        let shapes = [a, c]
         
-//        let (gpuShapes, wordIndex) = GpuShapeModelCalculator.Create(shapes: shapes, totalWords:words.count, stride: 4)
-//        
-//        let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
-//        
-//        let result = MergeCalculatorV1.ExecuteSameShape(
-//            sourceShapes:gpuShapes,
-//            wordIndex: wordIndex,
-//            searchMax: gpuShapes.count,
-//            words: words,
-//            wordsInt: wordsInt,
-//            scoresMin: scoresMin,
-//            widthMax: widthMax,
-//            heightMax: heightMax)
-//        
-//        XCTAssertEqual(0, result.count)
+        let (gpuShapes, wordIndex) = GpuShapeModelCalculator.Create(shapes: shapes, totalWords:words.count, stride: 4)
+        
+        let scoresMin = [0, 10, 22, 33, 44, 55, 66, 77, 88, 99, 100]
+        
+        let result = MergeCalculatorV1.ExecuteSameShape(
+            sourceShapes:gpuShapes,
+            wordIndex: wordIndex,
+            searchMax: gpuShapes.count,
+            words: words,
+            wordsInt: wordsInt,
+            scoresMin: scoresMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        XCTAssertEqual(0, result.count)
     }
     
     

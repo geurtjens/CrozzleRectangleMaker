@@ -177,7 +177,7 @@ public class WordIndex2Calculator {
             } else {
                 print(sourceShape.ToCode(words: words))
                 print(searchShape.ToCode(words: words))
-                //print(sourceShape.Flip().ToCode(words: words))
+                print(sourceShape.Flip().ToCode(words: words))
                 print("width:\(width), height:\(height), placementsWidth:\(placements.width()), placementsHeight:\(placements.height())")
                 
             }

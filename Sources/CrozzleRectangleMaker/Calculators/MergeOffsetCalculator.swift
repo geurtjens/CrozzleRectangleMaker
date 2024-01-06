@@ -122,11 +122,7 @@ public class MergeOffsetCalculator {
     }
     
     /// change where we are placing each word, adjusting them so two placements can fall together in the one grid
-    public static func ApplyOffsets(
-        placements:[PlacementModel],
-        xOffset: Int8,
-        yOffset: Int8) -> [PlacementModel]
-    {
+    public static func ApplyOffsets(placements:[PlacementModel], xOffset: Int8, yOffset: Int8) -> [PlacementModel] {
         var newPlacements: [PlacementModel] = []
         for j in placements {
             let newPlacement = PlacementModel(
