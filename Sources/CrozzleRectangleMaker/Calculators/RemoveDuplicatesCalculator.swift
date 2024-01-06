@@ -74,12 +74,12 @@ public class RemoveDuplicatesCalculator {
         }
         
         
-        var filteredShapes = shapes.filter { $0.isValid }
+        shapes = shapes.filter { $0.isValid }
         
         
-        ShapeCalculator.SortByScoreThenArea(shapes: &filteredShapes)
+        ShapeCalculator.SortByScoreThenArea(shapes: &shapes)
 
-        return filteredShapes
+        return shapes
         
     }
     
