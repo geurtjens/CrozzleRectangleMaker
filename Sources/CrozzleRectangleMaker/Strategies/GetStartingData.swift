@@ -174,8 +174,8 @@ public class GetStartingData {
                 widthMax: widthMax,
                 heightMax: heightMax)
             
-            childShapes = RemoveDuplicatesCalculator.execute(
-                shapes: childShapes)
+            RemoveDuplicatesCalculator.execute(
+                shapes: &childShapes)
             
             let treeNode = TreeNodeModel(
                 parentShape: startingShapes[startingShapeId],

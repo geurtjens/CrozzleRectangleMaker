@@ -14,13 +14,13 @@ public class ShapeCalculator {
         
         var newShapes = newShapes.filter { $0.score >= scoreMin }
         
-        newShapes = RemoveDuplicatesCalculator.execute(shapes: newShapes)
+        RemoveDuplicatesCalculator.execute(shapes: &newShapes)
         
         
         var result = oldShapes + newShapes
         //self.shapes += shapesWithCorrectScores
         
-        result = RemoveDuplicatesCalculator.execute(shapes: result)
+        RemoveDuplicatesCalculator.execute(shapes: &result)
         
 //        if newShapes.count > 0 {
 //            let wordCount = newShapes[0].placements.count

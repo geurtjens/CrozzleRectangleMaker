@@ -15,7 +15,7 @@ final class RemoveDuplicatesCalculatorTests: XCTestCase {
         
         var shapes = ShapeCalculator.toShapes(rectangles: rectangles)
         
-        shapes = RemoveDuplicatesCalculator.execute(shapes: shapes)
+        RemoveDuplicatesCalculator.execute(shapes: &shapes)
         
         // somehow everything O4x6 makes duplicates and I dont know why
         // There are 296 duplicates from 17144 values when scoreMin: 104 and it takes 60 seconds for this to run
@@ -36,7 +36,7 @@ final class RemoveDuplicatesCalculatorTests: XCTestCase {
         
         var shapes = [a, b]
         
-        shapes = RemoveDuplicatesCalculator.execute(shapes: shapes)
+        RemoveDuplicatesCalculator.execute(shapes: &shapes)
         
         XCTAssertTrue(shapes[0].isValid)
         XCTAssertTrue(shapes[1].isValid)
@@ -56,7 +56,7 @@ final class RemoveDuplicatesCalculatorTests: XCTestCase {
         
         var shapes = [a, b]
         
-        shapes = RemoveDuplicatesCalculator.execute(shapes: shapes)
+        RemoveDuplicatesCalculator.execute(shapes: &shapes)
         
         //XCTAssertEqual(1, duplicateCount)
         XCTAssertEqual(1, shapes.count)
@@ -108,7 +108,7 @@ final class RemoveDuplicatesCalculatorTests: XCTestCase {
         let f = result[3]
         var shapes = [a, b, c, d, e, f]
         
-        shapes = RemoveDuplicatesCalculator.execute(shapes: shapes)
+        RemoveDuplicatesCalculator.execute(shapes: &shapes)
         
         //XCTAssertEqual(2, duplicateCount)
         XCTAssertEqual(4, shapes.count)

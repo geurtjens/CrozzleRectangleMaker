@@ -81,7 +81,7 @@ public class BranchAndBoundV1 {
                 var newShapes = await MergeCalculatorV2.ExecuteDifferentShapesAsync(sourceShapes: sourceShapes, searchShapes: searchShapes, searchWordIndex: wordIndex, sourceMax: sourceShapes.count, searchMax: searchShapes.count, words: words, wordsInt: wordsInt, scoresMin: scoresMin, widthMax: game.widthMax, heightMax: game.heightMax)
                 
                 if newShapes.count > 0 {
-                    newShapes = RemoveDuplicatesCalculator.execute(shapes: newShapes)
+                    RemoveDuplicatesCalculator.execute(shapes: &newShapes)
                     sourceShapes = newShapes
                     ShapeCalculator.SortByScoreThenArea(shapes: &sourceShapes)
                     if bestShape.score < sourceShapes[0].score {
