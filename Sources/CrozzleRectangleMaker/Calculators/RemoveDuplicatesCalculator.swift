@@ -60,27 +60,23 @@ public class RemoveDuplicatesCalculator {
     
     
     /// This provides a new list of shapes that have no duplicates
-    public static func execute(shapes: inout [ShapeModel])
-    {
-        // first we need to sort to find the duplicates
-        ShapeCalculator.SortWithWordSequence(shapes: &shapes)
+    public static func execute(shapes: [ShapeModel]) -> ([ShapeModel], Int) {
+        let (flippedShapes, flippedCount) = flipIfRequired(shapes: shapes)
         
-        var previous = 0
-        for current in 1..<shapes.count {
-            previous = current - 1
-            if (shapes[current].wordSequence == shapes[previous].wordSequence)
-            {
-                shapes[current].isValid = false
+        
+        if flippedCount > 0 {
+            if FeatureFlags.verbose {
+                print("RemoveDuplicatesCalculator flipped \(flippedCount) shapes")
             }
         }
         
         
-        shapes = shapes.filter { $0.isValid }
         
+        var (nonDuplicatedShapes, previousDuplicateCount) = findDuplicates(shapes: flippedShapes)
         
-        ShapeCalculator.SortByScoreThenArea(shapes: &shapes)
+        ShapeCalculator.SortByScoreThenArea(shapes: &nonDuplicatedShapes)
         
-        
+        return (nonDuplicatedShapes, previousDuplicateCount)
     }
     
     private static func printDuplicateSpread(shapes: [ShapeModel]) {
@@ -122,7 +118,8 @@ public class RemoveDuplicatesCalculator {
         
         var duplicateCount = 0
         
-        
+        // first we need to sort to find the duplicates
+        ShapeCalculator.SortWithWordSequence(shapes: &shapes)
         
         var previous = 0
         

@@ -28,7 +28,7 @@ public class BranchAndBoundV2 {
         
         for _ in 0..<depthMax {
             for _ in 0..<lookaheadDepth {
-                var newShapes = await MergeCalculatorV2.ExecuteDifferentShapesAsync(
+                let newShapes = await MergeCalculatorV2.ExecuteDifferentShapesAsync(
                     sourceShapes: sourceShapes,
                     searchShapes: searchShapes,
                     searchWordIndex: wordIndex,
@@ -41,7 +41,7 @@ public class BranchAndBoundV2 {
                     heightMax: heightMax)
                 
                 if newShapes.count > 0 {
-                    RemoveDuplicatesCalculator.execute(shapes: &newShapes)
+                    let (newShapes,_) = RemoveDuplicatesCalculator.execute(shapes:newShapes)
                     sourceShapes = newShapes
                     //ShapeCalculator.SortByScoreThenArea(shapes: &sourceShapes)
                     

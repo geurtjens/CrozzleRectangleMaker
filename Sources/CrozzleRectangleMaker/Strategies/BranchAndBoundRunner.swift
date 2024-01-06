@@ -120,12 +120,8 @@ public class BranchAndBoundRunner {
             print("FOUND \(successfulGames)")
         } else {
             let missing = Array(Set(games).subtracting(Set(successfulGames))).sorted()
-            if missing.count > 0 {
-                print("MISSING \(missing)")
-            }
-            if successfulGames.count > 0 {
-                print("FOUND \(successfulGames)")
-            }
+            print("MISSING \(missing)")
+            print("FOUND \(successfulGames)")
         }
         return successfulGames
     }
@@ -184,12 +180,8 @@ public class BranchAndBoundRunner {
             print("FOUND \(successfulGames)")
         } else {
             let missing = Array(Set(games).subtracting(Set(successfulGames))).sorted()
-            if missing.count > 0 {
-                print("MISSING \(missing)")
-            }
-            if successfulGames.count > 0 {
-                print("FOUND \(successfulGames)")
-            }
+            print("MISSING \(missing)")
+            print("FOUND \(successfulGames)")
         }
         return successfulGames
     }

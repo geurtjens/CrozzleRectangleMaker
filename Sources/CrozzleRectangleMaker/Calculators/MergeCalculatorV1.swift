@@ -367,7 +367,7 @@ public class MergeCalculatorV1 {
                         (potentialWidth <= heightMax && potentialHeight <= widthMax) {
                         
                         if isValidSize == false {
-                            print("THE VALID SIZE ALGORITHM ISNT WORKING AND REMOVED WRONGLY")
+                            print("FOUND THAT THE VALID SIZE ALGORITHM ISNT WORKING AND REMOVED WRONGLY")
                         }
                         
                         let validShape = ShapeToTextConverterV2.ToValidShape(placements: potentialPlacements, width: Int(potentialWidth), height: Int(potentialHeight), wordsInt: wordsInt, words: words)

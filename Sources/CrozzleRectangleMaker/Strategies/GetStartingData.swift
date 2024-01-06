@@ -162,7 +162,7 @@ public class GetStartingData {
         
         for startingShapeId in 0..<startingShapes.count {
             
-            var childShapes = await MergeCalculatorV2.ExecuteDifferentShapesAsync(
+            let childShapes = await MergeCalculatorV2.ExecuteDifferentShapesAsync(
                 sourceShapes: [startingShapes[startingShapeId]],
                 searchShapes: searchShapes,
                 searchWordIndex: wordIndex,
@@ -174,12 +174,12 @@ public class GetStartingData {
                 widthMax: widthMax,
                 heightMax: heightMax)
             
-            RemoveDuplicatesCalculator.execute(
-                shapes: &childShapes)
+            let (noDuplicates, _) = RemoveDuplicatesCalculator.execute(
+                shapes: childShapes)
             
             let treeNode = TreeNodeModel(
                 parentShape: startingShapes[startingShapeId],
-                childShapes: childShapes,
+                childShapes: noDuplicates,
                 bestDescendant: childShapes[0],
                 siblingCount: 0)
             

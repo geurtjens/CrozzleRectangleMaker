@@ -119,6 +119,13 @@ public class BranchAndBoundV3 {
         
         for cycleId in 1..<maxDepth {
             
+//            if cycleId == 3 {
+//                print("CHILD SHAPES FOR CYCLE 5");
+//                for childShape in previousNodes[0].childShapes {
+//                    print(childShape.ToJson(words: words))
+//                }
+//                print("Hault here")
+//            }
             treeNodes = await executeTreeNodes(
                 treeNodes: treeNodes,
                 searchShapes: searchShapes,
@@ -129,8 +136,10 @@ public class BranchAndBoundV3 {
                 wordIndex: wordIndex,
                 scoresMin: scoresMin)
             
+//            if cycleId == 4 {
+//                print("Break here")
+//            }
             shapesCreatedCount = treeNodes.count
-            
             for treeNode in treeNodes {
                 shapesCreatedCount += treeNode.childShapes.count
             }
@@ -157,10 +166,14 @@ public class BranchAndBoundV3 {
                 
                 var childShapes: [ShapeModel] = []
                 for treeNode in previousNodes {
-                    childShapes += treeNode.childShapes
+                    for childShape in treeNode.childShapes {
+                        childShapes.append(childShape)
+                    }
                 }
                 
-                RemoveDuplicatesCalculator.execute(shapes: &childShapes)
+                ShapeCalculator.Sort(shapes: &childShapes)
+                
+                (childShapes, _) = RemoveDuplicatesCalculator.execute(shapes: childShapes)
                 
                 var bestShapes: [ShapeModel] = []
                 var bestScores: [UInt16] = []
@@ -211,7 +224,7 @@ public class BranchAndBoundV3 {
                 for treeNodeId in 0..<treeNodes.count {
                     bestShapes.append(treeNodes[treeNodeId].parentShape)
                 }
-                RemoveDuplicatesCalculator.execute(shapes: &bestShapes)
+                (bestShapes, _) = RemoveDuplicatesCalculator.execute(shapes: bestShapes)
                 
                 for bestShape in bestShapes {
                     bestScores.append(bestShape.score)

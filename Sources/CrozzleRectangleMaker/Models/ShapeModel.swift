@@ -25,51 +25,26 @@ public struct ShapeModel {
     public var isValid: Bool = true
     
     /// Used to find duplicates, it is a csv for all the words in the shape.
-    public let wordSequence: String
+    public var wordSequence: String
     
     //public var seqCalculated: Bool = false
     
     /// Its true that area can fit into a smaller size for valid grids but sometimes we have crazy large invalid grids and this causes overflows
     public let area: UInt16
     
-    //public var density: Float32
+    public var density: Float32
     
     public var mergeHistory: [Int] = []
     
     public init(score: UInt16, width: UInt8, height: UInt8, placements: [PlacementModel]) {
-        
         self.score = score
-        self.area = (UInt16(width) - 2) * (UInt16(height) - 2)
-        
-        
-        var sortedPlacements = placements
-        sortedPlacements.sort { $0.w < $1.w }
-        
-        if sortedPlacements[0].z == true {
-            self.width = width
-            self.height = height
-            self.placements = sortedPlacements
-            self.wordSequence = ShapeModel.getWordSequence(placements: sortedPlacements)
-        } else {
-            self.width = height
-            self.height = width
-            var flippedPlacements: [PlacementModel] = []
-            for p in sortedPlacements {
-                
-                flippedPlacements.append(
-                    PlacementModel(w: p.w, x: p.y, y: p.x, z: !p.z, l: UInt8(p.l))
-                )
-            }
-            self.placements = flippedPlacements
-            self.wordSequence = ShapeModel.getWordSequence(placements: flippedPlacements)
-        }
-        
-        
-        
-        
-        
-        
-        
+        self.width = width
+        self.height = height
+        self.placements = placements
+        let area: UInt16 = (UInt16(width) - 2) * (UInt16(height) - 2)
+        self.area = area
+        self.density = Float32(score) / Float32(area)
+        self.wordSequence = ShapeModel.getWordSequence(placements: placements)
     }
     /// provide the words that are found in this shape
     public func getWords() -> [UInt8] {
@@ -147,7 +122,7 @@ public struct ShapeModel {
     
     public func ToString(words: [String]) -> String {
         let (text, score) = ShapeCalculator.ToText(shape: self, words: words)
-        return "score:\(score), width:\(width), height:\(height), words:\(self.placements.count), area:\(area)\n`\n" + text + "\n`\n"
+        return "score:\(score), width:\(width), height:\(height), words:\(self.placements.count), area:\(area), density:\(density)\n`\n" + text + "\n`\n"
     }
     
     public func ToText(words: [String]) -> String {
@@ -253,12 +228,12 @@ public struct ShapeModel {
         let (text, score) = ShapeCalculator.ToText(shape: shape, words: words)
         
         if score == winningScore {
-            return "\nMATCHES HUMAN SCORE - score:\(score), winningScore:\(winningScore), gameId:\(gameId), width:\(shape.width), height:\(shape.height), words:\(shape.placements.count), area:\(shape.area)\n```\n" + text + "\n```\n"
+            return "\nMATCHES HUMAN SCORE - score:\(score), winningScore:\(winningScore), gameId:\(gameId), width:\(shape.width), height:\(shape.height), words:\(shape.placements.count), area:\(shape.area), density:\(shape.density)\n```\n" + text + "\n```\n"
         } else if score > winningScore {
-            return "\nWINNING SCORE - score:\(score), winningScore:\(winningScore), gameId:\(gameId), width:\(shape.width), height:\(shape.height), words:\(shape.placements.count), area:\(shape.area)\n```\n" + text + "\n```\n"
+            return "\nWINNING SCORE - score:\(score), winningScore:\(winningScore), gameId:\(gameId), width:\(shape.width), height:\(shape.height), words:\(shape.placements.count), area:\(shape.area), density:\(shape.density)\n```\n" + text + "\n```\n"
         } else {
             
-            return "\nscore:\(score), winningScore:\(winningScore), gameId:\(gameId), width:\(shape.width), height:\(shape.height), words:\(shape.placements.count), area:\(shape.area)\n```\n" + text + "\n```\n"
+            return "\nscore:\(score), winningScore:\(winningScore), gameId:\(gameId), width:\(shape.width), height:\(shape.height), words:\(shape.placements.count), area:\(shape.area), density:\(shape.density)\n```\n" + text + "\n```\n"
         }
     }
     
