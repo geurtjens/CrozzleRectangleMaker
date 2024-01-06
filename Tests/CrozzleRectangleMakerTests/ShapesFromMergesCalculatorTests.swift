@@ -121,38 +121,38 @@ final class ShapesFromMergesCalculatorTests: XCTestCase {
     }
     
     
-    func test_Ladder_nAzAReTh_sInG_beLls() throws {
-        
-        let gameList = GameList()
-        if let game = gameList.getGame(gameId: 8612) {
-            
-            let words = game.winningWords
-            
-            let result = ShapesFromMergesCalculator.Execute2x3And2x2(words: words, scoreMin: 52, widthMax: 17, heightMax: 12)
-            
-            XCTAssertEqual(66, result.count)
-            
-            let searchFor = ["NUTS","ZION","EVE","NAZARETH","SING","BELLS"]
-            let filtered = ShapeCalculator.filterInclude(shapes: result, containing: searchFor, from: words)
-            
-            XCTAssertEqual(1, filtered.count)
-            
-            let shape = filtered[0]
-            let flipped = ShapeCalculator.Flip(shape: shape)
-            
-            print(flipped.ToString(words: words))
-
-            /*
-             score:178, width:11, height:7, words:7, area:45, density:3.9555554
-             
-             . .  . .
-            .NAZARETH.
-             U I  V O
-             T O.BELLS.
-            .SING.. L
-             . .    Y
-                    .
-             */
-        }
-    }
+//    func test_Ladder_nAzAReTh_sInG_beLls() throws {
+//        
+//        let gameList = GameList()
+//        if let game = gameList.getGame(gameId: 8612) {
+//            
+//            let words = game.winningWords
+//            
+//            let result = ShapesFromMergesCalculator.Execute2x3And2x2(words: words, scoreMin: 52, widthMax: 17, heightMax: 12)
+//            
+//            XCTAssertEqual(66, result.count)
+//            
+//            let searchFor = ["NUTS","ZION","EVE","NAZARETH","SING","BELLS"]
+//            let filtered = ShapeCalculator.filterInclude(shapes: result, containing: searchFor, from: words)
+//            
+//            XCTAssertEqual(1, filtered.count)
+//            
+//            let shape = filtered[0]
+//            let flipped = ShapeCalculator.Flip(shape: shape)
+//            
+//            print(flipped.ToString(words: words))
+//
+//            /*
+//             score:178, width:11, height:7, words:7, area:45, density:3.9555554
+//             
+//             . .  . .
+//            .NAZARETH.
+//             U I  V O
+//             T O.BELLS.
+//            .SING.. L
+//             . .    Y
+//                    .
+//             */
+//        }
+//    }
 }

@@ -246,9 +246,9 @@ public struct ShapeModel {
     public func ToStringExtended(words: [String], gameId: Int, winningScore: Int) -> String {
         
         var shape = self
-        if shape.width < shape.height {
-            shape = shape.Flip()
-        }
+//        if shape.width < shape.height {
+//            shape = shape.Flip()
+//        }
         
         let (text, score) = ShapeCalculator.ToText(shape: shape, words: words)
         
@@ -270,16 +270,16 @@ public struct ShapeModel {
         return ShapeCalculator.ToJson(shape: self, words: words)
     }
     
-    public func Flip() -> ShapeModel {
-        return ShapeCalculator.Flip(shape: self)
-    }
+//    public func Flip() -> ShapeModel {
+//        return ShapeCalculator.Flip(shape: self)
+//    }
     
     public func CodeGridText(words: [String]) -> String {
         // firstly if we are more vertical than horizontal lets flip
-        var shape = self
-        if shape.width < shape.height {
-            shape = ShapeCalculator.Flip(shape: shape)
-        }
+        let shape = self
+//        if shape.width < shape.height {
+//            shape = ShapeCalculator.Flip(shape: shape)
+//        }
         
         let (_,text) = ShapeToTextConverter.getScoreAndText(shape: shape, words: words)
         

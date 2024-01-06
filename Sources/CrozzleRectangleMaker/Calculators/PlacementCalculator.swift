@@ -10,6 +10,14 @@ import Foundation
 /// Placements that are derived from rectangles.  Placements will be sorted with lowest wordId first
 public class PlacementCalculator {
     
+    static func getWords(from placements: [PlacementModel]) -> [Int] {
+        var result = [Int]()
+        for placement in placements {
+            result.append(Int(placement.w))
+        }
+        return result
+    }
+    
     /// converts `topLeft` rectangles to placements
     public static func ConvertToPlacements(topLeft input: RectangleModel) -> [PlacementModel] {
         

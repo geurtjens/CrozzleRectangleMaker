@@ -10,7 +10,12 @@ import Foundation
 public class MergePlacementCalculator {
     
     // Create a shape from two `GpuShapeModel` based on the instructions provided
-    public static func Execute(sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, instruction: MergeInstructionModel, words:[String]) -> [PlacementModel] {
+    public static func Execute(
+        sourceShapes: GpuShapeModel, 
+        searchShapes: GpuShapeModel,
+        instruction: MergeInstructionModel,
+        words:[String]) -> [PlacementModel]
+    {
         
         // This will flip the placements if they are opposite direction
         let (sourcePlacement, searchPlacement) = GetPlacementsForBothShapes(
@@ -97,7 +102,11 @@ public class MergePlacementCalculator {
     
     
     // Create a shape from two `GpuShapeModel` based on the instructions provided
-    public static func ExecuteV2(sourceShape: ShapeModel, searchShape: ShapeModel, instruction: MergeInstructionModel, words:[String]) -> [PlacementModel] {
+    public static func ExecuteV2_Old(
+        sourceShape: ShapeModel,
+        searchShape: ShapeModel,
+        instruction: MergeInstructionModel,
+        words:[String]) -> [PlacementModel] {
         
         // This will flip the placements if they are opposite direction
         //let (sourcePlacements, searchPlacements) = GetPlacementsForBothShapesV2(
@@ -105,10 +114,7 @@ public class MergePlacementCalculator {
            // searchShapes: searchShapes,
            // instruction: instruction)
         
-        var sourceShape = sourceShape
-        if instruction.flipped {
-            sourceShape = sourceShape.Flip()
-        }
+        
         
         
         
@@ -163,7 +169,9 @@ public class MergePlacementCalculator {
             }
         }
         
-        let isOverlapping = OverlappingPlacementsCalculator.isOverlapping(sourcePlacements: sourceFinal, searchPlacements: searchNoDuplicates)
+        let isOverlapping = OverlappingPlacementsCalculator.isOverlapping(
+            sourcePlacements: sourceFinal,
+            searchPlacements: searchNoDuplicates)
         if isOverlapping {
             return []
         }
@@ -193,11 +201,187 @@ public class MergePlacementCalculator {
         return combined
     }
     
+    static func FindFirstCommonPosition(
+        sourcePlacements: [PlacementModel],
+        searchPlacements: [PlacementModel]) -> (Int, Int)
+    {
+        // First, we find the common placement
+        for (i, sourcePlacement) in sourcePlacements.enumerated() {
+            for (j, searchPlacement) in searchPlacements.enumerated() {
+                if sourcePlacement.w == searchPlacement.w {
+                    return (i, j)
+                }
+            }
+        }
+        return (-1, -1)
+    }
+    // Create a shape from two `GpuShapeModel` based on the instructions provided
+    public static func ExecuteV2(
+        sourcePlacements: [PlacementModel],
+        searchPlacements: [PlacementModel]) -> [PlacementModel]
+    {
+        
+       
+        
+        let (commonSourceId, commonSearchId) = FindFirstCommonPosition(
+            sourcePlacements: sourcePlacements,
+            searchPlacements: searchPlacements)
+        
+        
+        if commonSourceId == -1 {
+            print("Your offset calculator did not work")
+            return []
+        }
+        let flip = sourcePlacements[commonSourceId].z != searchPlacements[commonSearchId].z
+        
+        // By this moment the placements are flipped if they were wrong originally
+        let (sourceOffsetX, sourceOffsetY, searchOffsetX, searchOffsetY) = MergeOffsetCalculator.CalculateOffsets(
+            xSource: Int(sourcePlacements[commonSourceId].x),
+            ySource: Int(sourcePlacements[commonSourceId].y),
+            xSearch: Int(searchPlacements[commonSearchId].x),
+            ySearch: Int(searchPlacements[commonSearchId].y),
+            flipped: false)
+        
+        // Now we can apply the offsets I guess
+        let sourcePlacements = MergeOffsetCalculator.ApplyOffsets(
+            placements: sourcePlacements,
+            xOffset: sourceOffsetX,
+            yOffset: sourceOffsetY)
+        
+        let excludedWords = findCommonWords(
+            sourcePlacements: sourcePlacements,
+            searchPlacements: searchPlacements)
+        
+        var searchPlacements = searchPlacements
+        if (flip == true)
+        {
+            // We are going to flip each placement and then apply the offset
+            searchPlacements = applyOffsetsForSearchWithFlip(
+                placements: searchPlacements,
+                xOffset: Int(searchOffsetX),
+                yOffset: Int(searchOffsetY),
+                excludedWords: excludedWords);
+        } else
+        {
+            // Apply offset and at the same time remove any common words
+            searchPlacements = applyOffsetsForSearch(
+                placements: searchPlacements,
+                xOffset: Int(searchOffsetX),
+                yOffset: Int(searchOffsetY),
+                excludedWords: excludedWords);
+        }
+        
+        var result = sourcePlacements + searchPlacements
+//        let searchFinal = MergeOffsetCalculator.ApplyOffsets(
+//            placements: searchShape.placements,
+//            xOffset: searchOffsetX,
+//            yOffset: searchOffsetY)
+//        
+//        
+//        // We need to remove the common words from searchFinal
+//        var searchNoDuplicates: [PlacementModel] = []
+//        for item in searchFinal {
+//            if commonPlacements.contains(Int(item.w)) == false {
+//                searchNoDuplicates.append(item)
+//            }
+//        }
+//        
+//        let isOverlapping = OverlappingPlacementsCalculator.isOverlapping(
+//            sourcePlacements: sourceFinal,
+//            searchPlacements: searchNoDuplicates)
+//        if isOverlapping {
+//            return []
+//        }
+//        
+//        var combined = sourceFinal + searchNoDuplicates
+//        
+        result.sort { $0.w < $1.w }
+        
+        /*
+         .  .
+         S .G
+         T.BUOY.
+        .AHOY.
+        .YAW.
+         .W.
+          S
+          E
+          R
+          .
+         */
+        
+        
+        // We do not know the score just yet
+        //let shape = ShapeModel(score:10, width: UInt8(width), height: UInt8(height), placements: combined)
+
+        
+        return result
+    }
+    
+    
+    static func applyOffsetsForSearchWithFlip(
+        placements: [PlacementModel],
+        xOffset: Int,
+        yOffset: Int,
+        excludedWords: Set<Int>
+    ) -> [PlacementModel] {
+        var result = [PlacementModel]()
+        
+        for placement in placements {
+            if !excludedWords.contains(Int(placement.w)) {
+                let newPlacement = PlacementModel(
+                    w: placement.w,
+                    x: UInt8(Int(placement.y) + xOffset),
+                    y: UInt8(Int(placement.x) + yOffset),
+                    z: !placement.z,
+                    l: placement.l
+                )
+                result.append(newPlacement)
+            }
+        }
+        
+        return result
+    }
+    static func applyOffsetsForSearch(
+        placements: [PlacementModel],
+        xOffset: Int,
+        yOffset: Int,
+        excludedWords: Set<Int>
+    ) -> [PlacementModel] {
+        var result = [PlacementModel]()
+        
+        for placement in placements {
+            if !excludedWords.contains(Int(placement.w)) {
+                let newPlacement = PlacementModel(
+                    w: placement.w,
+                    x: UInt8(Int(placement.x) + xOffset),
+                    y: UInt8(Int(placement.y) + yOffset),
+                    z: placement.z,
+                    l: placement.l
+                )
+                result.append(newPlacement)
+            }
+        }
+        
+        return result
+    }
+    static func findCommonWords(sourcePlacements: [PlacementModel], searchPlacements: [PlacementModel]) -> Set<Int> {
+        let sourceWords = PlacementCalculator.getWords(from: sourcePlacements)
+        let searchWords = PlacementCalculator.getWords(from: searchPlacements)
+        
+        let commonWords = Set(sourceWords).intersection(searchWords)
+        
+        return commonWords
+    }
     
     
     
     /// Converting from `GpuShapeModel` to `[PlacementModel]`.  Flip second `[PlacementModel]` if required.  Only add words not in first to second `[PlacementModel]`.
-    public static func GetPlacementsForBothShapes(sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, instruction: MergeInstructionModel) -> ([PlacementModel], [PlacementModel]) {
+    public static func GetPlacementsForBothShapes(
+        sourceShapes: GpuShapeModel,
+        searchShapes: GpuShapeModel,
+        instruction: MergeInstructionModel) -> ([PlacementModel], [PlacementModel])
+    {
         
         let sourceStartPos = instruction.sourceShapeId * sourceShapes.stride
         let searchStartPos = instruction.searchShapeId * searchShapes.stride
@@ -259,8 +443,11 @@ public class MergePlacementCalculator {
         
     }
     
-    public static func GetPlacementsForBothShapesV2(sourceShapes: [ShapeModel], searchShapes: [ShapeModel], instruction: MergeInstructionModel) -> ([PlacementModel], [PlacementModel]) {
-        
+    public static func GetPlacementsForBothShapesV2(
+        sourceShapes: [ShapeModel],
+        searchShapes: [ShapeModel],
+        instruction: MergeInstructionModel) -> ([PlacementModel], [PlacementModel])
+    {
         
         let sourcePlacements = sourceShapes[instruction.sourceShapeId].placements
         let searchPlacements = searchShapes[instruction.searchShapeId].placements
@@ -275,7 +462,11 @@ public class MergePlacementCalculator {
     }
     
     /// This is a duplicate of `GetPlacementsForBothShapes` except we do things in opposite order.  But currently this doesnt work, needs refining
-    public static func GetPlacementsForBothShapesOpposite(source: GpuShapeModel, search: GpuShapeModel, instruction: MergeInstructionModel) -> ([PlacementModel], [PlacementModel]) {
+    public static func GetPlacementsForBothShapesOpposite(
+        source: GpuShapeModel,
+        search: GpuShapeModel,
+        instruction: MergeInstructionModel) -> ([PlacementModel], [PlacementModel])
+    {
         
         let sourceStartPos = instruction.sourceShapeId * source.stride
         let searchStartPos = instruction.searchShapeId * search.stride
@@ -334,10 +525,5 @@ public class MergePlacementCalculator {
             }
         }
         return (sourcePlacements, searchPlacements)
-        
     }
-    
-    
-  
-    
 }

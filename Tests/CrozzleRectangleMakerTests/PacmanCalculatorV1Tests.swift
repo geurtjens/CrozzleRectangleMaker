@@ -727,9 +727,9 @@ final class PacmanCalculatorV1Tests: XCTestCase {
         var oldShapes:[String] = []
         for oldResult in oldResults {
             var oldShape = oldResult.ToShape()
-            if oldShape.width < oldShape.height {
-                oldShape = oldShape.Flip()
-            }
+//            if oldShape.width < oldShape.height {
+//                oldShape = oldShape.Flip()
+//            }
             
             let text = oldShape.ToTextDebug(words: words)
             oldShapes.append(text)
@@ -738,9 +738,9 @@ final class PacmanCalculatorV1Tests: XCTestCase {
         var newShapes:[String] = []
         for newResult in newResults {
             var newShape = newResult.ToShape()
-            if newShape.width < newShape.height {
-                newShape = newShape.Flip()
-            }
+//            if newShape.width < newShape.height {
+//                newShape = newShape.Flip()
+//            }
             let text = newShape.ToTextDebug(words: words)
             newShapes.append(text)
         }
@@ -748,7 +748,7 @@ final class PacmanCalculatorV1Tests: XCTestCase {
         for oldResult in oldResults {
             
             let oldShape = oldResult.ToShape().ToTextDebug(words: words)
-            let oldShapeFlipped = oldResult.ToShape().Flip().ToTextDebug(words: words)
+            let oldShapeFlipped = oldResult.ToShape().ToTextDebug(words: words)
             
             XCTAssertNotEqual(oldShape, oldShapeFlipped)
             

@@ -315,13 +315,10 @@ public class MutationCalculator {
             let shape = ShapeCalculator.toShape(fromPlacements: mutation.placements, words: wordSequence)
                 
             //if matchingWordSequence(originalSequence: originalWordSequence, wordSequence: wordSequence) == false {
-            if shape.height < shape.width {
-                let shapeText = shape.ToMarkFormat(words: wordSequence)
-                result.append(shapeText)
-            } else {
-                let shapeText = shape.Flip().ToMarkFormat(words: wordSequence)
-                result.append(shapeText)
-            }
+            
+            let shapeText = shape.ToMarkFormat(words: wordSequence)
+            result.append(shapeText)
+            
             // }
             
         }

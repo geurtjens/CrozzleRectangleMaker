@@ -55,7 +55,7 @@ public class SubsetShapeCalculator {
             }
                 
         } else {
-            let baselinedText = baselinedShape.Flip().ToString(words: words)
+            let baselinedText = baselinedShape.ToString(words: words)
             if smallerShapeText == baselinedText {
                 return true
             } else {
