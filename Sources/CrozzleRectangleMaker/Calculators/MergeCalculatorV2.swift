@@ -545,7 +545,13 @@ public class MergeCalculatorV2 {
         let (_, _, _, matchingWordCount) = WordIndexModelV2.GetMatches(sourceShape: sourceShape, searchShape: searchShape)
         
         
-        let instruction = WordIndexModelV2.processMatches(matchCount: matchingWordCount, sourceShape: sourceShape, sourceShapeId: 0, searchShape:searchShape, searchShapeId: 0)
+        let instruction = ValidateMergeCalculator.Execute(
+            matchCount: matchingWordCount,
+            sourceShape: sourceShape,
+            sourceShapeId: 0,
+            searchShape:searchShape,
+            searchShapeId: 0)
+        
         if instruction == nil {
             return nil
         }
