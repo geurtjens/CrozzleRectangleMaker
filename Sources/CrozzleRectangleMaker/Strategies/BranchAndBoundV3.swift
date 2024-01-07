@@ -119,13 +119,6 @@ public class BranchAndBoundV3 {
         
         for cycleId in 1..<maxDepth {
             
-//            if cycleId == 3 {
-//                print("CHILD SHAPES FOR CYCLE 5");
-//                for childShape in previousNodes[0].childShapes {
-//                    print(childShape.ToJson(words: words))
-//                }
-//                print("Hault here")
-//            }
             treeNodes = await executeTreeNodes(
                 treeNodes: treeNodes,
                 searchShapes: searchShapes,
@@ -136,9 +129,6 @@ public class BranchAndBoundV3 {
                 wordIndex: wordIndex,
                 scoresMin: scoresMin)
             
-//            if cycleId == 4 {
-//                print("Break here")
-//            }
             shapesCreatedCount = treeNodes.count
             for treeNode in treeNodes {
                 shapesCreatedCount += treeNode.childShapes.count

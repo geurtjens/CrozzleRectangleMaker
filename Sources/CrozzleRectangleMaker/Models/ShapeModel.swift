@@ -269,4 +269,35 @@ public struct ShapeModel {
         }
         return "[\n\(result)\n    ]"
     }
+    
+    
+    // We add this as the alternate way of creating a shape and one that flip will not work.  But its not used at the moment.
+    public init(score: UInt16, width: UInt8, height: UInt8, placements: [PlacementModel], sorted: Bool) {
+
+        self.score = score
+        self.area = (UInt16(width) - 2) * (UInt16(height) - 2)
+        self.density = Float32(score) / Float32(area)
+
+        var sortedPlacements = placements
+        sortedPlacements.sort { $0.w < $1.w }
+
+        if sortedPlacements[0].z == true {
+            self.width = width
+            self.height = height
+            self.placements = sortedPlacements
+            self.wordSequence = ShapeModel.getWordSequence(placements: sortedPlacements)
+        } else {
+            self.width = height
+            self.height = width
+            var flippedPlacements: [PlacementModel] = []
+            for p in sortedPlacements {
+
+                flippedPlacements.append(
+                    PlacementModel(w: p.w, x: p.y, y: p.x, z: !p.z, l: UInt8(p.l))
+                )
+            }
+            self.placements = flippedPlacements
+            self.wordSequence = ShapeModel.getWordSequence(placements: flippedPlacements)
+        }
+    }
 }
