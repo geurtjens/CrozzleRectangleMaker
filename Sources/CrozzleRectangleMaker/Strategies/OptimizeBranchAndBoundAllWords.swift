@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class OptimizeBranchAndBoundAllWords {
+public class OptimizeBranchAndBoundAllWords {
     
     // We want to first optimize by starting word
     // and for each starting word we find the winning game
