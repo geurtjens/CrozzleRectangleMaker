@@ -105,9 +105,9 @@ public class MergePlacementCalculator {
            // searchShapes: searchShapes,
            // instruction: instruction)
         
-        var sourceShape = sourceShape
+        var searchShape = searchShape
         if instruction.flipped {
-            sourceShape = sourceShape.Flip()
+            searchShape = searchShape.Flip()
         }
         
         
@@ -148,6 +148,10 @@ public class MergePlacementCalculator {
             placements: sourceShape.placements,
             xOffset: sourceOffsetX,
             yOffset: sourceOffsetY)
+        
+        
+        
+        
         
         let searchFinal = MergeOffsetCalculator.ApplyOffsets(
             placements: searchShape.placements,

@@ -729,7 +729,7 @@ public class StrategyCalculator {
         let gameList = GameList()
         for game in gameList.games {
             
-            let (winningShapes, words, _, _) = WinningShapesCalculatorV1.getShapes(gameId: game.gameId)
+            let (winningShapes, words, _, _) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: game.gameId)
             
             guard let winningShape = GameList.getWinningShape(gameId: game.gameId) else { return  }
             

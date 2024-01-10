@@ -16,7 +16,7 @@ public struct GameList {
     }
     
     public static func getWinningShape(gameId: Int) -> ShapeModel? {
-        let (shapes, words, widthMax, heightMax) = WinningShapesCalculatorV1.getShapes(gameId: gameId)
+        let (shapes, words, widthMax, heightMax) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: gameId)
         
         if shapes.count == 0 {
             return nil

@@ -210,7 +210,15 @@ public class GetStartingData {
     }
     
     public static func getWinningShapes(gameId: Int) -> [ShapeModel] {
-        var (winningShapes, _, _, _) = WinningShapesCalculatorV1.getShapes(gameId: gameId)
+        var (winningShapes, _, _, _) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: gameId)
+        
+        ShapeCalculator.SortByScoreThenArea(shapes: &winningShapes)
+        
+        return winningShapes
+    }
+    
+    public static func getWinningShapesAllWords(gameId: Int) -> [ShapeModel] {
+        var (winningShapes, _, _, _) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: gameId)
         
         ShapeCalculator.SortByScoreThenArea(shapes: &winningShapes)
         

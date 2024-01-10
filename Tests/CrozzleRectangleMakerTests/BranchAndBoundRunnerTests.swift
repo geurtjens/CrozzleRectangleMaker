@@ -10,10 +10,14 @@ import XCTest
 final class BranchAndBoundRunnerTests: XCTestCase {
 
     func test_WinningWords_UseGuidedScores() async throws {
+        FeatureFlags.showGameText = false
+        FeatureFlags.showCyclesText = false
         await BranchAndBoundRunner.WinningWords_UseGuidedScores()
     }
     
     func test_WinningWords_NoGuidedScores() async throws {
+        FeatureFlags.showGameText = false
+        FeatureFlags.showCyclesText = false
         await BranchAndBoundRunner.WinningWords_NoGuidedScores()
     }
     

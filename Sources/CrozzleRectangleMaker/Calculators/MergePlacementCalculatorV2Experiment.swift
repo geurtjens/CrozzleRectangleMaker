@@ -33,6 +33,7 @@ public static func ExecuteV2(
         searchPlacements: [PlacementModel]) -> [PlacementModel]
     {
 
+        
 
 
         let (commonSourceId, commonSearchId) = FindFirstCommonPosition(
@@ -46,13 +47,21 @@ public static func ExecuteV2(
         }
         let flip = sourcePlacements[commonSourceId].z != searchPlacements[commonSearchId].z
 
+//        if flip == true {
+//            print("SourcePlacements")
+//            print(PlacementCalculator.Print(placements: sourcePlacements))
+//            print("SearchPlacements")
+//            print(PlacementCalculator.Print(placements: searchPlacements))
+//            
+//        }
+        
         // By this moment the placements are flipped if they were wrong originally
         let (sourceOffsetX, sourceOffsetY, searchOffsetX, searchOffsetY) = MergeOffsetCalculator.CalculateOffsets(
             xSource: Int(sourcePlacements[commonSourceId].x),
             ySource: Int(sourcePlacements[commonSourceId].y),
             xSearch: Int(searchPlacements[commonSearchId].x),
             ySearch: Int(searchPlacements[commonSearchId].y),
-            flipped: false)
+            flipped: flip)
 
         // Now we can apply the offsets I guess
         let sourcePlacements = MergeOffsetCalculator.ApplyOffsets(
@@ -73,8 +82,7 @@ public static func ExecuteV2(
                 xOffset: Int(searchOffsetX),
                 yOffset: Int(searchOffsetY),
                 excludedWords: excludedWords);
-        } else
-        {
+        } else {
             // Apply offset and at the same time remove any common words
             searchPlacements = applyOffsetsForSearch(
                 placements: searchPlacements,

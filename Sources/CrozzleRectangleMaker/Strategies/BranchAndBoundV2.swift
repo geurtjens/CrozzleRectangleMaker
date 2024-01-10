@@ -96,7 +96,7 @@ public class BranchAndBoundV2 {
     }
     public static func getBestWinningShape(gameId: Int) -> ShapeModel {
         
-        var (shapes, _,_,_) = WinningShapesCalculatorV1.getShapes(gameId: gameId)
+        var (shapes, _,_,_) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: gameId)
         
         ShapeCalculator.SortByScoreThenArea(shapes: &shapes)
         

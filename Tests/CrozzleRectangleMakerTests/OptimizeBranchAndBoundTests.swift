@@ -10,23 +10,21 @@ import XCTest
 final class OptimizeBranchAndBoundTests: XCTestCase {
     
     public func test_executeFailuresUsingGuidedScores() async {
+        FeatureFlags.showGameText = false
+        FeatureFlags.showCyclesText = false
         await OptimizeBranchAndBound.executeFailuresUsingGuidedScores()
     }
     
     public func test_executeFailuresNoGuidedScores() async {
+        FeatureFlags.showGameText = false
+        FeatureFlags.showCyclesText = false
         await OptimizeBranchAndBound.executeFailuresNoGuidedScores()
     }
     
     public func test_optimizeBeamWidthAllWords() async {
-        let _ = await OptimizeBranchAndBoundAllWords.optimizeBeamWidthAllWords(
-            gameId: 8802,
-            lookaheadDepth: 2,
-            maxDepth: 30,
-            minimumBeamWidth: 1,
-            maximumBeamWidth: 25,
-            rootShape: 0,
-            rootWidth: 1,
-            useGuidedScores: false)
+        FeatureFlags.showGameText = false
+        FeatureFlags.showCyclesText = false
+        await OptimizeBranchAndBoundAllWords.executeFailuresNoGuidedScores()
     }
     
 

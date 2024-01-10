@@ -24,7 +24,7 @@ final class StrategyCalculatorTests: XCTestCase {
             return
         }
         
-        let (winningShapes, words, _, _) = WinningShapesCalculatorV1.getShapes(gameId: 8612)
+        let (winningShapes, words, _, _) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: 8612)
         let scoresMin:[Int] = Array(repeating: 0, count: 40)
         let constraints = ConstraintsModel(words: words, scoresMin:scoresMin, queueLengthMax: 1000, priorityFunction: .score_area)
         var queues = QueueList(game: game, constraints: constraints)

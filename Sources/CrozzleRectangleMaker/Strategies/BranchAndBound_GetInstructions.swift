@@ -14,22 +14,52 @@ public struct BranchAndBound_GetInstructions {
         
         var result: [BranchAndBoundInstruction] = []
 
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 1, games: [8703], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        //2 seconds
         result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 25, games: [8802, 9306], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        
+        //31 seconds
         result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 43, games: [9212], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        
+        // 6.622475541 seconds
         result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 75, games: [8710], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
         
+        // 6.622475541 seconds, 0.340007792 seconds, 6.218686583 seconds
         result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 1, games: [9002, 9109, 9312], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 50, games: [8612, 8702, 8704, 8809, 8910, 8912, 9104, 9105, 9108, 9207, 9310, 9311, 9412], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 75, games: [8808, 9210], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        
+        // 44 seconds, 1 minutes 41 seconds, 5 minutes 5 seconds, 12 minutes 13 seconds
+        // 11 seconds, 3 minutes 43 seconds, 1 minutes 58 seconds, 26 seconds
+        // 11 seconds, 5.604520625 seconds, 50 seconds, 8 minutes 17 seconds
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 50, games:
+            [8612, 8704, 8809, 8910, 
+             8912, 9104, 9105, 9108, 
+             9207, 9310, 9311, 9412], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        
+        // 5 minutes 43 seconds, 4 minutes 9 seconds
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 75, games:
+            [8808, 9210], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        
+        // 12 minutes 10 seconds
         result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 87, games: [9303], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
         
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 1, games: [8712, 9007, 9008], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 25, games: [8705, 8811, 9103, 9308], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 37, games: [8711], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        // 14 minutes 15 seconds, 5.675033375 seconds, 1 hours 26 minutes 3 seconds
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 1, games:
+            [8712, 9007, 9008], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        
+        //53 seconds, 45 minutes 38 seconds, 19 minutes 38 seconds
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 25, games:
+            [8705, 8811, 9103], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        
         // 32 games full words so far
         
-//        let solvedGames = [8703, 8802, 9306, 9212, 8710, 9002, 9109, 9312, 8612, 8702, 8704, 8809, 8910, 8912, 9104, 9105, 9108, 9207, 9310, 9311, 9412, 8808, 9210, 9303, 8712, 9007, 9008, 8705, 8811, 9103, 9308, 8711]
+        let solvedGames = [
+            8612, 
+            8704, 8710, 8712,
+            8802, 8808, 8809, 8910, 8811, 8912,
+            9002, 9007, 9008,
+            9103, 9104, 9105, 9108, 9109,
+            9207, 9210, 9212,
+            9303, 9306, 9310, 9311, 9312,
+            9412]
         
         return result
         

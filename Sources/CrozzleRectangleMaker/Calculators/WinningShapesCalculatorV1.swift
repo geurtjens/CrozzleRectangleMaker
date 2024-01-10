@@ -8,231 +8,240 @@
 import Foundation
 public class WinningShapesCalculatorV1 {
     
-    public static func getShapes(gameId: Int) -> ([ShapeModel],[String],Int,Int) {
+    public static func getShapesWinningWords(gameId: Int) -> ([ShapeModel],[String],Int,Int) {
+        let game = GameList().getGame(gameId: gameId)!
+        return getShapes(gameId: gameId, words: game.winningWords)
+    }
+    
+    public static func getShapesAllWords(gameId: Int) -> ([ShapeModel],[String],Int,Int) {
+        let game = GameList().getGame(gameId: gameId)!
+        return getShapes(gameId: gameId, words: game.words)
+    }
+    
+    public static func getShapes(gameId: Int, words: [String]) -> ([ShapeModel],[String],Int,Int) {
         switch gameId {
         case 8612:
-            return WinningShapesCalculatorV1.Shapes_8612()
+            return WinningShapesCalculatorV1.Shapes_8612(words: words)
         case 8702:
-            return WinningShapesCalculatorV1.Shapes_8702()
+            return WinningShapesCalculatorV1.Shapes_8702(words: words)
         case 8703:
-            return WinningShapesCalculatorV1.Shapes_8703()
+            return WinningShapesCalculatorV1.Shapes_8703(words: words)
         case 8704:
-            return WinningShapesCalculatorV1.Shapes_8704()
+            return WinningShapesCalculatorV1.Shapes_8704(words: words)
         case 8705:
-            return WinningShapesCalculatorV1.Shapes_8705()
+            return WinningShapesCalculatorV1.Shapes_8705(words: words)
         case 8710:
-            return WinningShapesCalculatorV1.Shapes_8710()
+            return WinningShapesCalculatorV1.Shapes_8710(words: words)
         case 8711:
-            return WinningShapesCalculatorV1.Shapes_8711()
+            return WinningShapesCalculatorV1.Shapes_8711(words: words)
         case 8712:
-            return WinningShapesCalculatorV1.Shapes_8712()
+            return WinningShapesCalculatorV1.Shapes_8712(words: words)
         case 8802:
-            return WinningShapesCalculatorV1.Shapes_8802()
+            return WinningShapesCalculatorV1.Shapes_8802(words: words)
         case 8803:
-            return WinningShapesCalculatorV1.Shapes_8803()
+            return WinningShapesCalculatorV1.Shapes_8803(words: words)
         case 8804:
-            return WinningShapesCalculatorV1.Shapes_8804()
+            return WinningShapesCalculatorV1.Shapes_8804(words: words)
         case 8805:
-            return WinningShapesCalculatorV1.Shapes_8805()
+            return WinningShapesCalculatorV1.Shapes_8805(words: words)
         case 8806:
-            return WinningShapesCalculatorV1.Shapes_8806()
+            return WinningShapesCalculatorV1.Shapes_8806(words: words)
         case 8807:
-            return WinningShapesCalculatorV1.Shapes_8807()
+            return WinningShapesCalculatorV1.Shapes_8807(words: words)
         case 8808:
-            return WinningShapesCalculatorV1.Shapes_8808()
+            return WinningShapesCalculatorV1.Shapes_8808(words: words)
         case 8809:
-            return WinningShapesCalculatorV1.Shapes_8809()
+            return WinningShapesCalculatorV1.Shapes_8809(words: words)
         case 8810:
-            return WinningShapesCalculatorV1.Shapes_8810()
+            return WinningShapesCalculatorV1.Shapes_8810(words: words)
         case 8811:
-            return WinningShapesCalculatorV1.Shapes_8811()
+            return WinningShapesCalculatorV1.Shapes_8811(words: words)
         case 8812:
-            return WinningShapesCalculatorV1.Shapes_8812()
+            return WinningShapesCalculatorV1.Shapes_8812(words: words)
         case 8902:
-            return WinningShapesCalculatorV1.Shapes_8902()
+            return WinningShapesCalculatorV1.Shapes_8902(words: words)
         case 8903:
-            return WinningShapesCalculatorV1.Shapes_8903()
+            return WinningShapesCalculatorV1.Shapes_8903(words: words)
         case 8904:
-            return WinningShapesCalculatorV1.Shapes_8904()
+            return WinningShapesCalculatorV1.Shapes_8904(words: words)
         case 8905:
-            return WinningShapesCalculatorV1.Shapes_8905()
+            return WinningShapesCalculatorV1.Shapes_8905(words: words)
         case 8906:
-            return WinningShapesCalculatorV1.Shapes_8906()
+            return WinningShapesCalculatorV1.Shapes_8906(words: words)
         case 8907:
-            return WinningShapesCalculatorV1.Shapes_8907()
+            return WinningShapesCalculatorV1.Shapes_8907(words: words)
         case 8908:
-            return WinningShapesCalculatorV1.Shapes_8908()
+            return WinningShapesCalculatorV1.Shapes_8908(words: words)
         case 8909:
-            return WinningShapesCalculatorV1.Shapes_8909()
+            return WinningShapesCalculatorV1.Shapes_8909(words: words)
         case 8910:
-            return WinningShapesCalculatorV1.Shapes_8910()
+            return WinningShapesCalculatorV1.Shapes_8910(words: words)
         case 8911:
-            return WinningShapesCalculatorV1.Shapes_8911()
+            return WinningShapesCalculatorV1.Shapes_8911(words: words)
         case 8912:
-            return WinningShapesCalculatorV1.Shapes_8912()
+            return WinningShapesCalculatorV1.Shapes_8912(words: words)
         case 9001:
-            return WinningShapesCalculatorV1.Shapes_9001()
+            return WinningShapesCalculatorV1.Shapes_9001(words: words)
         case 9002:
-            return WinningShapesCalculatorV1.Shapes_9002()
+            return WinningShapesCalculatorV1.Shapes_9002(words: words)
         case 9003:
-            return WinningShapesCalculatorV1.Shapes_9003()
+            return WinningShapesCalculatorV1.Shapes_9003(words: words)
         case 9004:
-            return WinningShapesCalculatorV1.Shapes_9004()
+            return WinningShapesCalculatorV1.Shapes_9004(words: words)
         case 9005:
-            return WinningShapesCalculatorV1.Shapes_9005()
+            return WinningShapesCalculatorV1.Shapes_9005(words: words)
         case 9006:
-            return WinningShapesCalculatorV1.Shapes_9006()
+            return WinningShapesCalculatorV1.Shapes_9006(words: words)
         case 9007:
-            return WinningShapesCalculatorV1.Shapes_9007()
+            return WinningShapesCalculatorV1.Shapes_9007(words: words)
         case 9008:
-            return WinningShapesCalculatorV1.Shapes_9008()
+            return WinningShapesCalculatorV1.Shapes_9008(words: words)
         case 9009:
-            return WinningShapesCalculatorV1.Shapes_9009()
+            return WinningShapesCalculatorV1.Shapes_9009(words: words)
         case 9010:
-            return WinningShapesCalculatorV1.Shapes_9010()
+            return WinningShapesCalculatorV1.Shapes_9010(words: words)
         case 9011:
-            return WinningShapesCalculatorV1.Shapes_9011()
+            return WinningShapesCalculatorV1.Shapes_9011(words: words)
         case 9012:
-            return WinningShapesCalculatorV1.Shapes_9012()
+            return WinningShapesCalculatorV1.Shapes_9012(words: words)
         case 9101:
-            return WinningShapesCalculatorV1.Shapes_9101()
+            return WinningShapesCalculatorV1.Shapes_9101(words: words)
         case 9102:
-            return WinningShapesCalculatorV1.Shapes_9102()
+            return WinningShapesCalculatorV1.Shapes_9102(words: words)
         case 9103:
-            return WinningShapesCalculatorV1.Shapes_9103()
+            return WinningShapesCalculatorV1.Shapes_9103(words: words)
         case 9104:
-            return WinningShapesCalculatorV1.Shapes_9104()
+            return WinningShapesCalculatorV1.Shapes_9104(words: words)
         case 9105:
-            return WinningShapesCalculatorV1.Shapes_9105()
+            return WinningShapesCalculatorV1.Shapes_9105(words: words)
         case 9106:
-            return WinningShapesCalculatorV1.Shapes_9106()
+            return WinningShapesCalculatorV1.Shapes_9106(words: words)
         case 9107:
-            return WinningShapesCalculatorV1.Shapes_9107()
+            return WinningShapesCalculatorV1.Shapes_9107(words: words)
         case 9108:
-            return WinningShapesCalculatorV1.Shapes_9108()
+            return WinningShapesCalculatorV1.Shapes_9108(words: words)
         case 9109:
-            return WinningShapesCalculatorV1.Shapes_9109()
+            return WinningShapesCalculatorV1.Shapes_9109(words: words)
         case 9110:
-            return WinningShapesCalculatorV1.Shapes_9110()
+            return WinningShapesCalculatorV1.Shapes_9110(words: words)
         case 9111:
-            return WinningShapesCalculatorV1.Shapes_9111()
+            return WinningShapesCalculatorV1.Shapes_9111(words: words)
         case 9112:
-            return WinningShapesCalculatorV1.Shapes_9112()
+            return WinningShapesCalculatorV1.Shapes_9112(words: words)
         case 9201:
-            return WinningShapesCalculatorV1.Shapes_9201()
+            return WinningShapesCalculatorV1.Shapes_9201(words: words)
         case 9202:
-            return WinningShapesCalculatorV1.Shapes_9202()
+            return WinningShapesCalculatorV1.Shapes_9202(words: words)
         case 9203:
-            return WinningShapesCalculatorV1.Shapes_9203()
+            return WinningShapesCalculatorV1.Shapes_9203(words: words)
         case 9204:
-            return WinningShapesCalculatorV1.Shapes_9204()
+            return WinningShapesCalculatorV1.Shapes_9204(words: words)
         case 9206:
-            return WinningShapesCalculatorV1.Shapes_9206()
+            return WinningShapesCalculatorV1.Shapes_9206(words: words)
         case 9207:
-            return WinningShapesCalculatorV1.Shapes_9207()
+            return WinningShapesCalculatorV1.Shapes_9207(words: words)
         case 9208:
-            return WinningShapesCalculatorV1.Shapes_9208()
+            return WinningShapesCalculatorV1.Shapes_9208(words: words)
         case 9209:
-            return WinningShapesCalculatorV1.Shapes_9209()
+            return WinningShapesCalculatorV1.Shapes_9209(words: words)
         case 9210:
-            return WinningShapesCalculatorV1.Shapes_9210()
+            return WinningShapesCalculatorV1.Shapes_9210(words: words)
         case 9211:
-            return WinningShapesCalculatorV1.Shapes_9211()
+            return WinningShapesCalculatorV1.Shapes_9211(words: words)
         case 9212:
-            return WinningShapesCalculatorV1.Shapes_9212()
+            return WinningShapesCalculatorV1.Shapes_9212(words: words)
         case 9301:
-            return WinningShapesCalculatorV1.Shapes_9301()
+            return WinningShapesCalculatorV1.Shapes_9301(words: words)
         case 9302:
-            return WinningShapesCalculatorV1.Shapes_9302()
+            return WinningShapesCalculatorV1.Shapes_9302(words: words)
         case 9303:
-            return WinningShapesCalculatorV1.Shapes_9303()
+            return WinningShapesCalculatorV1.Shapes_9303(words: words)
         case 9304:
-            return WinningShapesCalculatorV1.Shapes_9304()
+            return WinningShapesCalculatorV1.Shapes_9304(words: words)
         case 9305:
-            return WinningShapesCalculatorV1.Shapes_9305()
+            return WinningShapesCalculatorV1.Shapes_9305(words: words)
         case 9306:
-            return WinningShapesCalculatorV1.Shapes_9306()
+            return WinningShapesCalculatorV1.Shapes_9306(words: words)
         case 9307:
-            return WinningShapesCalculatorV1.Shapes_9307()
+            return WinningShapesCalculatorV1.Shapes_9307(words: words)
         case 9308:
-            return WinningShapesCalculatorV1.Shapes_9308()
+            return WinningShapesCalculatorV1.Shapes_9308(words: words)
         case 9309:
-            return WinningShapesCalculatorV1.Shapes_9309()
+            return WinningShapesCalculatorV1.Shapes_9309(words: words)
         case 9310:
-            return WinningShapesCalculatorV1.Shapes_9310()
+            return WinningShapesCalculatorV1.Shapes_9310(words: words)
         case 9311:
-            return WinningShapesCalculatorV1.Shapes_9311()
+            return WinningShapesCalculatorV1.Shapes_9311(words: words)
         case 9312:
-            return WinningShapesCalculatorV1.Shapes_9312()
+            return WinningShapesCalculatorV1.Shapes_9312(words: words)
         case 9401:
-            return WinningShapesCalculatorV1.Shapes_9401()
+            return WinningShapesCalculatorV1.Shapes_9401(words: words)
         case 9402:
-            return WinningShapesCalculatorV1.Shapes_9402()
+            return WinningShapesCalculatorV1.Shapes_9402(words: words)
         case 9403:
-            return WinningShapesCalculatorV1.Shapes_9403()
+            return WinningShapesCalculatorV1.Shapes_9403(words: words)
         case 9404:
-            return WinningShapesCalculatorV1.Shapes_9404()
+            return WinningShapesCalculatorV1.Shapes_9404(words: words)
         case 9406:
-            return WinningShapesCalculatorV1.Shapes_9406()
+            return WinningShapesCalculatorV1.Shapes_9406(words: words)
         case 9407:
-            return WinningShapesCalculatorV1.Shapes_9407()
+            return WinningShapesCalculatorV1.Shapes_9407(words: words)
         case 9408:
-            return WinningShapesCalculatorV1.Shapes_9408()
+            return WinningShapesCalculatorV1.Shapes_9408(words: words)
         case 9409:
-            return WinningShapesCalculatorV1.Shapes_9409()
+            return WinningShapesCalculatorV1.Shapes_9409(words: words)
         case 9410:
-            return WinningShapesCalculatorV1.Shapes_9410()
+            return WinningShapesCalculatorV1.Shapes_9410(words: words)
         case 9411:
-            return WinningShapesCalculatorV1.Shapes_9411()
+            return WinningShapesCalculatorV1.Shapes_9411(words: words)
         case 9412:
-            return WinningShapesCalculatorV1.Shapes_9412()
+            return WinningShapesCalculatorV1.Shapes_9412(words: words)
         case 9501:
-            return WinningShapesCalculatorV1.Shapes_9501()
+            return WinningShapesCalculatorV1.Shapes_9501(words: words)
         case 9502:
-            return WinningShapesCalculatorV1.Shapes_9502()
+            return WinningShapesCalculatorV1.Shapes_9502(words: words)
         case 9503:
-            return WinningShapesCalculatorV1.Shapes_9503()
+            return WinningShapesCalculatorV1.Shapes_9503(words: words)
         case 9504:
-            return WinningShapesCalculatorV1.Shapes_9504()
+            return WinningShapesCalculatorV1.Shapes_9504(words: words)
         case 9505:
-            return WinningShapesCalculatorV1.Shapes_9505()
+            return WinningShapesCalculatorV1.Shapes_9505(words: words)
         case 9506:
-            return WinningShapesCalculatorV1.Shapes_9506()
+            return WinningShapesCalculatorV1.Shapes_9506(words: words)
         case 9507:
-            return WinningShapesCalculatorV1.Shapes_9507()
+            return WinningShapesCalculatorV1.Shapes_9507(words: words)
         case 9508:
-            return WinningShapesCalculatorV1.Shapes_9508()
+            return WinningShapesCalculatorV1.Shapes_9508(words: words)
         case 9509:
-            return WinningShapesCalculatorV1.Shapes_9509()
+            return WinningShapesCalculatorV1.Shapes_9509(words: words)
         case 9510:
-            return WinningShapesCalculatorV1.Shapes_9510()
+            return WinningShapesCalculatorV1.Shapes_9510(words: words)
         case 9511:
-            return WinningShapesCalculatorV1.Shapes_9511()
+            return WinningShapesCalculatorV1.Shapes_9511(words: words)
         case 9512:
-            return WinningShapesCalculatorV1.Shapes_9512()
+            return WinningShapesCalculatorV1.Shapes_9512(words: words)
         case 9601:
-            return WinningShapesCalculatorV1.Shapes_9601()
+            return WinningShapesCalculatorV1.Shapes_9601(words: words)
         case 9602:
-            return WinningShapesCalculatorV1.Shapes_9602()
+            return WinningShapesCalculatorV1.Shapes_9602(words: words)
         case 9603:
-            return WinningShapesCalculatorV1.Shapes_9603()
+            return WinningShapesCalculatorV1.Shapes_9603(words: words)
         case 9604:
-            return WinningShapesCalculatorV1.Shapes_9604()
+            return WinningShapesCalculatorV1.Shapes_9604(words: words)
         case 9605:
-            return WinningShapesCalculatorV1.Shapes_9605()
+            return WinningShapesCalculatorV1.Shapes_9605(words: words)
         default:
             return ([],[],0,0)
         }
     }
     
     
-    private static func Shapes_8612() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8612(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8612)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -313,13 +322,12 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_8702() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8702(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8702)!
         
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -419,14 +427,14 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_8703() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8703(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8703)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
 
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -526,13 +534,13 @@ public class WinningShapesCalculatorV1 {
         ]
         return (winningShapes, words, widthMax, heightMax)
     }
-    private static func Shapes_8704() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8704(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8704)!
         
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -626,13 +634,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_8710() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8710(words: [String]) -> ([ShapeModel], [String], Int, Int) {
         
         let game = GameList().getGame(gameId: 8710)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -748,13 +756,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_8711() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8711(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8711)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -880,13 +888,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_8712() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8712(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8712)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -993,13 +1001,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_8802() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8802(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8802)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -1096,13 +1104,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_8803() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8803(words: [String]) -> ([ShapeModel], [String], Int, Int) {
         
         let game = GameList().getGame(gameId: 8803)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -1197,14 +1205,14 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_8804() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8804(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8804)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
 
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -1300,14 +1308,14 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_8805() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8805(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8805)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
 
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -1390,13 +1398,13 @@ public class WinningShapesCalculatorV1 {
         ]
         return (winningShapes, words, widthMax, heightMax)
     }
-    private static func Shapes_8806() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8806(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8806)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -1483,14 +1491,14 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_8807() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8807(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8807)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
 
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -1564,13 +1572,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_8808() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8808(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8808)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -1673,13 +1681,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_8809() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8809(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8809)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -1778,13 +1786,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_8810() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8810(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8810)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -1856,13 +1864,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_8811() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8811(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8811)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -1974,13 +1982,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_8812() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8812(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8812)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -2084,13 +2092,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_8902() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8902(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8902)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -2178,13 +2186,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_8903() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8903(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8903)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -2243,13 +2251,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_8904() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8904(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8904)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -2329,13 +2337,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_8905() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8905(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8905)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -2433,13 +2441,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_8705() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8705(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8705)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -2536,13 +2544,13 @@ public class WinningShapesCalculatorV1 {
     }
     
    
-    private static func Shapes_8906() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8906(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8906)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -2631,14 +2639,14 @@ public class WinningShapesCalculatorV1 {
     }
    
     
-    private static func Shapes_8907() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8907(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8907)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
 
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -2742,13 +2750,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_8908() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8908(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8908)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -2830,13 +2838,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_8909() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8909(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8909)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -2930,14 +2938,14 @@ public class WinningShapesCalculatorV1 {
     }
        
     
-    private static func Shapes_8910() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8910(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8910)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
 
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -3019,13 +3027,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_8911() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8911(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8911)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -3098,13 +3106,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_8912() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_8912(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 8912)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -3205,13 +3213,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9001() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9001(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9001)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -3282,14 +3290,14 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9002() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9002(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9002)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
 
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -3344,13 +3352,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9003() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9003(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9003)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -3422,13 +3430,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9004() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9004(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9004)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -3505,13 +3513,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9005() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9005(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9005)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -3591,13 +3599,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9006() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9006(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9006)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -3704,13 +3712,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9007() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9007(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9007)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -3801,14 +3809,14 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9008() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9008(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9008)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
 
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -3902,13 +3910,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9009() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9009(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9009)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -4003,13 +4011,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9010() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9010(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9010)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -4098,13 +4106,13 @@ public class WinningShapesCalculatorV1 {
     }
     
 
-    private static func Shapes_9011() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9011(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9011)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -4190,13 +4198,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9012() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9012(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9012)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -4280,13 +4288,13 @@ public class WinningShapesCalculatorV1 {
     }
    
     
-//    private static func Shapes_9101() -> ([ShapeModel], [String], Int, Int) {
+//    private static func Shapes_9101(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 //
 //        let game = GameList().getGame(gameId: 9101)!
 //
 //        let widthMax = game.maxWidth
 //        let heightMax = game.maxHeight
-//        let words = game.winningWords
+//        
 //        let end = WordCalculator.reverse(words: words)
 //        let len = WordCalculator.lengths(words: words)
 //
@@ -4373,14 +4381,14 @@ public class WinningShapesCalculatorV1 {
 //        return (winningShapes, words, widthMax, heightMax)
 //    }
     
-    private static func Shapes_9101() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9101(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9101)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
 
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -4464,14 +4472,14 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9102() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9102(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9102)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
 
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -4552,13 +4560,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9103() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9103(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9103)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -4639,13 +4647,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9104() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9104(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9104)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -4723,13 +4731,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9105() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9105(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9105)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -4806,13 +4814,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9106() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9106(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9106)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -4869,13 +4877,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9107() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9107(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9107)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -4975,13 +4983,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9108() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9108(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9108)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -5063,14 +5071,14 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9109() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9109(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9109)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
 
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -5167,13 +5175,13 @@ public class WinningShapesCalculatorV1 {
         ]
         return (winningShapes, words, widthMax, heightMax)
     }
-    private static func Shapes_9110() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9110(words: [String]) -> ([ShapeModel], [String], Int, Int) {
         
         let game = GameList().getGame(gameId: 9110)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -5245,13 +5253,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9111() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9111(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9111)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -5312,13 +5320,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9112() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9112(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9112)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -5386,13 +5394,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9201() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9201(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9201)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -5454,13 +5462,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9202() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9202(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9202)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -5530,13 +5538,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9203() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9203(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9203)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -5603,14 +5611,14 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9204() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9204(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9204)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
 
-        let words = game.winningWords
+        
         //let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -5679,13 +5687,13 @@ public class WinningShapesCalculatorV1 {
 
     
     
-    private static func Shapes_9206() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9206(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9206)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -5769,13 +5777,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9207() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9207(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9207)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -5840,13 +5848,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9208() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9208(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9208)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -5920,14 +5928,14 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9209() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9209(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9209)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
 
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -5993,13 +6001,13 @@ public class WinningShapesCalculatorV1 {
         ]
         return (winningShapes, words, widthMax, heightMax)
     }
-    private static func Shapes_9210() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9210(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9210)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -6083,14 +6091,14 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9211() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9211(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9211)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
 
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -6175,13 +6183,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9212() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9212(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9212)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -6267,13 +6275,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9301() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9301(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9301)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -6355,13 +6363,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9302() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9302(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9302)!
         
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -6415,13 +6423,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9303() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9303(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9303)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -6523,13 +6531,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9304() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9304(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9304)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -6627,13 +6635,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9305() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9305(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9305)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -6717,13 +6725,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9306() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9306(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9306)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -6793,13 +6801,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9307() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9307(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9307)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -6872,13 +6880,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9308() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9308(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9308)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -6951,13 +6959,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9309() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9309(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9309)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -7039,13 +7047,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9310() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9310(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9310)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -7101,13 +7109,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9311() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9311(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9311)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -7186,13 +7194,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9312() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9312(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9312)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -7256,13 +7264,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9401() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9401(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9401)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -7330,13 +7338,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9402() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9402(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9402)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -7435,13 +7443,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9403() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9403(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9403)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -7518,13 +7526,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9404() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9404(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9404)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -7621,13 +7629,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9406() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9406(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9406)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -7711,14 +7719,14 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9407() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9407(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9407)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
 
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -7815,13 +7823,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9408() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9408(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9408)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -7914,13 +7922,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9409() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9409(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9409)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -8006,13 +8014,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9410() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9410(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9410)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -8085,13 +8093,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9411() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9411(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9411)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -8174,13 +8182,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9412() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9412(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9412)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -8289,13 +8297,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9501() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9501(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9501)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -8396,13 +8404,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9502() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9502(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9502)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -8495,13 +8503,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9503() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9503(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9503)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -8606,13 +8614,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9504() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9504(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9504)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -8729,13 +8737,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9505() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9505(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9505)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -8849,13 +8857,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9506() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9506(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9506)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -8971,14 +8979,14 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9507() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9507(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9507)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
 
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -9070,14 +9078,14 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9508() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9508(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9508)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
 
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -9172,13 +9180,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9509() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9509(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9509)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -9275,13 +9283,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9510() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9510(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9510)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -9377,13 +9385,13 @@ public class WinningShapesCalculatorV1 {
     }
     
     
-    private static func Shapes_9511() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9511(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9511)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -9495,13 +9503,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9512() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9512(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9512)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -9585,14 +9593,14 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9601() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9601(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9601)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
 
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -9680,13 +9688,13 @@ public class WinningShapesCalculatorV1 {
         ]
         return (winningShapes, words, widthMax, heightMax)
     }
-    private static func Shapes_9602() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9602(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9602)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
 
@@ -9781,13 +9789,13 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9603() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9603(words: [String]) -> ([ShapeModel], [String], Int, Int) {
         
         let game = GameList().getGame(gameId: 9603)!
 
         let widthMax = game.widthMax
         let heightMax = game.heightMax
-        let words = game.winningWords
+        
         let len = WordCalculator.lengths(words: words)
 
         let edges = ShapeCalculator.toShapes(edges: EdgeCalculatorV1.Execute(
@@ -9855,7 +9863,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9604() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9604(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9604)!
 
@@ -9951,7 +9959,7 @@ public class WinningShapesCalculatorV1 {
         return (winningShapes, words, widthMax, heightMax)
     }
     
-    private static func Shapes_9605() -> ([ShapeModel], [String], Int, Int) {
+    private static func Shapes_9605(words: [String]) -> ([ShapeModel], [String], Int, Int) {
 
         let game = GameList().getGame(gameId: 9605)!
 

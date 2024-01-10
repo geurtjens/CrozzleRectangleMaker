@@ -9,7 +9,7 @@ import Foundation
 public class WinningGamesCalculator {
     
     public static func WinningShape(gameId: Int) -> ShapeModel {
-        let (shapes, words, widthMax, heightMax) = WinningShapesCalculatorV1.getShapes(gameId: gameId)
+        let (shapes, words, widthMax, heightMax) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: gameId)
         let wordsInt = WordCalculator.WordsToInt(words: words)
         return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax)
     }

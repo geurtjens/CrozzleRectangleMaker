@@ -537,7 +537,15 @@ public class MergeCalculatorV2 {
     }
     
     
-    public static func mergeTwoShapes(sourceShape: ShapeModel, searchShape: ShapeModel, words: [String], widthMax: Int, heightMax: Int, scoreMin: Int = 0, wordsInt:[[Int]]) -> ShapeModel? {
+    public static func mergeTwoShapes(
+        sourceShape: ShapeModel,
+        searchShape: ShapeModel,
+        words: [String],
+        widthMax: Int,
+        heightMax: Int,
+        scoreMin: Int = 0,
+        wordsInt:[[Int]]) -> ShapeModel?
+    {
         let sourceShape = sourceShape
         
 
@@ -570,6 +578,13 @@ public class MergeCalculatorV2 {
             heightMax: heightMax)
 
         if isValidSize {
+//            print("SourceShape")
+//            print(sourceShape.ToText(words: words))
+//            print("SearchShape")
+//            print(searchShape.ToText(words: words))
+//            print("Flipped SearchShape")
+//            print(searchShape.Flip().ToText(words: words))
+            
             
             let potentialPlacements = MergePlacementCalculator.ExecuteV2(
                 sourceShape: sourceShape,
@@ -577,6 +592,29 @@ public class MergeCalculatorV2 {
                 instruction: instruction,
                 words: words)
             
+//            if instruction.flipped == true {
+//                print("PotentialPlacements")
+//                print(PlacementCalculator.Print(placements: potentialPlacements))
+//            }
+            
+            // other version see if they are the same
+            // See if it gives same results
+//            let alternativePlacements = MergePlacementCalculatorV2.ExecuteV2(
+//                sourcePlacements: sourceShape.placements,
+//                searchPlacements: searchShape.placements)
+//            
+//            
+//            
+//            let samePlacements = ComparePlacements(
+//                potentialPlacements: potentialPlacements,
+//                alternativePlacements: alternativePlacements)
+//            
+//            if samePlacements == false && potentialPlacements.count > 0 {
+//                print("PLACEMENTS DIFFERENT")
+//            }
+            // when flipped is true then our calculation is wrong.  So its an isFlipped problem.
+//            print("SamePlacements: \(samePlacements), IsFlipped: \(instruction.flipped)")
+//            
             if potentialPlacements.count > 0 {
                 
                 let potentialWidth = PlacementCalculator.width(fromPlacements: potentialPlacements)
@@ -638,6 +676,41 @@ public class MergeCalculatorV2 {
         
         return nil
     }
+    
+    // This will prove that both methods yield totally different results and that is why the c# version is defective.
+    public static func ComparePlacements(
+        potentialPlacements: [PlacementModel],
+        alternativePlacements: [PlacementModel]) -> Bool 
+    {
+        if potentialPlacements.count != alternativePlacements.count {
+            return false
+        }
+        var isOk = true
+        //print("")
+        //var result: [(Bool, String)] = []
+        for i in 0..<potentialPlacements.count {
+            let a = potentialPlacements[i]
+            let b = alternativePlacements[i]
+            
+            //let text = "w: \(a.w):\(b.w), l: \(a.l):\(b.l), x: \(a.x):\(b.x), y: \(a.y):\(b.y), z: \(a.z):\(b.z)"
+            //print(text)
+            
+            if a.w != b.w || a.x != b.x || a.y != b.y || a.z != b.z || a.l != b.l {
+                //result.append((false, text))
+                isOk = false
+                //print("FALSE")
+            }
+            else {
+                //result.append((true, text))
+            }
+        }
+        if isOk == true {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     
     public static func mergeSizeValidation(instruction: MergeInstructionModel, sourceShape: ShapeModel, searchShape: ShapeModel, widthMax: Int, heightMax: Int) -> (Bool, Int, Int) {
         

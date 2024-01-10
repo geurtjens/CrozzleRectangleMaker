@@ -15,6 +15,8 @@ public class OptimizeBranchAndBound {
     // so we steadily increase the depth too
     
     public static func executeFailuresUsingGuidedScores() async {
+        FeatureFlags.showGameText = false
+        FeatureFlags.showCyclesText = false
         let games: [Int] = [9201]
         await executeWinningGames(
             games: games,
@@ -26,6 +28,8 @@ public class OptimizeBranchAndBound {
     }
     
     public static func executeFailuresNoGuidedScores() async {
+        FeatureFlags.showGameText = false
+        FeatureFlags.showCyclesText = false
         let games: [Int] = [8807, 9101, 9210, 9301, 9303, 9508, 9605]
                     
         await executeWinningGames(

@@ -13,7 +13,7 @@ final class WinningShapesCalculatorV1Tests: XCTestCase {
     func test_shapesToTextSwift() {
         let gameList = GameList()
         for game in gameList.games {
-            let (shapes,words, width, height) = WinningShapesCalculatorV1.getShapes(gameId: game.gameId)
+            let (shapes,words, width, height) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: game.gameId)
             var result = ""
             for shape in shapes {
                 let text = shape.ToTextBlock(words: words, spaces: 4)
@@ -44,7 +44,7 @@ final class WinningShapesCalculatorV1Tests: XCTestCase {
          
         let gameList = GameList()
         for game in gameList.games {
-            let (shapes, words, _, _) = WinningShapesCalculatorV1.getShapes(gameId: game.gameId)
+            let (shapes, words, _, _) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: game.gameId)
             var result = ""
             for shape in shapes {
                 let text = shape.ToTextBlock(words: words, spaces: 24)
@@ -122,7 +122,7 @@ final class WinningShapesCalculatorV1Tests: XCTestCase {
     }
     
     func test_getShapes_8803() throws {
-        let (shapes, words, x,y) = WinningShapesCalculatorV1.getShapes(gameId: 8803)
+        let (shapes, words, x,y) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: 8803)
         for shape in shapes {
             print(shape.ToText(words: words))
         }

@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  WordIndexModelV2.swift
+//
 //
 //  Created by Michael Geurtjens on 27/8/2023.
 //
@@ -24,39 +24,6 @@ import Foundation
 public struct WordIndexModelV2 {
     
     public let index: [[Int]]
-    
-    
-    public func checkMatchesForLeafs(
-        matches: [Int],
-        sourceShape: ShapeModel,
-        sourceShapeId: Int,
-        searchShapes: [ShapeModel]) -> [MergeInstructionModel]
-    {
-        var result: [MergeInstructionModel] = [];
-        
-        for searchShapeId in matches {
-            
-            let matchCount = findMatchCount(
-                sourceShape: sourceShape,
-                searchShape: searchShapes[searchShapeId])
-            
-            if matchCount != sourceShape.placements.count && matchCount != searchShapes[searchShapeId].placements.count {
-                
-                if let item = ValidateMergeCalculator.Execute(
-                    matchCount: matchCount,
-                    sourceShape: sourceShape,
-                    sourceShapeId: sourceShapeId,
-                    searchShape:searchShapes[searchShapeId],
-                    searchShapeId: searchShapeId)
-                {
-                    result.append(item)
-                }
-            }
-        }
-        return result
-    }
-    
-    
     
     /// Use this when you do not know the size of the shapes, so we can have multiple sized shapes for example
     /// For bulk loads this can take an extra 7 seconds so if all shapes are same size then use the other init
@@ -94,6 +61,42 @@ public struct WordIndexModelV2 {
         }
         self.index = indexTemp
     }
+    
+    
+    
+    public func checkMatchesForLeafs(
+        matches: [Int],
+        sourceShape: ShapeModel,
+        sourceShapeId: Int,
+        searchShapes: [ShapeModel]) -> [MergeInstructionModel]
+    {
+        var result: [MergeInstructionModel] = [];
+        
+        for searchShapeId in matches {
+            
+            let matchCount = findMatchCount(
+                sourceShape: sourceShape,
+                searchShape: searchShapes[searchShapeId])
+            
+            if matchCount != sourceShape.placements.count && matchCount != searchShapes[searchShapeId].placements.count {
+                
+                if let item = ValidateMergeCalculator.Execute(
+                    matchCount: matchCount,
+                    sourceShape: sourceShape,
+                    sourceShapeId: sourceShapeId,
+                    searchShape:searchShapes[searchShapeId],
+                    searchShapeId: searchShapeId)
+                {
+                    result.append(item)
+                }
+            }
+        }
+        return result
+    }
+    
+    
+    
+    
     
     
        
@@ -254,3 +257,5 @@ public struct WordIndexModelV2 {
         return matches;
     }
 }
+
+

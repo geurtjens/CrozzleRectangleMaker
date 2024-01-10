@@ -8,7 +8,7 @@
 import Foundation
 public class StandardSearchAlgorithms {
     public static func winnings(gameId: Int) -> ([ShapeModel],[String],Int, Int, Int) {
-        let (shapes,words,widthMax,heightMax) = WinningShapesCalculatorV1.getShapes(gameId: gameId)
+        let (shapes,words,widthMax,heightMax) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: gameId)
         
         let winningScore = GameList().getGame(gameId: gameId)!.winningScore
         
@@ -24,7 +24,7 @@ public class StandardSearchAlgorithms {
         let widthMax = game.widthMax
         let heightMax = game.heightMax
         
-        let shapesInWinningGame = WinningShapesCalculatorV1.getShapes(gameId: gameId).0.sorted { $0.score > $1.score}
+        let shapesInWinningGame = WinningShapesCalculatorV1.getShapesWinningWords(gameId: gameId).0.sorted { $0.score > $1.score}
         
         // now we must find this best winning shape within the shapes
         let startingShape = shapesInWinningGame[0]

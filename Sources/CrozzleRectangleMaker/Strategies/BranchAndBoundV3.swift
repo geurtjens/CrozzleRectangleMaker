@@ -178,16 +178,17 @@ public class BranchAndBoundV3 {
                 if bestShape.score < bestShapes[0].score {
                     bestShape = bestShapes[0]
                 }
-                
-                print(bestShape.ToJson(words: words))
-                
+                if FeatureFlags.showGameText {
+                    print(bestShape.ToJson(words: words))
+                }
                 let siblingMerges = TreeNodeCalculator.identifySiblingMerges(
                     treeNodes: treeNodes,
                     minCommonShapes: 1,
                     maxCommonShapes: 2)
                 
-                print("{\"cycle\": \(cycleId), \"shapesCreated\": \(shapesCreatedCount), \"bestScores\": \(bestScores), \"merges\": \(siblingMerges)}")
-                
+                if FeatureFlags.showCyclesText {
+                    print("{\"cycle\": \(cycleId), \"shapesCreated\": \(shapesCreatedCount), \"bestScores\": \(bestScores), \"merges\": \(siblingMerges)}")
+                } 
                 
                 
                 
@@ -204,9 +205,9 @@ public class BranchAndBoundV3 {
             }
             
             
-           
-            print(bestShape.ToJson(words: words))
-          
+            if FeatureFlags.showGameText {
+                print(bestShape.ToJson(words: words))
+            }
             
             if treeNodes.count > 0 {
                 var bestShapes: [ShapeModel] = []
@@ -223,9 +224,9 @@ public class BranchAndBoundV3 {
                 if bestShape.score < bestShapes[0].score {
                     bestShape = bestShapes[0]
                 }
-            
-                print("{\"cycle\": \(cycleId), \"shapesCreated\": \(shapesCreatedCount), \"bestScores\": \(bestScores),")
-                
+                if FeatureFlags.showCyclesText {
+                    print("{\"cycle\": \(cycleId), \"shapesCreated\": \(shapesCreatedCount), \"bestScores\": \(bestScores),")
+                }
             }
         }
         return []
