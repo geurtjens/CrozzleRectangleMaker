@@ -14,6 +14,10 @@ public struct BranchAndBound_GetInstructions {
         
         var result: [BranchAndBoundInstruction] = []
 
+        //game: 8902, rootShape: 1, lookaheadDepth: 3, beamWidth: 75, time: 1 minutes 38 seconds
+        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 75, games: [8902], rootShape: 1, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        
+        
         //game: 8807, rootShape: 1, lookaheadDepth: 2, beamWidth: 64, time: 3 minutes 30 seconds
         result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 64, games: [8807], rootShape: 1, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
         
@@ -65,17 +69,14 @@ public struct BranchAndBound_GetInstructions {
         result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 25, games:
             [8705, 8811, 9103], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
         
-        // 32 games full words so far
+        // 33 games full words so far
         
         let solvedGames = [
             8612, 
             8704, 8710, 8711, 8712,
             8802, 8805, 8807, 8808, 8809, 8910, 8811, 8912, // 8803, 8804, 8806
-            
-            
+            8902,
             9002, 9007, 9008,
-            
-            
             9103, 9104, 9105, 9108, 9109,
             9207, 9210, 9212,
             9303, 9306, 9308, 9310, 9311, 9312,
