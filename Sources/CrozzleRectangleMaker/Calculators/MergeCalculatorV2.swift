@@ -280,7 +280,17 @@ public class MergeCalculatorV2 {
     
     
     
-    public static func ExecuteSameShapeOneAsync(zeroToNine: Int, sourceShapes: [ShapeModel], wordIndex: WordIndexModelV2, sourceMax: Int, searchMax:Int, words:[String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
+    public static func ExecuteSameShapeOneAsync(zeroToNine: Int, 
+                                                sourceShapes: [ShapeModel],
+                                                wordIndex: WordIndexModelV2,
+                                                sourceMax: Int,
+                                                searchMax:Int,
+                                                words:[String],
+                                                wordsInt: [[Int]],
+                                                scoresMin:[Int],
+                                                widthMax: Int,
+                                                heightMax: Int) -> [ShapeModel]
+    {
         var result:[ShapeModel] = []
         
         // The difference is that each cpu works on 0,10,20 .. or 1, 11, 21 and so we divide the task

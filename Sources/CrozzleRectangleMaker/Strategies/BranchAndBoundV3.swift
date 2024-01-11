@@ -32,7 +32,7 @@ public class BranchAndBoundV3 {
         
         
         
-        print("{\"game\": \(gameId), \"wordCount\": \(words.count), \"searchShapes\": \(searchShapes.count), \"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"rootWidth\": \(rootWidth), \"maxDepth\": \(maxDepth), \"cycles\": [")
+        print("{\"game\": \(gameId), \"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"rootShape\": \(rootShape), \"wordCount\": \(words.count), \"searchShapes\": \(searchShapes.count), \"cycles\": [")
         
         let bestShapes = await executeCycles(
             gameId: gameId,
@@ -198,8 +198,13 @@ public class BranchAndBoundV3 {
                     return bestShapes
                     
                 } else {
-                    print("FAILED \(gameId), expected: \(winningScore)")
-                    print(DateTimeCalculator.duration(start: startTime))
+                    var bestScoreToday = 0
+                    if bestScores.count > 0 {
+                        bestScoreToday = Int(bestScores[0])
+                    }
+                    
+                    print("failed: \(gameId), expected: \(winningScore), actualScore: \(bestScoreToday), duration: \(DateTimeCalculator.duration(start: startTime))")
+                    
                     return bestShapes
                 }
             }
