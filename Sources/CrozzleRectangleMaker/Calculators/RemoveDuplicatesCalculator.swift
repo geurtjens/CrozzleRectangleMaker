@@ -10,21 +10,6 @@ import Foundation
 public class RemoveDuplicatesCalculator {
     
     
-    public static func flipIfRequired(shapes: [ShapeModel]) -> ([ShapeModel],Int) {
-        var shapes = shapes
-        
-        // We want to rotate any shapes that are not starting with horizontal
-        var flipCount = 0
-        for i in 0..<shapes.count {
-            if shapes[i].placements[0].z == false {
-                shapes[i] = shapes[i].Flip()
-                flipCount += 1
-            }
-        }
-        return (shapes,flipCount)
-    }
-    
-    
     public static func execute(treeNodes:[TreeNodeModel]) -> ([TreeNodeModel], Int) {
         if treeNodes.count == 0 {
             return ([],0)
@@ -52,27 +37,11 @@ public class RemoveDuplicatesCalculator {
             return (treeNodes, 0)
         }
     }
-    
-    
-    
-    
-    
-    
+
     
     /// This provides a new list of shapes that have no duplicates
     public static func execute(shapes: [ShapeModel]) -> ([ShapeModel], Int) {
-        let (flippedShapes, flippedCount) = flipIfRequired(shapes: shapes)
-        
-        
-        if flippedCount > 0 {
-            if FeatureFlags.verbose {
-                print("RemoveDuplicatesCalculator flipped \(flippedCount) shapes")
-            }
-        }
-        
-        
-        
-        var (nonDuplicatedShapes, previousDuplicateCount) = findDuplicates(shapes: flippedShapes)
+        var (nonDuplicatedShapes, previousDuplicateCount) = findDuplicates(shapes: shapes)
         
         ShapeCalculator.SortByScoreThenArea(shapes: &nonDuplicatedShapes)
         
@@ -141,6 +110,5 @@ public class RemoveDuplicatesCalculator {
         } else {
             return (shapes, 0)
         }
-        
     }
 }
