@@ -440,7 +440,7 @@ final class Cluster2CalculatorTests: XCTestCase {
         let oldResults = ClusterCalculatorV1.C3x4_RLRL_DUD(words: words, end: end, len: lengths, scoreMin: scoreMin, widthMax: widthMax, heightMax: heightMax)
                 
         //print(oldResults[0].ToShape().ToText(words: words))
-        //print(oldResults[0].ToShape().Flip().ToText(words: words))
+        //print(oldResults[0].ToShape().FlipToText(words: words))
         
                 XCTAssertEqual(oldResults.count, newResults.count)
                 
@@ -506,7 +506,7 @@ final class Cluster2CalculatorTests: XCTestCase {
             
             if oldResults.count != newResults.count {
                 print(oldResults[0].ToShape().ToText(words: words))
-                print(oldResults[0].ToShape().Flip().ToText(words: words))
+                print(oldResults[0].ToShape().FlipToText(words: words))
             }
         }
     }
@@ -1270,27 +1270,30 @@ final class Cluster2CalculatorTests: XCTestCase {
         for oldResult in oldResults {
             var oldShape = oldResult.ToShape()
             if oldShape.width < oldShape.height {
-                oldShape = oldShape.Flip()
+                let text = oldShape.FlipToTextDebug(words: words)
+                oldShapes.append(text)
+            } else {
+                let text = oldShape.ToTextDebug(words: words)
+                oldShapes.append(text)
             }
-            
-            let text = oldShape.ToTextDebug(words: words)
-            oldShapes.append(text)
         }
         
         var newShapes:[String] = []
         for newResult in newResults {
             var newShape = newResult.ToShape()
             if newShape.width < newShape.height {
-                newShape = newShape.Flip()
+                let text = newShape.FlipToTextDebug(words: words)
+                newShapes.append(text)
+            } else {
+                let text = newShape.ToTextDebug(words: words)
+                newShapes.append(text)
             }
-            let text = newShape.ToTextDebug(words: words)
-            newShapes.append(text)
         }
         
         for oldResult in oldResults {
             
             let oldShape = oldResult.ToShape().ToTextDebug(words: words)
-            let oldShapeFlipped = oldResult.ToShape().Flip().ToTextDebug(words: words)
+            let oldShapeFlipped = oldResult.ToShape().FlipToTextDebug(words: words)
             
             XCTAssertNotEqual(oldShape, oldShapeFlipped)
             

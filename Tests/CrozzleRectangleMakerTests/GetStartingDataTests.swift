@@ -9,7 +9,14 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class GetStartingDataTests: XCTestCase {
 
-    
+    public func test_findSearchShapeCountAllWords() async {
+        let gameList = GameList()
+        for game in gameList.games {
+            
+            let searchShapes = await GetStartingData.getSearchShapes(gameId: game.gameId, words: game.words)
+            print("gameId: \(game.gameId), searchShapes: \(searchShapes.count), wordCount: \(game.words.count)")
+        }
+    }
 
     func test_Execute() async throws {
         let gameId = 8808

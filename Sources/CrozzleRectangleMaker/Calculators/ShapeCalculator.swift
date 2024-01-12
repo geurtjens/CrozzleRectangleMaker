@@ -474,13 +474,39 @@ public class ShapeCalculator {
     
     
     
-    /// convert a shape into the text and return the score as well
-    public static func ToText(shape: ShapeModel, words:[String]) -> (String, UInt16) {
+   
+    public static func FlipToText(shape: ShapeModel, words: [String]) -> (String, UInt16)
+    {
+        let flippedPlacements = PlacementCalculator.flip(placements: shape.placements)
+        
+        return ToText(
+            width: shape.height,
+            height: shape.width,
+            placements: flippedPlacements,
+            words: words)
+    }
+    
+    public static func ToText(
+        shape: ShapeModel,
+        words: [String]) -> (String, UInt16)
+    {
+        return ToText(
+            width: shape.width,
+            height: shape.height,
+            placements: shape.placements,
+            words: words)
+    }
+    
+    public static func ToText(
+        width: UInt8,
+        height: UInt8,
+        placements: [PlacementModel],
+        words:[String]) -> (String, UInt16) {
         
         var score = 0
         
-        let widthEOL = Int(shape.width) + 1
-        let height = Int(shape.height)
+        let widthEOL = Int(width) + 1
+        let height = Int(height)
         
         let gridSize = widthEOL * height
         
@@ -491,7 +517,7 @@ public class ShapeCalculator {
             grid[i * widthEOL] = "\n"
         }
         
-        for placement in shape.placements {
+        for placement in placements {
             
             // the word must include the blocking characters at either end of the shape
             let word = "." + words[Int(placement.w)] + "."
@@ -526,10 +552,12 @@ public class ShapeCalculator {
         if result.contains("#") {
             score = 0
         } else {
-            score += shape.placements.count * 10
+            score += placements.count * 10
         }
         return (result, UInt16(score))
     }
+    
+    
     
     public static func ToJson(shape: ShapeModel, words: [String]) -> String {
         let (text, score) = ToText(shape: shape, words: words)
@@ -546,12 +574,41 @@ public class ShapeCalculator {
         return result
     }
     
-    public static func ToTextDebug(shape: ShapeModel, words:[String]) -> (String, UInt16) {
+    public static func ToTextDebug(
+        shape: ShapeModel,
+        words:[String]) -> (String, UInt16)
+    {
+        return ToTextDebug(
+            width: shape.width,
+            height: shape.height,
+            placements: shape.placements,
+            words: words)
+    }
+    
+    public static func FlipToTextDebug(
+        shape: ShapeModel,
+        words:[String]) -> (String, UInt16)
+    {
+        let flippedPlacements = PlacementCalculator.flip(placements: shape.placements)
+        
+        return ToTextDebug(
+            width: shape.height,
+            height: shape.width,
+            placements: flippedPlacements,
+            words: words)
+    }
+    
+    public static func ToTextDebug(
+        width: UInt8,
+        height: UInt8,
+        placements: [PlacementModel],
+        words:[String]) -> (String, UInt16) 
+    {
         
         var score = 0
         
-        let widthEOL = Int(shape.width) + 1
-        let height = Int(shape.height)
+        let widthEOL = Int(width) + 1
+        let height = Int(height)
         
         let gridSize = widthEOL * height
         
@@ -562,7 +619,7 @@ public class ShapeCalculator {
             grid[i * widthEOL] = "\n"
         }
         
-        for placement in shape.placements {
+        for placement in placements {
             
             // the word must include the blocking characters at either end of the shape
             let word = "." + words[Int(placement.w)] + "."
@@ -597,7 +654,7 @@ public class ShapeCalculator {
         if result.contains("#") {
             score = 0
         } else {
-            score += shape.placements.count * 10
+            score += placements.count * 10
         }
         return (result, UInt16(score))
     }

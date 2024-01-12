@@ -212,7 +212,7 @@ public class OptimizeBranchAndBound {
                 }
                 
                 
-                print("FINAL SIZE\ngame: \(gameId), rootShape: \(rootShape), lookaheadDepth: \(lookaheadDepth), beamWidth: \(currentWidth), time: \(timeToProcessOneConfiguration), overallProcessTime: \(DateTimeCalculator.duration(start: overallStart))")
+                print("FINAL SIZE\ngame: \(gameId), rootShape: \(rootShape), lookaheadDepth: \(lookaheadDepth), beamWidth: \(currentWidth), time: \"\(timeToProcessOneConfiguration)\", useGuidedScores: \(useGuidedScores), overallProcessTime: \(DateTimeCalculator.duration(start: overallStart))")
                 return currentWidth
             }
         }

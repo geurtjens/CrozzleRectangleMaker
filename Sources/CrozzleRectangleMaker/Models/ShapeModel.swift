@@ -125,8 +125,23 @@ public struct ShapeModel {
         return "score:\(score), width:\(width), height:\(height), words:\(self.placements.count), area:\(area), density:\(density)\n`\n" + text + "\n`\n"
     }
     
+    public func FlipToString(words: [String]) -> String {
+        let (text, score) = ShapeCalculator.FlipToText(shape: self, words: words)
+        return "score:\(score), width:\(width), height:\(height), words:\(self.placements.count), area:\(area), density:\(density)\n`\n" + text + "\n`\n"
+    }
+    
     public func ToText(words: [String]) -> String {
         let (text, _) = ShapeCalculator.ToText(shape: self, words: words)
+        return text
+    }
+    
+    public func FlipToText(words: [String]) -> String {
+        let (text, _) = ShapeCalculator.ToText(shape: self, words: words)
+        return text
+    }
+    
+    public func FlipToTextDebug(words: [String]) -> String {
+        let (text, _) = ShapeCalculator.FlipToText(shape: self, words: words)
         return text
     }
     
@@ -192,6 +207,24 @@ public struct ShapeModel {
         return code
     }
     
+    public func FlipToCode(words: [String]) -> String {
+        let (text, score) = ShapeCalculator.FlipToText(shape: self, words: words)
+        
+        let grid = text.split(separator: "\n")
+        
+        var result = ""
+        for line in grid {
+            if result != "" {
+                result += ",\n"
+            }
+            result += "    \"" + line + "\""
+        }
+        
+        var code = "//score:\(score), width:\(width), height:\(height), words:\(self.placements.count)\n"
+        code += "let grid = [\n" + result + "]\n"
+        code += "let shape = ShapeCalculator.toShape(fromGrid: grid, words: words)\n\n"
+        return code
+    }
     public func ToSwiftCode(words: [String]) -> String {
         
         
@@ -201,6 +234,22 @@ public struct ShapeModel {
         
         return code
     }
+    
+    public func FlipToMarkFormat(words: [String]) -> String {
+        let (text, score) = ShapeCalculator.FlipToText(shape: self, words: words)
+        
+        let compressed = GridCalculator.markAmabileFormat(text: text)
+        
+        var letterCount = 0
+        for letter in compressed {
+            if letter != " " {
+                letterCount += 1
+            }
+        }
+        
+        return "score=\(score) wordCount:\(self.placements.count) charCount=\(letterCount)\n------------------------\n" + compressed + "\n------------------------\n\n"
+    }
+    
     
     public func ToMarkFormat(words: [String]) -> String {
         let (text, score) = ShapeCalculator.ToText(shape: self, words: words)

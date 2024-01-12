@@ -25,7 +25,7 @@ final class WinningGamesCalculatorTests: XCTestCase {
 //                if winningGame.width > winningGame.height {
 //                    print(winningGame.CodeGridText(words: words))
 //                } else {
-//                    print(winningGame.Flip().CodeGridText(words: words))
+//                    print(winningGame.FlipCodeGridText(words: words))
 //                }
 //            }
 //

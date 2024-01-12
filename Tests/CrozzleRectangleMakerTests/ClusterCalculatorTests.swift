@@ -31,8 +31,8 @@ final class ClusterCalculatorTests: XCTestCase {
         let first = c2x5[0].ToText(words: words)
         let second = c2x5[1].ToText(words: words)
         
-        let first2 = c2x5[0].Flip().ToText(words: words)
-        let second2 = c2x5[1].Flip().ToText(words: words)
+        let first2 = c2x5[0].FlipToText(words: words)
+        let second2 = c2x5[1].FlipToText(words: words)
         XCTAssertNotEqual(first, second)
         print(first)
         print(second)

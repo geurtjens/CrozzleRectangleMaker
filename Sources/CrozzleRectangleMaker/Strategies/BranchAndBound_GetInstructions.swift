@@ -14,19 +14,36 @@ public struct BranchAndBound_GetInstructions {
         
         var result: [BranchAndBoundInstruction] = []
 
-        //game: 8902, rootShape: 1, lookaheadDepth: 3, beamWidth: 75, time: 1 minutes 38 seconds
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 75, games: [8902], rootShape: 1, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        
+        // game: 8909, rootShape: 3, lookaheadDepth: 2, beamWidth: 48, time: 47 seconds
+        result.append(BranchAndBoundInstruction(
+            game: 8909, rootShape: 3, lookaheadDepth: 2, beamWidth: 48, time: "47 seconds", useGuidedScores: false))
+        
+        //game: 8908, rootShape: 3, lookaheadDepth: 2, beamWidth: 22, time: "1 minutes 33 seconds"
+        result.append(BranchAndBoundInstruction(
+            game: 8908, rootShape: 3, lookaheadDepth: 2, beamWidth: 22, time: "1 minutes 33 seconds", useGuidedScores: false))
         
         
-        //game: 8807, rootShape: 1, lookaheadDepth: 2, beamWidth: 64, time: 3 minutes 30 seconds
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 64, games: [8807], rootShape: 1, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        //game: 8907, rootShape: 1, lookaheadDepth: 2, beamWidth: 25, time: 8 minutes 26 seconds
+        result.append(BranchAndBoundInstruction(
+            game: 8907, rootShape: 1, lookaheadDepth: 2, beamWidth: 25, time: "8 minutes 26 seconds", useGuidedScores: false))
         
         
-        // game: 8805, rootShape: 2, lookaheadDepth: 3, beamWidth: 65, time: 44 seconds
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 65, games: [8805], rootShape: 2, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        //game: 8902, rootShape: 1, lookaheadDepth: 3, beamWidth: 75, time: "1 minutes 38 seconds"
+        result.append(BranchAndBoundInstruction(game: 8902, rootShape: 1, lookaheadDepth: 3, beamWidth: 75, time: "1 minutes 38 seconds", useGuidedScores: false))
         
-        // game: 8711, rootShape: 3, lookaheadDepth: 1, beamWidth: 32, time: 3.22003375 seconds,
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 32, games: [8711], rootShape: 3, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        
+        //game: 8807, rootShape: 1, lookaheadDepth: 2, beamWidth: 64, time: "3 minutes 30 seconds"
+        result.append(BranchAndBoundInstruction(
+            game: 8807, rootShape: 1, lookaheadDepth: 2, beamWidth: 64, time: "3 minutes 30 seconds", useGuidedScores: false))
+        
+        
+        // game: 8805, rootShape: 2, lookaheadDepth: 3, beamWidth: 65, time: "44 seconds"
+        result.append(BranchAndBoundInstruction(
+            game: 8805, rootShape: 2, lookaheadDepth: 3, beamWidth: 65, time: "44 seconds", useGuidedScores: false))
+        
+        // game: 8711, rootShape: 3, lookaheadDepth: 1, beamWidth: 32, time: "3.22003375 seconds", useGuidedScores: false
+        result.append(BranchAndBoundInstruction(game: 8711, rootShape: 3, lookaheadDepth: 1, beamWidth: 32, time: "3.22003375 seconds", useGuidedScores: false))
         
         
         //18 seconds
@@ -50,8 +67,8 @@ public struct BranchAndBound_GetInstructions {
         // 11 seconds, 3 minutes 43 seconds, 1 minutes 58 seconds, 26 seconds
         // 11 seconds, 5.604520625 seconds, 50 seconds, 8 minutes 17 seconds
         result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 50, games:
-            [8612, 8704, 8809, 8910, 
-             8912, 9104, 9105, 9108, 
+            [8612, 8704, 8809, 8907, 8910,
+             8912, 9104, 9105, 9108,
              9207, 9310, 9311, 9412], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
         
         // 5 minutes 43 seconds, 4 minutes 9 seconds
@@ -69,13 +86,13 @@ public struct BranchAndBound_GetInstructions {
         result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 25, games:
             [8705, 8811, 9103], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
         
-        // 33 games full words so far
+        // 35 games full words so far
         
         let solvedGames = [
             8612, 
             8704, 8710, 8711, 8712,
             8802, 8805, 8807, 8808, 8809, 8910, 8811, 8912, // 8803, 8804, 8806
-            8902,
+            8902, 8907, 8908, 8909,
             9002, 9007, 9008,
             9103, 9104, 9105, 9108, 9109,
             9207, 9210, 9212,

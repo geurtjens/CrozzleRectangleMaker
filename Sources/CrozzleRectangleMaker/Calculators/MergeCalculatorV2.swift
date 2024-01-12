@@ -497,7 +497,7 @@ public class MergeCalculatorV2 {
                         
                         print ("// sourceShape\n")
                         if instruction.flipped {
-                            print("/*\n\(sourceShape.Flip().ToText(words: words))\n*/")
+                            print("/*\n\(sourceShape.FlipToText(words: words))\n*/")
                         } else {
                             print("/*\n\(sourceShape.ToText(words: words))\n*/")
                         }
@@ -593,7 +593,7 @@ public class MergeCalculatorV2 {
 //            print("SearchShape")
 //            print(searchShape.ToText(words: words))
 //            print("Flipped SearchShape")
-//            print(searchShape.Flip().ToText(words: words))
+//            print(searchShape.FlipToText(words: words))
             
             
             let potentialPlacements = MergePlacementCalculator.ExecuteV2(
@@ -639,7 +639,7 @@ public class MergeCalculatorV2 {
                     
                     print ("// sourceShape\n")
                     if instruction.flipped {
-                        print("/*\n\(sourceShape.Flip().ToText(words: words))\n*/")
+                        print("/*\n\(sourceShape.FlipToText(words: words))\n*/")
                     } else {
                         print("/*\n\(sourceShape.ToText(words: words))\n*/")
                     }

@@ -22,6 +22,7 @@ public class OptimizeBranchAndBoundAllWords {
             games: games,
             maxLookaheadDepth: 4,
             maxBeamWidth: 150,
+            maxSearchShapes: 5000,
             maxDepth: 30,
             useGuidedScores: true)
                      
@@ -36,6 +37,7 @@ public class OptimizeBranchAndBoundAllWords {
             games: games,
             maxLookaheadDepth: 4,
             maxBeamWidth: 100,
+            maxSearchShapes: 5000,
             maxDepth: 30,
             useGuidedScores: false)
                      
@@ -45,19 +47,29 @@ public class OptimizeBranchAndBoundAllWords {
         games: [Int], // = [8805, 8807, 8911, 9112, 9203, 9305, 9509]
         maxLookaheadDepth: Int,
         maxBeamWidth: Int,
+        maxSearchShapes: Int,
         maxDepth: Int,
         useGuidedScores: Bool) async
     {
         var result: [String] = []
         for gameId in games {
-            let results = await executeAllWordsGame(
-                gameId: gameId,
-                maxLookaheadDepth: maxLookaheadDepth,
-                maxBeamWidth: maxBeamWidth,
-                maxDepth: maxDepth,
-                useGuidedScores: useGuidedScores)
-            
-            result += results
+            let game = GameList().getGame(gameId: gameId)!
+            /// lets make sure we dont go beyond the number of search shapes
+            let searchShapes = await GetStartingData.getSearchShapes(gameId: gameId, words: game.words)
+            if searchShapes.count < maxSearchShapes {
+                
+                
+                let results = await executeAllWordsGame(
+                    gameId: gameId,
+                    maxLookaheadDepth: maxLookaheadDepth,
+                    maxBeamWidth: maxBeamWidth,
+                    maxDepth: maxDepth,
+                    useGuidedScores: useGuidedScores)
+                
+                result += results
+            } else {
+                print("game: \(gameId), searchShapeCount: \(searchShapes.count), maxSearchShapes: \(maxSearchShapes), error: Skipping game due to too many search shapes and runtime might be too long")
+            }
         }
         for item in result {
             print(item)
@@ -212,7 +224,7 @@ public class OptimizeBranchAndBoundAllWords {
                 }
                 
                 
-                print("FINAL SIZE\ngame: \(gameId), rootShape: \(rootShape), lookaheadDepth: \(lookaheadDepth), beamWidth: \(currentWidth), time: \(timeToProcessOneConfiguration), overallProcessTime: \(DateTimeCalculator.duration(start: overallStart))")
+                print("FINAL SIZE\ngame: \(gameId), rootShape: \(rootShape), lookaheadDepth: \(lookaheadDepth), beamWidth: \(currentWidth), time: \"\(timeToProcessOneConfiguration)\", useGuidedScores: \(useGuidedScores), overallProcessTime: \(DateTimeCalculator.duration(start: overallStart))")
                 return currentWidth
             }
         }

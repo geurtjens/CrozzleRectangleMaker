@@ -487,7 +487,7 @@ public class BranchAndBoundV3 {
         let result = TreeNodeCalculator.applyBeamWidth(treeNodes: treeNodes, beamWidth: beamWidth)
         
 //        for node in result {
-//            print(node.parentShape.Flip().ToJson(words: words))
+//            print(node.parentShape.ToJson(words: words))
 //            print(node.parentShape.mergeHistory)
 //        }
         

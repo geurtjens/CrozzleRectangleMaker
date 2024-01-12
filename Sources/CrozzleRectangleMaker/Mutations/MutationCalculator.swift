@@ -319,7 +319,7 @@ public class MutationCalculator {
                 let shapeText = shape.ToMarkFormat(words: wordSequence)
                 result.append(shapeText)
             } else {
-                let shapeText = shape.Flip().ToMarkFormat(words: wordSequence)
+                let shapeText = shape.FlipToMarkFormat(words: wordSequence)
                 result.append(shapeText)
             }
             // }

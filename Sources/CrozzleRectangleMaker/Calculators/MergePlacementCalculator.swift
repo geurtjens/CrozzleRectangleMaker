@@ -268,11 +268,6 @@ public class MergePlacementCalculator {
         
         let sourcePlacements = sourceShapes[instruction.sourceShapeId].placements
         let searchPlacements = searchShapes[instruction.searchShapeId].placements
-//        var searchShape = searchShapes[instruction.searchShapeId]
-//
-//        if instruction.flipped == true {
-//            searchShape = searchShape.Flip()
-//        }
         
         return (sourcePlacements, searchPlacements)
         
