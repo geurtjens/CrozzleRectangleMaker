@@ -27,7 +27,7 @@ public struct BranchAndBoundInstruction {
         self.time = ""
     }
     
-    init( game: Int, rootShape: Int, lookaheadDepth: Int, beamWidth: Int, time: String, useGuidedScores: Bool) {
+    init( game: Int, rootShape: Int, lookaheadDepth: Int, beamWidth: Int, time: String, useGuidedScores: Bool = false) {
         self.games = [game]
         self.rootShape = rootShape
         self.lookaheadDepth = lookaheadDepth

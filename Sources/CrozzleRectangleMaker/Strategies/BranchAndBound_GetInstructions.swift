@@ -11,91 +11,135 @@ public struct BranchAndBound_GetInstructions {
     
     public static func AllWords_NoGuidedScores() -> [BranchAndBoundInstruction]
     {
-        
         var result: [BranchAndBoundInstruction] = []
 
-        
-        // game: 8909, rootShape: 3, lookaheadDepth: 2, beamWidth: 48, time: 47 seconds
         result.append(BranchAndBoundInstruction(
-            game: 8909, rootShape: 3, lookaheadDepth: 2, beamWidth: 48, time: "47 seconds", useGuidedScores: false))
+            game: 8612, rootShape: 0, lookaheadDepth: 2, beamWidth: 9, time: "12 seconds"))
         
-        //game: 8908, rootShape: 3, lookaheadDepth: 2, beamWidth: 22, time: "1 minutes 33 seconds"
         result.append(BranchAndBoundInstruction(
-            game: 8908, rootShape: 3, lookaheadDepth: 2, beamWidth: 22, time: "1 minutes 33 seconds", useGuidedScores: false))
+            game: 8704, rootShape: 0, lookaheadDepth: 2, beamWidth: 24, time: "51 seconds"))
         
-        
-        //game: 8907, rootShape: 1, lookaheadDepth: 2, beamWidth: 25, time: 8 minutes 26 seconds
         result.append(BranchAndBoundInstruction(
-            game: 8907, rootShape: 1, lookaheadDepth: 2, beamWidth: 25, time: "8 minutes 26 seconds", useGuidedScores: false))
+            game: 8705, rootShape: 0, lookaheadDepth: 1, beamWidth: 69, time: "1.204533542 seconds"))
         
-        
-        //game: 8902, rootShape: 1, lookaheadDepth: 3, beamWidth: 75, time: "1 minutes 38 seconds"
-        result.append(BranchAndBoundInstruction(game: 8902, rootShape: 1, lookaheadDepth: 3, beamWidth: 75, time: "1 minutes 38 seconds", useGuidedScores: false))
-        
-        
-        //game: 8807, rootShape: 1, lookaheadDepth: 2, beamWidth: 64, time: "3 minutes 30 seconds"
         result.append(BranchAndBoundInstruction(
-            game: 8807, rootShape: 1, lookaheadDepth: 2, beamWidth: 64, time: "3 minutes 30 seconds", useGuidedScores: false))
+            game: 8710, rootShape: 0, lookaheadDepth: 1, beamWidth: 53, time: "4.233728167 seconds"))
         
-        
-        // game: 8805, rootShape: 2, lookaheadDepth: 3, beamWidth: 65, time: "44 seconds"
         result.append(BranchAndBoundInstruction(
-            game: 8805, rootShape: 2, lookaheadDepth: 3, beamWidth: 65, time: "44 seconds", useGuidedScores: false))
+            game: 8711, rootShape: 3, lookaheadDepth: 1, beamWidth: 32, time: "3.22003375 seconds"))
         
-        // game: 8711, rootShape: 3, lookaheadDepth: 1, beamWidth: 32, time: "3.22003375 seconds", useGuidedScores: false
-        result.append(BranchAndBoundInstruction(game: 8711, rootShape: 3, lookaheadDepth: 1, beamWidth: 32, time: "3.22003375 seconds", useGuidedScores: false))
+        result.append(BranchAndBoundInstruction(
+            game: 8712, rootShape: 4, lookaheadDepth: 1, beamWidth: 27, time: "7.202269583 seconds"))
         
+        result.append(BranchAndBoundInstruction(
+            game: 8802, rootShape: 0, lookaheadDepth: 3, beamWidth: 3, time: "3.310953875 seconds"))
         
-        //18 seconds
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 54, games: [9308], rootShape: 1, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(
+            game: 8805, rootShape: 2, lookaheadDepth: 3, beamWidth: 65, time: "44 seconds"))
         
+        result.append(BranchAndBoundInstruction(
+            game: 8807, rootShape: 1, lookaheadDepth: 2, beamWidth: 64, time: "3 minutes 30 seconds"))
         
+        result.append(BranchAndBoundInstruction(
+            game: 8808, rootShape: 3, lookaheadDepth: 1, beamWidth: 6, time: "1.495145875 seconds"))
         
-        //2 seconds
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 25, games: [8802, 9306], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(
+            game: 8809, rootShape: 0, lookaheadDepth: 2, beamWidth: 7, time: "37 seconds"))
         
-        //31 seconds
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 43, games: [9212], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(
+            game: 8811, rootShape: 0, lookaheadDepth: 2, beamWidth: 9, time: "3 minutes 19 seconds"))
         
-        // 6.622475541 seconds
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 75, games: [8710], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(
+            game: 8902, rootShape: 1, lookaheadDepth: 3, beamWidth: 75, time: "1 minutes 38 seconds"))
+       
+        result.append(BranchAndBoundInstruction(
+            game: 8907, rootShape: 1, lookaheadDepth: 2, beamWidth: 25, time: "8 minutes 30 seconds"))
         
-        // 6.622475541 seconds, 0.340007792 seconds, 6.218686583 seconds
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 1, games: [9002, 9109, 9312], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(
+            game: 8908, rootShape: 3, lookaheadDepth: 2, beamWidth: 22, time: "1 minutes 33 seconds"))
         
-        // 44 seconds, 1 minutes 41 seconds, 5 minutes 5 seconds, 12 minutes 13 seconds
-        // 11 seconds, 3 minutes 43 seconds, 1 minutes 58 seconds, 26 seconds
-        // 11 seconds, 5.604520625 seconds, 50 seconds, 8 minutes 17 seconds
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 50, games:
-            [8612, 8704, 8809, 8907, 8910,
-             8912, 9104, 9105, 9108,
-             9207, 9310, 9311, 9412], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(
+            game: 8909, rootShape: 3, lookaheadDepth: 2, beamWidth: 48, time: "47 seconds"))
         
-        // 5 minutes 43 seconds, 4 minutes 9 seconds
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 75, games:
-            [8808, 9210], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(
+            game: 8910, rootShape: 0, lookaheadDepth: 2, beamWidth: 4, time: "55 seconds"))
         
-        // 12 minutes 10 seconds
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 87, games: [9303], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(
+            game: 8912, rootShape: 0, lookaheadDepth: 2, beamWidth: 31, time: "6.669359916 seconds"))
         
-        // 14 minutes 15 seconds, 5.675033375 seconds, 1 hours 26 minutes 3 seconds
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 1, games:
-            [8712, 9007, 9008], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(
+            game: 9002, rootShape: 2, lookaheadDepth: 1, beamWidth: 7, time: "0.356288167 seconds"))
         
-        //53 seconds, 45 minutes 38 seconds, 19 minutes 38 seconds
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 25, games:
-            [8705, 8811, 9103], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+        result.append(BranchAndBoundInstruction(
+            game: 9007, rootShape: 0, lookaheadDepth: 1, beamWidth: 68, time: "1.420469708 seconds"))
         
-        // 35 games full words so far
+        result.append(BranchAndBoundInstruction(
+            game: 9008, rootShape: 5, lookaheadDepth: 1, beamWidth: 17, time: "23 seconds"))
         
-        let solvedGames = [
-            8612, 
-            8704, 8710, 8711, 8712,
-            8802, 8805, 8807, 8808, 8809, 8910, 8811, 8912, // 8803, 8804, 8806
-            8902, 8907, 8908, 8909,
-            9002, 9007, 9008,
-            9103, 9104, 9105, 9108, 9109,
-            9207, 9210, 9212,
+        result.append(BranchAndBoundInstruction(
+            game: 9012, rootShape: 1, lookaheadDepth: 2, beamWidth: 7, time: "12 seconds"))
+        
+        result.append(BranchAndBoundInstruction(
+            game: 9102, rootShape: 5, lookaheadDepth: 2, beamWidth: 7, time: "27 seconds"))
+        
+        result.append(BranchAndBoundInstruction(
+            game: 9103, rootShape: 0, lookaheadDepth: 2, beamWidth: 26, time: "4 minutes 20 seconds"))
+        
+        result.append(BranchAndBoundInstruction(
+            game: 9104, rootShape: 0, lookaheadDepth: 2, beamWidth: 49, time: "3 minutes 1 seconds"))
+        
+        result.append(BranchAndBoundInstruction(
+            game: 9105, rootShape: 0, lookaheadDepth: 2, beamWidth: 19, time: "41 seconds"))
+        
+        result.append(BranchAndBoundInstruction(
+            game: 9108, rootShape: 3, lookaheadDepth: 1, beamWidth: 37, time: "0.522908875 seconds"))
+        
+        result.append(BranchAndBoundInstruction(
+            game: 9109, rootShape: 0, lookaheadDepth: 1, beamWidth: 13, time: "0.282506459 seconds"))
+        
+        result.append(BranchAndBoundInstruction(
+            game: 9203, rootShape: 2, lookaheadDepth: 2, beamWidth: 52, time: "1 minutes 59 seconds"))
+        
+        result.append(BranchAndBoundInstruction(
+            game: 9207, rootShape: 0, lookaheadDepth: 2, beamWidth: 6, time: "1.555885958 seconds"))
+        
+        result.append(BranchAndBoundInstruction(
+            game: 9210, rootShape: 0, lookaheadDepth: 2, beamWidth: 64, time: "2 minutes 59 seconds"))
+        
+        result.append(BranchAndBoundInstruction(
+            game: 9212, rootShape: 0, lookaheadDepth: 1, beamWidth: 43, time: "27 seconds"))
+        
+        result.append(BranchAndBoundInstruction(
+            game: 9303, rootShape: 0, lookaheadDepth: 2, beamWidth: 73, time: "8 minutes 29 seconds"))
+        
+        result.append(BranchAndBoundInstruction(
+            game: 9306, rootShape: 0, lookaheadDepth: 1, beamWidth: 3, time: "0.270897958 seconds"))
+        
+        result.append(BranchAndBoundInstruction(
+            game: 9308, rootShape: 1, lookaheadDepth: 1, beamWidth: 54, time: "18 seconds"))
+        
+        result.append(BranchAndBoundInstruction(
+            game: 9310, rootShape: 0, lookaheadDepth: 1, beamWidth: 32, time: "0.529367709 seconds"))
+        
+        result.append(BranchAndBoundInstruction(
+            game: 9311, rootShape: 4, lookaheadDepth: 1, beamWidth: 16, time: "0.843562125 seconds"))
+        
+        result.append(BranchAndBoundInstruction(
+            game: 9312, rootShape: 2, lookaheadDepth: 1, beamWidth: 5, time: "0.584330167 seconds"))
+        
+        result.append(BranchAndBoundInstruction(
+            game: 9412, rootShape: 0, lookaheadDepth: 2, beamWidth: 5, time: "39 seconds"))
+        
+        // 39 games full words so far
+        
+        let _ = [
+            8612,
+            8704, 8705, 8710, 8711, 8712,
+            8802, 8805, 8807, 8808, 8809, 8910, 8811,
+            8902, 8907, 8908, 8909, 8912,
+            9002, 9007, 9008, 9012,
+            9102, 9103, 9104, 9105, 9108, 9109,
+            9203, 9207, 9210, 9212,
             9303, 9306, 9308, 9310, 9311, 9312,
             9412]
         
