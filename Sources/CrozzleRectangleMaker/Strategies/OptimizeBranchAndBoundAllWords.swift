@@ -20,7 +20,9 @@ public class OptimizeBranchAndBoundAllWords {
         let games: [Int] = [9201]
         await executeAllGames(
             games: games,
+            minLookaheadDepth: 1,
             maxLookaheadDepth: 4,
+            minBeamWidth: 1,
             maxBeamWidth: 150,
             maxSearchShapes: 5000,
             maxDepth: 30,
@@ -35,7 +37,9 @@ public class OptimizeBranchAndBoundAllWords {
                     
         await executeAllGames(
             games: games,
+            minLookaheadDepth: 1,
             maxLookaheadDepth: 4,
+            minBeamWidth: 1,
             maxBeamWidth: 100,
             maxSearchShapes: 5000,
             maxDepth: 30,
@@ -45,7 +49,9 @@ public class OptimizeBranchAndBoundAllWords {
     
     public static func executeAllGames(
         games: [Int], // = [8805, 8807, 8911, 9112, 9203, 9305, 9509]
+        minLookaheadDepth: Int,
         maxLookaheadDepth: Int,
+        minBeamWidth: Int,
         maxBeamWidth: Int,
         maxSearchShapes: Int,
         maxDepth: Int,
@@ -61,7 +67,9 @@ public class OptimizeBranchAndBoundAllWords {
                 
                 let results = await executeAllWordsGame(
                     gameId: gameId,
+                    minLookaheadDepth: minLookaheadDepth,
                     maxLookaheadDepth: maxLookaheadDepth,
+                    minBeamWidth: minBeamWidth,
                     maxBeamWidth: maxBeamWidth,
                     maxDepth: maxDepth,
                     useGuidedScores: useGuidedScores)
@@ -94,11 +102,11 @@ public class OptimizeBranchAndBoundAllWords {
     
     public static func executeAllWordsGame(
         gameId: Int,
-        minLookaheadDepth: Int = 1,
+        minLookaheadDepth: Int,
         maxLookaheadDepth: Int,
-        minBeamWidth: Int = 1,
+        minBeamWidth: Int,
         maxBeamWidth: Int,
-        maxDepth: Int = 30,
+        maxDepth: Int,
         useGuidedScores: Bool) async -> [String]
     {
         var result: [String] = []
