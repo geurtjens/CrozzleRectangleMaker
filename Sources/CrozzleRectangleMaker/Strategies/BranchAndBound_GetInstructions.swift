@@ -19,8 +19,8 @@ public struct BranchAndBound_GetInstructions {
         result.append(BranchAndBoundInstruction(
             game: 8704, rootShape: 0, lookaheadDepth: 2, beamWidth: 24, time: "51 seconds"))
         
-        result.append(BranchAndBoundInstruction(
-            game: 8705, rootShape: 0, lookaheadDepth: 1, beamWidth: 69, time: "1.204533542 seconds"))
+//        result.append(BranchAndBoundInstruction(
+//            game: 8705, rootShape: 0, lookaheadDepth: 1, beamWidth: 69, time: "1.204533542 seconds"))
         
         result.append(BranchAndBoundInstruction(
             game: 8710, rootShape: 0, lookaheadDepth: 1, beamWidth: 53, time: "4.233728167 seconds"))
@@ -33,6 +33,9 @@ public struct BranchAndBound_GetInstructions {
         
         result.append(BranchAndBoundInstruction(
             game: 8802, rootShape: 0, lookaheadDepth: 3, beamWidth: 3, time: "3.310953875 seconds"))
+        
+        result.append(BranchAndBoundInstruction(
+            game: 8804, rootShape: 9, lookaheadDepth: 2, beamWidth: 47, time: "18 minutes 45 seconds"))
         
         result.append(BranchAndBoundInstruction(
             game: 8805, rootShape: 2, lookaheadDepth: 3, beamWidth: 65, time: "44 seconds"))
@@ -157,7 +160,7 @@ public struct BranchAndBound_GetInstructions {
         let _ = [
             8612,
             8704, 8705, 8710, 8711, 8712,
-            8802, 8805, 8807, 8808, 8809, 8910, 8811,
+            8802, 8804, 8807, 8808, 8809, 8910, 8811,
             8902, 8907, 8908, 8909, 8912,
             9002, 9007, 9008, 9012,
             9102, 9103, 9104, 9105, 9108, 9109,
