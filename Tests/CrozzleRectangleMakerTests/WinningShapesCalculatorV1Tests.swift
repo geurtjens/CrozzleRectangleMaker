@@ -13,10 +13,10 @@ final class WinningShapesCalculatorV1Tests: XCTestCase {
     func test_shapesToTextSwift() {
         let gameList = GameList()
         for game in gameList.games {
-            let shapes = SearchShapesCalculator.execute(gameId: game.gameId, words: game.winningWords)
+            let (shapes,words, width, height) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: game.gameId)
             var result = ""
             for shape in shapes {
-                let text = shape.ToTextBlock(words: game.winningWords, spaces: 4)
+                let text = shape.ToTextBlock(words: words, spaces: 4)
                 
                 if result != "" {
                     result += ","
@@ -44,8 +44,7 @@ final class WinningShapesCalculatorV1Tests: XCTestCase {
          
         let gameList = GameList()
         for game in gameList.games {
-            let words = game.winningWords
-            let shapes = SearchShapesCalculator.execute(gameId: game.gameId, words: words)
+            let (shapes, words, _, _) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: game.gameId)
             var result = ""
             for shape in shapes {
                 let text = shape.ToTextBlock(words: words, spaces: 24)
@@ -76,7 +75,7 @@ final class WinningShapesCalculatorV1Tests: XCTestCase {
     func test_testAllShapes() async throws {
         let gameList = GameList()
         for game in gameList.games {
-            let shapes = SearchShapesCalculator.execute(gameId:game.gameId, words: game.winningWords)
+            let shapes = WinningShapesAllCalculatorV3.execute(gameId:game.gameId, words: game.winningWords)
             let shapesAsync = await WinningShapesAllCalculatorV3Async.execute(gameId:game.gameId, words: game.winningWords)
             XCTAssertEqual(shapes.count, shapesAsync.count)
         }
@@ -89,7 +88,7 @@ final class WinningShapesCalculatorV1Tests: XCTestCase {
         measure {
             let gameList = GameList()
             for game in gameList.games {
-                let _ = SearchShapesCalculator.execute(gameId:game.gameId, words: game.words)
+                let _ = WinningShapesAllCalculatorV3.execute(gameId:game.gameId, words: game.words)
             }
         }
     }
@@ -101,7 +100,7 @@ final class WinningShapesCalculatorV1Tests: XCTestCase {
         
         let gameList = GameList()
         for game in gameList.games {
-            let r = SearchShapesCalculator.execute(gameId:game.gameId, words: game.words)
+            let r = WinningShapesAllCalculatorV3.execute(gameId:game.gameId, words: game.words)
             result += r.count
             print("\(game.gameId) produced \(r.count)")
         }
@@ -123,8 +122,7 @@ final class WinningShapesCalculatorV1Tests: XCTestCase {
     }
     
     func test_getShapes_8803() throws {
-        let words = GameList().getGame(gameId: 8803)!.winningWords
-        let shapes = SearchShapesCalculator.execute(gameId: 8803, words: words)
+        let (shapes, words, x,y) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: 8803)
         for shape in shapes {
             print(shape.ToText(words: words))
         }

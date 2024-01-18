@@ -7,17 +7,12 @@
 
 import Foundation
 public class StandardSearchAlgorithms {
-    public static func winnings(gameId: Int) -> ([ShapeModel],[String],Int, Int, Int) 
-    {
-        let game = GameList().getGame(gameId: gameId)!
-        let winningScore = game.winningScore
-        let words = game.winningWords
-        let widthMax = game.widthMax
-        let heightMax = game.heightMax
+    public static func winnings(gameId: Int) -> ([ShapeModel],[String],Int, Int, Int) {
+        let (shapes,words,widthMax,heightMax) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: gameId)
         
-        let searchShapes = SearchShapesCalculator.execute(gameId: gameId, words: words)
+        let winningScore = GameList().getGame(gameId: gameId)!.winningScore
         
-        return (searchShapes, words, widthMax, heightMax, winningScore)
+        return (shapes, words, widthMax, heightMax, winningScore)
     }
     
     public static func winningsMore(gameId: Int) -> ([ShapeModel],[String],Int, Int, Int, Int) {
@@ -29,14 +24,14 @@ public class StandardSearchAlgorithms {
         let widthMax = game.widthMax
         let heightMax = game.heightMax
         
-        let shapesInWinningGame = SearchShapesCalculator.executeUsingWinningWords(gameId: gameId).sorted { $0.score > $1.score}
+        let shapesInWinningGame = WinningShapesCalculatorV1.getShapesWinningWords(gameId: gameId).0.sorted { $0.score > $1.score}
         
         // now we must find this best winning shape within the shapes
         let startingShape = shapesInWinningGame[0]
         
         let winningScore = game.winningScore
         
-        var searchShapes = SearchShapesCalculator.execute(gameId: gameId, words: game.winningWords)
+        var searchShapes = WinningShapesAllCalculatorV3.execute(gameId: gameId, words: game.winningWords)
         searchShapes.sort { $0.score > $1.score }
         ShapeCalculator.setMergeHistory(shapes: &searchShapes)
         

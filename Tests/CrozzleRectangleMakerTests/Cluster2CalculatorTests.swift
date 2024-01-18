@@ -50,7 +50,7 @@ final class Cluster2CalculatorTests: XCTestCase {
     }
     
     func test_PERF_execute_NEW() {
-        //let _ = XCTMeasureOptions()
+        let options = XCTMeasureOptions()
         //options.iterationCount = 1
         
         //measure(metrics: [XCTClockMetric()], options: options) {
@@ -1021,7 +1021,7 @@ final class Cluster2CalculatorTests: XCTestCase {
                 "       .    "]
             let shape = ShapeCalculator.toShape(fromGrid: grid, words: words)!
 
-            //let wordsInt = WordCalculator.WordsToInt(words: words)
+            let wordsInt = WordCalculator.WordsToInt(words: words)
             for _ in 0..<10_000 {
                 let (newShape, _) = ShapeToTextConverter.ToValidShape(shape: shape, words: words)
                 //let (score2, shapeWithText) = ShapeCalculator.getScoreAndText(shape: shape, words: words)
@@ -1050,7 +1050,7 @@ final class Cluster2CalculatorTests: XCTestCase {
                 "       .    "]
             let shape = ShapeCalculator.toShape(fromGrid: grid, words: words)!
 
-            //var gridText = shape.getGridArray()
+            var gridText = shape.getGridArray()
             
             let wordsInt = WordCalculator.WordsToInt(words: words)
             for _ in 0..<10_000 {
@@ -1067,7 +1067,7 @@ final class Cluster2CalculatorTests: XCTestCase {
     func test_ShapeToText2Converter_ToValidShape() {
 
         let DOT = 46
-        //let G = 71
+        let G = 71
         
             let words = ["WHITE","CREAM","REINDEER","SPICE","TREE","GOODCHEER"]
             
@@ -1111,7 +1111,7 @@ final class Cluster2CalculatorTests: XCTestCase {
         var text3 = ""
         let widthEOL = shape.width + 1
         
-        //let value = ShapeToTextConverterV2.V(Int(0), Int(1), grid, Int(widthEOL))
+        let value = ShapeToTextConverterV2.V(Int(0), Int(1), grid, Int(widthEOL))
         
         
         for y in 0..<shape.height {
@@ -1268,7 +1268,7 @@ final class Cluster2CalculatorTests: XCTestCase {
         
         var oldShapes:[String] = []
         for oldResult in oldResults {
-            let oldShape = oldResult.ToShape()
+            var oldShape = oldResult.ToShape()
             if oldShape.width < oldShape.height {
                 let text = oldShape.FlipToTextDebug(words: words)
                 oldShapes.append(text)
@@ -1280,7 +1280,7 @@ final class Cluster2CalculatorTests: XCTestCase {
         
         var newShapes:[String] = []
         for newResult in newResults {
-            let newShape = newResult.ToShape()
+            var newShape = newResult.ToShape()
             if newShape.width < newShape.height {
                 let text = newShape.FlipToTextDebug(words: words)
                 newShapes.append(text)

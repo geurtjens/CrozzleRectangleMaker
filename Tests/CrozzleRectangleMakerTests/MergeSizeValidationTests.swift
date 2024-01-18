@@ -44,14 +44,14 @@ final class MergeSizeValidationTests: XCTestCase {
                         ".TURKEY.\n" +
                         "    .   "
          
-//        let result =    "    .   \n" +
-//                        "    P   \n" +
-//                        "    O . \n" +
-//                        "    R H \n" +
-//                        ".TURKEY.\n" +
-//                        "      M \n" +
-//                        "      N \n" +
-//                        "      . "
+        let result =    "    .   \n" +
+                        "    P   \n" +
+                        "    O . \n" +
+                        "    R H \n" +
+                        ".TURKEY.\n" +
+                        "      M \n" +
+                        "      N \n" +
+                        "      . "
         
         // GIVEN sourceShape is TURKEy:HyMN
         let sourcePlacements:[PlacementModel] = [
@@ -115,14 +115,14 @@ final class MergeSizeValidationTests: XCTestCase {
                         ".TURKEY.\n" +
                         "    .   "
          
-//        let result =    "    .   \n" +
-//                        "    T   \n" +
-//                        "    U   \n" +
-//                        "    R   \n" +
-//                        ".PORK.  \n" +
-//                        "    E   \n" +
-//                        "  .HYMN.\n" +
-//                        "    .   "
+        let result =    "    .   \n" +
+                        "    T   \n" +
+                        "    U   \n" +
+                        "    R   \n" +
+                        ".PORK.  \n" +
+                        "    E   \n" +
+                        "  .HYMN.\n" +
+                        "    .   "
 
         // GIVEN sourceShape is HyMN:TURKEy
         let sourcePlacements:[PlacementModel] = [

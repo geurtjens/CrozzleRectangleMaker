@@ -662,7 +662,7 @@ final class RectangleCalculatorV1Tests: XCTestCase {
         
         var oldShapes:[String] = []
         for oldResult in oldResults {
-            let oldShape = oldResult.ToShape()
+            var oldShape = oldResult.ToShape()
             if oldShape.width < oldShape.height {
                 let text = oldShape.FlipToTextDebug(words: words)
                 oldShapes.append(text)
@@ -674,7 +674,7 @@ final class RectangleCalculatorV1Tests: XCTestCase {
         
         var newShapes:[String] = []
         for newResult in newResults {
-            let newShape = newResult.ToShape()
+            var newShape = newResult.ToShape()
             if newShape.width < newShape.height {
                 let text = newShape.FlipToTextDebug(words: words)
                 newShapes.append(text)

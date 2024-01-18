@@ -1165,19 +1165,19 @@ final class OverlappingPlacementsCalculatorTests: XCTestCase {
         XCTAssertFalse(OverlappingPlacementsCalculator.isOverlappingOne(sourcePlacements: source, find: find))
     }
     
-//    func test_newendgoal() {
-//        let a = [
-//            PlacementModel(w: 0, x: 0, y: 3, z: true, l: 4),
-//            PlacementModel(w: 5, x: 0, y: 1, z: true, l: 4),
-//            PlacementModel(w: 17, x: 4, y: 0, z: false, l: 4)]
-//        
-//        let b = [
-//            PlacementModel(w: 0, x: 3, y: 0, z: false, l: 4),
-//            PlacementModel(w: 5, x: 1, y: 0, z: false, l: 4),
-//            PlacementModel(w: 6, x: 0, y: 1, z: true, l: 8),
-//            PlacementModel(w: 17, x: 0, y: 4, z: true, l: 104)]
-//
-//    }
+    func test_newendgoal() {
+        let a = [
+            PlacementModel(w: 0, x: 0, y: 3, z: true, l: 4),
+            PlacementModel(w: 5, x: 0, y: 1, z: true, l: 4),
+            PlacementModel(w: 17, x: 4, y: 0, z: false, l: 4)]
+        
+        let b = [
+            PlacementModel(w: 0, x: 3, y: 0, z: false, l: 4),
+            PlacementModel(w: 5, x: 1, y: 0, z: false, l: 4),
+            PlacementModel(w: 6, x: 0, y: 1, z: true, l: 8),
+            PlacementModel(w: 17, x: 0, y: 4, z: true, l: 104)]
+
+    }
     
     
     

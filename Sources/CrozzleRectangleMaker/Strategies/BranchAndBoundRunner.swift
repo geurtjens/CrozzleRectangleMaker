@@ -87,7 +87,7 @@ public class BranchAndBoundRunner {
         useGuidedScores: Bool) async -> [Int]
     {
         
-        //let startTime = DateTimeCalculator.now()
+        let startTime = DateTimeCalculator.now()
         
         let gameList = GameList()
         
@@ -152,7 +152,7 @@ public class BranchAndBoundRunner {
         useGuidedScores: Bool) async -> [Int]
     {
         
-        //let startTime = DateTimeCalculator.now()
+        let startTime = DateTimeCalculator.now()
         
         let gameList = GameList()
         

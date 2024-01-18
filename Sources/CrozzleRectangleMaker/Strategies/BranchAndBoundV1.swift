@@ -127,7 +127,7 @@ public class BranchAndBoundV1 {
     }
     
     public static func getShapes(gameId: Int, words: [String]) -> [ShapeModel] {
-        var shapes = SearchShapesCalculator.execute(gameId: gameId, words: words)
+        var shapes = WinningShapesAllCalculatorV3.execute(gameId: gameId, words: words)
         ShapeCalculator.SortByScoreThenArea(shapes: &shapes)
         ShapeCalculator.setMergeHistory(shapes: &shapes)
         return shapes

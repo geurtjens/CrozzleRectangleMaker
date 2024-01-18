@@ -89,14 +89,14 @@ public class BranchAndBoundV2 {
     }
     
     public static func getShapes(gameId: Int, words: [String]) -> [ShapeModel] {
-        var shapes = SearchShapesCalculator.execute(gameId: gameId, words: words)
+        var shapes = WinningShapesAllCalculatorV3.execute(gameId: gameId, words: words)
         ShapeCalculator.SortByScoreThenArea(shapes: &shapes)
         ShapeCalculator.setMergeHistory(shapes: &shapes)
         return shapes
     }
     public static func getBestWinningShape(gameId: Int) -> ShapeModel {
         
-        var shapes = SearchShapesCalculator.executeUsingWinningWords(gameId: gameId)
+        var (shapes, _,_,_) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: gameId)
         
         ShapeCalculator.SortByScoreThenArea(shapes: &shapes)
         

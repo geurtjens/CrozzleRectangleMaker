@@ -15,15 +15,15 @@ public struct GameList {
         return filter
     }
     
-//    public static func getWinningShape(gameId: Int) -> ShapeModel? {
-//        let (shapes, words, widthMax, heightMax) = SearchShapeCalculator.executeWithWinningWords(gameId: gameId)
-//        
-//        if shapes.count == 0 {
-//            return nil
-//        }
-//        let wordsInt = WordCalculator.WordsToInt(words: words)
-//        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax)
-//    }
+    public static func getWinningShape(gameId: Int) -> ShapeModel? {
+        let (shapes, words, widthMax, heightMax) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: gameId)
+        
+        if shapes.count == 0 {
+            return nil
+        }
+        let wordsInt = WordCalculator.WordsToInt(words: words)
+        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax)
+    }
     
     
     

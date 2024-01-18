@@ -85,7 +85,7 @@ public class OptimizeBranchAndBoundAllWords {
         
     }
     public static func getWinningShapesToTest(gameId: Int) -> [Int] {
-        let winningShapes = GetStartingData.getSearchShapesUsingWinning(gameId: gameId)
+        let winningShapes = GetStartingData.getWinningShapes(gameId: gameId)
         
         // Lets work out the average scores amoungst the winning games and only use the ones that have a score higher than average
         let averageScore = ShapeCalculator.findAverageScore(shapes: winningShapes)
@@ -190,7 +190,7 @@ public class OptimizeBranchAndBoundAllWords {
         
             if upperWidthShouldSucceed.count == 0
             {
-                print("game: \(gameId), rootShape: \(rootShape), lookaheadDepth: \(lookaheadDepth), upper beamWidth of \(maximumBeamWidth) should produce a winning game.  Skipping this game.")
+                print("game \(gameId) upper width of \(maximumBeamWidth) should produce a winning game.  Skipping this game.")
                 return -1
             } else {
                 
