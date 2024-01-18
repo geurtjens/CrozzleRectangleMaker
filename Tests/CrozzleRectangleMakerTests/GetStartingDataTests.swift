@@ -25,7 +25,7 @@ final class GetStartingDataTests: XCTestCase {
         let rootShape = 0
         let useGuidedScores = false
         
-        let (_, wordsInt, searchShapes, wordIndex, rootTreeNodes, scoresMin, widthMax, heightMax) = await GetStartingData.Execute(
+        let (_, _, _, _, rootTreeNodes, _, _, _) = await GetStartingData.Execute(
             gameId: gameId,
             words: words,
             rootShape: rootShape,

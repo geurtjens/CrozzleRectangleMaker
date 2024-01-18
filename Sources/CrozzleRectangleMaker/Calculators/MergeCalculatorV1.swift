@@ -336,12 +336,26 @@ public class MergeCalculatorV1 {
     }
     
     
-    public static func GetShapesFromInstructions(instructions: [MergeInstructionModel], sourceShapes: GpuShapeModel, searchShapes: GpuShapeModel, words: [String], wordsInt: [[Int]], scoresMin:[Int], widthMax: Int, heightMax: Int) -> [ShapeModel] {
+    public static func GetShapesFromInstructions(
+        instructions: [MergeInstructionModel],
+        sourceShapes: GpuShapeModel,
+        searchShapes: GpuShapeModel,
+        words: [String],
+        wordsInt: [[Int]],
+        scoresMin:[Int],
+        widthMax: Int,
+        heightMax: Int) -> [ShapeModel]
+    {
         var shapeList: [ShapeModel] = []
         
         for instruction in instructions {
             
-            let (isValidSize, calcWidth, calcHeight) = MergeSizeValidation.execute(instruction: instruction, sourceShapes: sourceShapes, searchShapes: searchShapes,  widthMax: widthMax, heightMax: heightMax)
+            let (isValidSize, calcWidth, calcHeight) = MergeSizeValidationV1.execute(
+                instruction: instruction,
+                sourceShapes: sourceShapes,
+                searchShapes: searchShapes,
+                widthMax: widthMax,
+                heightMax: heightMax)
                 
             if isValidSize {
                 

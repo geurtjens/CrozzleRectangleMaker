@@ -1,7 +1,7 @@
 // Generated code using ShapeConstraintFromJsonCalculatorTests.swift - test_executeCode()
 
 import Foundation
-public class WinningShapesAllCalculatorV3 {
+public class SearchShapesCalculator {
     public static func Shapes_8612(words: [String], end: [String], wordsInt: [[Int]], endInt: [[Int]], len: [Int], letterIndex: LetterIndexModel) -> [ShapeModel] {
 
         var shapes: [ShapeModel] = []
@@ -6963,7 +6963,24 @@ public class WinningShapesAllCalculatorV3 {
         return shapes
     }
 
+    public static func executeUsingWinningWords(gameId: Int) -> [ShapeModel] {
+        let game = GameList().getGame(gameId: gameId)!
+        return execute(gameId: gameId, words: game.winningWords)
+    }
+    
+    public static func executeUsingAllWords(gameId: Int) -> [ShapeModel] {
+        let game = GameList().getGame(gameId: gameId)!
+        return execute(gameId: gameId, words: game.words)
+    }
+    
     public static func execute(gameId: Int, words: [String]) -> [ShapeModel] {
+        var result = executeWithoutSort(gameId: gameId, words: words)
+        ShapeCalculator.SortByScoreThenArea(shapes: &result)
+        return result
+    }
+    
+    
+    public static func executeWithoutSort(gameId: Int, words: [String]) -> [ShapeModel] {
 
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)

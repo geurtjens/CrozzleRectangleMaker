@@ -26,15 +26,15 @@ final class ConvertMarksFilesToShapesTests: XCTestCase {
 //    }
     
     
-    func test_duplicates() {
-        let inputDirectory = "/Users/michaelgeurtjens/Downloads/mintarget/"
-        let gameIds = [
-            8702, 8703, 8705, 8803, 8804, 8805, 8812, 8902, 8908, 8910,
-            8911, 9001, 9002, 9003, 9008, 9009, 9010, 9012, 9101, 9103,
-            9106, 9110, 9111, 9209, 9302, 9304, 9401, 9605]
-        
-        
-    }
+//    func test_duplicates() {
+//        //let inputDirectory = "/Users/michaelgeurtjens/Downloads/mintarget/"
+//        //let gameIds = [
+//            8702, 8703, 8705, 8803, 8804, 8805, 8812, 8902, 8908, 8910,
+//            8911, 9001, 9002, 9003, 9008, 9009, 9010, 9012, 9101, 9103,
+//            9106, 9110, 9111, 9209, 9302, 9304, 9401, 9605]
+//        
+//        
+//    }
     
     
 //    func test_code() {

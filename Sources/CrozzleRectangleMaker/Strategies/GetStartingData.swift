@@ -131,7 +131,7 @@ public class GetStartingData {
         /// Returns `searchShapes` which have `mergeHistories`
         let searchShapes = await getSearchShapes(gameId: gameId, words: words)
         
-        var winningShapes = getWinningShapes(gameId: gameId)
+        var winningShapes = getSearchShapesUsingWinning(gameId: gameId)
         
         ShapeCalculator.setMergeHistories(
             shapes: &winningShapes,
@@ -209,19 +209,19 @@ public class GetStartingData {
         return shapes
     }
     
-    public static func getWinningShapes(gameId: Int) -> [ShapeModel] {
-        var (winningShapes, _, _, _) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: gameId)
+    public static func getSearchShapesUsingWinning(gameId: Int) -> [ShapeModel] {
+        var searchShapes = SearchShapesCalculator.executeUsingWinningWords(gameId: gameId)
         
-        ShapeCalculator.SortByScoreThenArea(shapes: &winningShapes)
+        ShapeCalculator.SortByScoreThenArea(shapes: &searchShapes)
         
-        return winningShapes
+        return searchShapes
     }
     
-    public static func getWinningShapesAllWords(gameId: Int) -> [ShapeModel] {
-        var (winningShapes, _, _, _) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: gameId)
+    public static func getSearchShapesUsingAllWords(gameId: Int) -> [ShapeModel] {
+        var searchShapes = SearchShapesCalculator.executeUsingAllWords(gameId: gameId)
         
-        ShapeCalculator.SortByScoreThenArea(shapes: &winningShapes)
+        ShapeCalculator.SortByScoreThenArea(shapes: &searchShapes)
         
-        return winningShapes
+        return searchShapes
     }
 }

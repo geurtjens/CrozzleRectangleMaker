@@ -9,9 +9,17 @@ import Foundation
 public class WinningGamesCalculator {
     
     public static func WinningShape(gameId: Int) -> ShapeModel {
-        let (shapes, words, widthMax, heightMax) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: gameId)
+        
+        let game = GameList().getGame(gameId: gameId)!
+        //let winningScore = game.winningScore
+        let words = game.winningWords
+        let widthMax = game.widthMax
+        let heightMax = game.heightMax
+        
+        let searchShapes = SearchShapesCalculator.execute(gameId: gameId, words: words)
+        
         let wordsInt = WordCalculator.WordsToInt(words: words)
-        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: shapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax)
+        return MergeShapesCalculator.Merge_Sequence_Of_Shapes(shapes: searchShapes, words: words, wordsInt: wordsInt, widthMax: widthMax, heightMax: heightMax)
     }
 
 }

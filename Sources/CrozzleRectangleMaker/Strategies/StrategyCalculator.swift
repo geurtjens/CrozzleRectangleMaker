@@ -75,16 +75,16 @@ public class StrategyCalculator {
     
     public static func gamesThatHaventWonYet() async {
         /// We added extra 8612 and 8710`
-        let gamesWon = [8612,   8705,8710,8712,
-                        8803,8805,8808,8809,8811,8812,
-                        8902,8903,8904,8906,8910,8911,8912,
-                        9004,9005,9007,9008,9009,9012,
-                        9102,9103,9105,9108,9110,9111,9112,
-                        9201,9202,9203,9207,9208,9210,9212,
-                        9302,9303,9306,9307,9308,9309,9310,9311,9312,
-                        9401,9404,9407,9408,
-                        9502]
-        
+//        let gamesWon = [8612,   8705,8710,8712,
+//                        8803,8805,8808,8809,8811,8812,
+//                        8902,8903,8904,8906,8910,8911,8912,
+//                        9004,9005,9007,9008,9009,9012,
+//                        9102,9103,9105,9108,9110,9111,9112,
+//                        9201,9202,9203,9207,9208,9210,9212,
+//                        9302,9303,9306,9307,9308,9309,9310,9311,9312,
+//                        9401,9404,9407,9408,
+//                        9502]
+//        
         
         let gameList = GameList()
         //var result = ""
@@ -204,7 +204,7 @@ public class StrategyCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        var shapes = WinningShapesAllCalculatorV3.execute(gameId: game.gameId, words: words)
+        var shapes = SearchShapesCalculator.execute(gameId: game.gameId, words: words)
         ShapeCalculator.SortByScoreThenArea(shapes: &shapes)
         ShapeCalculator.setMergeHistory(shapes: &shapes)
         
@@ -330,7 +330,7 @@ public class StrategyCalculator {
 
         var queue = QueueList(game: game, constraints: constraint)
 
-        let shapes = WinningShapesAllCalculatorV3.execute(gameId: game.gameId, words: words)
+        let shapes = SearchShapesCalculator.execute(gameId: game.gameId, words: words)
         print("Starting Shape Count = \(shapes.count)")
         queue.add(shapes: shapes)
         return queue
@@ -343,7 +343,7 @@ public class StrategyCalculator {
         var queue = GetQueue(game: game, words: words, queueLength: queueLength, priorityFunction: .score_area)
             
         var maxShape: ShapeModel? = nil
-        var maxScore: UInt16 = 0
+        let maxScore: UInt16 = 0
         
         var count = 0
         var previousCount = 0
@@ -729,9 +729,12 @@ public class StrategyCalculator {
         let gameList = GameList()
         for game in gameList.games {
             
-            let (winningShapes, words, _, _) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: game.gameId)
+            let words = game.winningWords
             
-            guard let winningShape = GameList.getWinningShape(gameId: game.gameId) else { return  }
+            let searchShapes = SearchShapesCalculator.execute(gameId: game.gameId, words: words)
+            
+            let winningShape = searchShapes[0]
+            
             
             let scoresMin = StrategyCalculator.GetScoreMins(gameId: game.gameId)
             
@@ -742,7 +745,7 @@ public class StrategyCalculator {
                 priorityFunction: .score_area)
             
             var queue = QueueList(game: game, constraints: constraints)
-            queue.add(shapes: winningShapes)
+            queue.add(shapes: searchShapes)
             
             var maxShape: ShapeModel? = nil
             let highScore = game.winningScore

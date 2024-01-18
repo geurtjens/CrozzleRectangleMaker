@@ -219,7 +219,7 @@ final class ShapeCalculatorTests: XCTestCase {
     }
     
     public func test_AverageScore() {
-        let winningShapes = GetStartingData.getWinningShapes(gameId: 8808)
+        let winningShapes = GetStartingData.getSearchShapesUsingWinning(gameId: 8808)
         
         let average = ShapeCalculator.findAverageScore(shapes: winningShapes)
         
