@@ -30,8 +30,8 @@ public struct BranchAndBound_GetInstructions {
         
         result.append(BranchAndBoundInstruction(
             game: 8804, rootShape: 9, lookaheadDepth: 2, beamWidth: 47, time: "18 minutes 45 seconds"))
-        //result.append(BranchAndBoundInstruction(
-        //    game: 8805, rootShape: 2, lookaheadDepth: 3, beamWidth: 65, time: "44 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 8805, rootShape: 2, lookaheadDepth: 3, beamWidth: 65, time: "44 seconds"))
         
         // 8806
         
