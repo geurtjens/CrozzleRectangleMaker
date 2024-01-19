@@ -481,7 +481,7 @@ final class PacmanCalculatorV1Tests: XCTestCase {
         let gameList = GameList()
         
         for game in gameList.games {
-            let words = game.words
+            //let words = game.words
            
             let oldResults = PacmanCalculatorV1.ExecuteAllSerial(scoreMin: 0)
             
@@ -501,7 +501,7 @@ final class PacmanCalculatorV1Tests: XCTestCase {
         let gameList = GameList()
         
             for game in gameList.games {
-                let words = game.words
+                //let words = game.words
                
                 
                 let oldResults = PacmanCalculatorV1.ExecuteAllSerial(scoreMin: 0)
@@ -520,9 +520,9 @@ final class PacmanCalculatorV1Tests: XCTestCase {
         
             for game in gameList.games {
                 let words = game.words
-                let end = WordCalculator.reverse(words: words)
-                let len = WordCalculator.lengths(words: words)
-                let letterIndex = LetterIndexModel(words: words)
+//                let end = WordCalculator.reverse(words: words)
+//                let len = WordCalculator.lengths(words: words)
+//                let letterIndex = LetterIndexModel(words: words)
                 
                 let newResults = PacmanCalculatorV2.Execute(
                     words: words,
@@ -650,41 +650,41 @@ final class PacmanCalculatorV1Tests: XCTestCase {
             print("PacmanCalculatorV1.TopLeft game: \(game.gameId), old:\(oldResults.count), new:\(newResults.count)")
         }
     }
-    func test_TopRightExample() {
-        // CHIME is duplicated on the old shape so its an existing error
-       /*
-        C .
-        H M
-        I.O
-       .MONTHLY.
-  .MOVEMENT.
-        .CHIME.
-         E.
-         .
-        */
-        
-        let words = ["MONTHLY","MOVEMENT","CHIME","CHIME","ONCE","MONTH"]
-        let end = WordCalculator.reverse(words: words)
-        let len = WordCalculator.lengths(words: words)
-        let letterIndex = LetterIndexModel(words: words)
-        
-        let oldResults = PacmanCalculatorV1.TopRight(
-            words: words,
-            end: end,
-            len: len,
-            scoreMin: scoreMin,
-            widthMax: widthMax,
-            heightMax: heightMax)
-        
-        let newResults = PacmanCalculatorV2.TopRight(
-            letterIndex: letterIndex,
-            words: words,
-            end: end,
-            len: len,
-            scoreMin: scoreMin,
-            widthMax: widthMax,
-            heightMax: heightMax)
-    }
+//    func test_TopRightExample() {
+//        // CHIME is duplicated on the old shape so its an existing error
+//       /*
+//        C .
+//        H M
+//        I.O
+//       .MONTHLY.
+//  .MOVEMENT.
+//        .CHIME.
+//         E.
+//         .
+//        */
+//        
+//        let words = ["MONTHLY","MOVEMENT","CHIME","CHIME","ONCE","MONTH"]
+//        let end = WordCalculator.reverse(words: words)
+//        let len = WordCalculator.lengths(words: words)
+//        let letterIndex = LetterIndexModel(words: words)
+//        
+//        let oldResults = PacmanCalculatorV1.TopRight(
+//            words: words,
+//            end: end,
+//            len: len,
+//            scoreMin: scoreMin,
+//            widthMax: widthMax,
+//            heightMax: heightMax)
+//        
+//        let newResults = PacmanCalculatorV2.TopRight(
+//            letterIndex: letterIndex,
+//            words: words,
+//            end: end,
+//            len: len,
+//            scoreMin: scoreMin,
+//            widthMax: widthMax,
+//            heightMax: heightMax)
+//    }
     func test_ComparisonTopRight() {
         let gameList = GameList()
         
@@ -726,7 +726,7 @@ final class PacmanCalculatorV1Tests: XCTestCase {
         
         var oldShapes:[String] = []
         for oldResult in oldResults {
-            var oldShape = oldResult.ToShape()
+            let oldShape = oldResult.ToShape()
             if oldShape.width < oldShape.height {
                 let text = oldShape.FlipToTextDebug(words: words)
                 oldShapes.append(text)
@@ -739,7 +739,7 @@ final class PacmanCalculatorV1Tests: XCTestCase {
         
         var newShapes:[String] = []
         for newResult in newResults {
-            var newShape = newResult.ToShape()
+            let newShape = newResult.ToShape()
             if newShape.width < newShape.height {
                 let text = newShape.FlipToTextDebug(words: words)
                 newShapes.append(text)
@@ -821,13 +821,13 @@ final class PacmanCalculatorV1Tests: XCTestCase {
         let end = WordCalculator.reverse(words: words)
         let len = WordCalculator.lengths(words: words)
         
-        let oldResults = PacmanCalculatorV1.TopRight(
-            words: words,
-            end: end,
-            len: len,
-            scoreMin: scoreMin,
-            widthMax: widthMax,
-            heightMax: heightMax)
+//        let oldResults = PacmanCalculatorV1.TopRight(
+//            words: words,
+//            end: end,
+//            len: len,
+//            scoreMin: scoreMin,
+//            widthMax: widthMax,
+//            heightMax: heightMax)
         
         let result = PacmanCalculatorV1.TopRight(
             words: words,

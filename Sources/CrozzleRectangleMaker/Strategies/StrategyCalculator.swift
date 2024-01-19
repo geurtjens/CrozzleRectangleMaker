@@ -75,16 +75,16 @@ public class StrategyCalculator {
     
     public static func gamesThatHaventWonYet() async {
         /// We added extra 8612 and 8710`
-        let gamesWon = [8612,   8705,8710,8712,
-                        8803,8805,8808,8809,8811,8812,
-                        8902,8903,8904,8906,8910,8911,8912,
-                        9004,9005,9007,9008,9009,9012,
-                        9102,9103,9105,9108,9110,9111,9112,
-                        9201,9202,9203,9207,9208,9210,9212,
-                        9302,9303,9306,9307,9308,9309,9310,9311,9312,
-                        9401,9404,9407,9408,
-                        9502]
-        
+//        let gamesWon = [8612,   8705,8710,8712,
+//                        8803,8805,8808,8809,8811,8812,
+//                        8902,8903,8904,8906,8910,8911,8912,
+//                        9004,9005,9007,9008,9009,9012,
+//                        9102,9103,9105,9108,9110,9111,9112,
+//                        9201,9202,9203,9207,9208,9210,9212,
+//                        9302,9303,9306,9307,9308,9309,9310,9311,9312,
+//                        9401,9404,9407,9408,
+//                        9502]
+//        
         
         let gameList = GameList()
         //var result = ""
@@ -120,7 +120,7 @@ public class StrategyCalculator {
         //        queue.queues[i].search_TopScorePercent = 2.0
         //    }
             
-        var maxShape: ShapeModel? = nil
+        var maxShape: ShapeModel?
         let maxScore: UInt16 = 0
         
         var count = 0
@@ -132,10 +132,10 @@ public class StrategyCalculator {
         }
         /// gives us the highest score so far
         (maxShape, _) = queue.status()
-//        if let maxShape = maxShape {
-//            let text = maxShape.ToStringExtended(words: words, gameId: queue.game.gameId, winningScore: queue.game.winningScore)
-//            print(text)
-//        }
+        if let maxShape = maxShape {
+            let text = maxShape.ToStringExtended(words: words, gameId: queue.game.gameId, winningScore: queue.game.winningScore)
+            print(text)
+        }
         
         for repeatTime in 0..<repeatTimes {
     //        let mergeWithItselfStartNano = DateTimeCalculator.now()
@@ -249,7 +249,7 @@ public class StrategyCalculator {
         var queue = GetQueue(game: game, words: words, queueLength: queueLength, priorityFunction: .score_area)
         
         
-        var maxShape: ShapeModel? = nil
+        var maxShape: ShapeModel?
         let maxScore: UInt16 = 0
         
         var count = 0
@@ -261,10 +261,10 @@ public class StrategyCalculator {
         }
         /// gives us the highest score so far
         (maxShape, _) = queue.status()
-//        if let maxShape = maxShape {
-//            let text = maxShape.ToStringExtended(words: words, gameId: queue.game.gameId, winningScore: queue.game.winningScore)
-//            print(text)
-//        }
+        if let maxShape = maxShape {
+            let text = maxShape.ToStringExtended(words: words, gameId: queue.game.gameId, winningScore: queue.game.winningScore)
+            print(text)
+        }
         
         for repeatTime in 0..<repeatTimes {
     //        let mergeWithItselfStartNano = DateTimeCalculator.now()
@@ -342,8 +342,8 @@ public class StrategyCalculator {
             
         var queue = GetQueue(game: game, words: words, queueLength: queueLength, priorityFunction: .score_area)
             
-        var maxShape: ShapeModel? = nil
-        var maxScore: UInt16 = 0
+        var maxShape: ShapeModel?
+        let maxScore: UInt16 = 0
         
         var count = 0
         var previousCount = 0
@@ -354,10 +354,10 @@ public class StrategyCalculator {
         }
         /// gives us the highest score so far
         (maxShape, _) = queue.status()
-//        if let maxShape = maxShape {
-//            let text = maxShape.ToStringExtended(words: words, gameId: queue.game.gameId, winningScore: queue.game.winningScore)
-//            print(text)
-//        }
+        if let maxShape = maxShape {
+            let text = maxShape.ToStringExtended(words: words, gameId: queue.game.gameId, winningScore: queue.game.winningScore)
+            print(text)
+        }
         
         for repeatTime in 0..<repeatTimes {
     //        let mergeWithItselfStartNano = DateTimeCalculator.now()

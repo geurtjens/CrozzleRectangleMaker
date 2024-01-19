@@ -96,9 +96,9 @@ final class MergeOffsetCalculatorTests: XCTestCase {
             searchPlacement: p2)
         
         // This first step is to get rid of the extra dots
-        let (ax1, ay1) = MergeOffsetCalculator.GetAdjustedPlacement(placement: p1, flipped: isFlipped)
-        let (ax2, ay2) = MergeOffsetCalculator.GetAdjustedPlacement(placement: p2, flipped: isFlipped)
-      
+//        let (ax1, ay1) = MergeOffsetCalculator.GetAdjustedPlacement(placement: p1, flipped: isFlipped)
+//        let (ax2, ay2) = MergeOffsetCalculator.GetAdjustedPlacement(placement: p2, flipped: isFlipped)
+//      
         /*
     score:52, width:6, height:8, words:2, area:24, density:2.1666667
        
@@ -125,24 +125,24 @@ final class MergeOffsetCalculatorTests: XCTestCase {
     func test_GetOffsets_SameOrientation2() {
         
         // GIVEN sourcePlacement is the TURKEY part of TURKEy:HyMN
-        let sourceGrid = [
-                "      . ",
-                "      H ",
-                ".TURKEY.",
-                "      M ",
-                "      N ",
-                "      . "]
+//        let sourceGrid = [
+//                "      . ",
+//                "      H ",
+//                ".TURKEY.",
+//                "      M ",
+//                "      N ",
+//                "      . "]
         let sourcePlacement = PlacementModel(w: 8, x: 0, y: 2, z: true, l: 6)
         
         
         // AND searchPlacement is TURKEY part of TURkEY:PORk
-        let searchGrid = [
-                "    .   ",
-                "    P   ",
-                "    O   ",
-                "    R   ",
-                ".TURKEY.",
-                "    .   "]
+//        let searchGrid = [
+//                "    .   ",
+//                "    P   ",
+//                "    O   ",
+//                "    R   ",
+//                ".TURKEY.",
+//                "    .   "]
         let searchPlacement = PlacementModel(w: 8, x: 0, y: 4, z: true, l: 6)
         
         // WHEN we calculate offset of sourcePlacement to searchPlacement
@@ -159,15 +159,15 @@ final class MergeOffsetCalculatorTests: XCTestCase {
         XCTAssertEqual(0, searchOffsetY)
         
         // There seems to be an assumption that the first will be rotated
-        let sourceFlippedGrid = [
-                "  .   ",
-                "  T   ",
-                "  U   ",
-                "  R   ",
-                "  K   ",
-                "  E   ",
-                ".HYMN.",
-                "  .   "]
+//        let sourceFlippedGrid = [
+//                "  .   ",
+//                "  T   ",
+//                "  U   ",
+//                "  R   ",
+//                "  K   ",
+//                "  E   ",
+//                ".HYMN.",
+//                "  .   "]
     }
  
     
@@ -175,26 +175,26 @@ final class MergeOffsetCalculatorTests: XCTestCase {
     func test_GetOffsets_DifferentOrientation2() {
         
         
-        let sourceGrid = [
-                "  .   ",
-                "  T   ",
-                "  U   ",
-                "  R   ",
-                "  K   ",
-                "  E   ",
-                ".HYMN.",
-                "  .   "]
+//        let sourceGrid = [
+//                "  .   ",
+//                "  T   ",
+//                "  U   ",
+//                "  R   ",
+//                "  K   ",
+//                "  E   ",
+//                ".HYMN.",
+//                "  .   "]
         let sourcePlacement = PlacementModel(w: 8, x: 2, y: 0, z: false, l: 6)
         
         
         // AND searchShape is TURkEY:PORk
-        let searchGrid = [
-                "    .   ",
-                "    P   ",
-                "    O   ",
-                "    R   ",
-                ".TURKEY.",
-                "    .   "]
+//        let searchGrid = [
+//                "    .   ",
+//                "    P   ",
+//                "    O   ",
+//                "    R   ",
+//                ".TURKEY.",
+//                "    .   "]
         let searchPlacement = PlacementModel(w: 8, x: 0, y: 4, z: true, l: 6)
         
         let (sourceOffsetX, sourceOffsetY, searchOffsetX, searchOffsetY, sourceIsFlippedFirst) = MergeOffsetCalculator.GetOffsets(
@@ -210,15 +210,15 @@ final class MergeOffsetCalculatorTests: XCTestCase {
         XCTAssertEqual(0, searchOffsetY)
         
         // There seems to be an assumption that the first will be rotated as per `test_GetOffsets_SameOrientation2` but this logic is unintuitive
-        let sourceFlippedGrid = [
-                "  .   ",
-                "  T   ",
-                "  U   ",
-                "  R   ",
-                "  K   ",
-                "  E   ",
-                ".HYMN.",
-                "  .   "]
+//        let sourceFlippedGrid = [
+//                "  .   ",
+//                "  T   ",
+//                "  U   ",
+//                "  R   ",
+//                "  K   ",
+//                "  E   ",
+//                ".HYMN.",
+//                "  .   "]
     }
     
     
@@ -410,19 +410,19 @@ final class MergeOffsetCalculatorTests: XCTestCase {
     
     func test_VerticalAndV2IsMovedByXPlus1() {
         
-         let sourceGrid = [
-                    " . ",
-                    " A ",
-                    " B ",
-                    " C ",
-                    " . "]
-         
-         let searchGrid = [
-                    "  . ",
-                    "  A ",
-                    "  B ",
-                    "  C ",
-                    "  . "]
+//         let sourceGrid = [
+//                    " . ",
+//                    " A ",
+//                    " B ",
+//                    " C ",
+//                    " . "]
+//         
+//         let searchGrid = [
+//                    "  . ",
+//                    "  A ",
+//                    "  B ",
+//                    "  C ",
+//                    "  . "]
         
         // Given v2 is moved x + 1 from v1
         let sourcePlacement = PlacementModel(w: 0, x: 1, y: 0, z: false, l: 3)
@@ -469,23 +469,23 @@ final class MergeOffsetCalculatorTests: XCTestCase {
             "        .  "
         ]
         
-        let expected = [
-            " .  .  ",
-            ".NUTS. ",
-            " A  I  ",
-            ".ZION. ",
-            " A  G  ",
-            " R B.  ",
-            ".EVE.  ",
-            " T L   ",
-            ".HOLLY.",
-            " . S   ",
-            "   .   "
-        ]
-        let expectedWidth = 7
-        let expectedHeight = 11
-        
-        
+//        let expected = [
+//            " .  .  ",
+//            ".NUTS. ",
+//            " A  I  ",
+//            ".ZION. ",
+//            " A  G  ",
+//            " R B.  ",
+//            ".EVE.  ",
+//            " T L   ",
+//            ".HOLLY.",
+//            " . S   ",
+//            "   .   "
+//        ]
+//        let expectedWidth = 7
+//        let expectedHeight = 11
+//        
+//        
         // Its giving all the opposites like its flipping the grid or something like that
         let sourceShape = ShapeCalculator.toShape(fromGrid: sourceGrid, words: words8612)!
         XCTAssertEqual(4, sourceShape.placements.count)
