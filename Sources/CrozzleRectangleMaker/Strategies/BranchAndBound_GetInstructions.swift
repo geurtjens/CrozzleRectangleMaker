@@ -60,13 +60,13 @@ public struct BranchAndBound_GetInstructions {
             game: 9002, rootShape: 2, lookaheadDepth: 1, beamWidth: 7, time: "0.356288167 seconds"))
         // 9003, 9004, 9005
         result.append(BranchAndBoundInstruction(
-            game: 9006, rootShape: 2, lookaheadDepth: 1, beamWidth: 33, time: "5.611807625 seconds"))
+            game: 9006, rootShape: 2, lookaheadDepth: 1, beamWidth: 33, time: "5.611807625 seconds")) //failed
         result.append(BranchAndBoundInstruction(
             game: 9007, rootShape: 0, lookaheadDepth: 1, beamWidth: 68, time: "1.420469708 seconds"))
         result.append(BranchAndBoundInstruction(
             game: 9008, rootShape: 5, lookaheadDepth: 1, beamWidth: 17, time: "23 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9009, rootShape: 3, lookaheadDepth: 1, beamWidth: 28, time: "7.128777709 seconds"))
+            game: 9009, rootShape: 3, lookaheadDepth: 1, beamWidth: 28, time: "7.128777709 seconds")) // failed
         // 9010, 9011
         result.append(BranchAndBoundInstruction(
             game: 9012, rootShape: 1, lookaheadDepth: 2, beamWidth: 7, time: "12 seconds"))
@@ -85,7 +85,7 @@ public struct BranchAndBound_GetInstructions {
         result.append(BranchAndBoundInstruction(
             game: 9109, rootShape: 0, lookaheadDepth: 1, beamWidth: 13, time: "0.282506459 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9110, rootShape: 0, lookaheadDepth: 1, beamWidth: 40, time: "6.754729083 seconds"))
+            game: 9110, rootShape: 0, lookaheadDepth: 1, beamWidth: 40, time: "6.754729083 seconds")) // failed
         // 9111, 9112
         // 9201, 9202
         result.append(BranchAndBoundInstruction(
@@ -127,7 +127,7 @@ public struct BranchAndBound_GetInstructions {
             game: 9402, rootShape: 0, lookaheadDepth: 2, beamWidth: 4, time: "39 seconds"))
         // 9403, 9404
         result.append(BranchAndBoundInstruction(
-            game: 9406, rootShape: 3, lookaheadDepth: 1, beamWidth: 64, time: "51 seconds"))
+            game: 9406, rootShape: 3, lookaheadDepth: 1, beamWidth: 64, time: "51 seconds")) // failed
         // 9407, 9408, 9409, 9410, 9411
         result.append(BranchAndBoundInstruction(
             game: 9412, rootShape: 0, lookaheadDepth: 2, beamWidth: 5, time: "39 seconds"))
