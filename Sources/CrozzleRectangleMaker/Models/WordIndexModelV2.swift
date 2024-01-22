@@ -25,7 +25,7 @@ public struct WordIndexModelV2 {
     
     public let index: [[Int]]
     public let shapeScoreLimits: [[Int]]
-    
+    public let useShapeScoreLimits: Bool
     
     /// Use this when you know the size of the shape
     public init(
@@ -39,6 +39,7 @@ public struct WordIndexModelV2 {
             wordsPerShape: wordsPerShape)
         
         self.shapeScoreLimits = []
+        self.useShapeScoreLimits = false
     }
     
     /// Use this when you do not know the size of the shapes, so we can have multiple sized shapes for example
@@ -52,6 +53,7 @@ public struct WordIndexModelV2 {
             wordCount: wordCount)
         
         self.shapeScoreLimits = []
+        self.useShapeScoreLimits = false
     }
     
     public init(
@@ -68,6 +70,7 @@ public struct WordIndexModelV2 {
             searchShapes: searchShapes,
             gameId: gameId,
             index: _index)
+        self.useShapeScoreLimits = true
     }
     
     
@@ -258,13 +261,31 @@ public struct WordIndexModelV2 {
     private func findMatchUsingIndex(
         sourceShape: ShapeModel,
         searchMin: Int,
-        searchMax: Int) -> [Int] {
+        searchMax: Int) -> [Int] 
+    {
         
         var matches: [Int] = [];
+        
+        let numberOfShapesInSourceShape = sourceShape.mergeHistory.count
+            
         for sourcePos in 0..<sourceShape.placements.count {
             let w = Int(sourceShape.placements[sourcePos].w);
             
-            matches += self.index[w]
+            if useShapeScoreLimits == false {
+                matches += self.index[w]
+            } else {
+                let matchesForWord = self.index[w]
+                let limit = ShapeLimitCalculator.getNextShapeScore(
+                    numberOfShapesInSourceShape: numberOfShapesInSourceShape,
+                    winningShapeScoresForWord: self.shapeScoreLimits[w])
+                
+                // We want to only include the first `limit` number of shapes
+                let reducedShapeSet = Array(matchesForWord.prefix(limit))
+                matches += reducedShapeSet
+            }
+            
+            
+            
         }
         
         // Remove items out of score
@@ -296,5 +317,3 @@ public struct WordIndexModelV2 {
         return matches;
     }
 }
-
-

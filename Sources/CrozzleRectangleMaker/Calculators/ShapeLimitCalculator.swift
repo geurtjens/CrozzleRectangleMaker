@@ -7,7 +7,7 @@
 
 import Foundation
 public class ShapeLimitCalculator {
-    public func getNextShapeScore(
+    public static func getNextShapeScore(
         winningShapeScores: [Int],
         sourceShape: ShapeModel) -> Int
     {
@@ -18,6 +18,17 @@ public class ShapeLimitCalculator {
         //sourceShape.mergeHistory.count
         if nextShapeIndex < winningShapeScores.count {
             return winningShapeScores[nextShapeIndex]
+        } else {
+            return 0
+        }
+    }
+    
+    public static func getNextShapeScore(
+        numberOfShapesInSourceShape: Int,
+        winningShapeScoresForWord: [Int]) -> Int
+    {
+        if numberOfShapesInSourceShape < winningShapeScoresForWord.count {
+            return winningShapeScoresForWord[numberOfShapesInSourceShape]
         } else {
             return 0
         }
