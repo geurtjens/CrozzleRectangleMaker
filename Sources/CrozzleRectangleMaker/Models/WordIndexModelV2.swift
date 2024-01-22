@@ -24,24 +24,7 @@ import Foundation
 public struct WordIndexModelV2 {
     
     public let index: [[Int]]
-    
-    /// Use this when you do not know the size of the shapes, so we can have multiple sized shapes for example
-    /// For bulk loads this can take an extra 7 seconds so if all shapes are same size then use the other init
-    public init(
-        shapes: [ShapeModel],
-        wordCount: Int)
-    {
-        
-        var indexTemp: [[Int]] = Array(repeating: [], count: wordCount)
-        
-        for shapeId in 0..<shapes.count {
-            for placementId in 0..<shapes[shapeId].placements.count {
-                let w = Int(shapes[shapeId].placements[placementId].w);
-                indexTemp[w].append(shapeId);
-            }
-        }
-        self.index = indexTemp
-    }
+    public let shapeScoreLimits: [[Int]]
     
     
     /// Use this when you know the size of the shape
@@ -50,17 +33,44 @@ public struct WordIndexModelV2 {
         wordsPerShape: Int,
         wordCount: Int)
     {
+        self.index = ShapeIndexCalculator.CalcIndexWithWordsPerShape(
+            searchShapes: shapes,
+            wordCount: wordCount,
+            wordsPerShape: wordsPerShape)
         
-        var indexTemp: [[Int]] = Array(repeating: [], count: wordCount)
-        
-        for shapeId in 0..<shapes.count {
-            for placementId in 0..<wordsPerShape {
-                let w = Int(shapes[shapeId].placements[placementId].w);
-                indexTemp[w].append(shapeId);
-            }
-        }
-        self.index = indexTemp
+        self.shapeScoreLimits = []
     }
+    
+    /// Use this when you do not know the size of the shapes, so we can have multiple sized shapes for example
+    /// For bulk loads this can take an extra 7 seconds so if all shapes are same size then use the other init
+    public init(
+        shapes: [ShapeModel],
+        wordCount: Int)
+    {
+        self.index = ShapeIndexCalculator.CalcIndex(
+            searchShapes: shapes,
+            wordCount: wordCount)
+        
+        self.shapeScoreLimits = []
+    }
+    
+    public init(
+        searchShapes: [ShapeModel],
+        wordCount: Int,
+        gameId: Int)
+    {
+        let _index = ShapeIndexCalculator.CalcIndex(
+            searchShapes: searchShapes,
+            wordCount: wordCount)
+        self.index = _index
+        
+        self.shapeScoreLimits = ShapeLimitCalculator.execute(
+            searchShapes: searchShapes,
+            gameId: gameId,
+            index: _index)
+    }
+    
+    
     
     
     
@@ -213,7 +223,36 @@ public struct WordIndexModelV2 {
         
     }
 
-
+    
+    
+//    public func findMatches(
+//        winningShapeScores: [Int],
+//        sourceShape: ShapeModel,
+//        sourceShapeId: Int,
+//        searchMin: Int,
+//        searchMax: Int,
+//        searchShapes: [ShapeModel]) -> [MergeInstructionModel]
+//    {
+//        // The actual human scores have this score for each shape put down
+//        let nextShapeScore = getNextShapeScore(winningShapeScores: winningShapeScores, sourceShape: sourceShape)
+//        
+//        // Now we have to find the location where that is the last location where that score is found.  Like the boundary of that score in our list
+//        
+//        
+//        // Find potential matches by using the index against all words in shape
+//        let matches = findMatchUsingIndex(sourceShape: sourceShape, searchMin: searchMin, searchMax: searchMax)
+//        
+//        if matches.count == 0 {
+//            return []
+//        }
+//        
+//        return checkMatches(
+//            matches: matches,
+//            sourceShape: sourceShape,
+//            sourceShapeId: sourceShapeId,
+//            searchShapes: searchShapes)
+//        
+//    }
     
     /// We go through each word and build up a list of shapes that contain the same words as the shape we are looking through
     private func findMatchUsingIndex(

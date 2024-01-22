@@ -9,6 +9,22 @@ import XCTest
 @testable import CrozzleRectangleMaker
 final class WinningShapesCalculatorV1Tests: XCTestCase {
 
+    func test_getScoresForWinningShapes() {
+        let gameList = GameList()
+        for game in gameList.games {
+            var list = ""
+            let (shapes, _,_,_) = WinningShapesCalculatorV1.getShapesWinningWords(gameId: game.gameId)
+            
+            for shape in shapes {
+                if list != "" {
+                    list += ","
+                }
+                list += "\(shape.score)"
+            }
+            list = "case \(game.gameId):\n    return [" + list + "]"
+            print(list)
+        }
+    }
     
     func test_shapesToTextSwift() {
         let gameList = GameList()
