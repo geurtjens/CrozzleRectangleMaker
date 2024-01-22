@@ -138,7 +138,8 @@ public struct BranchAndBound_GetInstructions {
             game: 9311, rootShape: 4, lookaheadDepth: 1, beamWidth: 16, time: "0.843562125 seconds"))
         result.append(BranchAndBoundInstruction(
             game: 9312, rootShape: 2, lookaheadDepth: 1, beamWidth: 5, time: "0.584330167 seconds"))
-        // 9401
+        result.append(BranchAndBoundInstruction(
+            game: 9401, rootShape: 3, lookaheadDepth: 2, beamWidth: 56, time: "1 minutes 31 seconds"))
         result.append(BranchAndBoundInstruction(
             game: 9402, rootShape: 0, lookaheadDepth: 2, beamWidth: 4, time: "39 seconds"))
         
@@ -152,7 +153,7 @@ public struct BranchAndBound_GetInstructions {
         // 9501, 9502, 9503, 9504, 9505, 9506, 9507, 9508, 9509, 9510, 9511, 9512
         // 9601, 9602, 9603, 9604, 9605
         
-        // We have 52 solutions now.
+        // We have 53 solutions now.
         
         let _ = [
             8612,
@@ -163,7 +164,7 @@ public struct BranchAndBound_GetInstructions {
             9101, 9102, 9103, 9104, 9105, 9108, 9109, 9110,
             9203, 9206, 9207, 9208, 9210, 9212,
             9303, 9306, 9308, 9309, 9310, 9311, 9312,
-            9402, 9406, 9412]
+            9401, 9402, 9406, 9412]
         
         return result
         
