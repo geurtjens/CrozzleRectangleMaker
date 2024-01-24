@@ -18,7 +18,8 @@ public class BranchAndBoundV3 {
         rootShape: Int,
         rootWidth: Int,
         winningScore: Int,
-        useGuidedScores: Bool) async -> ShapeModel
+        useGuidedScores: Bool,
+        useShapeScoreLimits: Bool) async -> ShapeModel?
     {
         
         /// rootTreeNodes will have the children already populated
@@ -27,12 +28,17 @@ public class BranchAndBoundV3 {
             words: words,
             rootShape: rootShape,
             rootWidth: rootWidth,
-            useGuidedScores: useGuidedScores)
+            useGuidedScores: useGuidedScores,
+            useShapeScoreLimits: useShapeScoreLimits)
        
         
         
         
-        print("{\"game\": \(gameId), \"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"rootShape\": \(rootShape), \"wordCount\": \(words.count), \"searchShapes\": \(searchShapes.count), \"cycles\": [")
+        print("{\"game\": \(gameId), \"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"rootShape\": \(rootShape), \"wordCount\": \(words.count), \"searchShapes\": \(searchShapes.count), \"rootTreeNodes\": \(rootTreeNodes.count), \"cycles\": [")
+        
+        if rootTreeNodes.count == 0 {
+            return nil
+        }
         
         let bestShapes = await executeCycles(
             gameId: gameId,

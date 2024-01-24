@@ -45,8 +45,10 @@ final class BranchAndBoundV3Tests: XCTestCase {
             rootShape: 0,
             rootWidth: 1,
             winningScore: winningScore,
-            useGuidedScores: false)
-        print(result.ToText(words: words))
+            useGuidedScores: false,
+            useShapeScoreLimits: false)
+        XCTAssertNotNil(result)
+        print(result!.ToText(words: words))
     }
     
     public func test_Execute8612() async {
@@ -66,9 +68,10 @@ final class BranchAndBoundV3Tests: XCTestCase {
             rootShape: 0,
             rootWidth: 3,
             winningScore: winningScore,
-            useGuidedScores: true)
-        
-        XCTAssertEqual(winningScore, Int(result.score))
+            useGuidedScores: true,
+            useShapeScoreLimits: false)
+        XCTAssertNotNil(result)
+        XCTAssertEqual(winningScore, Int(result!.score))
     }
     
     
@@ -90,9 +93,10 @@ final class BranchAndBoundV3Tests: XCTestCase {
             rootShape: 0,
             rootWidth: 1,
             winningScore: winningScore,
-            useGuidedScores: true)
-        
-        XCTAssertEqual(winningScore, Int(result.score))
+            useGuidedScores: true,
+            useShapeScoreLimits: false)
+        XCTAssertNotNil(result)
+        XCTAssertEqual(winningScore, Int(result!.score))
     }
     
     
@@ -114,9 +118,10 @@ final class BranchAndBoundV3Tests: XCTestCase {
             rootShape: 0,
             rootWidth: 1,
             winningScore: winningScore,
-            useGuidedScores: true)
-        
-        XCTAssertEqual(winningScore, Int(result.score))
+            useGuidedScores: true,
+            useShapeScoreLimits: false)
+        XCTAssertNotNil(result)
+        XCTAssertEqual(winningScore, Int(result!.score))
     }
     
     
@@ -158,9 +163,10 @@ final class BranchAndBoundV3Tests: XCTestCase {
             rootShape: 0,
             rootWidth: 1,
             winningScore: winningScore,
-            useGuidedScores: true)
-        
-        XCTAssertEqual(winningScore, Int(result.score))
+            useGuidedScores: true,
+            useShapeScoreLimits: false)
+        XCTAssertNotNil(result)
+        XCTAssertEqual(winningScore, Int(result!.score))
     }
     
 }

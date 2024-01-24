@@ -26,7 +26,8 @@ public class OptimizeBranchAndBoundAllWords {
             maxBeamWidth: 150,
             maxSearchShapes: 5000,
             maxDepth: 30,
-            useGuidedScores: true)
+            useGuidedScores: true,
+            useShapeScoreLimits: false)
                      
     }
     
@@ -43,8 +44,8 @@ public class OptimizeBranchAndBoundAllWords {
             maxBeamWidth: 100,
             maxSearchShapes: 5000,
             maxDepth: 30,
-            useGuidedScores: false)
-                     
+            useGuidedScores: false,
+            useShapeScoreLimits: false)
     }
     
     public static func executeAllGames(
@@ -55,7 +56,8 @@ public class OptimizeBranchAndBoundAllWords {
         maxBeamWidth: Int,
         maxSearchShapes: Int,
         maxDepth: Int,
-        useGuidedScores: Bool) async
+        useGuidedScores: Bool,
+        useShapeScoreLimits: Bool) async
     {
         var result: [String] = []
         for gameId in games {
@@ -72,7 +74,8 @@ public class OptimizeBranchAndBoundAllWords {
                     minBeamWidth: minBeamWidth,
                     maxBeamWidth: maxBeamWidth,
                     maxDepth: maxDepth,
-                    useGuidedScores: useGuidedScores)
+                    useGuidedScores: useGuidedScores,
+                    useShapeScoreLimits: useShapeScoreLimits)
                 
                 result += results
             } else {
@@ -107,7 +110,8 @@ public class OptimizeBranchAndBoundAllWords {
         minBeamWidth: Int,
         maxBeamWidth: Int,
         maxDepth: Int,
-        useGuidedScores: Bool) async -> [String]
+        useGuidedScores: Bool,
+        useShapeScoreLimits: Bool) async -> [String]
     {
         var result: [String] = []
         
@@ -131,7 +135,8 @@ public class OptimizeBranchAndBoundAllWords {
                     maximumBeamWidth: maxBeamWidth,
                     rootShape: rootShape,
                     rootWidth: 1,
-                    useGuidedScores: useGuidedScores)
+                    useGuidedScores: useGuidedScores,
+                    useShapeScoreLimits: useShapeScoreLimits)
                 
                 if winningWidth != -1 {
                     result.append("game: \(gameId), rootShape: \(rootShape), lookaheadDepth: \(lookaheadDepth), beamWidth: \(winningWidth), timeToProcess: \(DateTimeCalculator.duration(start: overallStart))")
@@ -153,7 +158,8 @@ public class OptimizeBranchAndBoundAllWords {
         maximumBeamWidth: Int,
         rootShape: Int,
         rootWidth: Int,
-        useGuidedScores: Bool) async -> Int
+        useGuidedScores: Bool,
+        useShapeScoreLimits: Bool) async -> Int
     {
         var timeToProcessOneConfiguration = ""
 
@@ -170,7 +176,8 @@ public class OptimizeBranchAndBoundAllWords {
             maxDepth: maxDepth,
             rootShape: rootShape,
             rootWidth: rootWidth,
-            useGuidedScores: useGuidedScores)
+            useGuidedScores: useGuidedScores,
+            useShapeScoreLimits: useShapeScoreLimits)
         
         if lowerWidthShouldFail.count > 0 {
             
@@ -186,7 +193,8 @@ public class OptimizeBranchAndBoundAllWords {
                 maxDepth: maxDepth,
                 rootShape: rootShape,
                 rootWidth: rootWidth,
-                useGuidedScores: useGuidedScores)
+                useGuidedScores: useGuidedScores,
+                useShapeScoreLimits: useShapeScoreLimits)
         
             if upperWidthShouldSucceed.count == 0
             {
@@ -208,8 +216,11 @@ public class OptimizeBranchAndBoundAllWords {
                         maxDepth: maxDepth,
                         rootShape: rootShape,
                         rootWidth: rootWidth,
-                        useGuidedScores: useGuidedScores)
+                        useGuidedScores: useGuidedScores,
+                        useShapeScoreLimits: useShapeScoreLimits)
+                    
                     timeToProcessOneConfiguration = DateTimeCalculator.duration(start: testOneConfigurationStart)
+                    
                     if winnersForCurrent.count == 0 {
                         if currentWidth == lowerWidth {
                             // There is no point trying the lower width again as that was unsuccessful last time too

@@ -24,13 +24,15 @@ final class GetStartingDataTests: XCTestCase {
         let rootWidth = 1
         let rootShape = 0
         let useGuidedScores = false
+        let useShapeScoreLimits = false
         
         let (_, _, _, _, rootTreeNodes, _, _, _) = await GetStartingData.Execute(
             gameId: gameId,
             words: words,
             rootShape: rootShape,
             rootWidth: rootWidth,
-            useGuidedScores: useGuidedScores)
+            useGuidedScores: useGuidedScores,
+            useShapeScoreLimits: useShapeScoreLimits)
         
         XCTAssertEqual(1, rootTreeNodes.count)
         XCTAssertEqual(31, rootTreeNodes[0].childShapes.count)

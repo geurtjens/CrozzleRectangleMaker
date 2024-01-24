@@ -47,7 +47,8 @@ public class BranchAndBoundRunner {
                 maxDepth: instruction.maxDepth,
                 rootShape: instruction.rootShape,
                 rootWidth: instruction.rootWidth,
-                useGuidedScores: instruction.useGuidedScores)
+                useGuidedScores: instruction.useGuidedScores, 
+                useShapeScoreLimits: instruction.useShapeScoreLimits)
         }
         
         PrintResults(overallStart: overallStart, solved: solved)
@@ -68,7 +69,8 @@ public class BranchAndBoundRunner {
                 maxDepth: instruction.maxDepth,
                 rootShape: instruction.rootShape,
                 rootWidth: instruction.rootWidth,
-                useGuidedScores: instruction.useGuidedScores)
+                useGuidedScores: instruction.useGuidedScores,
+                useShapeScoreLimits: instruction.useShapeScoreLimits)
         }
         
         PrintResults(overallStart: overallStart, solved: solved)
@@ -84,7 +86,8 @@ public class BranchAndBoundRunner {
         maxDepth: Int,
         rootShape: Int,
         rootWidth: Int,
-        useGuidedScores: Bool) async -> [Int]
+        useGuidedScores: Bool,
+        useShapeScoreLimits: Bool) async -> [Int]
     {
         
         //let startTime = DateTimeCalculator.now()
@@ -96,8 +99,8 @@ public class BranchAndBoundRunner {
 //        print(games)
         for game in gameList.games {
             if games.contains(game.gameId) {
-                
-                let bestShape = await BranchAndBoundV3.Execute(
+                                
+                if let bestShape = await BranchAndBoundV3.Execute(
                     gameId: game.gameId,
                     words: game.words,
                     lookaheadDepth: lookaheadDepth,
@@ -106,10 +109,12 @@ public class BranchAndBoundRunner {
                     rootShape: rootShape,
                     rootWidth: rootWidth,
                     winningScore: game.winningScore,
-                    useGuidedScores: useGuidedScores)
-                
-                if bestShape.score >= game.winningScore {
-                    successfulGames.append(game.gameId)
+                    useGuidedScores: useGuidedScores,
+                    useShapeScoreLimits: useShapeScoreLimits) {
+                    
+                    if bestShape.score >= game.winningScore {
+                        successfulGames.append(game.gameId)
+                    }
                 }
             }
         }
@@ -149,7 +154,8 @@ public class BranchAndBoundRunner {
         maxDepth: Int,
         rootShape: Int,
         rootWidth: Int,
-        useGuidedScores: Bool) async -> [Int]
+        useGuidedScores: Bool,
+        useShapeScoreLimits: Bool) async -> [Int]
     {
         
         //let startTime = DateTimeCalculator.now()
@@ -161,8 +167,8 @@ public class BranchAndBoundRunner {
         
         for game in gameList.games {
             if games.contains(game.gameId) {
-                
-                let bestShape = await BranchAndBoundV3.Execute(
+      
+                if let bestShape = await BranchAndBoundV3.Execute(
                     gameId: game.gameId,
                     words: game.winningWords,
                     lookaheadDepth: lookaheadDepth,
@@ -171,10 +177,12 @@ public class BranchAndBoundRunner {
                     rootShape: rootShape,
                     rootWidth: rootWidth,
                     winningScore: game.winningScore,
-                    useGuidedScores: useGuidedScores)
-                
-                if bestShape.score >= game.winningScore {
-                    successfulGames.append(game.gameId)
+                    useGuidedScores: useGuidedScores,
+                    useShapeScoreLimits: useShapeScoreLimits) {
+                    
+                    if bestShape.score >= game.winningScore {
+                        successfulGames.append(game.gameId)
+                    }
                 }
             }
         }

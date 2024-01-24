@@ -23,7 +23,8 @@ public class OptimizeBranchAndBound {
             maxLookaheadDepth: 4,
             maxBeamWidth: 150,
             maxDepth: 30,
-            useGuidedScores: true)
+            useGuidedScores: true,
+            useShapeScoreLimits: false)
                      
     }
     
@@ -37,7 +38,8 @@ public class OptimizeBranchAndBound {
             maxLookaheadDepth: 4,
             maxBeamWidth: 100,
             maxDepth: 30,
-            useGuidedScores: false)
+            useGuidedScores: false,
+            useShapeScoreLimits: false)
                      
     }
     
@@ -46,7 +48,8 @@ public class OptimizeBranchAndBound {
         maxLookaheadDepth: Int,
         maxBeamWidth: Int,
         maxDepth: Int,
-        useGuidedScores: Bool) async
+        useGuidedScores: Bool,
+        useShapeScoreLimits: Bool) async
     {
         var result: [String] = []
         for gameId in games {
@@ -55,7 +58,8 @@ public class OptimizeBranchAndBound {
                 maxLookaheadDepth: maxLookaheadDepth,
                 maxBeamWidth: maxBeamWidth,
                 maxDepth: maxDepth,
-                useGuidedScores: useGuidedScores)
+                useGuidedScores: useGuidedScores,
+                useShapeScoreLimits: useShapeScoreLimits)
             
             result += results
         }
@@ -87,7 +91,8 @@ public class OptimizeBranchAndBound {
         minBeamWidth: Int = 1,
         maxBeamWidth: Int,
         maxDepth: Int = 30,
-        useGuidedScores: Bool) async -> [String]
+        useGuidedScores: Bool,
+        useShapeScoreLimits: Bool) async -> [String]
     {
         var result: [String] = []
         
@@ -111,7 +116,8 @@ public class OptimizeBranchAndBound {
                     maximumBeamWidth: maxBeamWidth,
                     rootShape: rootShape,
                     rootWidth: 1,
-                    useGuidedScores: useGuidedScores)
+                    useGuidedScores: useGuidedScores,
+                    useShapeScoreLimits: useShapeScoreLimits)
                 
                 if winningWidth != -1 {
                     result.append("game: \(gameId), rootShape: \(rootShape), lookaheadDepth: \(lookaheadDepth), beamWidth: \(winningWidth), timeToProcess: \(DateTimeCalculator.duration(start: overallStart))")
@@ -133,7 +139,8 @@ public class OptimizeBranchAndBound {
         maximumBeamWidth: Int,
         rootShape: Int,
         rootWidth: Int,
-        useGuidedScores: Bool) async -> Int
+        useGuidedScores: Bool,
+        useShapeScoreLimits: Bool) async -> Int
     {
         var timeToProcessOneConfiguration = ""
 
@@ -150,7 +157,8 @@ public class OptimizeBranchAndBound {
             maxDepth: maxDepth,
             rootShape: rootShape,
             rootWidth: rootWidth,
-            useGuidedScores: useGuidedScores)
+            useGuidedScores: useGuidedScores,
+            useShapeScoreLimits: useShapeScoreLimits)
         
         if lowerWidthShouldFail.count > 0 {
             
@@ -166,7 +174,8 @@ public class OptimizeBranchAndBound {
                 maxDepth: maxDepth,
                 rootShape: rootShape,
                 rootWidth: rootWidth,
-                useGuidedScores: useGuidedScores)
+                useGuidedScores: useGuidedScores,
+                useShapeScoreLimits: useShapeScoreLimits)
         
             if upperWidthShouldSucceed.count == 0
             {
@@ -188,8 +197,11 @@ public class OptimizeBranchAndBound {
                         maxDepth: maxDepth,
                         rootShape: rootShape,
                         rootWidth: rootWidth,
-                        useGuidedScores: useGuidedScores)
+                        useGuidedScores: useGuidedScores,
+                        useShapeScoreLimits: useShapeScoreLimits)
+                    
                     timeToProcessOneConfiguration = DateTimeCalculator.duration(start: testOneConfigurationStart)
+                    
                     if winnersForCurrent.count == 0 {
                         if currentWidth == lowerWidth {
                             // There is no point trying the lower width again as that was unsuccessful last time too

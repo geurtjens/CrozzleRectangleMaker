@@ -116,7 +116,9 @@ public class GetStartingData {
         words: [String],
         rootShape: Int,
         rootWidth: Int,
-        useGuidedScores: Bool) async -> (Int,[[Int]],[ShapeModel], WordIndexModelV2, [TreeNodeModel], [Int], Int, Int)
+        useGuidedScores: Bool,
+        useShapeScoreLimits: Bool) 
+    async -> (Int,[[Int]],[ShapeModel], WordIndexModelV2, [TreeNodeModel], [Int], Int, Int)
     {
         
         /// Get game parameters of widthMax, heightMax, winningScore
@@ -151,7 +153,7 @@ public class GetStartingData {
             }
         }
         
-        let wordIndex = WordIndexModelV2(shapes: searchShapes, wordCount: words.count)
+        let wordIndex = createWordIndex(searchShapes: searchShapes, wordCount: words.count, gameId: gameId, useShapeScoreLimits: useShapeScoreLimits)
         
         var scoresMin = StrategyCalculator.GetScoreMins(gameId: gameId)
         if useGuidedScores == false {
@@ -177,17 +179,38 @@ public class GetStartingData {
             let (noDuplicates, _) = RemoveDuplicatesCalculator.execute(
                 shapes: childShapes)
             
-            let treeNode = TreeNodeModel(
-                parentShape: startingShapes[startingShapeId],
-                childShapes: noDuplicates,
-                bestDescendant: childShapes[0],
-                siblingCount: 0)
-            
-            treeNodes.append(treeNode)
+            if noDuplicates.count > 0 {
+                let treeNode = TreeNodeModel(
+                    parentShape: startingShapes[startingShapeId],
+                    childShapes: noDuplicates,
+                    bestDescendant: noDuplicates[0],
+                    siblingCount: 0)
+                
+                treeNodes.append(treeNode)
+            }
         }
         
         
         return (winningScore, wordsInt, searchShapes, wordIndex, treeNodes, scoresMin, widthMax, heightMax)
+    }
+    
+    public static func createWordIndex(
+        searchShapes: [ShapeModel],
+        wordCount: Int,
+        gameId: Int,
+        useShapeScoreLimits: Bool) -> WordIndexModelV2
+
+    {
+        if useShapeScoreLimits {
+            return WordIndexModelV2(
+                searchShapes: searchShapes,
+                wordCount: wordCount,
+                gameId: gameId)
+        } else {
+            return WordIndexModelV2(
+                shapes: searchShapes,
+                wordCount: wordCount)
+        }
     }
     
     public static func getSearchShapes(
