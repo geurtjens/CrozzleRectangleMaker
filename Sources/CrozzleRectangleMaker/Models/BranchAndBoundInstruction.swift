@@ -15,6 +15,7 @@ public struct BranchAndBoundInstruction {
     let useGuidedScores: Bool
     let useShapeScoreLimits: Bool
     let maxDepth: Int
+    let searchShapes: Int
     let time: String
     
     init(lookaheadDepth: Int, beamWidth: Int, games: [Int], rootShape: Int, rootWidth: Int, useGuidedScores: Bool, useShapeScoreLimits: Bool, maxDepth: Int) {
@@ -27,13 +28,15 @@ public struct BranchAndBoundInstruction {
         self.useShapeScoreLimits = useShapeScoreLimits
         self.maxDepth = maxDepth
         self.time = ""
+        self.searchShapes = 0
     }
     
-    init(game: Int, rootShape: Int, lookaheadDepth: Int, beamWidth: Int, time: String, useGuidedScores: Bool = false, useShapeScoreLimits: Bool = false) {
+    init(game: Int, root: Int, depth: Int, width: Int, size: Int, time: String, useGuidedScores: Bool = false, useShapeScoreLimits: Bool = false) {
         self.games = [game]
-        self.rootShape = rootShape
-        self.lookaheadDepth = lookaheadDepth
-        self.beamWidth = beamWidth
+        self.rootShape = root
+        self.lookaheadDepth = depth
+        self.beamWidth = width
+        self.searchShapes = size
         self.time = time
         self.rootWidth = 1
         self.maxDepth = 30

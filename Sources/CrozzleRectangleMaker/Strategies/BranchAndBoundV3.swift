@@ -262,7 +262,7 @@ public class BranchAndBoundV3 {
         
         for treeNode in treeNodes {
             
-            let values = executeTreeNode(
+            let values = await executeTreeNode(
                 treeNode: treeNode,
                 searchShapes: searchShapes,
                 words: words,
@@ -294,7 +294,7 @@ public class BranchAndBoundV3 {
         widthMax: Int,
         heightMax: Int,
         wordIndex: WordIndexModelV2,
-        scoresMin: [Int]) -> [TreeNodeModel]
+        scoresMin: [Int]) async -> [TreeNodeModel]
     {
         
         var result: [TreeNodeModel] = []
@@ -684,7 +684,7 @@ public class BranchAndBoundV3 {
         widthMax: Int,
         heightMax: Int,
         wordIndex: WordIndexModelV2,
-        scoresMin: [Int]) -> [TreeNodeModel]
+        scoresMin: [Int]) async -> [TreeNodeModel]
     {
         
         var result:[TreeNodeModel] = []
@@ -692,7 +692,7 @@ public class BranchAndBoundV3 {
         // The difference is that each cpu works on 0,10,20 .. or 1, 11, 21 and so we divide the task
         for treeNodeId in stride(from: zeroToNine, to:treeNodes.count, by: 10) {
             
-            let treeNodes = executeTreeNode(
+            let treeNodes = await executeTreeNode(
                 treeNode: treeNodes[treeNodeId],
                 searchShapes: searchShapes,
                 words: words,
