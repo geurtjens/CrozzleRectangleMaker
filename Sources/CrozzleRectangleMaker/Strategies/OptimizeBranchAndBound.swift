@@ -15,9 +15,12 @@ public class OptimizeBranchAndBound {
     // so we steadily increase the depth too
     
     public static func executeFailuresUsingGuidedScores() async {
+        
         FeatureFlags.showGameText = false
         FeatureFlags.showCyclesText = false
+        
         let games: [Int] = [9201]
+        
         await executeWinningGames(
             games: games,
             maxLookaheadDepth: 4,
@@ -25,12 +28,14 @@ public class OptimizeBranchAndBound {
             maxDepth: 30,
             useGuidedScores: true,
             useShapeScoreLimits: false)
-                     
     }
     
+    
     public static func executeFailuresNoGuidedScores() async {
+        
         FeatureFlags.showGameText = false
         FeatureFlags.showCyclesText = false
+        
         let games: [Int] = [8807, 9101, 9210, 9301, 9303, 9508, 9605]
                     
         await executeWinningGames(
@@ -40,8 +45,8 @@ public class OptimizeBranchAndBound {
             maxDepth: 30,
             useGuidedScores: false,
             useShapeScoreLimits: false)
-                     
     }
+    
     
     public static func executeWinningGames(
         games: [Int], // = [8805, 8807, 8911, 9112, 9203, 9305, 9509]
@@ -52,6 +57,7 @@ public class OptimizeBranchAndBound {
         useShapeScoreLimits: Bool) async
     {
         var result: [String] = []
+        
         for gameId in games {
             let results = await executeWinningGame(
                 gameId: gameId,
@@ -68,6 +74,8 @@ public class OptimizeBranchAndBound {
         }
         
     }
+    
+    
     public static func getWinningShapesToTest(gameId: Int) -> [Int] {
         let winningShapes = GetStartingData.getWinningShapes(gameId: gameId)
         
@@ -83,6 +91,7 @@ public class OptimizeBranchAndBound {
         }
         return result
     }
+    
     
     public static func executeWinningGame(
         gameId: Int,
@@ -222,7 +231,6 @@ public class OptimizeBranchAndBound {
                         }
                     }
                 }
-                
                 
                 print("FINAL SIZE\ngame: \(gameId), rootShape: \(rootShape), lookaheadDepth: \(lookaheadDepth), beamWidth: \(currentWidth), time: \"\(timeToProcessOneConfiguration)\", useGuidedScores: \(useGuidedScores), overallProcessTime: \(DateTimeCalculator.duration(start: overallStart))")
                 return currentWidth

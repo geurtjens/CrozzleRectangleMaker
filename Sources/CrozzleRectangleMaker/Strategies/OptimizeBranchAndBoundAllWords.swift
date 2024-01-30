@@ -15,9 +15,12 @@ public class OptimizeBranchAndBoundAllWords {
     // so we steadily increase the depth too
     
     public static func executeFailuresUsingGuidedScores() async {
+        
         FeatureFlags.showGameText = false
         FeatureFlags.showCyclesText = false
+        
         let games: [Int] = [9201]
+        
         await executeAllGames(
             games: games,
             minLookaheadDepth: 1,
@@ -28,12 +31,14 @@ public class OptimizeBranchAndBoundAllWords {
             maxDepth: 30,
             useGuidedScores: true,
             useShapeScoreLimits: false)
-                     
     }
     
+    
     public static func executeFailuresNoGuidedScores() async {
+        
         FeatureFlags.showGameText = false
         FeatureFlags.showCyclesText = false
+        
         let games: [Int] = [9308, 8711]
                     
         await executeAllGames(
@@ -60,12 +65,15 @@ public class OptimizeBranchAndBoundAllWords {
         useShapeScoreLimits: Bool) async
     {
         var result: [String] = []
+        
         for gameId in games {
             let game = GameList().getGame(gameId: gameId)!
             /// lets make sure we dont go beyond the number of search shapes
-            let searchShapes = await GetStartingData.getSearchShapes(gameId: gameId, words: game.words)
+            let searchShapes = await GetStartingData.getSearchShapes(
+                gameId: gameId,
+                words: game.words)
+            
             if searchShapes.count < maxSearchShapes {
-                
                 
                 let results = await executeAllWordsGame(
                     gameId: gameId,
@@ -78,6 +86,7 @@ public class OptimizeBranchAndBoundAllWords {
                     useShapeScoreLimits: useShapeScoreLimits)
                 
                 result += results
+                
             } else {
                 print("game: \(gameId), searchShapeCount: \(searchShapes.count), maxSearchShapes: \(maxSearchShapes), error: Skipping game due to too many search shapes and runtime might be too long")
             }
@@ -85,9 +94,12 @@ public class OptimizeBranchAndBoundAllWords {
         for item in result {
             print(item)
         }
-        
     }
-    public static func getWinningShapesToTest(gameId: Int) -> [Int] {
+    
+    
+    public static func getWinningShapesToTest(
+        gameId: Int) -> [Int]
+    {
         let winningShapes = GetStartingData.getWinningShapes(gameId: gameId)
         
         // Lets work out the average scores amoungst the winning games and only use the ones that have a score higher than average
@@ -102,6 +114,7 @@ public class OptimizeBranchAndBoundAllWords {
         }
         return result
     }
+    
     
     public static func executeAllWordsGame(
         gameId: Int,
@@ -242,8 +255,8 @@ public class OptimizeBranchAndBoundAllWords {
                     }
                 }
                 
-                
                 print("FINAL SIZE\ngame: \(gameId), rootShape: \(rootShape), lookaheadDepth: \(lookaheadDepth), beamWidth: \(currentWidth), time: \"\(timeToProcessOneConfiguration)\", useGuidedScores: \(useGuidedScores), overallProcessTime: \(DateTimeCalculator.duration(start: overallStart))")
+                
                 return currentWidth
             }
         }

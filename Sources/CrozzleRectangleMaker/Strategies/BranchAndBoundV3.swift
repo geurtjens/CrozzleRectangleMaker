@@ -21,7 +21,6 @@ public class BranchAndBoundV3 {
         useGuidedScores: Bool,
         useShapeScoreLimits: Bool) async -> ShapeModel?
     {
-        
         /// rootTreeNodes will have the children already populated
         let (_, wordsInt, searchShapes, wordIndex, rootTreeNodes, scoresMin, widthMax, heightMax) = await GetStartingData.Execute(
             gameId: gameId,
@@ -31,9 +30,6 @@ public class BranchAndBoundV3 {
             useGuidedScores: useGuidedScores,
             useShapeScoreLimits: useShapeScoreLimits)
        
-        
-        
-        
         print("{\"game\": \(gameId), \"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"rootShape\": \(rootShape), \"wordCount\": \(words.count), \"searchShapes\": \(searchShapes.count), \"rootTreeNodes\": \(rootTreeNodes.count), \"cycles\": [")
         
         if rootTreeNodes.count == 0 {
@@ -61,8 +57,6 @@ public class BranchAndBoundV3 {
             return bestShapes[0]
         }
      
-        
-        
         // If we havent got best score then lets keep going but now dont use the leaf heuristic
         
         for shape in bestShapes {
@@ -92,6 +86,7 @@ public class BranchAndBoundV3 {
         return bestShape
     }
     
+    
     // called by executeGame
     public static func executeCycles(
         gameId: Int,
@@ -100,7 +95,6 @@ public class BranchAndBoundV3 {
         beamWidth: Int,
         maxDepth: Int,
         winningScore: Int,
-    
         wordsInt: [[Int]],
         searchShapes: [ShapeModel],
         wordIndex: WordIndexModelV2,
@@ -109,10 +103,8 @@ public class BranchAndBoundV3 {
         scoresMin: [Int],
         rootTreeNodes: [TreeNodeModel]) async -> [ShapeModel]
     {
-        
         let startTime = DateTimeCalculator.now()
         
-         
         var bestShape: ShapeModel = rootTreeNodes[0].parentShape
         
         /// We have to find the child nodes of the first tree node and send them
@@ -136,6 +128,7 @@ public class BranchAndBoundV3 {
                 scoresMin: scoresMin)
             
             shapesCreatedCount = treeNodes.count
+            
             for treeNode in treeNodes {
                 shapesCreatedCount += treeNode.childShapes.count
             }
@@ -194,9 +187,7 @@ public class BranchAndBoundV3 {
                 
                 if FeatureFlags.showCyclesText {
                     print("{\"cycle\": \(cycleId), \"shapesCreated\": \(shapesCreatedCount), \"bestScores\": \(bestScores), \"merges\": \(siblingMerges)}")
-                } 
-                
-                
+                }
                 
                 if bestShape.score >= winningScore {
                     print("HUMAN SCORE \(gameId)")
@@ -214,7 +205,6 @@ public class BranchAndBoundV3 {
                     return bestShapes
                 }
             }
-            
             
             if FeatureFlags.showGameText {
                 print(bestShape.ToJson(words: words))
@@ -244,8 +234,6 @@ public class BranchAndBoundV3 {
     }
     
     
-    
-    
     // called by executeLeaf
     public static func executeTreeNodes(
         treeNodes: [TreeNodeModel],
@@ -257,7 +245,6 @@ public class BranchAndBoundV3 {
         wordIndex: WordIndexModelV2,
         scoresMin: [Int]) async -> [TreeNodeModel]
     {
-        
         var result: [TreeNodeModel] = []
         
         for treeNode in treeNodes {
@@ -282,9 +269,6 @@ public class BranchAndBoundV3 {
     }
     
     
-    
-    
-    
     // called by executeAll and executeAsync
     public static func executeTreeNode(
         treeNode: TreeNodeModel,
@@ -296,7 +280,6 @@ public class BranchAndBoundV3 {
         wordIndex: WordIndexModelV2,
         scoresMin: [Int]) async -> [TreeNodeModel]
     {
-        
         var result: [TreeNodeModel] = []
     
         // These are the shapes that all the siblings have added to become unique siblings
@@ -399,7 +382,6 @@ public class BranchAndBoundV3 {
     }
     
     
-    
     // called by executeTreeNode
     public static func getLeafShapesForLastWordsAddedToCurrentShape(
         wordIndex: WordIndexModelV2,
@@ -424,7 +406,6 @@ public class BranchAndBoundV3 {
         
         // ScoresMin is flawed if we want to merge larger shapes together eventually
         // it is the score starting from the beginning not score inbetween or increments to score
-        
         
         let leafShapes = MergeCalculatorV2.GetShapesFromInstructions(
             instructions: instructions,
@@ -455,7 +436,6 @@ public class BranchAndBoundV3 {
         wordIndex: WordIndexModelV2,
         scoresMin: [Int]) async -> ([TreeNodeModel],Int)
     {
-        
         var shapesCreatedCount = 0
         
         var treeNodes = treeNodes
@@ -475,7 +455,6 @@ public class BranchAndBoundV3 {
                 wordIndex: wordIndex,
                 scoresMin: scoresMin)
             
-            
             if bestShape != nil {
                 treeNodes[treeNodeId].bestDescendant = bestShape!
             }
@@ -488,9 +467,9 @@ public class BranchAndBoundV3 {
 //
         TreeNodeCalculator.sortByBestDescendant(treeNodes: &treeNodes)
         
-
-        
-        let result = TreeNodeCalculator.applyBeamWidth(treeNodes: treeNodes, beamWidth: beamWidth)
+        let result = TreeNodeCalculator.applyBeamWidth(
+            treeNodes: treeNodes,
+            beamWidth: beamWidth)
         
 //        for node in result {
 //            print(node.parentShape.ToJson(words: words))
@@ -499,6 +478,7 @@ public class BranchAndBoundV3 {
         
         return (result, shapesCreatedCount)
     }
+    
     
     // Called from executeLookaheadAndBeam
     public static func getNodesAccordingToLookaheadDepth(
@@ -512,7 +492,6 @@ public class BranchAndBoundV3 {
         wordIndex: WordIndexModelV2,
         scoresMin: [Int]) async -> (ShapeModel?, Int)
     {
-            
         var treeNodes = [treeNode]
         
         var bestShape: ShapeModel = treeNode.parentShape
@@ -545,6 +524,7 @@ public class BranchAndBoundV3 {
         return (bestShape, shapesCreated)
     }
     
+    
     // called by getMaxScoreOfTreeNode
     public static func executeLevelInParallel(
         treeNodes: [TreeNodeModel],
@@ -556,7 +536,6 @@ public class BranchAndBoundV3 {
         wordIndex: WordIndexModelV2,
         scoresMin: [Int]) async -> [TreeNodeModel]
     {
-        
         async let a0 = executeAsync(
             zeroToNine: 0,
             treeNodes: treeNodes,
@@ -667,11 +646,8 @@ public class BranchAndBoundV3 {
             wordIndex: wordIndex,
             scoresMin: scoresMin)
         
-       
         return await a0 + a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9
     }
-    
-    
     
     
     // called from executeLevelInParallel
@@ -686,8 +662,7 @@ public class BranchAndBoundV3 {
         wordIndex: WordIndexModelV2,
         scoresMin: [Int]) async -> [TreeNodeModel]
     {
-        
-        var result:[TreeNodeModel] = []
+        var result: [TreeNodeModel] = []
         
         // The difference is that each cpu works on 0,10,20 .. or 1, 11, 21 and so we divide the task
         for treeNodeId in stride(from: zeroToNine, to:treeNodes.count, by: 10) {
@@ -703,7 +678,6 @@ public class BranchAndBoundV3 {
                 scoresMin: scoresMin)
             
             result += treeNodes
-            
         }
         return result
     }
