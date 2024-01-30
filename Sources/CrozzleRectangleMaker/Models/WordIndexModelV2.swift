@@ -64,12 +64,14 @@ public struct WordIndexModelV2 {
         let _index = ShapeIndexCalculator.CalcIndex(
             searchShapes: searchShapes,
             wordCount: wordCount)
+        
         self.index = _index
         
         self.shapeScoreLimits = ShapeLimitCalculator.execute(
             searchShapes: searchShapes,
             gameId: gameId,
             index: _index)
+        
         self.useShapeScoreLimits = true
     }
     
@@ -199,8 +201,11 @@ public struct WordIndexModelV2 {
             return []
         }
         
-        return checkMatchesForLeafs(matches: matches, sourceShape: sourceShape, sourceShapeId: sourceShapeId, searchShapes: searchShapes)
-        
+        return checkMatchesForLeafs(
+            matches: matches,
+            sourceShape: sourceShape,
+            sourceShapeId: sourceShapeId,
+            searchShapes: searchShapes)
     }
     
     public func findMatches(
@@ -212,7 +217,10 @@ public struct WordIndexModelV2 {
     {
         
         // Find potential matches by using the index against all words in shape
-        let matches = findMatchUsingIndex(sourceShape: sourceShape, searchMin: searchMin, searchMax: searchMax)
+        let matches = findMatchUsingIndex(
+            sourceShape: sourceShape,
+            searchMin: searchMin,
+            searchMax: searchMax)
         
         if matches.count == 0 {
             return []
@@ -226,37 +234,6 @@ public struct WordIndexModelV2 {
         
     }
 
-    
-    
-//    public func findMatches(
-//        winningShapeScores: [Int],
-//        sourceShape: ShapeModel,
-//        sourceShapeId: Int,
-//        searchMin: Int,
-//        searchMax: Int,
-//        searchShapes: [ShapeModel]) -> [MergeInstructionModel]
-//    {
-//        // The actual human scores have this score for each shape put down
-//        let nextShapeScore = getNextShapeScore(winningShapeScores: winningShapeScores, sourceShape: sourceShape)
-//        
-//        // Now we have to find the location where that is the last location where that score is found.  Like the boundary of that score in our list
-//        
-//        
-//        // Find potential matches by using the index against all words in shape
-//        let matches = findMatchUsingIndex(sourceShape: sourceShape, searchMin: searchMin, searchMax: searchMax)
-//        
-//        if matches.count == 0 {
-//            return []
-//        }
-//        
-//        return checkMatches(
-//            matches: matches,
-//            sourceShape: sourceShape,
-//            sourceShapeId: sourceShapeId,
-//            searchShapes: searchShapes)
-//        
-//    }
-    
     /// We go through each word and build up a list of shapes that contain the same words as the shape we are looking through
     private func findMatchUsingIndex(
         sourceShape: ShapeModel,
@@ -267,13 +244,18 @@ public struct WordIndexModelV2 {
         var matches: [Int] = [];
         
         let numberOfShapesInSourceShape = sourceShape.mergeHistory.count
-            
-        for sourcePos in 0..<sourceShape.placements.count {
-            let w = Int(sourceShape.placements[sourcePos].w);
-            
-            if useShapeScoreLimits == false {
+        
+        if useShapeScoreLimits == false {
+            for sourcePos in 0..<sourceShape.placements.count {
+                let w = Int(sourceShape.placements[sourcePos].w);
+                
                 matches += self.index[w]
-            } else {
+            }
+        } else {
+        
+            for sourcePos in 0..<sourceShape.placements.count {
+                let w = Int(sourceShape.placements[sourcePos].w);
+            
                 let matchesForWord = self.index[w]
                 let limit = ShapeLimitCalculator.getNextShapeScore(
                     numberOfShapesInSourceShape: numberOfShapesInSourceShape,
@@ -283,9 +265,6 @@ public struct WordIndexModelV2 {
                 let reducedShapeSet = Array(matchesForWord.prefix(limit))
                 matches += reducedShapeSet
             }
-            
-            
-            
         }
         
         // Remove items out of score
