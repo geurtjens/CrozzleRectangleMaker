@@ -18,8 +18,7 @@ public class BranchAndBoundV3 {
         rootShape: Int,
         rootWidth: Int,
         winningScore: Int,
-        useGuidedScores: Bool,
-        useShapeScoreLimits: Bool) async -> ShapeModel?
+        useGuidedScores: Bool) async -> ShapeModel?
     {
         /// rootTreeNodes will have the children already populated
         let (_, wordsInt, searchShapes, wordIndex, rootTreeNodes, scoresMin, widthMax, heightMax) = await GetStartingData.Execute(
@@ -27,8 +26,7 @@ public class BranchAndBoundV3 {
             words: words,
             rootShape: rootShape,
             rootWidth: rootWidth,
-            useGuidedScores: useGuidedScores,
-            useShapeScoreLimits: useShapeScoreLimits)
+            useGuidedScores: useGuidedScores)
        
         print("{\"game\": \(gameId), \"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"rootShape\": \(rootShape), \"wordCount\": \(words.count), \"searchShapes\": \(searchShapes.count), \"rootTreeNodes\": \(rootTreeNodes.count), \"cycles\": [")
         

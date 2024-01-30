@@ -47,8 +47,7 @@ public class BranchAndBoundRunner {
                 maxDepth: instruction.maxDepth,
                 rootShape: instruction.rootShape,
                 rootWidth: instruction.rootWidth,
-                useGuidedScores: instruction.useGuidedScores, 
-                useShapeScoreLimits: instruction.useShapeScoreLimits)
+                useGuidedScores: instruction.useGuidedScores)
         }
         
         PrintResults(overallStart: overallStart, solved: solved)
@@ -69,8 +68,7 @@ public class BranchAndBoundRunner {
                 maxDepth: instruction.maxDepth,
                 rootShape: instruction.rootShape,
                 rootWidth: instruction.rootWidth,
-                useGuidedScores: instruction.useGuidedScores,
-                useShapeScoreLimits: instruction.useShapeScoreLimits)
+                useGuidedScores: instruction.useGuidedScores)
         }
         
         PrintResults(overallStart: overallStart, solved: solved)
@@ -86,8 +84,7 @@ public class BranchAndBoundRunner {
         maxDepth: Int,
         rootShape: Int,
         rootWidth: Int,
-        useGuidedScores: Bool,
-        useShapeScoreLimits: Bool) async -> [Int]
+        useGuidedScores: Bool) async -> [Int]
     {
         
         //let startTime = DateTimeCalculator.now()
@@ -109,8 +106,7 @@ public class BranchAndBoundRunner {
                     rootShape: rootShape,
                     rootWidth: rootWidth,
                     winningScore: game.winningScore,
-                    useGuidedScores: useGuidedScores,
-                    useShapeScoreLimits: useShapeScoreLimits) {
+                    useGuidedScores: useGuidedScores) {
                     
                     if bestShape.score >= game.winningScore {
                         successfulGames.append(game.gameId)
@@ -154,8 +150,7 @@ public class BranchAndBoundRunner {
         maxDepth: Int,
         rootShape: Int,
         rootWidth: Int,
-        useGuidedScores: Bool,
-        useShapeScoreLimits: Bool) async -> [Int]
+        useGuidedScores: Bool) async -> [Int]
     {
         
         //let startTime = DateTimeCalculator.now()
@@ -177,8 +172,7 @@ public class BranchAndBoundRunner {
                     rootShape: rootShape,
                     rootWidth: rootWidth,
                     winningScore: game.winningScore,
-                    useGuidedScores: useGuidedScores,
-                    useShapeScoreLimits: useShapeScoreLimits) {
+                    useGuidedScores: useGuidedScores) {
                     
                     if bestShape.score >= game.winningScore {
                         successfulGames.append(game.gameId)

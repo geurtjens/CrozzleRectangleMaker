@@ -13,7 +13,15 @@ final class OptimizeBranchAndBoundTests: XCTestCase {
         FeatureFlags.showGameText = false
         FeatureFlags.showCyclesText = false
         
-        let a = await OptimizeBranchAndBound.optimizeBeamWidth(gameId: 8802, lookaheadDepth: 1, maxDepth: 30, minimumBeamWidth: 1, maximumBeamWidth: 75, rootShape: 1, rootWidth: 1, useGuidedScores: false, useShapeScoreLimits: false)
+        let a = await OptimizeBranchAndBound.optimizeBeamWidth(
+            gameId: 8802,
+            lookaheadDepth: 1,
+            maxDepth: 30,
+            minimumBeamWidth: 1,
+            maximumBeamWidth: 75,
+            rootShape: 1,
+            rootWidth: 1,
+            useGuidedScores: false)
         
         XCTAssertEqual(1, a)
         
