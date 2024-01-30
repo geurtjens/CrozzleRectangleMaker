@@ -469,8 +469,6 @@ public class MergeCalculatorV2 {
         let instructions = searchWordIndex.findMatches(
             sourceShape: sourceShape,
             sourceShapeId: sourceShapeId,
-            searchMin: 0,
-            searchMax: searchMax,
             searchShapes: searchShapes)
         
         let shapeList = GetShapesFromInstructions(

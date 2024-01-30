@@ -77,7 +77,10 @@ let scoreMin = 0
         XCTAssertEqual(0, wordModel.index[4][0])
         
         
-        let instructions = wordModel.findMatches(sourceShape: sourceShape, sourceShapeId: 0, searchMin: 0, searchMax: 0, searchShapes: searchShapes)
+        let instructions = wordModel.findMatches(
+            sourceShape: sourceShape,
+            sourceShapeId: 0,
+            searchShapes: searchShapes)
         
         XCTAssertEqual(1, instructions.count)
         let instruction = instructions[0]
@@ -161,7 +164,10 @@ let scoreMin = 0
         let sourceShape = ShapeCalculator.toShapeNoFlip(fromGrid: sourceGrid, words: words)!
 
         /// WHEN we search for this shape which is really a subset of the shape we are searching
-        let instructions = searchIndex.findMatches(sourceShape: sourceShape, sourceShapeId: 0, searchMin: 0, searchMax: 0, searchShapes: searchShapes)
+        let instructions = searchIndex.findMatches(
+            sourceShape: sourceShape,
+            sourceShapeId: 0,
+            searchShapes: searchShapes)
         
         /// THEN we find there are no results because we do not return subsets
         XCTAssertEqual(0, instructions.count)
@@ -199,7 +205,10 @@ let scoreMin = 0
         let sourceShape = ShapeCalculator.toShapeNoFlip(fromGrid: sourceGrid, words: words)!
 
         /// WHEN we search for this shape which is really a subset of the shape we are searching
-        let matches = searchIndex.findMatches(sourceShape: sourceShape, sourceShapeId: 0, searchMin: 0, searchMax: 0, searchShapes: [searchShape])
+        let matches = searchIndex.findMatches(
+            sourceShape: sourceShape,
+            sourceShapeId: 0,
+            searchShapes: [searchShape])
         
         /// THEN we find there are no results because we do not return subsets
         XCTAssertEqual(1, matches.count)

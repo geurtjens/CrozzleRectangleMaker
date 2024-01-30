@@ -231,9 +231,28 @@ public struct WordIndexModelV2 {
             sourceShape: sourceShape,
             sourceShapeId: sourceShapeId,
             searchShapes: searchShapes)
-        
     }
 
+    
+    public func findMatches(
+        sourceShape: ShapeModel,
+        sourceShapeId: Int,
+        searchShapes: [ShapeModel]) -> [MergeInstructionModel]
+    {
+        // Find potential matches by using the index against all words in shape
+        let matches = findMatchUsingIndex(sourceShape: sourceShape)
+        
+        if matches.count == 0 {
+            return []
+        }
+        
+        return checkMatches(
+            matches: matches,
+            sourceShape: sourceShape,
+            sourceShapeId: sourceShapeId,
+            searchShapes: searchShapes)
+    }
+    
     /// We go through each word and build up a list of shapes that contain the same words as the shape we are looking through
     private func findMatchUsingIndex(
         sourceShape: ShapeModel,
@@ -270,6 +289,41 @@ public struct WordIndexModelV2 {
         // Remove items out of score
         matches = matches.filter {$0 >= searchMin || $0 <= searchMax}
         
+        matches.sort()
+        
+        return matches;
+    }
+    
+    
+    private func findMatchUsingIndex(sourceShape: ShapeModel) -> [Int]
+    {
+        var matches: [Int] = [];
+        
+        let numberOfShapesInSourceShape = sourceShape.mergeHistory.count
+        
+        for sourcePos in 0..<sourceShape.placements.count {
+            
+            let w = Int(sourceShape.placements[sourcePos].w)
+                
+            matches += self.index[w]
+        }
+//        } else {
+//        
+//            for sourcePos in 0..<sourceShape.placements.count {
+//                let w = Int(sourceShape.placements[sourcePos].w);
+//            
+//                let matchesForWord = self.index[w]
+//                let limit = ShapeLimitCalculator.getNextShapeScore(
+//                    numberOfShapesInSourceShape: numberOfShapesInSourceShape,
+//                    winningShapeScoresForWord: self.shapeScoreLimits[w])
+//                
+//                // We want to only include the first `limit` number of shapes
+//                let reducedShapeSet = Array(matchesForWord.prefix(limit))
+//                matches += reducedShapeSet
+//            }
+//        }
+        
+        // Remove items out of score
         matches.sort()
         
         return matches;
