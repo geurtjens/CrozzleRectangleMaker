@@ -31,8 +31,7 @@ final class GetStartingDataTests: XCTestCase {
             words: words,
             rootShape: rootShape,
             rootWidth: rootWidth,
-            useGuidedScores: useGuidedScores,
-            useShapeScoreLimits: useShapeScoreLimits)
+            useGuidedScores: useGuidedScores)
         
         XCTAssertEqual(1, rootTreeNodes.count)
         XCTAssertEqual(31, rootTreeNodes[0].childShapes.count)

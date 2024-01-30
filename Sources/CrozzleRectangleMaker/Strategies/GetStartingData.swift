@@ -116,8 +116,7 @@ public class GetStartingData {
         words: [String],
         rootShape: Int,
         rootWidth: Int,
-        useGuidedScores: Bool,
-        useShapeScoreLimits: Bool) 
+        useGuidedScores: Bool)
     async -> (Int,[[Int]],[ShapeModel], WordIndexModelV2, [TreeNodeModel], [Int], Int, Int)
     {
         
@@ -153,7 +152,9 @@ public class GetStartingData {
             }
         }
         
-        let wordIndex = createWordIndex(searchShapes: searchShapes, wordCount: words.count, gameId: gameId, useShapeScoreLimits: useShapeScoreLimits)
+        let wordIndex = WordIndexModelV2(
+            shapes: searchShapes,
+            wordCount: words.count)
         
         var scoresMin = StrategyCalculator.GetScoreMins(gameId: gameId)
         if useGuidedScores == false {
@@ -193,25 +194,7 @@ public class GetStartingData {
         
         return (winningScore, wordsInt, searchShapes, wordIndex, treeNodes, scoresMin, widthMax, heightMax)
     }
-    
-    public static func createWordIndex(
-        searchShapes: [ShapeModel],
-        wordCount: Int,
-        gameId: Int,
-        useShapeScoreLimits: Bool) -> WordIndexModelV2
 
-    {
-        if useShapeScoreLimits {
-            return WordIndexModelV2(
-                searchShapes: searchShapes,
-                wordCount: wordCount,
-                gameId: gameId)
-        } else {
-            return WordIndexModelV2(
-                shapes: searchShapes,
-                wordCount: wordCount)
-        }
-    }
     
     public static func getSearchShapes(
         gameId: Int,

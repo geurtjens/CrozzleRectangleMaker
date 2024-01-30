@@ -45,8 +45,8 @@ final class BranchAndBoundV3Tests: XCTestCase {
             rootShape: 0,
             rootWidth: 1,
             winningScore: winningScore,
-            useGuidedScores: false,
-            useShapeScoreLimits: false)
+            useGuidedScores: false)
+        
         XCTAssertNotNil(result)
         print(result!.ToText(words: words))
     }
@@ -68,8 +68,8 @@ final class BranchAndBoundV3Tests: XCTestCase {
             rootShape: 0,
             rootWidth: 3,
             winningScore: winningScore,
-            useGuidedScores: true,
-            useShapeScoreLimits: false)
+            useGuidedScores: true)
+        
         XCTAssertNotNil(result)
         XCTAssertEqual(winningScore, Int(result!.score))
     }
@@ -93,8 +93,8 @@ final class BranchAndBoundV3Tests: XCTestCase {
             rootShape: 0,
             rootWidth: 1,
             winningScore: winningScore,
-            useGuidedScores: true,
-            useShapeScoreLimits: false)
+            useGuidedScores: true)
+        
         XCTAssertNotNil(result)
         XCTAssertEqual(winningScore, Int(result!.score))
     }
@@ -118,8 +118,8 @@ final class BranchAndBoundV3Tests: XCTestCase {
             rootShape: 0,
             rootWidth: 1,
             winningScore: winningScore,
-            useGuidedScores: true,
-            useShapeScoreLimits: false)
+            useGuidedScores: true)
+        
         XCTAssertNotNil(result)
         XCTAssertEqual(winningScore, Int(result!.score))
     }
@@ -163,8 +163,8 @@ final class BranchAndBoundV3Tests: XCTestCase {
             rootShape: 0,
             rootWidth: 1,
             winningScore: winningScore,
-            useGuidedScores: true,
-            useShapeScoreLimits: false)
+            useGuidedScores: true)
+        
         XCTAssertNotNil(result)
         XCTAssertEqual(winningScore, Int(result!.score))
     }

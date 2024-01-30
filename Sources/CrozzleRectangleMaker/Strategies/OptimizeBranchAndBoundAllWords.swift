@@ -29,8 +29,7 @@ public class OptimizeBranchAndBoundAllWords {
             maxBeamWidth: 150,
             maxSearchShapes: 5000,
             maxDepth: 30,
-            useGuidedScores: true,
-            useShapeScoreLimits: false)
+            useGuidedScores: true)
     }
     
     
@@ -49,8 +48,7 @@ public class OptimizeBranchAndBoundAllWords {
             maxBeamWidth: 100,
             maxSearchShapes: 5000,
             maxDepth: 30,
-            useGuidedScores: false,
-            useShapeScoreLimits: false)
+            useGuidedScores: false)
     }
     
     public static func executeAllGames(
@@ -61,8 +59,7 @@ public class OptimizeBranchAndBoundAllWords {
         maxBeamWidth: Int,
         maxSearchShapes: Int,
         maxDepth: Int,
-        useGuidedScores: Bool,
-        useShapeScoreLimits: Bool) async
+        useGuidedScores: Bool) async
     {
         var result: [String] = []
         
@@ -82,8 +79,7 @@ public class OptimizeBranchAndBoundAllWords {
                     minBeamWidth: minBeamWidth,
                     maxBeamWidth: maxBeamWidth,
                     maxDepth: maxDepth,
-                    useGuidedScores: useGuidedScores,
-                    useShapeScoreLimits: useShapeScoreLimits)
+                    useGuidedScores: useGuidedScores)
                 
                 result += results
                 
@@ -123,8 +119,7 @@ public class OptimizeBranchAndBoundAllWords {
         minBeamWidth: Int,
         maxBeamWidth: Int,
         maxDepth: Int,
-        useGuidedScores: Bool,
-        useShapeScoreLimits: Bool) async -> [String]
+        useGuidedScores: Bool) async -> [String]
     {
         var result: [String] = []
         
@@ -148,8 +143,7 @@ public class OptimizeBranchAndBoundAllWords {
                     maximumBeamWidth: maxBeamWidth,
                     rootShape: rootShape,
                     rootWidth: 1,
-                    useGuidedScores: useGuidedScores,
-                    useShapeScoreLimits: useShapeScoreLimits)
+                    useGuidedScores: useGuidedScores)
                 
                 if winningWidth != -1 {
                     result.append("game: \(gameId), rootShape: \(rootShape), lookaheadDepth: \(lookaheadDepth), beamWidth: \(winningWidth), timeToProcess: \(DateTimeCalculator.duration(start: overallStart))")
@@ -171,8 +165,7 @@ public class OptimizeBranchAndBoundAllWords {
         maximumBeamWidth: Int,
         rootShape: Int,
         rootWidth: Int,
-        useGuidedScores: Bool,
-        useShapeScoreLimits: Bool) async -> Int
+        useGuidedScores: Bool) async -> Int
     {
         var timeToProcessOneConfiguration = ""
 
@@ -189,8 +182,7 @@ public class OptimizeBranchAndBoundAllWords {
             maxDepth: maxDepth,
             rootShape: rootShape,
             rootWidth: rootWidth,
-            useGuidedScores: useGuidedScores,
-            useShapeScoreLimits: useShapeScoreLimits)
+            useGuidedScores: useGuidedScores)
         
         if lowerWidthShouldFail.count > 0 {
             
@@ -206,8 +198,7 @@ public class OptimizeBranchAndBoundAllWords {
                 maxDepth: maxDepth,
                 rootShape: rootShape,
                 rootWidth: rootWidth,
-                useGuidedScores: useGuidedScores,
-                useShapeScoreLimits: useShapeScoreLimits)
+                useGuidedScores: useGuidedScores)
         
             if upperWidthShouldSucceed.count == 0
             {
@@ -229,8 +220,7 @@ public class OptimizeBranchAndBoundAllWords {
                         maxDepth: maxDepth,
                         rootShape: rootShape,
                         rootWidth: rootWidth,
-                        useGuidedScores: useGuidedScores,
-                        useShapeScoreLimits: useShapeScoreLimits)
+                        useGuidedScores: useGuidedScores)
                     
                     timeToProcessOneConfiguration = DateTimeCalculator.duration(start: testOneConfigurationStart)
                     

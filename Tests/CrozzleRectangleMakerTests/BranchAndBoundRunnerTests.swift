@@ -32,8 +32,7 @@ final class BranchAndBoundRunnerTests: XCTestCase {
             maxDepth: 30,
             rootShape: 0,
             rootWidth: 18,
-            useGuidedScores: false,
-            useShapeScoreLimits: false)
+            useGuidedScores: false)
         
         XCTAssertEqual(1, result.count)
     }
