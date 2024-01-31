@@ -8,6 +8,46 @@
 import Foundation
 public class ValidateMergeCalculator {
 
+    
+    public static func ExecuteAsync(
+        matchCount: Int,
+        sourceShape: ShapeModel,
+        sourceShapeId: Int,
+        searchShape: ShapeModel,
+        searchShapeId:Int) async -> MergeInstructionModel?
+    {
+
+        // We only have 1 match
+        if (matchCount == 1) {
+            let match = SingleWordMatch(
+                sourceShape: sourceShape,
+                sourceShapeId: sourceShapeId,
+                searchShape: searchShape,
+                searchShapeId: searchShapeId)
+
+            return match
+
+        } else if (matchCount > 1) {
+
+            // We have more than one match
+            if (matchCount < sourceShape.placements.count) {
+
+                let multiWordMatch = MultiWordMatch(
+                    sourceShape: sourceShape,
+                    sourceShapeId: sourceShapeId,
+                    searchShape: searchShape,
+                    searchShapeId: searchShapeId,
+                    matchingWordCount: matchCount)
+
+                return multiWordMatch
+            } else {
+                return nil
+            }
+        }
+        return nil
+    }
+    
+    
     public static func Execute(
         matchCount: Int,
         sourceShape: ShapeModel,

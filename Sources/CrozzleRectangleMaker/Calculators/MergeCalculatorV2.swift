@@ -332,11 +332,11 @@ public class MergeCalculatorV2 {
         wordsInt: [[Int]],
         scoresMin:[Int],
         widthMax: Int,
-        heightMax: Int) -> [ShapeModel] {
+        heightMax: Int) async -> [ShapeModel] {
         var result: [ShapeModel] = []
         
         for sourceShapeId in stride(from: zeroToNine, to: sourceMax, by: 10) {
-            let shapes = ExecuteDifferentShapesOne(
+            let shapes = await ExecuteDifferentShapesOneAsync(
                 sourceShape: sourceShapes[sourceShapeId],
                 sourceShapeId: sourceShapeId,
                 searchShapes: searchShapes,
@@ -484,6 +484,151 @@ public class MergeCalculatorV2 {
         return shapeList
     }
     
+    public static func ExecuteDifferentShapesOneAsync(
+        sourceShape: ShapeModel,
+        sourceShapeId: Int,
+        searchShapes: [ShapeModel],
+        searchWordIndex: WordIndexModelV2,
+        searchMax: Int,
+        words:[String],
+        wordsInt: [[Int]],
+        scoresMin:[Int],
+        widthMax: Int,
+        heightMax: Int) async -> [ShapeModel]
+    {
+        let instructions = await searchWordIndex.findMatchesAsync(
+            sourceShape: sourceShape,
+            sourceShapeId: sourceShapeId,
+            searchShapes: searchShapes)
+        
+        let shapeList = await GetShapesFromInstructionsAsync(
+            instructions: instructions,
+            sourceShape: sourceShape,
+            searchShapes: searchShapes,
+            words: words,
+            wordsInt: wordsInt,
+            scoresMin: scoresMin,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        return shapeList
+    }
+    
+    
+    public static func ProcessInstruction(
+        instruction: MergeInstructionModel,
+        sourceShape: ShapeModel,
+        searchShape: ShapeModel,
+        words: [String],
+        wordsInt: [[Int]],
+        scoresMin:[Int],
+        widthMax: Int,
+        heightMax: Int
+    ) async -> ShapeModel?
+    {
+        
+        
+        // We have matches of 2 but instruction says its a match of 1
+        let (isValidSize, calcWidth, calcHeight) = mergeSizeValidation(
+            instruction: instruction,
+            sourceShape: sourceShape,
+            searchShape: searchShape,
+            widthMax: widthMax,
+            heightMax: heightMax)
+        
+        if isValidSize {
+            
+            let potentialPlacements = MergePlacementCalculator.ExecuteV2(
+                sourceShape: sourceShape,
+                searchShape: searchShape,
+                instruction: instruction,
+                words: words)
+            
+            if potentialPlacements.count > 0 {
+                
+                let potentialWidth = PlacementCalculator.width(fromPlacements: potentialPlacements)
+                
+                let potentialHeight = PlacementCalculator.height(fromPlacements: potentialPlacements)
+                
+                if (potentialWidth <= widthMax && potentialHeight <= heightMax) ||
+                    (potentialWidth <= heightMax && potentialHeight <= widthMax) {
+                    
+                    let validShape = ShapeToTextConverterV2.ToValidShape(
+                        placements: potentialPlacements,
+                        width: Int(potentialWidth),
+                        height: Int(potentialHeight),
+                        wordsInt: wordsInt,
+                        words: words)
+                    
+                    if let validShape = validShape {
+                        
+                        
+                        
+                        // is shape is not nil so it must be a valid shape
+                        let wordCount = validShape.placements.count
+                        let scoreMin = scoresMin[wordCount]
+                        if validShape.score >= scoreMin {
+                            var validShape = validShape
+                            
+                            validShape.mergeHistory = ShapeModel.createMergeHistory(
+                                sourceShapeHistory: sourceShape.mergeHistory,
+                                searchShapeHistory: searchShape.mergeHistory)
+                            
+                            return validShape
+                        }
+                    }
+                }
+            }
+        }
+        return nil
+    }
+    
+    public static func GetShapesFromInstructionsAsync(
+        instructions: [MergeInstructionModel],
+        sourceShape: ShapeModel,
+        searchShapes: [ShapeModel],
+        words: [String],
+        wordsInt: [[Int]],
+        scoresMin:[Int],
+        widthMax: Int,
+        heightMax: Int) async -> [ShapeModel]
+    {
+        var shapeDictionary: [Int:ShapeModel?] = [:]
+        
+        await withTaskGroup(of: (Int, ShapeModel?).self) {group in
+            for instructionId in 1..<instructions.count {
+                group.addTask {
+                    
+                    return (instructionId, 
+                            await ProcessInstruction(
+                                instruction: instructions[instructionId],
+                                sourceShape: sourceShape,
+                                searchShape: searchShapes[instructions[instructionId].searchShapeId],
+                                                          
+                                words: words,
+                                wordsInt: wordsInt,
+                                scoresMin: scoresMin,
+                                widthMax: widthMax,
+                                heightMax: heightMax) )
+                    
+                }
+            }
+            for await (instructionId, shape) in group {
+                if shape != nil {
+                    shapeDictionary[instructionId] = shape!
+                }
+            }
+        }
+        
+        let sortedDictionary = shapeDictionary.sorted() {$0.key < $1.key}
+        var result: [ShapeModel] = []
+        for (_, shape) in sortedDictionary {
+            if shape != nil {
+                result.append(shape!)
+            }
+        }
+        return result
+    }
     
     public static func GetShapesFromInstructions(
         instructions: [MergeInstructionModel],
@@ -496,6 +641,7 @@ public class MergeCalculatorV2 {
         heightMax: Int) -> [ShapeModel]
     {
         var shapeList: [ShapeModel] = []
+        
         
         for instruction in instructions {
             
@@ -557,10 +703,10 @@ public class MergeCalculatorV2 {
                         if let validShape = validShape {
                             
                             // I wonder if the shape width and height are the same
-                            if potentialWidth == validShape.width 
+                            if potentialWidth == validShape.width
                                 && potentialHeight == validShape.height {
                                 //print("same")
-                            } else if potentialWidth == validShape.height 
+                            } else if potentialWidth == validShape.height
                                         && potentialHeight == validShape.width {
                                 //print("opposite")
                             } else {
@@ -588,8 +734,6 @@ public class MergeCalculatorV2 {
         }
         return shapeList
     }
-    
-    
     public static func mergeTwoShapes(
         sourceShape: ShapeModel,
         searchShape: ShapeModel,

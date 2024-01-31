@@ -49,5 +49,20 @@ final class OptimizeBranchAndBoundTests: XCTestCase {
         await OptimizeBranchAndBoundAllWords.executeFailuresNoGuidedScores()
     }
     
+    public func test_load() async {
+        let games = [9501, 9502, 9506]
+
+        print("UTC Start Time of \(Date.now)")
+        await OptimizeBranchAndBoundAllWords.executeAllGames(
+            games: games,
+            minLookaheadDepth: 2,
+            maxLookaheadDepth: 2,
+            minBeamWidth: 1,
+            maxBeamWidth: 75,
+            maxSearchShapes: 1_220_000, // 20000,
+            maxDepth: 30,
+            useGuidedScores: false)
+
+    }
 
 }

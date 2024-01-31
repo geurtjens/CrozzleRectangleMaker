@@ -109,6 +109,43 @@ public struct WordIndexModelV2 {
         return matchCount
     }
     
+    public func checkMatchesAsync(
+        matches: [Int],
+        sourceShape: ShapeModel,
+        sourceShapeId: Int,
+        searchShapes: [ShapeModel]) async -> [MergeInstructionModel]
+    {
+        var result: [Int: MergeInstructionModel] = [:]
+        
+        await withTaskGroup(of: (Int, MergeInstructionModel?).self) {group in
+            for matchId in 1..<matches.count {
+                group.addTask {
+                    
+                    let matchCount = findMatchCount(sourceShape: sourceShape, searchShape: searchShapes[matches[matchId]])
+                    
+                    return (matchId, await ValidateMergeCalculator.ExecuteAsync(
+                        matchCount: matchCount,
+                        sourceShape: sourceShape,
+                        sourceShapeId: sourceShapeId,
+                        searchShape: searchShapes[matches[matchId]],
+                        searchShapeId: matches[matchId]))
+                }
+            }
+            for await (matchId, instruction) in group {
+                if instruction != nil {
+                    result[matchId] = instruction!
+                }
+            }
+        }
+        
+        let sortedDictionary = result.sorted() {$0.key < $1.key}
+        var finalResult: [MergeInstructionModel] = []
+        for item in sortedDictionary {
+            finalResult.append(item.value)
+        }
+        return finalResult
+        
+    }
     
     public func checkMatches(
         matches: [Int],
@@ -121,6 +158,7 @@ public struct WordIndexModelV2 {
         var searchShapeId = matches[0]
         var previous = matches[0]
         var matchCount = 1
+        
         for i in 1..<matches.count {
             searchShapeId = matches[i]
             
@@ -210,6 +248,24 @@ public struct WordIndexModelV2 {
             searchShapes: searchShapes)
     }
 
+    public func findMatchesAsync(
+        sourceShape: ShapeModel,
+        sourceShapeId: Int,
+        searchShapes: [ShapeModel]) async -> [MergeInstructionModel]
+    {
+        // Find potential matches by using the index against all words in shape
+        let matches = findMatchUsingIndex(sourceShape: sourceShape)
+        
+        if matches.count == 0 {
+            return []
+        }
+        
+        return await checkMatchesAsync(
+            matches: matches,
+            sourceShape: sourceShape,
+            sourceShapeId: sourceShapeId,
+            searchShapes: searchShapes)
+    }
     
     public func findMatches(
         sourceShape: ShapeModel,
@@ -238,10 +294,7 @@ public struct WordIndexModelV2 {
     {
         
         var matches: [Int] = [];
-        
-        let numberOfShapesInSourceShape = sourceShape.mergeHistory.count
-        
-        
+                
         for sourcePos in 0..<sourceShape.placements.count {
             let w = Int(sourceShape.placements[sourcePos].w);
             
@@ -262,8 +315,6 @@ public struct WordIndexModelV2 {
     private func findMatchUsingIndex(sourceShape: ShapeModel) -> [Int]
     {
         var matches: [Int] = [];
-        
-        let numberOfShapesInSourceShape = sourceShape.mergeHistory.count
         
         for sourcePos in 0..<sourceShape.placements.count {
             

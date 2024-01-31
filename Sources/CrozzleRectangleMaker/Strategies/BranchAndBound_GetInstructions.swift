@@ -152,6 +152,14 @@ public struct BranchAndBound_GetInstructions {
         // 9408, 9409, 9410, 9411
         result.append(BranchAndBoundInstruction(
             game: 9412, root: 0, depth: 2, width: 5, size: 11_089, time: "00:00:39"))
+        
+        /*
+         game: 9501, root: 0, depth: 2, width: 20, size: 8_404, time: "00:00:42"
+         game: 9501, root: 1, depth: 2, width: 61, size: 8_404, time: "00:04:54"
+         game: 9501, root: 2, depth: 2, width: 21, size: 8_404, time: "00:01:24"
+         game: 9501, root: 4, depth: 2, width: 11, size: 8_404, time: "00:01:36"
+         game: 9501, root: 6, depth: 2, width: 20, size: 8_404, time: "00:01:16"
+         */
         result.append(BranchAndBoundInstruction(
             game: 9501, root: 2, depth: 2, width: 74, size: 8_404, time: "00:01:42"))
         result.append(BranchAndBoundInstruction(
