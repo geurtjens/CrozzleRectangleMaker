@@ -13,6 +13,32 @@ public struct BranchAndBound_GetInstructions {
     {
         var result: [BranchAndBoundInstruction] = []
 
+        
+        /*
+         game: 9501, root: 0, depth: 2, width: 20, size: 8_404, time: "00:00:42"
+         game: 9501, root: 1, depth: 2, width: 61, size: 8_404, time: "00:04:54"
+         game: 9501, root: 2, depth: 2, width: 21, size: 8_404, time: "00:01:24"
+         game: 9501, root: 4, depth: 2, width: 11, size: 8_404, time: "00:01:36"
+         game: 9501, root: 6, depth: 2, width: 20, size: 8_404, time: "00:01:16"
+         */
+        result.append(BranchAndBoundInstruction(
+            game: 9501, root: 2, depth: 2, width: 74, size: 8_404, time: "00:01:42"))
+        /*
+        game: 9502, root: 2, depth: 2, width: 11, size: 55_590, time: "00:13:33"
+        game: 9502, root: 5, depth: 2, width: 74, size: 55_590, time: "01:25:16"
+        game: 9502, root: 6, depth: 2, width: 17, size: 55_590, time: "00:43:49"
+        */
+        result.append(BranchAndBoundInstruction(
+            game: 9502, root: 2, depth: 2, width: 11, size: 55_590, time: "00:13:33"))
+        
+        /*
+         game: 9506, root: 7, depth: 2, width: 9, size: 17_876, time: "00:01:11"
+         game: 9506, root: 8, depth: 2, width: 64, size: 17_876, time: "00:22:55"
+         */
+        result.append(BranchAndBoundInstruction(
+            game: 9506, root: 7, depth: 2, width: 9, size: 17_876, time: "00:01:11"))
+        
+        
         result.append(BranchAndBoundInstruction(
             game: 8612, root: 0, depth: 2, width: 9, size: 11_371, time: "00:00:12"))
         result.append(BranchAndBoundInstruction(
@@ -153,24 +179,8 @@ public struct BranchAndBound_GetInstructions {
         result.append(BranchAndBoundInstruction(
             game: 9412, root: 0, depth: 2, width: 5, size: 11_089, time: "00:00:39"))
         
-        /*
-         game: 9501, root: 0, depth: 2, width: 20, size: 8_404, time: "00:00:42"
-         game: 9501, root: 1, depth: 2, width: 61, size: 8_404, time: "00:04:54"
-         game: 9501, root: 2, depth: 2, width: 21, size: 8_404, time: "00:01:24"
-         game: 9501, root: 4, depth: 2, width: 11, size: 8_404, time: "00:01:36"
-         game: 9501, root: 6, depth: 2, width: 20, size: 8_404, time: "00:01:16"
-         */
-        result.append(BranchAndBoundInstruction(
-            game: 9501, root: 2, depth: 2, width: 74, size: 8_404, time: "00:01:42"))
-        result.append(BranchAndBoundInstruction(
-            game: 9502, root: 4, depth: 2, width: 25, size: 55_590, time: "00:23:21"))
         
-        // game: 9506, root: 4, depth: 2, width: 56, time: "00:02:55"
-        // game: 9506, root: 5, depth: 2, width: 25, time: "00:00:59"
-        result.append(BranchAndBoundInstruction(
-            game: 9506, root: 7, depth: 2, width: 13, size: 17_876, time: "00:00:37"))
-        
-        // 9503, 9504, 9505, 9506, 9507, 9508, 9509, 9510, 9511, 9512
+        // 9503, 9504, 9505, 9507, 9508, 9509, 9510, 9511, 9512
         // 9601, 9602, 9603, 9604, 9605
         
         // We have 57 solutions now.

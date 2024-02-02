@@ -8,7 +8,6 @@
 import Foundation
 public class BranchAndBoundRunner {
     
-    
     public static func AllWords_NoGuidedScores() async {
         let instructions = BranchAndBound_GetInstructions.AllWords_NoGuidedScores()
         await UseAllWords(instructions: instructions)
@@ -61,6 +60,7 @@ public class BranchAndBoundRunner {
         var solved: [Int] = []
         
         for instruction in instructions {
+            
             solved += await executeGamesAllWords(
                 games: instruction.games,
                 lookaheadDepth: instruction.lookaheadDepth,
@@ -69,6 +69,7 @@ public class BranchAndBoundRunner {
                 rootShape: instruction.rootShape,
                 rootWidth: instruction.rootWidth,
                 useGuidedScores: instruction.useGuidedScores)
+            print("expected time: \(instruction.time)")
         }
         
         PrintResults(overallStart: overallStart, solved: solved)
