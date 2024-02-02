@@ -596,7 +596,7 @@ public class MergeCalculatorV2 {
         var shapeDictionary: [Int:ShapeModel?] = [:]
         
         await withTaskGroup(of: (Int, ShapeModel?).self) {group in
-            for instructionId in 1..<instructions.count {
+            for instructionId in 0..<instructions.count {
                 group.addTask {
                     
                     return (instructionId, 
