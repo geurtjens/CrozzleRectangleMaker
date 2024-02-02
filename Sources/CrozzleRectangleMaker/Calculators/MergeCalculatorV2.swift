@@ -529,7 +529,7 @@ public class MergeCalculatorV2 {
         
         
         // We have matches of 2 but instruction says its a match of 1
-        let (isValidSize, calcWidth, calcHeight) = mergeSizeValidation(
+        let (isValidSize, _, _) = mergeSizeValidation(
             instruction: instruction,
             sourceShape: sourceShape,
             searchShape: searchShape,

@@ -31,8 +31,8 @@ public struct ShapeListSoa {
     // Now we have the items for each word in each shape so many more of these
     
     /// Location of where a word starts for the nth shape
-    public let start: [Int32]
-    public let end: [Int32]
+    public let start: [UInt32]
+    public let end: [UInt32]
     
     // The index to all words that exist in each shape,  each shape is sorted by word id increasing and where the first one has isHorizontal = true
 
@@ -54,14 +54,14 @@ public struct ShapeListSoa {
     public init(shapes: [ShapeModel]) {
         
         // Initialize all arrays to allocate the space
-        var _id: [Int] = []
+        var _id: [UInt32] = []
         var _width: [UInt8] = []
         var _height: [UInt8] = []
         var _score: [UInt16] = []
         var _stride: [UInt8] = []
         
-        var _start: [Int] = []
-        var _end: [Int] = []
+        var _start: [UInt32] = []
+        var _end: [UInt32] = []
         
         var _w: [UInt8] = []
         var _x: [UInt8] = []
@@ -70,13 +70,13 @@ public struct ShapeListSoa {
         var _l: [UInt8] = []
         
         for i in 0..<shapes.count {
-            _id.append(i)
+            _id.append(UInt32(i))
             _width.append(shapes[i].width)
             _height.append(shapes[i].height)
             _score.append(shapes[i].score)
             _stride.append(UInt8(shapes[i].placements.count))
             
-            _start.append(Int(_w.count))
+            _start.append(UInt32(_w.count))
             
             for j in 0..<shapes[i].placements.count {
                 _w.append(shapes[i].placements[j].w)
@@ -85,7 +85,7 @@ public struct ShapeListSoa {
                 _z.append(shapes[i].placements[j].z)
                 _l.append(shapes[i].placements[j].l)
             }
-            _end.append(_w.count - 1)
+            _end.append(UInt32(_w.count - 1))
             
         }
         

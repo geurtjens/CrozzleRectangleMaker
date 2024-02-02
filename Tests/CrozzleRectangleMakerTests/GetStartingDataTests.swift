@@ -24,7 +24,6 @@ final class GetStartingDataTests: XCTestCase {
         let rootWidth = 1
         let rootShape = 0
         let useGuidedScores = false
-        let useShapeScoreLimits = false
         
         let (_, _, _, _, rootTreeNodes, _, _, _) = await GetStartingData.Execute(
             gameId: gameId,

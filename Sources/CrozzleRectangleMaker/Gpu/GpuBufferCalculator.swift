@@ -50,14 +50,4 @@ public class GpuBufferCalculator {
             length: MemoryLayout<Bool>.size * array.count,
             options: .storageModeShared))!
     }
-    
-    public static func Create_Int32_Buffer(
-        array: [Int32],
-        device: MTLDevice?) -> MTLBuffer
-    {
-        return (device?.makeBuffer(
-            bytes: array,
-            length: MemoryLayout<Int32>.size * array.count,
-            options: .storageModeShared))!
-    }
 }

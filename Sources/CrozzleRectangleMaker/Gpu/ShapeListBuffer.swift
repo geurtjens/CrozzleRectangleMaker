@@ -68,11 +68,11 @@ public struct ShapeListBuffer {
             array: shapes.stride,
             device: device)
         
-        self.start = GpuBufferCalculator.Create_Int32_Buffer(
+        self.start = GpuBufferCalculator.Create_UInt32_Buffer(
             array: shapes.start,
             device: device)
         
-        self.end = GpuBufferCalculator.Create_Int32_Buffer(
+        self.end = GpuBufferCalculator.Create_UInt32_Buffer(
             array: shapes.end,
             device: device)
         
