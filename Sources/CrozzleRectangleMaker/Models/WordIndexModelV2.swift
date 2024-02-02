@@ -118,7 +118,7 @@ public struct WordIndexModelV2 {
         var result: [Int: MergeInstructionModel] = [:]
         
         await withTaskGroup(of: (Int, MergeInstructionModel?).self) {group in
-            for matchId in 1..<matches.count {
+            for matchId in 0..<matches.count {
                 group.addTask {
                     
                     let matchCount = findMatchCount(sourceShape: sourceShape, searchShape: searchShapes[matches[matchId]])
