@@ -36,4 +36,20 @@ final class BranchAndBoundRunnerTests: XCTestCase {
         
         XCTAssertEqual(1, result.count)
     }
+    
+    public func test_ExecuteGamesAllWords8612() async {
+        
+        let games = [8612]
+        
+        let result = await BranchAndBoundRunner.executeGamesAllWords(
+            games: games,
+            lookaheadDepth: 2,
+            beamWidth: 9,
+            maxDepth: 30,
+            rootShape: 0,
+            rootWidth: 18,
+            useGuidedScores: false)
+        
+        XCTAssertEqual(1, result.count)
+    }
 }
