@@ -166,21 +166,10 @@ public struct BranchAndBound_GetInstructions {
          */
         result.append(BranchAndBoundInstruction(
             game: 9501, root: 2, depth: 2, width: 74, size: 8_404, time: "00:01:42"))
-        /*
-        game: 9502, root: 2, depth: 2, width: 11, size: 55_590, time: "00:13:33"
-        game: 9502, root: 5, depth: 2, width: 74, size: 55_590, time: "01:25:16"
-        game: 9502, root: 6, depth: 2, width: 17, size: 55_590, time: "00:43:49"
-        */
         result.append(BranchAndBoundInstruction(
-            game: 9502, root: 2, depth: 2, width: 11, size: 55_590, time: "00:13:33"))
-        
-        /*
-         game: 9506, root: 7, depth: 2, width: 9, size: 17_876, time: "00:01:11"
-         game: 9506, root: 8, depth: 2, width: 64, size: 17_876, time: "00:22:55"
-         */
+            game: 9502, root: 2, depth: 2, width: 43, size: 55_590, time: "00:39:40"))
         result.append(BranchAndBoundInstruction(
-            game: 9506, root: 7, depth: 2, width: 9, size: 17_876, time: "00:01:11"))
-        
+            game: 9506, root: 5, depth: 2, width: 26, size: 17_876, time: "00:04:50"))
         
         
         // 9503, 9504, 9505, 9507, 9508, 9509, 9510, 9511, 9512
