@@ -115,6 +115,7 @@ public class BranchAndBoundV3 {
         
         for cycleId in 1..<maxDepth {
             
+            // Within each cycle we first get the tree nodes
             treeNodes = await executeTreeNodes(
                 treeNodes: treeNodes,
                 searchShapes: searchShapes,
@@ -131,6 +132,8 @@ public class BranchAndBoundV3 {
                 shapesCreatedCount += treeNode.childShapes.count
             }
             
+            
+            // Then we do the lookahead and beam thing
             (treeNodes, shapesCreated) = await executeLookaheadAndBeam(
                 lookaheadDepth: lookaheadDepth,
                 beamWidth: beamWidth,
@@ -178,12 +181,13 @@ public class BranchAndBoundV3 {
                 if FeatureFlags.showGameText {
                     print(bestShape.ToJson(words: words))
                 }
-                let siblingMerges = TreeNodeCalculator.identifySiblingMerges(
-                    treeNodes: treeNodes,
-                    minCommonShapes: 1,
-                    maxCommonShapes: 2)
                 
                 if FeatureFlags.showCyclesText {
+                    let siblingMerges = TreeNodeCalculator.identifySiblingMerges(
+                        treeNodes: treeNodes,
+                        minCommonShapes: 1,
+                        maxCommonShapes: 2)
+                
                     print("{\"cycle\": \(cycleId), \"shapesCreated\": \(shapesCreatedCount), \"bestScores\": \(bestScores), \"merges\": \(siblingMerges)}")
                 }
                 
@@ -266,8 +270,6 @@ public class BranchAndBoundV3 {
         return result
     }
     
-    
-    // called by executeAll and executeAsync
     public static func executeTreeNode(
         treeNode: TreeNodeModel,
         searchShapes: [ShapeModel],
@@ -460,19 +462,10 @@ public class BranchAndBoundV3 {
 
         }
         
-        // We remove tree nodes if their descendants do not have a greater score than them
-//        treeNodes = treeNodes.filter { $0.bestDescendant.score != $0.parentShape.score}
-//
-        TreeNodeCalculator.sortByBestDescendant(treeNodes: &treeNodes)
+       TreeNodeCalculator.sortByBestDescendant(treeNodes: &treeNodes)
         
-        let result = TreeNodeCalculator.applyBeamWidth(
-            treeNodes: treeNodes,
-            beamWidth: beamWidth)
-        
-//        for node in result {
-//            print(node.parentShape.ToJson(words: words))
-//            print(node.parentShape.mergeHistory)
-//        }
+        // The beam width tells us we only want to keep the first Nth elements of the array
+        let result = Array(treeNodes.prefix(beamWidth))
         
         return (result, shapesCreatedCount)
     }
@@ -498,6 +491,7 @@ public class BranchAndBoundV3 {
         
         for _ in 1..<lookaheadDepth {
             
+            // repeats this for each lookahead depth
             treeNodes = await executeLevelInParallel(
                 treeNodes: treeNodes,
                 searchShapes: searchShapes,

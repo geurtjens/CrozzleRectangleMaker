@@ -88,13 +88,10 @@ public class BranchAndBoundRunner {
         useGuidedScores: Bool) async -> [Int]
     {
         
-        //let startTime = DateTimeCalculator.now()
-        
         let gameList = GameList()
         
         var successfulGames: [Int] = []
-//        print("\"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"rootWidth\": \(rootWidth), \"maxDepth\": \(maxDepth), \"games\": \(games.count)")
-//        print(games)
+
         for game in gameList.games {
             if games.contains(game.gameId) {
                                 
@@ -115,8 +112,6 @@ public class BranchAndBoundRunner {
                 }
             }
         }
-        //print(successfulGames)
-//        print("\"lookaheadDepth\": \(lookaheadDepth), \"beamWidth\": \(beamWidth), \"successes\": \(successfulGames.count), \"time\": \"\(DateTimeCalculator.duration(start: startTime))\"")
         if successfulGames.count == games.count {
             print("ALL GAMES SUCCEEDED")
             print("FOUND \(successfulGames)")
