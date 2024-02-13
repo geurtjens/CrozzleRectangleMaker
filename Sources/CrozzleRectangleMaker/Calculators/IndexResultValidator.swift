@@ -361,4 +361,89 @@ public class IndexResultValidator {
         
         return max(extra1, extra2) + max(y1, y2)
     }
+    
+    
+    public static func MergeTwoShapesList(
+        sourceShape: ShapeModel,
+        searchShapes: [ShapeModel],
+        instructions: [IndexResultInstruction]) -> [ShapeModel]
+    {
+        var result: [ShapeModel] = []
+        for instruction in instructions {
+            result.append(MergeTwoShapes(
+                sourceShape: sourceShape,
+                searchShape: searchShapes[instruction.searchShapeId],
+                instruction: instruction))
+        }
+        return result
+    }
+    
+    public static func MergeTwoShapes(
+        sourceShape: ShapeModel,
+        searchShape: ShapeModel,
+        instruction: IndexResultInstruction) -> ShapeModel
+    {
+        // We must first merge the placements
+        let placements = MergePlacements(sourceShape: sourceShape, searchShape: searchShape, instruction: instruction)
+        
+        let score: UInt16 = 0
+        
+        let shape = ShapeModel(
+            score: score,
+            width: instruction.width,
+            height: instruction.height,
+            placements: placements)
+        
+        return shape
+    }
+    
+    public static func MergePlacements(sourceShape: ShapeModel, searchShape: ShapeModel, instruction: IndexResultInstruction) -> [PlacementModel]
+    {
+            
+        var result: [PlacementModel] = []
+        if instruction.sourceOffsetX == 0 && instruction.sourceOffsetY == 0 {
+            result = sourceShape.placements
+        } else {
+            for p in sourceShape.placements {
+                result.append(PlacementModel(
+                    w:p.w,
+                    x: p.x + UInt8(instruction.sourceOffsetX),
+                    y: p.y + UInt8(instruction.sourceOffsetY),
+                    z: p.z,
+                    l: p.l))
+            }
+        }
+        
+        
+        for i in 0..<searchShape.placements.count {
+            if instruction.searchPosList.contains(UInt8(i)) == false {
+                if instruction.isFlipped == false {
+                    for p in searchShape.placements {
+                        result.append(PlacementModel(
+                            w: p.w,
+                            x: p.x + UInt8(instruction.searchOffsetX),
+                            y: p.y + UInt8(instruction.searchOffsetY),
+                            z: p.z,
+                            l: p.l))
+                    }
+                } else {
+                    for p in searchShape.placements {
+                        result.append(PlacementModel(
+                            w: p.w,
+                            x: p.y + UInt8(instruction.searchOffsetX),
+                            y: p.x + UInt8(instruction.searchOffsetY),
+                            z: !p.z,
+                            l: p.l))
+                    }
+                }
+            }
+        }
+        
+        result.sort { $0.w < $1.w }
+        
+        if result[0].z == false {
+            result = PlacementCalculator.flip(placements: result)
+        }
+        return result
+    }
 }

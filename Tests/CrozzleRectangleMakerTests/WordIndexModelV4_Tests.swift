@@ -27,16 +27,16 @@ final class WordIndexModelV4_Tests: XCTestCase {
 
     func testSearch() throws {
         /// GIVEN all winning shapes in the 8612 game.
-        let shapes = GetStartingData.getWinningShapesAllWords(gameId: 8612)
-        
+        let searchShapes = GetStartingData.getWinningShapesAllWords(gameId: 8612)
+        let sourceShape = searchShapes[0]
         let words = WordData.words_8612()
         // AND that we have 91 words in that game
         let wordCount = words.count
         // WHEN we initialize the WordIndexModelV4 with these shapes and word count
-        let index = WordIndexModelV4(shapes: shapes, wordCount: wordCount)
+        let index = WordIndexModelV4(shapes: searchShapes, wordCount: wordCount)
         
         
-        let sourceShape = shapes[0]
+        
         
         // AND we find all words that can connect with the first shape
         let items: [IndexResultModel] = index.findMatch(sourceShape: sourceShape)
@@ -49,17 +49,17 @@ final class WordIndexModelV4_Tests: XCTestCase {
         // AND the search space which means the common words amoungst all shapes is 42
         XCTAssertEqual(42, index.searchSpace())
         
-        let results = IndexResultValidator.Execute(
+        let instructions = IndexResultValidator.Execute(
             sourceShape: sourceShape,
-            searchShapes: shapes,
+            searchShapes: searchShapes,
             items: items,
             widthMax: 17,
             heightMax: 12)
         
-        XCTAssertEqual(2, results.count)
+        XCTAssertEqual(2, instructions.count)
         
-        let result0 = results[0]
-        let result1 = results[1]
+        let result0 = instructions[0]
+        let result1 = instructions[1]
         // We can now measure if these offsets and values are correct
         
         XCTAssertFalse(result0.isFlipped)
@@ -80,8 +80,8 @@ final class WordIndexModelV4_Tests: XCTestCase {
         XCTAssertEqual(0, result1.searchOffsetY)
         
         
-        let searchShape0 = shapes[items[0].searchShapeId]
-        let searchShape1 = shapes[items[1].searchShapeId]
+        let searchShape0 = searchShapes[instructions[0].searchShapeId]
+        let searchShape1 = searchShapes[instructions[1].searchShapeId]
         
         let sourceShapeText = sourceShape.ToText(words: words)
         let searchShape0Text = searchShape0.ToText(words: words)
@@ -92,6 +92,18 @@ final class WordIndexModelV4_Tests: XCTestCase {
         print(searchShape0Text)
         print(searchShape1Text)
         print(searchShape1TextFlipped)
+        
+        let mergedShapes = IndexResultValidator.MergeTwoShapesList(
+            sourceShape: sourceShape,
+            searchShapes: searchShapes,
+            instructions: instructions)
+        
+        print(mergedShapes[0].ToString(words: words))
+        print(mergedShapes[1].ToString(words: words))
+        
+        
+        
+        
         
         /*
 let sourceShape =
@@ -185,6 +197,4 @@ There are no offsets required once you flip the search shape as the flipped shap
 */
         
     }
-   
-
 }
