@@ -30,6 +30,8 @@ final class WordIndexModelV4_Tests: XCTestCase {
         let searchShapes = GetStartingData.getWinningShapesAllWords(gameId: 8612)
         let sourceShape = searchShapes[0]
         let words = WordData.words_8612()
+        
+        let wordsInt = WordCalculator.WordsToInt(words: words)
         // AND that we have 91 words in that game
         let wordCount = words.count
         // WHEN we initialize the WordIndexModelV4 with these shapes and word count
@@ -83,6 +85,8 @@ final class WordIndexModelV4_Tests: XCTestCase {
         let searchShape0 = searchShapes[instructions[0].searchShapeId]
         let searchShape1 = searchShapes[instructions[1].searchShapeId]
         
+        
+        
         let sourceShapeText = sourceShape.ToText(words: words)
         let searchShape0Text = searchShape0.ToText(words: words)
         let searchShape1Text = searchShape1.ToText(words: words)
@@ -99,6 +103,14 @@ final class WordIndexModelV4_Tests: XCTestCase {
             instructions: instructions)
         
         XCTAssertEqual(2, mergedShapes.count)
+        
+        let score0 = ShapeCalculator.getScore(shape: mergedShapes[0], wordsInt: wordsInt)
+        let expectedScore0 = 4 + 8 + 64 + 8 + 4 + 32 + 50 // = 170
+        XCTAssertEqual(UInt16(expectedScore0), score0)
+        
+        let score1 = ShapeCalculator.getScore(shape: mergedShapes[1], wordsInt: wordsInt)
+        let expectedScore1 = 64 + 8 + 4 + 4 + 32 + 16 + 60 // = 188
+        XCTAssertEqual(UInt16(expectedScore1), score1)
         
         print(mergedShapes[0].ToString(words: words))
         print(mergedShapes[1].ToString(words: words))
