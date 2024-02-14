@@ -366,14 +366,17 @@ public class IndexResultValidator {
     public static func MergeTwoShapesList(
         sourceShape: ShapeModel,
         searchShapes: [ShapeModel],
-        instructions: [IndexResultInstruction]) -> [ShapeModel]
+        instructions: [IndexResultInstruction],
+        wordsInt: [[Int]]) -> [ShapeModel]
     {
         var result: [ShapeModel] = []
-        for instruction in instructions {
+        for instruction in instructions 
+        {
             if let mergedShape = MergeTwoShapes(
                 sourceShape: sourceShape,
                 searchShape: searchShapes[instruction.searchShapeId],
-                instruction: instruction)
+                instruction: instruction,
+                wordsInt: wordsInt)
             {
                 result.append(mergedShape)
             }
@@ -385,7 +388,8 @@ public class IndexResultValidator {
     public static func MergeTwoShapes(
         sourceShape: ShapeModel,
         searchShape: ShapeModel,
-        instruction: IndexResultInstruction) -> ShapeModel?
+        instruction: IndexResultInstruction,
+        wordsInt: [[Int]]) -> ShapeModel?
     {
         // We must first merge the placements
         let placements = MergePlacements(sourceShape: sourceShape, searchShape: searchShape, instruction: instruction)
@@ -396,13 +400,25 @@ public class IndexResultValidator {
             
         }
         
-        let score: UInt16 = 0
+        let score = ShapeCalculator.getScore(
+            width: instruction.width,
+            height: instruction.height,
+            placements: placements,
+            wordsInt: wordsInt)
         
-        let shape = ShapeModel(
+        if score == 0 {
+            return nil
+        }
+        
+        var shape = ShapeModel(
             score: score,
             width: instruction.width,
             height: instruction.height,
             placements: placements)
+        
+        shape.mergeHistory = ShapeModel.createMergeHistory(
+            sourceShapeHistory: sourceShape.mergeHistory,
+            searchShapeHistory: searchShape.mergeHistory)
         
         return shape
     }

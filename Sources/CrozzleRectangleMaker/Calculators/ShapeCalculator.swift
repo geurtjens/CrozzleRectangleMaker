@@ -473,7 +473,7 @@ public class ShapeCalculator {
     }
     
     
-    public static func getScore(shape: ShapeModel, wordsInt:[[Int]]) -> UInt16 {
+    public static func getScore(width: UInt8, height: UInt8, placements: [PlacementModel], wordsInt:[[Int]]) -> UInt16 {
         
         let SPACE: Int = 32
         let EOL: Int = 13
@@ -482,8 +482,8 @@ public class ShapeCalculator {
         
         var score = 0
         
-        let widthEOL = Int(shape.width) + 1
-        let height = Int(shape.height)
+        let widthEOL = Int(width) + 1
+        let height = Int(height)
         
         let gridSize = widthEOL * height
         
@@ -495,7 +495,7 @@ public class ShapeCalculator {
             grid[i * widthEOL] = EOL // Means end of line
         }
         
-        for placement in shape.placements {
+        for placement in placements {
             
             // the word must include the blocking characters at either end of the shape
             let word = [DOT] + wordsInt[Int(placement.w)] + [DOT]
@@ -530,7 +530,7 @@ public class ShapeCalculator {
         //if result.contains("#") {
         //    score = 0
         //} else {
-            score += shape.placements.count * 10
+            score += placements.count * 10
         //}
         return UInt16(score)
     }

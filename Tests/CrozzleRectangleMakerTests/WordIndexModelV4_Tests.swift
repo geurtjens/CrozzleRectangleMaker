@@ -37,9 +37,6 @@ final class WordIndexModelV4_Tests: XCTestCase {
         // WHEN we initialize the WordIndexModelV4 with these shapes and word count
         let index = WordIndexModelV4(shapes: searchShapes, wordCount: wordCount)
         
-        
-        
-        
         // AND we find all words that can connect with the first shape
         let items: [IndexResultModel] = index.findMatch(sourceShape: sourceShape)
         
@@ -100,17 +97,16 @@ final class WordIndexModelV4_Tests: XCTestCase {
         let mergedShapes = IndexResultValidator.MergeTwoShapesList(
             sourceShape: sourceShape,
             searchShapes: searchShapes,
-            instructions: instructions)
+            instructions: instructions,
+            wordsInt: wordsInt)
         
         XCTAssertEqual(2, mergedShapes.count)
         
-        let score0 = ShapeCalculator.getScore(shape: mergedShapes[0], wordsInt: wordsInt)
         let expectedScore0 = 4 + 8 + 64 + 8 + 4 + 32 + 50 // = 170
-        XCTAssertEqual(UInt16(expectedScore0), score0)
-        
-        let score1 = ShapeCalculator.getScore(shape: mergedShapes[1], wordsInt: wordsInt)
+        XCTAssertEqual(UInt16(expectedScore0), mergedShapes[0].score)
+
         let expectedScore1 = 64 + 8 + 4 + 4 + 32 + 16 + 60 // = 188
-        XCTAssertEqual(UInt16(expectedScore1), score1)
+        XCTAssertEqual(UInt16(expectedScore1), mergedShapes[1].score)
         
         print(mergedShapes[0].ToString(words: words))
         print(mergedShapes[1].ToString(words: words))
