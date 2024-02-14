@@ -236,7 +236,7 @@ public class BranchAndBoundV3 {
     }
     
     
-    // called by executeLeaf
+    // called by executeCycles
     public static func executeTreeNodes(
         treeNodes: [TreeNodeModel],
         searchShapes: [ShapeModel],
@@ -251,7 +251,7 @@ public class BranchAndBoundV3 {
         
         for treeNode in treeNodes {
             
-            let values = await executeTreeNode(
+            let values = await executeTreeNodeUsingSiblings(
                 treeNode: treeNode,
                 searchShapes: searchShapes,
                 words: words,
@@ -270,7 +270,7 @@ public class BranchAndBoundV3 {
         return result
     }
     
-    public static func executeTreeNode(
+    public static func executeTreeNodeUsingSiblings(
         treeNode: TreeNodeModel,
         searchShapes: [ShapeModel],
         words: [String],
@@ -283,11 +283,11 @@ public class BranchAndBoundV3 {
         var result: [TreeNodeModel] = []
     
         // These are the shapes that all the siblings have added to become unique siblings
-        let leafShapesAddedToBecomeSiblings = ShapeCalculator.getLastMergeHistoryShapeId(
+        let siblingsLastShapeAdded = ShapeCalculator.getLastMergeHistoryShapeId(
             shapes: treeNode.childShapes)
         
         // These are the extra words that the siblings have added
-        let wordDifferenceBetweenParentAndSibling = ShapeCalculator.getWordDifferences(
+        let wordsChildAddedToParent = ShapeCalculator.getWordDifferences(
             parentShape: treeNode.parentShape,
             childShapes: treeNode.childShapes)
         
@@ -295,20 +295,21 @@ public class BranchAndBoundV3 {
         // We can check the added words are not the same
         
         var processedQueue: Set<String> = []
-        for siblingId in 0..<leafShapesAddedToBecomeSiblings.count {
+        for siblingId in 0..<siblingsLastShapeAdded.count {
             
             var resultForShape: [ShapeModel] = []
             
             let sourceShape = treeNode.childShapes[siblingId]
-            let sourceShapeId = leafShapesAddedToBecomeSiblings[siblingId]
-            let siblingWords = wordDifferenceBetweenParentAndSibling[siblingId]
+            let sourceShapeId = siblingsLastShapeAdded[siblingId]
+            let siblingWords = wordsChildAddedToParent[siblingId]
             
             
             // We want to find all the siblings that have different words added than this older sibling (closer to top of list)
-            for matchingSiblingId in 0..<leafShapesAddedToBecomeSiblings.count {
+            // I think we want it to start after the siblingId so we dont get duplicates
+            for matchingSiblingId in (siblingId + 1)..<siblingsLastShapeAdded.count {
                 
-                let searchShapeId = leafShapesAddedToBecomeSiblings[matchingSiblingId]
-                let wordsInMatchingSibling = wordDifferenceBetweenParentAndSibling[matchingSiblingId]
+                let searchShapeId = siblingsLastShapeAdded[matchingSiblingId]
+                let wordsInMatchingSibling = wordsChildAddedToParent[matchingSiblingId]
                 
                 let searchForDuplicates = "\(searchShapeId),\(sourceShapeId)"
                 
@@ -322,7 +323,7 @@ public class BranchAndBoundV3 {
                 {
                     processedQueue.insert("\(sourceShapeId),\(searchShapeId)")
                         
-                    // This means that they have different words and so a merge is possible
+                    // The two siblings have different words so a merge is possible
                     if let mergedShape = MergeCalculatorV2.mergeTwoShapes(
                         sourceShape: sourceShape,
                         searchShape: searchShapes[searchShapeId],
@@ -345,7 +346,7 @@ public class BranchAndBoundV3 {
             let extraShapes = getLeafShapesForLastWordsAddedToCurrentShape(
                 wordIndex: wordIndex,
                 siblingWords: Array(siblingWords),
-                shapesToExclude: leafShapesAddedToBecomeSiblings,
+                shapesToExclude: siblingsLastShapeAdded, // are there any other shapes other than sibling shapes
                 sourceShape: sourceShape,
                 sourceShapeId: sourceShapeId,
                 searchShapes: searchShapes,
@@ -359,13 +360,7 @@ public class BranchAndBoundV3 {
             
             if resultForShape.count > 0 {
                 
-                resultForShape.sort {
-                    if $0.score == $1.score {
-                        return $0.area < $1.area
-                    } else {
-                        return $0.score > $1.score
-                    }
-                }
+                ShapeCalculator.Sort(shapes: &resultForShape)
                 
                 result.append(TreeNodeModel(
                     parentShape: sourceShape,
@@ -659,7 +654,7 @@ public class BranchAndBoundV3 {
         // The difference is that each cpu works on 0,10,20 .. or 1, 11, 21 and so we divide the task
         for treeNodeId in stride(from: zeroToNine, to:treeNodes.count, by: 10) {
             
-            let treeNodes = await executeTreeNode(
+            let treeNodes = await executeTreeNodeUsingSiblings(
                 treeNode: treeNodes[treeNodeId],
                 searchShapes: searchShapes,
                 words: words,

@@ -7,6 +7,7 @@
 
 import Foundation
 public struct FeatureFlags {
+    public static var countShapesCreated = false
     public static var verbose = false
     public static var showGameText = true
     public static var showCyclesText = true
