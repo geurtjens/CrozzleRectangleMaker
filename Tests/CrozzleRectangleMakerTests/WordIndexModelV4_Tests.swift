@@ -98,6 +98,8 @@ final class WordIndexModelV4_Tests: XCTestCase {
             searchShapes: searchShapes,
             instructions: instructions)
         
+        XCTAssertEqual(2, mergedShapes.count)
+        
         print(mergedShapes[0].ToString(words: words))
         print(mergedShapes[1].ToString(words: words))
         

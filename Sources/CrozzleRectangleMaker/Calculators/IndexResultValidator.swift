@@ -370,21 +370,31 @@ public class IndexResultValidator {
     {
         var result: [ShapeModel] = []
         for instruction in instructions {
-            result.append(MergeTwoShapes(
+            if let mergedShape = MergeTwoShapes(
                 sourceShape: sourceShape,
                 searchShape: searchShapes[instruction.searchShapeId],
-                instruction: instruction))
+                instruction: instruction)
+            {
+                result.append(mergedShape)
+            }
         }
         return result
     }
     
+    
     public static func MergeTwoShapes(
         sourceShape: ShapeModel,
         searchShape: ShapeModel,
-        instruction: IndexResultInstruction) -> ShapeModel
+        instruction: IndexResultInstruction) -> ShapeModel?
     {
         // We must first merge the placements
         let placements = MergePlacements(sourceShape: sourceShape, searchShape: searchShape, instruction: instruction)
+        
+        if placements.count == 0 {
+            // These shapes where overlapping and so the merged shape was not valid
+            return nil
+            
+        }
         
         let score: UInt16 = 0
         
@@ -397,13 +407,47 @@ public class IndexResultValidator {
         return shape
     }
     
-    public static func MergePlacements(sourceShape: ShapeModel, searchShape: ShapeModel, instruction: IndexResultInstruction) -> [PlacementModel]
+    
+    public static func MergePlacements(
+        sourceShape: ShapeModel,
+        searchShape: ShapeModel,
+        instruction: IndexResultInstruction) -> [PlacementModel]
     {
             
-        var result: [PlacementModel] = []
+        let sourcePlacements = GetSourcePlacements(
+            sourceShape: sourceShape,
+            instruction: instruction)
+        
+        let searchPlacements = GetSearchPlacements(
+            searchShape: searchShape,
+            instruction: instruction)
+        
+        let isOverlapping = OverlappingPlacementsCalculator.isOverlapping(
+            sourcePlacements: sourcePlacements,
+            searchPlacements: searchPlacements)
+        
+        if isOverlapping {
+            return []
+        }
+        
+        var result = sourcePlacements + searchPlacements
+        result.sort { $0.w < $1.w }
+        if result[0].z == false {
+            result = PlacementCalculator.flip(placements: result)
+        }
+        return result
+        
+    }
+    
+    
+    public static func GetSourcePlacements(
+        sourceShape: ShapeModel,
+        instruction: IndexResultInstruction) -> [PlacementModel]
+    {
         if instruction.sourceOffsetX == 0 && instruction.sourceOffsetY == 0 {
-            result = sourceShape.placements
+            return sourceShape.placements
         } else {
+            var result: [PlacementModel] = []
             for p in sourceShape.placements {
                 result.append(PlacementModel(
                     w:p.w,
@@ -412,37 +456,37 @@ public class IndexResultValidator {
                     z: p.z,
                     l: p.l))
             }
+            return result
         }
-        
+    }
+    
+    
+    public static func GetSearchPlacements(
+        searchShape: ShapeModel,
+        instruction: IndexResultInstruction) -> [PlacementModel]
+    {
+        var result: [PlacementModel] = []
         
         for i in 0..<searchShape.placements.count {
             if instruction.searchPosList.contains(UInt8(i)) == false {
+                let p = searchShape.placements[i]
                 if instruction.isFlipped == false {
-                    for p in searchShape.placements {
-                        result.append(PlacementModel(
-                            w: p.w,
-                            x: p.x + UInt8(instruction.searchOffsetX),
-                            y: p.y + UInt8(instruction.searchOffsetY),
-                            z: p.z,
-                            l: p.l))
-                    }
+                    result.append(PlacementModel(
+                        w: p.w,
+                        x: p.x + UInt8(instruction.searchOffsetX),
+                        y: p.y + UInt8(instruction.searchOffsetY),
+                        z: p.z,
+                        l: p.l))
+                    
                 } else {
-                    for p in searchShape.placements {
-                        result.append(PlacementModel(
-                            w: p.w,
-                            x: p.y + UInt8(instruction.searchOffsetX),
-                            y: p.x + UInt8(instruction.searchOffsetY),
-                            z: !p.z,
-                            l: p.l))
-                    }
+                    result.append(PlacementModel(
+                        w: p.w,
+                        x: p.y + UInt8(instruction.searchOffsetX),
+                        y: p.x + UInt8(instruction.searchOffsetY),
+                        z: !p.z,
+                        l: p.l))
                 }
             }
-        }
-        
-        result.sort { $0.w < $1.w }
-        
-        if result[0].z == false {
-            result = PlacementCalculator.flip(placements: result)
         }
         return result
     }
