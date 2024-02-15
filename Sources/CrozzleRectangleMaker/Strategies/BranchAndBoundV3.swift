@@ -36,6 +36,7 @@ public class BranchAndBoundV3 {
         
         let bestShapes = await executeCycles(
             gameId: gameId,
+            rootShape: rootShape,
             words: words,
             lookaheadDepth: lookaheadDepth,
             beamWidth: beamWidth,
@@ -79,7 +80,7 @@ public class BranchAndBoundV3 {
         }
         if bestShape.score >= winningScore {
             print("HUMAN SCORE \(gameId) Calculated at end")
-            
+            print("game: \(gameId), root: \(rootShape), depth: \(lookaheadDepth), width: \(beamWidth), size: \(searchShapes.count), time: \"\"")
         }
         return bestShape
     }
@@ -88,6 +89,7 @@ public class BranchAndBoundV3 {
     // called by executeGame
     public static func executeCycles(
         gameId: Int,
+        rootShape: Int,
         words: [String],
         lookaheadDepth: Int,
         beamWidth: Int,
@@ -193,7 +195,8 @@ public class BranchAndBoundV3 {
                 
                 if bestShape.score >= winningScore {
                     print("HUMAN SCORE \(gameId)")
-                    print(DateTimeCalculator.duration(start: startTime))
+                    print("game: \(gameId), root: \(rootShape), depth: \(lookaheadDepth), width: \(beamWidth), size: \(searchShapes.count), time: \"(DateTimeCalculator.duration(start: startTime)\"")
+                    
                     return bestShapes
                     
                 } else {
@@ -203,7 +206,7 @@ public class BranchAndBoundV3 {
                     }
                     
                     print("failed: \(gameId), expected: \(winningScore), actualScore: \(bestScoreToday), duration: \(DateTimeCalculator.duration(start: startTime))")
-                    
+                    print("game: \(gameId), root: \(rootShape), depth: \(lookaheadDepth), width: \(beamWidth), size: \(searchShapes.count), time: \"(DateTimeCalculator.duration(start: startTime)\"")
                     return bestShapes
                 }
             }
