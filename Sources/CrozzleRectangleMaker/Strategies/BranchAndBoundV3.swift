@@ -126,11 +126,11 @@ public class BranchAndBoundV3 {
                 wordIndex: wordIndex,
                 scoresMin: scoresMin)
             
-            shapesCreatedCount = treeNodes.count
-            
-            for treeNode in treeNodes {
-                shapesCreatedCount += treeNode.childShapes.count
-            }
+//            shapesCreatedCount = treeNodes.count
+//            
+//            for treeNode in treeNodes {
+//                shapesCreatedCount += treeNode.childShapes.count
+//            }
             
             
             // Then we do the lookahead and beam thing
@@ -146,7 +146,7 @@ public class BranchAndBoundV3 {
                 wordIndex: wordIndex,
                 scoresMin: scoresMin)
                 
-            shapesCreatedCount += shapesCreated
+            //shapesCreatedCount += shapesCreated
             
             /// We get to the end of processing but we do not have any answers so maybe we need a previous list and if the list is empty then we go to previous
             if treeNodes.count > 0 {
@@ -265,6 +265,8 @@ public class BranchAndBoundV3 {
         }
         // We have child decendant that is the winner but when we run this we have no children so it fails
         // So we should somehow check for winner in another way
+        
+        
         TreeNodeCalculator.sortByBestDescendant(treeNodes: &result)
         
         return result
@@ -371,7 +373,8 @@ public class BranchAndBoundV3 {
             }
         }
         
-        TreeNodeCalculator.sortByBestDescendant(treeNodes: &result)
+        // We can sort at the very end after this routine is completed
+        //TreeNodeCalculator.sortByBestDescendant(treeNodes: &result)
         
         return result
     }
@@ -453,7 +456,7 @@ public class BranchAndBoundV3 {
             if bestShape != nil {
                 treeNodes[treeNodeId].bestDescendant = bestShape!
             }
-            shapesCreatedCount += shapesCreated
+            //shapesCreatedCount += shapesCreated
 
         }
         
