@@ -23,7 +23,9 @@ public class OptimizeBranchAndBound {
         
         await executeWinningGames(
             games: games,
+            minLookaheadDepth: 1,
             maxLookaheadDepth: 4,
+            minBeamWidth: 1,
             maxBeamWidth: 150,
             maxDepth: 30,
             useGuidedScores: true)
@@ -39,16 +41,53 @@ public class OptimizeBranchAndBound {
                     
         await executeWinningGames(
             games: games,
+            minLookaheadDepth: 1,
             maxLookaheadDepth: 4,
+            minBeamWidth: 1,
             maxBeamWidth: 100,
             maxDepth: 30,
             useGuidedScores: false)
     }
-    
+    public static func executeWinningGamesAllGames(
+        minLookaheadDepth: Int,
+        maxLookaheadDepth: Int,
+        minBeamWidth: Int,
+        maxBeamWidth: Int,
+        maxDepth: Int,
+        useGuidedScores: Bool) async 
+    {
+        
+        
+        let alreadyWorkingGames = BranchAndBound_GetInstructions.WinningWords_NoGuidedScores()
+        var alreadyGames: [Int] = []
+        for alreadyWorkingGame in alreadyWorkingGames {
+            alreadyGames.append(alreadyWorkingGame.games[0])
+            
+        }
+        var games: [Int] = []
+        let gameList = GameList()
+        for game in gameList.games {
+            if alreadyGames.contains(game.gameId) == false {
+                games.append(game.gameId)
+            }
+        }
+        print(games)
+        print("There are \(games.count) games to be solved")
+        await executeWinningGames(
+            games: games,
+            minLookaheadDepth: minLookaheadDepth,
+            maxLookaheadDepth: maxLookaheadDepth,
+            minBeamWidth: minBeamWidth,
+            maxBeamWidth: maxBeamWidth,
+            maxDepth: maxDepth,
+            useGuidedScores: useGuidedScores)
+    }
     
     public static func executeWinningGames(
-        games: [Int], // = [8805, 8807, 8911, 9112, 9203, 9305, 9509]
+        games: [Int],
+        minLookaheadDepth: Int,
         maxLookaheadDepth: Int,
+        minBeamWidth: Int,
         maxBeamWidth: Int,
         maxDepth: Int,
         useGuidedScores: Bool) async
@@ -58,7 +97,9 @@ public class OptimizeBranchAndBound {
         for gameId in games {
             let results = await executeWinningGame(
                 gameId: gameId,
+                minLookaheadDepth: minLookaheadDepth,
                 maxLookaheadDepth: maxLookaheadDepth,
+                minBeamWidth: minBeamWidth,
                 maxBeamWidth: maxBeamWidth,
                 maxDepth: maxDepth,
                 useGuidedScores: useGuidedScores)
@@ -186,7 +227,7 @@ public class OptimizeBranchAndBound {
                 while lowerWidth != upperWidth {
                     
                     currentWidth = Int((Double(lowerWidth) + Double(upperWidth) + 0.5) / 2.0)
-                    print ("game: \(gameId), lookaheadDepth: \(lookaheadDepth), rootShape: \(rootShape), lower: \(lowerWidth), upper: \(upperWidth), currentWidth: \(currentWidth)")
+                    print ("game: \(gameId), depth: \(lookaheadDepth), root: \(rootShape), lowerWidth: \(lowerWidth), upperWidth: \(upperWidth), currentWidth: \(currentWidth)")
                     
                     let testOneConfigurationStart = DateTimeCalculator.now()
                     
@@ -222,7 +263,14 @@ public class OptimizeBranchAndBound {
                     }
                 }
                 
-                print("FINAL SIZE\ngame: \(gameId), rootShape: \(rootShape), lookaheadDepth: \(lookaheadDepth), beamWidth: \(currentWidth), time: \"\(timeToProcessOneConfiguration)\", useGuidedScores: \(useGuidedScores), overallProcessTime: \(DateTimeCalculator.duration(start: overallStart))")
+                let words = GameList().getGame(gameId: gameId)!.winningWords
+                let (_, _, searchShapes, _, _, _, _, _) = await GetStartingData.Execute(
+                    gameId: gameId,
+                    words: words,
+                    rootShape: rootShape,
+                    rootWidth: rootWidth,
+                    useGuidedScores: useGuidedScores)
+                print("FINAL SIZE\ngame: \(gameId), root: \(rootShape), depth: \(lookaheadDepth), width: \(currentWidth), size: \(searchShapes.count), time: \"\(timeToProcessOneConfiguration)\", useGuidedScores: \(useGuidedScores), overallProcessTime: \(DateTimeCalculator.duration(start: overallStart))")
                 return currentWidth
             }
         }

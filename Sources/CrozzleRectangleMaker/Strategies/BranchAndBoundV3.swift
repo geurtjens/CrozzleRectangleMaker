@@ -195,7 +195,7 @@ public class BranchAndBoundV3 {
                 
                 if bestShape.score >= winningScore {
                     print("HUMAN SCORE \(gameId)")
-                    print("game: \(gameId), root: \(rootShape), depth: \(lookaheadDepth), width: \(beamWidth), size: \(searchShapes.count), time: \"(DateTimeCalculator.duration(start: startTime)\"")
+                    print("game: \(gameId), root: \(rootShape), depth: \(lookaheadDepth), width: \(beamWidth), size: \(searchShapes.count), time: \"\(DateTimeCalculator.duration(start: startTime))\"")
                     
                     return bestShapes
                     
@@ -206,7 +206,7 @@ public class BranchAndBoundV3 {
                     }
                     
                     print("failed: \(gameId), expected: \(winningScore), actualScore: \(bestScoreToday), duration: \(DateTimeCalculator.duration(start: startTime))")
-                    print("game: \(gameId), root: \(rootShape), depth: \(lookaheadDepth), width: \(beamWidth), size: \(searchShapes.count), time: \"(DateTimeCalculator.duration(start: startTime)\"")
+                    print("game: \(gameId), root: \(rootShape), depth: \(lookaheadDepth), width: \(beamWidth), size: \(searchShapes.count), time: \"\(DateTimeCalculator.duration(start: startTime))\"")
                     return bestShapes
                 }
             }

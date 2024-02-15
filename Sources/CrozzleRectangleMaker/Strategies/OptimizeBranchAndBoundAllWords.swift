@@ -244,8 +244,14 @@ public class OptimizeBranchAndBoundAllWords {
                         }
                     }
                 }
-                
-                print("FINAL SIZE\ngame: \(gameId), rootShape: \(rootShape), lookaheadDepth: \(lookaheadDepth), beamWidth: \(currentWidth), time: \"\(timeToProcessOneConfiguration)\", useGuidedScores: \(useGuidedScores), overallProcessTime: \(DateTimeCalculator.duration(start: overallStart))")
+                let words = GameList().getGame(gameId: gameId)!.words
+                let (_, _, searchShapes, _, _, _, _, _) = await GetStartingData.Execute(
+                    gameId: gameId,
+                    words: words,
+                    rootShape: rootShape,
+                    rootWidth: rootWidth,
+                    useGuidedScores: useGuidedScores)
+                print("FINAL SIZE\ngame: \(gameId), root: \(rootShape), depth: \(lookaheadDepth), width: \(currentWidth), size: \(searchShapes.count), time: \"\(timeToProcessOneConfiguration)\", useGuidedScores: \(useGuidedScores), overallProcessTime: \(DateTimeCalculator.duration(start: overallStart))")
                 
                 return currentWidth
             }

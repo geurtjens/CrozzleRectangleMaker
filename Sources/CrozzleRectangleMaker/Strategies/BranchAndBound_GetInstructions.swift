@@ -277,95 +277,271 @@ public struct BranchAndBound_GetInstructions {
 
         var result: [BranchAndBoundInstruction] = []
         
+        result.append(BranchAndBoundInstruction(
+            game: 8612, root: 0, depth: 1, width: 6, size: 380, time: "00:00:00.53"))
+        result.append(BranchAndBoundInstruction(
+            game: 8704, root: 3, depth: 1, width: 11, size: 560, time: "00:00:05.42"))
+        result.append(BranchAndBoundInstruction(
+            game: 8705, root: 1, depth: 1, width: 9, size: 430, time: "00:00:01.42"))
+        result.append(BranchAndBoundInstruction(
+            game: 8710, root: 0, depth: 1, width: 2, size: 269, time: "00:00:00.28"))
+        result.append(BranchAndBoundInstruction(
+            game: 8711, root: 0, depth: 1, width: 5, size: 646, time: "00:00:01.62"))
+        result.append(BranchAndBoundInstruction(
+            game: 8712, root: 0, depth: 1, width: 3, size: 575, time: "00:00:01.49"))
+        result.append(BranchAndBoundInstruction(
+            game: 8802, root: 2, depth: 1, width: 2, size: 289, time: "00:00:00.45"))
+        result.append(BranchAndBoundInstruction(
+            game: 8804, root: 2, depth: 1, width: 3, size: 794, time: "00:00:01.44"))
+        result.append(BranchAndBoundInstruction(
+            game: 8805, root: 2, depth: 1, width: 148, size: 350, time: "15 seconds"))
+        result.append(BranchAndBoundInstruction(game: 8807, root: 1, depth: 1, width: 62, size: 491, time: "3.698001792 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 8808, root: 3, depth: 1, width: 4, size: 363, time: "00:00:00.28"))
+        result.append(BranchAndBoundInstruction(
+            game: 8809, root: 0, depth: 1, width: 3, size: 592, time: "00:00:01.12"))
+        result.append(BranchAndBoundInstruction(
+            game: 8811, root: 0, depth: 1, width: 5, size: 334, time: "00:00:00.79"))
+        result.append(BranchAndBoundInstruction(
+            game: 8812, root: 0, depth: 1, width: 21, size: 353, time: "00:00:01.16"))
+        result.append(BranchAndBoundInstruction(
+            game: 8902, root: 0, depth: 1, width: 16, size: 391, time: "00:00:00.76"))
+        result.append(BranchAndBoundInstruction(
+            game: 8903, root: 0, depth: 1, width: 18, size: 440, time: "00:00:02.15"))
+        result.append(BranchAndBoundInstruction(
+            game: 8906, root: 1, depth: 1, width: 32, size: 507, time: "8.294293125 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 8907, root: 4, depth: 1, width: 11, size: 805, time: "00:00:03.36"))
+        result.append(BranchAndBoundInstruction(
+            game: 8908, root: 4, depth: 1, width: 21, size: 412, time: "00:00:06.27"))
+        result.append(BranchAndBoundInstruction(
+            game: 8909, root: 4, depth: 1, width: 13, size: 449, time: "00:00:00.62"))
+        result.append(BranchAndBoundInstruction(
+            game: 8910, root: 0, depth: 1, width: 7, size: 296, time: "00:00:00.25"))
+        result.append(BranchAndBoundInstruction(
+            game: 8911, root: 0, depth: 1, width: 13, size: 564, time: "00:00:01.93"))
+        result.append(BranchAndBoundInstruction(
+            game: 8912, root: 0, depth: 1, width: 20, size: 300, time: "00:00:00.98"))
+        result.append(BranchAndBoundInstruction(
+            game: 9002, root: 0, depth: 1, width: 15, size: 530, time: "00:00:01.31"))
+        result.append(BranchAndBoundInstruction(
+            game: 9003, root: 4, depth: 1, width: 59, size: 483, time: "5.70659375 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9004, root: 0, depth: 1, width: 11, size: 443, time: "00:00:01.79"))
+        result.append(BranchAndBoundInstruction(
+            game: 9005, root: 0, depth: 1, width: 7, size: 621, time: "00:00:01.35"))
+        result.append(BranchAndBoundInstruction(
+            game: 9006, root: 0, depth: 1, width: 18, size: 748, time: "00:00:05.10"))
+        result.append(BranchAndBoundInstruction(
+            game: 9007, root: 0, depth: 1, width: 9, size: 172, time: "00:00:00.21"))
+        result.append(BranchAndBoundInstruction(
+            game: 9008, root: 0, depth: 1, width: 4, size: 561, time: "00:00:00.64"))
+        result.append(BranchAndBoundInstruction(
+            game: 9009, root: 0, depth: 1, width: 10, size: 838, time: "00:00:04.27"))
+        result.append(BranchAndBoundInstruction(
+            game: 9010, root: 1, depth: 1, width: 16, size: 541, time: "00:00:01.87"))
+        result.append(BranchAndBoundInstruction(
+            game: 9011, root: 5, depth: 1, width: 13, size: 645, time: "00:00:01.67"))
+        result.append(BranchAndBoundInstruction(
+            game: 9012, root: 1, depth: 1, width: 26, size: 573, time: "00:00:02.54"))
+        result.append(BranchAndBoundInstruction(
+            game: 9103, root: 0, depth: 1, width: 3, size: 423, time: "00:00:01.12"))
+        result.append(BranchAndBoundInstruction(
+            game: 9104, root: 1, depth: 1, width: 2, size: 611, time: "00:00:00.70"))
+        result.append(BranchAndBoundInstruction(
+            game: 9105, root: 0, depth: 1, width: 11, size: 397, time: "0.656411 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9106, root: 2, depth: 1, width: 2, size: 705, time: "0.567771667 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9108, root: 0, depth: 1, width: 5, size: 396, time: "0.808671917 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9109, root: 0, depth: 1, width: 3, size: 342, time: "0.367694375 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9110, root: 0, depth: 1, width: 5, size: 440, time: "0.820137917 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9111, root: 0, depth: 1, width: 9, size: 1123, time: "3.211274458 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9112, root: 3, depth: 1, width: 76, size: 227, time: "1.669099041 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9201, root: 0, depth: 1, width: 3, size: 590, time: "0.60201275 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9202, root: 0, depth: 1, width: 64, size: 344, time: "3.874534875 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9204, root: 0, depth: 1, width: 18, size: 606, time: "2.370288958 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9206, root: 2, depth: 1, width: 3, size: 734, time: "0.803713584 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9207, root: 1, depth: 1, width: 4, size: 211, time: "0.140035208 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9208, root: 1, depth: 1, width: 39, size: 493, time: "2.235585292 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9210, root: 1, depth: 1, width: 5, size: 480, time: "1.264956708 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9211, root: 0, depth: 1, width: 3, size: 571, time: "0.604418 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9212, root: 1, depth: 1, width: 3, size: 611, time: "0.951140417 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9301, root: 4, depth: 1, width: 32, size: 417, time: "3.198213625 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9302, root: 0, depth: 1, width: 3, size: 409, time: "0.602743542 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9303, root: 3, depth: 1, width: 13, size: 595, time: "2.01983625 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9306, root: 3, depth: 1, width: 2, size: 323, time: "0.274685958 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9307, root: 2, depth: 1, width: 13, size: 502, time: "1.87156575 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9308, root: 0, depth: 1, width: 11, size: 259, time: "0.491738958 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9309, root: 0, depth: 1, width: 14, size: 476, time: "1.728779375 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9310, root: 0, depth: 1, width: 2, size: 193, time: "0.116946458 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9311, root: 0, depth: 1, width: 2, size: 373, time: "0.325697584 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9312, root: 0, depth: 1, width: 2, size: 430, time: "0.397376375 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9401, root: 0, depth: 1, width: 15, size: 471, time: "4.254908417 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9402, root: 0, depth: 1, width: 22, size: 871, time: "13 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9403, root: 5, depth: 1, width: 16, size: 2537, time: "7.875878166 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9404, root: 0, depth: 1, width: 8, size: 977, time: "2.060310541 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9406, root: 3, depth: 1, width: 19, size: 745, time: "4.788695292 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9407, root: 2, depth: 1, width: 138, size: 751, time: "37 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9408, root: 6, depth: 1, width: 5, size: 1647, time: "11 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9409, root: 1, depth: 1, width: 6, size: 1062, time: "2.545592791 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9410, root: 4, depth: 1, width: 29, size: 857, time: "10 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9411, root: 1, depth: 1, width: 44, size: 1007, time: "15 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9412, root: 0, depth: 1, width: 10, size: 898, time: "4.620825333 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9412, root: 8, depth: 1, width: 13, size: 898, time: "5.174978791 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9501, root: 6, depth: 1, width: 51, size: 1005, time: "17 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9502, root: 4, depth: 1, width: 6, size: 1554, time: "3.378636125 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9503, root: 0, depth: 1, width: 5, size: 709, time: "2.590838375 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9506, root: 7, depth: 1, width: 22, size: 1042, time: "4.914261833 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9507, root: 4, depth: 1, width: 44, size: 964, time: "56 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9508, root: 1, depth: 1, width: 12, size: 580, time: "3.634362083 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9509, root: 2, depth: 1, width: 80, size: 833, time: "48 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9510, root: 0, depth: 1, width: 8, size: 583, time: "1.423939167 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9511, root: 5, depth: 1, width: 6, size: 1186, time: "5.107423625 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9601, root: 6, depth: 1, width: 10, size: 685, time: "4.7855825 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9602, root: 5, depth: 1, width: 115, size: 721, time: "36 seconds"))
+//        result.append(BranchAndBoundInstruction())
+//        result.append(BranchAndBoundInstruction())
+//        result.append(BranchAndBoundInstruction())
+//        result.append(BranchAndBoundInstruction())
+//        result.append(BranchAndBoundInstruction())
+//        result.append(BranchAndBoundInstruction())
+//        result.append(BranchAndBoundInstruction())
+//        result.append(BranchAndBoundInstruction())
         
-        //game: 8807, rootShape: 1, lookaheadDepth: 1, beamWidth: 62, time: 0.133436333 seconds
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 62, games: [8807], rootShape: 1, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        // game: 9101, rootShape: 2, lookaheadDepth: 2, beamWidth: 2, time: 0.69246425 seconds,
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 2, games: [9101], rootShape: 2, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        //game: 9210, rootShape: 0, lookaheadDepth: 1, beamWidth: 38, time: 0.225481542 seconds
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 38, games: [9210], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        // game: 9301, rootShape: 4, lookaheadDepth: 1, beamWidth: 32, time: 0.127628875 seconds
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 32, games: [9301], rootShape: 4, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        // game: 9303, rootShape: 0, lookaheadDepth: 1, beamWidth: 42, time: 0.246056209 seconds
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 42, games: [9303], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        //game: 9508, rootShape: 1, lookaheadDepth: 1, beamWidth: 12, time: 0.1506745 seconds
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 12, games: [9508], rootShape: 1, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        //game: 9605, rootShape: 0, lookaheadDepth: 2, beamWidth: 30, time: 1.970560458 seconds
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 30, games: [9605], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 40, games: [9305], rootShape: 5, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 80, games: [9509], rootShape: 2, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 56, games: [9203], rootShape: 2, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 76, games: [9112], rootShape: 3, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 13, games: [8911], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        
-        
-        
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 1, games: [8703, 8802, 8808, 9104, 9212, 9306, 9406], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 2, games: [8710, 9311], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 3, games: [9412], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 5, games: [8711], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 8, games: [9108], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 17, games: [9510], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 27, games: [9503], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 1, games: [8612, 8809, 9002, 9109, 9201, 9211, 9310, 9312], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 2, games: [8702, 8704, 8910, 9105, 9207], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 3, games: [
-            8911,9004, 9408], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 4, games: [8912], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 5, games: [9409], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 6, games: [9511], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 7, games: [9208], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 8, games: [9411], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 10, games: [9401], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 13, games: [9410], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 36, games: [8906], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 1, games: [8705, 8712, 8811, 9007, 9008, 9103, 9110, 9111, 9206, 9302, 9308, 9309, 9404, 9502], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 2, games: [8812, 8903, 8910, 9006, 9204, 9304, 9402], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 3, games: [9009, 9407], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 4, games: [8810, 9003], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 5, games: [9005, 9512], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 6, games: [8907], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 7, games: [9106], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 9, games: [9307], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 10, games: [9506, 9604], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 11, games: [8902, 9202, 9501], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 18, games: [9001, 9011], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 19, games: [9601], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 21, games: [8908], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 22, games: [9012], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 36, games: [9102], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 66, games: [9403], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 98, games: [8909], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 107, games: [9203], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 124, games: [9603], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 153, games: [9010, 9209], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 193, games: [8905], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 454, games: [9507], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 4, beamWidth: 8, games: [9509], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 4, beamWidth: 23, games: [9107], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 4, beamWidth: 35, games: [9112], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 4, beamWidth: 68, games: [8805], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 4, beamWidth: 82, games: [8904], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 4, beamWidth: 140, games: [8904], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        
-
-        // These are the stranger instructions that do not start with the highest scoring starting shape same as other winning word result
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 4, games: [8804], rootShape: 2, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 22, games: [9602], rootShape: 1, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 28, games: [8803], rootShape: 1, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 40, games: [9305], rootShape: 5, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 51, games: [9505], rootShape: 6, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 77, games: [8806], rootShape: 8, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 87, games: [9504], rootShape: 3, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
-        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 87, games: [9507], rootShape: 5, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 62, games: [8807], rootShape: 1, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        // game: 9101, rootShape: 2, lookaheadDepth: 2, beamWidth: 2, time: 0.69246425 seconds,
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 2, games: [9101], rootShape: 2, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        //game: 9210, rootShape: 0, lookaheadDepth: 1, beamWidth: 38, time: 0.225481542 seconds
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 38, games: [9210], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        // game: 9301, rootShape: 4, lookaheadDepth: 1, beamWidth: 32, time: 0.127628875 seconds
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 32, games: [9301], rootShape: 4, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        // game: 9303, rootShape: 0, lookaheadDepth: 1, beamWidth: 42, time: 0.246056209 seconds
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 42, games: [9303], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        //game: 9508, rootShape: 1, lookaheadDepth: 1, beamWidth: 12, time: 0.1506745 seconds
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 12, games: [9508], rootShape: 1, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        //game: 9605, rootShape: 0, lookaheadDepth: 2, beamWidth: 30, time: 1.970560458 seconds
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 30, games: [9605], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 40, games: [9305], rootShape: 5, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 80, games: [9509], rootShape: 2, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 56, games: [9203], rootShape: 2, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 76, games: [9112], rootShape: 3, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 13, games: [8911], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        
+//        
+//        
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 1, games: [8703, 8802, 8808, 9104, 9212, 9306, 9406], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 2, games: [8710, 9311], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 3, games: [9412], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 5, games: [8711], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 8, games: [9108], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 17, games: [9510], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 27, games: [9503], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 1, games: [8612, 8809, 9002, 9109, 9201, 9211, 9310, 9312], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 2, games: [8702, 8704, 8910, 9105, 9207], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 3, games: [
+//            8911,9004, 9408], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 4, games: [8912], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 5, games: [9409], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 6, games: [9511], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 7, games: [9208], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 8, games: [9411], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 10, games: [9401], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 13, games: [9410], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 36, games: [8906], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 1, games: [8705, 8712, 8811, 9007, 9008, 9103, 9110, 9111, 9206, 9302, 9308, 9309, 9404, 9502], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 2, games: [8812, 8903, 8910, 9006, 9204, 9304, 9402], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 3, games: [9009, 9407], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 4, games: [8810, 9003], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 5, games: [9005, 9512], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 6, games: [8907], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 7, games: [9106], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 9, games: [9307], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 10, games: [9506, 9604], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 11, games: [8902, 9202, 9501], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 18, games: [9001, 9011], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 19, games: [9601], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 21, games: [8908], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 22, games: [9012], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 36, games: [9102], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 66, games: [9403], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 98, games: [8909], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 107, games: [9203], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 124, games: [9603], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 153, games: [9010, 9209], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 193, games: [8905], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 454, games: [9507], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 4, beamWidth: 8, games: [9509], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 4, beamWidth: 23, games: [9107], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 4, beamWidth: 35, games: [9112], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 4, beamWidth: 68, games: [8805], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 4, beamWidth: 82, games: [8904], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 4, beamWidth: 140, games: [8904], rootShape: 0, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        
+//
+//        // These are the stranger instructions that do not start with the highest scoring starting shape same as other winning word result
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 4, games: [8804], rootShape: 2, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 22, games: [9602], rootShape: 1, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 28, games: [8803], rootShape: 1, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 40, games: [9305], rootShape: 5, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 51, games: [9505], rootShape: 6, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 77, games: [8806], rootShape: 8, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 87, games: [9504], rootShape: 3, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
+//        result.append(BranchAndBoundInstruction(lookaheadDepth: 3, beamWidth: 87, games: [9507], rootShape: 5, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
 
         return result
     }

@@ -49,6 +49,18 @@ final class OptimizeBranchAndBoundTests: XCTestCase {
         await OptimizeBranchAndBoundAllWords.executeFailuresNoGuidedScores()
     }
     
+    public func test_allWinningGames() async {
+        FeatureFlags.showGameText = false
+        FeatureFlags.showCyclesText = false
+        await OptimizeBranchAndBound.executeWinningGamesAllGames(
+            minLookaheadDepth: 1,
+            maxLookaheadDepth: 1,
+            minBeamWidth: 31,
+            maxBeamWidth: 150,
+            maxDepth: 30,
+            useGuidedScores: false)
+    }
+    
     public func test_load() async {
         let games = [9501, 9502, 9506]
 
