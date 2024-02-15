@@ -301,6 +301,8 @@ public struct BranchAndBound_GetInstructions {
         result.append(BranchAndBoundInstruction(
             game: 8809, root: 0, depth: 1, width: 3, size: 592, time: "00:00:01.12"))
         result.append(BranchAndBoundInstruction(
+            game: 8810, root: 4, depth: 2, width: 41, size: 404, time: "0.887075416 seconds"))
+        result.append(BranchAndBoundInstruction(
             game: 8811, root: 0, depth: 1, width: 5, size: 334, time: "00:00:00.79"))
         result.append(BranchAndBoundInstruction(
             game: 8812, root: 0, depth: 1, width: 21, size: 353, time: "00:00:01.16"))
@@ -308,6 +310,10 @@ public struct BranchAndBound_GetInstructions {
             game: 8902, root: 0, depth: 1, width: 16, size: 391, time: "00:00:00.76"))
         result.append(BranchAndBoundInstruction(
             game: 8903, root: 0, depth: 1, width: 18, size: 440, time: "00:00:02.15"))
+        result.append(BranchAndBoundInstruction(
+            game: 8904, root: 5, depth: 2, width: 71, size: 546, time: "4.469948584 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 8905, root: 3, depth: 2, width: 56, size: 509, time: "1.548173208 seconds"))
         result.append(BranchAndBoundInstruction(
             game: 8906, root: 1, depth: 1, width: 32, size: 507, time: "8.294293125 seconds"))
         result.append(BranchAndBoundInstruction(
@@ -322,6 +328,8 @@ public struct BranchAndBound_GetInstructions {
             game: 8911, root: 0, depth: 1, width: 13, size: 564, time: "00:00:01.93"))
         result.append(BranchAndBoundInstruction(
             game: 8912, root: 0, depth: 1, width: 20, size: 300, time: "00:00:00.98"))
+        result.append(BranchAndBoundInstruction(
+            game: 9001, root: 0, depth: 2, width: 44, size: 370, time: "0.892026375 seconds"))
         result.append(BranchAndBoundInstruction(
             game: 9002, root: 0, depth: 1, width: 15, size: 530, time: "00:00:01.31"))
         result.append(BranchAndBoundInstruction(
@@ -345,6 +353,10 @@ public struct BranchAndBound_GetInstructions {
         result.append(BranchAndBoundInstruction(
             game: 9012, root: 1, depth: 1, width: 26, size: 573, time: "00:00:02.54"))
         result.append(BranchAndBoundInstruction(
+            game: 9101, root: 1, depth: 2, width: 90, size: 847, time: "2.802233125 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9102, root: 0, depth: 2, width: 145, size: 529, time: "2.039937542 seconds"))
+        result.append(BranchAndBoundInstruction(
             game: 9103, root: 0, depth: 1, width: 3, size: 423, time: "00:00:01.12"))
         result.append(BranchAndBoundInstruction(
             game: 9104, root: 1, depth: 1, width: 2, size: 611, time: "00:00:00.70"))
@@ -352,6 +364,8 @@ public struct BranchAndBound_GetInstructions {
             game: 9105, root: 0, depth: 1, width: 11, size: 397, time: "0.656411 seconds"))
         result.append(BranchAndBoundInstruction(
             game: 9106, root: 2, depth: 1, width: 2, size: 705, time: "0.567771667 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9107, root: 3, depth: 2, width: 118, size: 830, time: "12 seconds"))
         result.append(BranchAndBoundInstruction(
             game: 9108, root: 0, depth: 1, width: 5, size: 396, time: "0.808671917 seconds"))
         result.append(BranchAndBoundInstruction(
@@ -367,6 +381,8 @@ public struct BranchAndBound_GetInstructions {
         result.append(BranchAndBoundInstruction(
             game: 9202, root: 0, depth: 1, width: 64, size: 344, time: "3.874534875 seconds"))
         result.append(BranchAndBoundInstruction(
+            game: 9203, root: 3, depth: 2, width: 29, size: 442, time: "2.857046625 seconds"))
+        result.append(BranchAndBoundInstruction(
             game: 9204, root: 0, depth: 1, width: 18, size: 606, time: "2.370288958 seconds"))
         result.append(BranchAndBoundInstruction(
             game: 9206, root: 2, depth: 1, width: 3, size: 734, time: "0.803713584 seconds"))
@@ -374,6 +390,8 @@ public struct BranchAndBound_GetInstructions {
             game: 9207, root: 1, depth: 1, width: 4, size: 211, time: "0.140035208 seconds"))
         result.append(BranchAndBoundInstruction(
             game: 9208, root: 1, depth: 1, width: 39, size: 493, time: "2.235585292 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9209, root: 2, depth: 2, width: 42, size: 721, time: "2.233835625 seconds"))
         result.append(BranchAndBoundInstruction(
             game: 9210, root: 1, depth: 1, width: 5, size: 480, time: "1.264956708 seconds"))
         result.append(BranchAndBoundInstruction(
@@ -386,6 +404,8 @@ public struct BranchAndBound_GetInstructions {
             game: 9302, root: 0, depth: 1, width: 3, size: 409, time: "0.602743542 seconds"))
         result.append(BranchAndBoundInstruction(
             game: 9303, root: 3, depth: 1, width: 13, size: 595, time: "2.01983625 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9304, root: 0, depth: 2, width: 131, size: 779, time: "4.356079542 seconds"))
         result.append(BranchAndBoundInstruction(
             game: 9306, root: 3, depth: 1, width: 2, size: 323, time: "0.274685958 seconds"))
         result.append(BranchAndBoundInstruction(
@@ -431,6 +451,10 @@ public struct BranchAndBound_GetInstructions {
         result.append(BranchAndBoundInstruction(
             game: 9503, root: 0, depth: 1, width: 5, size: 709, time: "2.590838375 seconds"))
         result.append(BranchAndBoundInstruction(
+            game: 9504, root: 4, depth: 2, width: 20, size: 836, time: "4.058486416 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9505, root: 6, depth: 2, width: 19, size: 1554, time: "4.417064041 seconds"))
+        result.append(BranchAndBoundInstruction(
             game: 9506, root: 7, depth: 1, width: 22, size: 1042, time: "4.914261833 seconds"))
         result.append(BranchAndBoundInstruction(
             game: 9507, root: 4, depth: 1, width: 44, size: 964, time: "56 seconds"))
@@ -443,17 +467,18 @@ public struct BranchAndBound_GetInstructions {
         result.append(BranchAndBoundInstruction(
             game: 9511, root: 5, depth: 1, width: 6, size: 1186, time: "5.107423625 seconds"))
         result.append(BranchAndBoundInstruction(
+            game: 9512, root: 1, depth: 2, width: 19, size: 1214, time: "4.466665916 seconds"))
+        result.append(BranchAndBoundInstruction(
             game: 9601, root: 6, depth: 1, width: 10, size: 685, time: "4.7855825 seconds"))
         result.append(BranchAndBoundInstruction(
             game: 9602, root: 5, depth: 1, width: 115, size: 721, time: "36 seconds"))
-//        result.append(BranchAndBoundInstruction())
-//        result.append(BranchAndBoundInstruction())
-//        result.append(BranchAndBoundInstruction())
-//        result.append(BranchAndBoundInstruction())
-//        result.append(BranchAndBoundInstruction())
-//        result.append(BranchAndBoundInstruction())
-//        result.append(BranchAndBoundInstruction())
-//        result.append(BranchAndBoundInstruction())
+        result.append(BranchAndBoundInstruction(
+            game: 9603, root: 3, depth: 2, width: 51, size: 1523, time: "12 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9604, root: 6, depth: 1, width: 54, size: 927, time: "0.29311975 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 9605, root: 3, depth: 1, width: 143, size: 1219, time: "0.782654916 seconds"))
+
         
 //        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 62, games: [8807], rootShape: 1, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
 //        // game: 9101, rootShape: 2, lookaheadDepth: 2, beamWidth: 2, time: 0.69246425 seconds,
