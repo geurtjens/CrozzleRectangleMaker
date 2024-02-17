@@ -278,208 +278,218 @@ public struct BranchAndBound_GetInstructions {
         var result: [BranchAndBoundInstruction] = []
         
         result.append(BranchAndBoundInstruction(
-            game: 8612, root: 0, depth: 1, width: 6, size: 380, time: "00:00:00.53"))
+            game: 8612, root: 0, depth: 1, width: 6, size: 380, time: "0.022560042 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8704, root: 3, depth: 1, width: 11, size: 560, time: "00:00:05.42"))
+            game: 8704, root: 3, depth: 1, width: 11, size: 560, time: "0.12260275 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8705, root: 1, depth: 1, width: 9, size: 430, time: "00:00:01.42"))
+            game: 8705, root: 1, depth: 1, width: 9, size: 430, time: "0.038857 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8710, root: 0, depth: 1, width: 2, size: 269, time: "00:00:00.28"))
+            game: 8710, root: 0, depth: 1, width: 2, size: 269, time: "0.005559667 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8711, root: 0, depth: 1, width: 5, size: 646, time: "00:00:01.62"))
+            game: 8711, root: 0, depth: 1, width: 5, size: 646, time: "0.038124625 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8712, root: 0, depth: 1, width: 3, size: 575, time: "00:00:01.49"))
+            game: 8712, root: 0, depth: 1, width: 3, size: 575, time: "0.037246375 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8802, root: 2, depth: 1, width: 2, size: 289, time: "00:00:00.45"))
+            game: 8802, root: 2, depth: 1, width: 2, size: 289, time: "0.013008583 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8804, root: 2, depth: 1, width: 3, size: 794, time: "00:00:01.44"))
+            game: 8803, root: 5, depth: 1, width: 984, size: 574, time: "1.734951458 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8805, root: 2, depth: 1, width: 148, size: 350, time: "15 seconds"))
-        result.append(BranchAndBoundInstruction(game: 8807, root: 1, depth: 1, width: 62, size: 491, time: "3.698001792 seconds"))
+            game: 8804, root: 2, depth: 1, width: 3, size: 794, time: "0.043701917 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8808, root: 3, depth: 1, width: 4, size: 363, time: "00:00:00.28"))
+            game: 8805, root: 2, depth: 1, width: 148, size: 350, time: "0.481831167 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8809, root: 0, depth: 1, width: 3, size: 592, time: "00:00:01.12"))
+            game: 8806, root: 3, depth: 1, width: 1929, size: 973, time: "10 seconds"))
+            //game: 8806, root: 0, depth: 1, width: 4173, size: 973, time: "20 seconds"))
+            //game: 8806, root: 2, depth: 3, width: 237, size: 973, time: "1 minutes 24 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 8807, root: 1, depth: 1, width: 62, size: 491, time: "0.110292875 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 8808, root: 3, depth: 1, width: 4, size: 363, time: "0.011489917 seconds"))
+        result.append(BranchAndBoundInstruction(
+            game: 8809, root: 0, depth: 1, width: 3, size: 592, time: "0.029253 seconds"))
         result.append(BranchAndBoundInstruction(
             game: 8810, root: 4, depth: 2, width: 41, size: 404, time: "0.887075416 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8811, root: 0, depth: 1, width: 5, size: 334, time: "00:00:00.79"))
+            game: 8811, root: 0, depth: 1, width: 5, size: 334, time: "0.018934667 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8812, root: 0, depth: 1, width: 21, size: 353, time: "00:00:01.16"))
+            game: 8812, root: 0, depth: 1, width: 21, size: 353, time: "0.028274459 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8902, root: 0, depth: 1, width: 16, size: 391, time: "00:00:00.76"))
+            game: 8902, root: 0, depth: 1, width: 16, size: 391, time: "0.02214775 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8903, root: 0, depth: 1, width: 18, size: 440, time: "00:00:02.15"))
+            game: 8903, root: 0, depth: 1, width: 18, size: 440, time: "0.063684708 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8904, root: 5, depth: 2, width: 71, size: 546, time: "4.469948584 seconds"))
+            game: 8904, root: 5, depth: 2, width: 71, size: 546, time: "4.464412209"))
         result.append(BranchAndBoundInstruction(
-            game: 8905, root: 3, depth: 2, width: 56, size: 509, time: "1.548173208 seconds"))
+            game: 8905, root: 3, depth: 2, width: 56, size: 509, time: "1.60301775 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8906, root: 1, depth: 1, width: 32, size: 507, time: "8.294293125 seconds"))
+            game: 8906, root: 1, depth: 1, width: 32, size: 507, time: "0.244678458 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8907, root: 4, depth: 1, width: 11, size: 805, time: "00:00:03.36"))
+            game: 8907, root: 4, depth: 1, width: 11, size: 805, time: "0.096315583 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8908, root: 4, depth: 1, width: 21, size: 412, time: "00:00:06.27"))
+            game: 8908, root: 4, depth: 1, width: 21, size: 412, time: "0.193136958 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8909, root: 4, depth: 1, width: 13, size: 449, time: "00:00:00.62"))
+            game: 8909, root: 4, depth: 1, width: 13, size: 449, time: "0.015801833 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8910, root: 0, depth: 1, width: 7, size: 296, time: "00:00:00.25"))
+            game: 8910, root: 0, depth: 1, width: 7, size: 296, time: "0.004192333 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8911, root: 0, depth: 1, width: 13, size: 564, time: "00:00:01.93"))
+            game: 8911, root: 0, depth: 1, width: 13, size: 564, time: "0.052504459 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8912, root: 0, depth: 1, width: 20, size: 300, time: "00:00:00.98"))
+            game: 8912, root: 0, depth: 1, width: 20, size: 300, time: "0.028271917 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9001, root: 0, depth: 2, width: 44, size: 370, time: "0.892026375 seconds"))
+            game: 9001, root: 0, depth: 2, width: 44, size: 370, time: "0.9243595 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9002, root: 0, depth: 1, width: 15, size: 530, time: "00:00:01.31"))
+            game: 9002, root: 0, depth: 1, width: 15, size: 530, time: "0.040843584 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9003, root: 4, depth: 1, width: 59, size: 483, time: "5.70659375 seconds"))
+            game: 9003, root: 4, depth: 1, width: 59, size: 483, time: "0.168063167 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9004, root: 0, depth: 1, width: 11, size: 443, time: "00:00:01.79"))
+            game: 9004, root: 0, depth: 1, width: 11, size: 443, time: "0.065071417 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9005, root: 0, depth: 1, width: 7, size: 621, time: "00:00:01.35"))
+            game: 9005, root: 0, depth: 1, width: 7, size: 621, time: "0.036946375 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9006, root: 0, depth: 1, width: 18, size: 748, time: "00:00:05.10"))
+            game: 9006, root: 0, depth: 1, width: 18, size: 748, time: "0.148016167 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9007, root: 0, depth: 1, width: 9, size: 172, time: "00:00:00.21"))
+            game: 9007, root: 0, depth: 1, width: 9, size: 172, time: "0.004497916 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9008, root: 0, depth: 1, width: 4, size: 561, time: "00:00:00.64"))
+            game: 9008, root: 0, depth: 1, width: 4, size: 561, time: "0.026045084 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9009, root: 0, depth: 1, width: 10, size: 838, time: "00:00:04.27"))
+            game: 9009, root: 0, depth: 1, width: 10, size: 838, time: "0.115713416 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9010, root: 1, depth: 1, width: 16, size: 541, time: "00:00:01.87"))
+            game: 9010, root: 1, depth: 1, width: 16, size: 541, time: "0.049530208 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9011, root: 5, depth: 1, width: 13, size: 645, time: "00:00:01.67"))
+            game: 9011, root: 5, depth: 1, width: 13, size: 645, time: "0.047603541 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9012, root: 1, depth: 1, width: 26, size: 573, time: "00:00:02.54"))
+            game: 9012, root: 1, depth: 1, width: 26, size: 573, time: "0.071231708 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9101, root: 1, depth: 2, width: 90, size: 847, time: "2.802233125 seconds"))
+            game: 9101, root: 1, depth: 2, width: 90, size: 847, time: "2.885720292 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9102, root: 0, depth: 2, width: 145, size: 529, time: "2.039937542 seconds"))
+            game: 9102, root: 0, depth: 2, width: 145, size: 529, time: "2.029116875 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9103, root: 0, depth: 1, width: 3, size: 423, time: "00:00:01.12"))
+            game: 9103, root: 0, depth: 1, width: 3, size: 423, time: "0.029701458 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9104, root: 1, depth: 1, width: 2, size: 611, time: "00:00:00.70"))
+            game: 9104, root: 1, depth: 1, width: 2, size: 611, time: "0.01812625 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9105, root: 0, depth: 1, width: 11, size: 397, time: "0.656411 seconds"))
+            game: 9105, root: 0, depth: 1, width: 11, size: 397, time: "0.015341625 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9106, root: 2, depth: 1, width: 2, size: 705, time: "0.567771667 seconds"))
+            game: 9106, root: 2, depth: 1, width: 2, size: 705, time: "0.0137495 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9107, root: 3, depth: 2, width: 118, size: 830, time: "12 seconds"))
+            game: 9107, root: 6, depth: 1, width: 665, size: 830, time: "3.677144042 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9108, root: 0, depth: 1, width: 5, size: 396, time: "0.808671917 seconds"))
+            game: 9108, root: 0, depth: 1, width: 5, size: 396, time: "0.023386541 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9109, root: 0, depth: 1, width: 3, size: 342, time: "0.367694375 seconds"))
+            game: 9109, root: 0, depth: 1, width: 3, size: 342, time: "0.006872666 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9110, root: 0, depth: 1, width: 5, size: 440, time: "0.820137917 seconds"))
+            game: 9110, root: 0, depth: 1, width: 5, size: 440, time: "0.019498208 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9111, root: 0, depth: 1, width: 9, size: 1123, time: "3.211274458 seconds"))
+            game: 9111, root: 0, depth: 1, width: 9, size: 1123, time: "0.071672292 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9112, root: 3, depth: 1, width: 76, size: 227, time: "1.669099041 seconds"))
+            game: 9112, root: 3, depth: 1, width: 76, size: 227, time: "0.053546625 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9201, root: 0, depth: 1, width: 3, size: 590, time: "0.60201275 seconds"))
+            game: 9201, root: 0, depth: 1, width: 3, size: 590, time: "0.013429542 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9202, root: 0, depth: 1, width: 64, size: 344, time: "3.874534875 seconds"))
+            game: 9202, root: 0, depth: 1, width: 64, size: 344, time: "0.101803416 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9203, root: 3, depth: 2, width: 29, size: 442, time: "2.857046625 seconds"))
+            game: 9203, root: 3, depth: 2, width: 29, size: 442, time: "2.846914041 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9204, root: 0, depth: 1, width: 18, size: 606, time: "2.370288958 seconds"))
+            game: 9204, root: 0, depth: 1, width: 18, size: 606, time: "0.08828675 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9206, root: 2, depth: 1, width: 3, size: 734, time: "0.803713584 seconds"))
+            game: 9206, root: 2, depth: 1, width: 3, size: 734, time: "0.020905708 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9207, root: 1, depth: 1, width: 4, size: 211, time: "0.140035208 seconds"))
+            game: 9207, root: 1, depth: 1, width: 4, size: 211, time: "0.003326375 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9208, root: 1, depth: 1, width: 39, size: 493, time: "2.235585292 seconds"))
+            game: 9208, root: 1, depth: 1, width: 39, size: 493, time: "0.055554125 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9209, root: 2, depth: 2, width: 42, size: 721, time: "2.233835625 seconds"))
+            game: 9209, root: 2, depth: 2, width: 42, size: 721, time: "2.224871875 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9210, root: 1, depth: 1, width: 5, size: 480, time: "1.264956708 seconds"))
+            game: 9210, root: 1, depth: 1, width: 5, size: 480, time: "0.036032208 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9211, root: 0, depth: 1, width: 3, size: 571, time: "0.604418 seconds"))
+            game: 9211, root: 0, depth: 1, width: 3, size: 571, time: "0.015520292 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9212, root: 1, depth: 1, width: 3, size: 611, time: "0.951140417 seconds"))
+            game: 9212, root: 1, depth: 1, width: 3, size: 611, time: "0.035063708 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9301, root: 4, depth: 1, width: 32, size: 417, time: "3.198213625 seconds"))
+            game: 9301, root: 4, depth: 1, width: 32, size: 417, time: "0.093058625 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9302, root: 0, depth: 1, width: 3, size: 409, time: "0.602743542 seconds"))
+            game: 9302, root: 0, depth: 1, width: 3, size: 409, time: "0.016908709 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9303, root: 3, depth: 1, width: 13, size: 595, time: "2.01983625 seconds"))
+            game: 9303, root: 3, depth: 1, width: 13, size: 595, time: "0.05672475 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9304, root: 0, depth: 2, width: 131, size: 779, time: "4.356079542 seconds"))
+            game: 9304, root: 0, depth: 2, width: 131, size: 779, time: "4.39994325 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9306, root: 3, depth: 1, width: 2, size: 323, time: "0.274685958 seconds"))
+            //game: 9305, root: 5, depth: 3, width: 221, size: 660, time: "59 seconds"))
+            game: 9305, root: 5, depth: 2, width: 214, size: 660, time: "17 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9307, root: 2, depth: 1, width: 13, size: 502, time: "1.87156575 seconds"))
+            game: 9306, root: 3, depth: 1, width: 2, size: 323, time: "0.005314667 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9308, root: 0, depth: 1, width: 11, size: 259, time: "0.491738958 seconds"))
+            game: 9307, root: 2, depth: 1, width: 13, size: 502, time: "0.069256708 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9309, root: 0, depth: 1, width: 14, size: 476, time: "1.728779375 seconds"))
+            game: 9308, root: 0, depth: 1, width: 11, size: 259, time: "0.016403625 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9310, root: 0, depth: 1, width: 2, size: 193, time: "0.116946458 seconds"))
+            game: 9309, root: 0, depth: 1, width: 14, size: 476, time: "0.041151792 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9311, root: 0, depth: 1, width: 2, size: 373, time: "0.325697584 seconds"))
+            game: 9310, root: 0, depth: 1, width: 2, size: 193, time: "0.001198833 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9312, root: 0, depth: 1, width: 2, size: 430, time: "0.397376375 seconds"))
+            game: 9311, root: 0, depth: 1, width: 2, size: 373, time: "0.006902625 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9401, root: 0, depth: 1, width: 15, size: 471, time: "4.254908417 seconds"))
+            game: 9312, root: 0, depth: 1, width: 2, size: 430, time: "0.010346417 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9402, root: 0, depth: 1, width: 22, size: 871, time: "13 seconds"))
+            game: 9401, root: 0, depth: 1, width: 15, size: 471, time: "0.11513975 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9403, root: 5, depth: 1, width: 16, size: 2537, time: "7.875878166 seconds"))
+            game: 9402, root: 0, depth: 1, width: 22, size: 871, time: "0.352913875 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9404, root: 0, depth: 1, width: 8, size: 977, time: "2.060310541 seconds"))
+            game: 9403, root: 5, depth: 1, width: 16, size: 2537, time: "0.140990917 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9406, root: 3, depth: 1, width: 19, size: 745, time: "4.788695292 seconds"))
+            game: 9404, root: 0, depth: 1, width: 8, size: 977, time: "0.07449775 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9407, root: 2, depth: 1, width: 138, size: 751, time: "37 seconds"))
+            game: 9406, root: 3, depth: 1, width: 19, size: 745, time: "0.12596325 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9408, root: 6, depth: 1, width: 5, size: 1647, time: "11 seconds"))
+            game: 9407, root: 2, depth: 1, width: 138, size: 751, time: "1.0098385 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9409, root: 1, depth: 1, width: 6, size: 1062, time: "2.545592791 seconds"))
+            game: 9408, root: 6, depth: 1, width: 5, size: 1647, time: "0.265014917 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9410, root: 4, depth: 1, width: 29, size: 857, time: "10 seconds"))
+            game: 9409, root: 1, depth: 1, width: 6, size: 1062, time: "0.094503667 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9411, root: 1, depth: 1, width: 44, size: 1007, time: "15 seconds"))
+            game: 9410, root: 4, depth: 1, width: 29, size: 857, time: "0.286432584 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9412, root: 0, depth: 1, width: 10, size: 898, time: "4.620825333 seconds"))
+            game: 9411, root: 1, depth: 1, width: 44, size: 1007, time: "0.364863709 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9412, root: 8, depth: 1, width: 13, size: 898, time: "5.174978791 seconds"))
+            game: 9412, root: 0, depth: 1, width: 10, size: 898, time: "0.12021775 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9501, root: 6, depth: 1, width: 51, size: 1005, time: "17 seconds"))
+            game: 9501, root: 6, depth: 1, width: 51, size: 1005, time: "0.422995417 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9502, root: 4, depth: 1, width: 6, size: 1554, time: "3.378636125 seconds"))
+            game: 9502, root: 4, depth: 1, width: 6, size: 1554, time: "0.177569291 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9503, root: 0, depth: 1, width: 5, size: 709, time: "2.590838375 seconds"))
+            game: 9503, root: 0, depth: 1, width: 5, size: 709, time: "0.069847625 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9504, root: 4, depth: 2, width: 20, size: 836, time: "4.058486416 seconds"))
+            game: 9504, root: 4, depth: 2, width: 20, size: 836, time: "4.007026917 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9505, root: 6, depth: 2, width: 19, size: 1554, time: "4.417064041 seconds"))
+            game: 9505, root: 6, depth: 2, width: 19, size: 1554, time: "6.001396792 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9506, root: 7, depth: 1, width: 22, size: 1042, time: "4.914261833 seconds"))
+            game: 9506, root: 7, depth: 1, width: 22, size: 1042, time: "0.136309875 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9507, root: 4, depth: 1, width: 44, size: 964, time: "56 seconds"))
+            game: 9507, root: 4, depth: 1, width: 44, size: 964, time: "1.537195875 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9508, root: 1, depth: 1, width: 12, size: 580, time: "3.634362083 seconds"))
+            game: 9508, root: 1, depth: 1, width: 12, size: 580, time: "0.106046292 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9509, root: 2, depth: 1, width: 80, size: 833, time: "48 seconds"))
+            game: 9509, root: 2, depth: 1, width: 80, size: 833, time: "1.347020875 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9510, root: 0, depth: 1, width: 8, size: 583, time: "1.423939167 seconds"))
+            game: 9510, root: 0, depth: 1, width: 8, size: 583, time: "0.037865916 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9511, root: 5, depth: 1, width: 6, size: 1186, time: "5.107423625 seconds"))
+            game: 9511, root: 5, depth: 1, width: 6, size: 1186, time: "0.149049792 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9512, root: 1, depth: 2, width: 19, size: 1214, time: "4.466665916 seconds"))
+            game: 9512, root: 1, depth: 2, width: 19, size: 1214, time: "4.644721125 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9601, root: 6, depth: 1, width: 10, size: 685, time: "4.7855825 seconds"))
+            game: 9601, root: 6, depth: 1, width: 10, size: 685, time: "0.140657125 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9602, root: 5, depth: 1, width: 115, size: 721, time: "36 seconds"))
+            game: 9602, root: 5, depth: 1, width: 115, size: 721, time: "1.000661291 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9603, root: 3, depth: 2, width: 51, size: 1523, time: "12 seconds"))
+            game: 9603, root: 3, depth: 2, width: 51, size: 1523, time: "14 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9604, root: 6, depth: 1, width: 54, size: 927, time: "0.29311975 seconds"))
+            game: 9604, root: 6, depth: 1, width: 54, size: 927, time: "0.254214917 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 9605, root: 3, depth: 1, width: 143, size: 1219, time: "0.782654916 seconds"))
+            game: 9605, root: 3, depth: 1, width: 143, size: 1219, time: "0.731943959 seconds"))
 
+        //Overall Duration: 1 minutes 21 seconds
         
+        // Missing games [8803]
 //        result.append(BranchAndBoundInstruction(lookaheadDepth: 1, beamWidth: 62, games: [8807], rootShape: 1, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
 //        // game: 9101, rootShape: 2, lookaheadDepth: 2, beamWidth: 2, time: 0.69246425 seconds,
 //        result.append(BranchAndBoundInstruction(lookaheadDepth: 2, beamWidth: 2, games: [9101], rootShape: 2, rootWidth: 1, useGuidedScores: false, maxDepth: 30))
