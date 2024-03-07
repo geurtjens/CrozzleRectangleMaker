@@ -15,9 +15,9 @@ public struct BranchAndBound_GetInstructions {
 
 
         result.append(BranchAndBoundInstruction(
-            game: 8612, root: 0, depth: 2, width: 9, size: 11_371, time: "00:00:12"))
+            game: 8612, root: 0, depth: 1, width: 459, size: 11_371, time: "9.274728542 seconds"))
         result.append(BranchAndBoundInstruction(
-            game: 8704, root: 0, depth: 2, width: 24, size: 4_871, time: "00:00:50"))
+            game: 8704, root: 0, depth: 1, width: 271, size: 4871, time: "9.795405542 seconds"))
         result.append(BranchAndBoundInstruction(
             game: 8710, root: 0, depth: 1, width: 53, size: 21_592, time: "00:00:04.49"))
         result.append(BranchAndBoundInstruction(
@@ -25,7 +25,7 @@ public struct BranchAndBound_GetInstructions {
         result.append(BranchAndBoundInstruction(
             game: 8712, root: 4, depth: 1, width: 27, size: 23_752, time: "00:00:07.01"))
         result.append(BranchAndBoundInstruction(
-            game: 8802, root: 0, depth: 3, width: 3, size: 3_445, time: "00:00:04.74"))
+            game: 8802, root: 0, depth: 1, width: 796, size: 3_445, time: "8.567226416 seconds"))
         // 8803
         result.append(BranchAndBoundInstruction(
             game: 8804, root: 9, depth: 2, width: 47, size: 16_617, time: "00:19:33"))
@@ -36,11 +36,13 @@ public struct BranchAndBound_GetInstructions {
             game: 8807, root: 1, depth: 2, width: 64, size: 8_055, time: "00:03:30"))
         result.append(BranchAndBoundInstruction(
             game: 8808, root: 3, depth: 1, width: 6, size: 18_693, time: "00:00:01.47"))
+        // game: 8809, root: 0, depth: 2, width: 7, size: 37_461, time: "00:00:48"
         result.append(BranchAndBoundInstruction(
-            game: 8809, root: 0, depth: 2, width: 7, size: 37_461, time: "00:00:48"))
+            game: 8809, root: 0, depth: 1, width: 710, size: 37461, time: "54 seconds"))
         // 8810
+        //game: 8811, root: 0, depth: 2, width: 9, size: 51_793, time: "00:03:20"
         result.append(BranchAndBoundInstruction(
-            game: 8811, root: 0, depth: 2, width: 9, size: 51_793, time: "00:03:20"))
+            game: 8811, root: 0, depth: 1, width: 596, size: 51793, time: "2 minutes 19 seconds"))
         // 8812
         result.append(BranchAndBoundInstruction(
             game: 8902, root: 1, depth: 3, width: 75, size: 8_330, time: "00:01:46"))
