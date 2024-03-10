@@ -336,7 +336,7 @@ public class MergeCalculatorV2 {
         var result: [ShapeModel] = []
         
         for sourceShapeId in stride(from: zeroToNine, to: sourceMax, by: 10) {
-            let shapes = await ExecuteDifferentShapesOneAsync(
+            let shapes = ExecuteDifferentShapesOne(
                 sourceShape: sourceShapes[sourceShapeId],
                 sourceShapeId: sourceShapeId,
                 searchShapes: searchShapes,
