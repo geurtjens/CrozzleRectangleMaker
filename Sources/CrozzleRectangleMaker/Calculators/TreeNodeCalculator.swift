@@ -21,6 +21,18 @@ public class TreeNodeCalculator {
     }
     
     
+    public static func applyBeamWidth(
+        treeNodes: [TreeNodeModel],
+        beamWidth: Int) -> [TreeNodeModel]
+    {
+        var result: [TreeNodeModel] = []
+        for treeNodeId in 0..<beamWidth {
+            if treeNodeId < treeNodes.count {
+                result.append(treeNodes[treeNodeId])
+            }
+        }
+        return result
+    }
     
     public static func getBestShape(
         treeNodes: [TreeNodeModel]) -> ShapeModel?

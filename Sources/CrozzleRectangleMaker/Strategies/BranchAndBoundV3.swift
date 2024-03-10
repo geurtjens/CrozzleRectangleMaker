@@ -377,7 +377,7 @@ public class BranchAndBoundV3 {
         }
         
         // We can sort at the very end after this routine is completed
-        //TreeNodeCalculator.sortByBestDescendant(treeNodes: &result)
+        TreeNodeCalculator.sortByBestDescendant(treeNodes: &result)
         
         return result
     }
@@ -467,6 +467,14 @@ public class BranchAndBoundV3 {
         
         // The beam width tells us we only want to keep the first Nth elements of the array
         let result = Array(treeNodes.prefix(beamWidth))
+        
+        let result2 = TreeNodeCalculator.applyBeamWidth(
+                    treeNodes: treeNodes,
+                    beamWidth: beamWidth)
+        if result.count != result2.count {
+            print("Found an error with this new improvement")
+        }
+        
         
         return (result, shapesCreatedCount)
     }
