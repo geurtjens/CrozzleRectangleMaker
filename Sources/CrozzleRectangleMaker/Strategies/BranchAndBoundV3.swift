@@ -20,6 +20,9 @@ public class BranchAndBoundV3 {
         winningScore: Int,
         useGuidedScores: Bool) async -> ShapeModel?
     {
+        
+        let startTime = DateTimeCalculator.now()
+        
         /// rootTreeNodes will have the children already populated
         let (_, wordsInt, searchShapes, wordIndex, rootTreeNodes, scoresMin, widthMax, heightMax) = await GetStartingData.Execute(
             gameId: gameId,
@@ -53,10 +56,13 @@ public class BranchAndBoundV3 {
         var bestShape = bestShapes[0]
         
         if bestShapes[0].score == winningScore {
+            // No need to write anything we have winning shape already
             return bestShapes[0]
         }
      
         // If we havent got best score then lets keep going but now dont use the leaf heuristic
+        
+        var bulkShapes: [ShapeModel] = []
         
         for shape in bestShapes {
             
@@ -70,18 +76,57 @@ public class BranchAndBoundV3 {
                 widthMax: widthMax,
                 heightMax: heightMax)
             
+            bulkShapes += shapes
+            
             for shape in shapes {
-                //print(shape.ToJson(words: words))
-                
                 if shape.score > bestShape.score {
                     bestShape = shape
                 }
             }
+            
+            if bestShape.score >= winningScore {
+                print("HUMAN SCORE \(gameId) Calculated at end")
+                print("game: \(gameId), root: \(rootShape), depth: \(lookaheadDepth), width: \(beamWidth), size: \(searchShapes.count), time: \"\(DateTimeCalculator.duration(start: startTime))\"")
+                return bestShape
+            }
         }
-        if bestShape.score >= winningScore {
-            print("HUMAN SCORE \(gameId) Calculated at end")
-            print("game: \(gameId), root: \(rootShape), depth: \(lookaheadDepth), width: \(beamWidth), size: \(searchShapes.count), time: \"\"")
+        
+        (bulkShapes,_) = RemoveDuplicatesCalculator.execute(shapes: bulkShapes)
+        
+        var nextLevelShapes: [ShapeModel] = []
+        while bulkShapes.count > 0 {
+            nextLevelShapes = []
+            for bulkShape in bulkShapes {
+                let childShapes = await SiblingMergeCalculator.getAllMatchingShapes(
+                    wordIndex: wordIndex,
+                    sourceShape: bulkShape,
+                    searchShapes: searchShapes,
+                    words: words,
+                    wordsInt: wordsInt,
+                    scoresMin: scoresMin,
+                    widthMax: widthMax,
+                    heightMax: heightMax)
+                nextLevelShapes += childShapes
+                
+                for childShape in childShapes {
+                    if childShape.score > bestShape.score {
+                        bestShape = childShape
+                    }
+                }
+            }
+            if bestShape.score >= winningScore {
+                print("HUMAN SCORE \(gameId) Calculated at bulk end")
+                print("game: \(gameId), root: \(rootShape), depth: \(lookaheadDepth), width: \(beamWidth), size: \(searchShapes.count), time: \"\(DateTimeCalculator.duration(start: startTime))\"")
+                return bestShape
+            }
+            (bulkShapes,_) = RemoveDuplicatesCalculator.execute(shapes: nextLevelShapes)
         }
+        // This is actually failure condition
+        let bestScoreToday = bestShape.score
+       
+        
+        print("failed: \(gameId), expected: \(winningScore), actualScore: \(bestScoreToday), duration: \(DateTimeCalculator.duration(start: startTime))")
+        print("game: \(gameId), root: \(rootShape), depth: \(lookaheadDepth), width: \(beamWidth), size: \(searchShapes.count), time: \"\(DateTimeCalculator.duration(start: startTime))\"")
         return bestShape
     }
     
@@ -200,13 +245,7 @@ public class BranchAndBoundV3 {
                     return bestShapes
                     
                 } else {
-                    var bestScoreToday = 0
-                    if bestScores.count > 0 {
-                        bestScoreToday = Int(bestScores[0])
-                    }
-                    
-                    print("failed: \(gameId), expected: \(winningScore), actualScore: \(bestScoreToday), duration: \(DateTimeCalculator.duration(start: startTime))")
-                    print("game: \(gameId), root: \(rootShape), depth: \(lookaheadDepth), width: \(beamWidth), size: \(searchShapes.count), time: \"\(DateTimeCalculator.duration(start: startTime))\"")
+                    // This is where we fail to get best score so we will try again in above routine
                     return bestShapes
                 }
             }
@@ -445,7 +484,7 @@ public class BranchAndBoundV3 {
             
             let treeNode = treeNodes[treeNodeId]
             
-            let (bestShape, shapesCreated) = await getNodesAccordingToLookaheadDepth(
+            let (bestShape, _) = await getNodesAccordingToLookaheadDepth(
                 lookaheadDepth: lookaheadDepth,
                 treeNode: treeNode,
                 searchShapes: searchShapes,
