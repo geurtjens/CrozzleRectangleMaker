@@ -76,18 +76,20 @@ public class BranchAndBoundV3 {
                 widthMax: widthMax,
                 heightMax: heightMax)
             
-            bulkShapes += shapes
-            
-            for shape in shapes {
-                if shape.score > bestShape.score {
-                    bestShape = shape
+            if shapes.count > 0 {
+                bulkShapes += shapes
+                
+                for shape in shapes {
+                    if shape.score > bestShape.score {
+                        bestShape = shape
+                    }
                 }
-            }
-            
-            if bestShape.score >= winningScore {
-                print("HUMAN SCORE \(gameId) Calculated at end")
-                print("game: \(gameId), root: \(rootShape), depth: \(lookaheadDepth), width: \(beamWidth), size: \(searchShapes.count), time: \"\(DateTimeCalculator.duration(start: startTime))\"")
-                return bestShape
+                
+                if bestShape.score >= winningScore {
+                    print("HUMAN SCORE \(gameId) Calculated at end")
+                    print("game: \(gameId), root: \(rootShape), depth: \(lookaheadDepth), width: \(beamWidth), size: \(searchShapes.count), time: \"\(DateTimeCalculator.duration(start: startTime))\"")
+                    return bestShape
+                }
             }
         }
         

@@ -139,7 +139,11 @@ public struct BranchAndBound_GetInstructions {
         // 9202
         result.append(BranchAndBoundInstruction(
             game: 9203, root: 2, depth: 2, width: 52, size: 7_143, time: "00:01:59"))
-        // 9204
+        
+        // bulk end
+        result.append(BranchAndBoundInstruction(game: 9204, root: 2, depth: 1, width: 423, size: 8_567, time: "13 seconds"))
+        
+        
         //game: 9206, root: 3, depth: 1, width: 387, size: 38824, time: "1 minutes 1 seconds"
         //game: 9206, root: 4, depth: 1, width: 158, size: 38824, time: "49 seconds"
         //game: 9206, root: 0, depth: 2, width: 31, size: 38_824, time: "00:09:42"
@@ -166,7 +170,12 @@ public struct BranchAndBound_GetInstructions {
             game: 9211, root: 5, depth: 1, width: 14, size: 29_841, time: "00:00:02"))
         result.append(BranchAndBoundInstruction(
             game: 9212, root: 0, depth: 1, width: 43, size: 93_289, time: "00:00:27"))
-        // 9301, 9302
+        // 9301,
+        //game: 9302, root: 3, depth: 1, width: 4614, size: 25750, time: "5 minutes 34 seconds"
+        result.append(BranchAndBoundInstruction(
+            game: 9302, root: 4, depth: 1, width: 1354, size: 25750, time: "2 minutes 2 seconds"))
+        
+        
         result.append(BranchAndBoundInstruction(
             game: 9303, root: 0, depth: 2, width: 73, size: 22_191, time: "00:08:29"))
         // 9304, 9305
@@ -236,6 +245,10 @@ public struct BranchAndBound_GetInstructions {
         result.append(BranchAndBoundInstruction(
             game: 9506, root: 7, depth: 1, width: 210, size: 17876, time: "18 seconds"))
         
+    //game: 9507, root: 4, depth: 1, width: 879, size: 31319, time: "10 minutes 25 seconds" This came out again so strange it doesnt calculate correctly
+        result.append(BranchAndBoundInstruction(
+            game: 9507, root: 4, depth: 1, width: 879, size: 31319, time: "10 minutes 18 seconds"))
+        
         //game: 9508, root: 1, depth: 1, width: 284, size: 5426, time: "17 seconds"
         //game: 9508, root: 2, depth: 1, width: 6452, size: 5426, time: "6 minutes 3 seconds"
         //game: 9508, root: 4, depth: 1, width: 1694, size: 5426, time: "1 minutes 13 seconds"
@@ -243,6 +256,11 @@ public struct BranchAndBound_GetInstructions {
             game: 9508, root: 1, depth: 1, width: 284, size: 5426, time: "17 seconds"))
         result.append(BranchAndBoundInstruction(
             game: 9509, root: 2, depth: 1, width: 6500, size: 9263, time: "13 minutes 40 seconds"))
+        
+        
+        //game: 9511, root: 0, depth: 1, width: 3385, size: 35324, time: "24 minutes 7 seconds"
+        result.append(BranchAndBoundInstruction(
+            game: 9511, root: 3, depth: 1, width: 1517, size: 35324, time: "11 minutes 21 seconds"))
         
         result.append(BranchAndBoundInstruction(
             game: 9605, root: 0, depth: 1, width: 1784, size: 29185, time: "1 minutes 26 seconds"))
